@@ -59,6 +59,72 @@ export interface RsuShortfallResult {
   appliedFederalSupplementalRate: number;
 }
 
+export type EsppDispositionType = 'qualifying' | 'disqualifying';
+
+export interface EsppQualifyingInput {
+  taxYear: TaxYear;
+  filingStatus: FilingStatus;
+
+  /** Per-share fair market value on the offer/grant date (start of offering period). */
+  offerDateFmvUsd: number;
+  /** Per-share fair market value on the purchase date (end of offering period). */
+  purchaseDateFmvUsd: number;
+  /** Plan discount as a percentage, typically 15. */
+  discountPct: number;
+  /** Number of shares purchased in this lot. */
+  sharesPurchased: number;
+  /** Per-share sale price. */
+  salePricePerShareUsd: number;
+
+  /** ISO YYYY-MM-DD. Used to verify qualifying-disposition holding requirements. */
+  offerDate: string;
+  purchaseDate: string;
+  saleDate: string;
+
+  /** YTD regular W-2 wages (before this disposition). */
+  ytdRegularWagesUsd: number;
+  /** Other taxable income for the year (spouse W-2, dividends, etc.). */
+  otherTaxableIncomeUsd: number;
+  /** Pre-tax deductions YTD (401k, HSA). */
+  preTaxDeductionsUsd: number;
+
+  stateCode: string;
+  stateOverrideRatePct?: number;
+}
+
+export interface EsppQualifyingResult {
+  /** True if both holding requirements are met (>2y from offer, >1y from purchase). */
+  isQualifying: boolean;
+  /** Whole months elapsed from offer date to sale date. */
+  monthsFromOffer: number;
+  /** Whole months elapsed from purchase date to sale date. */
+  monthsFromPurchase: number;
+
+  purchasePricePerShareUsd: number;
+  ordinaryIncomePerShareUsd: number;
+  capitalGainPerShareUsd: number;
+
+  totalSharesProceedsUsd: number;
+  totalOrdinaryIncomeUsd: number;
+  totalCapitalGainUsd: number;
+
+  federalOrdinaryTaxUsd: number;
+  federalLtcgTaxUsd: number;
+  niitUsd: number;
+  stateTaxUsd: number;
+  totalTaxUsd: number;
+
+  netProceedsAfterTaxUsd: number;
+  marginalFederalRatePct: number;
+  marginalLtcgRatePct: number;
+  marginalStateRatePct: number;
+
+  /** Comparison: total tax if sold today as a disqualifying disposition instead. */
+  disqualifyingComparisonTaxUsd: number;
+  /** Difference: positive = qualifying saves you this much vs. disqualifying. */
+  qualifyingSavingsVsDisqualifyingUsd: number;
+}
+
 export class TaxCalcError extends Error {
   constructor(message: string) {
     super(message);

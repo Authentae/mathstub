@@ -14,3 +14,5 @@ export {
   stateSupplementalRate,
 } from './state-rates';
 export { calculateRsuShortfall, SAFE_HARBOR } from './rsu-shortfall';
+export { ltcgMarginalRate, ltcgTax, niitOnGain, LTCG_RATES, NIIT } from './ltcg-brackets';
+export { calculateEsppQualifying, ESPP_QUALIFYING_RULES } from './espp';

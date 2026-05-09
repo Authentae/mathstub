@@ -21,6 +21,16 @@ export const tools: Tool[] = [
     status: 'live',
     emoji: '📈',
   },
+  {
+    id: 'espp-qualifying-disposition',
+    slug: 'espp-qualifying-disposition',
+    title: 'ESPP Qualifying Disposition Tax Calculator',
+    shortTitle: 'ESPP Qualifying Disposition',
+    summary:
+      'Split a §423 ESPP sale into ordinary income vs. long-term capital gain, apply federal LTCG + NIIT + state tax, and compare against disqualifying treatment.',
+    status: 'live',
+    emoji: '🧾',
+  },
 ];
 
 export function liveTools(): Tool[] {
