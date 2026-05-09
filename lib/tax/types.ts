@@ -59,6 +59,78 @@ export interface RsuShortfallResult {
   appliedFederalSupplementalRate: number;
 }
 
+export type IsoScenario = 'exercise-and-hold' | 'exercise-and-sell-same-year';
+
+export interface IsoAmtInput {
+  taxYear: TaxYear;
+  filingStatus: FilingStatus;
+
+  /** Strike price per share, USD. */
+  strikePricePerShareUsd: number;
+  /** Fair market value per share on the exercise date, USD. */
+  fmvAtExercisePerShareUsd: number;
+  /** Number of options exercised. */
+  sharesExercised: number;
+
+  /** Year-to-date regular W-2 wages (excluding any same-year disqualifying ordinary income). */
+  ytdRegularWagesUsd: number;
+  /** Other taxable income for the year (spouse W-2, dividends, interest, etc.). */
+  otherTaxableIncomeUsd: number;
+  /** Pre-tax deductions YTD (401k, HSA). */
+  preTaxDeductionsUsd: number;
+
+  stateCode: string;
+  stateOverrideRatePct?: number;
+
+  scenario: IsoScenario;
+  /**
+   * Per-share sale price for `exercise-and-sell-same-year`. If omitted, defaults
+   * to FMV at exercise (a "cashless" same-day-sale at exercise FMV). Ignored for
+   * `exercise-and-hold`.
+   */
+  salePricePerShareUsd?: number;
+}
+
+export interface IsoAmtResult {
+  scenario: IsoScenario;
+
+  bargainElementPerShareUsd: number;
+  totalBargainElementUsd: number;
+
+  /** Regular taxable income for the year BEFORE this ISO exercise. */
+  regularTaxableIncomeBaseUsd: number;
+  /** Regular taxable income AFTER this ISO event (only changes on disqualifying same-year sale). */
+  regularTaxableIncomeAfterUsd: number;
+
+  /** Alternative Minimum Taxable Income (AMTI) used for AMT calc. */
+  amtiUsd: number;
+  amtExemptionUsd: number;
+  /** Tentative Minimum Tax. */
+  tentativeMinimumTaxUsd: number;
+  /** Regular federal tax on regularTaxableIncomeAfter (used for AMT comparison). */
+  regularFederalTaxUsd: number;
+  /** AMT actually owed = max(0, TMT − regular federal tax). Zero on disqualifying same-year sale. */
+  amtOwedUsd: number;
+
+  /** Additional ordinary income added (only nonzero on disqualifying same-year sale). */
+  additionalOrdinaryIncomeUsd: number;
+  /** Additional federal tax on the disqualifying ordinary income at marginal rate. */
+  additionalFederalOrdinaryTaxUsd: number;
+  /** Additional state tax on the disqualifying ordinary income at marginal rate. */
+  additionalStateTaxUsd: number;
+
+  /** AMT credit generated this year (carries forward to offset future regular tax). */
+  amtCreditCarryforwardUsd: number;
+
+  totalTaxIncreaseUsd: number;
+  cashRequiredToExerciseUsd: number;
+  marginalFederalRatePct: number;
+  marginalStateRatePct: number;
+
+  /** Notes returned to the UI explaining edge cases (e.g. "no AMT triggered"). */
+  notes: string[];
+}
+
 export type EsppDispositionType = 'qualifying' | 'disqualifying';
 
 export interface EsppQualifyingInput {

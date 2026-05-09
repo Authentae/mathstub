@@ -31,6 +31,16 @@ export const tools: Tool[] = [
     status: 'live',
     emoji: '🧾',
   },
+  {
+    id: 'iso-amt',
+    slug: 'iso-amt',
+    title: 'ISO Exercise AMT Calculator',
+    shortTitle: 'ISO / AMT',
+    summary:
+      'Estimate the Alternative Minimum Tax on an ISO exercise, the cash required, and the AMT credit you’ll carry forward — plus a same-year-sale comparison.',
+    status: 'live',
+    emoji: '⚡',
+  },
 ];
 
 export function liveTools(): Tool[] {
