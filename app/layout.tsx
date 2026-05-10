@@ -22,8 +22,22 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const adsenseClient = env.adsense.clientId();
   return (
     <html lang="en">
+      <head>
+        {adsenseClient && (
+          // Static <script> in <head> so the AdSense crawler can detect the
+          // snippet in the initial HTML response (next/script with strategy
+          // "afterInteractive" injects the tag client-side and the crawler
+          // never sees it).
+          <script
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
+            crossOrigin="anonymous"
+          />
+        )}
+      </head>
       <body className="flex min-h-screen flex-col">
         <Header />
         <div className="flex-1">{children}</div>
