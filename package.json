@@ -17,7 +17,8 @@
     "check": "npm run typecheck && npm run lint && npm run test",
     "ext:icons": "node scripts/generate-extension-icons.mjs",
     "ext:zip": "node scripts/zip-extension.mjs",
-    "notion:images": "node scripts/generate-notion-covers.mjs"
+    "notion:images": "node scripts/generate-notion-covers.mjs",
+    "webstore:assets": "node scripts/generate-webstore-assets.mjs"
   },
   "dependencies": {
     "next": "^15.1.6",

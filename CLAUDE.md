@@ -37,10 +37,21 @@ Passive-income utility-site portfolio. Live at mathstub.com. Repo: authentae/rev
 
 ## Blocked on user (don't attempt)
 
-- Buy mathstub.com domain (~$10 Cloudflare Registrar).
-- Connect mathstub.com to Vercel via DNS.
-- Apply for AdSense.
-- Sign up for FlexOffers.
+(Most resolved 2026-05-10. Remaining:)
+- Stripe Connect ID upload (Gumroad payouts held until done; site can still take sales).
+- Verify FlexOffers email when verification arrives.
+- Optional: submit 3 Notion templates to Notion Marketplace (free, separate review).
+
+## Shipped 2026-05-10 — full launch session
+
+- **mathstub.com** bought on Cloudflare Registrar (~$10.46/yr forever), Vercel DNS connected via Cloudflare Domain Connect, SSL live, sitemap serving https://mathstub.com URLs.
+- **Gumroad** account live (Authentae / theearth1659@gmail.com), Thai bank + Stripe Connect connected, 3 products PUBLISHED:
+  - Equity Comp Tracker $29 (`/products/jqyyp`)
+  - Year-End Tax Checklist $19 (`/products/bdlfo`)
+  - Tech Worker Annual Review $39 (`/products/jlsppt`)
+- **AdSense** site verified, content review requested (1–14 day queue), Google CMP (3-choice GDPR) configured. Pub ID: `pub-6038024276617392`. Static `<script>` in app/layout.tsx renders the AdSense tag in initial HTML for crawler verification.
+- **FlexOffers** publisher account submitted (1–3 day review). Email verification pending on user.
+- **Chrome Web Store** extension submitted for review (1–7 day Google review). $5 dev fee paid. Trader status declared per EU consumer law. Web Store assets (440×280 promo + 1280×800 popup screenshot) generated via `npm run webstore:assets`.
 
 ## Project context
 
