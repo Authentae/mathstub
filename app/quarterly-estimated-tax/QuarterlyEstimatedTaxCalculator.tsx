@@ -9,6 +9,7 @@ import {
   type TaxYear,
   TaxCalcError,
 } from '@tax/types';
+import { GumroadUpsell } from '@/components/GumroadUpsell';
 
 const usd = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -259,6 +260,10 @@ function Result({
           </tbody>
         </table>
       </div>
+
+      {r.recommendedNextPaymentUsd > 0 && (
+        <GumroadUpsell shortfallUsd={Math.max(r.yearEndGapUsd, r.recommendedNextPaymentUsd)} />
+      )}
 
       {r.notes.length > 0 && (
         <ul className="space-y-2 rounded-md border border-blue-200 bg-blue-50 p-4 text-sm text-blue-900 dark:border-blue-900 dark:bg-blue-950 dark:text-blue-100">

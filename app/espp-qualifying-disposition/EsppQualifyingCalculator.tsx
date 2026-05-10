@@ -11,6 +11,7 @@ import {
 import { listStateCodes } from '@tax/state-rates';
 import { offersForShortfall } from '@/lib/affiliates';
 import { AffiliateCard } from '@/components/AffiliateCard';
+import { GumroadUpsell } from '@/components/GumroadUpsell';
 
 const usd = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -329,6 +330,8 @@ function Result({ result }: { result: EsppQualifyingResult }) {
         />
         <Stat label="Net proceeds after tax" value={usd.format(r.netProceedsAfterTaxUsd)} />
       </div>
+
+      {r.totalTaxUsd > 0 && <GumroadUpsell shortfallUsd={r.totalTaxUsd} />}
 
       <details className="rounded-md border border-gray-200 bg-white p-4 text-sm dark:border-gray-800 dark:bg-gray-900">
         <summary className="cursor-pointer font-semibold text-gray-800 dark:text-gray-200">
