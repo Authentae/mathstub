@@ -52,6 +52,16 @@ export const tools: Tool[] = [
     emoji: '🗓️',
   },
   {
+    id: 'amt-credit-recovery',
+    slug: 'amt-credit-recovery',
+    title: 'AMT Credit Recovery Calculator',
+    shortTitle: 'AMT Credit Recovery',
+    summary:
+      'Project your IRC §53 Minimum Tax Credit (Form 8801) recovery year-by-year — see when the balance hits $0 based on your projected income.',
+    status: 'live',
+    emoji: '♻️',
+  },
+  {
     id: 'nso-exercise',
     slug: 'nso-exercise',
     title: 'NSO Exercise Tax Calculator',

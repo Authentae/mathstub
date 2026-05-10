@@ -64,7 +64,7 @@ Passive-income utility-site portfolio. Live at mathstub.com. Repo: authentae/rev
 
 - 5-tier asset plan: utility site → Chrome ext → Notion templates → Anthropic skills → sister site (Pension Lump-Sum, gated on Mathstub > $50/mo at month 6).
 - Tool #1 LIVE: RSU Tax Withholding Shortfall Calculator.
-- 7 calculators LIVE: RSU shortfall, ESPP qualifying, ISO/AMT, Quarterly estimated, Bonus tax shortfall, NSO exercise, State stock-comp lookup.
+- 8 calculators LIVE: RSU shortfall, ESPP qualifying, ISO/AMT, Quarterly estimated, Bonus tax shortfall, NSO exercise, AMT Credit Recovery (Form 8801 scheduler), State stock-comp lookup.
 - 243 tests, calc layer high coverage.
 - 6 pillar blog posts shipped, marked "Pending CPA review".
 - YMYL trust scaffolding done (about, editorial-policy, disclaimer, privacy, terms, JSON-LD).
