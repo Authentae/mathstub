@@ -26,6 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
+        <meta name="impact-site-verification" content="7dd46510-dd74-4c10-a4ce-5cddf36a1e85" />
         {adsenseClient && (
           // Static <script> in <head> so the AdSense crawler can detect the
           // snippet in the initial HTML response (next/script with strategy
