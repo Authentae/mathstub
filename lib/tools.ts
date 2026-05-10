@@ -52,6 +52,16 @@ export const tools: Tool[] = [
     emoji: '🗓️',
   },
   {
+    id: 'bonus-tax-shortfall',
+    slug: 'bonus-tax-shortfall',
+    title: 'Bonus Tax Withholding Shortfall Calculator',
+    shortTitle: 'Bonus Tax Shortfall',
+    summary:
+      'Estimate the gap between the flat 22% (or 37%) supplemental withholding on your cash bonus and what you actually owe at your marginal rate.',
+    status: 'live',
+    emoji: '💵',
+  },
+  {
     id: 'state-stock-comp',
     slug: 'state-stock-comp',
     title: 'State Stock-Comp Tax Lookup',
