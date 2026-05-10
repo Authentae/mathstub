@@ -27,6 +27,21 @@ function withUtm(base: string, utmContent: string): string {
 }
 
 export const affiliates: Record<AffiliateOfferId, AffiliateOffer> = {
+  'harness-wealth': {
+    id: 'harness-wealth',
+    brand: 'Harness Wealth',
+    headline: 'Talk to a CPA who specializes in equity comp',
+    body:
+      'For high earners with mixed RSU / ISO / NSO / ESPP situations. Vetted tax pros who know §83(b), §409A, and AMT. Highest payoff if your shortfall is >$5k.',
+    cta: 'Match with a tax pro',
+    href: () => {
+      const id = env.affiliate.harness();
+      if (!id) return '#';
+      return withUtm(`https://www.harnesswealth.com/tax?ref=${encodeURIComponent(id)}`, 'harness');
+    },
+    badge: 'Affiliate link — we may earn a commission',
+    showWhen: { minShortfallUsd: 5_000 },
+  },
   'turbotax-premier': {
     id: 'turbotax-premier',
     brand: 'TurboTax Premier',
@@ -56,21 +71,6 @@ export const affiliates: Record<AffiliateOfferId, AffiliateOffer> = {
     },
     badge: 'Affiliate link — we may earn a commission',
     showWhen: { minShortfallUsd: 500 },
-  },
-  'harness-wealth': {
-    id: 'harness-wealth',
-    brand: 'Harness Wealth',
-    headline: 'Talk to a CPA who specializes in equity comp',
-    body:
-      'For high earners with mixed RSU / ISO / NSO / ESPP situations. Vetted tax pros who know §83(b), §409A, and AMT.',
-    cta: 'Match with a tax pro',
-    href: () => {
-      const id = env.affiliate.harness();
-      if (!id) return '#';
-      return withUtm(`https://www.harnesswealth.com/tax?ref=${encodeURIComponent(id)}`, 'harness');
-    },
-    badge: 'Affiliate link — we may earn a commission',
-    showWhen: { minShortfallUsd: 5_000 },
   },
   carta: {
     id: 'carta',

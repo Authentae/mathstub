@@ -11,6 +11,7 @@ import { ToolShell } from '@/components/ToolShell';
 import { FaqAccordion } from '@/components/FaqAccordion';
 import { Disclaimer } from '@/components/Disclaimer';
 import { LastUpdatedBadge } from '@/components/LastUpdatedBadge';
+import { RelatedCalcs } from '@/components/RelatedCalcs';
 import { RsuShortfallCalculator } from './RsuShortfallCalculator';
 import { rsuTaxShortfallContent as c } from '@/content/rsu-tax-shortfall';
 
@@ -62,6 +63,7 @@ export default function Page() {
           </ol>
         }
         faq={<FaqAccordion items={[...c.faqs]} />}
+        related={<RelatedCalcs currentSlug={c.slug} />}
       />
     </>
   );
