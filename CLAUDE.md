@@ -42,6 +42,12 @@ Passive-income utility-site portfolio. Live at mathstub.com. Repo: authentae/rev
 - Verify FlexOffers email when verification arrives.
 - Optional: submit 3 Notion templates to Notion Marketplace (free, separate review).
 
+## Shipped 2026-05-11
+
+- **PH launch scheduled** — Wed May 13, 12:01am PT. Form 100% complete. Real calculator screenshots replace auto-imported OG cards in gallery (1 brand card + 5 calc shots).
+- **Bonus Tax Withholding Shortfall calculator** — 6th calculator at `/bonus-tax-shortfall`. Reuses RSU shortfall engine (calc is pure, just relabeled UI + bonus-specific FAQ targeting "bonus tax 22% withheld" search queries). Different audience entry point than RSU (any cash bonus recipient, not just equity).
+- **Comment-reply playbook** — 18 pre-drafted patterns at `marketing/comment-replies.md` for HN/PH/Reddit launch responses.
+
 ## Shipped 2026-05-10 — full launch session
 
 - **mathstub.com** bought on Cloudflare Registrar (~$10.46/yr forever), Vercel DNS connected via Cloudflare Domain Connect, SSL live, sitemap serving https://mathstub.com URLs.
@@ -57,7 +63,8 @@ Passive-income utility-site portfolio. Live at mathstub.com. Repo: authentae/rev
 
 - 5-tier asset plan: utility site → Chrome ext → Notion templates → Anthropic skills → sister site (Pension Lump-Sum, gated on Mathstub > $50/mo at month 6).
 - Tool #1 LIVE: RSU Tax Withholding Shortfall Calculator.
-- 86 tests, 99.76% coverage on `lib/tax/`.
+- 6 calculators LIVE: RSU shortfall, ESPP qualifying, ISO/AMT, Quarterly estimated, Bonus tax shortfall, State stock-comp lookup.
+- 243 tests, calc layer high coverage.
 - 6 pillar blog posts shipped, marked "Pending CPA review".
 - YMYL trust scaffolding done (about, editorial-policy, disclaimer, privacy, terms, JSON-LD).
 
