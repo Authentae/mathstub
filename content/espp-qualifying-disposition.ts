@@ -30,35 +30,35 @@ export const esppQualifyingContent = {
   faqs: [
     {
       q: 'What makes an ESPP sale a “qualifying disposition”?',
-      a: 'Two holding rules must both be met: at least 2 years from the offering/grant date AND at least 1 year from the purchase date. Miss either one and the sale is a disqualifying disposition with worse tax treatment.',
+      a: 'Two holding rules must both be met: at least 2 years from the offering/grant date AND at least 1 year from the purchase date (IRC §423(a)(1) and §423(a)(2)). Miss either one and the sale is a disqualifying disposition with worse tax treatment. See IRS Publication 525 (Taxable and Nontaxable Income), section "Employee Stock Purchase Plan."',
     },
     {
       q: 'How is the ordinary income calculated on a qualifying sale?',
-      a: 'It’s the LESSER of (a) the offering-date discount — offer-date FMV × discount %, typically 15% — or (b) your actual gain (sale price minus your purchase price). Anything above that ordinary-income piece is long-term capital gain.',
+      a: 'Per IRC §423(c), ordinary income is the LESSER of (a) the discount available at grant — for a typical 15% discount plan, that\'s grant-date FMV × 15% — or (b) your actual gain (sale price minus your purchase price). Anything above that ordinary-income piece is long-term capital gain. Brokers report the grant-date FMV in Form 3922 Box 2 and the deemed option price in Box 4.',
     },
     {
       q: 'How is the purchase price computed?',
-      a: 'For a §423 plan with lookback: purchase price = the lower of (offer-date FMV, purchase-date FMV) × (1 − discount). Plans without lookback set both FMVs equal — enter the same value in both fields.',
+      a: 'For a §423 plan with lookback: purchase price = the lower of (offer-date FMV, purchase-date FMV) × (1 − discount), per the standard plan terms allowed under Treas. Reg. §1.423-2. Plans without lookback set both FMVs equal — enter the same value in both fields.',
     },
     {
       q: 'What is the disqualifying disposition comparison?',
-      a: 'On a disqualifying sale, ordinary income is the full bargain element on purchase date (purchase-date FMV − purchase price), uncapped. Any further gain is short-term or long-term capital gain depending on holding from purchase. The calculator computes both so you can see the dollar value of the qualifying tax break.',
+      a: 'On a disqualifying sale, ordinary income is the full bargain element on purchase date (purchase-date FMV − purchase price), uncapped (per IRC §421(b)). Any further gain is short-term or long-term capital gain depending on holding from purchase. The calculator computes both so you can see the dollar value of the qualifying tax break.',
     },
     {
       q: 'Does this include state tax?',
-      a: 'Yes — at your state’s top marginal rate by default, with a manual override. Most states (including California) tax both the ordinary-income piece and the long-term capital gain at ordinary rates.',
+      a: 'Yes — at your state’s top marginal rate by default, with a manual override. Most states (including California per FTB Pub 1004) tax both the ordinary-income piece and the long-term capital gain at ordinary rates with no preferential LTCG treatment.',
     },
     {
       q: 'Does it include NIIT?',
-      a: 'Yes. The 3.8% Net Investment Income Tax is applied to the long-term capital-gain portion when MAGI exceeds the statutory threshold ($200k single / $250k MFJ).',
+      a: 'Yes. The 3.8% Net Investment Income Tax (IRC §1411) is applied to the long-term capital-gain portion when MAGI exceeds the statutory threshold ($200k single / $250k MFJ / $125k MFS). Thresholds are not inflation-indexed.',
     },
     {
       q: 'What about a sale below my purchase price?',
-      a: 'Ordinary income is zero in that case (you can’t recognize ordinary income greater than your actual gain), and you have a long-term capital loss equal to sale price − purchase price.',
+      a: 'Ordinary income is zero in that case (you can’t recognize ordinary income greater than your actual gain, per the §423(c) lesser-of rule), and you have a long-term capital loss equal to sale price − purchase price reportable on Schedule D.',
     },
     {
       q: 'Is this tax advice?',
-      a: 'No — it’s an estimate based on published IRS rules and your inputs. It does not consider AMT, multi-state residency, wash-sale interactions, or other facts a CPA would catch. For real money decisions, talk to a licensed tax professional.',
+      a: 'No — it’s an estimate based on IRS Pub 525, IRC §423, and your inputs. It does not consider AMT, multi-state residency, wash-sale interactions, or other facts a CPA would catch. For real money decisions, talk to a licensed tax professional.',
     },
   ],
 } as const;

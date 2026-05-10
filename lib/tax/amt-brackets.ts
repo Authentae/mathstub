@@ -10,6 +10,28 @@ interface AmtTable {
   rateBreakpoint: Record<FilingStatus, number>;
 }
 
+// 2024 (Rev. Proc. 2023-34).
+const AMT_2024: AmtTable = {
+  exemption: {
+    single: 85_700,
+    mfj: 133_300,
+    mfs: 66_650,
+    hoh: 85_700,
+  },
+  phaseoutStart: {
+    single: 609_350,
+    mfj: 1_218_700,
+    mfs: 609_350,
+    hoh: 609_350,
+  },
+  rateBreakpoint: {
+    single: 232_600,
+    mfj: 232_600,
+    mfs: 116_300,
+    hoh: 232_600,
+  },
+};
+
 // 2025 (Rev. Proc. 2024-40).
 const AMT_2025: AmtTable = {
   exemption: {
@@ -59,7 +81,7 @@ const AMT_HIGH_RATE = 0.28;
 const AMT_PHASEOUT_RATE = 0.25;
 
 function tableFor(taxYear: TaxYear): AmtTable {
-  return taxYear === 2025 ? AMT_2025 : AMT_2026;
+  return taxYear === 2024 ? AMT_2024 : taxYear === 2025 ? AMT_2025 : AMT_2026;
 }
 
 /**

@@ -10,9 +10,48 @@ interface Bracket {
 
 type BracketTable = Record<FilingStatus, Bracket[]>;
 
+// IRS Rev. Proc. 2023-34 (tax year 2024). Brackets are ordered ascending by `from`.
+const BRACKETS_2024: BracketTable = {
+  single: [
+    { from: 0, rate: 0.1 },
+    { from: 11_600, rate: 0.12 },
+    { from: 47_150, rate: 0.22 },
+    { from: 100_525, rate: 0.24 },
+    { from: 191_950, rate: 0.32 },
+    { from: 243_725, rate: 0.35 },
+    { from: 609_350, rate: 0.37 },
+  ],
+  mfj: [
+    { from: 0, rate: 0.1 },
+    { from: 23_200, rate: 0.12 },
+    { from: 94_300, rate: 0.22 },
+    { from: 201_050, rate: 0.24 },
+    { from: 383_900, rate: 0.32 },
+    { from: 487_450, rate: 0.35 },
+    { from: 731_200, rate: 0.37 },
+  ],
+  mfs: [
+    { from: 0, rate: 0.1 },
+    { from: 11_600, rate: 0.12 },
+    { from: 47_150, rate: 0.22 },
+    { from: 100_525, rate: 0.24 },
+    { from: 191_950, rate: 0.32 },
+    { from: 243_725, rate: 0.35 },
+    { from: 365_600, rate: 0.37 },
+  ],
+  hoh: [
+    { from: 0, rate: 0.1 },
+    { from: 16_550, rate: 0.12 },
+    { from: 63_100, rate: 0.22 },
+    { from: 100_500, rate: 0.24 },
+    { from: 191_950, rate: 0.32 },
+    { from: 243_700, rate: 0.35 },
+    { from: 609_350, rate: 0.37 },
+  ],
+};
+
 // IRS Rev. Proc. 2024-40 (tax year 2025) and projected 2026 (CPI-adjusted estimates).
-// Brackets are ordered ascending by `from`. Each bracket applies to income at or above `from`
-// and below the `from` of the next bracket.
+// Each bracket applies to income at or above `from` and below the `from` of the next bracket.
 const BRACKETS_2025: BracketTable = {
   single: [
     { from: 0, rate: 0.1 },
@@ -93,6 +132,13 @@ const BRACKETS_2026: BracketTable = {
   ],
 };
 
+const STANDARD_DEDUCTION_2024: Record<FilingStatus, number> = {
+  single: 14_600,
+  mfj: 29_200,
+  mfs: 14_600,
+  hoh: 21_900,
+};
+
 const STANDARD_DEDUCTION_2025: Record<FilingStatus, number> = {
   single: 15_000,
   mfj: 30_000,
@@ -112,12 +158,18 @@ const SUPPLEMENTAL_LOW_RATE = 0.22;
 const SUPPLEMENTAL_HIGH_RATE = 0.37;
 
 function bracketsFor(taxYear: TaxYear, filingStatus: FilingStatus): Bracket[] {
-  const table = taxYear === 2025 ? BRACKETS_2025 : BRACKETS_2026;
+  const table =
+    taxYear === 2024 ? BRACKETS_2024 : taxYear === 2025 ? BRACKETS_2025 : BRACKETS_2026;
   return table[filingStatus];
 }
 
 export function standardDeduction(taxYear: TaxYear, filingStatus: FilingStatus): number {
-  const table = taxYear === 2025 ? STANDARD_DEDUCTION_2025 : STANDARD_DEDUCTION_2026;
+  const table =
+    taxYear === 2024
+      ? STANDARD_DEDUCTION_2024
+      : taxYear === 2025
+        ? STANDARD_DEDUCTION_2025
+        : STANDARD_DEDUCTION_2026;
   return table[filingStatus];
 }
 

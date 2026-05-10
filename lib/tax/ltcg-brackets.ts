@@ -10,6 +10,30 @@ interface LtcgBracket {
 
 type LtcgTable = Record<FilingStatus, LtcgBracket[]>;
 
+// IRS Rev. Proc. 2023-34 (tax year 2024) LTCG / qualified dividend brackets.
+const LTCG_2024: LtcgTable = {
+  single: [
+    { from: 0, rate: 0 },
+    { from: 47_025, rate: 0.15 },
+    { from: 518_900, rate: 0.2 },
+  ],
+  mfj: [
+    { from: 0, rate: 0 },
+    { from: 94_050, rate: 0.15 },
+    { from: 583_750, rate: 0.2 },
+  ],
+  mfs: [
+    { from: 0, rate: 0 },
+    { from: 47_025, rate: 0.15 },
+    { from: 291_850, rate: 0.2 },
+  ],
+  hoh: [
+    { from: 0, rate: 0 },
+    { from: 63_000, rate: 0.15 },
+    { from: 551_350, rate: 0.2 },
+  ],
+};
+
 // IRS Rev. Proc. 2024-40 (tax year 2025) LTCG / qualified dividend brackets.
 const LTCG_2025: LtcgTable = {
   single: [
@@ -68,7 +92,7 @@ const NIIT_THRESHOLD: Record<FilingStatus, number> = {
 };
 
 function ltcgTableFor(taxYear: TaxYear, filingStatus: FilingStatus): LtcgBracket[] {
-  const table = taxYear === 2025 ? LTCG_2025 : LTCG_2026;
+  const table = taxYear === 2024 ? LTCG_2024 : taxYear === 2025 ? LTCG_2025 : LTCG_2026;
   return table[filingStatus];
 }
 

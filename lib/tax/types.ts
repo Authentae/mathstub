@@ -1,5 +1,5 @@
 export type FilingStatus = 'single' | 'mfj' | 'mfs' | 'hoh';
-export type TaxYear = 2025 | 2026;
+export type TaxYear = 2024 | 2025 | 2026;
 
 export interface RsuShortfallInput {
   taxYear: TaxYear;

@@ -83,4 +83,12 @@ Distribution: Gumroad SEO + Notion Marketplace + Mathstub footer. Y2 $200–1,20
 
 ## Lessons learned
 
-(Append here when user corrects approach. Keep short — rule + one-line why.)
+1. **Math is sacred — cross-check before shipping.** Tests passing ≠ proof. For every new calc, run one real scenario by hand and verify against an IRS Pub example or a CPA blog example, BEFORE claiming "done." Coverage must include zero, negative, very large, year-boundary, rounding, and currency edge cases.
+2. **YMYL discipline — never invent credentials, always cite IRS by Pub# + year.** "Pending CPA review" stays as-is until user says a real CPA is reviewing. Tax claims in FAQs/copy must cite an IRS `.gov` source by publication number and year. No random tax-blog "authority" links. `LastUpdated` only bumps when content actually changed.
+3. **Mobile-first or it doesn't ship.** Users are on phones in panicked moments. Every calculator must work one-thumb on iPhone. Test mobile viewport before claiming done.
+4. **Year-aware everything (current + prior 2 years minimum).** Every calc accepts a tax-year param and has data tables for current + prior 2 years. Never hardcode current-year values without a swap path.
+5. **Don't fabricate metrics or recall from memory.** Numerical claims need a query/grep/git command shown. If unverifiable, label "unverified — my hunch."
+6. **Verify before retracting.** A correction is itself a claim — get TWO independent verifications before publishing "actually X was wrong, the truth is Y."
+7. **Don't conflate UI labels with status badges.** Screenshot ≠ state. Confirm state via DB/API/code before reporting.
+8. **Domain not bought yet — no hardcoded mathstub.com.** Canonicals/sitemap/og:url must use the env-driven URL (currently vercel.app fallback). Don't hardcode the production domain until user confirms DNS is live.
+9. **Pre-revenue priority filter.** Things that move us toward first $1 of revenue beat polish. New tool > redesigning existing tool. Real CPA review > better fonts. AdSense application > logo iteration. Push back on low-leverage polish at the wrong stage.
