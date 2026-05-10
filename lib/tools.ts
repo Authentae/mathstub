@@ -52,6 +52,16 @@ export const tools: Tool[] = [
     emoji: '🗓️',
   },
   {
+    id: 'nso-exercise',
+    slug: 'nso-exercise',
+    title: 'NSO Exercise Tax Calculator',
+    shortTitle: 'NSO Exercise',
+    summary:
+      'Estimate the ordinary-income tax + FICA on a non-qualified stock option exercise — bargain element, supplemental withholding, marginal-rate shortfall, and state.',
+    status: 'live',
+    emoji: '🎯',
+  },
+  {
     id: 'bonus-tax-shortfall',
     slug: 'bonus-tax-shortfall',
     title: 'Bonus Tax Withholding Shortfall Calculator',

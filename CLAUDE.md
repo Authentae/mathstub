@@ -46,6 +46,7 @@ Passive-income utility-site portfolio. Live at mathstub.com. Repo: authentae/rev
 
 - **PH launch scheduled** — Wed May 13, 12:01am PT. Form 100% complete. Real calculator screenshots replace auto-imported OG cards in gallery (1 brand card + 5 calc shots).
 - **Bonus Tax Withholding Shortfall calculator** — 6th calculator at `/bonus-tax-shortfall`. Reuses RSU shortfall engine (calc is pure, just relabeled UI + bonus-specific FAQ targeting "bonus tax 22% withheld" search queries). Different audience entry point than RSU (any cash bonus recipient, not just equity).
+- **NSO Exercise Tax calculator** — 7th calculator at `/nso-exercise`. Computes bargain element (FMV − strike) × shares, feeds it to the supplemental-withholding shortfall engine. Targets "NSO tax calculator" / "non-qualified stock options exercise tax" search queries. Audience: startup employees with NSOs (distinct from ISO §422 audience).
 - **Comment-reply playbook** — 18 pre-drafted patterns at `marketing/comment-replies.md` for HN/PH/Reddit launch responses.
 
 ## Shipped 2026-05-10 — full launch session
@@ -63,7 +64,7 @@ Passive-income utility-site portfolio. Live at mathstub.com. Repo: authentae/rev
 
 - 5-tier asset plan: utility site → Chrome ext → Notion templates → Anthropic skills → sister site (Pension Lump-Sum, gated on Mathstub > $50/mo at month 6).
 - Tool #1 LIVE: RSU Tax Withholding Shortfall Calculator.
-- 6 calculators LIVE: RSU shortfall, ESPP qualifying, ISO/AMT, Quarterly estimated, Bonus tax shortfall, State stock-comp lookup.
+- 7 calculators LIVE: RSU shortfall, ESPP qualifying, ISO/AMT, Quarterly estimated, Bonus tax shortfall, NSO exercise, State stock-comp lookup.
 - 243 tests, calc layer high coverage.
 - 6 pillar blog posts shipped, marked "Pending CPA review".
 - YMYL trust scaffolding done (about, editorial-policy, disclaimer, privacy, terms, JSON-LD).

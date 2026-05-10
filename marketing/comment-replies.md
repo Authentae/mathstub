@@ -58,9 +58,9 @@ When a comment lands during launch, search this file by the first 3 words of the
 
 > The ISO calculator handles two paths: exercise-and-hold (AMT preference) and exercise-and-sell-same-year (disqualifying disposition → ordinary income). For mid-cycle disqualification (held >1 year from exercise but <2 years from grant), the holding-period split is more nuanced — that's a "talk to your CPA" case. v1 covers the two extremes most people actually face.
 
-## 5d. "What about [edge case]?" — 83(b) elections / RSAs / NSOs / NQDCs
+## 5d. "What about [edge case]?" — 83(b) elections / RSAs / NQDCs
 
-> Not modeled in v1. The site covers RSU, ESPP §423, ISO §422, and quarterly estimated tax. RSAs with 83(b) elections, NSOs, and NQDC plans each have their own code path that doesn't share a lot of code with these. They're on the roadmap but not soon.
+> Not modeled in v1. The site covers RSU, ESPP §423, ISO §422, NSO §83, bonus, and quarterly estimated tax. RSAs with 83(b) elections and NQDC plans each have their own code path that doesn't share a lot of code with these. They're on the roadmap but not soon.
 
 ---
 
@@ -114,7 +114,7 @@ When a comment lands during launch, search this file by the first 3 words of the
 
 ## 13. "What about NSOs?"
 
-> NSOs aren't in v1 — they're closer to RSU tax-wise (ordinary income at exercise on the bargain element) but with their own quirks around 409A timing and ISO/NSO ratio limits. The RSU shortfall calc roughly approximates NSO exercise-with-immediate-sale if you treat the bargain element as the "vest amount" — but it's not exact. NSO-specific calc is on the list.
+> Live at mathstub.com/nso-exercise. Same flat 22% supplemental withholding as RSUs but on the bargain element (FMV − strike) × shares. The calc handles federal marginal-rate shortfall, FICA (which applies to NSOs unlike ISOs), and state.
 
 ---
 
