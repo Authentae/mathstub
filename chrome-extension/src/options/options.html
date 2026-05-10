@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Equity Comp Vest Tracker — Manage</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <style>
+      body {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 1.5rem;
+      }
+      h1 {
+        margin-bottom: 0.5rem;
+      }
+      .lede {
+        color: var(--gray-500);
+        margin-bottom: 1.5rem;
+        font-size: 13px;
+      }
+      .card {
+        border: 1px solid var(--gray-200);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+      }
+      .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 0.75rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+      th,
+      td {
+        padding: 0.5rem;
+        text-align: left;
+        border-bottom: 1px solid var(--gray-100);
+      }
+      th {
+        background: var(--gray-50);
+        font-size: 11px;
+        text-transform: uppercase;
+        color: var(--gray-500);
+      }
+      .toolbar {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+      }
+      .toolbar button.secondary {
+        background: white;
+      }
+      details {
+        margin-top: 1rem;
+      }
+      summary {
+        cursor: pointer;
+        font-weight: 600;
+      }
+      pre {
+        background: var(--gray-50);
+        padding: 0.75rem;
+        border-radius: 6px;
+        overflow-x: auto;
+        font-size: 11px;
+      }
+      .status {
+        font-size: 12px;
+        padding: 0.5rem 0.75rem;
+        border-radius: 6px;
+        margin-bottom: 1rem;
+      }
+      .status.ok {
+        background: var(--emerald-50);
+        color: var(--emerald-700);
+      }
+      .status.err {
+        background: var(--amber-50);
+        color: var(--amber-700);
+      }
+      .hidden {
+        display: none;
+      }
+      @media (max-width: 540px) {
+        .grid-2,
+        .grid-3 {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Equity Comp Vest Tracker</h1>
+    <p class="lede">
+      Manage your vest schedule. The extension fires a Chrome notification 30 days before each vest
+      (configurable per vest). Data lives in <code>chrome.storage.local</code> on this device only —
+      no servers, no accounts, no analytics.
+    </p>
+
+    <div id="status" class="status hidden"></div>
+
+    <section class="card">
+      <h2>Add a vest</h2>
+      <form id="add-form" style="margin-top: 0.75rem">
+        <div class="grid-3">
+          <div class="field">
+            <label for="ticker">Ticker</label>
+            <input id="ticker" type="text" placeholder="GOOGL" required maxlength="10" />
+          </div>
+          <div class="field">
+            <label for="shares">Shares</label>
+            <input id="shares" type="number" min="0" step="any" required />
+          </div>
+          <div class="field">
+            <label for="type">Type</label>
+            <select id="type">
+              <option value="RSU">RSU</option>
+              <option value="ESPP">ESPP</option>
+              <option value="ISO">ISO</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="field">
+            <label for="vestDate">Vest date</label>
+            <input id="vestDate" type="date" required />
+          </div>
+          <div class="field">
+            <label for="notifyDays">Notify (days before)</label>
+            <input id="notifyDays" type="number" min="0" max="365" value="30" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="notes">Notes (optional)</label>
+          <input id="notes" type="text" maxlength="200" placeholder="e.g. Q3 cliff vest" />
+        </div>
+        <button type="submit" class="primary">Add vest</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Your vests</h2>
+      <div class="toolbar" style="margin-top: 0.75rem">
+        <button id="export-json" class="secondary">Export JSON</button>
+        <button id="import-json" class="secondary">Import JSON</button>
+        <button id="clear-all" class="danger">Clear all</button>
+        <input id="import-file" type="file" accept="application/json" class="hidden" />
+      </div>
+      <div id="vest-table-wrap"></div>
+    </section>
+
+    <section class="card">
+      <h2>Settings</h2>
+      <div class="field" style="margin-top: 0.75rem">
+        <label for="defaultNotifyDays">Default notify-days for new vests</label>
+        <input id="defaultNotifyDays" type="number" min="0" max="365" />
+      </div>
+      <label style="font-weight: 400; display: flex; align-items: center; gap: 0.5rem">
+        <input id="notificationsEnabled" type="checkbox" style="width: auto" />
+        Enable Chrome notifications
+      </label>
+      <div class="btn-row">
+        <button id="save-settings" class="primary">Save settings</button>
+      </div>
+    </section>
+
+    <details>
+      <summary>About this extension</summary>
+      <p>
+        This extension is part of <a href="https://mathstub.vercel.app" target="_blank" rel="noopener">Mathstub</a>,
+        a small set of tax tools for tech workers with equity compensation. Use it together with the
+        <a href="https://mathstub.vercel.app/rsu-tax-shortfall" target="_blank" rel="noopener">RSU shortfall calculator</a>,
+        <a href="https://mathstub.vercel.app/iso-amt" target="_blank" rel="noopener">ISO/AMT calculator</a>,
+        and <a href="https://mathstub.vercel.app/quarterly-estimated-tax" target="_blank" rel="noopener">quarterly estimated tax tool</a>
+        to plan tax for each vest.
+      </p>
+      <p class="muted">
+        Privacy: data lives in <code>chrome.storage.local</code> on this device. No remote servers, no
+        analytics, no cookies. Source available at the Mathstub repo.
+      </p>
+    </details>
+
+    <script type="module" src="options.js"></script>
+  </body>
+</html>

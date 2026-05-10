@@ -69,7 +69,7 @@ Y2 realistic total: $500–4,400/mo. Y3 ceiling: $1,500–10,000/mo. User time: 
 
 Net Tier 1 Y2 revenue: $50–800/mo. Single AdSense + affiliate approval covers all five.
 
-**Tier 2 — Chrome ext "Equity Comp Vest Tracker" (months 2–3, ~15h).** Detects vest dates from Carta / Shareworks / Schwab pages, notifies 30 days before vest, funnels users to Mathstub. Free + optional $4.99/mo Pro (multi-account, calendar sync). Distribution: Chrome Web Store organic search. Best ROI/effort ratio in 2026. Y2 standalone $50–400/mo.
+**Tier 2 — Chrome ext "Equity Comp Vest Tracker" — CODE COMPLETE.** MV3 extension at `chrome-extension/`, daily 9am alarm + chrome.notifications, popup + options pages, JSON import/export, deep links into the Mathstub calculators. Manual entry only in v0.1 (no host_permissions / no scraping). `npm run ext:zip` builds the Web Store upload. Submission checklist in `chrome-extension/SUBMISSION.md`. Privacy policy hosted at `/extension-privacy`. **Blocked on user:** $5 Web Store dev fee + manual upload.
 
 **Tier 3 — 3 Notion templates on Gumroad (months 3–4, ~6–10h each).**
 - Equity Comp Tracker (RSU + ESPP + ISO + grants) — $29.

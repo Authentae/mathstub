@@ -1,0 +1,142 @@
+:root {
+  --brand-50: #eff6ff;
+  --brand-100: #dbeafe;
+  --brand-600: #2563eb;
+  --brand-700: #1d4ed8;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-500: #6b7280;
+  --gray-700: #374151;
+  --gray-900: #111827;
+  --amber-50: #fffbeb;
+  --amber-700: #b45309;
+  --emerald-50: #ecfdf5;
+  --emerald-700: #047857;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, sans-serif;
+  font-size: 14px;
+  color: var(--gray-900);
+  background: white;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 600;
+}
+
+a {
+  color: var(--brand-700);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: 1px solid var(--gray-200);
+  background: white;
+  color: var(--gray-900);
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  min-height: 36px;
+}
+button.primary {
+  background: var(--brand-600);
+  border-color: var(--brand-600);
+  color: white;
+}
+button.primary:hover {
+  background: var(--brand-700);
+}
+button.danger {
+  color: var(--amber-700);
+  border-color: var(--gray-200);
+}
+button:hover {
+  background: var(--gray-50);
+}
+
+input,
+select {
+  font: inherit;
+  padding: 0.5rem;
+  border: 1px solid var(--gray-200);
+  border-radius: 6px;
+  width: 100%;
+  min-height: 36px;
+}
+
+label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray-700);
+  margin-bottom: 0.25rem;
+}
+
+.field {
+  margin-bottom: 0.75rem;
+}
+
+.muted {
+  color: var(--gray-500);
+}
+
+.tag {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--brand-50);
+  color: var(--brand-700);
+}
+
+.tag.amber {
+  background: var(--amber-50);
+  color: var(--amber-700);
+}
+.tag.emerald {
+  background: var(--emerald-50);
+  color: var(--emerald-700);
+}
+
+.empty {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--gray-500);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--gray-100);
+}
+.row:last-child {
+  border-bottom: 0;
+}
+
+.btn-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Equity Comp Vest Tracker</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <style>
+      body {
+        width: 360px;
+        max-height: 540px;
+        overflow-y: auto;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid var(--gray-200);
+      }
+      header h1 {
+        font-size: 14px;
+      }
+      .summary {
+        padding: 1rem;
+        border-bottom: 1px solid var(--gray-200);
+      }
+      .summary .stat {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--brand-700);
+      }
+      .summary .label {
+        font-size: 11px;
+        color: var(--gray-500);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .vest-list {
+        max-height: 280px;
+        overflow-y: auto;
+      }
+      .vest-meta {
+        font-size: 11px;
+        color: var(--gray-500);
+      }
+      .vest-meta strong {
+        color: var(--gray-900);
+      }
+      footer {
+        padding: 0.75rem 1rem;
+        border-top: 1px solid var(--gray-200);
+        background: var(--gray-50);
+      }
+      footer .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1rem;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Equity Comp Vest Tracker</h1>
+      <button id="open-options" title="Manage vests">Manage</button>
+    </header>
+
+    <section class="summary">
+      <div class="label">Next 90 days</div>
+      <div id="summary-stat" class="stat">—</div>
+      <div id="summary-detail" class="muted" style="margin-top: 4px; font-size: 12px"></div>
+    </section>
+
+    <section class="vest-list" id="vest-list">
+      <div class="empty">Loading…</div>
+    </section>
+
+    <footer>
+      <div class="links">
+        <a href="https://mathstub.vercel.app/rsu-tax-shortfall" target="_blank" rel="noopener"
+          >RSU shortfall</a
+        >
+        <a
+          href="https://mathstub.vercel.app/iso-amt"
+          target="_blank"
+          rel="noopener"
+          >ISO/AMT</a
+        >
+        <a
+          href="https://mathstub.vercel.app/quarterly-estimated-tax"
+          target="_blank"
+          rel="noopener"
+          >Quarterly tax</a
+        >
+      </div>
+    </footer>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>
