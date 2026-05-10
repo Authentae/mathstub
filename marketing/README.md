@@ -2,13 +2,15 @@
 
 Three posts to drive initial traffic to mathstub.com after launch.
 
-## Posting order
+## Posting order (revised — Reddit moved later due to NSFW account history)
 
-| Day | Post | Goal |
+| Day | Channel | Goal |
 |---|---|---|
-| Day 1 (Tue/Wed AM ET) | **r/personalfinance — RSU shortfall** | Front page of /r/PF, ~5–15k visitors |
-| Day 2 (24h later) | **r/cscareerquestions — ISO/AMT** | Different angle, hits early-career engineers |
-| Day 3 (24h after that) | **Show HN** | Front page traffic, builds dev/founder credibility |
+| Day 1 (Tue/Wed) | **Show HN** | Front page traffic, builds dev/founder credibility, no karma gate |
+| Day 2 (Tue/Wed) | **ProductHunt launch** (12:01am PT) | Top 5 of the day, ~3–8k visitors + permanent badge |
+| Day 3+ | **Reddit** — depends on account decision: |
+| Day 3 if existing account | r/PF post anyway, ~50% removal risk from NSFW history flag |
+| Day 10 if new account | After 5 days karma-farming finance subs on a clean account |
 
 ## Success metrics to watch
 
