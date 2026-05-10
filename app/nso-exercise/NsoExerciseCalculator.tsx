@@ -12,6 +12,7 @@ import { listStateCodes } from '@tax/state-rates';
 import { offersForShortfall } from '@/lib/affiliates';
 import { AffiliateCard } from '@/components/AffiliateCard';
 import { GumroadUpsell } from '@/components/GumroadUpsell';
+import { EmailCapture } from '@/components/EmailCapture';
 
 const usd = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -348,6 +349,8 @@ function Result({ result, bargainElement }: { result: RsuShortfallResult; bargai
           </div>
         </div>
       )}
+
+      {!overWithheld && <EmailCapture source="nso-exercise" shortfallUsd={r.shortfallUsd} />}
     </div>
   );
 }
