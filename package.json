@@ -16,7 +16,8 @@
     "test:coverage": "vitest run --coverage",
     "check": "npm run typecheck && npm run lint && npm run test",
     "ext:icons": "node scripts/generate-extension-icons.mjs",
-    "ext:zip": "node scripts/zip-extension.mjs"
+    "ext:zip": "node scripts/zip-extension.mjs",
+    "notion:images": "node scripts/generate-notion-covers.mjs"
   },
   "dependencies": {
     "next": "^15.1.6",

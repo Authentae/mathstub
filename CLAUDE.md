@@ -71,11 +71,11 @@ Net Tier 1 Y2 revenue: $50–800/mo. Single AdSense + affiliate approval covers 
 
 **Tier 2 — Chrome ext "Equity Comp Vest Tracker" — CODE COMPLETE.** MV3 extension at `chrome-extension/`, daily 9am alarm + chrome.notifications, popup + options pages, JSON import/export, deep links into the Mathstub calculators. Manual entry only in v0.1 (no host_permissions / no scraping). `npm run ext:zip` builds the Web Store upload. Submission checklist in `chrome-extension/SUBMISSION.md`. Privacy policy hosted at `/extension-privacy`. **Blocked on user:** $5 Web Store dev fee + manual upload.
 
-**Tier 3 — 3 Notion templates on Gumroad (months 3–4, ~6–10h each).**
-- Equity Comp Tracker (RSU + ESPP + ISO + grants) — $29.
-- Year-End Tax Checklist + Calculator workbook — $19.
-- Tech Worker Annual Financial Review — $39.
-Distribution: Gumroad SEO + Notion Marketplace + Mathstub footer. Y2 $200–1,200/mo for 3.
+**Tier 3 — 3 Notion templates on Gumroad — CONTENT COMPLETE.** Templates at `notion-templates/`:
+- Equity Comp Tracker — `notion-templates/equity-comp-tracker/template.md` ($29).
+- Year-End Tax Checklist + Calculator Workbook — `notion-templates/year-end-tax-checklist/template.md` ($19).
+- Tech Worker Annual Financial Review — `notion-templates/tech-worker-annual-review/template.md` ($39).
+Each ships with a Gumroad listing copy (`listing.md`) + 1280×720 cover (`cover.png`). `npm run notion:images` regenerates covers from inline SVGs. **Blocked on user:** Gumroad account creation, payment setup, manual upload + publish per `notion-templates/README.md`. Distribution: Gumroad SEO + Notion Marketplace + Mathstub footer. Y2 $200–1,200/mo for 3.
 
 **Tier 4 — Anthropic Skills marketplace bet (month 4, ~5h/skill).** Speculative first-mover. Build 1–2 niche skills wrapping the same calc logic (e.g., "Equity comp tax calculator skill"). Distribute as free MCP for now. If Anthropic ships paid marketplace, already ranked.
 
