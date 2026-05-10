@@ -27,8 +27,8 @@ export default function Page() {
       toolUi={
         <>
           <Disclaimer />
-          <div className="overflow-hidden rounded-md border border-gray-200 bg-white text-sm dark:border-gray-800 dark:bg-gray-900">
-            <table className="w-full">
+          <div className="overflow-x-auto rounded-md border border-gray-200 bg-white text-sm dark:border-gray-800 dark:bg-gray-900">
+            <table className="w-full min-w-[440px]">
               <thead className="bg-gray-50 text-left text-xs uppercase tracking-wide text-gray-500 dark:bg-gray-950">
                 <tr>
                   <th className="px-3 py-2">State</th>

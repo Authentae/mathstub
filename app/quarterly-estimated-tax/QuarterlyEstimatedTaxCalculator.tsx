@@ -222,15 +222,15 @@ function Result({
         )}
       </div>
 
-      <div className="overflow-hidden rounded-md border border-gray-200 bg-white text-sm dark:border-gray-800 dark:bg-gray-900">
-        <table className="w-full">
+      <div className="overflow-x-auto rounded-md border border-gray-200 bg-white text-sm dark:border-gray-800 dark:bg-gray-900">
+        <table className="w-full min-w-[480px]">
           <thead className="bg-gray-50 text-left text-xs uppercase tracking-wide text-gray-500 dark:bg-gray-950">
             <tr>
-              <th className="px-4 py-2">Quarter</th>
-              <th className="px-4 py-2">Due</th>
-              <th className="px-4 py-2 text-right">Cumulative target</th>
-              <th className="px-4 py-2 text-right">Cumulative paid</th>
-              <th className="px-4 py-2 text-right">Cumulative gap</th>
+              <th className="px-3 py-2">Q</th>
+              <th className="px-3 py-2">Due</th>
+              <th className="px-3 py-2 text-right">Target</th>
+              <th className="px-3 py-2 text-right">Paid</th>
+              <th className="px-3 py-2 text-right">Gap</th>
             </tr>
           </thead>
           <tbody>
@@ -241,12 +241,12 @@ function Result({
                   q.quarter === nextQuarter ? 'bg-brand-50 dark:bg-brand-950/30' : ''
                 }`}
               >
-                <td className="px-4 py-2 font-medium">Q{q.quarter}</td>
-                <td className="px-4 py-2">{q.dueDateLabel}</td>
-                <td className="px-4 py-2 text-right">{usd.format(q.cumulativeTargetUsd)}</td>
-                <td className="px-4 py-2 text-right">{usd.format(q.cumulativePaidUsd)}</td>
+                <td className="px-3 py-2 font-medium">Q{q.quarter}</td>
+                <td className="px-3 py-2">{q.dueDateLabel}</td>
+                <td className="px-3 py-2 text-right">{usd.format(q.cumulativeTargetUsd)}</td>
+                <td className="px-3 py-2 text-right">{usd.format(q.cumulativePaidUsd)}</td>
                 <td
-                  className={`px-4 py-2 text-right font-medium ${
+                  className={`px-3 py-2 text-right font-medium ${
                     q.cumulativeShortfallUsd > 0
                       ? 'text-amber-700 dark:text-amber-300'
                       : 'text-emerald-700 dark:text-emerald-300'

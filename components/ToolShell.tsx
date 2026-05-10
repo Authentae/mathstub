@@ -26,7 +26,7 @@ export function ToolShell({
 }: Props) {
   return (
     <div className="mx-auto grid max-w-5xl gap-8 px-4 py-8 lg:grid-cols-[1fr_300px]">
-      <main>
+      <main className="min-w-0">
         <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">{title}</h1>
         <p className="mt-2 text-lg text-gray-700 dark:text-gray-300">{lede}</p>
         {meta && <div className="mt-2">{meta}</div>}
