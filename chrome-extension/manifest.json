@@ -5,7 +5,7 @@
   "description": "Track every RSU, ESPP, and ISO vest in one place. Get a notification 30 days before each vest so you can plan tax withholding.",
   "version": "0.1.0",
   "author": "Mathstub",
-  "homepage_url": "https://mathstub.vercel.app",
+  "homepage_url": "https://mathstub.com",
   "minimum_chrome_version": "114",
   "icons": {
     "16": "icons/icon-16.png",

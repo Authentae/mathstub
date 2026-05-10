@@ -26,7 +26,7 @@ This template makes those deadlines visible.
 
 - **6 month-by-month checklists** (October → April 15) — every action item with the deadline that triggers it.
 - **Tax-doc inventory** — checklist for every form you should expect, with arrival dates and what to verify.
-- **Calculator workbook** — maps each year-end question to the right [Mathstub](https://mathstub.vercel.app) tool.
+- **Calculator workbook** — maps each year-end question to the right [Mathstub](https://mathstub.com) tool.
 - **Resources** — direct links to the underlying IRS publications (525, 505, 550) and forms (4868, 8949, 6251, 2210).
 
 ## Who this is for
@@ -50,7 +50,7 @@ When IRS thresholds refresh each November, I update the linked Mathstub calculat
 
 ## Built by
 
-Earth, the founder behind [mathstub.vercel.app](https://mathstub.vercel.app) — a small set of free tax calculators for tech workers with equity comp.
+Earth, the founder behind [mathstub.com](https://mathstub.com) — a small set of free tax calculators for tech workers with equity comp.
 ```
 
 ## Tags / keywords

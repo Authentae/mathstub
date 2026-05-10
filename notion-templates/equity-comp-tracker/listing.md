@@ -29,7 +29,7 @@ A single Notion page with:
 - **Sales log** — every share sale flagged ST/LT/qualifying/disqualifying automatically based on holding period.
 - **Tax dashboard** — running totals of vested RSU income, ESPP ordinary income, LTCG, STCG, AMT exposure, and gap to §6654 safe harbor.
 - **Year-end review checklist** — the 8-item Q4 audit that catches most surprise April bills.
-- **Direct links** to the [Mathstub](https://mathstub.vercel.app) calculator suite — RSU shortfall, ESPP qualifying disposition, ISO/AMT, quarterly estimated tax, 50-state lookup. Use them right from the Notion page.
+- **Direct links** to the [Mathstub](https://mathstub.com) calculator suite — RSU shortfall, ESPP qualifying disposition, ISO/AMT, quarterly estimated tax, 50-state lookup. Use them right from the Notion page.
 
 ## Why a Notion template instead of a spreadsheet?
 
@@ -41,7 +41,7 @@ A single Notion page with:
 ## What's NOT in this template
 
 - **It is not tax software.** It links to calculators that produce estimates. Don't file a return based on the template alone.
-- **It does not auto-pull from Carta / Schwab / Shareworks.** Vests are entered manually. (See the companion [Equity Comp Vest Tracker Chrome extension](https://mathstub.vercel.app) for vest-date notifications — also free.)
+- **It does not auto-pull from Carta / Schwab / Shareworks.** Vests are entered manually. (See the companion [Equity Comp Vest Tracker Chrome extension](https://mathstub.com) for vest-date notifications — also free.)
 - **It is not pretty stock photos.** It is a tool that earns its keep at year-end.
 
 ## Refunds
@@ -54,7 +54,7 @@ When IRS brackets refresh each November, I update the linked Mathstub calculator
 
 ## Built by
 
-Earth, the founder behind [mathstub.vercel.app](https://mathstub.vercel.app) — a small set of free tax calculators for tech workers with equity comp. This template is the one I run on my own grants.
+Earth, the founder behind [mathstub.com](https://mathstub.com) — a small set of free tax calculators for tech workers with equity comp. This template is the one I run on my own grants.
 ```
 
 ## Tags / keywords

@@ -1,6 +1,6 @@
 # Equity Comp Vest Tracker (Chrome Extension)
 
-Track every RSU, ESPP, and ISO vest in one place. Get a Chrome notification 30 days before each vest so you can plan tax withholding. Pairs with the [Mathstub](https://mathstub.vercel.app) tax calculators.
+Track every RSU, ESPP, and ISO vest in one place. Get a Chrome notification 30 days before each vest so you can plan tax withholding. Pairs with the [Mathstub](https://mathstub.com) tax calculators.
 
 - **Manifest version:** 3
 - **Minimum Chrome:** 114

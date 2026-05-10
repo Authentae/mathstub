@@ -67,7 +67,7 @@ In the dashboard → **+ New item** → upload your zip. Then fill out:
   - `notifications`: surface the vest reminder via Chrome's native notification channel.
 - **Remote code:** *No remote code is loaded or executed. The extension ships exactly the JS contained in the package.*
 - **Data usage:** *No user data is transmitted off-device. All data lives in `chrome.storage.local`. The extension does not collect, sell, or share user data.*
-- **Privacy policy URL:** required. See [PRIVACY.md](./PRIVACY.md) for content. Host it as `https://mathstub.vercel.app/extension-privacy` or similar (commit a Next.js page).
+- **Privacy policy URL:** required. See [PRIVACY.md](./PRIVACY.md) for content. Host it as `https://mathstub.com/extension-privacy` or similar (commit a Next.js page).
 
 ### Distribution tab
 
@@ -86,7 +86,7 @@ In the dashboard → **+ New item** → upload your zip. Then fill out:
 
 ## 5. Post-launch
 
-- [ ] Add a link from `mathstub.vercel.app` homepage to the Chrome Web Store listing.
+- [ ] Add a link from `mathstub.com` homepage to the Chrome Web Store listing.
 - [ ] Mention the extension in each calculator's "Related" section.
 - [ ] Create a `/extension-privacy` Next.js page hosting the privacy policy.
 - [ ] Watch the dashboard for 7 days for review status / crash reports.

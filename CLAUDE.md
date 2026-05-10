@@ -1,6 +1,6 @@
 # Mathstub — agent handoff notes
 
-Passive-income utility-site portfolio. Live at mathstub.vercel.app. Repo: authentae/reviewhub (deployed as Mathstub). Stack: Next.js 15 + React 19 + TS + Tailwind 3.4 + Vitest.
+Passive-income utility-site portfolio. Live at mathstub.com. Repo: authentae/reviewhub (deployed as Mathstub). Stack: Next.js 15 + React 19 + TS + Tailwind 3.4 + Vitest.
 
 ## Working with the user (Earth)
 

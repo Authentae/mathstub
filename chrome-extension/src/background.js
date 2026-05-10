@@ -2,7 +2,7 @@ import { vestsToNotifyToday, daysUntil, parseIsoDate } from './lib/vest-schedule
 import { loadVests, loadSettings } from './lib/storage.js';
 
 const DAILY_ALARM = 'vest-tracker-daily-check';
-const MATHSTUB_URL = 'https://mathstub.vercel.app';
+const MATHSTUB_URL = 'https://mathstub.com';
 const MATHSTUB_TOOL_BY_TYPE = {
   RSU: `${MATHSTUB_URL}/rsu-tax-shortfall`,
   ESPP: `${MATHSTUB_URL}/espp-qualifying-disposition`,

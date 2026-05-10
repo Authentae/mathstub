@@ -1,6 +1,6 @@
 # Tech Worker Annual Financial Review
 
-> A 90-minute year-end review designed for the kind of finances tech workers actually have: lumpy RSU income, illiquid equity, single-stock concentration, and 401(k)/HSA/Mega-Backdoor moves that need planning. Pairs with the [Mathstub](https://mathstub.vercel.app) calculator suite.
+> A 90-minute year-end review designed for the kind of finances tech workers actually have: lumpy RSU income, illiquid equity, single-stock concentration, and 401(k)/HSA/Mega-Backdoor moves that need planning. Pairs with the [Mathstub](https://mathstub.com) calculator suite.
 
 ---
 
@@ -180,7 +180,7 @@ Tech workers concentrate in employer stock by default. The IPO/secondary that "m
 
 ## 🔗 Resources
 
-- [Mathstub calculator suite](https://mathstub.vercel.app) — RSU shortfall, ESPP, ISO/AMT, quarterly tax, 50-state lookup.
+- [Mathstub calculator suite](https://mathstub.com) — RSU shortfall, ESPP, ISO/AMT, quarterly tax, 50-state lookup.
 - [IRS contribution limits page](https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-401-k-and-profit-sharing-plan-contribution-limits) — annual limits by year.
 - [IRS HSA limits](https://www.irs.gov/publications/p969) — Pub 969.
 - [Bogleheads investment philosophy](https://www.bogleheads.org/wiki/Investment_philosophy) — opinionated but solid framework.

@@ -56,7 +56,7 @@ When IRS contribution limits and AGI thresholds refresh each November, I update 
 
 ## Built by
 
-Earth, the founder behind [mathstub.vercel.app](https://mathstub.vercel.app) — a small set of free tax calculators for tech workers with equity comp.
+Earth, the founder behind [mathstub.com](https://mathstub.com) — a small set of free tax calculators for tech workers with equity comp.
 ```
 
 ## Tags / keywords

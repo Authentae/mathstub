@@ -1,6 +1,6 @@
 # Notion templates — packaging + Gumroad submission
 
-Three Gumroad-ready Notion templates that pair with the [Mathstub](https://mathstub.vercel.app) calculator suite.
+Three Gumroad-ready Notion templates that pair with the [Mathstub](https://mathstub.com) calculator suite.
 
 | Template | Price | Source | Cover |
 |---|---|---|---|

@@ -1,6 +1,6 @@
 # Equity Comp Tracker
 
-> One Notion home for every RSU, ESPP, and ISO grant you'll ever get. Pairs with the [Mathstub](https://mathstub.vercel.app) tax calculators.
+> One Notion home for every RSU, ESPP, and ISO grant you'll ever get. Pairs with the [Mathstub](https://mathstub.com) tax calculators.
 
 ---
 
@@ -40,9 +40,9 @@ Every vest event goes here. Columns marked ★ are calculator inputs — copy th
 
 | Vest date | Company | Type | Ticker | Shares | FMV at vest ★ | Withheld federal ★ | Withheld state ★ | Withheld FICA | Status | Mathstub link |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 2024-04-01 | ACME | RSU | ACME | 62.5 | $24.00 | $330.00 | $153.45 | $35.25 | done | [RSU calc →](https://mathstub.vercel.app/rsu-tax-shortfall) |
-| 2024-04-01 | ACME | ISO | ACME | 104 | $24.00 | — | — | — | held | [ISO calc →](https://mathstub.vercel.app/iso-amt) |
-| 2024-06-30 | ACME | ESPP | ACME | 80 | $24.00 (purch) | — | — | — | held | [ESPP calc →](https://mathstub.vercel.app/espp-qualifying-disposition) |
+| 2024-04-01 | ACME | RSU | ACME | 62.5 | $24.00 | $330.00 | $153.45 | $35.25 | done | [RSU calc →](https://mathstub.com/rsu-tax-shortfall) |
+| 2024-04-01 | ACME | ISO | ACME | 104 | $24.00 | — | — | — | held | [ISO calc →](https://mathstub.com/iso-amt) |
+| 2024-06-30 | ACME | ESPP | ACME | 80 | $24.00 (purch) | — | — | — | held | [ESPP calc →](https://mathstub.com/espp-qualifying-disposition) |
 
 > 💡 **Use the RSU calculator on every RSU vest line** the day it hits. The 22% supplemental withholding is almost always lower than your real marginal rate. Plan the gap NOW, not in April.
 
@@ -76,11 +76,11 @@ A running tally of what you've withheld, what you'll owe, and what's missing.
 | Total ESPP ordinary income | $— | Sum from Sales log, qualifying portion |
 | Total LTCG | $— | LT lots from Sales log |
 | Total STCG | $— | ST lots from Sales log |
-| Estimated full-year tax | $— | Use [Quarterly Estimated Tax](https://mathstub.vercel.app/quarterly-estimated-tax) |
+| Estimated full-year tax | $— | Use [Quarterly Estimated Tax](https://mathstub.com/quarterly-estimated-tax) |
 | YTD withholding (federal) | $— | From paystubs |
 | Safe-harbor target | $— | Lesser of 90% × current OR 100% (110%) × prior |
 | Gap to safe harbor | $— | If positive, schedule estimated payment |
-| AMT exposure (ISOs held) | $— | Use [ISO/AMT calc](https://mathstub.vercel.app/iso-amt) |
+| AMT exposure (ISOs held) | $— | Use [ISO/AMT calc](https://mathstub.com/iso-amt) |
 
 > 💡 If the gap to safe harbor is over $1,000, the IRS §6654 underpayment penalty starts to bite. Send an estimated payment on the next quarterly date or update Form W-4 line 4(c) to add per-paycheck withholding.
 
@@ -90,10 +90,10 @@ A running tally of what you've withheld, what you'll owe, and what's missing.
 
 Run this in late October or early November — there's still time to act.
 
-- [ ] Re-run the [RSU shortfall calculator](https://mathstub.vercel.app/rsu-tax-shortfall) with full-year actuals, including any Q4 vest already scheduled.
-- [ ] Verify YTD federal withholding hits the §6654 safe-harbor target (use [Quarterly Estimated Tax](https://mathstub.vercel.app/quarterly-estimated-tax)).
+- [ ] Re-run the [RSU shortfall calculator](https://mathstub.com/rsu-tax-shortfall) with full-year actuals, including any Q4 vest already scheduled.
+- [ ] Verify YTD federal withholding hits the §6654 safe-harbor target (use [Quarterly Estimated Tax](https://mathstub.com/quarterly-estimated-tax)).
 - [ ] If short, file W-4 line 4(c) update OR schedule January 15 estimated payment.
-- [ ] Review held ISOs for AMT exposure if you exercised this year. Run [ISO/AMT calc](https://mathstub.vercel.app/iso-amt).
+- [ ] Review held ISOs for AMT exposure if you exercised this year. Run [ISO/AMT calc](https://mathstub.com/iso-amt).
 - [ ] Decide on tax-loss harvesting: sell underwater lots before Dec 31 to offset gains.
 - [ ] Plan ESPP qualifying-disposition sales for the new year (don't sell before the 2y/1y window).
 - [ ] If income is unusually high this year, consider larger 401(k) catch-up, HSA, or Roth conversion via Roth-not-this-year planning.
@@ -103,11 +103,11 @@ Run this in late October or early November — there's still time to act.
 
 ## 🔗 Resources
 
-- [Mathstub RSU Tax Shortfall Calculator](https://mathstub.vercel.app/rsu-tax-shortfall)
-- [Mathstub ESPP Qualifying Disposition Calculator](https://mathstub.vercel.app/espp-qualifying-disposition)
-- [Mathstub ISO Exercise AMT Calculator](https://mathstub.vercel.app/iso-amt)
-- [Mathstub Quarterly Estimated Tax Safe-Harbor Calculator](https://mathstub.vercel.app/quarterly-estimated-tax)
-- [Mathstub State Stock-Comp Lookup (50 states)](https://mathstub.vercel.app/state-stock-comp)
+- [Mathstub RSU Tax Shortfall Calculator](https://mathstub.com/rsu-tax-shortfall)
+- [Mathstub ESPP Qualifying Disposition Calculator](https://mathstub.com/espp-qualifying-disposition)
+- [Mathstub ISO Exercise AMT Calculator](https://mathstub.com/iso-amt)
+- [Mathstub Quarterly Estimated Tax Safe-Harbor Calculator](https://mathstub.com/quarterly-estimated-tax)
+- [Mathstub State Stock-Comp Lookup (50 states)](https://mathstub.com/state-stock-comp)
 - [IRS Publication 525 — Taxable and Nontaxable Income](https://www.irs.gov/publications/p525)
 - [IRS Publication 505 — Tax Withholding and Estimated Tax](https://www.irs.gov/publications/p505)
 - [IRS Form 6251 — Alternative Minimum Tax](https://www.irs.gov/forms-pubs/about-form-6251)

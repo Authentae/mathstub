@@ -1,6 +1,6 @@
 # Year-End Tax Checklist + Calculator Workbook
 
-> Six months of tax moves spread across October, November, December, January, and "by April 15." Pairs with the [Mathstub](https://mathstub.vercel.app) calculator suite.
+> Six months of tax moves spread across October, November, December, January, and "by April 15." Pairs with the [Mathstub](https://mathstub.com) calculator suite.
 
 ---
 
@@ -19,11 +19,11 @@
 
 The most leverage month of the year. There's still time to fix everything.
 
-- [ ] Re-run the [Quarterly Estimated Tax Safe-Harbor calculator](https://mathstub.vercel.app/quarterly-estimated-tax) with full-year actuals projected. Confirm withholding + estimates will hit the §6654 target by Jan 15.
+- [ ] Re-run the [Quarterly Estimated Tax Safe-Harbor calculator](https://mathstub.com/quarterly-estimated-tax) with full-year actuals projected. Confirm withholding + estimates will hit the §6654 target by Jan 15.
 - [ ] If short, choose: (a) update Form W-4 line 4(c) for extra per-paycheck withholding, OR (b) plan a Jan 15 estimated payment.
-- [ ] Re-run the [RSU shortfall calculator](https://mathstub.vercel.app/rsu-tax-shortfall) for any Q4 vest already scheduled. Withholding gap = your action item.
+- [ ] Re-run the [RSU shortfall calculator](https://mathstub.com/rsu-tax-shortfall) for any Q4 vest already scheduled. Withholding gap = your action item.
 - [ ] Confirm Q3 estimated tax payment was credited (login to IRS Direct Pay or your accountant's portal).
-- [ ] Review held ISOs against year-end AMT exposure ([ISO/AMT calculator](https://mathstub.vercel.app/iso-amt)). If huge, decide whether to disqualify-sell some lots before Dec 31 to manage cash.
+- [ ] Review held ISOs against year-end AMT exposure ([ISO/AMT calculator](https://mathstub.com/iso-amt)). If huge, decide whether to disqualify-sell some lots before Dec 31 to manage cash.
 - [ ] Confirm 401(k) is on track to max ($23,500 + $7,500 catch-up if 50+ in 2025; verify 2026 limits at IRS).
 - [ ] Confirm HSA is on track to max ($4,300 individual / $8,550 family in 2025; check 2026 figure).
 - [ ] If self-employed: max Solo 401(k) and SEP-IRA contributions before year-end.
@@ -39,7 +39,7 @@ The "decide-and-act" month. Most year-end strategies have a Dec 1 cliff.
 - [ ] If itemizing: schedule donations for delivery before Dec 31. DAF (Donor-Advised Fund) contributions count in the year deposited.
 - [ ] **FSA (medical) spend-down:** healthcare-FSA money expires Dec 31 (some plans allow $640 carryover or 2.5-month grace; check your plan). Schedule appointments now.
 - [ ] **Dependent-care FSA:** ensure you'll use the full balance before Mar 15 grace period.
-- [ ] If you'll have a big year (RSUs vested + bonus + sale): consider a **Roth conversion** in December ONLY if next year's marginal rate will be lower. Run the [RSU shortfall calc](https://mathstub.vercel.app/rsu-tax-shortfall) first to confirm no AMT trip.
+- [ ] If you'll have a big year (RSUs vested + bonus + sale): consider a **Roth conversion** in December ONLY if next year's marginal rate will be lower. Run the [RSU shortfall calc](https://mathstub.com/rsu-tax-shortfall) first to confirm no AMT trip.
 - [ ] **Open enrollment housekeeping:** confirm 2026 HSA / FSA / 401(k) elections are correct for January.
 
 ---
@@ -78,8 +78,8 @@ The "incoming docs" month.
 The "verify-and-prepare" month.
 
 - [ ] Reconcile each W-2 box against your final paystub (Box 1 = federal taxable wages — confirm RSU vest income flowed through).
-- [ ] Reconcile 1099-B totals against your **Sales log** in the [Equity Comp Tracker](https://mathstub.vercel.app) template. Common discrepancy: your broker reports the *whole* sale price as cost basis on RSU sales, but your real basis includes the FMV at vest already taxed as wages. The IRS will overcharge you if you don't fix this manually on Form 8949.
-- [ ] Re-check ESPP qualifying-disposition status for any lots sold in January using the [ESPP calculator](https://mathstub.vercel.app/espp-qualifying-disposition).
+- [ ] Reconcile 1099-B totals against your **Sales log** in the [Equity Comp Tracker](https://mathstub.com) template. Common discrepancy: your broker reports the *whole* sale price as cost basis on RSU sales, but your real basis includes the FMV at vest already taxed as wages. The IRS will overcharge you if you don't fix this manually on Form 8949.
+- [ ] Re-check ESPP qualifying-disposition status for any lots sold in January using the [ESPP calculator](https://mathstub.com/espp-qualifying-disposition).
 - [ ] If you exercised ISOs in 2025 and held: confirm Form 3921 received. The bargain element is your AMT preference for Form 6251.
 - [ ] Schedule a tax-software session OR your CPA appointment.
 
@@ -125,11 +125,11 @@ Map each year-end question to the right Mathstub tool.
 
 | Question I'm trying to answer | Calculator | When to run |
 |---|---|---|
-| Will I owe more on my RSU vest at filing? | [RSU Shortfall](https://mathstub.vercel.app/rsu-tax-shortfall) | Day of each vest, then again in October |
-| Do I need to send a Q4 estimated payment? | [Quarterly Estimated Tax](https://mathstub.vercel.app/quarterly-estimated-tax) | October + late December |
-| What happens if I exercise these ISOs? | [ISO/AMT](https://mathstub.vercel.app/iso-amt) | Before any ISO exercise; year-end review |
-| Am I in qualifying-disposition territory yet? | [ESPP Qualifying Disposition](https://mathstub.vercel.app/espp-qualifying-disposition) | Before any ESPP sale |
-| What's my state's stock-comp picture? | [50-state Lookup](https://mathstub.vercel.app/state-stock-comp) | Each move, each new state |
+| Will I owe more on my RSU vest at filing? | [RSU Shortfall](https://mathstub.com/rsu-tax-shortfall) | Day of each vest, then again in October |
+| Do I need to send a Q4 estimated payment? | [Quarterly Estimated Tax](https://mathstub.com/quarterly-estimated-tax) | October + late December |
+| What happens if I exercise these ISOs? | [ISO/AMT](https://mathstub.com/iso-amt) | Before any ISO exercise; year-end review |
+| Am I in qualifying-disposition territory yet? | [ESPP Qualifying Disposition](https://mathstub.com/espp-qualifying-disposition) | Before any ESPP sale |
+| What's my state's stock-comp picture? | [50-state Lookup](https://mathstub.com/state-stock-comp) | Each move, each new state |
 
 ---
 

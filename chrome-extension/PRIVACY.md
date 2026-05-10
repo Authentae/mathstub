@@ -30,7 +30,7 @@ The extension does NOT request `host_permissions` for any websites. It cannot re
 
 ## Third-party services
 
-The extension does not contact any third-party service. The Mathstub calculator links in the popup and notifications open the Mathstub website (https://mathstub.vercel.app) in a new tab — those visits are governed by the Mathstub privacy policy, not this one.
+The extension does not contact any third-party service. The Mathstub calculator links in the popup and notifications open the Mathstub website (https://mathstub.com) in a new tab — those visits are governed by the Mathstub privacy policy, not this one.
 
 ## Data export, import, and deletion
 
