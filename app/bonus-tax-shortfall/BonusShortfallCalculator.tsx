@@ -11,6 +11,7 @@ import {
 import { listStateCodes } from '@tax/state-rates';
 import { offersForShortfall } from '@/lib/affiliates';
 import { AffiliateCard } from '@/components/AffiliateCard';
+import { GumroadUpsell } from '@/components/GumroadUpsell';
 
 const usd = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -250,6 +251,8 @@ function Result({ result }: { result: RsuShortfallResult }) {
           </p>
         )}
       </div>
+
+      {!overWithheld && <GumroadUpsell shortfallUsd={r.shortfallUsd} />}
 
       {!overWithheld && (
         <div className="grid gap-3 rounded-md border border-gray-200 bg-white p-4 text-sm dark:border-gray-800 dark:bg-gray-900 md:grid-cols-2">

@@ -12,6 +12,7 @@ import {
 import { listStateCodes } from '@tax/state-rates';
 import { offersForShortfall } from '@/lib/affiliates';
 import { AffiliateCard } from '@/components/AffiliateCard';
+import { GumroadUpsell } from '@/components/GumroadUpsell';
 
 const usd = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -345,6 +346,8 @@ function Result({ result }: { result: IsoAmtResult }) {
           </>
         )}
       </div>
+
+      {r.totalTaxIncreaseUsd > 0 && <GumroadUpsell shortfallUsd={r.totalTaxIncreaseUsd} />}
 
       {r.notes.length > 0 && (
         <ul className="space-y-2 rounded-md border border-blue-200 bg-blue-50 p-4 text-sm text-blue-900 dark:border-blue-900 dark:bg-blue-950 dark:text-blue-100">
