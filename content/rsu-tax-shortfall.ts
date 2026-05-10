@@ -30,15 +30,15 @@ export const rsuTaxShortfallContent = {
   faqs: [
     {
       q: 'Why does my employer withhold only 22% on RSUs?',
-      a: 'IRS Pub 15-T treats RSU vests as “supplemental wages,” which have a fixed 22% federal withholding rate up to $1,000,000 in YTD supplemental wages, then 37% on the excess. Your actual marginal rate may be much higher (32%, 35%, or 37%), creating a shortfall.',
+      a: 'IRC §3402(g) and IRS Pub 15 (Employer\'s Tax Guide) treat RSU vests as "supplemental wages" with a fixed 22% federal withholding rate up to $1,000,000 in YTD supplemental wages, then 37% on the excess (Reg. §31.3402(g)-1). Your actual marginal rate may be much higher (32%, 35%, or 37%), creating a shortfall reconciled at filing time.',
     },
     {
       q: 'What is the $1,000,000 threshold?',
-      a: 'When your year-to-date supplemental wages cross $1M with this employer, every dollar above the threshold is withheld at 37% instead of 22%. The calculator blends the rate when a single vest crosses the threshold.',
+      a: 'Per Reg. §31.3402(g)-1(a)(2), when your year-to-date supplemental wages cross $1M with this employer, every dollar above the threshold is withheld at 37% (the highest individual rate). The calculator blends the rate when a single vest crosses the threshold.',
     },
     {
       q: 'Do I need to make estimated tax payments?',
-      a: 'You may, especially if the shortfall is over $1,000. The IRS safe-harbor rules let you avoid an underpayment penalty by paying either 90% of this year’s tax or 110% of last year’s (if AGI > $150k). Check IRS Pub 505 for your situation.',
+      a: 'You may, especially if the shortfall is over $1,000 (the IRC §6654 safe-harbor threshold). The IRS safe-harbor rules in §6654(d) let you avoid an underpayment penalty by paying either 90% of this year\'s tax or 100% of last year\'s (110% if prior-year AGI > $150k). See IRS Publication 505 (Tax Withholding and Estimated Tax) for your situation.',
     },
     {
       q: 'What if I am over-withheld?',

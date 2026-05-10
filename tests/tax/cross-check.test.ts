@@ -1,7 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { calculateEsppQualifying } from '@tax/espp';
 import { calculateIsoAmt } from '@tax/iso-amt';
-import type { EsppQualifyingInput, IsoAmtInput } from '@tax/types';
+import { calculateRsuShortfall } from '@tax/rsu-shortfall';
+import type { EsppQualifyingInput, IsoAmtInput, RsuShortfallInput } from '@tax/types';
 
 /**
  * Cross-check tests: each scenario is hand-computed against the underlying IRS rule
@@ -15,6 +16,10 @@ import type { EsppQualifyingInput, IsoAmtInput } from '@tax/types';
  *    deemed option price under the discount).
  *  - AMT on ISO exercise: IRC §56(b)(3); Form 6251 line 2i (Exercise of
  *    incentive stock options) and the 26%/28% rate schedule on Form 6251.
+ *  - RSU supplemental withholding: IRC §3402(g); Treas. Reg. §31.3402(g)-1
+ *    (22% up to $1M YTD supplemental wages, 37% above); IRS Pub 15.
+ *  - FICA on supplemental wages: IRC §3101; SSA wage base; §3101(b)(2)
+ *    Additional Medicare 0.9% above $200k single / $250k MFJ.
  */
 
 describe('Cross-check — ESPP qualifying disposition (§423(c))', () => {
@@ -157,5 +162,67 @@ describe('Cross-check — ISO exercise-and-hold AMT (Form 6251)', () => {
   it('AMT credit carryforward equals AMT paid', () => {
     const r = calculateIsoAmt(input);
     expect(r.amtCreditCarryforwardUsd).toBeCloseTo(34_563, 2);
+  });
+});
+
+describe('Cross-check — RSU shortfall (Reg. §31.3402(g)-1, §6654)', () => {
+  // Hand calc for the canonical $50k vest scenario:
+  //   $50,000 RSU vest, $200,000 YTD W-2 (already past SS wage base $176,100),
+  //   $0 prior supplemental, $0 other income, $23,500 401k, single 2025, CA.
+  //
+  //   Withheld federal (22% supplemental): $50,000 × 0.22 = $11,000.
+  //   Withheld state (CA supplemental 10.23%): $50,000 × 0.1023 = $5,115.
+  //   FICA on vest:
+  //     SS: YTD wages $200k > $176,100 wage base → SS portion = $0.
+  //     Medicare: $50,000 × 0.0145 = $725.
+  //     Additional Medicare: YTD already > $200k threshold → full $50,000 × 0.009 = $450.
+  //     Total FICA = $0 + $725 + $450 = $1,175.
+  //   Withheld total = $11,000 + $5,115 + $1,175 = $17,290.
+  //
+  //   Projected taxable income = $200k + $50k − $23.5k − $15k std ded = $211,500.
+  //   Marginal federal rate (single 2025, $211.5k > $197,300) = 32%.
+  //   Expected federal = $50,000 × 0.32 = $16,000.
+  //   Marginal CA rate (top marginal 12.3% under $1M) = 12.3%.
+  //   Expected state = $50,000 × 0.123 = $6,150.
+  //   Expected FICA = $1,175 (FICA is flat).
+  //   Expected total = $16,000 + $6,150 + $1,175 = $23,325.
+  //
+  //   Shortfall = $23,325 − $17,290 = $6,035.
+  const input: RsuShortfallInput = {
+    taxYear: 2025,
+    filingStatus: 'single',
+    vestGrossUsd: 50_000,
+    ytdSupplementalWagesUsd: 0,
+    ytdRegularWagesUsd: 200_000,
+    otherTaxableIncomeUsd: 0,
+    preTaxDeductionsUsd: 23_500,
+    stateCode: 'CA',
+  };
+
+  it('locks withheld federal at $11,000 (22%)', () => {
+    const r = calculateRsuShortfall(input);
+    expect(r.withheldFederalUsd).toBeCloseTo(11_000, 2);
+  });
+
+  it('locks withheld FICA at $1,175 (SS maxed; Medicare $725 + Additional Medicare $450)', () => {
+    const r = calculateRsuShortfall(input);
+    expect(r.withheldFicaUsd).toBeCloseTo(1_175, 2);
+  });
+
+  it('locks expected federal at $16,000 (32% marginal × $50k)', () => {
+    const r = calculateRsuShortfall(input);
+    expect(r.expectedFederalUsd).toBeCloseTo(16_000, 2);
+    expect(r.marginalFederalRatePct).toBeCloseTo(32, 1);
+  });
+
+  it('locks shortfall at $6,035 = expected $23,325 − withheld $17,290', () => {
+    const r = calculateRsuShortfall(input);
+    expect(r.shortfallUsd).toBeCloseTo(6_035, 2);
+  });
+
+  it('safe-harbor risk flag triggers (shortfall > $1,000 §6654 threshold)', () => {
+    const r = calculateRsuShortfall(input);
+    expect(r.isUnderpaymentRisk).toBe(true);
+    expect(r.suggestedQuarterlyEstimateUsd).toBeCloseTo(6_035, 2);
   });
 });

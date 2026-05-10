@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next';
 import { siteUrl } from '@/lib/seo';
 import { liveTools } from '@/lib/tools';
 import { blogPosts } from '@/content/blog/registry';
+import { stateStockCompProfiles } from '@tax/state-stock-comp';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -26,6 +27,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(p.dateModified),
       changeFrequency: 'monthly' as const,
       priority: 0.6,
+    })),
+    ...stateStockCompProfiles.map((s) => ({
+      url: `${root}/state-stock-comp/${s.code.toLowerCase()}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.5,
     })),
   ];
 }

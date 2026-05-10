@@ -41,6 +41,26 @@ export const tools: Tool[] = [
     status: 'live',
     emoji: '⚡',
   },
+  {
+    id: 'quarterly-estimated-tax',
+    slug: 'quarterly-estimated-tax',
+    title: 'Quarterly Estimated Tax Safe-Harbor Calculator',
+    shortTitle: 'Quarterly Estimated Tax',
+    summary:
+      'Compute your IRS §6654 safe-harbor target, see the per-quarter cumulative payment schedule, and get the exact dollar amount to send before the next due date.',
+    status: 'live',
+    emoji: '🗓️',
+  },
+  {
+    id: 'state-stock-comp',
+    slug: 'state-stock-comp',
+    title: 'State Stock-Comp Tax Lookup',
+    shortTitle: 'State Stock-Comp Lookup',
+    summary:
+      'Top marginal rate, supplemental withholding, AMT status, and LTCG treatment for RSU/ESPP/ISO income across all 50 states + DC.',
+    status: 'live',
+    emoji: '🗺️',
+  },
 ];
 
 export function liveTools(): Tool[] {

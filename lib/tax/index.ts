@@ -18,3 +18,4 @@ export { ltcgMarginalRate, ltcgTax, niitOnGain, LTCG_RATES, NIIT } from './ltcg-
 export { calculateEsppQualifying, ESPP_QUALIFYING_RULES } from './espp';
 export { amtExemption, tentativeMinimumTax, AMT_RATES } from './amt-brackets';
 export { calculateIsoAmt } from './iso-amt';
+export { calculateSafeHarbor, SAFE_HARBOR_RULES } from './safe-harbor';

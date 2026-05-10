@@ -59,6 +59,59 @@ export interface RsuShortfallResult {
   appliedFederalSupplementalRate: number;
 }
 
+export type Quarter = 1 | 2 | 3 | 4;
+
+export interface SafeHarborInput {
+  taxYear: TaxYear;
+  filingStatus: FilingStatus;
+  /** Best estimate of TOTAL federal income tax for the current year. */
+  expectedCurrentYearTaxUsd: number;
+  /** Prior-year total federal income tax (Form 1040 line 24). */
+  priorYearTaxUsd: number;
+  /** Prior-year AGI (Form 1040 line 11) — determines 100% vs 110% rule. */
+  priorYearAgiUsd: number;
+  /** Total federal withholding the user expects from W-2/1099 for the FULL current year. */
+  expectedAnnualWithholdingUsd: number;
+  /** Sum of estimated payments the user has already made this year. */
+  estimatedPaymentsMadeUsd: number;
+  /** Which quarter's payment is coming up next (1=Apr 15, 2=Jun 15, 3=Sep 15, 4=Jan 15 next yr). */
+  nextQuarter: Quarter;
+}
+
+export interface QuarterlyBreakdown {
+  quarter: Quarter;
+  /** Approximate due date (informational; actual dates vary by year). */
+  dueDateLabel: string;
+  /** Cumulative target by end of this quarter = safeHarborTarget × (quarter/4). */
+  cumulativeTargetUsd: number;
+  /** Cumulative paid by end of this quarter (withholding pro-rata + actual estimates). */
+  cumulativePaidUsd: number;
+  /** Cumulative shortfall by end of this quarter (max 0, target − paid). */
+  cumulativeShortfallUsd: number;
+}
+
+export interface SafeHarborResult {
+  /** 90% of current-year expected tax. */
+  safeHarbor90PctCurrentUsd: number;
+  /** 100% (or 110% if prior AGI over high-income threshold) of prior-year tax. */
+  safeHarborPriorYearUsd: number;
+  /** True if the 110% (high-income) rule applies based on prior-year AGI. */
+  highIncomeRuleApplies: boolean;
+  /** The lower of the two safe-harbor amounts — what you must have paid in. */
+  safeHarborTargetUsd: number;
+  /** Cumulative payments expected by year-end given current rate of withholding + estimates made. */
+  totalProjectedPaidUsd: number;
+  /** Year-end gap (target − projected paid). Positive = penalty exposure. */
+  yearEndGapUsd: number;
+  isUnderpaymentRisk: boolean;
+  /** Recommended payment for `nextQuarter` to bring cumulative-paid up to cumulative-target. */
+  recommendedNextPaymentUsd: number;
+  quarters: QuarterlyBreakdown[];
+  /** Approximate underpayment penalty assuming current IRS short-term + 3% rate (~8% in 2025–2026). */
+  estimatedPenaltyUsd: number;
+  notes: string[];
+}
+
 export type IsoScenario = 'exercise-and-hold' | 'exercise-and-sell-same-year';
 
 export interface IsoAmtInput {
