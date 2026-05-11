@@ -13,7 +13,7 @@ export interface GumroadProduct {
   maxShortfallUsd: number;
 }
 
-const GUMROAD_BASE = 'https://authentae.gumroad.com/l/';
+const GUMROAD_BASE = 'https://gumroad.com/l/';
 
 export const products: Record<GumroadProductId, GumroadProduct> = {
   'year-end-checklist': {
