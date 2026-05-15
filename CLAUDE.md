@@ -1,6 +1,8 @@
 # Mathstub — agent handoff notes
 
-Passive-income utility-site portfolio. Live at mathstub.com. Repo: authentae/reviewhub (deployed as Mathstub). Stack: Next.js 15 + React 19 + TS + Tailwind 3.4 + Vitest.
+Passive-income utility-site portfolio. Live at mathstub.com. **Production repo: `Authentae/mathstub`** (deploys to Vercel → mathstub.com). Stack: Next.js 15 + React 19 + TS + Tailwind 3.4 + Vitest.
+
+> **Note:** Earlier in this project's history Mathstub lived inside `Authentae/reviewhub`, which is why older notes reference that repo. As of mid-May 2026 Mathstub has its own dedicated repo at `Authentae/mathstub`. `Authentae/reviewhub` is now a separate, unrelated project (a local-business review dashboard) and should not be touched by Mathstub work.
 
 ## Working with the user (Earth)
 
@@ -27,13 +29,11 @@ Passive-income utility-site portfolio. Live at mathstub.com. Repo: authentae/rev
 
 ## Repo / push flow
 
-- Sandbox can only push to `authentae/reviewhub`.
-- Mathstub repo updates go via the user's Codespace:
-  ```
-  git fetch https://github.com/Authentae/reviewhub.git <branch>
-  git push origin FETCH_HEAD:main
-  ```
-- Open PR #1 in authentae/reviewhub is staging-only (+12131 lines, draft). User can close anytime.
+- Production repo: **`Authentae/mathstub`** — `main` branch deploys to mathstub.com via Vercel.
+- The Claude sandbox can't push directly to `Authentae/mathstub`. Two options to get code into production:
+  1. **Earth pastes files from chat into his Codespace on `Authentae/mathstub`** → commits + pushes to `main`. Fastest path for small changes.
+  2. (Legacy, not preferred) Claude pushes to a branch on `Authentae/reviewhub`; Earth fetches that branch into Codespace and `git push origin FETCH_HEAD:main` to the `Authentae/mathstub` remote. Avoid this unless option 1 is impractical.
+- Don't push to `Authentae/reviewhub` for Mathstub work — that repo is now an unrelated project.
 
 ## Blocked on user (don't attempt)
 

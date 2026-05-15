@@ -40,6 +40,8 @@ import { estimatedTax } from './posts/estimated-tax-after-rsu-vest';
 import { extraW4 } from './posts/extra-w4-withholding-rsu';
 import { byState } from './posts/rsu-taxes-by-state';
 import { yearEndChecklist } from './posts/year-end-equity-comp-checklist';
+import { rsuOverWithholding } from './posts/rsu-over-withholding-explained';
+import { rsusTaxedTwice } from './posts/do-rsus-get-taxed-twice';
 
 export const blogPosts: BlogPost[] = [
   whyRsuTooHigh,
@@ -48,6 +50,8 @@ export const blogPosts: BlogPost[] = [
   extraW4,
   byState,
   yearEndChecklist,
+  rsuOverWithholding,
+  rsusTaxedTwice,
 ];
 
 export function findPost(slug: string): BlogPost | undefined {
