@@ -17,6 +17,10 @@ export const env = {
     harness: () => read('NEXT_PUBLIC_AFFILIATE_HARNESS_ID'),
     carta: () => read('NEXT_PUBLIC_AFFILIATE_CARTA_ID'),
     empower: () => read('NEXT_PUBLIC_AFFILIATE_EMPOWER_ID'),
+    amazonTag: () => read('NEXT_PUBLIC_AFFILIATE_AMAZON_TAG') || 'mathstub20-20',
+  },
+  contact: {
+    issueEmail: () => read('NEXT_PUBLIC_CONTACT_ISSUE_EMAIL') || 'hello@mathstub.com',
   },
   ga4Id: () => read('NEXT_PUBLIC_GA4_ID'),
   plausibleDomain: () => read('NEXT_PUBLIC_PLAUSIBLE_DOMAIN'),

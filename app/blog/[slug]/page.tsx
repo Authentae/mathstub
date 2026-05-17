@@ -11,6 +11,8 @@ import { JsonLd } from '@/components/JsonLd';
 import { Disclaimer } from '@/components/Disclaimer';
 import { LastUpdatedBadge } from '@/components/LastUpdatedBadge';
 import { AffiliateCard } from '@/components/AffiliateCard';
+import { AmazonBookCTA } from '@/components/AmazonBookCTA';
+import { ReportIssue } from '@/components/ReportIssue';
 import { findPost, blogPosts, type BlogBlock } from '@/content/blog/registry';
 import type { AffiliateOfferId } from '@/lib/affiliates';
 
@@ -95,10 +97,14 @@ export default async function PostPage({ params }: Props) {
           </section>
         )}
 
+        <AmazonBookCTA />
+
         <p className="mt-10 text-sm text-gray-500">
           By {post.authorName}
           {post.reviewerName ? ` · Reviewed by ${post.reviewerName}` : ''}
         </p>
+
+        <ReportIssue context={`blog/${post.slug}`} />
       </article>
     </>
   );

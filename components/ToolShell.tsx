@@ -1,5 +1,7 @@
 import { type ReactNode } from 'react';
 import { AdSlot } from './AdSlot';
+import { AmazonBookCTA } from './AmazonBookCTA';
+import { ReportIssue } from './ReportIssue';
 
 interface Props {
   title: string;
@@ -11,6 +13,10 @@ interface Props {
   howItWorks?: ReactNode;
   faq?: ReactNode;
   related?: ReactNode;
+  /** Slug or label used by ReportIssue for the prefilled email subject. */
+  reportIssueContext?: string;
+  /** Override the Amazon CTA search query — defaults to evergreen tax-book query. */
+  amazonQuery?: string;
 }
 
 export function ToolShell({
@@ -23,6 +29,8 @@ export function ToolShell({
   howItWorks,
   faq,
   related,
+  reportIssueContext,
+  amazonQuery,
 }: Props) {
   return (
     <div className="mx-auto grid max-w-5xl gap-8 px-4 py-8 lg:grid-cols-[1fr_300px]">
@@ -52,6 +60,9 @@ export function ToolShell({
           </section>
         )}
         {related && <section className="mt-8">{related}</section>}
+
+        <AmazonBookCTA query={amazonQuery} />
+        <ReportIssue context={reportIssueContext} />
       </main>
 
       <aside className="hidden lg:block">
