@@ -42,6 +42,7 @@ import { byState } from './posts/rsu-taxes-by-state';
 import { yearEndChecklist } from './posts/year-end-equity-comp-checklist';
 import { rsuOverWithholding } from './posts/rsu-over-withholding-explained';
 import { rsusTaxedTwice } from './posts/do-rsus-get-taxed-twice';
+import { whenToSellRsus } from './posts/when-to-sell-rsus-after-vesting';
 
 export const blogPosts: BlogPost[] = [
   whyRsuTooHigh,
@@ -52,6 +53,7 @@ export const blogPosts: BlogPost[] = [
   yearEndChecklist,
   rsuOverWithholding,
   rsusTaxedTwice,
+  whenToSellRsus,
 ];
 
 export function findPost(slug: string): BlogPost | undefined {
