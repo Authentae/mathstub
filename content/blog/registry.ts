@@ -62,6 +62,7 @@ import { sellToCoverVsNss } from './posts/sell-to-cover-vs-net-share-settlement'
 import { earlyExerciseNso83b } from './posts/early-exercise-nso-83b-election';
 import { multiStateRsuSourcingCalifornia } from './posts/multi-state-rsu-sourcing-california';
 import { doubleTriggerRsuIpo } from './posts/double-trigger-rsu-ipo';
+import { esppQualifyingVsDisqualifying } from './posts/espp-qualifying-vs-disqualifying';
 
 export const blogPosts: BlogPost[] = [
   whyRsuTooHigh,
@@ -83,6 +84,7 @@ export const blogPosts: BlogPost[] = [
   earlyExerciseNso83b,
   multiStateRsuSourcingCalifornia,
   doubleTriggerRsuIpo,
+  esppQualifyingVsDisqualifying,
 ];
 
 export function findPost(slug: string): BlogPost | undefined {

@@ -168,6 +168,14 @@ export const blogRelations: Record<string, BlogRelations> = {
     ],
     calcs: ['rsu-tax-shortfall', 'quarterly-estimated-tax'],
   },
+  'espp-qualifying-vs-disqualifying-disposition': {
+    posts: [
+      'stock-options-vs-rsus-tax',
+      'year-end-equity-comp-checklist',
+      'how-to-report-rsu-tax-return',
+    ],
+    calcs: ['espp-qualifying-disposition', 'state-stock-comp'],
+  },
 };
 
 /** Reverse index: for a given calculator slug, which blog posts discuss it. */
