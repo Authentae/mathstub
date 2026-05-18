@@ -55,6 +55,7 @@ import { whenToSellRsus } from './posts/when-to-sell-rsus-after-vesting';
 import { howMuchTaxOnRsu } from './posts/how-much-tax-on-rsu';
 import { howToAvoidRsuTax } from './posts/how-to-avoid-rsu-tax';
 import { rsuTaxOffsetPaycheck } from './posts/rsu-tax-offset-paycheck';
+import { stockOptionsVsRsusTax } from './posts/stock-options-vs-rsus-tax';
 
 export const blogPosts: BlogPost[] = [
   whyRsuTooHigh,
@@ -69,6 +70,7 @@ export const blogPosts: BlogPost[] = [
   howMuchTaxOnRsu,
   howToAvoidRsuTax,
   rsuTaxOffsetPaycheck,
+  stockOptionsVsRsusTax,
 ];
 
 export function findPost(slug: string): BlogPost | undefined {

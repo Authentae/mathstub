@@ -112,6 +112,14 @@ export const blogRelations: Record<string, BlogRelations> = {
     ],
     calcs: ['rsu-tax-shortfall'],
   },
+  'stock-options-vs-rsus-tax': {
+    posts: [
+      'do-rsus-get-taxed-twice',
+      'when-to-sell-rsus-after-vesting',
+      'how-to-avoid-rsu-tax',
+    ],
+    calcs: ['rsu-tax-shortfall', 'iso-amt', 'nso-exercise', 'amt-credit-recovery'],
+  },
 };
 
 /** Reverse index: for a given calculator slug, which blog posts discuss it. */
