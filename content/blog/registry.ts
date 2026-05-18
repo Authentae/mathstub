@@ -29,6 +29,15 @@ export interface BlogPost {
   dateModified: string;
   authorName: string;
   reviewerName?: string;
+  /**
+   * 30-60 word direct answer rendered as a prominent callout immediately
+   * below the title. LLMs (ChatGPT, Claude, Perplexity) preferentially lift
+   * the first paragraph when summarising or citing — so a clean, self-
+   * contained answer here substantially increases the odds the post gets
+   * cited verbatim. Also surfaces a snippet to readers who bounce within
+   * 3 seconds.
+   */
+  quickAnswer?: string;
   blocks: BlogBlock[];
   /** Suggested affiliate offer to render below content. */
   affiliateOfferIds?: string[];
@@ -44,6 +53,7 @@ import { rsuOverWithholding } from './posts/rsu-over-withholding-explained';
 import { rsusTaxedTwice } from './posts/do-rsus-get-taxed-twice';
 import { whenToSellRsus } from './posts/when-to-sell-rsus-after-vesting';
 import { howMuchTaxOnRsu } from './posts/how-much-tax-on-rsu';
+import { howToAvoidRsuTax } from './posts/how-to-avoid-rsu-tax';
 
 export const blogPosts: BlogPost[] = [
   whyRsuTooHigh,
@@ -56,6 +66,7 @@ export const blogPosts: BlogPost[] = [
   rsusTaxedTwice,
   whenToSellRsus,
   howMuchTaxOnRsu,
+  howToAvoidRsuTax,
 ];
 
 export function findPost(slug: string): BlogPost | undefined {

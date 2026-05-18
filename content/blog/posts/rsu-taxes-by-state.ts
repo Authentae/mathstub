@@ -10,6 +10,8 @@ export const byState: BlogPost = {
   authorName: 'Mathstub Editorial',
   reviewerName: 'Pending CPA review',
   affiliateOfferIds: ['turbotax-premier', 'harness-wealth'],
+  quickAnswer:
+    'State tax on RSU vests in the four biggest tech states: California withholds at 10.23% supplemental and taxes up to 13.3% marginal. New York withholds at 11.7% supplemental, plus 3.876% NYC if you live in the city. Washington and Texas have zero state income tax. Combined federal + state + FICA typically lands in the 35-47% range for high earners.',
   blocks: [
     {
       type: 'p',

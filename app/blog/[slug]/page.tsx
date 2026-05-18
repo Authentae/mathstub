@@ -15,6 +15,7 @@ import { AmazonBookCTA } from '@/components/AmazonBookCTA';
 import { ReportIssue } from '@/components/ReportIssue';
 import { RelatedPosts } from '@/components/RelatedPosts';
 import { CalcCta } from '@/components/CalcCta';
+import { QuickAnswer } from '@/components/QuickAnswer';
 import { findPost, blogPosts, type BlogBlock } from '@/content/blog/registry';
 import { blogRelations } from '@/content/blog/related';
 import type { AffiliateOfferId } from '@/lib/affiliates';
@@ -78,6 +79,8 @@ export default async function PostPage({ params }: Props) {
         <div className="mt-2">
           <LastUpdatedBadge taxYear={2026} isoDate={post.dateModified} />
         </div>
+
+        {post.quickAnswer && <QuickAnswer text={post.quickAnswer} />}
 
         <Disclaimer />
 

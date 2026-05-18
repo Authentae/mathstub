@@ -10,6 +10,8 @@ export const supplementalRule: BlogPost = {
   authorName: 'Mathstub Editorial',
   reviewerName: 'Pending CPA review',
   affiliateOfferIds: ['turbotax-premier', 'harness-wealth'],
+  quickAnswer:
+    'Employers withhold federal tax on bonuses and RSU vests at a flat 22% on the first $1,000,000 of supplemental wages paid in a calendar year, then 37% on every dollar above that. The threshold is per-employee per-year, not per-payment. Rule: Treas. Reg. §31.3402(g)-1; IRS Pub 15-T.',
   blocks: [
     {
       type: 'p',

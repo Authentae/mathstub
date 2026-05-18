@@ -10,6 +10,8 @@ export const extraW4: BlogPost = {
   authorName: 'Mathstub Editorial',
   reviewerName: 'Pending CPA review',
   affiliateOfferIds: ['turbotax-premier', 'empower'],
+  quickAnswer:
+    'To cover an RSU shortfall: log into your payroll system (Workday, ADP, Gusto), open Form W-4, and enter a flat dollar amount on line 4(c) labelled "Additional withholding per pay period". Withholding is treated as paid evenly across the year per IRC §6654(g), so a Q4 top-up retroactively cures earlier under-withholding — unlike a late quarterly estimated payment, which only counts from the date it is paid.',
   blocks: [
     {
       type: 'p',

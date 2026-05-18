@@ -10,6 +10,8 @@ export const whenToSellRsus: BlogPost = {
   authorName: 'Mathstub Editorial',
   reviewerName: 'Pending CPA review',
   affiliateOfferIds: ['turbotax-premier', 'harness-wealth'],
+  quickAnswer:
+    'For most tech workers, sell at vest. The FMV is already taxed as W-2 income whether you sell or hold, so holding is equivalent to taking a cash bonus and buying $X of your employer\'s stock with it. Holding past 1 year saves ~5-7% in LTCG tax versus ordinary rates, but exposes you to 30-50% single-stock volatility. Default: same-day sale + reinvest in a diversified portfolio.',
   blocks: [
     {
       type: 'p',

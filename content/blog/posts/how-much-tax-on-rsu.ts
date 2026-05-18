@@ -10,6 +10,8 @@ export const howMuchTaxOnRsu: BlogPost = {
   authorName: 'Mathstub Editorial',
   reviewerName: 'Pending CPA review',
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],
+  quickAnswer:
+    'Most US tech workers pay 30-40% of an RSU vest in combined federal income tax, state tax, and FICA. Effective rate by state at the 32% federal bracket: ~34% in Texas/Florida/Washington, ~39% in Illinois/Massachusetts, ~43% in California, ~46% in New York City. Your employer typically withholds at 22% federal supplemental — well below most workers\' real marginal rate, hence the April surprise.',
   blocks: [
     {
       type: 'p',

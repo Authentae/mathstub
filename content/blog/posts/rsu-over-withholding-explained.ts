@@ -10,6 +10,8 @@ export const rsuOverWithholding: BlogPost = {
   authorName: 'Mathstub Editorial',
   reviewerName: 'Pending CPA review',
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],
+  quickAnswer:
+    'A 30-35% deduction on an RSU vest is usually correct, not a mistake. The deduction stacks federal supplemental (22%) + state supplemental (e.g. CA 10.23%, NY 11.7%) + Medicare (1.45%) + Additional Medicare (0.9% above $200k YTD) + Social Security (6.2% up to wage base). Sometimes employers use the IRS aggregate method per Treas. Reg. §31.3402(g)-1(a)(2), which can withhold even more. Reconcile at filing — not with HR.',
   blocks: [
     {
       type: 'p',

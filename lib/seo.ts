@@ -84,6 +84,10 @@ export function webApplicationSchema(opts: {
   description: string;
   url: string;
   category?: string;
+  /** Short feature bullets — Google surfaces these in rich results. */
+  features?: string[];
+  /** Optional screenshot URL relative to the site root. */
+  screenshotPath?: string;
 }) {
   return {
     '@context': 'https://schema.org',
@@ -92,8 +96,33 @@ export function webApplicationSchema(opts: {
     description: opts.description,
     url: opts.url,
     applicationCategory: opts.category ?? 'FinanceApplication',
+    applicationSubCategory: 'TaxCalculator',
     operatingSystem: 'Any',
-    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    browserRequirements: 'Requires JavaScript enabled. Works in any modern browser.',
+    inLanguage: 'en-US',
+    isAccessibleForFree: true,
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+    },
+    creator: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      url: siteUrl(),
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      url: siteUrl(),
+    },
+    ...(opts.features && opts.features.length > 0
+      ? { featureList: opts.features.join(', ') }
+      : {}),
+    ...(opts.screenshotPath
+      ? { screenshot: `${siteUrl()}${opts.screenshotPath}` }
+      : {}),
   };
 }
 

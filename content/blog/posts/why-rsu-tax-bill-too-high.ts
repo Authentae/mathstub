@@ -10,6 +10,8 @@ export const whyRsuTooHigh: BlogPost = {
   authorName: 'Mathstub Editorial',
   reviewerName: 'Pending CPA review',
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],
+  quickAnswer:
+    'Your employer withholds federal tax on RSU vests at a flat 22% under IRS supplemental wage rules, but your real marginal rate is often 32-37%. The gap creates an April surprise that hits high earners hardest. Fix it before year-end by topping up Form W-4 line 4(c) or making a quarterly estimated payment per IRC §6654.',
   blocks: [
     {
       type: 'p',
