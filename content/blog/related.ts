@@ -136,6 +136,14 @@ export const blogRelations: Record<string, BlogRelations> = {
     ],
     calcs: ['rsu-tax-shortfall'],
   },
+  'sell-to-cover-vs-net-share-settlement-rsu': {
+    posts: [
+      'rsu-tax-offset-paycheck',
+      'rsu-tax-category-box-14-w2',
+      'how-to-report-rsu-tax-return',
+    ],
+    calcs: ['rsu-tax-shortfall'],
+  },
 };
 
 /** Reverse index: for a given calculator slug, which blog posts discuss it. */
