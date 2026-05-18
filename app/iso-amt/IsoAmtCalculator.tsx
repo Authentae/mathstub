@@ -1,5 +1,5 @@
 'use client';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { calculateIsoAmt } from '@tax/iso-amt';
 import {
   type FilingStatus,
@@ -13,6 +13,8 @@ import { listStateCodes } from '@tax/state-rates';
 import { offersForShortfall } from '@/lib/affiliates';
 import { AffiliateCard } from '@/components/AffiliateCard';
 import { GumroadUpsell } from '@/components/GumroadUpsell';
+import { ShareCalculation } from '@/components/ShareCalculation';
+import { useUrlFormState } from '@/lib/useUrlFormState';
 
 const usd = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -60,8 +62,48 @@ function toNumberOrZero(v: string): number {
   return Number.isFinite(n) && n >= 0 ? n : 0;
 }
 
+const URL_KEYS: { [K in keyof FormState]: string } = {
+  taxYear: 'y',
+  filingStatus: 'fs',
+  scenario: 'sc',
+  strikePricePerShareUsd: 'k',
+  fmvAtExercisePerShareUsd: 'fv',
+  sharesExercised: 'sh',
+  salePricePerShareUsd: 'sp',
+  ytdRegularWagesUsd: 'rw',
+  otherTaxableIncomeUsd: 'oi',
+  preTaxDeductionsUsd: 'pd',
+  stateCode: 'st',
+  stateOverrideRatePct: 'sr',
+};
+
+const ISO_SCENARIOS: ReadonlyArray<IsoScenario> = [
+  'exercise-and-hold',
+  'exercise-and-sell-same-year',
+];
+
 export function IsoAmtCalculator() {
-  const [form, setForm] = useState<FormState>(DEFAULTS);
+  const [form, setForm] = useUrlFormState<FormState>({
+    defaults: DEFAULTS,
+    urlKeys: URL_KEYS,
+    parseValue: (key, raw, defaultValue) => {
+      if (key === 'taxYear') {
+        const n = Number(raw);
+        return (n === 2024 || n === 2025 || n === 2026 ? n : defaultValue) as FormState[typeof key];
+      }
+      if (key === 'filingStatus') {
+        return (raw === 'single' || raw === 'mfj' || raw === 'mfs' || raw === 'hoh'
+          ? raw
+          : defaultValue) as FormState[typeof key];
+      }
+      if (key === 'scenario') {
+        return (ISO_SCENARIOS.includes(raw as IsoScenario)
+          ? (raw as IsoScenario)
+          : defaultValue) as FormState[typeof key];
+      }
+      return raw as FormState[typeof key];
+    },
+  });
   const states = useMemo(() => listStateCodes(), []);
 
   const result: IsoAmtResult | { error: string } = useMemo(() => {
@@ -91,7 +133,7 @@ export function IsoAmtCalculator() {
   }, [form]);
 
   const update = <K extends keyof FormState>(key: K, value: FormState[K]) => {
-    setForm((prev) => ({ ...prev, [key]: value }));
+    setForm({ [key]: value } as Partial<FormState>);
   };
 
   return (
@@ -346,6 +388,8 @@ function Result({ result }: { result: IsoAmtResult }) {
           </>
         )}
       </div>
+
+      <ShareCalculation what="this ISO/AMT calculation" />
 
       {r.totalTaxIncreaseUsd > 0 && <GumroadUpsell shortfallUsd={r.totalTaxIncreaseUsd} />}
 

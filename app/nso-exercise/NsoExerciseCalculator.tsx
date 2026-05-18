@@ -1,5 +1,5 @@
 'use client';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { calculateRsuShortfall } from '@tax/rsu-shortfall';
 import {
   type FilingStatus,
@@ -13,6 +13,8 @@ import { offersForShortfall } from '@/lib/affiliates';
 import { AffiliateCard } from '@/components/AffiliateCard';
 import { GumroadUpsell } from '@/components/GumroadUpsell';
 import { EmailCapture } from '@/components/EmailCapture';
+import { ShareCalculation } from '@/components/ShareCalculation';
+import { useUrlFormState } from '@/lib/useUrlFormState';
 
 const usd = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -64,8 +66,38 @@ function toNumberOrZero(v: string): number {
   return Number.isFinite(n) && n >= 0 ? n : 0;
 }
 
+const URL_KEYS: { [K in keyof FormState]: string } = {
+  taxYear: 'y',
+  filingStatus: 'fs',
+  strikeUsd: 'k',
+  fmvUsd: 'fv',
+  shares: 'sh',
+  ytdSupplementalWagesUsd: 'sw',
+  ytdRegularWagesUsd: 'rw',
+  otherTaxableIncomeUsd: 'oi',
+  preTaxDeductionsUsd: 'pd',
+  stateCode: 'st',
+  stateOverrideRatePct: 'sr',
+  ficaAlreadyMaxed: 'fm',
+};
+
 export function NsoExerciseCalculator() {
-  const [form, setForm] = useState<FormState>(DEFAULTS);
+  const [form, setForm] = useUrlFormState<FormState>({
+    defaults: DEFAULTS,
+    urlKeys: URL_KEYS,
+    parseValue: (key, raw, defaultValue) => {
+      if (key === 'taxYear') {
+        const n = Number(raw);
+        return (n === 2024 || n === 2025 || n === 2026 ? n : defaultValue) as FormState[typeof key];
+      }
+      if (key === 'filingStatus') {
+        return (raw === 'single' || raw === 'mfj' || raw === 'mfs' || raw === 'hoh'
+          ? raw
+          : defaultValue) as FormState[typeof key];
+      }
+      return raw as FormState[typeof key];
+    },
+  });
   const states = useMemo(() => listStateCodes(), []);
 
   const strike = toNumberOrZero(form.strikeUsd);
@@ -98,7 +130,7 @@ export function NsoExerciseCalculator() {
   }, [form, bargainElement]);
 
   const update = <K extends keyof FormState>(key: K, value: FormState[K]) => {
-    setForm((prev) => ({ ...prev, [key]: value }));
+    setForm({ [key]: value } as Partial<FormState>);
   };
 
   return (
@@ -298,6 +330,8 @@ function Result({ result, bargainElement }: { result: RsuShortfallResult; bargai
           </p>
         )}
       </div>
+
+      <ShareCalculation what="this NSO exercise calculation" />
 
       {!overWithheld && <GumroadUpsell shortfallUsd={r.shortfallUsd} />}
 

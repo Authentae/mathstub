@@ -1,5 +1,5 @@
 'use client';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { calculateSafeHarbor } from '@tax/safe-harbor';
 import {
   type FilingStatus,
@@ -10,6 +10,8 @@ import {
   TaxCalcError,
 } from '@tax/types';
 import { GumroadUpsell } from '@/components/GumroadUpsell';
+import { ShareCalculation } from '@/components/ShareCalculation';
+import { useUrlFormState } from '@/lib/useUrlFormState';
 
 const usd = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -44,8 +46,38 @@ function toNumberOrZero(v: string): number {
   return Number.isFinite(n) && n >= 0 ? n : 0;
 }
 
+const URL_KEYS: { [K in keyof FormState]: string } = {
+  taxYear: 'y',
+  filingStatus: 'fs',
+  expectedCurrentYearTaxUsd: 'cy',
+  priorYearTaxUsd: 'py',
+  priorYearAgiUsd: 'pa',
+  expectedAnnualWithholdingUsd: 'wh',
+  estimatedPaymentsMadeUsd: 'ep',
+  nextQuarter: 'q',
+};
+
 export function QuarterlyEstimatedTaxCalculator() {
-  const [form, setForm] = useState<FormState>(DEFAULTS);
+  const [form, setForm] = useUrlFormState<FormState>({
+    defaults: DEFAULTS,
+    urlKeys: URL_KEYS,
+    parseValue: (key, raw, defaultValue) => {
+      if (key === 'taxYear') {
+        const n = Number(raw);
+        return (n === 2024 || n === 2025 || n === 2026 ? n : defaultValue) as FormState[typeof key];
+      }
+      if (key === 'filingStatus') {
+        return (raw === 'single' || raw === 'mfj' || raw === 'mfs' || raw === 'hoh'
+          ? raw
+          : defaultValue) as FormState[typeof key];
+      }
+      if (key === 'nextQuarter') {
+        const n = Number(raw);
+        return ((n === 1 || n === 2 || n === 3 || n === 4) ? n : defaultValue) as FormState[typeof key];
+      }
+      return raw as FormState[typeof key];
+    },
+  });
 
   const result: SafeHarborResult | { error: string } = useMemo(() => {
     try {
@@ -66,7 +98,7 @@ export function QuarterlyEstimatedTaxCalculator() {
   }, [form]);
 
   const update = <K extends keyof FormState>(key: K, value: FormState[K]) => {
-    setForm((prev) => ({ ...prev, [key]: value }));
+    setForm({ [key]: value } as Partial<FormState>);
   };
 
   return (
@@ -260,6 +292,8 @@ function Result({
           </tbody>
         </table>
       </div>
+
+      <ShareCalculation what="this safe-harbor calculation" />
 
       {r.recommendedNextPaymentUsd > 0 && (
         <GumroadUpsell shortfallUsd={Math.max(r.yearEndGapUsd, r.recommendedNextPaymentUsd)} />

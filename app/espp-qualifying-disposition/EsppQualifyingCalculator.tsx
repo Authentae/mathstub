@@ -1,5 +1,5 @@
 'use client';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { calculateEsppQualifying } from '@tax/espp';
 import {
   type EsppQualifyingInput,
@@ -12,6 +12,8 @@ import { listStateCodes } from '@tax/state-rates';
 import { offersForShortfall } from '@/lib/affiliates';
 import { AffiliateCard } from '@/components/AffiliateCard';
 import { GumroadUpsell } from '@/components/GumroadUpsell';
+import { ShareCalculation } from '@/components/ShareCalculation';
+import { useUrlFormState } from '@/lib/useUrlFormState';
 
 const usd = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -65,8 +67,41 @@ function toNumberOrZero(v: string): number {
   return Number.isFinite(n) && n >= 0 ? n : 0;
 }
 
+const URL_KEYS: { [K in keyof FormState]: string } = {
+  taxYear: 'y',
+  filingStatus: 'fs',
+  offerDateFmvUsd: 'of',
+  purchaseDateFmvUsd: 'pf',
+  discountPct: 'd',
+  sharesPurchased: 'sh',
+  salePricePerShareUsd: 'sp',
+  offerDate: 'od',
+  purchaseDate: 'pd',
+  saleDate: 'sd',
+  ytdRegularWagesUsd: 'rw',
+  otherTaxableIncomeUsd: 'oi',
+  preTaxDeductionsUsd: 'pt',
+  stateCode: 'st',
+  stateOverrideRatePct: 'sr',
+};
+
 export function EsppQualifyingCalculator() {
-  const [form, setForm] = useState<FormState>(DEFAULTS);
+  const [form, setForm] = useUrlFormState<FormState>({
+    defaults: DEFAULTS,
+    urlKeys: URL_KEYS,
+    parseValue: (key, raw, defaultValue) => {
+      if (key === 'taxYear') {
+        const n = Number(raw);
+        return (n === 2024 || n === 2025 || n === 2026 ? n : defaultValue) as FormState[typeof key];
+      }
+      if (key === 'filingStatus') {
+        return (raw === 'single' || raw === 'mfj' || raw === 'mfs' || raw === 'hoh'
+          ? raw
+          : defaultValue) as FormState[typeof key];
+      }
+      return raw as FormState[typeof key];
+    },
+  });
   const states = useMemo(() => listStateCodes(), []);
 
   const result: EsppQualifyingResult | { error: string } = useMemo(() => {
@@ -97,7 +132,7 @@ export function EsppQualifyingCalculator() {
   }, [form]);
 
   const update = <K extends keyof FormState>(key: K, value: FormState[K]) => {
-    setForm((prev) => ({ ...prev, [key]: value }));
+    setForm({ [key]: value } as Partial<FormState>);
   };
 
   return (
@@ -330,6 +365,8 @@ function Result({ result }: { result: EsppQualifyingResult }) {
         />
         <Stat label="Net proceeds after tax" value={usd.format(r.netProceedsAfterTaxUsd)} />
       </div>
+
+      <ShareCalculation what="this ESPP disposition calculation" />
 
       {r.totalTaxUsd > 0 && <GumroadUpsell shortfallUsd={r.totalTaxUsd} />}
 
