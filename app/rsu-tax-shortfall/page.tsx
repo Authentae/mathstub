@@ -64,6 +64,8 @@ export default function Page() {
         }
         faq={<FaqAccordion items={[...c.faqs]} />}
         related={<RelatedCalcs currentSlug={c.slug} />}
+        calcSlug={c.slug}
+        reportIssueContext={c.slug}
       />
     </>
   );

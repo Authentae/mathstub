@@ -2,6 +2,7 @@ import { type ReactNode } from 'react';
 import { AdSlot } from './AdSlot';
 import { AmazonBookCTA } from './AmazonBookCTA';
 import { ReportIssue } from './ReportIssue';
+import { RelatedGuides } from './RelatedGuides';
 
 interface Props {
   title: string;
@@ -17,6 +18,8 @@ interface Props {
   reportIssueContext?: string;
   /** Override the Amazon CTA search query — defaults to evergreen tax-book query. */
   amazonQuery?: string;
+  /** Calculator slug — when supplied, surfaces related blog posts automatically. */
+  calcSlug?: string;
 }
 
 export function ToolShell({
@@ -31,6 +34,7 @@ export function ToolShell({
   related,
   reportIssueContext,
   amazonQuery,
+  calcSlug,
 }: Props) {
   return (
     <div className="mx-auto grid max-w-5xl gap-8 px-4 py-8 lg:grid-cols-[1fr_300px]">
@@ -60,6 +64,8 @@ export function ToolShell({
           </section>
         )}
         {related && <section className="mt-8">{related}</section>}
+
+        {calcSlug && <RelatedGuides calcSlug={calcSlug} />}
 
         <AmazonBookCTA query={amazonQuery} />
         <ReportIssue context={reportIssueContext} />

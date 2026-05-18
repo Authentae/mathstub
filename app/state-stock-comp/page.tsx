@@ -23,6 +23,8 @@ export default function Page() {
   return (
     <ToolShell
       title="State Stock-Comp Tax Lookup"
+      calcSlug="state-stock-comp"
+      reportIssueContext="state-stock-comp"
       lede="Pick your state to see the top marginal rate, supplemental withholding rate, whether the state has its own AMT for ISO exercises, and how it treats long-term capital gains. Quick reference — link out to your state revenue dept for current rules."
       toolUi={
         <>

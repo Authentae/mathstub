@@ -13,7 +13,10 @@ import { LastUpdatedBadge } from '@/components/LastUpdatedBadge';
 import { AffiliateCard } from '@/components/AffiliateCard';
 import { AmazonBookCTA } from '@/components/AmazonBookCTA';
 import { ReportIssue } from '@/components/ReportIssue';
+import { RelatedPosts } from '@/components/RelatedPosts';
+import { CalcCta } from '@/components/CalcCta';
 import { findPost, blogPosts, type BlogBlock } from '@/content/blog/registry';
+import { blogRelations } from '@/content/blog/related';
 import type { AffiliateOfferId } from '@/lib/affiliates';
 
 interface Props {
@@ -83,6 +86,14 @@ export default async function PostPage({ params }: Props) {
             <Block key={i} block={block} />
           ))}
         </div>
+
+        {blogRelations[post.slug]?.calcs && (
+          <CalcCta slugs={blogRelations[post.slug]!.calcs} />
+        )}
+
+        {blogRelations[post.slug]?.posts && (
+          <RelatedPosts slugs={blogRelations[post.slug]!.posts} />
+        )}
 
         {post.affiliateOfferIds && post.affiliateOfferIds.length > 0 && (
           <section className="mt-10 border-t border-gray-200 pt-8 dark:border-gray-800">
