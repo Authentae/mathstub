@@ -88,6 +88,14 @@ export const blogRelations: Record<string, BlogRelations> = {
     ],
     calcs: ['rsu-tax-shortfall', 'iso-amt', 'espp-qualifying-disposition'],
   },
+  'how-much-tax-will-i-pay-on-rsu': {
+    posts: [
+      'why-rsu-tax-bill-too-high',
+      'rsu-over-withholding-explained',
+      'rsu-taxes-by-state',
+    ],
+    calcs: ['rsu-tax-shortfall', 'state-stock-comp', 'quarterly-estimated-tax'],
+  },
 };
 
 /** Reverse index: for a given calculator slug, which blog posts discuss it. */
