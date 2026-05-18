@@ -6,7 +6,7 @@ export function Footer() {
   const tools = liveTools();
   return (
     <footer className="mt-16 border-t border-gray-200 bg-gray-50 py-8 dark:border-gray-800 dark:bg-gray-900">
-      <div className="mx-auto grid max-w-5xl grid-cols-2 gap-8 px-4 text-sm md:grid-cols-3">
+      <div className="mx-auto grid max-w-5xl grid-cols-2 gap-8 px-4 text-sm md:grid-cols-4">
         <div>
           <h2 className="mb-2 font-semibold text-gray-900 dark:text-gray-100">{SITE_NAME}</h2>
           <p className="text-gray-600 dark:text-gray-400">
@@ -26,6 +26,35 @@ export function Footer() {
                 </Link>
               </li>
             ))}
+          </ul>
+        </div>
+        <div>
+          <h3 className="mb-2 font-semibold text-gray-900 dark:text-gray-100">Learn</h3>
+          <ul className="space-y-1">
+            <li>
+              <Link
+                href="/start-here"
+                className="text-gray-600 hover:text-brand-700 dark:text-gray-400 dark:hover:text-brand-100"
+              >
+                Start here
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/blog"
+                className="text-gray-600 hover:text-brand-700 dark:text-gray-400 dark:hover:text-brand-100"
+              >
+                Blog
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/glossary"
+                className="text-gray-600 hover:text-brand-700 dark:text-gray-400 dark:hover:text-brand-100"
+              >
+                Glossary
+              </Link>
+            </li>
           </ul>
         </div>
         <div>

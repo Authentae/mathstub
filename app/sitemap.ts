@@ -7,7 +7,17 @@ import { stateStockCompProfiles } from '@tax/state-stock-comp';
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const root = siteUrl();
-  const staticPages = ['', '/about', '/editorial-policy', '/disclaimer', '/privacy', '/terms', '/blog'];
+  const staticPages = [
+    '',
+    '/start-here',
+    '/blog',
+    '/glossary',
+    '/about',
+    '/editorial-policy',
+    '/disclaimer',
+    '/privacy',
+    '/terms',
+  ];
 
   return [
     ...staticPages.map((p) => ({
