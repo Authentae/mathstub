@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo } from 'react';
 import { calculateRsuShortfall } from '@tax/rsu-shortfall';
 import {
   type FilingStatus,
@@ -14,6 +14,7 @@ import { AffiliateCard } from '@/components/AffiliateCard';
 import { GumroadUpsell } from '@/components/GumroadUpsell';
 import { EmailCapture } from '@/components/EmailCapture';
 import { ShareCalculation } from '@/components/ShareCalculation';
+import { useUrlFormState } from '@/lib/useUrlFormState';
 
 const usd = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -61,13 +62,7 @@ function toNumberOrZero(v: string): number {
   return Number.isFinite(n) && n >= 0 ? n : 0;
 }
 
-/**
- * Encode the entire form state into a stable URL query string so the page
- * can be bookmarked, sent to a CPA, or pasted into a calendar event. Field
- * names are short to keep links readable. Decoding is permissive — any
- * missing field falls back to the default.
- */
-const URL_KEYS: Record<keyof FormState, string> = {
+const URL_KEYS: { [K in keyof FormState]: string } = {
   taxYear: 'y',
   filingStatus: 'fs',
   vestGrossUsd: 'v',
@@ -80,71 +75,24 @@ const URL_KEYS: Record<keyof FormState, string> = {
   ficaAlreadyMaxed: 'fm',
 };
 
-function formToQuery(form: FormState): string {
-  const params = new URLSearchParams();
-  params.set(URL_KEYS.taxYear, String(form.taxYear));
-  params.set(URL_KEYS.filingStatus, form.filingStatus);
-  params.set(URL_KEYS.vestGrossUsd, form.vestGrossUsd);
-  params.set(URL_KEYS.ytdSupplementalWagesUsd, form.ytdSupplementalWagesUsd);
-  params.set(URL_KEYS.ytdRegularWagesUsd, form.ytdRegularWagesUsd);
-  params.set(URL_KEYS.otherTaxableIncomeUsd, form.otherTaxableIncomeUsd);
-  params.set(URL_KEYS.preTaxDeductionsUsd, form.preTaxDeductionsUsd);
-  params.set(URL_KEYS.stateCode, form.stateCode);
-  if (form.stateOverrideRatePct) params.set(URL_KEYS.stateOverrideRatePct, form.stateOverrideRatePct);
-  if (form.ficaAlreadyMaxed) params.set(URL_KEYS.ficaAlreadyMaxed, '1');
-  return params.toString();
-}
-
-function queryToForm(search: string): FormState {
-  const params = new URLSearchParams(search);
-  const next: FormState = { ...DEFAULTS };
-  const year = Number(params.get(URL_KEYS.taxYear));
-  if (year === 2024 || year === 2025 || year === 2026) next.taxYear = year as TaxYear;
-  const fs = params.get(URL_KEYS.filingStatus);
-  if (fs === 'single' || fs === 'mfj' || fs === 'mfs' || fs === 'hoh') next.filingStatus = fs;
-  const setIfPresent = (key: keyof FormState, urlKey: string) => {
-    const v = params.get(urlKey);
-    if (v !== null) (next as Record<string, unknown>)[key] = v;
-  };
-  setIfPresent('vestGrossUsd', URL_KEYS.vestGrossUsd);
-  setIfPresent('ytdSupplementalWagesUsd', URL_KEYS.ytdSupplementalWagesUsd);
-  setIfPresent('ytdRegularWagesUsd', URL_KEYS.ytdRegularWagesUsd);
-  setIfPresent('otherTaxableIncomeUsd', URL_KEYS.otherTaxableIncomeUsd);
-  setIfPresent('preTaxDeductionsUsd', URL_KEYS.preTaxDeductionsUsd);
-  const st = params.get(URL_KEYS.stateCode);
-  if (st) next.stateCode = st;
-  const sr = params.get(URL_KEYS.stateOverrideRatePct);
-  if (sr !== null) next.stateOverrideRatePct = sr;
-  next.ficaAlreadyMaxed = params.get(URL_KEYS.ficaAlreadyMaxed) === '1';
-  return next;
-}
-
 export function RsuShortfallCalculator() {
-  const [form, setForm] = useState<FormState>(DEFAULTS);
+  const [form, setForm] = useUrlFormState<FormState>({
+    defaults: DEFAULTS,
+    urlKeys: URL_KEYS,
+    parseValue: (key, raw, defaultValue) => {
+      if (key === 'taxYear') {
+        const n = Number(raw);
+        return (n === 2024 || n === 2025 || n === 2026 ? n : defaultValue) as FormState[typeof key];
+      }
+      if (key === 'filingStatus') {
+        return (raw === 'single' || raw === 'mfj' || raw === 'mfs' || raw === 'hoh'
+          ? raw
+          : defaultValue) as FormState[typeof key];
+      }
+      return raw as FormState[typeof key];
+    },
+  });
   const states = useMemo(() => listStateCodes(), []);
-  const hydratedRef = useRef(false);
-
-  // On mount, hydrate form state from the URL query string. This is what
-  // makes saved links reload identical inputs.
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    if (window.location.search.length > 1) {
-      setForm(queryToForm(window.location.search));
-    }
-    hydratedRef.current = true;
-  }, []);
-
-  // Mirror form state back into the URL via history.replaceState so the
-  // address bar always reflects the current inputs. Skipped on the very
-  // first render so we don't blow away a pristine URL with default values.
-  useEffect(() => {
-    if (!hydratedRef.current || typeof window === 'undefined') return;
-    const query = formToQuery(form);
-    const newUrl = `${window.location.pathname}?${query}`;
-    if (window.location.search.slice(1) !== query) {
-      window.history.replaceState(null, '', newUrl);
-    }
-  }, [form]);
 
   const result: RsuShortfallResult | { error: string } = useMemo(() => {
     try {
@@ -167,7 +115,7 @@ export function RsuShortfallCalculator() {
   }, [form]);
 
   const update = <K extends keyof FormState>(key: K, value: FormState[K]) => {
-    setForm((prev) => ({ ...prev, [key]: value }));
+    setForm({ [key]: value } as Partial<FormState>);
   };
 
   return (

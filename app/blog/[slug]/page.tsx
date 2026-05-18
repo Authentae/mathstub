@@ -17,6 +17,8 @@ import { RelatedPosts } from '@/components/RelatedPosts';
 import { CalcCta } from '@/components/CalcCta';
 import { QuickAnswer } from '@/components/QuickAnswer';
 import { TableOfContents, slugifyHeading } from '@/components/TableOfContents';
+import { ReadTime } from '@/components/ReadTime';
+import { WasThisHelpful } from '@/components/WasThisHelpful';
 import { findPost, blogPosts, type BlogBlock } from '@/content/blog/registry';
 import { blogRelations } from '@/content/blog/related';
 import type { AffiliateOfferId } from '@/lib/affiliates';
@@ -77,8 +79,9 @@ export default async function PostPage({ params }: Props) {
         <h1 className="mt-2 text-3xl font-bold text-gray-900 dark:text-gray-100">
           {post.title}
         </h1>
-        <div className="mt-2">
+        <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1">
           <LastUpdatedBadge taxYear={2026} isoDate={post.dateModified} />
+          <ReadTime blocks={post.blocks} />
         </div>
 
         {post.quickAnswer && <QuickAnswer text={post.quickAnswer} />}
@@ -121,6 +124,7 @@ export default async function PostPage({ params }: Props) {
           {post.reviewerName ? ` · Reviewed by ${post.reviewerName}` : ''}
         </p>
 
+        <WasThisHelpful context={post.slug} />
         <ReportIssue context={`blog/${post.slug}`} />
       </article>
     </>
