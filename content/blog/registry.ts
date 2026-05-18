@@ -64,6 +64,7 @@ import { multiStateRsuSourcingCalifornia } from './posts/multi-state-rsu-sourcin
 import { doubleTriggerRsuIpo } from './posts/double-trigger-rsu-ipo';
 import { esppQualifyingVsDisqualifying } from './posts/espp-qualifying-vs-disqualifying';
 import { amtCreditRecoveryForm8801 } from './posts/amt-credit-recovery-form-8801';
+import { whyIsMyBonusTaxedAt40 } from './posts/why-is-my-bonus-taxed-at-40';
 
 export const blogPosts: BlogPost[] = [
   whyRsuTooHigh,
@@ -87,6 +88,7 @@ export const blogPosts: BlogPost[] = [
   doubleTriggerRsuIpo,
   esppQualifyingVsDisqualifying,
   amtCreditRecoveryForm8801,
+  whyIsMyBonusTaxedAt40,
 ];
 
 export function findPost(slug: string): BlogPost | undefined {

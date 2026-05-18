@@ -184,6 +184,14 @@ export const blogRelations: Record<string, BlogRelations> = {
     ],
     calcs: ['amt-credit-recovery', 'iso-amt'],
   },
+  'why-is-my-bonus-taxed-at-40-percent': {
+    posts: [
+      '22-vs-37-supplemental-withholding',
+      'rsu-over-withholding-explained',
+      'extra-w4-withholding-rsu',
+    ],
+    calcs: ['bonus-tax-shortfall', 'quarterly-estimated-tax'],
+  },
 };
 
 /** Reverse index: for a given calculator slug, which blog posts discuss it. */
