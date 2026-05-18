@@ -16,6 +16,7 @@ import { ReportIssue } from '@/components/ReportIssue';
 import { RelatedPosts } from '@/components/RelatedPosts';
 import { CalcCta } from '@/components/CalcCta';
 import { QuickAnswer } from '@/components/QuickAnswer';
+import { TableOfContents, slugifyHeading } from '@/components/TableOfContents';
 import { findPost, blogPosts, type BlogBlock } from '@/content/blog/registry';
 import { blogRelations } from '@/content/blog/related';
 import type { AffiliateOfferId } from '@/lib/affiliates';
@@ -82,6 +83,8 @@ export default async function PostPage({ params }: Props) {
 
         {post.quickAnswer && <QuickAnswer text={post.quickAnswer} />}
 
+        <TableOfContents blocks={post.blocks} />
+
         <Disclaimer />
 
         <div className="mt-6 space-y-4 text-base leading-relaxed text-gray-800 dark:text-gray-200">
@@ -129,9 +132,23 @@ function Block({ block }: { block: BlogBlock }) {
     case 'p':
       return <p>{block.text}</p>;
     case 'h2':
-      return <h2 className="mt-6 text-2xl font-bold text-gray-900 dark:text-gray-100">{block.text}</h2>;
+      return (
+        <h2
+          id={slugifyHeading(block.text)}
+          className="mt-6 scroll-mt-20 text-2xl font-bold text-gray-900 dark:text-gray-100"
+        >
+          {block.text}
+        </h2>
+      );
     case 'h3':
-      return <h3 className="mt-4 text-xl font-semibold text-gray-900 dark:text-gray-100">{block.text}</h3>;
+      return (
+        <h3
+          id={slugifyHeading(block.text)}
+          className="mt-4 scroll-mt-20 text-xl font-semibold text-gray-900 dark:text-gray-100"
+        >
+          {block.text}
+        </h3>
+      );
     case 'ul':
       return (
         <ul className="ml-5 list-disc space-y-1">

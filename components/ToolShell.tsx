@@ -37,13 +37,25 @@ export function ToolShell({
   calcSlug,
 }: Props) {
   return (
-    <div className="mx-auto grid max-w-5xl gap-8 px-4 py-8 lg:grid-cols-[1fr_300px]">
+    <div className="mx-auto grid max-w-5xl gap-8 px-4 py-6 lg:grid-cols-[1fr_300px]">
       <main className="min-w-0">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">{title}</h1>
-        <p className="mt-2 text-lg text-gray-700 dark:text-gray-300">{lede}</p>
-        {meta && <div className="mt-2">{meta}</div>}
+        {/*
+          Tightened above-the-fold: H1 + 1-line lede + inline meta, no
+          stacked spacing. Goal is to keep the calculator form in viewport 1
+          on a typical 13" laptop. The longer marketing lede is intentionally
+          dropped — searchers landed here because their query matched. They
+          want the form, not a pitch.
+        */}
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 sm:text-3xl">{title}</h1>
+        <p className="mt-1 text-base text-gray-700 dark:text-gray-300">{lede}</p>
+        <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500 dark:text-gray-400">
+          <span>⚡ 30 seconds</span>
+          <span>🔒 Runs in your browser</span>
+          <span>✓ Free, no signup</span>
+          {meta && <span className="ml-auto">{meta}</span>}
+        </div>
 
-        <section className="mt-6">{toolUi}</section>
+        <section className="mt-4">{toolUi}</section>
         {resultsSlot && <section className="mt-6">{resultsSlot}</section>}
         {affiliateSlot && <section className="mt-6">{affiliateSlot}</section>}
 

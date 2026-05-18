@@ -274,7 +274,10 @@ function Result({ result }: { result: RsuShortfallResult }) {
         </div>
       )}
 
-      <details className="rounded-md border border-gray-200 bg-white p-4 text-sm dark:border-gray-800 dark:bg-gray-900">
+      <details
+        open
+        className="rounded-md border border-gray-200 bg-white p-4 text-sm dark:border-gray-800 dark:bg-gray-900"
+      >
         <summary className="cursor-pointer font-semibold text-gray-800 dark:text-gray-200">
           Show the math
         </summary>
@@ -296,8 +299,14 @@ function Result({ result }: { result: RsuShortfallResult }) {
       {offers.length > 0 && (
         <div>
           <p className="mb-2 text-xs uppercase tracking-wide text-gray-500">Recommended next steps</p>
+          {/*
+            Cap visible offers at 2 — pre-result the user already sees 4-5
+            competing CTAs (Gumroad upsell, W-4 suggestion, quarterly,
+            email capture). Cutting affiliate cards from 4 to 2 reduces
+            decision paralysis and keeps a clear primary action.
+          */}
           <div className="grid gap-3 md:grid-cols-2">
-            {offers.slice(0, 4).map((o) => (
+            {offers.slice(0, 2).map((o) => (
               <AffiliateCard key={o.id} offerId={o.id} />
             ))}
           </div>
