@@ -56,6 +56,7 @@ import { howMuchTaxOnRsu } from './posts/how-much-tax-on-rsu';
 import { howToAvoidRsuTax } from './posts/how-to-avoid-rsu-tax';
 import { rsuTaxOffsetPaycheck } from './posts/rsu-tax-offset-paycheck';
 import { stockOptionsVsRsusTax } from './posts/stock-options-vs-rsus-tax';
+import { howToReportRsuTaxReturn } from './posts/how-to-report-rsu-tax-return';
 
 export const blogPosts: BlogPost[] = [
   whyRsuTooHigh,
@@ -71,6 +72,7 @@ export const blogPosts: BlogPost[] = [
   howToAvoidRsuTax,
   rsuTaxOffsetPaycheck,
   stockOptionsVsRsusTax,
+  howToReportRsuTaxReturn,
 ];
 
 export function findPost(slug: string): BlogPost | undefined {
