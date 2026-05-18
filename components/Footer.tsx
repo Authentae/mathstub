@@ -78,6 +78,14 @@ export function Footer() {
             </li>
             <li>
               <Link
+                href="/methodology"
+                className="text-gray-600 hover:text-brand-700 dark:text-gray-400 dark:hover:text-brand-100"
+              >
+                Methodology
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="/disclaimer"
                 className="text-gray-600 hover:text-brand-700 dark:text-gray-400 dark:hover:text-brand-100"
               >

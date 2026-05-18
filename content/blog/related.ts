@@ -104,6 +104,14 @@ export const blogRelations: Record<string, BlogRelations> = {
     ],
     calcs: ['rsu-tax-shortfall', 'state-stock-comp'],
   },
+  'rsu-tax-offset-paycheck': {
+    posts: [
+      'why-rsu-tax-bill-too-high',
+      'rsu-over-withholding-explained',
+      'do-rsus-get-taxed-twice',
+    ],
+    calcs: ['rsu-tax-shortfall'],
+  },
 };
 
 /** Reverse index: for a given calculator slug, which blog posts discuss it. */
