@@ -20,7 +20,7 @@ export function Header() {
           <ul className="flex flex-wrap items-center justify-end gap-x-4 gap-y-1">
             <li className="relative">
               <details className="group">
-                <summary className="cursor-pointer list-none text-gray-700 hover:text-brand-700 dark:text-gray-200 dark:hover:text-brand-100">
+                <summary className="cursor-pointer list-none rounded text-gray-700 hover:text-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 dark:text-gray-200 dark:hover:text-brand-100 dark:focus-visible:ring-offset-gray-950">
                   Tools ▾
                 </summary>
                 <ul className="absolute right-0 z-20 mt-2 min-w-[260px] rounded-md border border-gray-200 bg-white p-2 shadow-lg dark:border-gray-800 dark:bg-gray-950">
@@ -57,7 +57,7 @@ export function Header() {
           <ul className="flex items-center gap-1">
             <li>
               <details className="relative">
-                <summary className="inline-flex min-h-11 cursor-pointer list-none items-center rounded-md px-3 py-2 text-gray-700 hover:bg-gray-100 hover:text-brand-700 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-brand-100">
+                <summary className="inline-flex min-h-11 cursor-pointer list-none items-center rounded-md px-3 py-2 text-gray-700 hover:bg-gray-100 hover:text-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-brand-100 dark:focus-visible:ring-offset-gray-950">
                   Tools ▾
                 </summary>
                 <ul className="absolute right-0 z-20 mt-1 min-w-[240px] rounded-md border border-gray-200 bg-white p-2 shadow-lg dark:border-gray-800 dark:bg-gray-950">

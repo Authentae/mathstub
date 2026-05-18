@@ -72,10 +72,24 @@ export function ShareCalculation({ what = 'this calculation' }: Props) {
       <button
         type="button"
         onClick={handleShare}
-        className="mt-3 inline-flex items-center rounded-md bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700"
+        // aria-label stays stable across the "Copy" -> "Copied" transition so
+        // screen readers don't reread the button name on every state change.
+        // The visual text still flips for sighted users.
+        aria-label="Copy share link for this calculation"
+        className="mt-3 inline-flex items-center rounded-md bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900"
       >
         {copied ? '✓ Link copied' : 'Copy share link'}
       </button>
+      {/*
+        aria-live="polite" lets assistive tech announce "Link copied" or any
+        error without stealing focus. Always-mounted (even when empty) so the
+        announcer is wired up before the first state change — late-mounted
+        live regions are not always read.
+      */}
+      <div role="status" aria-live="polite" className="sr-only">
+        {copied ? 'Share link copied to clipboard.' : ''}
+        {error ? error : ''}
+      </div>
       {error && (
         <p className="mt-2 text-xs text-amber-700 dark:text-amber-300">{error}</p>
       )}
