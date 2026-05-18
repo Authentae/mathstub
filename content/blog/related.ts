@@ -176,6 +176,14 @@ export const blogRelations: Record<string, BlogRelations> = {
     ],
     calcs: ['espp-qualifying-disposition', 'state-stock-comp'],
   },
+  'amt-credit-recovery-form-8801': {
+    posts: [
+      'stock-options-vs-rsus-tax',
+      'early-exercise-nso-83b-election',
+      'year-end-equity-comp-checklist',
+    ],
+    calcs: ['amt-credit-recovery', 'iso-amt'],
+  },
 };
 
 /** Reverse index: for a given calculator slug, which blog posts discuss it. */

@@ -63,6 +63,7 @@ import { earlyExerciseNso83b } from './posts/early-exercise-nso-83b-election';
 import { multiStateRsuSourcingCalifornia } from './posts/multi-state-rsu-sourcing-california';
 import { doubleTriggerRsuIpo } from './posts/double-trigger-rsu-ipo';
 import { esppQualifyingVsDisqualifying } from './posts/espp-qualifying-vs-disqualifying';
+import { amtCreditRecoveryForm8801 } from './posts/amt-credit-recovery-form-8801';
 
 export const blogPosts: BlogPost[] = [
   whyRsuTooHigh,
@@ -85,6 +86,7 @@ export const blogPosts: BlogPost[] = [
   multiStateRsuSourcingCalifornia,
   doubleTriggerRsuIpo,
   esppQualifyingVsDisqualifying,
+  amtCreditRecoveryForm8801,
 ];
 
 export function findPost(slug: string): BlogPost | undefined {
