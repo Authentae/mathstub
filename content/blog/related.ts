@@ -128,6 +128,14 @@ export const blogRelations: Record<string, BlogRelations> = {
     ],
     calcs: ['rsu-tax-shortfall', 'quarterly-estimated-tax'],
   },
+  'rsu-tax-category-box-14-w2': {
+    posts: [
+      'how-to-report-rsu-tax-return',
+      'rsu-tax-offset-paycheck',
+      'do-rsus-get-taxed-twice',
+    ],
+    calcs: ['rsu-tax-shortfall'],
+  },
 };
 
 /** Reverse index: for a given calculator slug, which blog posts discuss it. */
