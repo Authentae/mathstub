@@ -3,6 +3,7 @@ import './globals.css';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Analytics, AdsenseLoader } from '@/components/Analytics';
+import { Analytics as VercelAnalytics } from '@vercel/analytics/next';
 import { SITE_NAME, siteUrl } from '@/lib/seo';
 import { env } from '@/lib/env';
 
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="flex-1">{children}</div>
         <Footer />
         <Analytics />
+        <VercelAnalytics />
         <AdsenseLoader />
       </body>
     </html>
