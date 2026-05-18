@@ -160,6 +160,14 @@ export const blogRelations: Record<string, BlogRelations> = {
     ],
     calcs: ['rsu-tax-shortfall', 'state-stock-comp'],
   },
+  'double-trigger-rsu-ipo-tax': {
+    posts: [
+      'when-to-sell-rsus-after-vesting',
+      'multi-state-rsu-sourcing-california',
+      'how-to-avoid-rsu-tax',
+    ],
+    calcs: ['rsu-tax-shortfall', 'quarterly-estimated-tax'],
+  },
 };
 
 /** Reverse index: for a given calculator slug, which blog posts discuss it. */

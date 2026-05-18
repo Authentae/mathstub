@@ -61,6 +61,7 @@ import { rsuTaxCategoryBox14 } from './posts/rsu-tax-category-box-14';
 import { sellToCoverVsNss } from './posts/sell-to-cover-vs-net-share-settlement';
 import { earlyExerciseNso83b } from './posts/early-exercise-nso-83b-election';
 import { multiStateRsuSourcingCalifornia } from './posts/multi-state-rsu-sourcing-california';
+import { doubleTriggerRsuIpo } from './posts/double-trigger-rsu-ipo';
 
 export const blogPosts: BlogPost[] = [
   whyRsuTooHigh,
@@ -81,6 +82,7 @@ export const blogPosts: BlogPost[] = [
   sellToCoverVsNss,
   earlyExerciseNso83b,
   multiStateRsuSourcingCalifornia,
+  doubleTriggerRsuIpo,
 ];
 
 export function findPost(slug: string): BlogPost | undefined {
