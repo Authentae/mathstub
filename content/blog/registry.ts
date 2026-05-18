@@ -60,6 +60,7 @@ import { howToReportRsuTaxReturn } from './posts/how-to-report-rsu-tax-return';
 import { rsuTaxCategoryBox14 } from './posts/rsu-tax-category-box-14';
 import { sellToCoverVsNss } from './posts/sell-to-cover-vs-net-share-settlement';
 import { earlyExerciseNso83b } from './posts/early-exercise-nso-83b-election';
+import { multiStateRsuSourcingCalifornia } from './posts/multi-state-rsu-sourcing-california';
 
 export const blogPosts: BlogPost[] = [
   whyRsuTooHigh,
@@ -79,6 +80,7 @@ export const blogPosts: BlogPost[] = [
   rsuTaxCategoryBox14,
   sellToCoverVsNss,
   earlyExerciseNso83b,
+  multiStateRsuSourcingCalifornia,
 ];
 
 export function findPost(slug: string): BlogPost | undefined {

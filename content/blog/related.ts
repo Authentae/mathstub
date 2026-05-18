@@ -152,6 +152,14 @@ export const blogRelations: Record<string, BlogRelations> = {
     ],
     calcs: ['nso-exercise', 'iso-amt', 'amt-credit-recovery'],
   },
+  'multi-state-rsu-sourcing-california': {
+    posts: [
+      'rsu-taxes-by-state',
+      'how-to-avoid-rsu-tax',
+      'when-to-sell-rsus-after-vesting',
+    ],
+    calcs: ['rsu-tax-shortfall', 'state-stock-comp'],
+  },
 };
 
 /** Reverse index: for a given calculator slug, which blog posts discuss it. */
