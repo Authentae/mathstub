@@ -11,8 +11,23 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
           key={i}
           className="group rounded-md border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900"
         >
-          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-gray-100 [&::-webkit-details-marker]:hidden">
-            {item.q}
+          {/*
+            The webkit details marker is hidden — replaced with a visible
+            CSS-rotated arrow so sighted users still see an open/closed
+            indicator. Screen readers announce the open/closed state via
+            the native <details> semantics regardless.
+
+            focus-visible ring on the <summary> so keyboard users can see
+            when the question is focused (Tab/arrow-key navigation).
+          */}
+          <summary className="flex cursor-pointer items-start gap-2 rounded font-semibold text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 dark:text-gray-100 dark:focus-visible:ring-offset-gray-900 [&::-webkit-details-marker]:hidden">
+            <span
+              aria-hidden="true"
+              className="mt-1 inline-block h-3 w-3 flex-shrink-0 rotate-0 text-gray-500 transition-transform group-open:rotate-90"
+            >
+              ▶
+            </span>
+            <span>{item.q}</span>
           </summary>
           <p className="mt-2 text-gray-700 dark:text-gray-300">{item.a}</p>
         </details>
