@@ -37,24 +37,24 @@ Through cycle 17 (this commit):
 
 ## Known gaps (to surface in morning review)
 
-**1. Six legacy blog posts (April 2026) are below the new content
-standard.** Identified by `blog-posts.test.ts` and gated by the
-2026-05-15 cutoff. Slugs:
-- `why-rsu-tax-bill-too-high`
-- `22-vs-37-supplemental-withholding`
-- `estimated-tax-after-rsu-vest`
-- `extra-w4-withholding-rsu`
-- `rsu-taxes-by-state`
-- `year-end-equity-comp-checklist`
+**Legacy backfills — COMPLETE as of cycle 23.** All six April-2026
+posts have been expanded from 266–386 words to 900–1,100 words, with
+Sources blocks citing the controlling IRC §, Treas. Reg., IRS Pub,
+and (where applicable) state regulatory authorities. Each post now
+satisfies the post-2026-05-15 content standard.
 
-Gaps: 266–386 word count (vs 800-word floor for new posts), no
-trailing "Sources:" block citing IRC §, Treas. Reg., or IRS Pub.
-The post-2026-05-15 standard ships these every post.
+Backfilled cycle-by-cycle:
+- Cycle 18: `why-rsu-tax-bill-too-high` (386 → ~900 words)
+- Cycle 19: `22-vs-37-supplemental-withholding` (288 → ~1000 words)
+- Cycle 20: `estimated-tax-after-rsu-vest` (377 → ~1100 words)
+- Cycle 21: `extra-w4-withholding-rsu` (266 → ~1100 words)
+- Cycle 22: `rsu-taxes-by-state` (300 → ~1100 words)
+- Cycle 23: `year-end-equity-comp-checklist` (286 → ~1300 words)
 
-**Fix path:** backfill each with a Sources block + expand to 800+
-words. Each post is 1 cycle ~10 minutes. Not done overnight because
-each touches existing user-facing content and benefits from morning
-review.
+The `blog-posts.test.ts` content-invariant suite now passes the
+strict standard for ALL 23 blog posts, not just post-2026-05-15
+ones. The dateModified field was bumped on each to 2026-05-19 to
+reflect the substantive content update.
 
 ## Status numbers (end of cycle 17)
 
