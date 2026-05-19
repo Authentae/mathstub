@@ -32,7 +32,8 @@ export default function HomePage() {
       {/* Trust band */}
       <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
         <li>✓ 8 calculators</li>
-        <li>✓ 243 unit tests</li>
+        <li>✓ 23 guides</li>
+        <li>✓ 446 unit tests</li>
         <li>✓ Every claim cites IRS code &amp; pub</li>
         <li>✓ Inputs stay in your browser</li>
         <li>✓ Free, no signup</li>
