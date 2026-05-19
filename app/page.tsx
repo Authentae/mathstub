@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { liveTools } from '@/lib/tools';
-import { SITE_NAME } from '@/lib/seo';
 import { blogPosts } from '@/content/blog/registry';
 import { findCategoryForSlug } from '@/content/blog/categories';
 

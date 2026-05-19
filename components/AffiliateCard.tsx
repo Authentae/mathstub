@@ -16,7 +16,7 @@ export function AffiliateCard({ offerId }: { offerId: AffiliateOfferId }) {
         plain-language affiliate statement right at the top of every card.
       */}
       <p className="mb-2 text-[11px] font-medium text-gray-500 dark:text-gray-400">
-        Affiliate link · Mathstub earns a commission if you sign up. Your price doesn't change.
+        Affiliate link · Mathstub earns a commission if you sign up. Your price does not change.
       </p>
       <header className="mb-1 flex items-center justify-between">
         <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100">

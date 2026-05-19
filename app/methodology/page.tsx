@@ -48,7 +48,7 @@ export default function MethodologyPage() {
           </li>
           <li>
             <strong>IRS Publications</strong> — plain-language guides. Pub
-            15 (Employer's Tax Guide), Pub 15-T (Federal Income Tax
+            15 (Employer&apos;s Tax Guide), Pub 15-T (Federal Income Tax
             Withholding Methods), Pub 17 (Your Federal Income Tax), Pub 505
             (Tax Withholding and Estimated Tax), Pub 525 (Taxable and
             Nontaxable Income), Pub 550 (Investment Income).
@@ -81,7 +81,7 @@ export default function MethodologyPage() {
           full unit-test suite to catch regressions.
         </p>
         <p>
-          The "Last updated" badge on each calculator and blog post
+          The &ldquo;Last updated&rdquo; badge on each calculator and blog post
           reflects the date the underlying math was last touched —{' '}
           <em>not</em> a cosmetic refresh. We do not bump dates to game
           freshness signals.
@@ -114,7 +114,7 @@ export default function MethodologyPage() {
         <h2 id="review">Editorial review</h2>
         <p>
           Every blog post and calculator on Mathstub currently shows{' '}
-          <em>"Pending CPA review"</em> in the byline. This is the honest
+          <em>&ldquo;Pending CPA review&rdquo;</em> in the byline. This is the honest
           framing: until Mathstub revenue justifies a real CPA on retainer,
           the math is reviewed by the founder against IRS source material
           rather than by a credentialed professional.
@@ -163,7 +163,7 @@ export default function MethodologyPage() {
           The IRS adjusts brackets, FICA wage bases, AMT exemptions, and
           contribution limits every year — typically October or November
           for the following tax year. When new numbers drop, we update the
-          constants module and bump the "Last updated" date on affected
+          constants module and bump the &ldquo;Last updated&rdquo; date on affected
           pages within ~2 weeks. If a tax law change materially affects
           an existing calculator (e.g. a SECURE 2.0 style reform), we
           publish a blog post explaining what changed and what the new
@@ -190,13 +190,13 @@ export default function MethodologyPage() {
           </li>
           <li>
             <strong>Run the worked example.</strong> Most calculator pages
-            have a "Show the math" panel that displays every intermediate
+            have a &ldquo;Show the math&rdquo; panel that displays every intermediate
             number. Verify the final answer by hand against an IRS Pub
             worked example.
           </li>
           <li>
             <strong>Cross-check against another tool.</strong> For RSU
-            shortfall, try the same inputs in TurboTax's tax estimator or a
+            shortfall, try the same inputs in TurboTax&apos;s tax estimator or a
             CPA blog calculator. We aim to be within $50–$200 of those for
             typical scenarios. Larger differences usually indicate one tool
             handles an edge case differently — email me and I will dig in.

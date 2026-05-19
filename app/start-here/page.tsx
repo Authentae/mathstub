@@ -160,7 +160,7 @@ export default function StartHerePage() {
           >
             tell us your situation
           </a>{' '}
-          and we'll point you at the right tool.
+          and we&apos;ll point you at the right tool.
         </p>
       </section>
 
