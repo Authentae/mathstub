@@ -21,6 +21,7 @@ import { ReadTime } from '@/components/ReadTime';
 import { WasThisHelpful } from '@/components/WasThisHelpful';
 import { findPost, blogPosts, type BlogBlock } from '@/content/blog/registry';
 import { blogRelations } from '@/content/blog/related';
+import { findCategoryForSlug } from '@/content/blog/categories';
 import type { AffiliateOfferId } from '@/lib/affiliates';
 
 interface Props {
@@ -71,11 +72,35 @@ export default async function PostPage({ params }: Props) {
       />
 
       <article className="mx-auto max-w-3xl px-4 py-12">
-        <p className="text-sm text-gray-500 dark:text-gray-400">
-          <Link href="/blog" className="hover:underline">
-            ← All posts
-          </Link>
-        </p>
+        {/*
+          Breadcrumb: All posts → Category. Uses the categories.ts mapping
+          so it stays in sync with the /blog index. Renders even if the
+          category is missing (defensive — keeps the "All posts" trail).
+        */}
+        {(() => {
+          const category = findCategoryForSlug(post.slug);
+          return (
+            <p
+              className="text-sm text-gray-500 dark:text-gray-400"
+              aria-label="Breadcrumb"
+            >
+              <Link href="/blog" className="hover:underline">
+                ← All posts
+              </Link>
+              {category && (
+                <>
+                  {' · '}
+                  <Link
+                    href={`/blog#${category.id}`}
+                    className="text-brand-700 hover:underline dark:text-brand-300"
+                  >
+                    {category.name}
+                  </Link>
+                </>
+              )}
+            </p>
+          );
+        })()}
         <h1 className="mt-2 text-3xl font-bold text-gray-900 dark:text-gray-100">
           {post.title}
         </h1>

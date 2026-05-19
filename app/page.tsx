@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { liveTools } from '@/lib/tools';
 import { SITE_NAME } from '@/lib/seo';
 import { blogPosts } from '@/content/blog/registry';
+import { findCategoryForSlug } from '@/content/blog/categories';
 
 export default function HomePage() {
   const tools = liveTools();
@@ -96,28 +97,41 @@ export default function HomePage() {
           </Link>
         </div>
         <ul className="mt-4 grid gap-4 md:grid-cols-3">
-          {latestPosts.map((p) => (
-            <li
-              key={p.slug}
-              className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900"
-            >
-              <Link href={`/blog/${p.slug}`} className="block">
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                  {new Date(p.datePublished).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                  })}
-                </p>
-                <h3 className="mt-1 text-sm font-semibold text-gray-900 dark:text-gray-100 line-clamp-3">
-                  {p.title}
-                </h3>
-                <p className="mt-2 text-xs text-gray-600 dark:text-gray-400 line-clamp-3">
-                  {p.description}
-                </p>
-              </Link>
-            </li>
-          ))}
+          {latestPosts.map((p) => {
+            const category = findCategoryForSlug(p.slug);
+            return (
+              <li
+                key={p.slug}
+                className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900"
+              >
+                <Link href={`/blog/${p.slug}`} className="block">
+                  <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+                    <span>
+                      {new Date(p.datePublished).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                      })}
+                    </span>
+                    {category && (
+                      <>
+                        <span aria-hidden="true">·</span>
+                        <span className="rounded-full bg-brand-50 px-2 py-0.5 font-medium text-brand-700 dark:bg-brand-950/40 dark:text-brand-300">
+                          {category.name}
+                        </span>
+                      </>
+                    )}
+                  </div>
+                  <h3 className="mt-1 text-sm font-semibold text-gray-900 dark:text-gray-100 line-clamp-3">
+                    {p.title}
+                  </h3>
+                  <p className="mt-2 text-xs text-gray-600 dark:text-gray-400 line-clamp-3">
+                    {p.description}
+                  </p>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </section>
 
