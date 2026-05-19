@@ -68,30 +68,13 @@ describe('blogPosts — content structure', () => {
     expect(missing, `Posts with zero H2 headings: ${JSON.stringify(missing)}`).toEqual([]);
   });
 
-  // Word-count floor enforces "not thin content." 250 words is the legacy
-  // floor (matches the original 6 posts shipped April 2026). New posts
-  // (datePublished >= 2026-05-15) hit a higher 800-word floor.
-  it('every post has at least 250 words total', () => {
+  // Word-count floor enforces "not thin content." Universal 800-word floor
+  // applies to every post — the legacy carve-out for pre-2026-05-15 posts
+  // was retired once all six legacy posts were backfilled to meet the
+  // standard. New posts can never silently slip below the bar.
+  it('every post has at least 800 words total', () => {
     const thin: Array<{ slug: string; words: number }> = [];
     for (const post of blogPosts) {
-      const words = post.blocks.reduce((sum, b) => {
-        if (b.type === 'p' || b.type === 'h2' || b.type === 'h3' || b.type === 'callout' || b.type === 'quote') {
-          return sum + countWords(b.text);
-        }
-        if (b.type === 'ul' || b.type === 'ol') {
-          return sum + b.items.reduce((s, it) => s + countWords(it), 0);
-        }
-        return sum;
-      }, 0);
-      if (words < 250) thin.push({ slug: post.slug, words });
-    }
-    expect(thin, `Thin posts (<250 words): ${JSON.stringify(thin)}`).toEqual([]);
-  });
-
-  it('posts published 2026-05-15 or later have at least 800 words', () => {
-    const thin: Array<{ slug: string; words: number }> = [];
-    for (const post of blogPosts) {
-      if (post.datePublished < '2026-05-15') continue;
       const words = post.blocks.reduce((sum, b) => {
         if (b.type === 'p' || b.type === 'h2' || b.type === 'h3' || b.type === 'callout' || b.type === 'quote') {
           return sum + countWords(b.text);
@@ -103,22 +86,21 @@ describe('blogPosts — content structure', () => {
       }, 0);
       if (words < 800) thin.push({ slug: post.slug, words });
     }
-    expect(thin, `Post-2026-05-15 thin posts (<800 words): ${JSON.stringify(thin)}`).toEqual([]);
+    expect(thin, `Thin posts (<800 words): ${JSON.stringify(thin)}`).toEqual([]);
   });
 
-  // Sources-block requirement is a YMYL trust signal. Required for all
-  // posts shipped 2026-05-15 or later (the standard adopted mid-May 2026).
-  // Legacy posts get a follow-up backfill ticket — known gap.
-  it('posts published 2026-05-15 or later end with a Sources citation paragraph', () => {
+  // Sources-block requirement is a YMYL trust signal. Universal — every
+  // post must end with a "Sources:" paragraph citing the controlling IRC §,
+  // Treas. Reg., IRS Pub, or state regulatory authority.
+  it('every post ends with a Sources citation paragraph', () => {
     const missing: string[] = [];
     for (const post of blogPosts) {
-      if (post.datePublished < '2026-05-15') continue;
       const last = lastParagraph(post.blocks);
       if (!last || !/^Sources?:/i.test(last.trim())) {
         missing.push(post.slug);
       }
     }
-    expect(missing, `Post-2026-05-15 posts missing Sources block: ${JSON.stringify(missing)}`).toEqual([]);
+    expect(missing, `Posts missing Sources block: ${JSON.stringify(missing)}`).toEqual([]);
   });
 
   it('Sources block (when present) cites IRC, Treas. Reg., or IRS publication material', () => {
