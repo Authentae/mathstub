@@ -192,6 +192,14 @@ export const blogRelations: Record<string, BlogRelations> = {
     ],
     calcs: ['bonus-tax-shortfall', 'quarterly-estimated-tax'],
   },
+  'iso-disqualifying-disposition-tax': {
+    posts: [
+      'amt-credit-recovery-form-8801',
+      'stock-options-vs-rsus-tax',
+      'early-exercise-nso-83b-election',
+    ],
+    calcs: ['iso-amt', 'amt-credit-recovery'],
+  },
 };
 
 /** Reverse index: for a given calculator slug, which blog posts discuss it. */
