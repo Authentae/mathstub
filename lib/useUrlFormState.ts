@@ -76,14 +76,22 @@ export function useUrlFormState<T extends Record<string, unknown>>(
   );
 
   // Hydrate from URL on mount. Skipped during SSR — useEffect only runs on
-  // the client.
+  // the client. CRITICAL: this effect must run EXACTLY once. `decode` is
+  // recreated on every render (because the inline `parseValue` callback
+  // from the caller is a new reference each render), so depending on
+  // `decode` would re-fire this hydrate every render, which calls
+  // setState(decode(URL)) and snaps the user's typed input back to
+  // whatever the URL currently encodes — i.e. the input would feel
+  // un-typeable. Mount-only guarantees a single hydrate pass.
   useEffect(() => {
     if (typeof window === 'undefined') return;
+    if (hydratedRef.current) return;
     if (window.location.search.length > 1) {
       setState(decode(window.location.search));
     }
     hydratedRef.current = true;
-  }, [decode]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Mirror state -> URL via replaceState. Avoids history pollution and
   // doesn't trigger Next.js navigation events.
