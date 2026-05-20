@@ -61,21 +61,17 @@ export default function Page() {
             <AmtCreditRecoveryCalculator />
           </>
         }
-        howItWorks={
-          <>
-            <MathDiagram
+        fullWidthDiagram={<MathDiagram
               slug="amt-credit-recovery"
               alt="AMT credit recovery (Form 8801) formula chain: prior-year AMT paid P (IRC §55) → regular tax this year R → tentative AMT this year T → credit usable = max(0, R − T) → carry forward unused (IRC §53)"
-            />
-            <ol className="list-decimal space-y-2 pl-5">
+            />}
+        howItWorks={<ol className="list-decimal space-y-2 pl-5">
               {c.howToSteps.map((s) => (
                 <li key={s.name}>
                   <strong>{s.name}.</strong> {s.text}
                 </li>
               ))}
-            </ol>
-          </>
-        }
+            </ol>}
         faq={<FaqAccordion items={[...c.faqs]} />}
         related={<RelatedCalcs currentSlug={c.slug} />}
         calcSlug={c.slug}

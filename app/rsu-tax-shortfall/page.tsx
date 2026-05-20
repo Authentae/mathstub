@@ -54,21 +54,17 @@ export default function Page() {
             <RsuShortfallCalculator />
           </>
         }
-        howItWorks={
-          <>
-            <MathDiagram
+        fullWidthDiagram={<MathDiagram
               slug="rsu-tax-shortfall"
               alt="RSU shortfall formula chain: vest value $V → supplemental withheld 22%·V (IRC §3402(g)) → real marginal rate r (IRC §1) → real federal owed r·V → shortfall = (r − 22%) · V"
-            />
-            <ol className="list-decimal space-y-2 pl-5">
+            />}
+        howItWorks={<ol className="list-decimal space-y-2 pl-5">
               {c.howToSteps.map((s) => (
                 <li key={s.name}>
                   <strong>{s.name}.</strong> {s.text}
                 </li>
               ))}
-            </ol>
-          </>
-        }
+            </ol>}
         faq={<FaqAccordion items={[...c.faqs]} />}
         related={<RelatedCalcs currentSlug={c.slug} />}
         calcSlug={c.slug}

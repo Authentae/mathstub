@@ -61,21 +61,17 @@ export default function Page() {
             <IsoAmtCalculator />
           </>
         }
-        howItWorks={
-          <>
-            <MathDiagram
+        fullWidthDiagram={<MathDiagram
               slug="iso-amt"
               alt="ISO/AMT formula chain: bargain element (IRC §422) → add to AMTI (IRC §56(b)(3)) → AMT exemption (IRC §55(d)) → AMT tentative tax 26%/28% → AMT owed = max(AMT, regular)"
-            />
-            <ol className="list-decimal space-y-2 pl-5">
+            />}
+        howItWorks={<ol className="list-decimal space-y-2 pl-5">
               {c.howToSteps.map((s) => (
                 <li key={s.name}>
                   <strong>{s.name}.</strong> {s.text}
                 </li>
               ))}
-            </ol>
-          </>
-        }
+            </ol>}
         faq={<FaqAccordion items={[...c.faqs]} />}
         related={<RelatedCalcs currentSlug={c.slug} />}
         calcSlug={c.slug}

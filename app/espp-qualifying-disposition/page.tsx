@@ -61,21 +61,17 @@ export default function Page() {
             <EsppQualifyingCalculator />
           </>
         }
-        howItWorks={
-          <>
-            <MathDiagram
+        fullWidthDiagram={<MathDiagram
               slug="espp-qualifying-disposition"
               alt="ESPP qualifying disposition formula chain: discount (FMV at grant − purchase price) → ordinary income = lesser of discount OR actual gain (IRC §423) → capital gain = sale − ordinary − basis (IRC §1) → total tax = ordinary · marginal + LTCG · 0–20%"
-            />
-            <ol className="list-decimal space-y-2 pl-5">
+            />}
+        howItWorks={<ol className="list-decimal space-y-2 pl-5">
               {c.howToSteps.map((s) => (
                 <li key={s.name}>
                   <strong>{s.name}.</strong> {s.text}
                 </li>
               ))}
-            </ol>
-          </>
-        }
+            </ol>}
         faq={<FaqAccordion items={[...c.faqs]} />}
         related={<RelatedCalcs currentSlug={c.slug} />}
         calcSlug={c.slug}
