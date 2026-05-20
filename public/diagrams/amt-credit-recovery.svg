@@ -43,8 +43,8 @@
 <text x="684" y="272" font-size="14" font-style="italic" font-weight="500" fill="#94a3b8">Form 8801</text>
 <line x1="847" y1="204" x2="871" y2="204" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"></line>
 <rect x="874" y="120" width="176" height="168" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="2" filter="url(#boxShadow)"></rect>
-<text x="890" y="146" font-size="13" font-weight="700" fill="#15803d" letter-spacing="1.6">CARRY FORWARD</text>
-<text x="890" y="186" font-size="18" font-weight="600" fill="#14532d">carry forward</text>
+<text x="890" y="146" font-size="13" font-weight="700" fill="#4ade80" letter-spacing="1.6">CARRY FORWARD</text>
+<text x="890" y="186" font-size="18" font-weight="600" fill="#bbf7d0">carry forward</text>
 <text x="890" y="252" font-size="14" font-weight="400" fill="#94a3b8">Unused credit rolls forward</text>
 <text x="890" y="272" font-size="14" font-style="italic" font-weight="500" fill="#94a3b8">IRC §53(b)</text>
 <line x1="50" y1="476" x2="1050" y2="476" stroke="#1f2937" stroke-width="1"></line>
