@@ -4,14 +4,32 @@ import { blogPosts } from '@/content/blog/registry';
 import { findCategoryForSlug } from '@/content/blog/categories';
 import { HeroAnimation } from '@/components/HeroAnimation';
 
+/**
+ * Homepage — Variant B (Outcome-Led) port from Claude Design P3.
+ *
+ * Full visual transformation, not a tweak:
+ * - Always-dark canvas (slate-950 base + brand-blue radial accent) — the
+ *   page is its own dark surface regardless of the visitor's OS dark/light
+ *   preference. Matches the existing dark HeroAnimation iframe so the
+ *   hero section feels seamless instead of an iframe pasted onto a light
+ *   page.
+ * - Display-serif italic accent on "actually" pulls the eye to the
+ *   outcome promise ("See what you actually owe").
+ * - Mono-font micro-copy (eyebrows, source-proof line, brand cite chips)
+ *   carries a "this is a tool, not a brochure" voice — calibrated against
+ *   the IRS-citation tone the rest of the site uses.
+ * - Brand-blue replaces Variant B's lime accent everywhere.
+ *
+ * Header/Footer in app/layout.tsx render on top of this. They already
+ * tolerate dark backgrounds because the site supports dark mode; here we
+ * just lock the homepage to dark independent of preference.
+ */
 export default function HomePage() {
   const tools = liveTools();
   const flagship = tools[0];
   const otherTools = tools.slice(1);
   if (!flagship) {
-    // Defensive guard for TypeScript — tools is non-empty in practice, but
-    // accessing the array by destructuring widens the type to possibly
-    // undefined and we read flagship.* below.
+    // Defensive guard — TS widens destructured access to possibly undefined.
     return null;
   }
   const latestPosts = [...blogPosts]
@@ -19,216 +37,321 @@ export default function HomePage() {
     .slice(0, 3);
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-12">
-      {/* Hero — specific not poetic. */}
-      <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100">
-        Free tax calculators for US tech workers with equity comp.
-      </h1>
-      <p className="mt-3 max-w-2xl text-lg text-gray-700 dark:text-gray-300">
-        RSUs, ISO/AMT, ESPP, NSO, bonuses, quarterly estimates. Run your
-        numbers in 30 seconds. No signup. Math runs in your browser — your
-        inputs never leave your device.
-      </p>
-
-      {/*
-        Animated hero: 12-second autoplay loop dramatizing the 22% vs
-        ~37% gap on a $200K vest. Sourced from Claude Design P2. Sits
-        directly under the H1+lede so first-time visitors see the
-        problem visualized before they read the trust band.
-      */}
-      <div className="mt-8">
-        <HeroAnimation />
-      </div>
-
-      {/* Trust band */}
-      <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
-        <li>✓ 8 calculators</li>
-        <li>✓ 23 guides</li>
-        <li>✓ 446 unit tests</li>
-        <li>✓ Every claim cites IRS code &amp; pub</li>
-        <li>✓ Inputs stay in your browser</li>
-        <li>✓ Free, no signup</li>
-      </ul>
-
-      {/*
-        Persona-router strip — sourced from Claude Design P3 Variant C
-        (the strongest IDEA in the homepage variants, even though we
-        kept the existing trust-engineered framing for the rest of the
-        page). Visitors who don't know which calculator they need can
-        self-route in one click instead of scanning the full grid. The
-        4 paths cover the 4 most common panic-moments in equity comp.
-      */}
-      <section className="mt-10">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-          What just happened in your equity comp?
-        </h2>
-        <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-          Tell us — we&apos;ll route you to the right calculator.
-        </p>
-        <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          <li>
-            <Link
-              href="/rsu-tax-shortfall"
-              className="block rounded-lg border border-gray-200 bg-white p-4 text-sm shadow-sm transition hover:border-brand-500 hover:shadow-md dark:border-gray-800 dark:bg-gray-900"
-            >
-              <p className="text-2xl" aria-hidden="true">📈</p>
-              <p className="mt-2 font-semibold text-gray-900 dark:text-gray-100">My RSUs vested</p>
-              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">RSU shortfall · 30 sec</p>
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/iso-amt"
-              className="block rounded-lg border border-gray-200 bg-white p-4 text-sm shadow-sm transition hover:border-brand-500 hover:shadow-md dark:border-gray-800 dark:bg-gray-900"
-            >
-              <p className="text-2xl" aria-hidden="true">🔓</p>
-              <p className="mt-2 font-semibold text-gray-900 dark:text-gray-100">I exercised options</p>
-              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">ISO/AMT or NSO · 60 sec</p>
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/espp-qualifying-disposition"
-              className="block rounded-lg border border-gray-200 bg-white p-4 text-sm shadow-sm transition hover:border-brand-500 hover:shadow-md dark:border-gray-800 dark:bg-gray-900"
-            >
-              <p className="text-2xl" aria-hidden="true">💰</p>
-              <p className="mt-2 font-semibold text-gray-900 dark:text-gray-100">I sold ESPP shares</p>
-              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">ESPP qualifying · 60 sec</p>
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/quarterly-estimated-tax"
-              className="block rounded-lg border border-gray-200 bg-white p-4 text-sm shadow-sm transition hover:border-brand-500 hover:shadow-md dark:border-gray-800 dark:bg-gray-900"
-            >
-              <p className="text-2xl" aria-hidden="true">📅</p>
-              <p className="mt-2 font-semibold text-gray-900 dark:text-gray-100">I owe quarterly tax</p>
-              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Safe harbor · 30 sec</p>
-            </Link>
-          </li>
-        </ul>
-        <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
-          Or{' '}
-          <Link href="/start-here" className="font-semibold text-brand-700 hover:underline dark:text-brand-300">
-            see the full diagnostic guide →
-          </Link>
-        </p>
-      </section>
-
-      {/* Flagship — RSU shortfall featured large */}
-      <section className="mt-10">
-        <Link
-          href={`/${flagship.slug}`}
-          className="block rounded-xl border-2 border-brand-500 bg-brand-50 p-6 shadow-sm transition hover:shadow-md dark:border-brand-400 dark:bg-brand-950/40"
-        >
-          <p className="text-xs font-semibold uppercase tracking-wide text-brand-700 dark:text-brand-300">
-            Most popular
-          </p>
-          <h2 className="mt-1 text-2xl font-bold text-gray-900 dark:text-gray-100">
-            {flagship.emoji ? `${flagship.emoji} ` : ''}
-            {flagship.title}
-          </h2>
-          <p className="mt-2 text-gray-700 dark:text-gray-300">{flagship.summary}</p>
-          <p className="mt-3 inline-block text-sm font-semibold text-brand-700 hover:underline dark:text-brand-200">
-            Run the calculator →
-          </p>
-        </Link>
-      </section>
-
-      {/* All other tools */}
-      <section className="mt-10">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-          More calculators
-        </h2>
-        <ul className="mt-4 grid gap-4 sm:grid-cols-2">
-          {otherTools.map((t) => (
-            <li
-              key={t.slug}
-              className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900"
-            >
-              <Link href={`/${t.slug}`} className="block">
-                <h3 className="text-lg font-semibold text-brand-700 dark:text-brand-100">
-                  {t.emoji ? `${t.emoji} ` : ''}
-                  {t.title}
-                </h3>
-                <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">{t.summary}</p>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Latest from blog — surface our content engine */}
-      <section className="mt-12 border-t border-gray-200 pt-8 dark:border-gray-800">
-        <div className="flex items-baseline justify-between">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-            Latest from the blog
-          </h2>
-          <Link
-            href="/blog"
-            className="text-sm font-semibold text-brand-700 hover:underline dark:text-brand-300"
-          >
-            All posts →
-          </Link>
-        </div>
-        <ul className="mt-4 grid gap-4 md:grid-cols-3">
-          {latestPosts.map((p) => {
-            const category = findCategoryForSlug(p.slug);
-            return (
-              <li
-                key={p.slug}
-                className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900"
+    <div
+      className="relative min-h-screen overflow-hidden bg-slate-950 text-slate-100"
+      style={{
+        backgroundImage:
+          'radial-gradient(900px 600px at 90% -10%, rgba(37,99,235,0.18), transparent 60%), radial-gradient(700px 500px at 5% 20%, rgba(29,78,216,0.10), transparent 60%)',
+      }}
+    >
+      <main className="mx-auto max-w-6xl px-6 py-12 sm:px-10 sm:py-16">
+        {/* HERO */}
+        <section className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
+          <div>
+            <div className="mb-7 flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.14em] text-brand-400">
+              <span
+                className="h-1.5 w-1.5 rounded-full bg-brand-500"
+                style={{ boxShadow: '0 0 12px rgb(37,99,235)' }}
+                aria-hidden="true"
+              />
+              rsu vest tax reality · ty 2026
+            </div>
+            <h1 className="font-bold leading-[0.92] tracking-[-0.045em] text-white text-[64px] sm:text-[80px] lg:text-[96px]">
+              See what
+              <br />
+              you{' '}
+              <span
+                className="font-normal italic tracking-[-0.02em] text-brand-400"
+                style={{
+                  fontFamily:
+                    '"Source Serif 4", "Source Serif Pro", "Iowan Old Style", Georgia, serif',
+                }}
               >
-                <Link href={`/blog/${p.slug}`} className="block">
-                  <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
-                    <span>
-                      {new Date(p.datePublished).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric',
-                      })}
-                    </span>
-                    {category && (
-                      <>
-                        <span aria-hidden="true">·</span>
-                        <span className="rounded-full bg-brand-50 px-2 py-0.5 font-medium text-brand-700 dark:bg-brand-950/40 dark:text-brand-300">
-                          {category.name}
-                        </span>
-                      </>
-                    )}
+                actually
+              </span>{' '}
+              owe.
+              <br />
+              <span className="text-slate-400">In 30 seconds.</span>
+            </h1>
+            <p className="mt-7 max-w-[520px] text-lg leading-snug text-slate-200/85 sm:text-xl">
+              Your employer withheld{' '}
+              <span className="rounded bg-slate-800 px-1.5 py-0.5 font-mono text-base text-slate-100">
+                22%
+              </span>
+              . Your real rate is probably closer to{' '}
+              <span className="rounded bg-brand-500 px-1.5 py-0.5 font-mono text-base text-slate-950">
+                37%
+              </span>
+              . Find the gap before April finds you.
+            </p>
+
+            <div className="mt-10">
+              <Link
+                href={`/${flagship.slug}`}
+                className="inline-flex items-center gap-3.5 rounded-md bg-brand-500 px-7 py-5 text-lg font-semibold tracking-tight text-slate-950 transition hover:bg-brand-400 sm:text-xl"
+              >
+                Start with your RSU vest
+                <span aria-hidden="true" className="text-2xl">→</span>
+              </Link>
+              <div className="mt-4 font-mono text-[11px] uppercase tracking-[0.04em] text-slate-500">
+                free · no signup · 30 seconds · runs in your browser
+              </div>
+            </div>
+          </div>
+
+          {/*
+            Animated hero loop. Same iframe asset as before — it already
+            uses slate-900 + brand-blue palette so it sits inside the dark
+            canvas naturally. No more "iframe pasted on a light page"
+            visual mismatch.
+          */}
+          <div className="overflow-hidden rounded-xl border border-slate-800 shadow-2xl shadow-brand-900/20">
+            <HeroAnimation />
+          </div>
+        </section>
+
+        {/* SOCIAL PROOF / TRUST BAND — combined */}
+        <section className="mt-16 border-y border-slate-800 py-7">
+          <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <span className="font-mono text-xs uppercase tracking-[0.1em] text-slate-500">
+              Built for engineers at
+            </span>
+            <span className="flex flex-wrap gap-x-7 gap-y-2 text-sm font-semibold tracking-tight text-slate-300/70 sm:text-base">
+              <span>stripe.</span>
+              <span>shopify</span>
+              <span>databricks</span>
+              <span>vercel</span>
+              <span>anthropic</span>
+              <span>linear</span>
+            </span>
+          </div>
+          <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-[0.08em] text-slate-500">
+            <li>✓ 8 calculators</li>
+            <li>✓ 23 guides</li>
+            <li>✓ 446 unit tests</li>
+            <li>✓ Every claim cites IRC § or IRS Pub</li>
+            <li>✓ Inputs stay in your browser</li>
+            <li>✓ Free, no signup</li>
+          </ul>
+        </section>
+
+        {/* PERSONA ROUTER */}
+        <section className="mt-16">
+          <div className="mb-8 flex items-baseline justify-between gap-4">
+            <div>
+              <div className="mb-2 font-mono text-[11px] uppercase tracking-[0.14em] text-brand-400">
+                not an rsu? · pick your situation
+              </div>
+              <h2
+                className="text-3xl font-bold leading-none tracking-[-0.03em] text-white sm:text-[44px]"
+                style={{ letterSpacing: '-0.03em' }}
+              >
+                What just happened?
+              </h2>
+            </div>
+            <Link
+              href="/start-here"
+              className="hidden font-mono text-xs text-slate-500 hover:text-slate-300 sm:inline"
+            >
+              full diagnostic →
+            </Link>
+          </div>
+          <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <PersonaCard
+              href="/rsu-tax-shortfall"
+              emoji="📈"
+              title="My RSUs vested"
+              tag="RSU shortfall · 30 sec"
+            />
+            <PersonaCard
+              href="/iso-amt"
+              emoji="🔓"
+              title="I exercised options"
+              tag="ISO/AMT or NSO · 60 sec"
+            />
+            <PersonaCard
+              href="/espp-qualifying-disposition"
+              emoji="💰"
+              title="I sold ESPP shares"
+              tag="ESPP qualifying · 60 sec"
+            />
+            <PersonaCard
+              href="/quarterly-estimated-tax"
+              emoji="📅"
+              title="I owe quarterly tax"
+              tag="Safe harbor · 30 sec"
+            />
+          </ul>
+        </section>
+
+        {/* OTHER CALCULATORS */}
+        <section className="mt-16">
+          <div className="mb-8 flex items-baseline justify-between gap-4">
+            <h2 className="text-3xl font-bold leading-none tracking-[-0.03em] text-white sm:text-[44px]">
+              Other equity events.
+            </h2>
+            <span className="font-mono text-xs text-slate-500">
+              {otherTools.length} calculators · all free
+            </span>
+          </div>
+          <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {otherTools.map((t) => (
+              <li key={t.slug}>
+                <Link
+                  href={`/${t.slug}`}
+                  className="flex h-full min-h-[150px] flex-col gap-2 rounded-md border border-slate-800 bg-slate-900/50 p-5 transition hover:border-brand-500 hover:bg-slate-900"
+                >
+                  <div className="font-mono text-[10px] uppercase tracking-[0.06em] text-slate-500">
+                    {t.title.split(' ').slice(0, 2).join(' ')}
                   </div>
-                  <h3 className="mt-1 text-sm font-semibold text-gray-900 dark:text-gray-100 line-clamp-3">
-                    {p.title}
-                  </h3>
-                  <p className="mt-2 text-xs text-gray-600 dark:text-gray-400 line-clamp-3">
-                    {p.description}
-                  </p>
+                  <div
+                    className="text-xl font-semibold leading-tight tracking-tight text-white"
+                    style={{ letterSpacing: '-0.01em' }}
+                  >
+                    {t.title}
+                  </div>
+                  <div className="mt-1 flex-1 text-sm leading-snug text-slate-400">
+                    {t.summary}
+                  </div>
+                  <div className="mt-2 font-mono text-[11px] text-brand-400">open →</div>
                 </Link>
               </li>
-            );
-          })}
-        </ul>
-      </section>
+            ))}
+          </ul>
+        </section>
 
-      {/* "Not sure which calc?" prompt — placeholder until /start-here exists */}
-      <section className="mt-12 rounded-md bg-gray-50 p-6 text-center dark:bg-gray-900">
-        <p className="text-sm text-gray-700 dark:text-gray-300">
-          Not sure which calculator fits your situation?
-          {' '}
-          <Link href="/blog" className="font-semibold text-brand-700 hover:underline dark:text-brand-300">
-            Read the guides
-          </Link>
-          {' '}or
-          {' '}
-          <a
-            href={`mailto:hello@mathstub.com?subject=${encodeURIComponent('Which calculator do I need?')}`}
-            className="font-semibold text-brand-700 hover:underline dark:text-brand-300"
+        {/* GAP STORY CALLOUT */}
+        <section className="mt-16 rounded-lg border border-slate-800 bg-slate-900/40 p-8 sm:p-11">
+          <div className="grid items-center gap-8 sm:grid-cols-[1fr_auto]">
+            <div>
+              <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.1em] text-slate-500">
+                why this matters
+              </div>
+              <p
+                className="text-2xl leading-snug tracking-[-0.01em] text-slate-100 sm:text-[32px]"
+                style={{
+                  fontFamily:
+                    '"Source Serif 4", "Source Serif Pro", "Iowan Old Style", Georgia, serif',
+                }}
+              >
+                The 22% supplemental flat rate is a{' '}
+                <em className="italic text-brand-400">floor</em>, not your bracket.
+                Most engineers find a five-figure surprise in their first vest.
+              </p>
+              <div className="mt-4 font-mono text-xs text-slate-500">
+                — methodology notes ·{' '}
+                <Link href="/methodology" className="text-slate-400 hover:text-brand-400">
+                  read the full sourcing
+                </Link>
+              </div>
+            </div>
+            <Link
+              href={`/${flagship.slug}`}
+              className="whitespace-nowrap rounded-md border border-brand-500 px-6 py-3.5 text-sm font-medium text-slate-100 transition hover:bg-brand-500/10"
+            >
+              Run the numbers →
+            </Link>
+          </div>
+        </section>
+
+        {/* LATEST FROM BLOG */}
+        <section className="mt-16">
+          <div className="mb-6 flex items-baseline justify-between">
+            <h2 className="text-2xl font-bold leading-none tracking-[-0.03em] text-white sm:text-3xl">
+              Latest from the blog
+            </h2>
+            <Link
+              href="/blog"
+              className="font-mono text-xs text-brand-400 hover:text-brand-300"
+            >
+              all posts →
+            </Link>
+          </div>
+          <ul className="grid gap-3 md:grid-cols-3">
+            {latestPosts.map((p) => {
+              const category = findCategoryForSlug(p.slug);
+              return (
+                <li key={p.slug}>
+                  <Link
+                    href={`/blog/${p.slug}`}
+                    className="flex h-full flex-col gap-2 rounded-md border border-slate-800 bg-slate-900/50 p-4 transition hover:border-brand-500 hover:bg-slate-900"
+                  >
+                    <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.06em] text-slate-500">
+                      <span>
+                        {new Date(p.datePublished).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric',
+                        })}
+                      </span>
+                      {category && (
+                        <>
+                          <span aria-hidden="true">·</span>
+                          <span className="text-brand-400">{category.name}</span>
+                        </>
+                      )}
+                    </div>
+                    <h3 className="line-clamp-3 text-sm font-semibold leading-snug text-white">
+                      {p.title}
+                    </h3>
+                    <p className="line-clamp-3 text-xs leading-snug text-slate-400">
+                      {p.description}
+                    </p>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+
+        {/* FOOTNOTE LINE */}
+        <section className="mt-16 border-t border-slate-800 pt-6 font-mono text-xs text-slate-500">
+          Not sure which calculator?{' '}
+          <Link
+            href="/start-here"
+            className="text-brand-400 hover:text-brand-300"
           >
-            tell us your situation
-          </a>
-          .
-        </p>
-      </section>
-    </main>
+            see the diagnostic guide →
+          </Link>{' '}
+          · embed mathstub on your site →{' '}
+          <Link href="/embed" className="text-brand-400 hover:text-brand-300">
+            /embed
+          </Link>{' '}
+          · partner with us →{' '}
+          <Link href="/partners" className="text-brand-400 hover:text-brand-300">
+            /partners
+          </Link>
+        </section>
+      </main>
+    </div>
+  );
+}
+
+function PersonaCard({
+  href,
+  emoji,
+  title,
+  tag,
+}: {
+  href: string;
+  emoji: string;
+  title: string;
+  tag: string;
+}) {
+  return (
+    <li>
+      <Link
+        href={href}
+        className="flex h-full flex-col gap-1.5 rounded-md border border-slate-800 bg-slate-900/50 p-5 transition hover:border-brand-500 hover:bg-slate-900"
+      >
+        <span className="text-3xl" aria-hidden="true">
+          {emoji}
+        </span>
+        <span className="mt-2 text-base font-semibold text-white">{title}</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.06em] text-slate-500">
+          {tag}
+        </span>
+      </Link>
+    </li>
   );
 }
