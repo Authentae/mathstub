@@ -9,15 +9,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/hero/hero.css" />
 <style>
-  /* Embed mode: drop the page padding and controls chrome from the
-     original Claude Design layout lab. We just want the animated frame
-     to fill the iframe. Defensive background-color so the iframe never
-     renders unstyled markup over the homepage background — if hero.css
-     fails to load for any reason, the visitor sees a slate-900 frame
-     instead of stacked unstyled scenes. */
-  html, body { margin: 0; padding: 0; background: #050810; color: #f8fafc; height: 100%; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
-  .page { padding: 0 !important; gap: 0 !important; min-height: 100% !important; }
-  .frame { margin: 0 !important; }
+  /* Embed mode: drop the page padding + frame size constraints from the
+     original Claude Design layout lab. We want the inner .frame (which
+     has its own rounded corners + shadow + aspect ratio) to fill the
+     iframe edge-to-edge. The outer Tailwind wrapper on the homepage
+     should NOT add its own border/shadow — the .frame styling IS the
+     screen mockup. Defensive background so the iframe never renders
+     unstyled markup over the homepage background if hero.css fails. */
+  html, body { margin: 0; padding: 0; background: transparent; color: #f8fafc; height: 100%; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+  .page { padding: 0 !important; gap: 0 !important; min-height: 100% !important; align-items: stretch !important; }
+  /* Stretch .frame to fill the iframe — strip the 1280px cap, the 24px
+     side padding, and the explicit aspect-ratio so it follows whatever
+     dimensions the parent <iframe> gives us. Keep border-radius + shadow
+     so it still reads as a screen mockup, not a flat rectangle. */
+  .frame { margin: 0 !important; width: 100% !important; max-width: none !important; height: 100% !important; aspect-ratio: auto !important; }
 </style>
 </head>
 <body>

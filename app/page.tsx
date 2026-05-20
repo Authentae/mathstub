@@ -100,14 +100,12 @@ export default function HomePage() {
           </div>
 
           {/*
-            Animated hero loop. Same iframe asset as before — it already
-            uses slate-900 + brand-blue palette so it sits inside the dark
-            canvas naturally. No more "iframe pasted on a light page"
-            visual mismatch.
+            Animated hero loop. The inner .frame inside /hero/ already
+            ships its own rounded corners + box-shadow, so we don't add
+            outer chrome here — that would double-ring + create dead
+            space along the iframe edge.
           */}
-          <div className="overflow-hidden rounded-xl border border-slate-800 shadow-2xl shadow-brand-900/20">
-            <HeroAnimation />
-          </div>
+          <HeroAnimation />
         </section>
 
         {/* SOCIAL PROOF / TRUST BAND — combined */}

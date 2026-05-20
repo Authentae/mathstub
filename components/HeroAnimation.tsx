@@ -15,14 +15,18 @@
  */
 export function HeroAnimation() {
   return (
-    <div className="overflow-hidden rounded-xl border border-gray-200 bg-slate-900 shadow-lg dark:border-gray-800">
-      <iframe
-        src="/hero/"
-        title="Mathstub RSU shortfall visualizer — your employer withheld 22%, you actually owe 37%, the gap is $30K"
-        aria-label="Animated explainer: $200,000 RSU vest, 22% withheld, ~37% marginal, $30,000 shortfall"
-        loading="lazy"
-        className="aspect-video w-full border-0"
-      />
-    </div>
+    /*
+      No outer chrome (no rounded/border/shadow) — the inner .frame from
+      hero.css already provides screen-mockup framing (rounded-14px,
+      layered box-shadow). Stacking chrome here too creates a double-ring
+      and dead space inside the iframe edge.
+    */
+    <iframe
+      src="/hero/"
+      title="Mathstub RSU shortfall visualizer — your employer withheld 22%, you actually owe 37%, the gap is $30K"
+      aria-label="Animated explainer: $200,000 RSU vest, 22% withheld, ~37% marginal, $30,000 shortfall"
+      loading="lazy"
+      className="aspect-video w-full border-0 bg-transparent"
+    />
   );
 }
