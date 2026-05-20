@@ -15,36 +15,36 @@
 <text x="50" y="106" font-size="16" font-weight="400" fill="#94a3b8">Prior-year AMT becomes a refundable credit in years when regular tax exceeds tentative AMT.</text>
 <rect x="50" y="120" width="176" height="168" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.4" filter="url(#boxShadow)"></rect>
 <text x="66" y="146" font-size="13" font-weight="700" fill="#cbd5e1" letter-spacing="1.6">INPUT · PRIOR AMT</text>
-<text x="66" y="186" font-size="22" font-weight="600" fill="#f1f5f9">Prior-year</text>
-<text x="66" y="208" font-size="22" font-weight="600" fill="#f1f5f9">AMT paid</text>
+<text x="66" y="186" font-size="18" font-weight="600" fill="#f1f5f9">Prior-year</text>
+<text x="66" y="208" font-size="18" font-weight="600" fill="#f1f5f9">AMT paid</text>
 <text x="66" y="252" font-size="14" font-weight="400" fill="#94a3b8">From Form 6251</text>
 <text x="66" y="272" font-size="14" font-style="italic" font-weight="500" fill="#94a3b8">IRC §55</text>
 <line x1="229" y1="204" x2="253" y2="204" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"></line>
 <rect x="256" y="120" width="176" height="168" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.4" filter="url(#boxShadow)"></rect>
 <rect x="256" y="132" width="3" height="20" rx="1.5" fill="#2563eb"></rect>
 <text x="272" y="146" font-size="13" font-weight="700" fill="#cbd5e1" letter-spacing="1.6">STEP 1 · REGULAR TAX</text>
-<text x="272" y="186" font-size="22" font-weight="600" fill="#f1f5f9">R</text>
+<text x="272" y="186" font-size="18" font-weight="600" fill="#f1f5f9">R</text>
 <text x="272" y="252" font-size="14" font-weight="400" fill="#94a3b8">This year · pre-credits</text>
 <text x="272" y="272" font-size="14" font-style="italic" font-weight="500" fill="#94a3b8">IRC §1</text>
 <line x1="435" y1="204" x2="459" y2="204" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"></line>
 <rect x="462" y="120" width="176" height="168" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.4" filter="url(#boxShadow)"></rect>
 <rect x="462" y="132" width="3" height="20" rx="1.5" fill="#2563eb"></rect>
 <text x="478" y="146" font-size="13" font-weight="700" fill="#cbd5e1" letter-spacing="1.6">STEP 2 · TENTATIVE</text>
-<text x="478" y="186" font-size="22" font-weight="600" fill="#f1f5f9">T</text>
+<text x="478" y="186" font-size="18" font-weight="600" fill="#f1f5f9">T</text>
 <text x="478" y="252" font-size="14" font-weight="400" fill="#94a3b8">This year · recomputed</text>
 <text x="478" y="272" font-size="14" font-style="italic" font-weight="500" fill="#94a3b8">IRC §55(b)</text>
 <line x1="641" y1="204" x2="665" y2="204" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"></line>
 <rect x="668" y="120" width="176" height="168" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.4" filter="url(#boxShadow)"></rect>
 <rect x="668" y="132" width="3" height="20" rx="1.5" fill="#2563eb"></rect>
 <text x="684" y="146" font-size="13" font-weight="700" fill="#cbd5e1" letter-spacing="1.6">STEP 3 · USABLE</text>
-<text x="684" y="186" font-size="22" font-weight="600" fill="#f1f5f9">credit usable:</text>
-<text x="684" y="208" font-size="22" font-weight="600" fill="#f1f5f9">regular − AMT</text>
+<text x="684" y="186" font-size="18" font-weight="600" fill="#f1f5f9">credit usable:</text>
+<text x="684" y="208" font-size="18" font-weight="600" fill="#f1f5f9">regular − AMT</text>
 <text x="684" y="252" font-size="14" font-weight="400" fill="#94a3b8">Capped at the gap</text>
 <text x="684" y="272" font-size="14" font-style="italic" font-weight="500" fill="#94a3b8">Form 8801</text>
 <line x1="847" y1="204" x2="871" y2="204" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"></line>
 <rect x="874" y="120" width="176" height="168" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="2" filter="url(#boxShadow)"></rect>
 <text x="890" y="146" font-size="13" font-weight="700" fill="#15803d" letter-spacing="1.6">CARRY FORWARD</text>
-<text x="890" y="186" font-size="22" font-weight="600" fill="#14532d">carry forward</text>
+<text x="890" y="186" font-size="18" font-weight="600" fill="#14532d">carry forward</text>
 <text x="890" y="252" font-size="14" font-weight="400" fill="#94a3b8">Unused credit rolls forward</text>
 <text x="890" y="272" font-size="14" font-style="italic" font-weight="500" fill="#94a3b8">IRC §53(b)</text>
 <line x1="50" y1="476" x2="1050" y2="476" stroke="#1f2937" stroke-width="1"></line>
