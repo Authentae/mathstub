@@ -13,6 +13,7 @@ import { Disclaimer } from '@/components/Disclaimer';
 import { LastUpdatedBadge } from '@/components/LastUpdatedBadge';
 import { RelatedCalcs } from '@/components/RelatedCalcs';
 import { MathDiagram } from '@/components/MathDiagram';
+import { CalcIntro } from '@/components/CalcIntro';
 import { NsoExerciseCalculator } from './NsoExerciseCalculator';
 import { nsoExerciseContent as c } from '@/content/nso-exercise';
 
@@ -51,6 +52,12 @@ export default function Page() {
         toolUi={
           <>
             <Disclaimer />
+            <CalcIntro
+              kicker="mathstub / nso exercise"
+              question="How much tax do you owe when you exercise NSOs?"
+              ircCite="The bargain element (FMV minus strike, times shares) is ordinary W-2 income at exercise — federal marginal + FICA + state. Your employer withholds at the 22% supplemental flat rate, which rarely matches a high earner's real bracket."
+              irc="IRC § 83(a) · § 3402(g)"
+            />
             <NsoExerciseCalculator />
           </>
         }
