@@ -19,7 +19,7 @@ export const metadata: Metadata = buildMetadata({
   slug: c.slug,
   title: c.metaTitle,
   description: c.metaDescription,
-  ogImagePath: '/og-rsu-shortfall.png',
+  ogImagePath: '/og/rsu-withholding.png',
 });
 
 export default function Page() {

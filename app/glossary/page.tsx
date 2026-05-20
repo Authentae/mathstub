@@ -11,6 +11,7 @@ export const metadata: Metadata = buildMetadata({
   title: 'Equity comp tax glossary — RSU, ISO, NSO, ESPP, AMT, FICA, and more',
   description:
     'Plain-language definitions of every equity-compensation tax term used on Mathstub, with the IRC section or IRS publication that controls each one. RSU, ISO, NSO, ESPP, AMT, NIIT, FICA, 83(b), and 30+ more.',
+  ogImagePath: '/og/glossary.png',
 });
 
 export default function GlossaryPage() {

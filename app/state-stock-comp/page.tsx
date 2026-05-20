@@ -15,6 +15,7 @@ export const metadata: Metadata = buildMetadata({
   title: 'State Stock-Comp Tax Lookup — RSU, ESPP, ISO by State',
   description:
     'Top marginal rate, supplemental withholding rate, AMT status, and LTCG treatment for RSU, ESPP, and ISO income in all 50 states + DC.',
+  ogImagePath: '/og/state-lookup.png',
 });
 
 export default function Page() {

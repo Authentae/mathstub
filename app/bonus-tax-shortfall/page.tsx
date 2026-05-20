@@ -19,6 +19,7 @@ export const metadata: Metadata = buildMetadata({
   slug: c.slug,
   title: c.metaTitle,
   description: c.metaDescription,
+  ogImagePath: '/og/bonus-shortfall.png',
 });
 
 export default function Page() {
