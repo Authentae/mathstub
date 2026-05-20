@@ -37,12 +37,19 @@ export function MathDiagram({
           down cleanly on narrower screens (the overflow-x-auto wrapper
           handles the mobile-narrow case).
         */}
+        {/*
+          v=3 cache-bust. The SVGs got several content + viewBox edits
+          (plain-English formulas, color theme, height crop) but
+          Cloudflare's edge cache kept serving the original light-themed
+          SVGs to visitors. Bumping the query param forces a fresh fetch
+          for every existing visitor on the next page load.
+        */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={`/diagrams/${slug}.svg`}
+          src={`/diagrams/${slug}.svg?v=3`}
           alt={alt}
           width={1100}
-          height={520}
+          height={340}
           loading="lazy"
           className="mx-auto block h-auto w-full"
         />
