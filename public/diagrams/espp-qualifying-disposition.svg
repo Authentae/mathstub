@@ -23,8 +23,8 @@
 <rect x="307.5" y="120" width="227.5" height="168" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.4" filter="url(#boxShadow)"></rect>
 <rect x="307.5" y="132" width="3" height="20" rx="1.5" fill="#2563eb"></rect>
 <text x="323.5" y="146" font-size="13" font-weight="700" fill="#cbd5e1" letter-spacing="1.6">STEP 1 · ORDINARY</text>
-<text x="323.5" y="186" font-size="22" font-weight="600" fill="#f1f5f9">min(discount,</text>
-<text x="323.5" y="208" font-size="22" font-weight="600" fill="#f1f5f9">actual gain)</text>
+<text x="323.5" y="186" font-size="22" font-weight="600" fill="#f1f5f9">lesser of:</text>
+<text x="323.5" y="208" font-size="22" font-weight="600" fill="#f1f5f9">discount or gain</text>
 <text x="323.5" y="252" font-size="14" font-weight="400" fill="#94a3b8">Lesser-of rule</text>
 <text x="323.5" y="272" font-size="14" font-style="italic" font-weight="500" fill="#94a3b8">IRC §423(c)</text>
 <line x1="538" y1="204" x2="562" y2="204" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"></line>
@@ -38,8 +38,8 @@
 <line x1="795.5" y1="204" x2="819.5" y2="204" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"></line>
 <rect x="822.5" y="120" width="227.5" height="168" rx="10" fill="#3f0a0a" stroke="#dc2626" stroke-width="2" filter="url(#boxShadow)"></rect>
 <text x="838.5" y="146" font-size="13" font-weight="700" fill="#dc2626" letter-spacing="1.6">TOTAL TAX</text>
-<text x="838.5" y="186" font-size="22" font-weight="600" fill="#fca5a5">ord × r</text>
-<text x="838.5" y="208" font-size="22" font-weight="600" fill="#fca5a5">+ LTCG × {0, 15, 20}%</text>
+<text x="838.5" y="186" font-size="22" font-weight="600" fill="#fca5a5">ordinary × marginal</text>
+<text x="838.5" y="208" font-size="22" font-weight="600" fill="#fca5a5">+ LTCG × 0-20%</text>
 <text x="838.5" y="252" font-size="14" font-weight="400" fill="#94a3b8">LTCG bracket by AGI</text>
 <text x="838.5" y="272" font-size="14" font-style="italic" font-weight="500" fill="#94a3b8">IRC §1(h)</text>
 <line x1="50" y1="476" x2="1050" y2="476" stroke="#1f2937" stroke-width="1"></line>

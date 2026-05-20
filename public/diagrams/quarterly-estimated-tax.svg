@@ -16,20 +16,20 @@
 <rect x="50" y="120" width="227.5" height="168" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.4" filter="url(#boxShadow)"></rect>
 <text x="66" y="146" font-size="13" font-weight="700" fill="#cbd5e1" letter-spacing="1.6">INPUT · PRIOR YEAR</text>
 <text x="66" y="186" font-size="22" font-weight="600" fill="#f1f5f9">Prior-year</text>
-<text x="66" y="208" font-size="22" font-weight="600" fill="#f1f5f9">liability  L</text>
+<text x="66" y="208" font-size="22" font-weight="600" fill="#f1f5f9">liability</text>
 <text x="66" y="252" font-size="14" font-weight="400" fill="#94a3b8">Form 1040 · line 24</text>
 <line x1="280.5" y1="204" x2="304.5" y2="204" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"></line>
 <rect x="307.5" y="120" width="227.5" height="168" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.6" filter="url(#boxShadow)"></rect>
 <text x="323.5" y="146" font-size="13" font-weight="700" fill="#15803d" letter-spacing="1.6">STEP 1 · SAFE HARBOR</text>
-<text x="323.5" y="186" font-size="16" font-weight="600" fill="#f1f5f9">1.00 × L</text>
-<text x="323.5" y="208" font-size="16" font-weight="600" fill="#f1f5f9">1.10 × L if AGI &gt; $150K</text>
+<text x="323.5" y="186" font-size="16" font-weight="600" fill="#f1f5f9">last year × 100%</text>
+<text x="323.5" y="208" font-size="16" font-weight="600" fill="#f1f5f9">or × 110% if AGI > $150K</text>
 <text x="323.5" y="252" font-size="14" font-weight="400" fill="#94a3b8">Pay across the year</text>
 <text x="323.5" y="272" font-size="14" font-style="italic" font-weight="500" fill="#94a3b8">IRC §6654(d)(1)(B)</text>
 <line x1="538" y1="204" x2="562" y2="204" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"></line>
 <rect x="565" y="120" width="227.5" height="168" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.4" filter="url(#boxShadow)"></rect>
 <rect x="565" y="132" width="3" height="20" rx="1.5" fill="#2563eb"></rect>
 <text x="581" y="146" font-size="13" font-weight="700" fill="#cbd5e1" letter-spacing="1.6">STEP 2 · QUARTERLY</text>
-<text x="581" y="186" font-size="22" font-weight="600" fill="#f1f5f9">SH ÷ 4</text>
+<text x="581" y="186" font-size="22" font-weight="600" fill="#f1f5f9">÷ 4 quarters</text>
 <text x="581" y="252" font-size="14" font-weight="400" fill="#94a3b8">Apr 15 · Jun 15 · Sep 15 · Jan 15</text>
 <text x="581" y="272" font-size="14" font-style="italic" font-weight="500" fill="#94a3b8">IRC §6654(c)</text>
 <line x1="795.5" y1="204" x2="819.5" y2="204" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"></line>
