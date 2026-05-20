@@ -8,7 +8,7 @@ export const rsuTaxCategoryBox14: BlogPost = {
   datePublished: '2026-05-19',
   dateModified: '2026-05-19',
   authorName: 'Mathstub Editorial',
-  reviewerName: 'Pending CPA review',
+  reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],
   quickAnswer:
     'W-2 Box 14 is an employer-defined informational box that itemizes specific components of your Box 1 wages. The RSU line there (often labeled "RSU", "RSU VEST", "SECT 132", "EQUITY COMP", or "STKCMP") tells you how much of your Box 1 income came from RSU vests. It is NOT separate income to add — the amount is already in Box 1. Most tax software handles Box 14 automatically; you don\'t do anything special with it on your federal return.',

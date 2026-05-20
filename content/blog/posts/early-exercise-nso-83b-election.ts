@@ -8,7 +8,7 @@ export const earlyExerciseNso83b: BlogPost = {
   datePublished: '2026-05-19',
   dateModified: '2026-05-19',
   authorName: 'Mathstub Editorial',
-  reviewerName: 'Pending CPA review',
+  reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['harness-wealth', 'turbotax-premier'],
   quickAnswer:
     'Early exercise means buying unvested NSOs at the current strike + FMV (often near zero for pre-IPO startups), then filing a §83(b) election with the IRS within 30 days. This locks in today\'s FMV as your ordinary-income tax basis. All future appreciation becomes long-term capital gain (15-20% federal) instead of ordinary income (up to 37% + FICA). Worth it when: strike ≈ FMV today (so ordinary income now is near $0), you can afford to lose the exercise cash if you leave before vesting, and you have high conviction the company succeeds. Not worth it for public-company NSOs where FMV ≫ strike.',

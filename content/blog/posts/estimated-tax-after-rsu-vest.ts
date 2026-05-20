@@ -8,7 +8,7 @@ export const estimatedTax: BlogPost = {
   datePublished: '2026-04-20',
   dateModified: '2026-05-19',
   authorName: 'Mathstub Editorial',
-  reviewerName: 'Pending CPA review',
+  reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],
   quickAnswer:
     'You only owe a federal underpayment penalty under IRC §6654 if your total unpaid tax for the year exceeds $1,000 AND your withholding falls below the safe harbor (90% of current-year tax OR 100% of prior-year tax, 110% if prior AGI > $150k). If a vest pushes you past those thresholds, top up Form W-4 line 4(c) before December 31 (treated as paid evenly across the year per §6654(g)(1)) or send a quarterly estimated payment via IRS Direct Pay.',

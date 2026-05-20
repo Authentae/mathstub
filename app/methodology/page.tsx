@@ -114,7 +114,7 @@ export default function MethodologyPage() {
         <h2 id="review">Editorial review</h2>
         <p>
           Every blog post and calculator on Mathstub currently shows{' '}
-          <em>&ldquo;Pending CPA review&rdquo;</em> in the byline. This is the honest
+          <em>&ldquo;Reviewed against IRS primary sources&rdquo;</em> in the byline. This is the honest
           framing: until Mathstub revenue justifies a real CPA on retainer,
           the math is reviewed by the founder against IRS source material
           rather than by a credentialed professional.

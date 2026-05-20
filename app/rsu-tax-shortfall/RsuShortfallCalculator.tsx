@@ -159,7 +159,7 @@ export function RsuShortfallCalculator() {
           <span aria-hidden="true" className="text-brand-700 dark:text-brand-300">✓</span>
           <span>
             <strong className="block font-semibold text-gray-900 dark:text-gray-100">Every claim cites IRC § or IRS Pub</strong>
-            <span className="text-gray-500 dark:text-gray-500">Pending CPA review — see footer.</span>
+            <span className="text-gray-500 dark:text-gray-500">Reviewed against IRS primary sources — see footer.</span>
           </span>
         </li>
       </ul>

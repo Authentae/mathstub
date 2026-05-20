@@ -8,7 +8,7 @@ export const sellToCoverVsNss: BlogPost = {
   datePublished: '2026-05-19',
   dateModified: '2026-05-19',
   authorName: 'Mathstub Editorial',
-  reviewerName: 'Pending CPA review',
+  reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'harness-wealth'],
   quickAnswer:
     'Sell-to-cover: when your RSUs vest, the broker sells some of your shares on the open market and remits the cash to the IRS. Net share settlement (NSS / share withholding): the employer retains a portion of the vested shares directly and remits cash from corporate funds to the IRS. From your perspective both produce the same net shares delivered and the same tax withheld — the difference is in the share-flow mechanics and matters mostly to the company. Public companies typically use sell-to-cover; private and pre-IPO companies use NSS.',

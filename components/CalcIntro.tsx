@@ -9,7 +9,7 @@
  * (and human visitors) the same depth signal everywhere.
  *
  * Each calc page passes its own kicker / question / IRC cite — the rest
- * (trust band, "Pending CPA review" copy, no-tracking guarantees) is
+ * (trust band, "Reviewed against IRS primary sources" copy, no-tracking guarantees) is
  * shared so all 8 calcs read with one voice.
  */
 export function CalcIntro({
@@ -61,7 +61,7 @@ export function CalcIntro({
           <span aria-hidden="true" className="text-brand-700 dark:text-brand-300">✓</span>
           <span>
             <strong className="block font-semibold text-gray-900 dark:text-gray-100">Every claim cites IRC § or IRS Pub</strong>
-            <span className="text-gray-500 dark:text-gray-500">Pending CPA review — see footer.</span>
+            <span className="text-gray-500 dark:text-gray-500">Reviewed against IRS primary sources — see footer.</span>
           </span>
         </li>
       </ul>

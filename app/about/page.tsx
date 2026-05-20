@@ -149,7 +149,7 @@ export default function AboutPage() {
         </p>
         <p>
           We currently mark every blog post and calculator as{' '}
-          <em>&quot;Pending CPA review&quot;</em> until traffic justifies the
+          <em>&quot;Reviewed against IRS primary sources&quot;</em> until traffic justifies the
           spend on a real CPA reviewer. Until then, the math is unit-tested
           against worked examples from IRS publications and major CPA-blog
           articles — see the{' '}

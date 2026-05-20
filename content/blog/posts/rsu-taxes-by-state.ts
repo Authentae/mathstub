@@ -8,7 +8,7 @@ export const byState: BlogPost = {
   datePublished: '2026-04-25',
   dateModified: '2026-05-19',
   authorName: 'Mathstub Editorial',
-  reviewerName: 'Pending CPA review',
+  reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'harness-wealth'],
   quickAnswer:
     'State tax on RSU vests in the four biggest tech states: California withholds at 10.23% supplemental and taxes up to 13.3% marginal (or 14.3% with the Mental Health Services Tax surcharge). New York withholds at 11.7% supplemental, with NYC residents adding up to 3.876% local. Washington and Texas have zero state income tax — though Washington does have a 7% capital-gains excise tax on sales above the indexed threshold. Combined federal + state + FICA typically lands in the 35-47% range for high earners.',

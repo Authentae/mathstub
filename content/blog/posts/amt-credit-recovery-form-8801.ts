@@ -8,7 +8,7 @@ export const amtCreditRecoveryForm8801: BlogPost = {
   datePublished: '2026-05-19',
   dateModified: '2026-05-19',
   authorName: 'Mathstub Editorial',
-  reviewerName: 'Pending CPA review',
+  reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['harness-wealth', 'turbotax-premier'],
   quickAnswer:
     'The IRC §53 Minimum Tax Credit (MTC) lets you recover AMT you paid in a prior year — specifically, AMT triggered by ISO exercise bargain element. The credit applies in any future year where your regular federal income tax exceeds your tentative minimum tax (TMT), up to the carryforward balance. Track and claim it on IRS Form 8801. The credit carries forward indefinitely with no expiration. Most ISO exercisers who paid AMT never file Form 8801 and silently lose access to the credit they paid for.',

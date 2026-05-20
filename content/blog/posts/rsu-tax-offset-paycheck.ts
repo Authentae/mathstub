@@ -8,7 +8,7 @@ export const rsuTaxOffsetPaycheck: BlogPost = {
   datePublished: '2026-05-19',
   dateModified: '2026-05-19',
   authorName: 'Mathstub Editorial',
-  reviewerName: 'Pending CPA review',
+  reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],
   quickAnswer:
     'The "RSU tax offset" on your paystub is not a real deduction — it is a balancing entry that cancels out the RSU vest income shown elsewhere on the same paystub. The actual tax was already withheld through share-withholding (sell-to-cover) when the shares vested. Net effect on your take-home cash: zero. It is unusual-looking but mathematically correct.',

@@ -8,7 +8,7 @@ export const yearEndChecklist: BlogPost = {
   datePublished: '2026-04-30',
   dateModified: '2026-05-19',
   authorName: 'Mathstub Editorial',
-  reviewerName: 'Pending CPA review',
+  reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'harness-wealth', 'carta'],
   quickAnswer:
     'Run this in December: (1) project YTD withholding vs actual tax owed, (2) top up Form W-4 line 4(c) if shortfall > $1,000, (3) check ESPP qualifying-disposition holding periods, (4) model AMT on any ISO exercises, (5) confirm 1099-B cost-basis adjustments for vested RSUs sold, (6) max 401(k) and HSA, (7) tax-loss harvest, (8) decide on charitable stock gifts, (9) verify state residency sourcing, (10) export records for your CPA.',
