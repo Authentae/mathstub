@@ -45,9 +45,17 @@ export default function HomePage() {
       }}
     >
       <main className="mx-auto max-w-6xl px-6 py-12 sm:px-10 sm:py-16">
-        {/* HERO */}
-        <section className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
-          <div>
+        {/*
+          HERO — stacked layout. Earlier side-by-side grid forced the
+          animation into a ~500px column that read as "small / lost on
+          the right." Stacking the headline above and the animation
+          below gives the animation the full max-w-6xl width (~1100px)
+          so it actually feels like a hero element. Eye flow is also
+          cleaner: promise (text) → proof (animation) → CTA already
+          inline with the promise.
+        */}
+        <section className="flex flex-col gap-10 lg:gap-14">
+          <div className="max-w-3xl">
             <div className="mb-7 flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.14em] text-brand-400">
               <span
                 className="h-1.5 w-1.5 rounded-full bg-brand-500"
@@ -100,12 +108,14 @@ export default function HomePage() {
           </div>
 
           {/*
-            Animated hero loop. The inner .frame inside /hero/ already
-            ships its own rounded corners + box-shadow, so we don't add
-            outer chrome here — that would double-ring + create dead
-            space along the iframe edge.
+            Animated hero loop, full container width. The inner .frame
+            inside /hero/ already ships its own rounded corners +
+            box-shadow, so we don't add outer chrome here — that would
+            double-ring + create dead space along the iframe edge.
           */}
-          <HeroAnimation />
+          <div className="w-full">
+            <HeroAnimation />
+          </div>
         </section>
 
         {/* SOCIAL PROOF / TRUST BAND — combined */}
