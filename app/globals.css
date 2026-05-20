@@ -3,7 +3,14 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: light dark;
+  /*
+    Locked to dark color-scheme so the OS form controls (date pickers,
+    select dropdowns, scrollbars) render dark to match the always-dark
+    site canvas. Light mode was dropped when we shipped the Variant B
+    homepage — keeping mixed light/dark would make calc pages look
+    different from the homepage on the same machine.
+  */
+  color-scheme: dark;
 }
 
 html {
@@ -11,7 +18,15 @@ html {
 }
 
 body {
-  @apply bg-white text-gray-900 antialiased dark:bg-gray-950 dark:text-gray-100;
+  /*
+    Single canonical dark surface — bg-slate-950 matches the Variant B
+    homepage exactly so calc pages, blog posts, and static pages share
+    the same backdrop. Tailwind's `dark:` variants still apply to inner
+    elements (they kick in any time prefers-color-scheme: dark OR the
+    color-scheme: dark above), so existing dark-mode styling on cards,
+    inputs, etc. continues to work.
+  */
+  @apply bg-slate-950 text-slate-100 antialiased;
 }
 
 a {
