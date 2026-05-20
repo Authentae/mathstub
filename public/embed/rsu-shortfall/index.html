@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>RSU Tax Withholding Shortfall · mathstub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet" />
+<style>
+  /* ----- tokens ----- */
+  :root {
+    --blue-600: #2563eb;
+    --blue-700: #1d4ed8;
+    --blue-50:  #eff6ff;
+    --green-600: #16a34a;
+    --green-50:  #f0fdf4;
+    --red-600:   #dc2626;
+    --red-50:    #fef2f2;
+    --slate-50:  #f8fafc;
+    --slate-100: #f1f5f9;
+    --slate-200: #e2e8f0;
+    --slate-300: #cbd5e1;
+    --slate-400: #94a3b8;
+    --slate-500: #64748b;
+    --slate-600: #475569;
+    --slate-700: #334155;
+    --slate-800: #1e293b;
+    --slate-900: #0f172a;
+    --slate-950: #020617;
+  }
+  /* light theme (default) */
+  html[data-theme="light"] {
+    --bg:        var(--slate-50);
+    --surface:   #ffffff;
+    --text:      var(--slate-900);
+    --text-mute: var(--slate-600);
+    --text-dim:  var(--slate-500);
+    --border:    var(--slate-200);
+    --border-strong: var(--slate-300);
+    --input-bg:  #ffffff;
+    --field-shadow: 0 1px 2px rgba(15,23,42,0.04);
+    --safe-bg:   var(--green-50);
+    --safe-text: #166534;
+    --shortfall-bg: var(--red-50);
+    --shortfall-text: var(--red-600);
+    --chip-bg:   var(--slate-100);
+    --rule:      var(--slate-200);
+  }
+  /* dark theme */
+  html[data-theme="dark"] {
+    --bg:        var(--slate-900);
+    --surface:   #111c33;
+    --text:      var(--slate-50);
+    --text-mute: #cbd5e1;
+    --text-dim:  #94a3b8;
+    --border:    #1f2d4a;
+    --border-strong: #2a3a5c;
+    --input-bg:  #0b1426;
+    --field-shadow: 0 1px 0 rgba(255,255,255,0.02) inset;
+    --safe-bg:   rgba(22,163,74,0.12);
+    --safe-text: #4ade80;
+    --shortfall-bg: rgba(220,38,38,0.12);
+    --shortfall-text: #f87171;
+    --chip-bg:   #16223d;
+    --rule:      #1f2d4a;
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, -apple-system, Segoe UI, sans-serif;
+    font-feature-settings: 'cv11','ss01','ss03';
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+  }
+
+  /* widget shell ----- */
+  .widget {
+    width: 100%;
+    max-width: 400px;
+    min-height: 500px;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    padding: 16px 16px 12px;
+    gap: 12px;
+  }
+
+  /* header ----- */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-mute);
+    letter-spacing: 0.01em;
+    text-decoration: none;
+  }
+  .brand-mark {
+    width: 18px; height: 18px;
+    border-radius: 5px;
+    background: var(--blue-600);
+    display: grid; place-items: center;
+    color: #fff;
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1;
+  }
+  .brand:hover { color: var(--text); }
+  .brand:hover .brand-mark { background: var(--blue-700); }
+  .year-tag {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 7px;
+    background: var(--chip-bg);
+    border-radius: 4px;
+  }
+
+  /* title block ----- */
+  .title {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin: 2px 0 0;
+    text-wrap: balance;
+  }
+  .subtitle {
+    font-size: 12px;
+    color: var(--text-mute);
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  /* form ----- */
+  .form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .field { display: flex; flex-direction: column; gap: 4px; }
+  .field.full { grid-column: 1 / -1; }
+  .field label {
+    font-size: 10.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-mute);
+  }
+  .input-wrap { position: relative; }
+  .input-prefix {
+    position: absolute;
+    left: 10px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-dim);
+    font-weight: 500;
+    font-size: 13px;
+    pointer-events: none;
+  }
+  input[type="text"], select {
+    width: 100%;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    background: var(--input-bg);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 9px 10px;
+    height: 36px;
+    outline: none;
+    box-shadow: var(--field-shadow);
+    appearance: none;
+    -webkit-appearance: none;
+    transition: border-color 120ms, box-shadow 120ms;
+  }
+  input[type="text"].with-prefix { padding-left: 22px; }
+  select {
+    background-image:
+      linear-gradient(45deg, transparent 50%, var(--text-dim) 50%),
+      linear-gradient(135deg, var(--text-dim) 50%, transparent 50%);
+    background-position:
+      calc(100% - 13px) 16px,
+      calc(100% - 9px) 16px;
+    background-size: 4px 4px, 4px 4px;
+    background-repeat: no-repeat;
+    padding-right: 26px;
+  }
+  input:focus, select:focus {
+    border-color: var(--blue-600);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
+  }
+  input::placeholder { color: var(--text-dim); }
+
+  /* CTA ----- */
+  .cta {
+    grid-column: 1 / -1;
+    width: 100%;
+    height: 40px;
+    margin-top: 2px;
+    background: var(--blue-600);
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    font-size: 13.5px;
+    letter-spacing: 0.005em;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.12) inset,
+      0 1px 2px rgba(37,99,235,0.35);
+    transition: background 120ms, transform 60ms;
+  }
+  .cta:hover { background: var(--blue-700); }
+  .cta:active { transform: translateY(1px); }
+  .cta svg { width: 13px; height: 13px; }
+
+  /* results ----- */
+  .results {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    animation: rise 240ms cubic-bezier(.2,.7,.2,1);
+  }
+  .results.shown { display: flex; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .headline {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 12px 12px 11px;
+    border-radius: 9px;
+    background: var(--shortfall-bg);
+    border: 1px solid color-mix(in srgb, var(--shortfall-text) 22%, transparent);
+  }
+  .headline.safe {
+    background: var(--safe-bg);
+    border-color: color-mix(in srgb, var(--safe-text) 22%, transparent);
+  }
+  .headline-label {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    color: var(--text-mute);
+  }
+  .headline-value {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--shortfall-text);
+    font-variant-numeric: tabular-nums;
+  }
+  .headline.safe .headline-value { color: var(--safe-text); }
+  .headline-sub {
+    font-size: 11.5px;
+    color: var(--text-mute);
+    line-height: 1.4;
+    margin-top: 2px;
+  }
+
+  .rows {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 9px 12px;
+    font-size: 12.5px;
+  }
+  .row + .row { border-top: 1px solid var(--rule); }
+  .row-label { color: var(--text-mute); }
+  .row-value {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--text);
+  }
+  .row.advice {
+    background: var(--blue-50);
+    padding: 11px 12px;
+  }
+  html[data-theme="dark"] .row.advice {
+    background: rgba(37,99,235,0.12);
+  }
+  .row.advice .row-label {
+    color: var(--text);
+    font-weight: 600;
+    font-size: 11.5px;
+  }
+  .row.advice .row-value { color: var(--blue-600); font-size: 14px; }
+  html[data-theme="dark"] .row.advice .row-value { color: #60a5fa; }
+
+  .assumptions {
+    font-size: 10.5px;
+    line-height: 1.45;
+    color: var(--text-dim);
+    padding: 0 2px;
+  }
+  .assumptions strong { color: var(--text-mute); font-weight: 600; }
+
+  /* empty hint */
+  .hint {
+    font-size: 11.5px;
+    color: var(--text-dim);
+    text-align: center;
+    line-height: 1.4;
+    padding: 12px 8px 4px;
+    border-top: 1px dashed var(--rule);
+  }
+
+  /* footer ----- */
+  .spacer { flex: 1; min-height: 4px; }
+  .footer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-top: 8px;
+    border-top: 1px solid var(--rule);
+  }
+  .powered {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11.5px;
+    color: var(--text-mute);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .powered .b { color: var(--blue-600); font-weight: 600; }
+  html[data-theme="dark"] .powered .b { color: #60a5fa; }
+  .powered:hover { color: var(--text); }
+  .powered:hover .b { text-decoration: underline; }
+  .powered .arrow { transition: transform 140ms; display: inline-block; }
+  .powered:hover .arrow { transform: translateX(2px); }
+  .disclosure {
+    font-size: 10px;
+    line-height: 1.45;
+    color: var(--text-dim);
+    letter-spacing: 0.005em;
+  }
+
+  /* very narrow ----- */
+  @media (max-width: 360px) {
+    .widget { padding: 12px 12px 10px; gap: 10px; }
+    .title { font-size: 17px; }
+    .headline-value { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+  <main class="widget" role="main" aria-label="RSU tax withholding shortfall calculator">
+    <header class="header">
+      <a class="brand" href="https://mathstub.com" target="_blank" rel="noopener">
+        <span class="brand-mark">m</span>
+        <span>mathstub<span style="color:var(--text-dim);font-weight:500">/rsu</span></span>
+      </a>
+      <span class="year-tag" id="yearTag">TY 2025</span>
+    </header>
+
+    <div>
+      <h1 class="title">RSU withholding shortfall</h1>
+      <p class="subtitle">Employers withhold 22% federal on stock. If your marginal rate is higher, you'll owe the gap in April.</p>
+    </div>
+
+    <form class="form" id="form" novalidate>
+      <div class="field full">
+        <label for="vest">Vest value (gross)</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input id="vest" class="with-prefix" type="text" inputmode="numeric" autocomplete="off" placeholder="150,000" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="filing">Filing status</label>
+        <select id="filing">
+          <option value="single">Single</option>
+          <option value="mfj" selected>Married, joint</option>
+          <option value="hoh">Head of household</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="year">Tax year</label>
+        <select id="year">
+          <option value="2025" selected>2025</option>
+          <option value="2026">2026</option>
+        </select>
+      </div>
+
+      <div class="field full">
+        <label for="state">State of residence</label>
+        <select id="state"></select>
+      </div>
+
+      <button class="cta" type="submit" id="calcBtn">
+        Calculate shortfall
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3.5 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </form>
+
+    <section class="results" id="results" aria-live="polite">
+      <div class="headline" id="headline">
+        <span class="headline-label" id="headlineLabel">Estimated extra owed in April</span>
+        <span class="headline-value" id="headlineValue">$0</span>
+        <span class="headline-sub" id="headlineSub"></span>
+      </div>
+
+      <div class="rows">
+        <div class="row">
+          <span class="row-label">Federal shortfall</span>
+          <span class="row-value" id="fedVal">$0</span>
+        </div>
+        <div class="row">
+          <span class="row-label">State shortfall</span>
+          <span class="row-value" id="stateVal">$0</span>
+        </div>
+        <div class="row advice">
+          <span class="row-label">Add to W-4 line 4(c), per paycheck<br><span style="font-weight:500;color:var(--text-dim);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase">remaining biweekly periods this year</span></span>
+          <span class="row-value" id="payCheckVal">$0</span>
+        </div>
+      </div>
+
+      <p class="assumptions" id="assumptions"></p>
+    </section>
+
+    <div class="spacer"></div>
+
+    <footer class="footer">
+      <a class="powered" id="poweredLink" href="https://mathstub.com/rsu-tax-shortfall" target="_blank" rel="noopener">
+        Powered by <span class="b">mathstub.com</span> &middot; See full breakdown <span class="arrow">→</span>
+      </a>
+      <p class="disclosure">Embedded from mathstub.com &mdash; free tool, not tax advice. Estimates use IRS supplemental withholding rules and published state flat rates; consult a CPA for filing decisions.</p>
+    </footer>
+  </main>
+
+<script>
+/* ----------------------------------------------------------
+   RSU shortfall logic (client-side, deterministic).
+   Mirror this in lib/tax/rsu-shortfall on the server.
+---------------------------------------------------------- */
+
+// 2025 brackets (published). 2026 approximated with ~2.7% inflation bump.
+const FED_BRACKETS = {
+  2025: {
+    single: [[0,.10],[11925,.12],[48475,.22],[103350,.24],[197300,.32],[250525,.35],[626350,.37]],
+    mfj:    [[0,.10],[23850,.12],[96950,.22],[206700,.24],[394600,.32],[501050,.35],[751600,.37]],
+    hoh:    [[0,.10],[17000,.12],[64850,.22],[103350,.24],[197300,.32],[250525,.35],[626350,.37]],
+  },
+  2026: {
+    single: [[0,.10],[12247,.12],[49785,.22],[106140,.24],[202627,.32],[257289,.35],[643261,.37]],
+    mfj:    [[0,.10],[24494,.12],[99568,.22],[212281,.24],[405254,.32],[514578,.35],[771893,.37]],
+    hoh:    [[0,.10],[17459,.12],[66601,.22],[106140,.24],[202627,.32],[257289,.35],[643261,.37]],
+  },
+};
+
+// Standard deduction (used to back out a baseline "household income" assumption).
+const STD_DED = {
+  2025: { single: 15000, mfj: 30000, hoh: 22500 },
+  2026: { single: 15405, mfj: 30810, hoh: 23107 },
+};
+
+// Assumed "rest of household W-2 income" before the vest, used to find the
+// marginal rate the vest is layered onto. These are conservative midpoints
+// for the typical RSU-earning audience; an exact calc requires more inputs.
+const ASSUMED_OTHER_INCOME = {
+  single: 165000,
+  mfj:    260000,
+  hoh:    180000,
+};
+
+// IRS supplemental withholding: 22% flat under $1M, 37% on excess.
+function federalWithheld(vest) {
+  const cap = 1_000_000;
+  if (vest <= cap) return vest * 0.22;
+  return cap * 0.22 + (vest - cap) * 0.37;
+}
+
+// Additional Medicare: 0.9% on wages above threshold (assume vest stacks on
+// top of other income, so a portion of the vest is over threshold).
+const ADD_MED_THRESHOLD = { single: 200000, mfj: 250000, hoh: 200000 };
+function additionalMedicare(vest, filing) {
+  const base = ASSUMED_OTHER_INCOME[filing];
+  const threshold = ADD_MED_THRESHOLD[filing];
+  const taxable = Math.max(0, base + vest - threshold);
+  const withoutVest = Math.max(0, base - threshold);
+  return (taxable - withoutVest) * 0.009;
+}
+
+function fedTaxOn(income, year, filing) {
+  if (income <= 0) return 0;
+  const b = FED_BRACKETS[year][filing];
+  let tax = 0;
+  for (let i = 0; i < b.length; i++) {
+    const lo = b[i][0];
+    const hi = i + 1 < b.length ? b[i+1][0] : Infinity;
+    const rate = b[i][1];
+    if (income > lo) tax += (Math.min(income, hi) - lo) * rate;
+    else break;
+  }
+  return tax;
+}
+
+// Federal *additional* tax attributable to the vest:
+// tax(other_income + vest - std) - tax(other_income - std)
+function federalTaxOnVest(vest, year, filing) {
+  const std = STD_DED[year][filing];
+  const other = ASSUMED_OTHER_INCOME[filing];
+  const withVest = fedTaxOn(other + vest - std, year, filing);
+  const withoutVest = fedTaxOn(Math.max(0, other - std), year, filing);
+  return withVest - withoutVest;
+}
+
+/* ----- State rates -----
+   `flat`: typical supplemental withholding rate the employer uses on RSUs
+   `marginal`: realistic top-of-stack marginal rate for the assumed earner.
+   No-tax states: both 0. Cities (NYC) not modeled at MVP. */
+const STATES = [
+  ['AL','Alabama',         0.0500, 0.0500],
+  ['AK','Alaska',          0.0000, 0.0000],
+  ['AZ','Arizona',         0.0250, 0.0250],
+  ['AR','Arkansas',        0.0440, 0.0440],
+  ['CA','California',      0.1023, 0.0930],
+  ['CO','Colorado',        0.0440, 0.0440],
+  ['CT','Connecticut',     0.0699, 0.0550],
+  ['DC','D.C.',            0.0575, 0.0850],
+  ['DE','Delaware',        0.0660, 0.0660],
+  ['FL','Florida',         0.0000, 0.0000],
+  ['GA','Georgia',         0.0539, 0.0539],
+  ['HI','Hawaii',          0.0825, 0.0900],
+  ['ID','Idaho',           0.0580, 0.0580],
+  ['IL','Illinois',        0.0495, 0.0495],
+  ['IN','Indiana',         0.0305, 0.0305],
+  ['IA','Iowa',            0.0380, 0.0380],
+  ['KS','Kansas',          0.0570, 0.0570],
+  ['KY','Kentucky',        0.0400, 0.0400],
+  ['LA','Louisiana',       0.0425, 0.0425],
+  ['ME','Maine',           0.0715, 0.0715],
+  ['MD','Maryland',        0.0575, 0.0575],
+  ['MA','Massachusetts',   0.0500, 0.0500],
+  ['MI','Michigan',        0.0425, 0.0425],
+  ['MN','Minnesota',       0.0685, 0.0785],
+  ['MS','Mississippi',     0.0440, 0.0440],
+  ['MO','Missouri',        0.0470, 0.0470],
+  ['MT','Montana',         0.0590, 0.0590],
+  ['NE','Nebraska',        0.0520, 0.0520],
+  ['NV','Nevada',          0.0000, 0.0000],
+  ['NH','New Hampshire',   0.0000, 0.0000],
+  ['NJ','New Jersey',      0.0637, 0.0897],
+  ['NM','New Mexico',      0.0470, 0.0490],
+  ['NY','New York',        0.0962, 0.0685],
+  ['NC','North Carolina',  0.0425, 0.0425],
+  ['ND','North Dakota',    0.0195, 0.0195],
+  ['OH','Ohio',            0.0350, 0.0350],
+  ['OK','Oklahoma',        0.0475, 0.0475],
+  ['OR','Oregon',          0.0800, 0.0875],
+  ['PA','Pennsylvania',    0.0307, 0.0307],
+  ['RI','Rhode Island',    0.0599, 0.0599],
+  ['SC','South Carolina',  0.0625, 0.0625],
+  ['SD','South Dakota',    0.0000, 0.0000],
+  ['TN','Tennessee',       0.0000, 0.0000],
+  ['TX','Texas',           0.0000, 0.0000],
+  ['UT','Utah',            0.0455, 0.0455],
+  ['VT','Vermont',         0.0660, 0.0660],
+  ['VA','Virginia',        0.0575, 0.0575],
+  ['WA','Washington',      0.0000, 0.0000],
+  ['WV','West Virginia',   0.0482, 0.0482],
+  ['WI','Wisconsin',       0.0530, 0.0530],
+  ['WY','Wyoming',         0.0000, 0.0000],
+];
+
+/* ----- Formatting helpers ----- */
+const fmt$ = n => {
+  const v = Math.round(n);
+  if (v === 0) return '$0';
+  const sign = v < 0 ? '-' : '';
+  return sign + '$' + Math.abs(v).toLocaleString('en-US');
+};
+const fmtPct = r => (r * 100).toFixed(1) + '%';
+
+function parseDollar(s) {
+  if (!s) return 0;
+  const n = parseFloat(String(s).replace(/[^0-9.]/g, ''));
+  return isFinite(n) ? n : 0;
+}
+
+/* ----- Remaining biweekly pay periods this year ----- */
+function remainingBiweekly() {
+  const now = new Date();
+  const end = new Date(now.getFullYear(), 11, 31);
+  const days = Math.max(0, (end - now) / 86400000);
+  return Math.max(1, Math.round(days / 14));
+}
+
+/* ----- Main calc ----- */
+function calc(input) {
+  const { vest, filing, year, stateCode } = input;
+  const state = STATES.find(s => s[0] === stateCode) || STATES.find(s => s[0] === 'CA');
+
+  const fedWithheld = federalWithheld(vest);
+  const fedTax = federalTaxOnVest(vest, year, filing) + additionalMedicare(vest, filing);
+  const fedShortfall = Math.max(0, fedTax - fedWithheld);
+
+  const stateWithheld = vest * state[2];
+  const stateOwed = vest * state[3];
+  const stateShortfall = Math.max(0, stateOwed - stateWithheld);
+
+  const total = fedShortfall + stateShortfall;
+  const periods = remainingBiweekly();
+  const perCheck = total / periods;
+
+  // marginal rate context
+  const effective = vest > 0 ? federalTaxOnVest(vest, year, filing) / vest : 0;
+
+  return {
+    fedWithheld, fedTax, fedShortfall,
+    stateWithheld, stateOwed, stateShortfall,
+    total, perCheck, periods,
+    fedMarginal: effective,
+    stateMarginalDelta: state[3] - state[2],
+    stateName: state[1],
+    stateCode: state[0],
+  };
+}
+
+/* ----- UI wiring ----- */
+const $ = id => document.getElementById(id);
+
+// theme via ?theme=
+const params = new URLSearchParams(location.search);
+const theme = (params.get('theme') === 'dark') ? 'dark' : 'light';
+document.documentElement.setAttribute('data-theme', theme);
+
+// populate states
+const stateSel = $('state');
+STATES.forEach(s => {
+  const opt = document.createElement('option');
+  opt.value = s[0];
+  opt.textContent = s[1] + (s[2] === 0 && s[3] === 0 ? ' (no income tax)' : '');
+  stateSel.appendChild(opt);
+});
+stateSel.value = 'CA';
+
+// prefill from URL (for round-tripping into mathstub.com)
+if (params.get('vest'))   $('vest').value = Number(params.get('vest')).toLocaleString('en-US');
+if (params.get('filing')) $('filing').value = params.get('filing');
+if (params.get('year'))   $('year').value   = params.get('year');
+if (params.get('state'))  stateSel.value    = params.get('state');
+
+// thousands separators while typing
+$('vest').addEventListener('input', e => {
+  const raw = e.target.value.replace(/[^0-9]/g, '');
+  e.target.value = raw ? Number(raw).toLocaleString('en-US') : '';
+});
+
+// year tag
+const yearSel = $('year');
+const yearTag = $('yearTag');
+function updateYearTag() { yearTag.textContent = 'TY ' + yearSel.value; }
+yearSel.addEventListener('change', updateYearTag);
+updateYearTag();
+
+// "Powered by" link gets live params
+function updatePoweredLink(input) {
+  const u = new URL('https://mathstub.com/rsu-tax-shortfall');
+  if (input?.vest)      u.searchParams.set('vest', String(Math.round(input.vest)));
+  if (input?.filing)    u.searchParams.set('filing', input.filing);
+  if (input?.year)      u.searchParams.set('year', String(input.year));
+  if (input?.stateCode) u.searchParams.set('state', input.stateCode);
+  u.searchParams.set('utm_source', 'embed');
+  u.searchParams.set('utm_medium', 'iframe');
+  $('poweredLink').href = u.toString();
+}
+updatePoweredLink();
+
+// submit
+$('form').addEventListener('submit', e => {
+  e.preventDefault();
+  const input = {
+    vest: parseDollar($('vest').value),
+    filing: $('filing').value,
+    year: Number(yearSel.value),
+    stateCode: stateSel.value,
+  };
+  if (input.vest <= 0) {
+    $('vest').focus();
+    return;
+  }
+  const r = calc(input);
+
+  // headline
+  const isSafe = r.total < Math.max(50, input.vest * 0.005); // dust = safe
+  const headline = $('headline');
+  headline.classList.toggle('safe', isSafe);
+  $('headlineLabel').textContent = isSafe
+    ? 'Withholding looks adequate'
+    : 'Estimated extra owed in April';
+  $('headlineValue').textContent = fmt$(r.total);
+  $('headlineSub').textContent = isSafe
+    ? 'Your 22% federal supplemental + state withholding should cover this vest.'
+    : `On a ${fmt$(input.vest)} vest, employer withholding is short of your estimated liability.`;
+
+  // rows
+  $('fedVal').textContent   = fmt$(r.fedShortfall);
+  $('stateVal').textContent = fmt$(r.stateShortfall);
+  $('payCheckVal').textContent = fmt$(r.perCheck) + '/check';
+
+  // assumptions footnote
+  $('assumptions').innerHTML =
+    `<strong>Assumes</strong> federal supplemental withholding of 22% (37% over $1M), your vest stacks on `
+    + `${fmt$(ASSUMED_OTHER_INCOME[input.filing])} of other ${input.filing === 'mfj' ? 'household ' : ''}wage income, `
+    + `and ${r.stateName} flat supplemental of ${fmtPct(STATES.find(s=>s[0]===r.stateCode)[2])} `
+    + (r.stateMarginalDelta > 0
+        ? `vs. marginal ${fmtPct(STATES.find(s=>s[0]===r.stateCode)[3])}.`
+        : `(no marginal gap).`)
+    + ` ${r.periods} biweekly pay periods left in ${new Date().getFullYear()}.`;
+
+  $('results').classList.add('shown');
+  updatePoweredLink(input);
+});
+
+// keep "see full breakdown" link warm even before they click calculate
+['vest','filing','year','state'].forEach(id => {
+  $(id).addEventListener('input', () => {
+    updatePoweredLink({
+      vest: parseDollar($('vest').value),
+      filing: $('filing').value,
+      year: Number($('year').value),
+      stateCode: $('state').value,
+    });
+  });
+});
+</script>
+</body>
+</html>

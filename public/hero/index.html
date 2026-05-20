@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>mathstub — hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="hero.css" />
+<style>
+  /* Embed mode: drop the page padding and controls chrome from the
+     original Claude Design layout lab. We just want the animated frame
+     to fill the iframe. */
+  html, body { margin: 0; padding: 0; background: transparent; height: 100%; }
+  .page { padding: 0 !important; gap: 0 !important; min-height: 100% !important; }
+  .frame { margin: 0 !important; }
+</style>
+</head>
+<body>
+  <main class="page">
+    <div class="frame" id="frame" data-format="landscape">
+      <div class="stage" id="stage">
+
+        <!-- Scene 1: Big number -->
+        <div class="scene scene-1" data-scene="1">
+          <div class="hero-num">
+            <span class="hero-num__sign">$</span><span class="hero-num__val">200,000</span>
+          </div>
+          <p class="sub sub-1">Your RSUs just vested.</p>
+        </div>
+
+        <!-- Scene 2 + 3 + 4: bars -->
+        <div class="scene scene-bars" data-scene="2">
+          <div class="num-static">
+            <span class="num-static__sign">$</span>200,000
+          </div>
+
+          <div class="bars">
+            <div class="bar-row bar-row--withheld">
+              <div class="bar-track">
+                <div class="bar-fill bar-fill--withheld"></div>
+              </div>
+              <div class="bar-meta">
+                <span class="bar-label">Withheld</span>
+                <span class="bar-pct">22%</span>
+              </div>
+            </div>
+
+            <div class="bar-row bar-row--owed">
+              <div class="bar-track">
+                <div class="bar-fill bar-fill--owed"></div>
+                <div class="bar-fill bar-fill--gap"></div>
+              </div>
+              <div class="bar-meta">
+                <span class="bar-label">Actually owed</span>
+                <span class="bar-pct">~37%<span class="bar-pct__sub"> marginal</span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="shortfall">
+            <span class="shortfall__label">Shortfall owed at filing</span>
+            <div class="shortfall__num">
+              <span class="shortfall__sign">$</span><span class="shortfall__counter" aria-label="$30,000"></span>
+            </div>
+          </div>
+
+          <p class="sub sub-2">But 22% is not your real tax rate.</p>
+          <p class="sub sub-3">For high earners, the gap is wide.</p>
+          <p class="sub sub-4">Owed at filing.</p>
+        </div>
+
+        <!-- Scene 5: Logo + CTA -->
+        <div class="scene scene-5" data-scene="5">
+          <div class="logo">
+            <span class="logo__mark">
+              <svg viewBox="0 0 24 24" width="100%" height="100%" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="4" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M6 16 L10 10 L14 14 L18 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+              </svg>
+            </span>
+            <span class="logo__word">mathstub</span>
+          </div>
+          <a class="cta" href="/rsu-tax-shortfall" target="_top">
+            <span>Run your numbers in 30 seconds</span>
+            <span class="cta__arrow" aria-hidden="true">→</span>
+          </a>
+          <p class="footnote">Free · No signup · Math runs in your browser</p>
+        </div>
+
+        <!-- Persistent footer chrome -->
+        <div class="chrome">
+          <div class="chrome__left">
+            <span class="dot"></span>
+            <span>mathstub.com</span>
+          </div>
+          <div class="chrome__right">
+            <span class="chrome__cite">Source: IRS §3402 supplemental withholding · 2025 brackets</span>
+          </div>
+        </div>
+
+        <!-- Scene counter -->
+        <div class="ticker" aria-hidden="true">
+          <span class="ticker__n">01</span>
+          <span class="ticker__sep">/</span>
+          <span class="ticker__t">05</span>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="progress" aria-hidden="true">
+          <div class="progress__fill"></div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="hero.js"></script>
+</body>
+</html>

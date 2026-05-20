@@ -1,0 +1,696 @@
+/* ============================================================
+   mathstub — hero animation
+   12s loop · 5 scenes · pure CSS + tiny JS for format toggle
+   ============================================================ */
+
+:root {
+  --bg:       #0f172a;          /* slate-900 */
+  --bg-2:     #1e293b;          /* slate-800 */
+  --line:     #334155;          /* slate-700 */
+  --line-2:   #475569;          /* slate-600 */
+  --muted:    #94a3b8;          /* slate-400 */
+  --text:     #f8fafc;          /* slate-50 */
+  --brand:    #2563eb;          /* blue-600 */
+  --brand-2:  #3b82f6;          /* blue-500 */
+  --warn:     #dc2626;          /* red-600 */
+  --warn-2:   #ef4444;          /* red-500 */
+
+  --dur: 12s;
+
+  --ease-out:  cubic-bezier(.22,.61,.36,1);
+  --ease-in:   cubic-bezier(.55,.05,.68,.19);
+  --ease-io:   cubic-bezier(.65,.05,.36,1);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: #050810;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'ss01', 'cv11', 'tnum';
+}
+
+/* ----- page chrome ----- */
+.page {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 13px;
+}
+.seg {
+  display: inline-flex;
+  background: #0f172a;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px;
+}
+.seg-btn {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  padding: 7px 14px;
+  font: inherit;
+  font-weight: 500;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color .2s, background .2s;
+}
+.seg-btn.is-on {
+  background: var(--brand);
+  color: white;
+}
+.seg-btn:not(.is-on):hover { color: var(--text); }
+.ghost {
+  appearance: none;
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color .2s, border-color .2s;
+}
+.ghost:hover { color: var(--text); border-color: var(--line-2); }
+
+/* ----- frame (the viewport for the animation) ----- */
+.frame {
+  --w: 1280;
+  --h: 720;
+  width: min(1280px, calc(100vw - 48px));
+  aspect-ratio: var(--w) / var(--h);
+  background: var(--bg);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.04) inset,
+    0 24px 80px rgba(0,0,0,.5),
+    0 8px 24px rgba(0,0,0,.35);
+  position: relative;
+  isolation: isolate;
+}
+.frame[data-format="portrait"] {
+  --w: 720;
+  --h: 1280;
+  width: min(420px, calc((100vh - 200px) * 9 / 16));
+  max-height: calc(100vh - 200px);
+}
+
+/* The stage is sized in design units (px) and scaled via transform to fill the frame.
+   This keeps every measurement absolute and resolution-independent. */
+.stage {
+  position: absolute;
+  inset: 0;
+  width: calc(var(--w) * 1px);
+  height: calc(var(--h) * 1px);
+  transform-origin: top left;
+  /* Scale to fit frame. Set via JS so it adapts to actual frame size. */
+  background:
+    radial-gradient(ellipse 1200px 600px at 50% -10%, rgba(37,99,235,.10), transparent 60%),
+    radial-gradient(ellipse 800px 500px at 50% 110%, rgba(220,38,38,.06), transparent 60%),
+    var(--bg);
+}
+
+/* Faint grid texture */
+.stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(148,163,184,.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148,163,184,.045) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+}
+
+/* ============================================================
+   SHARED ANIMATION TIMELINE  ·  12s
+   Keyframe percentages:
+     scene 1   0     →  20.83%   (0   – 2.5s)
+     scene 2  20.83  →  41.67%   (2.5 – 5s)
+     scene 3  41.67  →  62.5%    (5   – 7.5s)
+     scene 4  62.5   →  83.33%   (7.5 – 10s)
+     scene 5  83.33  →  100%     (10  – 12s)
+   ============================================================ */
+
+.scene { position: absolute; inset: 0; }
+
+/* ---------- Scene 1: hero number ---------- */
+.scene-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 28px;
+  animation: scene1 var(--dur) linear infinite;
+}
+@keyframes scene1 {
+  0%, 18%   { opacity: 1; transform: translateY(0); }
+  22%       { opacity: 0; transform: translateY(-12px); }
+  100%      { opacity: 0; transform: translateY(-12px); }
+}
+
+.hero-num {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 196px;
+  line-height: .95;
+  letter-spacing: -.04em;
+  font-feature-settings: 'tnum', 'ss01';
+  display: inline-flex;
+  align-items: baseline;
+  animation: heroNum var(--dur) var(--ease-out) infinite;
+}
+.hero-num__sign {
+  font-size: .55em;
+  color: var(--muted);
+  font-weight: 600;
+  margin-right: .08em;
+  transform: translateY(-.05em);
+}
+.hero-num__val { color: var(--text); }
+@keyframes heroNum {
+  0%   { opacity: 0; transform: translateY(20px) scale(.96); filter: blur(8px); }
+  6%   { opacity: 1; transform: translateY(0)    scale(1);   filter: blur(0); }
+  18%  { opacity: 1; transform: translateY(0)    scale(1);   filter: blur(0); }
+  22%  { opacity: 0; transform: translateY(-10px) scale(1);  filter: blur(0); }
+  100% { opacity: 0; }
+}
+
+.sub-1 {
+  animation: sub1 var(--dur) var(--ease-out) infinite;
+}
+@keyframes sub1 {
+  0%, 4%   { opacity: 0; transform: translateY(12px); }
+  8%       { opacity: 1; transform: translateY(0);   }
+  18%      { opacity: 1; transform: translateY(0);   }
+  21%      { opacity: 0; transform: translateY(-4px);   }
+  100%     { opacity: 0; }
+}
+
+.sub {
+  font-size: 28px;
+  color: var(--muted);
+  font-weight: 400;
+  letter-spacing: -.005em;
+  margin: 0;
+}
+
+/* ---------- Scenes 2–4: bars block ---------- */
+.scene-bars {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 120px;
+  gap: 36px;
+  animation: sceneBars var(--dur) linear infinite;
+}
+@keyframes sceneBars {
+  0%, 18%      { opacity: 0; transform: translateY(20px); pointer-events: none; }
+  22%          { opacity: 1; transform: translateY(0); }
+  82%          { opacity: 1; transform: translateY(0); }
+  86%          { opacity: 0; transform: translateY(-20px); }
+  100%         { opacity: 0; }
+}
+
+.num-static {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 56px;
+  letter-spacing: -.025em;
+  color: var(--text);
+  font-feature-settings: 'tnum';
+  display: flex;
+  align-items: baseline;
+  gap: .04em;
+}
+.num-static__sign { color: var(--muted); font-weight: 600; font-size: .68em; }
+
+.bars {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 28px;
+  align-items: center;
+}
+.bar-track {
+  position: relative;
+  height: 56px;
+  background: transparent;
+  border: 1.5px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.bar-fill {
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 0%;
+}
+.bar-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-feature-settings: 'tnum';
+}
+.bar-label {
+  font-size: 16px;
+  color: var(--muted);
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.bar-pct {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  color: var(--text);
+}
+.bar-pct__sub {
+  font-size: .5em;
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-left: .2em;
+}
+
+/* Withheld bar — appears scene 2 */
+.bar-row--withheld {
+  animation: rowWithheld var(--dur) var(--ease-out) infinite;
+}
+@keyframes rowWithheld {
+  0%, 18%   { opacity: 0; transform: translateX(-12px); }
+  22%       { opacity: 1; transform: translateX(0); }
+  100%      { opacity: 1; transform: translateX(0); }
+}
+.bar-fill--withheld {
+  background: var(--brand);
+  animation: fillWithheld var(--dur) var(--ease-io) infinite;
+}
+@keyframes fillWithheld {
+  0%, 22%      { width: 0%; }
+  32%          { width: 22%; }
+  100%         { width: 22%; }
+}
+.bar-row--withheld .bar-pct,
+.bar-row--withheld .bar-label {
+  animation: metaWithheld var(--dur) linear infinite;
+}
+@keyframes metaWithheld {
+  0%, 26%      { opacity: 0; }
+  32%          { opacity: 1; }
+  100%         { opacity: 1; }
+}
+
+/* Owed bar — appears scene 3 */
+.bar-row--owed {
+  animation: rowOwed var(--dur) var(--ease-out) infinite;
+}
+@keyframes rowOwed {
+  0%, 38%   { opacity: 0; transform: translateX(-12px); }
+  43%       { opacity: 1; transform: translateX(0); }
+  100%      { opacity: 1; transform: translateX(0); }
+}
+.bar-fill--owed {
+  background: var(--warn);
+  animation: fillOwed var(--dur) var(--ease-io) infinite;
+}
+@keyframes fillOwed {
+  0%, 43%      { width: 0%; }
+  55%          { width: 37%; }
+  100%         { width: 37%; }
+}
+
+/* Gap fill — scene 4 highlights the difference */
+.bar-fill--gap {
+  background: transparent;
+  border: 1.5px dashed var(--warn);
+  border-left: 0;
+  border-right: 0;
+  left: 22%;
+  width: 0%;
+  animation: gapFill var(--dur) var(--ease-io) infinite;
+}
+@keyframes gapFill {
+  0%, 63%      { width: 0%; background: transparent; opacity: 0; }
+  66%          { opacity: 1; }
+  70%          { width: 15%; background: rgba(220,38,38,.18); }
+  82%          { width: 15%; background: rgba(220,38,38,.18); opacity: 1; }
+  86%          { opacity: 0; }
+  100%         { width: 15%; opacity: 0; }
+}
+
+.bar-row--owed .bar-pct,
+.bar-row--owed .bar-label {
+  animation: metaOwed var(--dur) linear infinite;
+}
+@keyframes metaOwed {
+  0%, 47%      { opacity: 0; }
+  55%          { opacity: 1; }
+  100%         { opacity: 1; }
+}
+
+/* ---------- Shortfall counter ---------- */
+.shortfall {
+  margin-top: 8px;
+  padding: 24px 28px;
+  border: 1.5px solid var(--warn);
+  background: rgba(220,38,38,.08);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  animation: shortfallBox var(--dur) var(--ease-out) infinite;
+}
+@keyframes shortfallBox {
+  0%, 66%   { opacity: 0; transform: translateY(8px); }
+  72%       { opacity: 1; transform: translateY(0); }
+  82%       { opacity: 1; transform: translateY(0); }
+  86%       { opacity: 0; transform: translateY(-8px); }
+  100%      { opacity: 0; }
+}
+.shortfall__label {
+  font-size: 14px;
+  color: var(--warn-2);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.shortfall__num {
+  font-family: 'Inter', sans-serif;
+  font-feature-settings: 'tnum';
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 1;
+  letter-spacing: -.02em;
+  color: var(--warn-2);
+  display: inline-flex;
+  align-items: baseline;
+}
+.shortfall__sign { font-size: .65em; color: var(--warn); margin-right: .04em; font-weight: 600; }
+
+.shortfall__counter {
+  /* Populated by hero.js, formatted with thousand separators. */
+  font-variant-numeric: tabular-nums;
+}
+.shortfall__counter::before {
+  /* Reserve width so the box doesn't reflow as digits change */
+  content: "30,000";
+  visibility: hidden;
+  display: inline-block;
+  width: 0;
+  overflow: hidden;
+}
+
+/* Subtitles for scenes 2, 3, 4 */
+.sub-2, .sub-3, .sub-4 {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 108px;
+  text-align: center;
+  padding: 0 120px;
+}
+.sub-2 { animation: subN var(--dur) linear infinite; --in: 24%; --hold: 39%; --out: 42%; }
+.sub-3 { animation: subN var(--dur) linear infinite; --in: 45%; --hold: 60%; --out: 63%; }
+.sub-4 { animation: subN var(--dur) linear infinite; --in: 66%; --hold: 82%; --out: 85%; }
+
+@keyframes subN {
+  0%             { opacity: 0; transform: translateY(8px); }
+  /* These percentages are virtual — actual elements override via inline calc.
+     We approximate with discrete blocks by using same keyframes for all three
+     and offsetting via animation-delay is messy with infinite loops.
+     Instead we use individual @keyframes per subtitle. */
+}
+
+/* Override per subtitle */
+.sub-2 { animation-name: sub2; }
+.sub-3 { animation-name: sub3; }
+.sub-4 { animation-name: sub4; }
+
+@keyframes sub2 {
+  0%, 22%   { opacity: 0; transform: translateY(8px); }
+  26%       { opacity: 1; transform: translateY(0); }
+  39%       { opacity: 1; transform: translateY(0); }
+  42%       { opacity: 0; transform: translateY(-8px); }
+  100%      { opacity: 0; }
+}
+@keyframes sub3 {
+  0%, 43%   { opacity: 0; transform: translateY(8px); }
+  47%       { opacity: 1; transform: translateY(0); }
+  60%       { opacity: 1; transform: translateY(0); }
+  63%       { opacity: 0; transform: translateY(-8px); }
+  100%      { opacity: 0; }
+}
+@keyframes sub4 {
+  0%, 64%   { opacity: 0; transform: translateY(8px); }
+  68%       { opacity: 1; transform: translateY(0); }
+  82%       { opacity: 1; transform: translateY(0); }
+  85%       { opacity: 0; transform: translateY(-8px); }
+  100%      { opacity: 0; }
+}
+
+/* ---------- Scene 5: logo + CTA ---------- */
+.scene-5 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  text-align: center;
+  animation: scene5 var(--dur) var(--ease-out) infinite;
+}
+@keyframes scene5 {
+  0%, 84%   { opacity: 0; transform: translateY(12px); pointer-events: none; }
+  88%       { opacity: 1; transform: translateY(0); }
+  100%      { opacity: 1; transform: translateY(0); }
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  color: var(--text);
+}
+.logo__mark {
+  width: 56px;
+  height: 56px;
+  display: inline-flex;
+  color: var(--brand-2);
+}
+.logo__word {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  letter-spacing: -.035em;
+  color: var(--text);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 28px;
+  border-radius: 999px;
+  background: var(--brand);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -.01em;
+  box-shadow: 0 8px 24px rgba(37,99,235,.35), 0 1px 0 rgba(255,255,255,.15) inset;
+  animation: ctaPulse var(--dur) var(--ease-out) infinite;
+}
+.cta__arrow {
+  display: inline-block;
+  transform: translateY(-1px);
+  font-weight: 500;
+}
+@keyframes ctaPulse {
+  0%, 86%   { opacity: 0; transform: translateY(6px) scale(.98); }
+  91%       { opacity: 1; transform: translateY(0) scale(1); }
+  100%      { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.footnote {
+  font-size: 16px;
+  color: var(--muted);
+  letter-spacing: .02em;
+  margin: 0;
+  animation: footFade var(--dur) var(--ease-out) infinite;
+}
+@keyframes footFade {
+  0%, 89%   { opacity: 0; }
+  94%       { opacity: 1; }
+  100%      { opacity: 1; }
+}
+
+/* ---------- Persistent chrome ---------- */
+.chrome {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 0;
+  padding: 22px 40px 26px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: .04em;
+  pointer-events: none;
+  font-feature-settings: 'tnum';
+}
+.chrome__left { display: inline-flex; align-items: center; gap: 10px; font-weight: 500; }
+.chrome__left .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--brand-2);
+  box-shadow: 0 0 12px var(--brand-2);
+}
+.chrome__cite { opacity: .8; }
+
+.ticker {
+  position: absolute;
+  top: 28px;
+  right: 40px;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: .08em;
+  display: inline-flex;
+  gap: 6px;
+}
+.ticker__n { color: var(--text); animation: tick var(--dur) steps(1) infinite; }
+.ticker__sep { opacity: .5; }
+@keyframes tick {
+  0%   { content: "01"; }
+  20%  { content: "02"; }
+  41%  { content: "03"; }
+  62%  { content: "04"; }
+  83%  { content: "05"; }
+}
+/* CSS content cycling — use ::before instead so we can swap the text */
+.ticker__n { position: relative; min-width: 1.5em; }
+.ticker__n::before {
+  content: "01";
+  animation: tickN var(--dur) steps(1, end) infinite;
+}
+@keyframes tickN {
+  0%   { content: "01"; }
+  20.8%  { content: "02"; }
+  41.6%  { content: "03"; }
+  62.5%  { content: "04"; }
+  83.3%  { content: "05"; }
+}
+
+.progress {
+  position: absolute;
+  left: 0; right: 0;
+  top: 0;
+  height: 2px;
+  background: rgba(255,255,255,.06);
+  pointer-events: none;
+}
+.progress__fill {
+  height: 100%;
+  width: 0%;
+  background: var(--brand-2);
+  animation: progress var(--dur) linear infinite;
+}
+@keyframes progress {
+  0%   { width: 0%; }
+  100% { width: 100%; }
+}
+
+/* ============================================================
+   PORTRAIT (9:16) OVERRIDES
+   ============================================================ */
+.frame[data-format="portrait"] .stage {
+  background:
+    radial-gradient(ellipse 600px 800px at 50% 10%, rgba(37,99,235,.12), transparent 60%),
+    radial-gradient(ellipse 500px 600px at 50% 95%, rgba(220,38,38,.06), transparent 60%),
+    var(--bg);
+}
+
+.frame[data-format="portrait"] .scene-bars {
+  padding: 0 60px;
+  gap: 32px;
+  justify-content: center;
+}
+
+.frame[data-format="portrait"] .hero-num { font-size: 156px; }
+.frame[data-format="portrait"] .sub { font-size: 32px; padding: 0 60px; }
+
+.frame[data-format="portrait"] .num-static { font-size: 64px; }
+
+.frame[data-format="portrait"] .bar-row {
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+.frame[data-format="portrait"] .bar-meta {
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+.frame[data-format="portrait"] .bar-pct { font-size: 40px; }
+.frame[data-format="portrait"] .bar-label { font-size: 18px; }
+.frame[data-format="portrait"] .bar-track { height: 64px; }
+
+.frame[data-format="portrait"] .shortfall {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 28px;
+}
+.frame[data-format="portrait"] .shortfall__num { font-size: 80px; }
+.frame[data-format="portrait"] .shortfall__label { font-size: 16px; }
+
+.frame[data-format="portrait"] .sub-2,
+.frame[data-format="portrait"] .sub-3,
+.frame[data-format="portrait"] .sub-4 {
+  bottom: 200px;
+  padding: 0 60px;
+  font-size: 30px;
+}
+
+.frame[data-format="portrait"] .logo__word { font-size: 80px; }
+.frame[data-format="portrait"] .logo__mark { width: 70px; height: 70px; }
+.frame[data-format="portrait"] .cta { font-size: 26px; padding: 22px 34px; }
+.frame[data-format="portrait"] .footnote { font-size: 20px; padding: 0 40px; text-align: center; }
+
+.frame[data-format="portrait"] .chrome {
+  padding: 32px 48px 40px;
+  font-size: 16px;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
+}
+.frame[data-format="portrait"] .chrome__right { font-size: 14px; }
+.frame[data-format="portrait"] .ticker { top: 40px; right: 48px; font-size: 15px; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; }
+}

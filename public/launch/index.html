@@ -1,0 +1,1027 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>mathstub — Launch deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    /* palette */
+    --blue:    #2563eb;
+    --blue-2:  #1d4ed8;
+    --blue-50: #eff6ff;
+    --blue-100:#dbeafe;
+    --green:   #047857;
+    --green-50:#ecfdf5;
+    --red:     #dc2626;
+    --red-50:  #fef2f2;
+    --ink:     #0f172a;
+    --ink-2:   #1e293b;
+    --muted:   #475569;
+    --muted-2: #64748b;
+    --line:    #e2e8f0;
+    --line-2:  #cbd5e1;
+    --bg:      #f8fafc;
+    --paper:   #ffffff;
+
+    /* type scale (1920x1080) */
+    --type-display:  120px;
+    --type-hero:     96px;
+    --type-title:    68px;
+    --type-subtitle: 40px;
+    --type-lead:     34px;
+    --type-body:     30px;
+    --type-small:    24px;
+    --type-mono:     22px;
+    --type-eyebrow:  20px;
+
+    /* spacing */
+    --pad-x:      120px;
+    --pad-top:    100px;
+    --pad-bottom: 90px;
+    --gap-title:  44px;
+    --gap-item:   28px;
+  }
+
+  html, body { margin: 0; padding: 0; background: #000; color: var(--ink); }
+  body { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-feature-settings: "ss01","cv11","tnum"; -webkit-font-smoothing: antialiased; }
+  .mono { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; }
+
+  /* ---------- slide frame ---------- */
+  deck-stage > section {
+    background: var(--bg);
+    color: var(--ink);
+    padding: var(--pad-top) var(--pad-x) var(--pad-bottom);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* eyebrow row at top of most slides */
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: var(--type-eyebrow);
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: var(--gap-title);
+  }
+  .eyebrow .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--blue); }
+  .eyebrow .num { color: var(--ink); font-variant-numeric: tabular-nums; }
+  .eyebrow .sep { width: 36px; height: 1px; background: var(--line-2); }
+
+  h1, h2, h3, p, ul, ol { margin: 0; }
+  h1 { font-size: var(--type-title); font-weight: 700; line-height: 1.04; letter-spacing: -0.02em; color: var(--ink); }
+  h2 { font-size: var(--type-subtitle); font-weight: 600; line-height: 1.15; letter-spacing: -0.01em; color: var(--ink); }
+  p  { font-size: var(--type-body); line-height: 1.45; color: var(--ink-2); }
+
+  .lead { font-size: var(--type-lead); line-height: 1.35; color: var(--ink-2); max-width: 1400px; }
+  .muted { color: var(--muted); }
+  .ink   { color: var(--ink); }
+  .blue  { color: var(--blue); }
+  .red   { color: var(--red); }
+  .green { color: var(--green); }
+
+  .rule { height: 1px; background: var(--line); width: 100%; }
+
+  /* ---------- wordmark ---------- */
+  .wm {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    color: var(--ink);
+    display: inline-flex;
+    align-items: baseline;
+    line-height: 1;
+  }
+  .wm .slash { color: var(--blue); margin: 0 0.06em; font-weight: 600; }
+  .wm .stub  { color: var(--blue); }
+
+  /* footer brand on every slide */
+  .slide-footer {
+    position: absolute;
+    left: var(--pad-x);
+    right: var(--pad-x);
+    bottom: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+    color: var(--muted-2);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .slide-footer .wm { font-size: 22px; }
+  .slide-footer .right { font-variant-numeric: tabular-nums; }
+
+  /* ===================================================== */
+  /* SLIDE 1 — TITLE                                       */
+  /* ===================================================== */
+  .s-title { justify-content: center; }
+  .s-title .topbar {
+    position: absolute; top: 56px; left: var(--pad-x); right: var(--pad-x);
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 20px; color: var(--muted); font-weight: 500;
+  }
+  .s-title .topbar .chip {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 8px 16px; border: 1px solid var(--line-2); border-radius: 999px;
+    background: var(--paper); color: var(--ink-2); font-size: 18px; font-weight: 500;
+  }
+  .s-title .topbar .chip .pip { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+
+  .hero-wm { font-size: var(--type-display); letter-spacing: -0.055em; }
+  .hero-line {
+    font-size: 44px; line-height: 1.25; color: var(--ink-2); font-weight: 500;
+    max-width: 1450px; margin-top: 36px; letter-spacing: -0.01em;
+  }
+  .hero-sub {
+    font-size: 28px; color: var(--muted); font-weight: 500;
+    margin-top: 28px; letter-spacing: 0.005em;
+  }
+  .hero-pills { margin-top: 56px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .pill {
+    border: 1px solid var(--line-2); background: var(--paper);
+    padding: 12px 20px; border-radius: 999px;
+    font-size: 22px; color: var(--ink-2); font-weight: 500;
+  }
+  .pill.solid { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+  /* ===================================================== */
+  /* SLIDE 2 — PROBLEM                                     */
+  /* ===================================================== */
+  .s-problem .body { display: grid; grid-template-columns: 1.05fr 1fr; gap: 80px; align-items: end; flex: 1; }
+  .s-problem h1 { font-size: 60px; max-width: 780px; }
+  .s-problem .kicker { font-size: 26px; color: var(--muted); font-weight: 500; margin-top: 24px; max-width: 760px; line-height: 1.45; }
+
+  .bars {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
+    background: var(--paper); border: 1px solid var(--line); border-radius: 20px;
+    padding: 40px 48px 36px; position: relative;
+    box-shadow: 0 1px 0 rgba(15,23,42,0.04);
+  }
+  .bar-col { display: flex; flex-direction: column; align-items: stretch; gap: 14px; }
+  .bar-label { font-size: 20px; color: var(--muted); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+  .bar-wrap { height: 360px; display: flex; align-items: flex-end; position: relative; }
+  .bar {
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+    position: relative;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 16px 0 14px;
+  }
+  .bar.withheld { background: linear-gradient(180deg, #94a3b8 0%, #64748b 100%); height: 49%; }
+  .bar.owed     { background: linear-gradient(180deg, #ef4444 0%, #b91c1c 100%); height: 82%; }
+  .bar .pct { font-size: 56px; font-weight: 700; color: #fff; line-height: 1; letter-spacing: -0.02em; text-align: center; }
+  .bar .amt { font-size: 24px; color: rgba(255,255,255,0.92); font-weight: 600; text-align: center; margin-top: 6px; font-variant-numeric: tabular-nums; }
+  .bar-caption { font-size: 18px; color: var(--muted-2); font-weight: 500; text-align: center; }
+
+  .gap-callout {
+    position: absolute;
+    top: 56px; right: 48px;
+    background: var(--red);
+    color: #fff;
+    padding: 16px 22px 14px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 30px -10px rgba(220,38,38,0.5);
+  }
+  .gap-callout .label { font-size: 14px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; }
+  .gap-callout .num   { font-size: 42px; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; line-height: 1.1; }
+
+  .bars .axis {
+    position: absolute; left: 48px; right: 48px; bottom: 70px;
+    height: 1px; background: var(--line);
+  }
+
+  .scenario {
+    margin-top: 22px; font-size: 18px; color: var(--muted); text-align: center; font-weight: 500;
+  }
+
+  /* ===================================================== */
+  /* SLIDE 3 — SOLUTION                                    */
+  /* ===================================================== */
+  .s-solution .body { display: grid; grid-template-columns: 1fr 1.25fr; gap: 80px; align-items: center; flex: 1; }
+  .s-solution h1 { font-size: 60px; max-width: 620px; }
+  .s-solution .lead { font-size: 28px; color: var(--muted); margin-top: 24px; max-width: 600px; }
+
+  .calc-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    background: var(--paper); border: 1px solid var(--line); border-radius: 18px;
+    padding: 28px;
+  }
+  .calc-card {
+    background: var(--bg); border: 1px solid var(--line); border-radius: 12px;
+    padding: 24px 22px; display: flex; flex-direction: column; gap: 12px;
+    min-height: 180px; position: relative;
+  }
+  .calc-card .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; color: var(--muted); letter-spacing: 0.06em;
+    text-transform: uppercase; font-weight: 500;
+  }
+  .calc-card .name { font-size: 22px; font-weight: 600; color: var(--ink); line-height: 1.2; }
+  .calc-card .blurb { font-size: 15px; color: var(--muted); line-height: 1.4; margin-top: auto; }
+  .calc-card.hi {
+    background: var(--blue); border-color: var(--blue);
+    box-shadow: 0 14px 40px -12px rgba(37,99,235,0.45);
+  }
+  .calc-card.hi .tag { color: rgba(255,255,255,0.7); }
+  .calc-card.hi .name, .calc-card.hi .blurb { color: #fff; }
+  .calc-card.hi .blurb { color: rgba(255,255,255,0.85); }
+  .calc-card.hi .arrow { position: absolute; top: 20px; right: 20px; width: 28px; height: 28px; border-radius: 50%; background: #fff; color: var(--blue); display: grid; place-items: center; font-weight: 700; }
+
+  /* ===================================================== */
+  /* SLIDE 4 — PROOF                                       */
+  /* ===================================================== */
+  .s-proof .body { display: grid; grid-template-columns: 1fr 1.1fr; gap: 100px; align-items: center; flex: 1; }
+  .s-proof h1 { font-size: 64px; max-width: 620px; }
+  .s-proof .kicker { font-size: 26px; color: var(--muted); margin-top: 28px; max-width: 580px; line-height: 1.5; }
+
+  .checks { display: flex; flex-direction: column; gap: 20px; }
+  .check {
+    display: grid; grid-template-columns: 56px 1fr; gap: 24px;
+    background: var(--paper); border: 1px solid var(--line); border-radius: 14px;
+    padding: 26px 30px; align-items: start;
+  }
+  .check .mark {
+    width: 44px; height: 44px; border-radius: 50%; background: var(--blue);
+    color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 22px;
+    box-shadow: 0 6px 16px -6px rgba(37,99,235,0.5);
+  }
+  .check .title { font-size: 28px; font-weight: 600; color: var(--ink); line-height: 1.25; }
+  .check .sub   { font-size: 19px; color: var(--muted); margin-top: 8px; line-height: 1.45; }
+  .check .sub .mono { font-size: 17px; color: var(--ink-2); background: var(--bg); padding: 2px 8px; border-radius: 5px; border: 1px solid var(--line); }
+
+  /* ===================================================== */
+  /* SLIDE 5 — DEMO                                        */
+  /* ===================================================== */
+  .s-demo h1 { font-size: 52px; }
+  .s-demo .browser {
+    margin-top: 36px;
+    background: #fff; border: 1px solid var(--line); border-radius: 16px;
+    box-shadow: 0 30px 60px -30px rgba(15,23,42,0.25);
+    overflow: hidden;
+    flex: 1;
+    display: flex; flex-direction: column;
+  }
+  .chrome {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 18px; background: #f1f5f9; border-bottom: 1px solid var(--line);
+  }
+  .dots { display: flex; gap: 8px; }
+  .dots span { width: 12px; height: 12px; border-radius: 50%; background: #cbd5e1; }
+  .dots span:nth-child(1) { background: #f87171; }
+  .dots span:nth-child(2) { background: #fbbf24; }
+  .dots span:nth-child(3) { background: #4ade80; }
+  .addr {
+    flex: 1; background: #fff; border: 1px solid var(--line);
+    border-radius: 8px; padding: 8px 14px;
+    font-family: 'JetBrains Mono', monospace; font-size: 15px; color: var(--muted);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .addr .lock { color: var(--green); font-size: 13px; }
+  .addr .host { color: var(--ink-2); }
+
+  .calc-ui {
+    flex: 1;
+    display: grid; grid-template-columns: 1fr 1.25fr;
+    background: #fff;
+  }
+  .calc-form { padding: 44px 48px; border-right: 1px solid var(--line); }
+  .calc-form .h { font-size: 30px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
+  .calc-form .sub { font-size: 18px; color: var(--muted); margin-top: 6px; }
+  .field { margin-top: 24px; }
+  .field label { font-size: 15px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+  .field .input {
+    margin-top: 8px; height: 52px; border: 1px solid var(--line-2); border-radius: 10px;
+    padding: 0 16px; display: flex; align-items: center; justify-content: space-between;
+    font-size: 22px; font-weight: 600; color: var(--ink); background: #fff;
+    font-variant-numeric: tabular-nums;
+  }
+  .field .input .pre { color: var(--muted); font-weight: 500; }
+  .field .seg {
+    margin-top: 8px; display: flex; gap: 0; border: 1px solid var(--line-2); border-radius: 10px; overflow: hidden;
+  }
+  .field .seg > span {
+    flex: 1; text-align: center; padding: 14px 0; font-size: 17px; font-weight: 500; color: var(--muted); background: #fff;
+    border-right: 1px solid var(--line);
+  }
+  .field .seg > span:last-child { border-right: none; }
+  .field .seg > span.on { background: var(--ink); color: #fff; font-weight: 600; }
+  .field .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  .calc-result { padding: 44px 48px; background: linear-gradient(180deg, #fafbfc 0%, #f1f5f9 100%); display: flex; flex-direction: column; gap: 18px; }
+  .result-eyebrow { font-size: 14px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .total-card {
+    background: #fff; border: 1px solid var(--line); border-radius: 14px;
+    padding: 26px 28px; display: flex; align-items: flex-end; justify-content: space-between;
+    box-shadow: 0 1px 0 rgba(15,23,42,0.03);
+  }
+  .total-card .label { font-size: 18px; color: var(--muted); font-weight: 600; }
+  .total-card .total { font-size: 64px; color: var(--red); font-weight: 700; letter-spacing: -0.02em; line-height: 1; font-variant-numeric: tabular-nums; }
+  .breakdown { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .bd {
+    background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 18px 22px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .bd .lab { font-size: 14px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+  .bd .val { font-size: 32px; color: var(--red); font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+  .bd .cite { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--muted-2); margin-top: 4px; }
+
+  .suggest {
+    background: var(--green-50); border: 1px solid #a7f3d0; border-radius: 12px; padding: 20px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  }
+  .suggest .l { display: flex; flex-direction: column; gap: 4px; }
+  .suggest .l .t { font-size: 18px; color: var(--green); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+  .suggest .l .d { font-size: 17px; color: var(--ink-2); font-weight: 500; }
+  .suggest .v { font-size: 36px; color: var(--green); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  /* ===================================================== */
+  /* SLIDE 6 — HOW IT WORKS                                */
+  /* ===================================================== */
+  .s-how h1 { font-size: 64px; }
+  .s-how .lead { font-size: 28px; color: var(--muted); margin-top: 20px; max-width: 1200px; }
+  .steps {
+    margin-top: 60px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+    flex: 1;
+  }
+  .step {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 18px;
+    padding: 44px 40px;
+    display: flex; flex-direction: column; gap: 24px;
+    position: relative;
+  }
+  .step .n {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px; font-weight: 600; color: var(--blue); letter-spacing: 0.08em;
+  }
+  .step h2 { font-size: 36px; line-height: 1.2; max-width: 360px; }
+  .step .d { font-size: 21px; color: var(--muted); line-height: 1.5; }
+  .step .pic {
+    margin-top: auto;
+    background: var(--bg); border: 1px solid var(--line); border-radius: 12px;
+    padding: 20px; min-height: 180px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .step .pic .opt {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 14px; border-radius: 8px;
+    background: #fff; border: 1px solid var(--line);
+    font-size: 16px; color: var(--ink-2); font-weight: 500;
+  }
+  .step .pic .opt.on { background: var(--blue-50); border-color: var(--blue); color: var(--blue-2); }
+  .step .pic .opt .box { width: 16px; height: 16px; border-radius: 4px; border: 1.5px solid var(--line-2); }
+  .step .pic .opt.on .box { background: var(--blue); border-color: var(--blue); }
+
+  .step .pic .field-mini {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 14px; background: #fff; border: 1px solid var(--line); border-radius: 8px;
+    font-size: 16px; color: var(--ink-2);
+  }
+  .step .pic .field-mini .v { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--ink); }
+
+  .step .pic .line-out {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 14px; background: #fff; border: 1px solid var(--line); border-radius: 8px;
+    font-size: 15px; color: var(--ink-2);
+  }
+  .step .pic .line-out .v { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--red); }
+  .step .pic .line-out .cite { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); }
+
+  /* ===================================================== */
+  /* SLIDE 7 — WHY FREE                                    */
+  /* ===================================================== */
+  .s-why { background: var(--ink); color: #f8fafc; }
+  .s-why .eyebrow { color: #94a3b8; }
+  .s-why .eyebrow .num { color: #fff; }
+  .s-why .eyebrow .sep { background: #334155; }
+  .s-why h1 { color: #fff; font-size: 72px; max-width: 1450px; letter-spacing: -0.025em; }
+  .s-why h1 em { font-style: normal; color: #60a5fa; }
+  .s-why .why-grid {
+    margin-top: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+  }
+  .s-why .why-card {
+    background: #1e293b; border: 1px solid #334155; border-radius: 14px;
+    padding: 32px 36px;
+  }
+  .s-why .why-card .lab { font-size: 17px; color: #60a5fa; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  .s-why .why-card .txt { font-size: 26px; color: #e2e8f0; margin-top: 14px; line-height: 1.4; font-weight: 500; }
+  .s-why .why-card .txt strong { color: #fff; font-weight: 700; }
+  .s-why .slide-footer { color: #64748b; }
+  .s-why .slide-footer .wm { color: #fff; }
+  .s-why .slide-footer .wm .stub { color: #60a5fa; }
+  .s-why .slide-footer .wm .slash { color: #60a5fa; }
+
+  /* ===================================================== */
+  /* SLIDE 8 — ROADMAP                                     */
+  /* ===================================================== */
+  .s-roadmap h1 { font-size: 64px; }
+  .s-roadmap .lead { font-size: 28px; color: var(--muted); margin-top: 20px; }
+  .timeline {
+    margin-top: 60px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px;
+    flex: 1;
+    align-content: start;
+  }
+  .tl {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 16px;
+    padding: 32px 32px 36px;
+    display: flex; flex-direction: column; gap: 18px;
+    position: relative; min-height: 380px;
+  }
+  .tl .q {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px; font-weight: 700; color: var(--blue);
+    letter-spacing: 0.05em;
+  }
+  .tl .when { font-size: 15px; color: var(--muted); font-weight: 500; margin-top: -8px; }
+  .tl h2 { font-size: 30px; line-height: 1.2; }
+  .tl .d { font-size: 19px; color: var(--muted); line-height: 1.45; }
+  .tl .badge {
+    display: inline-flex; padding: 6px 12px; border-radius: 999px;
+    background: var(--blue-50); color: var(--blue-2);
+    font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+    margin-top: auto;
+    border: 1px solid var(--blue-100);
+    width: max-content;
+  }
+  .tl.always { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .tl.always .q { color: #60a5fa; }
+  .tl.always .when { color: #94a3b8; }
+  .tl.always h2 { color: #fff; }
+  .tl.always .d { color: #cbd5e1; }
+  .tl.always .badge { background: rgba(96,165,250,0.15); color: #93c5fd; border-color: #1e40af; }
+
+  /* ===================================================== */
+  /* SLIDE 9 — WHAT'S NEXT                                 */
+  /* ===================================================== */
+  .s-next h1 { font-size: 64px; max-width: 1500px; }
+  .s-next .lead { font-size: 30px; color: var(--muted); margin-top: 28px; max-width: 1500px; }
+  .next-grid {
+    margin-top: 60px;
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px;
+    align-items: stretch;
+    flex: 1;
+  }
+  .review-card {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 18px;
+    padding: 44px 48px;
+    display: flex; flex-direction: column; gap: 24px;
+  }
+  .review-card .stat { display: flex; align-items: center; gap: 14px; }
+  .review-card .stat .dot { width: 14px; height: 14px; border-radius: 50%; background: #f59e0b; box-shadow: 0 0 0 6px rgba(245,158,11,0.15); }
+  .review-card .stat .t { font-size: 22px; font-weight: 700; color: var(--ink); letter-spacing: 0.04em; text-transform: uppercase; }
+  .review-card h2 { font-size: 38px; line-height: 1.25; max-width: 640px; }
+  .review-card .d { font-size: 22px; color: var(--muted); line-height: 1.5; }
+  .review-card .d strong { color: var(--ink); font-weight: 600; }
+
+  .email-card {
+    background: var(--ink); color: #fff; border-radius: 18px;
+    padding: 44px 48px;
+    display: flex; flex-direction: column; gap: 18px;
+    justify-content: center;
+  }
+  .email-card .lab { font-size: 17px; color: #93c5fd; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .email-card .addr-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 44px; font-weight: 600; color: #fff;
+    letter-spacing: -0.01em;
+  }
+  .email-card .d { font-size: 21px; color: #cbd5e1; line-height: 1.5; }
+  .email-card .promise {
+    margin-top: 12px; padding-top: 20px; border-top: 1px solid #334155;
+    font-size: 19px; color: #93c5fd; font-weight: 500;
+  }
+
+  /* ===================================================== */
+  /* SLIDE 10 — CTA                                        */
+  /* ===================================================== */
+  .s-cta { justify-content: center; align-items: center; text-align: center; }
+  .s-cta .cta-wm { font-size: 200px; letter-spacing: -0.06em; line-height: 0.95; }
+  .s-cta .tag { font-size: 26px; color: var(--muted); margin-top: 20px; font-weight: 500; letter-spacing: 0.04em; }
+  .s-cta .link {
+    margin-top: 64px;
+    display: inline-flex; align-items: center; gap: 18px;
+    background: var(--blue); color: #fff;
+    padding: 28px 44px; border-radius: 16px;
+    font-size: 36px; font-weight: 600; letter-spacing: -0.01em;
+    box-shadow: 0 24px 60px -24px rgba(37,99,235,0.6);
+  }
+  .s-cta .link .arrow { font-size: 32px; }
+  .s-cta .link .mono { font-family: 'JetBrains Mono', monospace; font-weight: 500; }
+  .s-cta .three {
+    margin-top: 56px; display: flex; gap: 48px; justify-content: center;
+    font-size: 22px; color: var(--muted); font-weight: 500;
+  }
+  .s-cta .three span { display: inline-flex; align-items: center; gap: 10px; }
+  .s-cta .three span::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+
+</style>
+
+<script type="application/json" id="speaker-notes">
+[
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  ""
+]
+</script>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- ============== SLIDE 1: TITLE ============== -->
+  <section data-label="01 Title" class="s-title">
+    <div class="topbar">
+      <span class="chip"><span class="pip"></span>Show HN &amp; r/personalfinance launch · May 28, 2026</span>
+      <span class="mono" style="font-size:18px;color:var(--muted);">v1.0 · 2026 brackets</span>
+    </div>
+
+    <div>
+      <div class="wm hero-wm">math<span class="stub">stub</span></div>
+      <div class="hero-line">Free tax math for US tech workers with equity comp.</div>
+      <div class="hero-sub">RSUs · ISOs · ESPP · NSO · bonuses · quarterly estimates.</div>
+      <div class="hero-pills">
+        <span class="pill solid">30 seconds</span>
+        <span class="pill">No signup</span>
+        <span class="pill">Runs in your browser</span>
+        <span class="pill">Every claim cites IRC §</span>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span class="wm">math<span class="stub">stub</span>.com</span>
+      <span class="right">01 / 10</span>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 2: PROBLEM ============== -->
+  <section data-label="02 Problem" class="s-problem">
+    <div class="eyebrow">
+      <span class="dot"></span><span class="num">01</span><span class="sep"></span><span>The problem</span>
+    </div>
+
+    <div class="body">
+      <div>
+        <h1>Your employer underwithheld.<br/>You don't know how much<br/>until April.</h1>
+        <div class="kicker">Federal supplemental withholding on equity is a flat <strong>22%</strong>. A senior IC at a public tech company is usually in the <strong>32&ndash;37%</strong> marginal bracket. The gap shows up as a tax bill.</div>
+      </div>
+
+      <div>
+        <div class="bars">
+          <div class="bar-col">
+            <div class="bar-label">Withheld by employer</div>
+            <div class="bar-wrap">
+              <div class="bar withheld">
+                <div class="pct">22%</div>
+                <div class="amt">$44,000</div>
+              </div>
+            </div>
+            <div class="bar-caption">IRC §3402(g) supplemental rate</div>
+          </div>
+
+          <div class="bar-col">
+            <div class="bar-label">Actually owed</div>
+            <div class="bar-wrap">
+              <div class="bar owed">
+                <div class="pct">37%</div>
+                <div class="amt">$74,000</div>
+              </div>
+              <div class="gap-callout">
+                <div class="label">The gap</div>
+                <div class="num">$30,000</div>
+              </div>
+            </div>
+            <div class="bar-caption">Marginal rate at $200K + base + CA</div>
+          </div>
+        </div>
+        <div class="scenario">Scenario: $200,000 RSU vest, single filer, California resident, $250K base salary</div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span class="wm">math<span class="stub">stub</span>.com</span>
+      <span class="right">02 / 10</span>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 3: SOLUTION ============== -->
+  <section data-label="03 Solution" class="s-solution">
+    <div class="eyebrow">
+      <span class="dot"></span><span class="num">02</span><span class="sep"></span><span>The solution</span>
+    </div>
+
+    <div class="body">
+      <div>
+        <h1>Find the gap<br/>in 30 seconds.</h1>
+        <div class="lead">Math runs in your browser. Inputs never leave your device. Eight calculators, one mental model.</div>
+      </div>
+
+      <div class="calc-grid">
+        <div class="calc-card hi">
+          <span class="arrow">→</span>
+          <span class="tag">/rsu-tax-shortfall</span>
+          <span class="name">RSU Shortfall</span>
+          <span class="blurb">Estimate the April bill from a single vest.</span>
+        </div>
+        <div class="calc-card">
+          <span class="tag">/iso-amt</span>
+          <span class="name">ISO &amp; AMT</span>
+          <span class="blurb">Spread, AMT income, credit carryforward.</span>
+        </div>
+        <div class="calc-card">
+          <span class="tag">/espp-discount</span>
+          <span class="name">ESPP Discount</span>
+          <span class="blurb">Qualifying vs disqualifying disposition.</span>
+        </div>
+        <div class="calc-card">
+          <span class="tag">/nso-exercise</span>
+          <span class="name">NSO Exercise</span>
+          <span class="blurb">Ordinary income + payroll on exercise.</span>
+        </div>
+        <div class="calc-card">
+          <span class="tag">/bonus-withholding</span>
+          <span class="name">Bonus Withholding</span>
+          <span class="blurb">Aggregate vs flat method side by side.</span>
+        </div>
+        <div class="calc-card">
+          <span class="tag">/quarterly-estimates</span>
+          <span class="name">Quarterly Estimates</span>
+          <span class="blurb">Safe-harbor 110% prior-year rule.</span>
+        </div>
+        <div class="calc-card">
+          <span class="tag">/multi-state</span>
+          <span class="name">Multi-state Allocation</span>
+          <span class="blurb">Day-counting for vests across states.</span>
+        </div>
+        <div class="calc-card">
+          <span class="tag">/w4-extra</span>
+          <span class="name">W-4 Extra Withholding</span>
+          <span class="blurb">Per-paycheck dollar amount to close the gap.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span class="wm">math<span class="stub">stub</span>.com</span>
+      <span class="right">03 / 10</span>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 4: PROOF ============== -->
+  <section data-label="04 Proof" class="s-proof">
+    <div class="eyebrow">
+      <span class="dot"></span><span class="num">03</span><span class="sep"></span><span>Why you should trust the numbers</span>
+    </div>
+
+    <div class="body">
+      <div>
+        <h1>Math you can audit.</h1>
+        <div class="kicker">Every formula on the site corresponds to a tested function in <span class="mono" style="font-size:22px;background:var(--paper);padding:3px 10px;border:1px solid var(--line);border-radius:6px;">lib/tax</span>. Every number traces back to a primary source.</div>
+      </div>
+
+      <div class="checks">
+        <div class="check">
+          <span class="mark">✓</span>
+          <div>
+            <div class="title">446 unit tests on the calculation modules</div>
+            <div class="sub">Bracket math, AMT, FICA wage base, state add-ons &mdash; every branch covered. CI runs on every commit.</div>
+          </div>
+        </div>
+        <div class="check">
+          <span class="mark">✓</span>
+          <div>
+            <div class="title">Every blog post cites an IRC section</div>
+            <div class="sub">23 guides, each footnoted to <span class="mono">26 U.S.C.</span> or an IRS publication. No hand-wavy "consult your CPA" filler.</div>
+          </div>
+        </div>
+        <div class="check">
+          <span class="mark">✓</span>
+          <div>
+            <div class="title">Bracket constants version-controlled per tax year</div>
+            <div class="sub"><span class="mono">brackets/2024.ts</span>, <span class="mono">brackets/2025.ts</span>, <span class="mono">brackets/2026.ts</span>. Switch years; the math switches with you.</div>
+          </div>
+        </div>
+        <div class="check">
+          <span class="mark">✓</span>
+          <div>
+            <div class="title">Pure functional tax math in <span class="mono" style="font-size:24px;">lib/tax</span></div>
+            <div class="sub">No hidden state, no analytics in the calculator path, no server round-trip. The function is the spec.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span class="wm">math<span class="stub">stub</span>.com</span>
+      <span class="right">04 / 10</span>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 5: DEMO ============== -->
+  <section data-label="05 Demo" class="s-demo">
+    <div class="eyebrow">
+      <span class="dot"></span><span class="num">04</span><span class="sep"></span><span>Live demo &mdash; RSU shortfall calculator</span>
+    </div>
+
+    <h1>$200K vest, single, CA. Here's the bill.</h1>
+
+    <div class="browser">
+      <div class="chrome">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <div class="addr"><span class="lock">🔒</span><span class="host">mathstub.com/rsu-tax-shortfall</span></div>
+      </div>
+
+      <div class="calc-ui">
+        <div class="calc-form">
+          <div class="h">RSU Shortfall</div>
+          <div class="sub">Estimate the gap between what was withheld and what you'll owe.</div>
+
+          <div class="field">
+            <label>Vest value (gross)</label>
+            <div class="input"><span class="pre">$</span><span>200,000</span></div>
+          </div>
+
+          <div class="field">
+            <label>Filing status</label>
+            <div class="seg">
+              <span class="on">Single</span>
+              <span>MFJ</span>
+              <span>HoH</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>State</label>
+            <div class="input"><span>California</span><span class="pre mono" style="font-size:18px;">CA</span></div>
+          </div>
+
+          <div class="field">
+            <label class="row" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+              <span>Other YTD wages</span>
+              <span>Already withheld</span>
+            </label>
+            <div class="row">
+              <div class="input"><span class="pre">$</span><span>250,000</span></div>
+              <div class="input"><span class="pre">$</span><span>44,000</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-result">
+          <div class="result-eyebrow">Estimated April shortfall</div>
+          <div class="total-card">
+            <div class="label">Total owed beyond withholding</div>
+            <div class="total">$22,600</div>
+          </div>
+
+          <div class="breakdown">
+            <div class="bd">
+              <div class="lab">Federal</div>
+              <div class="val">$18,400</div>
+              <div class="cite">IRC §1, §3402(g)</div>
+            </div>
+            <div class="bd">
+              <div class="lab">California</div>
+              <div class="val">$4,200</div>
+              <div class="cite">R&amp;TC §17041, §18663</div>
+            </div>
+          </div>
+
+          <div class="suggest">
+            <div class="l">
+              <div class="t">Suggested W-4 line 4(c)</div>
+              <div class="d">Extra per-paycheck withholding to close the gap</div>
+            </div>
+            <div class="v">$940</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span class="wm">math<span class="stub">stub</span>.com</span>
+      <span class="right">05 / 10</span>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 6: HOW IT WORKS ============== -->
+  <section data-label="06 How it works" class="s-how">
+    <div class="eyebrow">
+      <span class="dot"></span><span class="num">05</span><span class="sep"></span><span>How it works</span>
+    </div>
+
+    <h1>Three steps. No account.</h1>
+    <div class="lead">Pick a situation, type a few numbers, get an answer with the citation that controls each line.</div>
+
+    <div class="steps">
+      <div class="step">
+        <span class="n">STEP 01</span>
+        <h2>Pick your situation</h2>
+        <div class="d">RSU vest, ISO exercise, ESPP purchase, bonus, quarterly estimate &mdash; the calculator you need, nothing else.</div>
+        <div class="pic">
+          <div class="opt on"><span class="box"></span>RSU vest</div>
+          <div class="opt"><span class="box"></span>ISO exercise (AMT)</div>
+          <div class="opt"><span class="box"></span>ESPP disposition</div>
+          <div class="opt"><span class="box"></span>NSO exercise</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="n">STEP 02</span>
+        <h2>Enter 4 numbers</h2>
+        <div class="d">Vest value, base salary, filing status, state. No SSN. No bank login. No upload.</div>
+        <div class="pic">
+          <div class="field-mini"><span>Vest value</span><span class="v">$200,000</span></div>
+          <div class="field-mini"><span>Base wages YTD</span><span class="v">$250,000</span></div>
+          <div class="field-mini"><span>Filing status</span><span class="v">Single</span></div>
+          <div class="field-mini"><span>State</span><span class="v">CA</span></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="n">STEP 03</span>
+        <h2>See exactly what you owe</h2>
+        <div class="d">Every line of the answer comes with the IRC section or IRS publication that controls it.</div>
+        <div class="pic">
+          <div class="line-out"><span>Federal shortfall</span><span class="v">$18,400</span></div>
+          <div class="line-out"><span class="cite">IRC §1 · §3402(g)</span><span class="cite">Pub 15-T</span></div>
+          <div class="line-out"><span>CA shortfall</span><span class="v">$4,200</span></div>
+          <div class="line-out"><span class="cite">R&amp;TC §17041</span><span class="cite">DE 44</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span class="wm">math<span class="stub">stub</span>.com</span>
+      <span class="right">06 / 10</span>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 7: WHY FREE ============== -->
+  <section data-label="07 Why it's free" class="s-why">
+    <div class="eyebrow">
+      <span class="dot"></span><span class="num">06</span><span class="sep"></span><span>Why it's free</span>
+    </div>
+
+    <h1>Built by one indie dev. <em>Math is the product.</em><br/>The product never asks for your email.</h1>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="lab">Who</div>
+        <div class="txt"><strong>One developer.</strong> Hello, I'm Earth. I write the calculators, the tests, and the citations.</div>
+      </div>
+      <div class="why-card">
+        <div class="lab">How it pays for itself</div>
+        <div class="txt"><strong>Affiliate links</strong> to CPA marketplaces and tax-prep tools &mdash; clearly labeled, never injected into the math.</div>
+      </div>
+      <div class="why-card">
+        <div class="lab">What we don't do</div>
+        <div class="txt"><strong>No email gate.</strong> No upsell flow. No account. No "unlock the answer" wall.</div>
+      </div>
+      <div class="why-card">
+        <div class="lab">What we do</div>
+        <div class="txt"><strong>Ship the math.</strong> Cite the source. Fix the bug the same day. That's the whole site.</div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span class="wm">math<span class="stub">stub</span>.com</span>
+      <span class="right">07 / 10</span>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 8: ROADMAP ============== -->
+  <section data-label="08 Roadmap" class="s-roadmap">
+    <div class="eyebrow">
+      <span class="dot"></span><span class="num">07</span><span class="sep"></span><span>Roadmap</span>
+    </div>
+
+    <h1>What ships next.</h1>
+    <div class="lead">Public roadmap. Nothing behind a waitlist.</div>
+
+    <div class="timeline">
+      <div class="tl">
+        <span class="q">Q2 · 2026</span>
+        <span class="when">Apr &mdash; Jun</span>
+        <h2>Chrome extension</h2>
+        <div class="d">Vest tracker. Reads your grant schedule and surfaces the running shortfall every time you log into Carta or Shareworks.</div>
+        <span class="badge">In progress</span>
+      </div>
+      <div class="tl">
+        <span class="q">Q3 · 2026</span>
+        <span class="when">Jul &mdash; Sep</span>
+        <h2>Anthropic-skill version</h2>
+        <div class="d">Same calculators, callable as a Claude skill. Ask the question in chat, get the math with citations inline.</div>
+        <span class="badge">Planned</span>
+      </div>
+      <div class="tl">
+        <span class="q">Q4 · 2026</span>
+        <span class="when">Oct &mdash; Dec</span>
+        <h2>Sister site</h2>
+        <div class="d">Pension lump-sum vs annuity. Same engine, different domain. Most retirees flip a coin on this; they shouldn't have to.</div>
+        <span class="badge">Scoped</span>
+      </div>
+      <div class="tl always">
+        <span class="q">ALWAYS</span>
+        <span class="when">Every release</span>
+        <h2>Free.</h2>
+        <div class="d">No tier. No "pro." No "unlock the AMT calc." The current product is the floor, not the funnel.</div>
+        <span class="badge">Commitment</span>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span class="wm">math<span class="stub">stub</span>.com</span>
+      <span class="right">08 / 10</span>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 9: WHAT'S NEXT ============== -->
+  <section data-label="09 What's next" class="s-next">
+    <div class="eyebrow">
+      <span class="dot"></span><span class="num">08</span><span class="sep"></span><span>What's next</span>
+    </div>
+
+    <h1>Pending CPA review. Corrections welcome.</h1>
+    <div class="lead">The math is tested. It hasn't been signed off by a credentialed reviewer yet. Help us find what's wrong.</div>
+
+    <div class="next-grid">
+      <div class="review-card">
+        <div class="stat"><span class="dot"></span><span class="t">Status · Awaiting CPA sign-off</span></div>
+        <h2>If you spot a math error or a misread IRC citation&hellip;</h2>
+        <div class="d">Every report gets read by the person who wrote the formula. <strong>Every correction ships.</strong> Usually same day, always with a changelog entry crediting the reporter.</div>
+        <div class="d" style="font-size:19px;">Independent CPAs walking through <span class="mono">lib/tax</span> for a paid audit pass &mdash; we'll publish the report when it's done.</div>
+      </div>
+
+      <div class="email-card">
+        <div class="lab">Send corrections to</div>
+        <div class="addr-mono">hello@mathstub.com</div>
+        <div class="d">Or open an issue on GitHub. Or DM. Whatever's easiest.</div>
+        <div class="promise">→ Every email gets a reply. Every fix gets shipped.</div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span class="wm">math<span class="stub">stub</span>.com</span>
+      <span class="right">09 / 10</span>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 10: CTA ============== -->
+  <section data-label="10 Try it" class="s-cta">
+    <div>
+      <div class="wm cta-wm">math<span class="stub">stub</span></div>
+      <div class="tag">FREE TAX MATH · NO SIGNUP · 30 SECONDS</div>
+
+      <a class="link" href="https://mathstub.com/rsu-tax-shortfall">
+        <span>Try the RSU Shortfall calculator</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <div class="three">
+        <span>Free, forever</span>
+        <span>No signup, ever</span>
+        <span>Inputs stay in your browser</span>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span class="wm">math<span class="stub">stub</span>.com</span>
+      <span class="right">10 / 10</span>
+    </div>
+  </section>
+
+</deck-stage>
+
+<script src="deck-stage.js"></script>
+
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <rect width="200" height="200" fill="#0f172a"/>
+    <text x="100" y="118" text-anchor="middle"
+          font-family="Inter, system-ui, sans-serif"
+          font-weight="700" font-size="44" letter-spacing="-2"
+          fill="#ffffff">math<tspan fill="#60a5fa">stub</tspan></text>
+    <rect x="60" y="138" width="80" height="4" rx="2" fill="#2563eb"/>
+  </svg>
+</template>
+</body>
+</html>

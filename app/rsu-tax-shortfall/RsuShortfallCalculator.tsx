@@ -1,5 +1,5 @@
 'use client';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { calculateRsuShortfall } from '@tax/rsu-shortfall';
 import {
   type FilingStatus,
@@ -26,10 +26,7 @@ const usdCents = new Intl.NumberFormat('en-US', {
   currency: 'USD',
   maximumFractionDigits: 2,
 });
-const pct = new Intl.NumberFormat('en-US', {
-  style: 'percent',
-  maximumFractionDigits: 2,
-});
+const pct = (n: number) => `${(n * 100).toFixed(2)}%`;
 
 type FormState = {
   taxYear: TaxYear;
@@ -92,6 +89,7 @@ export function RsuShortfallCalculator() {
       return raw as FormState[typeof key];
     },
   });
+  const [showAdvanced, setShowAdvanced] = useState(false);
   const states = useMemo(() => listStateCodes(), []);
 
   const result: RsuShortfallResult | { error: string } = useMemo(() => {
@@ -120,7 +118,53 @@ export function RsuShortfallCalculator() {
 
   return (
     <div className="space-y-6">
-      <form className="grid gap-4 rounded-lg border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900 md:grid-cols-2">
+      {/*
+        Calculator hero. Source: Claude Design P1 (Mathstub RSU Calc
+        Redesign) — the "How much more do you owe on your RSU vest?"
+        framing tested better than a generic "Calculate" headline because
+        it matches the panic-moment query the user just typed into
+        Google. IRC § 3402(g) cite is in the subhead per YMYL discipline.
+      */}
+      <header className="space-y-2">
+        <p className="text-xs font-semibold uppercase tracking-wide text-brand-700 dark:text-brand-300">
+          mathstub / rsu shortfall
+        </p>
+        <h2 className="text-2xl font-bold leading-tight text-gray-900 dark:text-gray-100 sm:text-3xl">
+          How much more do you owe on your RSU vest?
+        </h2>
+        <p className="max-w-prose text-sm text-gray-600 dark:text-gray-400">
+          Your employer withheld 22% federal{' '}
+          <cite className="not-italic text-gray-500 dark:text-gray-500">(IRC § 3402(g))</cite>.
+          If you&apos;re in a higher bracket, the IRS expects the rest by April 15 — or sooner via quarterly estimates.
+        </p>
+      </header>
+
+      {/* Trust band — three IRC-citation-backed claims, inline above the form */}
+      <ul className="grid gap-3 rounded-lg border border-gray-200 bg-gray-50 p-4 text-xs dark:border-gray-800 dark:bg-gray-900/40 sm:grid-cols-3">
+        <li className="flex items-start gap-2">
+          <span aria-hidden="true" className="text-brand-700 dark:text-brand-300">✓</span>
+          <span>
+            <strong className="block font-semibold text-gray-900 dark:text-gray-100">No signup, ever</strong>
+            <span className="text-gray-500 dark:text-gray-500">No tracking, no email required.</span>
+          </span>
+        </li>
+        <li className="flex items-start gap-2">
+          <span aria-hidden="true" className="text-brand-700 dark:text-brand-300">✓</span>
+          <span>
+            <strong className="block font-semibold text-gray-900 dark:text-gray-100">Math runs in your browser</strong>
+            <span className="text-gray-500 dark:text-gray-500">No data leaves this page.</span>
+          </span>
+        </li>
+        <li className="flex items-start gap-2">
+          <span aria-hidden="true" className="text-brand-700 dark:text-brand-300">✓</span>
+          <span>
+            <strong className="block font-semibold text-gray-900 dark:text-gray-100">Every claim cites IRC § or IRS Pub</strong>
+            <span className="text-gray-500 dark:text-gray-500">Pending CPA review — see footer.</span>
+          </span>
+        </li>
+      </ul>
+
+      <form className="grid gap-4 rounded-lg border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-800 dark:bg-gray-900 md:grid-cols-2">
         <Field label="RSU vest amount (USD)">
           <input
             type="number"
@@ -128,6 +172,7 @@ export function RsuShortfallCalculator() {
             value={form.vestGrossUsd}
             onChange={(e) => update('vestGrossUsd', e.target.value)}
             className={inputCls}
+            autoFocus
           />
         </Field>
         <Field label="Tax year">
@@ -175,24 +220,6 @@ export function RsuShortfallCalculator() {
             className={inputCls}
           />
         </Field>
-        <Field label="YTD supplemental wages (prior RSU vests, bonuses)">
-          <input
-            type="number"
-            min="0"
-            value={form.ytdSupplementalWagesUsd}
-            onChange={(e) => update('ytdSupplementalWagesUsd', e.target.value)}
-            className={inputCls}
-          />
-        </Field>
-        <Field label="Other taxable income (spouse W-2, dividends, etc.)">
-          <input
-            type="number"
-            min="0"
-            value={form.otherTaxableIncomeUsd}
-            onChange={(e) => update('otherTaxableIncomeUsd', e.target.value)}
-            className={inputCls}
-          />
-        </Field>
         <Field label="YTD pre-tax deductions (401k + HSA)">
           <input
             type="number"
@@ -202,27 +229,69 @@ export function RsuShortfallCalculator() {
             className={inputCls}
           />
         </Field>
-        <Field label="State rate override (%) — optional">
-          <input
-            type="number"
-            min="0"
-            max="100"
-            step="0.1"
-            placeholder="leave blank to use default"
-            value={form.stateOverrideRatePct}
-            onChange={(e) => update('stateOverrideRatePct', e.target.value)}
-            className={inputCls}
-          />
-        </Field>
-        <label className="flex items-center gap-2 text-sm md:col-span-2">
-          <input
-            type="checkbox"
-            checked={form.ficaAlreadyMaxed}
-            onChange={(e) => update('ficaAlreadyMaxed', e.target.checked)}
-            className="h-4 w-4 rounded border-gray-300"
-          />
-          I’ve already hit the Social Security wage base via another employer this year
-        </label>
+
+        {/*
+          Progressive disclosure: the remaining 3 inputs and the FICA
+          override see use by < 20% of visitors (per CLAUDE.md note about
+          panic-moment users wanting <30s to a number). Hide behind a
+          single click so the default form is 6 fields, not 9. Engine
+          contract unchanged — useUrlFormState still keeps all values in
+          the URL, so a deep-linked URL still restores advanced settings
+          even if this toggle is collapsed.
+        */}
+        <button
+          type="button"
+          onClick={() => setShowAdvanced((v) => !v)}
+          className="md:col-span-2 -mt-2 flex items-center gap-2 self-start text-xs font-semibold text-brand-700 hover:underline dark:text-brand-300"
+          aria-expanded={showAdvanced}
+        >
+          <span aria-hidden="true">{showAdvanced ? '▾' : '▸'}</span>
+          {showAdvanced ? 'Hide advanced inputs' : 'More options (prior vests, spouse income, state rate override)'}
+        </button>
+
+        {showAdvanced && (
+          <>
+            <Field label="YTD supplemental wages (prior RSU vests, bonuses)">
+              <input
+                type="number"
+                min="0"
+                value={form.ytdSupplementalWagesUsd}
+                onChange={(e) => update('ytdSupplementalWagesUsd', e.target.value)}
+                className={inputCls}
+              />
+            </Field>
+            <Field label="Other taxable income (spouse W-2, dividends, etc.)">
+              <input
+                type="number"
+                min="0"
+                value={form.otherTaxableIncomeUsd}
+                onChange={(e) => update('otherTaxableIncomeUsd', e.target.value)}
+                className={inputCls}
+              />
+            </Field>
+            <Field label="State rate override (%) — optional">
+              <input
+                type="number"
+                min="0"
+                max="100"
+                step="0.1"
+                placeholder="leave blank to use default"
+                value={form.stateOverrideRatePct}
+                onChange={(e) => update('stateOverrideRatePct', e.target.value)}
+                className={inputCls}
+              />
+            </Field>
+            <label className="flex items-center gap-2 text-sm md:col-span-2">
+              <input
+                type="checkbox"
+                checked={form.ficaAlreadyMaxed}
+                onChange={(e) => update('ficaAlreadyMaxed', e.target.checked)}
+                className="h-4 w-4 rounded border-gray-300"
+              />
+              I&rsquo;ve already hit the Social Security wage base via another employer this year
+            </label>
+          </>
+        )}
       </form>
 
       {'error' in result ? (
@@ -253,80 +322,109 @@ function Result({ result }: { result: RsuShortfallResult }) {
   const overWithheld = r.shortfallUsd < 0;
   const offers = offersForShortfall(Math.max(0, r.shortfallUsd));
 
-  return (
-    <div className="space-y-6">
-      <div
-        className={`rounded-lg border p-5 ${
-          overWithheld
-            ? 'border-emerald-200 bg-emerald-50 dark:border-emerald-900 dark:bg-emerald-950'
-            : 'border-amber-200 bg-amber-50 dark:border-amber-900 dark:bg-amber-950'
-        }`}
-      >
-        <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-          Estimated shortfall on this vest
-        </p>
-        <p
-          className={`mt-1 text-4xl font-bold ${
-            overWithheld
-              ? 'text-emerald-700 dark:text-emerald-300'
-              : 'text-amber-700 dark:text-amber-300'
-          }`}
-        >
-          {overWithheld
-            ? `+${usd.format(Math.abs(r.shortfallUsd))} expected refund`
-            : `${usd.format(r.shortfallUsd)} owed`}
-        </p>
-        {r.isUnderpaymentRisk && (
-          <p className="mt-2 text-sm text-amber-900 dark:text-amber-200">
-            ⚠ Above the IRS $1,000 safe-harbor threshold — you may owe an underpayment penalty without estimated payments.
+  if (overWithheld) {
+    // Refund path keeps the simple green callout — no shortfall to break
+    // down, so the waterfall doesn't apply.
+    return (
+      <div className="space-y-6">
+        <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-5 dark:border-emerald-900 dark:bg-emerald-950">
+          <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
+            Estimated outcome on this vest
           </p>
+          <p className="mt-2 text-4xl font-bold text-emerald-700 dark:text-emerald-300">
+            +{usd.format(Math.abs(r.shortfallUsd))} expected refund
+          </p>
+          <p className="mt-2 text-sm text-emerald-900 dark:text-emerald-200">
+            Withholding came in higher than your projected marginal rate would owe. No safe-harbor action needed.
+          </p>
+        </div>
+        <ShareCalculation what="this RSU shortfall calculation" />
+        <ShowTheMath result={r} />
+        {offers.length > 0 && (
+          <div>
+            <p className="mb-2 text-xs uppercase tracking-wide text-gray-500">Recommended next steps</p>
+            <div className="grid gap-3 md:grid-cols-2">
+              {offers.slice(0, 2).map((o) => (
+                <AffiliateCard key={o.id} offerId={o.id} />
+              ))}
+            </div>
+          </div>
         )}
       </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      {/*
+        Waterfall result. Source: Claude Design P1 — ResultWaterfall.
+        The 4-step Gross → Withheld → Owed → Shortfall flow with
+        proportional progress bars and per-step IRC cites tested as the
+        most legible result format for first-time visitors. Hero figure
+        ("You still owe $X") stays prominent at the top so screenshots
+        carry the headline number; the bars below explain the gap. The
+        original prototype's ChromeWindow/iOSDevice frames don't ship —
+        this renders inside the existing ToolShell layout instead.
+      */}
+      <header className="rounded-lg border border-orange-200 bg-orange-50 p-5 dark:border-orange-900 dark:bg-orange-950">
+        <div className="flex flex-wrap items-baseline justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-400">
+              You still owe
+            </p>
+            <p className="mt-1 text-4xl font-bold leading-none text-orange-700 dark:text-orange-300 sm:text-5xl">
+              {usd.format(r.shortfallUsd)}
+            </p>
+          </div>
+          {r.isUnderpaymentRisk ? (
+            <span className="rounded-full bg-orange-200 px-3 py-1 text-xs font-semibold text-orange-900 dark:bg-orange-900/40 dark:text-orange-200">
+              Check safe harbor
+            </span>
+          ) : (
+            <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-200">
+              Likely no underpayment penalty
+            </span>
+          )}
+        </div>
+        <p className="mt-3 text-sm text-gray-700 dark:text-gray-300">
+          Extra owed beyond what your employer withheld at vest. Smooth it over your remaining paychecks
+          (Form W-4, line 4(c)) or pay a quarterly estimate (Form 1040-ES).
+        </p>
+      </header>
+
+      <Waterfall result={r} />
 
       <ShareCalculation what="this RSU shortfall calculation" />
 
-      {!overWithheld && <GumroadUpsell shortfallUsd={r.shortfallUsd} />}
+      <GumroadUpsell shortfallUsd={r.shortfallUsd} />
 
-      {!overWithheld && (
-        <div className="grid gap-3 rounded-md border border-gray-200 bg-white p-4 text-sm dark:border-gray-800 dark:bg-gray-900 md:grid-cols-2">
-          <div>
-            <p className="font-semibold text-gray-800 dark:text-gray-200">Suggested quarterly estimated payment</p>
-            <p className="text-2xl font-bold text-brand-700 dark:text-brand-100">
-              {usd.format(r.suggestedQuarterlyEstimateUsd)}
-            </p>
-          </div>
-          <div>
-            <p className="font-semibold text-gray-800 dark:text-gray-200">
-              Or extra W-4 withholding (~{r.paychecksRemainingThisYear} bi-weekly checks left)
-            </p>
-            <p className="text-2xl font-bold text-brand-700 dark:text-brand-100">
-              {usdCents.format(r.suggestedExtraW4PerPaycheckUsd)} / paycheck
-            </p>
-          </div>
+      <div className="grid gap-3 rounded-md border border-emerald-200 bg-emerald-50 p-4 text-sm dark:border-emerald-900 dark:bg-emerald-950 md:grid-cols-2">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
+            Suggested quarterly estimate
+          </p>
+          <p className="mt-1 text-2xl font-bold text-gray-900 dark:text-gray-100">
+            {usd.format(r.suggestedQuarterlyEstimateUsd)}
+          </p>
+          <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">
+            <cite className="not-italic">Form 1040-ES · IRC § 6654</cite>
+          </p>
         </div>
-      )}
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
+            Or extra W-4 withholding (~{r.paychecksRemainingThisYear} bi-weekly checks left)
+          </p>
+          <p className="mt-1 text-2xl font-bold text-gray-900 dark:text-gray-100">
+            {usdCents.format(r.suggestedExtraW4PerPaycheckUsd)}
+            <span className="text-base font-medium text-gray-500"> / paycheck</span>
+          </p>
+          <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">
+            <cite className="not-italic">Form W-4, line 4(c)</cite>
+          </p>
+        </div>
+      </div>
 
-      <details
-        open
-        className="rounded-md border border-gray-200 bg-white p-4 text-sm dark:border-gray-800 dark:bg-gray-900"
-      >
-        <summary className="cursor-pointer font-semibold text-gray-800 dark:text-gray-200">
-          Show the math
-        </summary>
-        <div className="mt-3 grid gap-2 md:grid-cols-2">
-          <Row k="Vest gross" v={usd.format(r.vestGrossUsd)} />
-          <Row k="Federal supplemental rate applied" v={pct.format(r.appliedFederalSupplementalRate)} />
-          <Row k="Withheld federal" v={usd.format(r.withheldFederalUsd)} />
-          <Row k="Withheld state" v={usd.format(r.withheldStateUsd)} />
-          <Row k="Withheld FICA" v={usd.format(r.withheldFicaUsd)} />
-          <Row k="Marginal federal rate" v={`${r.marginalFederalRatePct.toFixed(1)}%`} />
-          <Row k="Effective federal rate (full year)" v={`${r.effectiveFederalRatePct.toFixed(1)}%`} />
-          <Row k="Marginal state rate" v={`${r.marginalStateRatePct.toFixed(1)}%`} />
-          <Row k="Expected federal" v={usd.format(r.expectedFederalUsd)} />
-          <Row k="Expected state" v={usd.format(r.expectedStateUsd)} />
-          <Row k="Expected FICA" v={usd.format(r.expectedFicaUsd)} />
-        </div>
-      </details>
+      <ShowTheMath result={r} />
 
       {offers.length > 0 && (
         <div>
@@ -345,8 +443,129 @@ function Result({ result }: { result: RsuShortfallResult }) {
         </div>
       )}
 
-      {!overWithheld && <EmailCapture source="rsu-tax-shortfall" shortfallUsd={r.shortfallUsd} />}
+      <EmailCapture source="rsu-tax-shortfall" shortfallUsd={r.shortfallUsd} />
     </div>
+  );
+}
+
+/**
+ * Waterfall — visual breakdown of the four steps from gross vest to the
+ * shortfall the user actually owes. Each bar is proportional to the
+ * dollar magnitude so the user can SEE that withheld < owed without
+ * doing the subtraction in their head.
+ */
+function Waterfall({ result: r }: { result: RsuShortfallResult }) {
+  const withheldTotal = r.withheldFederalUsd + r.withheldStateUsd;
+  const owedTotal = r.expectedFederalUsd + r.expectedStateUsd;
+  const max = Math.max(r.vestGrossUsd, owedTotal, withheldTotal) || 1;
+
+  type Step = {
+    label: string;
+    val: number;
+    tone: 'neutral' | 'brand' | 'danger';
+    sub: string;
+    cite: string;
+  };
+
+  const steps: Step[] = [
+    {
+      label: 'Gross vest',
+      val: r.vestGrossUsd,
+      tone: 'neutral',
+      sub: 'Total $ value of RSUs that vested in this event',
+      cite: 'W-2 Box 1',
+    },
+    {
+      label: 'Already withheld at vest',
+      val: withheldTotal,
+      tone: 'brand',
+      sub: `${pct(r.appliedFederalSupplementalRate)} federal supplemental + state`,
+      cite: 'IRC § 3402(g)',
+    },
+    {
+      label: 'Actually owed at your marginal rate',
+      val: owedTotal,
+      tone: 'neutral',
+      sub: `fed ${r.marginalFederalRatePct.toFixed(2)}% + state ${r.marginalStateRatePct.toFixed(2)}%`,
+      cite: 'IRC § 1; Pub 15-T',
+    },
+    {
+      label: 'Shortfall',
+      val: r.shortfallUsd,
+      tone: 'danger',
+      sub: 'What you still owe the IRS + state',
+      cite: 'IRC § 6654 safe harbor',
+    },
+  ];
+
+  const barColor = (tone: Step['tone']) =>
+    tone === 'brand'
+      ? 'bg-brand-600 dark:bg-brand-500'
+      : tone === 'danger'
+        ? 'bg-orange-600 dark:bg-orange-500'
+        : 'bg-gray-400/40 dark:bg-gray-500/40';
+  const numColor = (tone: Step['tone']) =>
+    tone === 'brand'
+      ? 'text-brand-700 dark:text-brand-300'
+      : tone === 'danger'
+        ? 'text-orange-700 dark:text-orange-300'
+        : 'text-gray-900 dark:text-gray-100';
+
+  return (
+    <div className="space-y-3 rounded-lg border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900">
+      {steps.map((s, i) => {
+        const width = Math.max(6, (s.val / max) * 100);
+        return (
+          <div key={i} className="space-y-1">
+            <div className="flex items-baseline justify-between gap-3">
+              <span className="text-sm font-semibold text-gray-900 dark:text-gray-100">
+                {i + 1}. {s.label}
+              </span>
+              <span className={`text-lg font-bold tabular-nums ${numColor(s.tone)}`}>
+                {usd.format(Math.round(s.val))}
+              </span>
+            </div>
+            <div className="h-2 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-800">
+              <div
+                className={`h-full transition-all duration-300 ${barColor(s.tone)}`}
+                style={{ width: `${width}%` }}
+              />
+            </div>
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              {s.sub} · <cite className="not-italic italic text-gray-400">{s.cite}</cite>
+            </p>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function ShowTheMath({ result: r }: { result: RsuShortfallResult }) {
+  return (
+    <details
+      className="rounded-md border border-gray-200 bg-white p-4 text-sm dark:border-gray-800 dark:bg-gray-900"
+    >
+      <summary className="cursor-pointer font-semibold text-gray-800 dark:text-gray-200">
+        Show the math
+        <span className="ml-2 rounded-full bg-brand-50 px-2 py-0.5 text-xs font-medium text-brand-700 dark:bg-brand-950/40 dark:text-brand-300">
+          Citations included
+        </span>
+      </summary>
+      <div className="mt-3 grid gap-2 md:grid-cols-2">
+        <Row k="Vest gross" v={usd.format(r.vestGrossUsd)} />
+        <Row k="Federal supplemental rate applied" v={pct(r.appliedFederalSupplementalRate)} />
+        <Row k="Withheld federal" v={usd.format(r.withheldFederalUsd)} />
+        <Row k="Withheld state" v={usd.format(r.withheldStateUsd)} />
+        <Row k="Withheld FICA" v={usd.format(r.withheldFicaUsd)} />
+        <Row k="Marginal federal rate" v={`${r.marginalFederalRatePct.toFixed(1)}%`} />
+        <Row k="Effective federal rate (full year)" v={`${r.effectiveFederalRatePct.toFixed(1)}%`} />
+        <Row k="Marginal state rate" v={`${r.marginalStateRatePct.toFixed(1)}%`} />
+        <Row k="Expected federal" v={usd.format(r.expectedFederalUsd)} />
+        <Row k="Expected state" v={usd.format(r.expectedStateUsd)} />
+        <Row k="Expected FICA" v={usd.format(r.expectedFicaUsd)} />
+      </div>
+    </details>
   );
 }
 

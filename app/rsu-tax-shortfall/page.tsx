@@ -12,6 +12,7 @@ import { FaqAccordion } from '@/components/FaqAccordion';
 import { Disclaimer } from '@/components/Disclaimer';
 import { LastUpdatedBadge } from '@/components/LastUpdatedBadge';
 import { RelatedCalcs } from '@/components/RelatedCalcs';
+import { MathDiagram } from '@/components/MathDiagram';
 import { RsuShortfallCalculator } from './RsuShortfallCalculator';
 import { rsuTaxShortfallContent as c } from '@/content/rsu-tax-shortfall';
 
@@ -19,7 +20,7 @@ export const metadata: Metadata = buildMetadata({
   slug: c.slug,
   title: c.metaTitle,
   description: c.metaDescription,
-  ogImagePath: '/og-rsu-shortfall.png',
+  ogImagePath: '/og/rsu-withholding.png',
 });
 
 export default function Page() {
@@ -54,13 +55,19 @@ export default function Page() {
           </>
         }
         howItWorks={
-          <ol className="list-decimal space-y-2 pl-5">
-            {c.howToSteps.map((s) => (
-              <li key={s.name}>
-                <strong>{s.name}.</strong> {s.text}
-              </li>
-            ))}
-          </ol>
+          <>
+            <MathDiagram
+              slug="rsu-tax-shortfall"
+              alt="RSU shortfall formula chain: vest value $V → supplemental withheld 22%·V (IRC §3402(g)) → real marginal rate r (IRC §1) → real federal owed r·V → shortfall = (r − 22%) · V"
+            />
+            <ol className="list-decimal space-y-2 pl-5">
+              {c.howToSteps.map((s) => (
+                <li key={s.name}>
+                  <strong>{s.name}.</strong> {s.text}
+                </li>
+              ))}
+            </ol>
+          </>
         }
         faq={<FaqAccordion items={[...c.faqs]} />}
         related={<RelatedCalcs currentSlug={c.slug} />}

@@ -40,7 +40,7 @@ export function buildMetadata({
   slug,
   title,
   description,
-  ogImagePath = '/og-default.png',
+  ogImagePath = '/og/default.png',
   noindex,
 }: BuildMetadataInput): Metadata {
   const url = canonical(slug);

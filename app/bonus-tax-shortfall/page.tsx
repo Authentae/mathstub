@@ -12,6 +12,7 @@ import { FaqAccordion } from '@/components/FaqAccordion';
 import { Disclaimer } from '@/components/Disclaimer';
 import { LastUpdatedBadge } from '@/components/LastUpdatedBadge';
 import { RelatedCalcs } from '@/components/RelatedCalcs';
+import { MathDiagram } from '@/components/MathDiagram';
 import { BonusShortfallCalculator } from './BonusShortfallCalculator';
 import { bonusTaxShortfallContent as c } from '@/content/bonus-tax-shortfall';
 
@@ -19,6 +20,7 @@ export const metadata: Metadata = buildMetadata({
   slug: c.slug,
   title: c.metaTitle,
   description: c.metaDescription,
+  ogImagePath: '/og/bonus-shortfall.png',
 });
 
 export default function Page() {
@@ -53,13 +55,19 @@ export default function Page() {
           </>
         }
         howItWorks={
-          <ol className="list-decimal space-y-2 pl-5">
-            {c.howToSteps.map((s) => (
-              <li key={s.name}>
-                <strong>{s.name}.</strong> {s.text}
-              </li>
-            ))}
-          </ol>
+          <>
+            <MathDiagram
+              slug="bonus-tax-shortfall"
+              alt="Bonus shortfall formula chain: cash bonus B → supplemental withheld 22%·B (IRC §3402(g)(1)) → real marginal rate r → real federal owed r·B → shortfall = (r − 22%) · B"
+            />
+            <ol className="list-decimal space-y-2 pl-5">
+              {c.howToSteps.map((s) => (
+                <li key={s.name}>
+                  <strong>{s.name}.</strong> {s.text}
+                </li>
+              ))}
+            </ol>
+          </>
         }
         faq={<FaqAccordion items={[...c.faqs]} />}
         related={<RelatedCalcs currentSlug={c.slug} />}

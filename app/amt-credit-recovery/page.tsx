@@ -12,6 +12,7 @@ import { FaqAccordion } from '@/components/FaqAccordion';
 import { Disclaimer } from '@/components/Disclaimer';
 import { LastUpdatedBadge } from '@/components/LastUpdatedBadge';
 import { RelatedCalcs } from '@/components/RelatedCalcs';
+import { MathDiagram } from '@/components/MathDiagram';
 import { AmtCreditRecoveryCalculator } from './AmtCreditRecoveryCalculator';
 import { amtCreditRecoveryContent as c } from '@/content/amt-credit-recovery';
 
@@ -19,6 +20,7 @@ export const metadata: Metadata = buildMetadata({
   slug: c.slug,
   title: c.metaTitle,
   description: c.metaDescription,
+  ogImagePath: '/og/amt-credit.png',
 });
 
 export default function Page() {
@@ -53,13 +55,19 @@ export default function Page() {
           </>
         }
         howItWorks={
-          <ol className="list-decimal space-y-2 pl-5">
-            {c.howToSteps.map((s) => (
-              <li key={s.name}>
-                <strong>{s.name}.</strong> {s.text}
-              </li>
-            ))}
-          </ol>
+          <>
+            <MathDiagram
+              slug="amt-credit-recovery"
+              alt="AMT credit recovery (Form 8801) formula chain: prior-year AMT paid P (IRC §55) → regular tax this year R → tentative AMT this year T → credit usable = max(0, R − T) → carry forward unused (IRC §53)"
+            />
+            <ol className="list-decimal space-y-2 pl-5">
+              {c.howToSteps.map((s) => (
+                <li key={s.name}>
+                  <strong>{s.name}.</strong> {s.text}
+                </li>
+              ))}
+            </ol>
+          </>
         }
         faq={<FaqAccordion items={[...c.faqs]} />}
         related={<RelatedCalcs currentSlug={c.slug} />}
