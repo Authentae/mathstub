@@ -90,9 +90,7 @@ export function RsuShortfallCalculator() {
     },
   });
   const [showAdvanced, setShowAdvanced] = useState(false);
-  const [step, setStep] = useState(0);
   const states = useMemo(() => listStateCodes(), []);
-  const stepLabels = ['Vest', 'Income', 'Location'] as const;
 
   const result: RsuShortfallResult | { error: string } = useMemo(() => {
     try {
@@ -127,267 +125,170 @@ export function RsuShortfallCalculator() {
         it matches the panic-moment query the user just typed into
         Google. IRC § 3402(g) cite is in the subhead per YMYL discipline.
       */}
+      {/*
+        Hero. Source: Claude Design P1 (Mathstub RSU Calc Redesign) full
+        mockup. Single-question headline + IRC § 3402(g) cite in the
+        subhead. Trust band moved to AFTER the result panel (see below)
+        per the P1 desktop mockup — it reads better as a closing
+        reassurance than as an opening preamble.
+      */}
       <header className="space-y-2">
-        <p className="text-xs font-semibold uppercase tracking-wide text-brand-700 dark:text-brand-300">
+        <p className="text-xs font-semibold uppercase tracking-wide text-brand-300">
           mathstub / rsu shortfall
         </p>
-        <h2 className="text-2xl font-bold leading-tight text-gray-900 dark:text-gray-100 sm:text-3xl">
+        <h2 className="text-2xl font-bold leading-tight text-slate-100 sm:text-3xl">
           How much more do you owe on your RSU vest?
         </h2>
-        <p className="max-w-prose text-sm text-gray-600 dark:text-gray-400">
+        <p className="max-w-prose text-sm text-slate-400">
           Your employer withheld 22% federal{' '}
-          <cite className="not-italic text-gray-500 dark:text-gray-500">(IRC § 3402(g))</cite>.
+          <cite className="not-italic text-slate-500">(IRC § 3402(g))</cite>.
           If you&apos;re in a higher bracket, the IRS expects the rest by April 15 — or sooner via quarterly estimates.
         </p>
       </header>
 
-      {/* Trust band — three IRC-citation-backed claims, inline above the form */}
-      <ul className="grid gap-3 rounded-lg border border-gray-200 bg-gray-50 p-4 text-xs dark:border-gray-800 dark:bg-gray-900/40 sm:grid-cols-3">
-        <li className="flex items-start gap-2">
-          <span aria-hidden="true" className="text-brand-700 dark:text-brand-300">✓</span>
-          <span>
-            <strong className="block font-semibold text-gray-900 dark:text-gray-100">No signup, ever</strong>
-            <span className="text-gray-500 dark:text-gray-500">No tracking, no email required.</span>
-          </span>
-        </li>
-        <li className="flex items-start gap-2">
-          <span aria-hidden="true" className="text-brand-700 dark:text-brand-300">✓</span>
-          <span>
-            <strong className="block font-semibold text-gray-900 dark:text-gray-100">Math runs in your browser</strong>
-            <span className="text-gray-500 dark:text-gray-500">No data leaves this page.</span>
-          </span>
-        </li>
-        <li className="flex items-start gap-2">
-          <span aria-hidden="true" className="text-brand-700 dark:text-brand-300">✓</span>
-          <span>
-            <strong className="block font-semibold text-gray-900 dark:text-gray-100">Every claim cites IRC § or IRS Pub</strong>
-            <span className="text-gray-500 dark:text-gray-500">Reviewed against IRS primary sources — see footer.</span>
-          </span>
-        </li>
-      </ul>
-
       {/*
-        Stepped wizard — sourced from Claude Design P1 mobile mockup.
-        Three steps reduce above-the-fold cognitive load on mobile (the
-        panic-moment use case): a flat 8-field grid feels overwhelming
-        right after an RSU vest hits. The Continue button gives clear
-        forward momentum. All values are still URL-serialized via
-        useUrlFormState so deep links restore the full state regardless
-        of which step is visible. On desktop the same wizard reads as a
-        clean focused form rather than a wall of inputs.
+        Flat form — all fields visible at once. Per the P1 desktop
+        mockup Earth pointed at: a vertically-scrolling form reads as a
+        single focused panel; the earlier stepped wizard felt
+        "way too small" because the active step's content was a single
+        field in a half-width grid. All 5 primary inputs in a 2-col grid
+        on desktop, stacked on mobile.
       */}
-      <div className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-800 dark:bg-gray-900">
-        {/* Step indicator */}
-        <ol className="mb-5 flex items-center gap-2 text-xs">
-          {stepLabels.map((label, i) => {
-            const active = i === step;
-            const done = i < step;
-            return (
-              <li key={label} className="flex flex-1 items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => setStep(i)}
-                  className={`flex min-w-0 flex-1 items-center gap-2 rounded-md px-2 py-1.5 text-left transition ${
-                    active
-                      ? 'bg-brand-600 text-white shadow-sm'
-                      : done
-                        ? 'text-brand-300 hover:bg-slate-800'
-                        : 'text-slate-500 hover:bg-slate-800'
-                  }`}
-                  aria-current={active ? 'step' : undefined}
-                >
-                  <span
-                    className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold ${
-                      active
-                        ? 'bg-white text-brand-700'
-                        : done
-                          ? 'bg-brand-600 text-white'
-                          : 'bg-slate-700 text-slate-300'
-                    }`}
-                    aria-hidden="true"
-                  >
-                    {done ? '✓' : i + 1}
-                  </span>
-                  <span className="truncate font-semibold">{label}</span>
-                </button>
-              </li>
-            );
-          })}
-        </ol>
-
+      <div className="rounded-lg border border-slate-800 bg-slate-900 p-5 shadow-sm">
         <form className="grid gap-4 md:grid-cols-2">
-          {/* Step 0 — Vest */}
-          {step === 0 && (
-            <>
-              <Field label="RSU vest amount (USD)">
-                <input
-                  type="number"
-                  min="0"
-                  value={form.vestGrossUsd}
-                  onChange={(e) => update('vestGrossUsd', e.target.value)}
-                  className={inputCls}
-                  autoFocus
-                  placeholder="125,000"
-                />
-                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-                  Total $ value of RSUs that vested in this event.
-                </p>
-              </Field>
-            </>
-          )}
-
-          {/* Step 1 — Income */}
-          {step === 1 && (
-            <>
-              <Field label="YTD regular W-2 wages (before this vest)">
-                <input
-                  type="number"
-                  min="0"
-                  value={form.ytdRegularWagesUsd}
-                  onChange={(e) => update('ytdRegularWagesUsd', e.target.value)}
-                  className={inputCls}
-                  placeholder="200,000"
-                />
-                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-                  W-2 Box 1 year-to-date, excluding this RSU vest.
-                </p>
-              </Field>
-              <Field label="Filing status">
-                <select
-                  value={form.filingStatus}
-                  onChange={(e) => update('filingStatus', e.target.value as FilingStatus)}
-                  className={inputCls}
-                >
-                  <option value="single">Single</option>
-                  <option value="mfj">Married filing jointly</option>
-                  <option value="mfs">Married filing separately</option>
-                  <option value="hoh">Head of household</option>
-                </select>
-              </Field>
-              <Field label="Tax year">
-                <select
-                  value={form.taxYear}
-                  onChange={(e) => update('taxYear', Number(e.target.value) as TaxYear)}
-                  className={inputCls}
-                >
-                  <option value={2024}>2024</option>
-                  <option value={2025}>2025</option>
-                  <option value={2026}>2026</option>
-                </select>
-              </Field>
-              <Field label="YTD pre-tax deductions (401k + HSA)">
-                <input
-                  type="number"
-                  min="0"
-                  value={form.preTaxDeductionsUsd}
-                  onChange={(e) => update('preTaxDeductionsUsd', e.target.value)}
-                  className={inputCls}
-                  placeholder="23,500"
-                />
-              </Field>
-            </>
-          )}
-
-          {/* Step 2 — Location + advanced */}
-          {step === 2 && (
-            <>
-              <Field label="State of residence">
-                <select
-                  value={form.stateCode}
-                  onChange={(e) => update('stateCode', e.target.value)}
-                  className={inputCls}
-                  autoFocus
-                >
-                  {states.map((s) => (
-                    <option key={s} value={s}>
-                      {s}
-                    </option>
-                  ))}
-                </select>
-              </Field>
-            </>
-          )}
+          <Field label="Vest value (gross, USD)">
+            <input
+              type="number"
+              min="0"
+              value={form.vestGrossUsd}
+              onChange={(e) => update('vestGrossUsd', e.target.value)}
+              className={inputCls}
+              placeholder="250,000"
+            />
+            <p className="mt-1 text-xs text-slate-500">
+              Total $ value of RSUs that vested in this event.
+            </p>
+          </Field>
+          <Field label="Other YTD wages (before this vest)">
+            <input
+              type="number"
+              min="0"
+              value={form.ytdRegularWagesUsd}
+              onChange={(e) => update('ytdRegularWagesUsd', e.target.value)}
+              className={inputCls}
+              placeholder="215,000"
+            />
+            <p className="mt-1 text-xs text-slate-500">
+              W-2 Box 1 year-to-date, excluding this RSU.
+            </p>
+          </Field>
+          <Field label="Filing status">
+            <select
+              value={form.filingStatus}
+              onChange={(e) => update('filingStatus', e.target.value as FilingStatus)}
+              className={inputCls}
+            >
+              <option value="single">Single</option>
+              <option value="mfj">Married filing jointly</option>
+              <option value="mfs">Married filing separately</option>
+              <option value="hoh">Head of household</option>
+            </select>
+          </Field>
+          <Field label="State of residence">
+            <select
+              value={form.stateCode}
+              onChange={(e) => update('stateCode', e.target.value)}
+              className={inputCls}
+            >
+              {states.map((s) => (
+                <option key={s} value={s}>
+                  {s}
+                </option>
+              ))}
+            </select>
+          </Field>
+          <Field label="Tax year">
+            <select
+              value={form.taxYear}
+              onChange={(e) => update('taxYear', Number(e.target.value) as TaxYear)}
+              className={inputCls}
+            >
+              <option value={2024}>2024</option>
+              <option value={2025}>2025</option>
+              <option value={2026}>2026</option>
+            </select>
+          </Field>
+          <Field label="YTD pre-tax deductions (401k + HSA)">
+            <input
+              type="number"
+              min="0"
+              value={form.preTaxDeductionsUsd}
+              onChange={(e) => update('preTaxDeductionsUsd', e.target.value)}
+              className={inputCls}
+              placeholder="23,500"
+            />
+          </Field>
 
           {/*
-            Advanced inputs — only visible on the final step (Location).
-            < 20% of visitors touch these per CLAUDE.md guidance; the
-            stepped wizard already cleans the panic-moment use case so
-            "More options" only burdens the user who's explicitly opted
-            into the slower-but-more-accurate path.
+            Advanced inputs — collapsed by default. < 20% of visitors
+            touch these per CLAUDE.md guidance.
           */}
-          {step === 2 && (
-            <>
-              <button
-                type="button"
-                onClick={() => setShowAdvanced((v) => !v)}
-                className="md:col-span-2 -mt-2 flex items-center gap-2 self-start text-xs font-semibold text-brand-700 hover:underline dark:text-brand-300"
-                aria-expanded={showAdvanced}
-              >
-                <span aria-hidden="true">{showAdvanced ? '▾' : '▸'}</span>
-                {showAdvanced
-                  ? 'Hide advanced inputs'
-                  : 'More options (prior vests, spouse income, state rate override)'}
-              </button>
+          <button
+            type="button"
+            onClick={() => setShowAdvanced((v) => !v)}
+            className="md:col-span-2 -mt-2 flex items-center gap-2 self-start text-xs font-semibold text-brand-300 hover:underline"
+            aria-expanded={showAdvanced}
+          >
+            <span aria-hidden="true">{showAdvanced ? '▾' : '▸'}</span>
+            {showAdvanced
+              ? 'Hide advanced inputs'
+              : 'More options (prior vests, spouse income, state rate override)'}
+          </button>
 
-              {showAdvanced && (
-                <>
-                  <Field label="YTD supplemental wages (prior RSU vests, bonuses)">
-                    <input
-                      type="number"
-                      min="0"
-                      value={form.ytdSupplementalWagesUsd}
-                      onChange={(e) => update('ytdSupplementalWagesUsd', e.target.value)}
-                      className={inputCls}
-                    />
-                  </Field>
-                  <Field label="Other taxable income (spouse W-2, dividends, etc.)">
-                    <input
-                      type="number"
-                      min="0"
-                      value={form.otherTaxableIncomeUsd}
-                      onChange={(e) => update('otherTaxableIncomeUsd', e.target.value)}
-                      className={inputCls}
-                    />
-                  </Field>
-                  <Field label="State rate override (%) — optional">
-                    <input
-                      type="number"
-                      min="0"
-                      max="100"
-                      step="0.1"
-                      placeholder="leave blank to use default"
-                      value={form.stateOverrideRatePct}
-                      onChange={(e) => update('stateOverrideRatePct', e.target.value)}
-                      className={inputCls}
-                    />
-                  </Field>
-                  <label className="flex items-center gap-2 text-sm md:col-span-2">
-                    <input
-                      type="checkbox"
-                      checked={form.ficaAlreadyMaxed}
-                      onChange={(e) => update('ficaAlreadyMaxed', e.target.checked)}
-                      className="h-4 w-4 rounded border-gray-300"
-                    />
-                    I&rsquo;ve already hit the Social Security wage base via another employer this year
-                  </label>
-                </>
-              )}
+          {showAdvanced && (
+            <>
+              <Field label="YTD supplemental wages (prior RSU vests, bonuses)">
+                <input
+                  type="number"
+                  min="0"
+                  value={form.ytdSupplementalWagesUsd}
+                  onChange={(e) => update('ytdSupplementalWagesUsd', e.target.value)}
+                  className={inputCls}
+                />
+              </Field>
+              <Field label="Other taxable income (spouse W-2, dividends, etc.)">
+                <input
+                  type="number"
+                  min="0"
+                  value={form.otherTaxableIncomeUsd}
+                  onChange={(e) => update('otherTaxableIncomeUsd', e.target.value)}
+                  className={inputCls}
+                />
+              </Field>
+              <Field label="State rate override (%) — optional">
+                <input
+                  type="number"
+                  min="0"
+                  max="100"
+                  step="0.1"
+                  placeholder="leave blank to use default"
+                  value={form.stateOverrideRatePct}
+                  onChange={(e) => update('stateOverrideRatePct', e.target.value)}
+                  className={inputCls}
+                />
+              </Field>
+              <label className="flex items-center gap-2 text-sm text-slate-300 md:col-span-2">
+                <input
+                  type="checkbox"
+                  checked={form.ficaAlreadyMaxed}
+                  onChange={(e) => update('ficaAlreadyMaxed', e.target.checked)}
+                  className="h-4 w-4 rounded border-slate-600"
+                />
+                I&rsquo;ve already hit the Social Security wage base via another employer this year
+              </label>
             </>
           )}
         </form>
-
-        {/* Continue button — only on steps 0 and 1, advances the wizard */}
-        {step < 2 && (
-          <div className="mt-5 flex justify-end">
-            <button
-              type="button"
-              onClick={() => setStep((s) => Math.min(s + 1, 2))}
-              className="inline-flex items-center gap-2 rounded-md bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-brand-700"
-            >
-              Continue <span aria-hidden="true">→</span>
-            </button>
-          </div>
-        )}
       </div>
 
       {'error' in result ? (
@@ -395,7 +296,7 @@ export function RsuShortfallCalculator() {
           {result.error}
         </div>
       ) : (
-        <Result result={result} />
+        <Result result={result} stateCode={form.stateCode} taxYear={form.taxYear} />
       )}
 
       {/*
@@ -446,7 +347,15 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
   );
 }
 
-function Result({ result }: { result: RsuShortfallResult }) {
+function Result({
+  result,
+  stateCode,
+  taxYear,
+}: {
+  result: RsuShortfallResult;
+  stateCode: string;
+  taxYear: TaxYear;
+}) {
   const r = result;
   const overWithheld = r.shortfallUsd < 0;
   const offers = offersForShortfall(Math.max(0, r.shortfallUsd));
@@ -486,86 +395,116 @@ function Result({ result }: { result: RsuShortfallResult }) {
   return (
     <div className="space-y-6">
       {/*
-        Waterfall result. Source: Claude Design P1 — ResultWaterfall.
-        The 4-step Gross → Withheld → Owed → Shortfall flow with
-        proportional progress bars and per-step IRC cites tested as the
-        most legible result format for first-time visitors. Hero figure
-        ("You still owe $X") stays prominent at the top so screenshots
-        carry the headline number; the bars below explain the gap. The
-        original prototype's ChromeWindow/iOSDevice frames don't ship —
-        this renders inside the existing ToolShell layout instead.
+        Big-number result + mini-stats layout. Source: Claude Design P1
+        ResultBigNumber variant Earth pointed at — the previous waterfall
+        was visually noisy with 4 horizontal bars. Single huge "$X" hero
+        figure carries the headline; 3 mini-stat cards underneath
+        decompose federal / state / per-paycheck so the user has the
+        exact numbers without scanning a bar chart.
       */}
-      <header className="rounded-lg border border-orange-200 bg-orange-50 p-5 dark:border-orange-900 dark:bg-orange-950">
-        <div className="flex flex-wrap items-baseline justify-between gap-3">
+      <section
+        id="suggested-fix"
+        className="scroll-mt-24 space-y-4 rounded-lg border border-slate-800 bg-slate-900 p-5"
+      >
+        {/* Eyebrow + safe-harbor pill */}
+        <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-400">
-              You still owe
+            <p className="text-xs font-bold uppercase tracking-[0.1em] text-slate-400">
+              Estimated shortfall
             </p>
-            <p className="mt-1 text-4xl font-bold leading-none text-orange-700 dark:text-orange-300 sm:text-5xl">
-              {usd.format(r.shortfallUsd)}
+            <p className="mt-1 text-xs text-slate-500">
+              On {usd.format(r.vestGrossUsd)} vest · {stateCode} · tax year {taxYear}
             </p>
           </div>
           {r.isUnderpaymentRisk ? (
-            <span className="rounded-full bg-orange-200 px-3 py-1 text-xs font-semibold text-orange-900 dark:bg-orange-900/40 dark:text-orange-200">
+            <span className="rounded-full bg-orange-500/15 px-3 py-1 text-xs font-semibold text-orange-300 ring-1 ring-orange-500/30">
               Check safe harbor
             </span>
           ) : (
-            <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-200">
+            <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-semibold text-emerald-300 ring-1 ring-emerald-500/30">
               Likely no underpayment penalty
             </span>
           )}
         </div>
-        <p className="mt-3 text-sm text-gray-700 dark:text-gray-300">
-          Extra owed beyond what your employer withheld at vest. Smooth it over your remaining paychecks
-          (Form W-4, line 4(c)) or pay a quarterly estimate (Form 1040-ES).
-        </p>
-      </header>
 
-      <Waterfall result={r} />
+        {/* Big hero number */}
+        <div className="rounded-lg border border-orange-900/60 bg-orange-950/40 p-6 text-center">
+          <p className="text-5xl font-bold leading-none tracking-tight text-orange-300 sm:text-6xl">
+            {usd.format(r.shortfallUsd)}
+          </p>
+          <p className="mt-3 text-sm text-slate-400">
+            extra owed beyond what your employer withheld at vest
+          </p>
+        </div>
+
+        {/* Three mini stats — Federal / State / Per paycheck */}
+        <div className="grid gap-3 sm:grid-cols-3">
+          <div className="rounded-md border border-slate-700 bg-slate-800/60 p-4">
+            <p className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+              Federal shortfall
+            </p>
+            <p className="mt-1 text-2xl font-bold tabular-nums text-slate-100">
+              {usd.format(r.expectedFederalUsd - r.withheldFederalUsd)}
+            </p>
+            <p className="mt-1 text-[11px] italic text-slate-500">IRC § 3402(g)</p>
+          </div>
+          <div className="rounded-md border border-slate-700 bg-slate-800/60 p-4">
+            <p className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+              State shortfall
+            </p>
+            <p className="mt-1 text-2xl font-bold tabular-nums text-slate-100">
+              {usd.format(r.expectedStateUsd - r.withheldStateUsd)}
+            </p>
+            <p className="mt-1 text-[11px] italic text-slate-500">{stateCode} DOR</p>
+          </div>
+          <div className="rounded-md border border-slate-700 bg-slate-800/60 p-4">
+            <p className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+              Per paycheck (W-4 4c)
+            </p>
+            <p className="mt-1 text-2xl font-bold tabular-nums text-slate-100">
+              {usdCents.format(r.suggestedExtraW4PerPaycheckUsd)}
+            </p>
+            <p className="mt-1 text-[11px] italic text-slate-500">Form W-4, line 4(c)</p>
+          </div>
+        </div>
+
+        {/* Two primary action buttons */}
+        <div className="flex flex-wrap items-center gap-3 pt-1">
+          <a
+            href="https://www.irs.gov/pub/irs-pdf/fw4.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-md bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-brand-500"
+          >
+            Update my W-4 (printable)
+          </a>
+          <a
+            href="https://www.irs.gov/pub/irs-pdf/f1040es.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-md border border-brand-500/70 px-5 py-2.5 text-sm font-semibold text-brand-200 hover:bg-brand-500/10"
+          >
+            Schedule quarterly estimate
+          </a>
+          <span className="font-mono text-[11px] uppercase tracking-[0.04em] text-slate-500">
+            both download as pdf — no signup.
+          </span>
+        </div>
+      </section>
 
       <ShareCalculation what="this RSU shortfall calculation" />
 
       <GumroadUpsell shortfallUsd={r.shortfallUsd} />
 
-      <div
-        id="suggested-fix"
-        className="grid scroll-mt-24 gap-3 rounded-md border border-emerald-200 bg-emerald-50 p-4 text-sm dark:border-emerald-900 dark:bg-emerald-950 md:grid-cols-2"
-      >
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
-            Suggested quarterly estimate
-          </p>
-          <p className="mt-1 text-2xl font-bold text-gray-900 dark:text-gray-100">
-            {usd.format(r.suggestedQuarterlyEstimateUsd)}
-          </p>
-          <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">
-            <cite className="not-italic">Form 1040-ES · IRC § 6654</cite>
-          </p>
-        </div>
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
-            Or extra W-4 withholding (~{r.paychecksRemainingThisYear} bi-weekly checks left)
-          </p>
-          <p className="mt-1 text-2xl font-bold text-gray-900 dark:text-gray-100">
-            {usdCents.format(r.suggestedExtraW4PerPaycheckUsd)}
-            <span className="text-base font-medium text-gray-500"> / paycheck</span>
-          </p>
-          <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">
-            <cite className="not-italic">Form W-4, line 4(c)</cite>
-          </p>
-        </div>
-      </div>
-
       <ShowTheMath result={r} />
 
       {offers.length > 0 && (
         <div>
-          <p className="mb-2 text-xs uppercase tracking-wide text-gray-500">Recommended next steps</p>
+          <p className="mb-2 text-xs uppercase tracking-wide text-slate-500">Recommended next steps</p>
           {/*
-            Cap visible offers at 2 — pre-result the user already sees 4-5
-            competing CTAs (Gumroad upsell, W-4 suggestion, quarterly,
-            email capture). Cutting affiliate cards from 4 to 2 reduces
-            decision paralysis and keeps a clear primary action.
+            Cap visible offers at 2 — the result panel already surfaces
+            Gumroad + W-4 + quarterly CTAs. Limiting affiliate cards
+            keeps a clear primary action.
           */}
           <div className="grid gap-3 md:grid-cols-2">
             {offers.slice(0, 2).map((o) => (
@@ -576,6 +515,35 @@ function Result({ result }: { result: RsuShortfallResult }) {
       )}
 
       <EmailCapture source="rsu-tax-shortfall" shortfallUsd={r.shortfallUsd} />
+
+      {/*
+        Trust band moves to the bottom of the result panel per the P1
+        mockup — reads as a closing reassurance once the user has the
+        number, rather than a preamble before they enter inputs.
+      */}
+      <ul className="grid gap-3 rounded-lg border border-slate-800 bg-slate-900/40 p-4 text-xs sm:grid-cols-3">
+        <li className="flex items-start gap-2">
+          <span aria-hidden="true" className="text-brand-300">✓</span>
+          <span>
+            <strong className="block font-semibold text-slate-100">No signup, ever</strong>
+            <span className="text-slate-500">No tracking, no email required.</span>
+          </span>
+        </li>
+        <li className="flex items-start gap-2">
+          <span aria-hidden="true" className="text-brand-300">✓</span>
+          <span>
+            <strong className="block font-semibold text-slate-100">Math runs in your browser</strong>
+            <span className="text-slate-500">No data leaves this page.</span>
+          </span>
+        </li>
+        <li className="flex items-start gap-2">
+          <span aria-hidden="true" className="text-brand-300">✓</span>
+          <span>
+            <strong className="block font-semibold text-slate-100">Every claim cites IRC § or IRS Pub</strong>
+            <span className="text-slate-500">Reviewed against IRS primary sources.</span>
+          </span>
+        </li>
+      </ul>
     </div>
   );
 }
