@@ -14,12 +14,22 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Full 50–900 brand-blue scale. Earlier config only defined 50,
+        // 100, 500, 600, 700, 900 — so any class using brand-200/300/
+        // 400/800 was a Tailwind no-op and rendered as inherited white
+        // (which is why the homepage's italic accents on "actually" and
+        // "30 seconds" looked white instead of blue). Standard Tailwind
+        // blue palette for the missing shades.
         brand: {
           50: '#eff6ff',
           100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
           500: '#3b82f6',
           600: '#2563eb',
           700: '#1d4ed8',
+          800: '#1e40af',
           900: '#1e3a8a',
         },
       },
