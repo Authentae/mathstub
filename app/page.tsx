@@ -90,16 +90,15 @@ export default function HomePage() {
               </span>{' '}
               owe.
               <br />
-              <span className="text-slate-500">In </span>
-              <span
-                className="font-normal italic tracking-[-0.02em] text-brand-300"
-                style={{
-                  fontFamily:
-                    '"Source Serif 4", "Source Serif Pro", "Iowan Old Style", Georgia, serif',
-                }}
-              >
-                30 seconds.
-              </span>
+              {/*
+                "In 30 seconds." stays plain muted slate — mirrors the
+                Claude Design Variant B mockup, where ONLY "actually"
+                carried the italic-Serif accent. Earlier we tried
+                italicizing "30 seconds." in the same brand-300 treatment
+                but it read as two equal accents, diluting the eye's
+                anchor on "actually." Plain mute restores the contrast.
+              */}
+              <span className="text-slate-500">In 30 seconds.</span>
             </h1>
             <p className="mt-7 max-w-[520px] text-lg leading-snug text-slate-200/85 sm:text-xl">
               Your employer withheld{' '}
