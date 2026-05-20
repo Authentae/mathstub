@@ -322,10 +322,14 @@ function ScenarioPill({
     <button
       type="button"
       onClick={onClick}
-      className={`rounded-full border px-3 py-1.5 text-sm transition ${
+      // Selected: solid brand-blue + bright white text. Unselected:
+      // muted slate text + slate border so the two states are clearly
+      // distinct at a glance (earlier styling gave both states white
+      // text, just differing in fill, which read as "both selected").
+      className={`rounded-full border px-3 py-1.5 text-sm font-medium transition ${
         active
-          ? 'border-brand-600 bg-brand-600 text-white'
-          : 'border-gray-300 bg-white text-gray-700 hover:border-brand-400 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200'
+          ? 'border-brand-600 bg-brand-600 text-white shadow-sm'
+          : 'border-gray-300 bg-white text-gray-500 hover:border-brand-400 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-500 dark:hover:text-gray-200'
       }`}
     >
       {children}
