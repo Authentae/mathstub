@@ -46,7 +46,7 @@ export function MathDiagram({
         */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={`/diagrams/${slug}.svg?v=4`}
+          src={`/diagrams/${slug}.svg?v=5`}
           alt={alt}
           width={1100}
           height={340}
