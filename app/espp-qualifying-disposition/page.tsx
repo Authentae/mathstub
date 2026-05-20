@@ -13,6 +13,7 @@ import { Disclaimer } from '@/components/Disclaimer';
 import { LastUpdatedBadge } from '@/components/LastUpdatedBadge';
 import { RelatedCalcs } from '@/components/RelatedCalcs';
 import { MathDiagram } from '@/components/MathDiagram';
+import { CalcIntro } from '@/components/CalcIntro';
 import { EsppQualifyingCalculator } from './EsppQualifyingCalculator';
 import { esppQualifyingContent as c } from '@/content/espp-qualifying-disposition';
 
@@ -51,6 +52,12 @@ export default function Page() {
         toolUi={
           <>
             <Disclaimer />
+            <CalcIntro
+              kicker="mathstub / espp qualifying"
+              question="Did your ESPP sale qualify for long-term capital gains?"
+              ircCite="A qualifying disposition (held 2 years from grant + 1 year from purchase) splits your gain — ordinary income capped at the smaller of the discount or actual gain, plus long-term capital gain on the rest. The split is worth thousands at high brackets."
+              irc="IRC § 423"
+            />
             <EsppQualifyingCalculator />
           </>
         }

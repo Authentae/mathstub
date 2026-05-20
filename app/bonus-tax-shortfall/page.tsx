@@ -13,6 +13,7 @@ import { Disclaimer } from '@/components/Disclaimer';
 import { LastUpdatedBadge } from '@/components/LastUpdatedBadge';
 import { RelatedCalcs } from '@/components/RelatedCalcs';
 import { MathDiagram } from '@/components/MathDiagram';
+import { CalcIntro } from '@/components/CalcIntro';
 import { BonusShortfallCalculator } from './BonusShortfallCalculator';
 import { bonusTaxShortfallContent as c } from '@/content/bonus-tax-shortfall';
 
@@ -51,6 +52,12 @@ export default function Page() {
         toolUi={
           <>
             <Disclaimer />
+            <CalcIntro
+              kicker="mathstub / bonus shortfall"
+              question="How much more do you owe on your bonus after April?"
+              ircCite="Cash bonuses are withheld at the 22% federal supplemental flat rate. For high earners in the 32–37% bracket, that withholding leaves a five-figure gap the IRS expects you to true up at filing — or earlier via quarterly estimates."
+              irc="IRC § 3402(g)(1)"
+            />
             <BonusShortfallCalculator />
           </>
         }

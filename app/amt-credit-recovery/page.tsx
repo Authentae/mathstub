@@ -13,6 +13,7 @@ import { Disclaimer } from '@/components/Disclaimer';
 import { LastUpdatedBadge } from '@/components/LastUpdatedBadge';
 import { RelatedCalcs } from '@/components/RelatedCalcs';
 import { MathDiagram } from '@/components/MathDiagram';
+import { CalcIntro } from '@/components/CalcIntro';
 import { AmtCreditRecoveryCalculator } from './AmtCreditRecoveryCalculator';
 import { amtCreditRecoveryContent as c } from '@/content/amt-credit-recovery';
 
@@ -51,6 +52,12 @@ export default function Page() {
         toolUi={
           <>
             <Disclaimer />
+            <CalcIntro
+              kicker="mathstub / amt credit recovery"
+              question="How much of your prior-year AMT can you claw back this year?"
+              ircCite="AMT you paid in a previous year becomes a minimum tax credit (Form 8801). You can claim back up to the difference between your regular tax and tentative AMT this year — and what you can't use this year carries forward indefinitely."
+              irc="IRC § 53 · Form 8801"
+            />
             <AmtCreditRecoveryCalculator />
           </>
         }

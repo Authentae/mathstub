@@ -13,6 +13,7 @@ import { Disclaimer } from '@/components/Disclaimer';
 import { LastUpdatedBadge } from '@/components/LastUpdatedBadge';
 import { RelatedCalcs } from '@/components/RelatedCalcs';
 import { MathDiagram } from '@/components/MathDiagram';
+import { CalcIntro } from '@/components/CalcIntro';
 import { QuarterlyEstimatedTaxCalculator } from './QuarterlyEstimatedTaxCalculator';
 import { quarterlyEstimatedTaxContent as c } from '@/content/quarterly-estimated-tax';
 
@@ -51,6 +52,12 @@ export default function Page() {
         toolUi={
           <>
             <Disclaimer />
+            <CalcIntro
+              kicker="mathstub / quarterly estimated"
+              question="What's the smallest quarterly payment that avoids the underpayment penalty?"
+              ircCite="IRS safe harbor: 110% of last year's liability (for AGI above $150K) or 90% of this year's projected. Pay that, split into four installments due April / June / September / January, and you skip the §6654 penalty entirely — regardless of how much you actually owe at filing."
+              irc="IRC § 6654"
+            />
             <QuarterlyEstimatedTaxCalculator />
           </>
         }

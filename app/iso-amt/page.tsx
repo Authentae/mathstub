@@ -13,6 +13,7 @@ import { Disclaimer } from '@/components/Disclaimer';
 import { LastUpdatedBadge } from '@/components/LastUpdatedBadge';
 import { RelatedCalcs } from '@/components/RelatedCalcs';
 import { MathDiagram } from '@/components/MathDiagram';
+import { CalcIntro } from '@/components/CalcIntro';
 import { IsoAmtCalculator } from './IsoAmtCalculator';
 import { isoAmtContent as c } from '@/content/iso-amt';
 
@@ -51,6 +52,12 @@ export default function Page() {
         toolUi={
           <>
             <Disclaimer />
+            <CalcIntro
+              kicker="mathstub / iso amt"
+              question="Will exercising your ISOs trigger AMT?"
+              ircCite="ISO exercises add the bargain element to your AMTI. If your tentative Alternative Minimum Tax exceeds your regular tax, you pay the AMT instead — and carry the difference as a credit to future years."
+              irc="IRC § 56(b)(3) · § 55"
+            />
             <IsoAmtCalculator />
           </>
         }
