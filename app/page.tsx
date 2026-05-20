@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { liveTools } from '@/lib/tools';
 import { blogPosts } from '@/content/blog/registry';
 import { findCategoryForSlug } from '@/content/blog/categories';
+import { HeroAnimation } from '@/components/HeroAnimation';
 
 export default function HomePage() {
   const tools = liveTools();
@@ -28,6 +29,16 @@ export default function HomePage() {
         numbers in 30 seconds. No signup. Math runs in your browser — your
         inputs never leave your device.
       </p>
+
+      {/*
+        Animated hero: 12-second autoplay loop dramatizing the 22% vs
+        ~37% gap on a $200K vest. Sourced from Claude Design P2. Sits
+        directly under the H1+lede so first-time visitors see the
+        problem visualized before they read the trust band.
+      */}
+      <div className="mt-8">
+        <HeroAnimation />
+      </div>
 
       {/* Trust band */}
       <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
