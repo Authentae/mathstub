@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const adsenseClient = env.adsense.clientId();
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <head>
         <meta name="impact-site-verification" content="7dd46510-dd74-4c10-a4ce-5cddf36a1e85" />
         {adsenseClient && (
