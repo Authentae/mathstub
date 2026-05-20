@@ -22,14 +22,20 @@ export function MathDiagram({
 }) {
   return (
     <figure className={`my-4 ${className ?? ''}`}>
-      <div className="overflow-x-auto rounded-md border border-gray-200 bg-white p-3 dark:border-gray-800 dark:bg-gray-900">
+      <div className="overflow-x-auto rounded-md border border-slate-800 bg-slate-900 p-4">
         {/*
           Using <img> instead of inline SVG keeps the SVG cacheable as a
           static asset and lets us reuse the same file as an OG-style
           share image on social. Trade-off: we can't theme the SVG via
-          CSS variables (it ships its own brand-blue palette), but every
-          diagram was generated with the same Mathstub token set so the
-          look is consistent across calcs.
+          CSS variables, but every diagram was generated with the same
+          Mathstub token set so the look is consistent across calcs.
+
+          No max-width cap so the diagram fills whatever container it
+          sits in — earlier `max-w-3xl` rendered the 1100x520 SVG at
+          ~720px wide on a 1100px page, which read as "too small."
+          Intrinsic viewBox keeps boxes legible up to 1100px and scales
+          down cleanly on narrower screens (the overflow-x-auto wrapper
+          handles the mobile-narrow case).
         */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -38,7 +44,7 @@ export function MathDiagram({
           width={1100}
           height={520}
           loading="lazy"
-          className="mx-auto h-auto w-full max-w-3xl"
+          className="mx-auto block h-auto w-full"
         />
       </div>
       <figcaption className="mt-2 text-center text-xs text-gray-500 dark:text-gray-400">
