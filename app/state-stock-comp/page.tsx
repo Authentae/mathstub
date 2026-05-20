@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { buildMetadata } from '@/lib/seo';
 import { ToolShell } from '@/components/ToolShell';
+import { MathDiagram } from '@/components/MathDiagram';
 import { Disclaimer } from '@/components/Disclaimer';
 import { stateStockCompProfiles } from '@tax/state-stock-comp';
 
@@ -75,6 +76,12 @@ export default function Page() {
             </table>
           </div>
         </>
+      }
+      howItWorks={
+        <MathDiagram
+          slug="state-stock-comp"
+          alt="State stock-comp formula chain: vest value $V → state supplemental withholding rate s → state top marginal m → state shortfall = (m − s) · V (examples: CA 13.3%, NY 10.9%, TX 0%)"
+        />
       }
     />
   );

@@ -12,6 +12,7 @@ import { FaqAccordion } from '@/components/FaqAccordion';
 import { Disclaimer } from '@/components/Disclaimer';
 import { LastUpdatedBadge } from '@/components/LastUpdatedBadge';
 import { RelatedCalcs } from '@/components/RelatedCalcs';
+import { MathDiagram } from '@/components/MathDiagram';
 import { IsoAmtCalculator } from './IsoAmtCalculator';
 import { isoAmtContent as c } from '@/content/iso-amt';
 
@@ -54,13 +55,19 @@ export default function Page() {
           </>
         }
         howItWorks={
-          <ol className="list-decimal space-y-2 pl-5">
-            {c.howToSteps.map((s) => (
-              <li key={s.name}>
-                <strong>{s.name}.</strong> {s.text}
-              </li>
-            ))}
-          </ol>
+          <>
+            <MathDiagram
+              slug="iso-amt"
+              alt="ISO/AMT formula chain: bargain element (IRC §422) → add to AMTI (IRC §56(b)(3)) → AMT exemption (IRC §55(d)) → AMT tentative tax 26%/28% → AMT owed = max(AMT, regular)"
+            />
+            <ol className="list-decimal space-y-2 pl-5">
+              {c.howToSteps.map((s) => (
+                <li key={s.name}>
+                  <strong>{s.name}.</strong> {s.text}
+                </li>
+              ))}
+            </ol>
+          </>
         }
         faq={<FaqAccordion items={[...c.faqs]} />}
         related={<RelatedCalcs currentSlug={c.slug} />}

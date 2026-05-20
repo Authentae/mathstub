@@ -12,6 +12,7 @@ import { FaqAccordion } from '@/components/FaqAccordion';
 import { Disclaimer } from '@/components/Disclaimer';
 import { LastUpdatedBadge } from '@/components/LastUpdatedBadge';
 import { RelatedCalcs } from '@/components/RelatedCalcs';
+import { MathDiagram } from '@/components/MathDiagram';
 import { NsoExerciseCalculator } from './NsoExerciseCalculator';
 import { nsoExerciseContent as c } from '@/content/nso-exercise';
 
@@ -54,13 +55,19 @@ export default function Page() {
           </>
         }
         howItWorks={
-          <ol className="list-decimal space-y-2 pl-5">
-            {c.howToSteps.map((s) => (
-              <li key={s.name}>
-                <strong>{s.name}.</strong> {s.text}
-              </li>
-            ))}
-          </ol>
+          <>
+            <MathDiagram
+              slug="nso-exercise"
+              alt="NSO exercise formula chain: bargain element = (FMV − strike) · shares → ordinary income (IRC §83(a)) → FICA 7.65% (IRC §3101) → withheld 22% supplemental → shortfall = real marginal − 22%"
+            />
+            <ol className="list-decimal space-y-2 pl-5">
+              {c.howToSteps.map((s) => (
+                <li key={s.name}>
+                  <strong>{s.name}.</strong> {s.text}
+                </li>
+              ))}
+            </ol>
+          </>
         }
         faq={<FaqAccordion items={[...c.faqs]} />}
         related={<RelatedCalcs currentSlug={c.slug} />}
