@@ -15,12 +15,16 @@ export function QuickAnswer({ text }: Props) {
   return (
     <aside
       data-quick-answer="true"
-      className="mt-4 rounded-lg border-l-4 border-brand-500 bg-brand-50 p-5 dark:border-brand-400 dark:bg-brand-950/40"
+      // Site is locked to dark per the Variant B port; drop the light
+      // fallback (bg-brand-50) entirely so the callout can never render
+      // light-on-light if the dark class on <html> regresses. Concrete
+      // dark classes instead of dark: variants.
+      className="mt-4 rounded-lg border-l-4 border-brand-400 bg-brand-950/40 p-5"
     >
-      <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-brand-700 dark:text-brand-300">
+      <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-brand-300">
         Quick answer
       </p>
-      <p className="text-base font-medium leading-relaxed text-gray-900 dark:text-gray-100">
+      <p className="text-base font-medium leading-relaxed text-slate-100">
         {text}
       </p>
     </aside>
