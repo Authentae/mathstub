@@ -50,6 +50,71 @@ export default function HomePage() {
         <li>✓ Free, no signup</li>
       </ul>
 
+      {/*
+        Persona-router strip — sourced from Claude Design P3 Variant C
+        (the strongest IDEA in the homepage variants, even though we
+        kept the existing trust-engineered framing for the rest of the
+        page). Visitors who don't know which calculator they need can
+        self-route in one click instead of scanning the full grid. The
+        4 paths cover the 4 most common panic-moments in equity comp.
+      */}
+      <section className="mt-10">
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+          What just happened in your equity comp?
+        </h2>
+        <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+          Tell us — we&apos;ll route you to the right calculator.
+        </p>
+        <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <li>
+            <Link
+              href="/rsu-tax-shortfall"
+              className="block rounded-lg border border-gray-200 bg-white p-4 text-sm shadow-sm transition hover:border-brand-500 hover:shadow-md dark:border-gray-800 dark:bg-gray-900"
+            >
+              <p className="text-2xl" aria-hidden="true">📈</p>
+              <p className="mt-2 font-semibold text-gray-900 dark:text-gray-100">My RSUs vested</p>
+              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">RSU shortfall · 30 sec</p>
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/iso-amt"
+              className="block rounded-lg border border-gray-200 bg-white p-4 text-sm shadow-sm transition hover:border-brand-500 hover:shadow-md dark:border-gray-800 dark:bg-gray-900"
+            >
+              <p className="text-2xl" aria-hidden="true">🔓</p>
+              <p className="mt-2 font-semibold text-gray-900 dark:text-gray-100">I exercised options</p>
+              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">ISO/AMT or NSO · 60 sec</p>
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/espp-qualifying-disposition"
+              className="block rounded-lg border border-gray-200 bg-white p-4 text-sm shadow-sm transition hover:border-brand-500 hover:shadow-md dark:border-gray-800 dark:bg-gray-900"
+            >
+              <p className="text-2xl" aria-hidden="true">💰</p>
+              <p className="mt-2 font-semibold text-gray-900 dark:text-gray-100">I sold ESPP shares</p>
+              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">ESPP qualifying · 60 sec</p>
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/quarterly-estimated-tax"
+              className="block rounded-lg border border-gray-200 bg-white p-4 text-sm shadow-sm transition hover:border-brand-500 hover:shadow-md dark:border-gray-800 dark:bg-gray-900"
+            >
+              <p className="text-2xl" aria-hidden="true">📅</p>
+              <p className="mt-2 font-semibold text-gray-900 dark:text-gray-100">I owe quarterly tax</p>
+              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Safe harbor · 30 sec</p>
+            </Link>
+          </li>
+        </ul>
+        <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
+          Or{' '}
+          <Link href="/start-here" className="font-semibold text-brand-700 hover:underline dark:text-brand-300">
+            see the full diagnostic guide →
+          </Link>
+        </p>
+      </section>
+
       {/* Flagship — RSU shortfall featured large */}
       <section className="mt-10">
         <Link
