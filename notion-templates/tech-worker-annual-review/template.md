@@ -1,18 +1,24 @@
 # 🎯 Tech Worker Annual Financial Review
 
-> A 90-minute year-end review built for the kind of finances tech workers actually have: lumpy RSU income, illiquid equity, single-stock concentration, AMT credit ladders, Mega-Backdoor Roth, multi-state moves, and pre-IPO secondary windows. Pairs with the full [Mathstub](https://mathstub.com) calculator suite. Updated every tax year.
+> The 90-minute year-end review built for tech workers with the real-shape problems: lumpy RSU income, illiquid equity, single-stock concentration, AMT credit ladders, Mega-Backdoor Roth, multi-state moves, pre-IPO secondary windows. Pairs with the full [Mathstub](https://mathstub.com) calculator suite.
 
 ---
 
-> 💎 **What you're getting**
-> - 12 sections covering net worth → income → tax efficiency → concentration → retirement → cashflow → debt → insurance → estate → goals → year-over-year scoreboard → next-year action list
-> - Worked example: Priya, $310k staff-eng MFJ in NY → caught $11k of missed moves
-> - **Withholding strategy by income tier** — exact W-4 line 4(c) amount by gross/state
-> - **AMT credit recovery multi-year planner** — turn this year's AMT into next year's refund
-> - **Decision tree: ISO vs. early-exercise + 83(b)** — when each pays off
+> ▶️ **Watch the 20-minute walkthrough first**: `[paste your Loom share URL here]`
+> *Loom recording: walk the buyer through Priya's worked example end-to-end. This is the highest-leverage perceived-value lift for the $79 tier.*
+
+---
+
+> 💎 **What's inside**
+> - **Priya's worked example** — $11.3k cash recovered + $77k of new tax-sheltered space identified in 90 minutes
+> - **§4 — Withholding strategy by income tier** — exact W-4 line 4(c) amount by gross + filing status
+> - **§7 — AMT credit recovery multi-year planner** — turn this year's AMT into next year's refund (most people forget this; it's 5-figure cash)
+> - **§8 — Decision tree: ISO vs. early-exercise + 83(b)** — when each pays off, with the threshold math
+> - **§15 — 24-question CPA + financial-planner dual-script** — both angles, written so each pro can answer in 30 sec
+> - 12 sections: net worth → income → tax efficiency → concentration → retirement → cashflow → debt → insurance → estate → goals → YoY scoreboard → next-year action list
 > - 4 multi-year tables (net worth, income, tax efficiency, savings rate)
-> - "Talk to your CPA + financial planner" question script — 24 questions, both professionals' angles
-> - Lifetime updates — re-pull when IRS publishes new annual limits
+> - **Free updates through tax year 2028** — re-pull any time IRS publishes new limits
+> - **30-day no-questions money-back guarantee** (you'll know in your first 90-min session if it pays off)
 
 ---
 

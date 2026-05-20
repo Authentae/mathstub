@@ -1,16 +1,25 @@
-# 📈 Equity Comp Tracker
+# 📈 Equity Comp Decision Tracker
 
-> The Notion workspace tech workers use to plan every RSU vest, ESPP cycle, and ISO exercise — with projected tax owed quarter-by-quarter. Built around the same IRC-cited math the [Mathstub](https://mathstub.com) calculators run. Updated every tax year.
+> The Notion workspace tech workers use to **decide** — not just track — every RSU vest, ESPP cycle, ISO exercise, and NSO grant. Multi-year tax projection + AMT credit calendar + a "Talk to Your CPA" brief built in. Pairs with the [Mathstub](https://mathstub.com) calculator suite.
 
 ---
 
-> 💎 **What you're getting**
-> - 7 live tables (grants, vests, sales, exercises, AMT scratchpad, quarterly schedule, year-over-year)
-> - 4 pre-filled scenarios (RSU vest, ESPP qualifying sale, ISO exercise + AMT, NSO early-exercise + 83(b))
-> - 12 deep-linked Mathstub calculators that auto-fill from your rows
+> ▶️ **Watch the 4-minute walkthrough** before you start: `[paste your Loom share URL here]`
+> *(After you record your walkthrough, drop the Loom link in this callout. Buyers prefer 3–5 min, casual, screen-share narration — no script.)*
+
+---
+
+> 💎 **What's inside**
+> - **§A — 4-year tax projection grid** — see W-2 + RSU + AMT credit consumption + cumulative liability for the next 48 months on one page. This is the "decision" layer most trackers skip.
+> - **§B — AMT credit recovery calendar** — Form 8801 multi-year scheduler, year-by-year recovery projection, with "use it by 20X8" alerts
+> - **§C — RSU cost-basis fix-it kit** — step-by-step Form 8949 adjustment that stops TurboTax double-taxing your RSU sales (the most-googled RSU pain in the world)
+> - **§D — "Talk to your CPA" 2-page brief** — personalized intake template you hand them in the first 5 minutes of the meeting
+> - 7 live databases (grants, vests, sales, exercises, AMT scratchpad, quarterly schedule, year-over-year)
+> - 4 pre-filled scenarios (RSU vest, ESPP qualifying sale, ISO + AMT, NSO early-exercise + 83(b))
 > - 50-state supplemental-withholding cheat sheet
-> - "Talk to your CPA" question script — 18 questions a $300/hr CPA wishes you'd ask
-> - Lifetime updates — re-pull the latest version from Gumroad any time IRS publishes new limits
+> - 18-question CPA script + 10 common $1k+ mistakes
+> - **Free updates through tax year 2028** — re-pull any time IRS publishes new limits
+> - **14-day no-questions money-back guarantee**
 
 ---
 
@@ -244,6 +253,133 @@ The flat rate your employer withholds on supplemental wages by state. If your st
 | Red | > 35% | Build a 10b5-1 plan or schedule aggressive sells; consider exchange fund |
 
 > 🧠 **The Bay Area survivors-bias graveyard:** Cisco employees who didn't diversify in 1999 lost 89% peak-to-trough. Enron, WorldCom, FTX, Bear Stearns — the same story. Your conviction in your company is not an investment thesis. It's payroll.
+
+---
+
+## 🔮 §A — 4-year tax projection grid
+
+The single most-asked question by every tech worker with equity: *"What does the next 4 years actually look like, all-in?"* Fill this grid in December for each upcoming year — you'll catch the AMT bunch year, the multi-year safe-harbor curve, and the cliff vest that triggers a 37% supplemental bracket.
+
+| Year | W-2 base + bonus | RSU vest income | ESPP discount realized | ISO bargain (held) | NSO bargain | LTCG / STCG | AGI proj. | Fed marginal | AMT triggered? | AMT credit balance EoY | Est. fed liability | Safe-harbor target | Action |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **2026** | $— | $— | $— | $— | $— | $— | $— | —% | ☐ | $— | $— | $— | |
+| **2027** | $— | $— | $— | $— | $— | $— | $— | —% | ☐ | $— | $— | $— | |
+| **2028** | $— | $— | $— | $— | $— | $— | $— | —% | ☐ | $— | $— | $— | |
+| **2029** | $— | $— | $— | $— | $— | $— | $— | —% | ☐ | $— | $— | $— | |
+
+> 💡 **Why this grid changes everything.** Most planning is single-year. But equity comp is a *4-year compound problem*: a 2026 ISO exercise creates an AMT credit consumed in 2028. A 2027 RSU cliff stacks on top of 2027's bonus and pushes you to 37% supplemental. A 2028 IPO secondary sale changes your LTCG bracket retroactively. This grid is how you see the whole game board.
+
+**How to populate**
+1. Pull your offer letter(s) for unvested RSU/ISO/NSO + cliff schedule.
+2. Use last year's bonus + 5% raise assumption for base.
+3. Run each year through [RSU Shortfall](https://mathstub.com/rsu-tax-shortfall) + [ISO/AMT](https://mathstub.com/iso-amt) + [AMT Credit Recovery](https://mathstub.com/amt-credit-recovery) and drop results in.
+4. Re-run every December and after any life event (job change, marriage, move, parental leave).
+
+**Decision triggers**
+- AMT triggered + holds planned → schedule the cash to pay AMT in April of that year.
+- Marginal rate climbing past 32% in a single year → consider Roth conversion in the **lower** year.
+- Cumulative AMT credit balance ≥ $10k by year 3 → check if a stock-sale year would unlock it (TMT < regular).
+- Safe-harbor target growing > $30k/yr → set up EFTPS auto-scheduled quarterly payments.
+
+---
+
+## 🛠️ §B — RSU cost-basis fix-it kit (stop the TurboTax double-tax)
+
+This is the **single biggest tax pain** for RSU holders, and TurboTax fails most users on it silently.
+
+> ⚠️ **The bug.** Your broker (Schwab, E*Trade, Fidelity, Morgan Stanley) reports your 1099-B with **cost basis = $0** for RSU lots — because the broker only knows what *you paid them* for the shares ($0; the shares were granted). But your **real** cost basis is the FMV at vest, which was already taxed as wages on your W-2 Box 1. If you don't fix this, the IRS taxes the same dollars *twice*.
+
+**The fix (Form 8949 column g adjustment)**
+
+```
+For each RSU sale lot:
+  Broker 1099-B reports:
+    Box 1d (proceeds)  = sale price × shares
+    Box 1e (basis)     = $0    ← WRONG
+  
+  You override on Form 8949:
+    Col (d) Proceeds   = sale price × shares (matches 1099-B)
+    Col (e) Basis      = $0 (matches 1099-B — required for IRS reconciliation)
+    Col (f) Code       = B (basis incorrect on 1099-B)
+    Col (g) Adjustment = -(FMV at vest × shares)    ← the fix
+    Col (h) Gain/loss  = (sale price − FMV at vest) × shares
+```
+
+**TurboTax walk-through**
+1. Import 1099-B from broker.
+2. For each RSU lot, select **"I'll enter additional info on my own"** → **"This is a less common situation"** → **"The cost basis on my 1099-B is incorrect or missing"**.
+3. Enter **the correct basis** (FMV at vest from your §3 Vest log row).
+4. TurboTax will generate Form 8949 with code B and the adjustment in column (g).
+5. Schedule D total will reflect the corrected gain.
+
+**FreeTaxUSA walk-through**
+1. Enter the 1099-B import.
+2. On the lot detail page, check **"Reported cost basis is incorrect"**.
+3. Enter the corrected basis (same FMV at vest).
+
+**What this saves you**
+- A $50k RSU sale with $40k basis (incorrectly reported as $0) and 32% marginal = **$12,800 of double-taxation**.
+- Multiply by every RSU sale lot you've ever made. People recover 4–5 figures going back and amending 3 years.
+
+> 🔍 **Audit your past 3 years.** If you ever filed without this fix, you can amend via Form 1040-X within 3 years of the original filing deadline. The refund + 6% interest is real money.
+
+---
+
+## 🧾 §C — "Talk to your CPA" 2-page brief
+
+Print this. Bring it to your meeting. Most CPAs bill $300–$500/hour; this brief makes the first 30 min productive instead of educational.
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CLIENT BRIEF · [Your Name] · Prepared [Date]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+THE SHORT VERSION
+[1–2 sentences. e.g., "I had $90k RSU + $20k ESPP vest this year,
+exercised + held 2,000 ISOs in Sept, and I want to confirm safe
+harbor and the AMT picture before April."]
+
+SITUATION
+- Filing status: [single / MFJ / HoH] · State(s): [CA / NY / TX / multi]
+- Employer: [Co.] · Role: [SWE L5]
+- Spouse W-2: $— · Spouse 1099 / Schedule C: $—
+
+EQUITY EVENTS THIS YEAR
+RSU vested              $—  (from §3 Vest log totals)
+ESPP purchase / sale    $—  ($— qualifying / $— disqualifying)
+ISO exercised + held    $—  bargain = $— (§5 AMT scratchpad)
+ISO exercised + sold    $—  (disqualifying → ordinary)
+NSO exercised           $—  bargain = $—
+Cap gains realized      $—  ($— LT / $— ST)
+RSU cost-basis adj.     $—  (Form 8949 col g — see §B)
+
+YTD WITHHOLDING (from final paystub or §6 Tax dashboard)
+Federal                 $—
+State                   $—
+Estimates paid          $—  ($— Q1 / $— Q2 / $— Q3 / $— Q4)
+
+OPEN QUESTIONS (in priority order)
+1. Are we on §6654 safe harbor? Q4 estimate or W-4 4(c) bump?
+2. Confirm Form 8949 col (g) adjustments for $— of RSU sales.
+3. ISO bargain $— → Form 6251 AMT impact + Form 8801 credit balance.
+4. Multi-state apportionment: [details if moved this year]
+5. Mega-Backdoor Roth: did we max + does my plan allow IRR?
+6. Backdoor Roth — Form 8606 filed?
+7. [Your specific situation question]
+
+ATTACHMENTS
+- §3 Vest log (Excel export from this Notion)
+- §4 Sales log (Excel export)
+- §5 ISO AMT scratchpad
+- Last 3 paystubs
+- W-4 on file
+- Form 3921 (ISO exercise reports)
+- Form 3922 (ESPP transfer reports)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+> 💡 **Why this works.** A CPA who has seen this brief in the first 5 minutes will spend the next 55 doing tax work, not interviewing you. Most clients waste their first $200 of billable time on "education." This brief is the cheat code.
 
 ---
 

@@ -5,9 +5,9 @@
       <stop offset="100%" stop-color="#0c1d3e"/>
     </linearGradient>
     <radialGradient id="glow" cx="0.85" cy="0.15" r="0.55">
-      <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.32"/>
-      <stop offset="60%" stop-color="#fbbf24" stop-opacity="0.06"/>
-      <stop offset="100%" stop-color="#fbbf24" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.32"/>
+      <stop offset="60%" stop-color="#34d399" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
     </radialGradient>
     <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
       <path d="M48 0 L0 0 0 48" stroke="rgba(255,255,255,0.05)" stroke-width="1" fill="none"/>
@@ -35,39 +35,39 @@
     <rect width="158" height="56" rx="28" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/>
     <text x="79" y="36" text-anchor="middle"
           font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
-          font-size="24" font-weight="700" fill="#ffffff">$29</text>
+          font-size="24" font-weight="700" fill="#ffffff">$79</text>
   </g>
 
   <!-- category badge -->
   <g transform="translate(80, 188)">
-    <rect width="162" height="34" rx="17" fill="rgba(251,191,36,0.16)" stroke="rgba(251,191,36,0.4)" stroke-width="1"/>
-    <text x="81" y="22" text-anchor="middle"
+    <rect width="150.5" height="34" rx="17" fill="rgba(251,191,36,0.16)" stroke="rgba(251,191,36,0.4)" stroke-width="1"/>
+    <text x="75.25" y="22" text-anchor="middle"
           font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
-          font-size="14" font-weight="700" letter-spacing="1.2" fill="#fbbf24">TAX PLAYBOOK</text>
+          font-size="14" font-weight="700" letter-spacing="1.2" fill="#fbbf24">MULTI-STATE</text>
   </g>
 
   <!-- kicker -->
   <text x="80" y="278" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
-        font-size="22" font-weight="500" fill="rgba(255,255,255,0.78)">27 IRS deadlines · ICS calendar export · CPA brief</text>
+        font-size="22" font-weight="500" fill="rgba(255,255,255,0.78)">Work-source allocation · NY convenience rule · move ROI</text>
 
   <!-- title (big) -->
   <text x="80" y="350" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
         font-size="78" font-weight="800" fill="#ffffff" filter="url(#softShadow)">
-    <tspan x="80" dy="0">Year-End Tax</tspan><tspan x="80" dy="92">Playbook</tspan>
+    <tspan x="80" dy="0">Multi-State Equity</tspan><tspan x="80" dy="92">Comp Tax Planner</tspan>
   </text>
 
   <!-- subtitle -->
   <text x="80" y="608" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
         font-size="24" font-weight="400" fill="rgba(255,255,255,0.78)">
-    <tspan x="80" dy="0">The dated decision calendar tech workers run from Oct 1 to Apr</tspan><tspan x="80" dy="34">15.</tspan>
+    <tspan x="80" dy="0">For tech workers who moved CA→TX (or NY→FL) mid-vest. State by</tspan><tspan x="80" dy="34">state.</tspan>
   </text>
 
   <!-- decorative chart -->
   <g transform="translate(880, 390)" opacity="0.92">
     <path d="M0 200 L40 168 L80 180 L120 122 L160 138 L200 78 L240 64 L280 22"
-          stroke="#fbbf24" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#softShadow)"/>
-    <circle cx="280" cy="22" r="11" fill="#fbbf24"/>
-    <circle cx="280" cy="22" r="22" fill="#fbbf24" fill-opacity="0.25"/>
+          stroke="#34d399" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#softShadow)"/>
+    <circle cx="280" cy="22" r="11" fill="#34d399"/>
+    <circle cx="280" cy="22" r="22" fill="#34d399" fill-opacity="0.25"/>
   </g>
 
   <!-- footer mark -->

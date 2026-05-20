@@ -1,17 +1,24 @@
-# 📅 Year-End Tax Checklist + Calculator Workbook
+# 📅 Year-End Tax Playbook
 
-> The 27 hard-deadline tax-saving actions every US tech worker should run between October 1 and April 15 — with the exact IRS § cited, the dollar limit, and a deep-linked [Mathstub](https://mathstub.com) calculator on every step that needs math. Updated every tax year.
+> The dated decision calendar for US tech workers between October 1 and April 15. Every action is keyed to a real IRS deadline, an IRC §, and a $ cost-of-missing. Pairs with the [Mathstub](https://mathstub.com) calculator suite.
 
 ---
 
-> 💎 **What you're getting**
-> - 6 month-by-month checklists (Oct → Apr) — 80+ time-stamped action items
-> - **27 hard-deadline calendar** — every IRS deadline with the action and the cost-of-missing
-> - Pre-filled tax-doc inventory (W-2 / 1099-* / K-1 / Form 3921 / Form 3922)
-> - Calculator workbook — "the question I'm asking → the right tool → the deadline"
-> - W-4 line 4(c) calculator workbook — what to actually write in box 4(c)
-> - Bonus: same-day W-4 walkthrough for after-vest withholding fixes
-> - Lifetime updates — re-pull when IRS publishes new annual limits
+> ▶️ **Watch the 4-minute walkthrough** before you start: `[paste your Loom share URL here]`
+
+---
+
+> 💎 **What's inside**
+> - **The 27-deadline decision calendar** — every IRS-controlled date with IRC § + $ cost-of-missing per row
+> - **6 month-by-month playbooks** (Oct → Apr) — 80+ time-stamped action items
+> - **ICS calendar export** — import deadlines into Google / Apple / Outlook with one click (see §13)
+> - W-4 line 4(c) workbook — shortfall ÷ pay-periods math with worked scenarios
+> - 17-row tax-doc inventory (W-2 / every 1099-* / K-1 / 3921 / 3922 / 5498)
+> - Calculator workbook — "the question I'm asking → the right tool → the deadline → the cost of skipping"
+> - Pre-filing self-audit (one-hour March checklist)
+> - "Talk to your CPA" 1-page brief (§14)
+> - **Free updates through tax year 2028** — re-pull any time IRS publishes new limits
+> - **14-day no-questions money-back guarantee**
 
 ---
 
@@ -249,6 +256,160 @@ Run this before you hit "file" in TurboTax or send to your CPA.
 - [ ] If you moved: each state's part-year return apportions correctly
 - [ ] Direct-deposit refund or auto-pay-balance set up
 - [ ] Filed Form 4868 if not ready (it's free; do it as insurance)
+
+---
+
+## 📆 §13 ICS calendar export — get all 27 deadlines on your phone
+
+Paste this `.ics` content into a new file (e.g., `mathstub-tax-deadlines-2026.ics`) and open it on your Mac/iPhone/Android — your calendar app will offer to import all events.
+
+```ics
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Mathstub//Year-End Tax Playbook//EN
+X-WR-CALNAME:Mathstub · 2026–27 Tax Deadlines
+X-WR-TIMEZONE:America/New_York
+
+BEGIN:VEVENT
+UID:mathstub-oct15@mathstub.com
+DTSTART;VALUE=DATE:20261015
+SUMMARY:📋 Q3 estimated tax confirmation
+DESCRIPTION:Confirm Q3 estimated tax was credited. Run Quarterly Estimated Tax calc at mathstub.com/quarterly-estimated-tax
+END:VEVENT
+
+BEGIN:VEVENT
+UID:mathstub-nov15@mathstub.com
+DTSTART;VALUE=DATE:20261115
+SUMMARY:💼 Last day to safely bump 401(k) deferral
+DESCRIPTION:Change deferral % for Dec paychecks. Verify with payroll first paycheck of December.
+END:VEVENT
+
+BEGIN:VEVENT
+UID:mathstub-nov30@mathstub.com
+DTSTART;VALUE=DATE:20261130
+SUMMARY:🎁 Initiate appreciated-stock charitable transfer
+DESCRIPTION:DAF transfers need 2-3 weeks to settle by Dec 31.
+END:VEVENT
+
+BEGIN:VEVENT
+UID:mathstub-dec15@mathstub.com
+DTSTART;VALUE=DATE:20261215
+SUMMARY:💌 Mail charitable cash gifts
+DESCRIPTION:Gifts must be delivered (not mailed) by Dec 31. Bake in buffer.
+END:VEVENT
+
+BEGIN:VEVENT
+UID:mathstub-dec28@mathstub.com
+DTSTART;VALUE=DATE:20261228
+SUMMARY:📉 Tax-loss harvest deadline (settlement)
+DESCRIPTION:T+1 settlement means Dec 28 sells settle Dec 31. Wash sale: > 30 days before re-buy.
+END:VEVENT
+
+BEGIN:VEVENT
+UID:mathstub-dec31@mathstub.com
+DTSTART;VALUE=DATE:20261231
+SUMMARY:🚨 Year-end cutoff (401(k) / FSA / Roth conversion / 529)
+DESCRIPTION:401(k) deferrals, FSA spend-down, Roth conversions, 529 state-deduction contributions all close today.
+END:VEVENT
+
+BEGIN:VEVENT
+UID:mathstub-jan15@mathstub.com
+DTSTART;VALUE=DATE:20270115
+SUMMARY:💰 Q4 estimated tax due (federal + state)
+DESCRIPTION:Use IRS Direct Pay. Run Quarterly Estimated Tax one last time at mathstub.com/quarterly-estimated-tax
+END:VEVENT
+
+BEGIN:VEVENT
+UID:mathstub-jan31@mathstub.com
+DTSTART;VALUE=DATE:20270131
+SUMMARY:📩 W-2 / 1099-NEC / 1099-MISC / 3921 / 3922 deadline
+DESCRIPTION:These should be delivered by today. Demand from payer if missing.
+END:VEVENT
+
+BEGIN:VEVENT
+UID:mathstub-feb15@mathstub.com
+DTSTART;VALUE=DATE:20270215
+SUMMARY:📩 1099-B / 1099-DIV / 1099-INT deadline
+DESCRIPTION:Brokerages often send corrected versions through Mar — wait if any look off.
+END:VEVENT
+
+BEGIN:VEVENT
+UID:mathstub-mar15@mathstub.com
+DTSTART;VALUE=DATE:20270315
+SUMMARY:📩 K-1 deadline (often slips)
+DESCRIPTION:If expected and not received: plan Form 4868 extension.
+END:VEVENT
+
+BEGIN:VEVENT
+UID:mathstub-apr15@mathstub.com
+DTSTART;VALUE=DATE:20270415
+SUMMARY:🏁 1040 due · IRA / HSA prior-year contribution deadline
+DESCRIPTION:File 1040 or Form 4868 extension. Prior-year IRA + HSA contributions hard-stop today (no extension).
+END:VEVENT
+
+END:VCALENDAR
+```
+
+**To import**
+- **Mac / iPhone:** save as `.ics`, double-click — Calendar prompts to import.
+- **Google Calendar:** Settings → Add calendar → Import → upload `.ics`.
+- **Outlook:** File → Open & Export → Import/Export → iCalendar.
+
+> 💡 Set notifications for 14-day pre-warning on each. The whole point is to never be surprised.
+
+---
+
+## 🧾 §14 "Talk to your CPA" 1-page brief
+
+Print this. Bring it. Stops you from being billed $300/hr to be educated.
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TAX YEAR REVIEW · [Your Name] · Prepared [Date]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+THE ASK
+[1–2 sentences. e.g., "Confirm we're on safe harbor and that we
+maximized all year-end moves before I file."]
+
+SITUATION
+- Filing status: [single / MFJ / HoH] · State(s): [—]
+- Major life events this year: [marriage / kid / home purchase / job change / state move]
+
+INCOME (this year vs. last year)
+W-2 base + bonus       $— → $—
+RSU / ESPP / ISO / NSO $— → $—  (detail in attached vest+sales logs)
+Spouse income          $— → $—
+LTCG / STCG / 1099     $— → $—
+Total gross            $— → $—
+
+YEAR-END MOVES COMPLETED
+☐ 401(k) maxed                ($— contributed)
+☐ Mega-Backdoor Roth          ($— contributed)
+☐ Roth IRA / Backdoor         ($— contributed)
+☐ HSA maxed                   ($— contributed)
+☐ 529 (state deduction)       ($— contributed)
+☐ Tax-loss harvest            ($— losses realized)
+☐ Charitable (cash + stock)   ($— total)
+☐ Q4 estimated payment        ($— sent on [date])
+
+OPEN QUESTIONS (priority order)
+1. Are we on §6654 safe harbor? Any Q4 estimate or W-4 4(c) adjustment needed?
+2. Form 8949 RSU cost-basis adjustments — confirm column (g) for $— of sales.
+3. ISO exercises this year → Form 6251 AMT + Form 8801 credit position.
+4. Multi-state apportionment if I moved.
+5. NIIT — what triggered it; can we offset?
+6. [Your situation question]
+
+ATTACHMENTS
+- Final paystub
+- W-4 currently on file
+- Vest log + sales log (from Equity Comp Decision Tracker)
+- Forms 3921 / 3922 if received
+- Prior-year 1040 (in case you didn't prepare it)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
 
 ---
 
