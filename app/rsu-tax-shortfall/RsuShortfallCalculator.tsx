@@ -90,7 +90,9 @@ export function RsuShortfallCalculator() {
     },
   });
   const [showAdvanced, setShowAdvanced] = useState(false);
+  const [step, setStep] = useState(0);
   const states = useMemo(() => listStateCodes(), []);
+  const stepLabels = ['Vest', 'Income', 'Location'] as const;
 
   const result: RsuShortfallResult | { error: string } = useMemo(() => {
     try {
@@ -164,135 +166,229 @@ export function RsuShortfallCalculator() {
         </li>
       </ul>
 
-      <form className="grid gap-4 rounded-lg border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-800 dark:bg-gray-900 md:grid-cols-2">
-        <Field label="RSU vest amount (USD)">
-          <input
-            type="number"
-            min="0"
-            value={form.vestGrossUsd}
-            onChange={(e) => update('vestGrossUsd', e.target.value)}
-            className={inputCls}
-            autoFocus
-          />
-        </Field>
-        <Field label="Tax year">
-          <select
-            value={form.taxYear}
-            onChange={(e) => update('taxYear', Number(e.target.value) as TaxYear)}
-            className={inputCls}
-          >
-            <option value={2024}>2024</option>
-            <option value={2025}>2025</option>
-            <option value={2026}>2026</option>
-          </select>
-        </Field>
-        <Field label="Filing status">
-          <select
-            value={form.filingStatus}
-            onChange={(e) => update('filingStatus', e.target.value as FilingStatus)}
-            className={inputCls}
-          >
-            <option value="single">Single</option>
-            <option value="mfj">Married filing jointly</option>
-            <option value="mfs">Married filing separately</option>
-            <option value="hoh">Head of household</option>
-          </select>
-        </Field>
-        <Field label="State">
-          <select
-            value={form.stateCode}
-            onChange={(e) => update('stateCode', e.target.value)}
-            className={inputCls}
-          >
-            {states.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </select>
-        </Field>
-        <Field label="YTD regular W-2 wages (before this vest)">
-          <input
-            type="number"
-            min="0"
-            value={form.ytdRegularWagesUsd}
-            onChange={(e) => update('ytdRegularWagesUsd', e.target.value)}
-            className={inputCls}
-          />
-        </Field>
-        <Field label="YTD pre-tax deductions (401k + HSA)">
-          <input
-            type="number"
-            min="0"
-            value={form.preTaxDeductionsUsd}
-            onChange={(e) => update('preTaxDeductionsUsd', e.target.value)}
-            className={inputCls}
-          />
-        </Field>
+      {/*
+        Stepped wizard — sourced from Claude Design P1 mobile mockup.
+        Three steps reduce above-the-fold cognitive load on mobile (the
+        panic-moment use case): a flat 8-field grid feels overwhelming
+        right after an RSU vest hits. The Continue button gives clear
+        forward momentum. All values are still URL-serialized via
+        useUrlFormState so deep links restore the full state regardless
+        of which step is visible. On desktop the same wizard reads as a
+        clean focused form rather than a wall of inputs.
+      */}
+      <div className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-800 dark:bg-gray-900">
+        {/* Step indicator */}
+        <ol className="mb-5 flex items-center gap-2 text-xs">
+          {stepLabels.map((label, i) => {
+            const active = i === step;
+            const done = i < step;
+            return (
+              <li key={label} className="flex flex-1 items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setStep(i)}
+                  className={`flex flex-1 items-center gap-2 rounded-md px-2 py-1.5 text-left transition ${
+                    active
+                      ? 'bg-brand-50 text-brand-800 dark:bg-brand-950/40 dark:text-brand-200'
+                      : done
+                        ? 'text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800'
+                        : 'text-gray-500 hover:bg-gray-50 dark:text-gray-500 dark:hover:bg-gray-800'
+                  }`}
+                  aria-current={active ? 'step' : undefined}
+                >
+                  <span
+                    className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold ${
+                      active
+                        ? 'bg-brand-600 text-white'
+                        : done
+                          ? 'bg-brand-600 text-white'
+                          : 'bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-300'
+                    }`}
+                    aria-hidden="true"
+                  >
+                    {done ? '✓' : i + 1}
+                  </span>
+                  <span className="font-semibold">{label}</span>
+                </button>
+              </li>
+            );
+          })}
+        </ol>
 
-        {/*
-          Progressive disclosure: the remaining 3 inputs and the FICA
-          override see use by < 20% of visitors (per CLAUDE.md note about
-          panic-moment users wanting <30s to a number). Hide behind a
-          single click so the default form is 6 fields, not 9. Engine
-          contract unchanged — useUrlFormState still keeps all values in
-          the URL, so a deep-linked URL still restores advanced settings
-          even if this toggle is collapsed.
-        */}
-        <button
-          type="button"
-          onClick={() => setShowAdvanced((v) => !v)}
-          className="md:col-span-2 -mt-2 flex items-center gap-2 self-start text-xs font-semibold text-brand-700 hover:underline dark:text-brand-300"
-          aria-expanded={showAdvanced}
-        >
-          <span aria-hidden="true">{showAdvanced ? '▾' : '▸'}</span>
-          {showAdvanced ? 'Hide advanced inputs' : 'More options (prior vests, spouse income, state rate override)'}
-        </button>
+        <form className="grid gap-4 md:grid-cols-2">
+          {/* Step 0 — Vest */}
+          {step === 0 && (
+            <>
+              <Field label="RSU vest amount (USD)">
+                <input
+                  type="number"
+                  min="0"
+                  value={form.vestGrossUsd}
+                  onChange={(e) => update('vestGrossUsd', e.target.value)}
+                  className={inputCls}
+                  autoFocus
+                  placeholder="125,000"
+                />
+                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                  Total $ value of RSUs that vested in this event.
+                </p>
+              </Field>
+            </>
+          )}
 
-        {showAdvanced && (
-          <>
-            <Field label="YTD supplemental wages (prior RSU vests, bonuses)">
-              <input
-                type="number"
-                min="0"
-                value={form.ytdSupplementalWagesUsd}
-                onChange={(e) => update('ytdSupplementalWagesUsd', e.target.value)}
-                className={inputCls}
-              />
-            </Field>
-            <Field label="Other taxable income (spouse W-2, dividends, etc.)">
-              <input
-                type="number"
-                min="0"
-                value={form.otherTaxableIncomeUsd}
-                onChange={(e) => update('otherTaxableIncomeUsd', e.target.value)}
-                className={inputCls}
-              />
-            </Field>
-            <Field label="State rate override (%) — optional">
-              <input
-                type="number"
-                min="0"
-                max="100"
-                step="0.1"
-                placeholder="leave blank to use default"
-                value={form.stateOverrideRatePct}
-                onChange={(e) => update('stateOverrideRatePct', e.target.value)}
-                className={inputCls}
-              />
-            </Field>
-            <label className="flex items-center gap-2 text-sm md:col-span-2">
-              <input
-                type="checkbox"
-                checked={form.ficaAlreadyMaxed}
-                onChange={(e) => update('ficaAlreadyMaxed', e.target.checked)}
-                className="h-4 w-4 rounded border-gray-300"
-              />
-              I&rsquo;ve already hit the Social Security wage base via another employer this year
-            </label>
-          </>
+          {/* Step 1 — Income */}
+          {step === 1 && (
+            <>
+              <Field label="YTD regular W-2 wages (before this vest)">
+                <input
+                  type="number"
+                  min="0"
+                  value={form.ytdRegularWagesUsd}
+                  onChange={(e) => update('ytdRegularWagesUsd', e.target.value)}
+                  className={inputCls}
+                  placeholder="200,000"
+                />
+                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                  W-2 Box 1 year-to-date, excluding this RSU vest.
+                </p>
+              </Field>
+              <Field label="Filing status">
+                <select
+                  value={form.filingStatus}
+                  onChange={(e) => update('filingStatus', e.target.value as FilingStatus)}
+                  className={inputCls}
+                >
+                  <option value="single">Single</option>
+                  <option value="mfj">Married filing jointly</option>
+                  <option value="mfs">Married filing separately</option>
+                  <option value="hoh">Head of household</option>
+                </select>
+              </Field>
+              <Field label="Tax year">
+                <select
+                  value={form.taxYear}
+                  onChange={(e) => update('taxYear', Number(e.target.value) as TaxYear)}
+                  className={inputCls}
+                >
+                  <option value={2024}>2024</option>
+                  <option value={2025}>2025</option>
+                  <option value={2026}>2026</option>
+                </select>
+              </Field>
+              <Field label="YTD pre-tax deductions (401k + HSA)">
+                <input
+                  type="number"
+                  min="0"
+                  value={form.preTaxDeductionsUsd}
+                  onChange={(e) => update('preTaxDeductionsUsd', e.target.value)}
+                  className={inputCls}
+                  placeholder="23,500"
+                />
+              </Field>
+            </>
+          )}
+
+          {/* Step 2 — Location + advanced */}
+          {step === 2 && (
+            <>
+              <Field label="State of residence">
+                <select
+                  value={form.stateCode}
+                  onChange={(e) => update('stateCode', e.target.value)}
+                  className={inputCls}
+                  autoFocus
+                >
+                  {states.map((s) => (
+                    <option key={s} value={s}>
+                      {s}
+                    </option>
+                  ))}
+                </select>
+              </Field>
+            </>
+          )}
+
+          {/*
+            Advanced inputs — only visible on the final step (Location).
+            < 20% of visitors touch these per CLAUDE.md guidance; the
+            stepped wizard already cleans the panic-moment use case so
+            "More options" only burdens the user who's explicitly opted
+            into the slower-but-more-accurate path.
+          */}
+          {step === 2 && (
+            <>
+              <button
+                type="button"
+                onClick={() => setShowAdvanced((v) => !v)}
+                className="md:col-span-2 -mt-2 flex items-center gap-2 self-start text-xs font-semibold text-brand-700 hover:underline dark:text-brand-300"
+                aria-expanded={showAdvanced}
+              >
+                <span aria-hidden="true">{showAdvanced ? '▾' : '▸'}</span>
+                {showAdvanced
+                  ? 'Hide advanced inputs'
+                  : 'More options (prior vests, spouse income, state rate override)'}
+              </button>
+
+              {showAdvanced && (
+                <>
+                  <Field label="YTD supplemental wages (prior RSU vests, bonuses)">
+                    <input
+                      type="number"
+                      min="0"
+                      value={form.ytdSupplementalWagesUsd}
+                      onChange={(e) => update('ytdSupplementalWagesUsd', e.target.value)}
+                      className={inputCls}
+                    />
+                  </Field>
+                  <Field label="Other taxable income (spouse W-2, dividends, etc.)">
+                    <input
+                      type="number"
+                      min="0"
+                      value={form.otherTaxableIncomeUsd}
+                      onChange={(e) => update('otherTaxableIncomeUsd', e.target.value)}
+                      className={inputCls}
+                    />
+                  </Field>
+                  <Field label="State rate override (%) — optional">
+                    <input
+                      type="number"
+                      min="0"
+                      max="100"
+                      step="0.1"
+                      placeholder="leave blank to use default"
+                      value={form.stateOverrideRatePct}
+                      onChange={(e) => update('stateOverrideRatePct', e.target.value)}
+                      className={inputCls}
+                    />
+                  </Field>
+                  <label className="flex items-center gap-2 text-sm md:col-span-2">
+                    <input
+                      type="checkbox"
+                      checked={form.ficaAlreadyMaxed}
+                      onChange={(e) => update('ficaAlreadyMaxed', e.target.checked)}
+                      className="h-4 w-4 rounded border-gray-300"
+                    />
+                    I&rsquo;ve already hit the Social Security wage base via another employer this year
+                  </label>
+                </>
+              )}
+            </>
+          )}
+        </form>
+
+        {/* Continue button — only on steps 0 and 1, advances the wizard */}
+        {step < 2 && (
+          <div className="mt-5 flex justify-end">
+            <button
+              type="button"
+              onClick={() => setStep((s) => Math.min(s + 1, 2))}
+              className="inline-flex items-center gap-2 rounded-md bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-brand-700"
+            >
+              Continue <span aria-hidden="true">→</span>
+            </button>
+          </div>
         )}
-      </form>
+      </div>
 
       {'error' in result ? (
         <div className="rounded-md border-l-4 border-amber-500 bg-amber-50 p-4 text-sm text-amber-900">
@@ -300,6 +396,39 @@ export function RsuShortfallCalculator() {
         </div>
       ) : (
         <Result result={result} />
+      )}
+
+      {/*
+        Sticky bottom CTA on mobile — sourced from Claude Design P1
+        mockup. The shortfall number is always visible at the bottom of
+        the viewport on phones so the user sees the live total update
+        as they fill in fields. "Fix my W-4 →" jumps to the suggestion
+        block. Desktop hides this (sm:hidden) because the result panel
+        is already large and visible. Adds bottom padding to the main
+        content so the sticky bar doesn't cover the last section.
+      */}
+      {!('error' in result) && result.shortfallUsd > 0 && (
+        <>
+          <div className="h-20 sm:hidden" aria-hidden="true" />
+          <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-gray-200 bg-white px-4 py-3 shadow-lg dark:border-gray-800 dark:bg-gray-900 sm:hidden">
+            <div className="mx-auto flex max-w-sm items-center justify-between gap-3">
+              <div className="min-w-0">
+                <p className="text-[10px] font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                  You still owe
+                </p>
+                <p className="truncate text-xl font-bold text-orange-700 dark:text-orange-300">
+                  {usd.format(result.shortfallUsd)}
+                </p>
+              </div>
+              <a
+                href="#suggested-fix"
+                className="shrink-0 rounded-md bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-700"
+              >
+                Fix my W-4 →
+              </a>
+            </div>
+          </div>
+        </>
       )}
     </div>
   );
@@ -398,7 +527,10 @@ function Result({ result }: { result: RsuShortfallResult }) {
 
       <GumroadUpsell shortfallUsd={r.shortfallUsd} />
 
-      <div className="grid gap-3 rounded-md border border-emerald-200 bg-emerald-50 p-4 text-sm dark:border-emerald-900 dark:bg-emerald-950 md:grid-cols-2">
+      <div
+        id="suggested-fix"
+        className="grid scroll-mt-24 gap-3 rounded-md border border-emerald-200 bg-emerald-50 p-4 text-sm dark:border-emerald-900 dark:bg-emerald-950 md:grid-cols-2"
+      >
         <div>
           <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
             Suggested quarterly estimate
