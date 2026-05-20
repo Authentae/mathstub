@@ -1,60 +1,77 @@
-# Gumroad listing — Equity Comp Tracker
+# Gumroad listing — Equity Comp Decision Tracker
 
-**Price:** $29 USD
+**Price:** $49 USD *(was $29 — repriced after 2026-05-21 substantive upgrade)*
 **Category:** Productivity → Templates → Notion
 
 ## Title
 
-Equity Comp Tracker — RSU, ESPP, ISO in One Notion Page
+Equity Comp Decision Tracker — RSU, ESPP, ISO, NSO + 4-Year Tax Projection (Notion)
 
 ## Subtitle / short description (≤ 200 chars)
 
 ```
-The Notion template I wish I had at every tech job. Track every RSU vest, ESPP purchase, and ISO exercise — with deep-linked tax calculators built in.
+The Notion tracker that actually decides. 4-year projection grid, AMT credit calendar, RSU cost-basis fix kit, CPA brief — and deep-linked to 8 free Mathstub tax calculators.
 ```
 
 ## Long description
 
 ```markdown
-**For tech workers who keep losing track of their equity comp at tax time.**
+**For tech workers tired of being surprised by April 15.**
 
-If you've ever had to hunt through three brokerage accounts, two old offer letters, and a Schwab statement to figure out how much RSU income hit your W-2 — this template is for you.
+Your broker tracks your shares. Your W-2 tracks your wages. **Nothing** tracks the
+decision math — until now.
 
-## What you get
+## What's inside
 
-A single Notion page with:
+- **§A — 4-year tax projection grid.** See the next 48 months of W-2 + RSU
+  + ESPP + ISO + AMT credit + cumulative liability on one page. The "decision"
+  layer most trackers skip.
+- **§B — RSU cost-basis fix kit.** Step-by-step Form 8949 column (g) adjustment
+  that stops TurboTax double-taxing your RSU sales. The single biggest tax bug
+  in the equity-comp world.
+- **§C — "Talk to your CPA" 2-page brief.** Print, bring, save the first 30 min of
+  the meeting (~$200 of billable time).
+- **§D — AMT credit recovery calendar.** Track your Form 8801 balance year-over-year
+  and project the recovery year.
+- **7 live databases** — grants, vests, sales, exercises, AMT scratchpad,
+  quarterly schedule, year-over-year scoreboard.
+- **4 pre-filled scenarios** — RSU vest, ESPP qualifying sale, ISO + AMT, NSO
+  early-exercise + 83(b). See the template in motion before you wire your numbers in.
+- **50-state supplemental-withholding cheat sheet** + 10 common mistakes table
+  (each one costs $1k+).
+- **18-question CPA script** + structured CPA brief format.
+- **Deep links to 8 Mathstub calculators** — RSU shortfall, ESPP, ISO/AMT, NSO,
+  quarterly tax, bonus shortfall, AMT credit recovery, 50-state lookup. Click
+  from any row in the Notion to recompute in 30 sec.
 
-- **Grants register** — every offer letter's RSU/ESPP/ISO grant in one structured table.
-- **Vest log** — every RSU vest tracked with FMV, withholding, and a link to recompute the shortfall.
-- **Sales log** — every share sale flagged ST/LT/qualifying/disqualifying automatically based on holding period.
-- **Tax dashboard** — running totals of vested RSU income, ESPP ordinary income, LTCG, STCG, AMT exposure, and gap to §6654 safe harbor.
-- **Year-end review checklist** — the 8-item Q4 audit that catches most surprise April bills.
-- **Direct links** to the [Mathstub](https://mathstub.com) calculator suite — RSU shortfall, ESPP qualifying disposition, ISO/AMT, quarterly estimated tax, 50-state lookup. Use them right from the Notion page.
+## Why a Notion template instead of a spreadsheet
 
-## Why a Notion template instead of a spreadsheet?
-
-- Notion's native database views let you filter by year, by ticker, by status — without VLOOKUP gymnastics.
-- It works on phones. Spreadsheets do not.
+- Database views: filter by year, ticker, status — without VLOOKUP gymnastics.
+- Works on phones. Spreadsheets do not.
 - Sharing with your CPA is one toggle.
-- It costs no monthly fee.
+- No monthly fee. No cloud account.
+- Future-update-proof — when IRS limits move, the linked calculators auto-update;
+  the database structure stays stable.
 
-## What's NOT in this template
+## What this template will NOT do
 
-- **It is not tax software.** It links to calculators that produce estimates. Don't file a return based on the template alone.
-- **It does not auto-pull from Carta / Schwab / Shareworks.** Vests are entered manually. (See the companion [Equity Comp Vest Tracker Chrome extension](https://mathstub.com) for vest-date notifications — also free.)
-- **It is not pretty stock photos.** It is a tool that earns its keep at year-end.
+- It is not tax software. It links to estimates; don't file a return based on it alone.
+- It does not auto-pull from Carta / Schwab / Shareworks. Vests are entered manually.
+- It does not replace a CPA for high-complexity multi-state or post-IPO situations.
 
-## Refunds
+## Refund policy
 
-If the template doesn't fit your situation, email me within 14 days and I'll refund you. No questions, no forms.
+14 days, no questions. Email me — you'll get a refund the same business day.
 
-## Updates
+## Free updates through tax year 2028
 
-When IRS brackets refresh each November, I update the linked Mathstub calculators in place — no re-download needed. The template itself is stable.
+When IRS publishes new brackets each November, I re-publish the template with
+updated rate tables. Re-download from your Gumroad library — your purchase persists.
 
 ## Built by
 
-Earth, the founder behind [mathstub.com](https://mathstub.com) — a small set of free tax calculators for tech workers with equity comp. This template is the one I run on my own grants.
+Earth, founder of [mathstub.com](https://mathstub.com) — 8 free tax calculators
+for US tech workers with equity comp. This template is what I run on my own grants.
 ```
 
 ## Tags / keywords
@@ -62,21 +79,31 @@ Earth, the founder behind [mathstub.com](https://mathstub.com) — a small set o
 - notion template
 - RSU tracker
 - equity compensation
-- ESPP
-- ISO
-- AMT
+- ESPP qualifying disposition
+- ISO AMT
+- NSO exercise
+- AMT credit recovery
 - stock options
 - tech worker tax
-- tax planning
-- tech salary
+- year-end tax planning
+- 4-year tax projection
+- RSU cost basis fix
+- TurboTax double tax
 
 ## Cover image
 
 Use `cover.png` — generated from `cover.svg` via `npm run notion:images`.
 
-## Files to upload
+## Files to upload (Gumroad-side zip)
 
-- `template.md` (Notion-importable as a Markdown file)
-- The download package should also include a brief README explaining how to import.
+- `template.md` — Notion-importable markdown
+- `cover.png` — 1280×720 used inside the package
+- `README.txt` — 4-step import instructions (see `notion-templates/README.md`)
 
-See `notion-templates/README.md` for packaging instructions.
+## Pricing rationale
+
+Repriced from $29 to $49 on 2026-05-21 after substantive content upgrade adding
+the §A 4-year projection grid, §B RSU basis fix kit, and §C structured CPA brief.
+The competitive landscape (Easlo $79, Thomas Frank $129, Notion-marketplace equity
+trackers all free-or-low-quality) supports $49 as the new entry tier for *decision*
+tooling. Lite version on Notion Marketplace stays free as funnel.
