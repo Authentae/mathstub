@@ -61,21 +61,17 @@ export default function Page() {
             <NsoExerciseCalculator />
           </>
         }
-        howItWorks={
-          <>
-            <MathDiagram
+        fullWidthDiagram={<MathDiagram
               slug="nso-exercise"
               alt="NSO exercise formula chain: bargain element = (FMV − strike) · shares → ordinary income (IRC §83(a)) → FICA 7.65% (IRC §3101) → withheld 22% supplemental → shortfall = real marginal − 22%"
-            />
-            <ol className="list-decimal space-y-2 pl-5">
+            />}
+        howItWorks={<ol className="list-decimal space-y-2 pl-5">
               {c.howToSteps.map((s) => (
                 <li key={s.name}>
                   <strong>{s.name}.</strong> {s.text}
                 </li>
               ))}
-            </ol>
-          </>
-        }
+            </ol>}
         faq={<FaqAccordion items={[...c.faqs]} />}
         related={<RelatedCalcs currentSlug={c.slug} />}
         calcSlug={c.slug}

@@ -61,21 +61,19 @@ export default function Page() {
             <QuarterlyEstimatedTaxCalculator />
           </>
         }
-        howItWorks={
-          <>
-            <MathDiagram
-              slug="quarterly-estimated-tax"
-              alt="Quarterly safe-harbor formula chain: prior-year liability L → safe harbor = 100% of L (or 110% if AGI > $150K) → quarterly = SH ÷ 4 (IRC §6654) → penalty avoided if paid each quarter"
-            />
-            <ol className="list-decimal space-y-2 pl-5">
+        fullWidthDiagram={
+          <MathDiagram
+            slug="quarterly-estimated-tax"
+            alt="Quarterly safe-harbor formula chain: prior-year liability L → safe harbor = 100% of L (or 110% if AGI > 150K) → quarterly = SH ÷ 4 (IRC §6654) → penalty avoided if paid each quarter"
+          />
+        }
+        howItWorks={<ol className="list-decimal space-y-2 pl-5">
               {c.howToSteps.map((s) => (
                 <li key={s.name}>
                   <strong>{s.name}.</strong> {s.text}
                 </li>
               ))}
-            </ol>
-          </>
-        }
+            </ol>}
         faq={<FaqAccordion items={[...c.faqs]} />}
         related={<RelatedCalcs currentSlug={c.slug} />}
         calcSlug={c.slug}

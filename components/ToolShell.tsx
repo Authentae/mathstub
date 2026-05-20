@@ -12,6 +12,14 @@ interface Props {
   resultsSlot?: ReactNode;
   affiliateSlot?: ReactNode;
   howItWorks?: ReactNode;
+  /**
+   * Optional wide-width section rendered BEFORE the constrained main
+   * column. Used for the formula-chain MathDiagram which needs to read
+   * at full page width (~1100px), not the ~692px the main column
+   * provides once the sidebar takes its 300px share. Earth: "can't you
+   * make this part as big as landing hero animation?"
+   */
+  fullWidthDiagram?: ReactNode;
   faq?: ReactNode;
   related?: ReactNode;
   /** Slug or label used by ReportIssue for the prefilled email subject. */
@@ -30,6 +38,7 @@ export function ToolShell({
   resultsSlot,
   affiliateSlot,
   howItWorks,
+  fullWidthDiagram,
   faq,
   related,
   reportIssueContext,
@@ -37,7 +46,21 @@ export function ToolShell({
   calcSlug,
 }: Props) {
   return (
-    <div className="mx-auto grid max-w-5xl gap-8 px-4 py-6 lg:grid-cols-[1fr_300px]">
+    <>
+      {/*
+        Full-width diagram band rendered BEFORE the constrained main
+        column. Sits at max-w-6xl (~1152px, same as the homepage hero
+        animation surface) so the formula-chain SVG reads at hero
+        size instead of being squeezed into the post-sidebar ~692px
+        slot inside ToolShell's main column. Only renders if a calc
+        page supplies the slot.
+      */}
+      {fullWidthDiagram && (
+        <section className="mx-auto max-w-6xl px-4 pt-6 sm:px-6">
+          {fullWidthDiagram}
+        </section>
+      )}
+      <div className="mx-auto grid max-w-5xl gap-8 px-4 py-6 lg:grid-cols-[1fr_300px]">
       <main className="min-w-0">
         {/*
           Tightened above-the-fold: H1 + 1-line lede + inline meta, no
@@ -87,5 +110,6 @@ export function ToolShell({
         <AdSlot slot="sidebar" />
       </aside>
     </div>
+    </>
   );
 }

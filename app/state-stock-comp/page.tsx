@@ -77,7 +77,7 @@ export default function Page() {
           </div>
         </>
       }
-      howItWorks={
+      fullWidthDiagram={
         <MathDiagram
           slug="state-stock-comp"
           alt="State stock-comp formula chain: vest value $V → state supplemental withholding rate s → state top marginal m → state shortfall = (m − s) · V (examples: CA 13.3%, NY 10.9%, TX 0%)"

@@ -61,21 +61,17 @@ export default function Page() {
             <BonusShortfallCalculator />
           </>
         }
-        howItWorks={
-          <>
-            <MathDiagram
+        fullWidthDiagram={<MathDiagram
               slug="bonus-tax-shortfall"
               alt="Bonus shortfall formula chain: cash bonus B → supplemental withheld 22%·B (IRC §3402(g)(1)) → real marginal rate r → real federal owed r·B → shortfall = (r − 22%) · B"
-            />
-            <ol className="list-decimal space-y-2 pl-5">
+            />}
+        howItWorks={<ol className="list-decimal space-y-2 pl-5">
               {c.howToSteps.map((s) => (
                 <li key={s.name}>
                   <strong>{s.name}.</strong> {s.text}
                 </li>
               ))}
-            </ol>
-          </>
-        }
+            </ol>}
         faq={<FaqAccordion items={[...c.faqs]} />}
         related={<RelatedCalcs currentSlug={c.slug} />}
         calcSlug={c.slug}
