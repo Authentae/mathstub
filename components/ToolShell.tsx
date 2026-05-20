@@ -47,19 +47,6 @@ export function ToolShell({
 }: Props) {
   return (
     <>
-      {/*
-        Full-width diagram band rendered BEFORE the constrained main
-        column. Sits at max-w-6xl (~1152px, same as the homepage hero
-        animation surface) so the formula-chain SVG reads at hero
-        size instead of being squeezed into the post-sidebar ~692px
-        slot inside ToolShell's main column. Only renders if a calc
-        page supplies the slot.
-      */}
-      {fullWidthDiagram && (
-        <section className="mx-auto max-w-6xl px-4 pt-6 sm:px-6">
-          {fullWidthDiagram}
-        </section>
-      )}
       <div className="mx-auto grid max-w-5xl gap-8 px-4 py-6 lg:grid-cols-[1fr_300px]">
       <main className="min-w-0">
         {/*
@@ -110,6 +97,27 @@ export function ToolShell({
         <AdSlot slot="sidebar" />
       </aside>
     </div>
+
+    {/*
+      Full-width diagram band — renders AFTER the constrained main
+      column so the calculator + result + "How it works" prose come
+      first, then the wide formula-chain diagram acts as a closing
+      visual companion to the prose. Sits at max-w-6xl (~1152px, same
+      as the homepage hero animation) so the SVG isn't squeezed into
+      the post-sidebar ~692px slot.
+    */}
+    {fullWidthDiagram && (
+      <section className="mx-auto max-w-6xl px-4 pb-12 sm:px-6">
+        <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-bold leading-none tracking-tight text-slate-100 sm:text-3xl">
+          <span
+            aria-hidden="true"
+            className="h-2 w-2 rounded-full bg-brand-500 shadow-[0_0_12px_rgb(59,130,246)]"
+          />
+          How the math flows
+        </h2>
+        {fullWidthDiagram}
+      </section>
+    )}
     </>
   );
 }
