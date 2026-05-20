@@ -1,0 +1,895 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>mathstub.com — Partnership Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" />
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <rect width="100" height="100" fill="#0f172a"/>
+    <rect x="18" y="20" width="64" height="60" rx="6" fill="#f8fafc"/>
+    <rect x="18" y="20" width="64" height="14" rx="6" fill="#2563eb"/>
+    <text x="50" y="31" font-family="Inter, sans-serif" font-size="8" font-weight="700" fill="#fff" text-anchor="middle">mathstub</text>
+    <text x="50" y="55" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">Σ</text>
+    <text x="50" y="70" font-family="Inter, sans-serif" font-size="6" font-weight="600" fill="#475569" text-anchor="middle">Partnership Brief</text>
+  </svg>
+</template>
+<style>
+  :root {
+    --blue: #2563eb;
+    --blue-deep: #1d4ed8;
+    --blue-ink: #1e3a8a;
+    --blue-50: #eff6ff;
+    --blue-100: #dbeafe;
+    --green: #15803d;
+    --green-50: #f0fdf4;
+    --green-100: #dcfce7;
+    --red: #dc2626;
+    --red-orange: #ea580c;
+    --red-50: #fff7ed;
+    --slate-50: #f8fafc;
+    --slate-100: #f1f5f9;
+    --slate-200: #e2e8f0;
+    --slate-300: #cbd5e1;
+    --slate-400: #94a3b8;
+    --slate-500: #64748b;
+    --slate-600: #475569;
+    --slate-700: #334155;
+    --slate-800: #1e293b;
+    --slate-900: #0f172a;
+
+    --page-w: 8.5in;
+    --page-h: 11in;
+    --margin-x: 0.55in;
+    --margin-y: 0.5in;
+  }
+
+  @page {
+    size: Letter portrait;
+    margin: 0;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #e5e7eb;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--slate-900);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
+
+  /* Screen: center page on grey backdrop */
+  body {
+    display: flex;
+    justify-content: center;
+    padding: 28px 0;
+  }
+
+  .page {
+    width: var(--page-w);
+    height: var(--page-h);
+    background: var(--slate-50);
+    color: var(--slate-900);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 60px -20px rgba(15, 23, 42, 0.25), 0 0 0 1px rgba(15, 23, 42, 0.05);
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; }
+  }
+
+  /* ===== Header ===== */
+  .header {
+    padding: 0.28in var(--margin-x) 0.2in;
+    background: var(--slate-900);
+    color: white;
+    position: relative;
+  }
+  .header::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 3px;
+    background: var(--blue);
+  }
+  .header-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+  .brand-mark {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    background: var(--blue);
+    display: grid; place-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    box-shadow: inset 0 -2px 0 rgba(0,0,0,0.18);
+  }
+  .brand-mark::before { content: "Σ"; line-height: 1; }
+  .brand-name { color: white; }
+  .brand-dot { color: var(--slate-500); margin: 0 2px; }
+  .brand-label { color: var(--slate-300); font-weight: 500; }
+
+  .header-meta {
+    text-align: right;
+    font-size: 10px;
+    color: var(--slate-400);
+    line-height: 1.6;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .header-meta b { color: var(--slate-200); font-weight: 600; }
+
+  .header-title {
+    margin-top: 12px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  .header-title h1 {
+    margin: 0;
+    font-size: 22px;
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: white;
+  }
+  .header-title .em {
+    color: var(--blue);
+  }
+  .header-sub {
+    margin-top: 5px;
+    font-size: 10px;
+    color: var(--slate-400);
+    max-width: 5.6in;
+    line-height: 1.45;
+  }
+
+  /* ===== Page body ===== */
+  .body {
+    padding: 0.13in var(--margin-x) 0.13in;
+    display: flex;
+    flex-direction: column;
+    gap: 0.08in;
+    flex: 1;
+    min-height: 0;
+  }
+
+  /* Section header */
+  .sec-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 6px;
+  }
+  .sec-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--blue);
+    background: var(--blue-50);
+    border: 1px solid var(--blue-100);
+    padding: 2px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+  }
+  .sec-title {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--slate-900);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .sec-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--slate-200);
+  }
+  .sec-aside {
+    font-size: 10px;
+    color: var(--slate-500);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Two-up: who we are + audience */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.32in;
+  }
+
+  .prose {
+    font-size: 10.5px;
+    line-height: 1.5;
+    color: var(--slate-700);
+  }
+  .prose b, .prose strong { color: var(--slate-900); font-weight: 600; }
+
+  /* Stat strip in 'who we are' */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 8px;
+    border: 1px solid var(--slate-200);
+    border-radius: 6px;
+    overflow: hidden;
+    background: white;
+  }
+  .stat {
+    padding: 6px 10px;
+    border-right: 1px solid var(--slate-200);
+  }
+  .stat:last-child { border-right: 0; }
+  .stat-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--slate-900);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .stat-label {
+    margin-top: 3px;
+    font-size: 8.5px;
+    color: var(--slate-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+
+  /* Audience pill list */
+  .audience-list {
+    list-style: none;
+    margin: 6px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .audience-list li {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 8px;
+    font-size: 10px;
+    line-height: 1.4;
+    padding: 3px 0;
+    border-top: 1px dashed var(--slate-200);
+  }
+  .audience-list li:first-child { border-top: 0; padding-top: 2px; }
+  .audience-key {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--blue);
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding-top: 1px;
+  }
+  .audience-val { color: var(--slate-700); }
+  .audience-val .tag {
+    display: inline-block;
+    background: var(--slate-100);
+    color: var(--slate-700);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 9px;
+    margin-right: 3px;
+    font-weight: 500;
+  }
+
+  /* Trust signals */
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+  }
+  .trust {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: 6px;
+    padding: 7px 8px 8px;
+    position: relative;
+  }
+  .trust-check {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--blue);
+    color: white;
+    display: grid; place-items: center;
+    margin-bottom: 5px;
+  }
+  .trust-check svg { width: 9px; height: 9px; }
+  .trust-title {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--slate-900);
+    line-height: 1.25;
+    margin-bottom: 3px;
+  }
+  .trust-body {
+    font-size: 9px;
+    color: var(--slate-600);
+    line-height: 1.35;
+  }
+
+  /* What we want — ask cards */
+  .ask-wrap {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 0.22in;
+    align-items: stretch;
+  }
+  .ask-primary {
+    background: var(--blue-ink);
+    color: white;
+    border-radius: 8px;
+    padding: 10px 13px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ask-primary::after {
+    content: "";
+    position: absolute;
+    right: -40px; top: -40px;
+    width: 120px; height: 120px;
+    background: radial-gradient(circle, rgba(37,99,235,0.5), transparent 70%);
+    pointer-events: none;
+  }
+  .ask-eyebrow {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.55);
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  .ask-headline {
+    font-size: 13.5px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: white;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .ask-headline .hl {
+    background: linear-gradient(transparent 60%, rgba(37,99,235,0.7) 60%);
+    padding: 0 2px;
+  }
+  .ask-body {
+    font-size: 9.5px;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.78);
+  }
+  .ask-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .ask-list li {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: 6px;
+    padding: 6px 9px;
+    font-size: 9.5px;
+    line-height: 1.4;
+    color: var(--slate-700);
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 8px;
+    align-items: start;
+  }
+  .ask-list .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--blue);
+    background: var(--blue-50);
+    border-radius: 4px;
+    padding: 2px 0;
+    text-align: center;
+    height: fit-content;
+  }
+  .ask-list b { color: var(--slate-900); font-weight: 600; }
+
+  /* Calculator thumbnails */
+  .thumbs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.18in;
+  }
+  .thumb {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .thumb-chrome {
+    background: var(--slate-100);
+    padding: 5px 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border-bottom: 1px solid var(--slate-200);
+  }
+  .thumb-chrome .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--slate-300);
+  }
+  .thumb-chrome .url {
+    margin-left: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    color: var(--slate-500);
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: 3px;
+    padding: 2px 6px;
+    flex: 1;
+  }
+  .thumb-body {
+    padding: 7px 9px 8px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .thumb-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 6px;
+  }
+  .thumb-name {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--slate-900);
+    letter-spacing: -0.01em;
+  }
+  .thumb-cite {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5px;
+    color: var(--slate-500);
+  }
+
+  .field-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 8.5px;
+  }
+  .field-label { color: var(--slate-500); }
+  .field-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    color: var(--slate-800);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .result-panel {
+    margin-top: auto;
+    padding: 7px 8px;
+    border-radius: 5px;
+    background: var(--slate-50);
+    border: 1px solid var(--slate-200);
+  }
+  .result-label {
+    font-size: 7.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    color: var(--slate-500);
+  }
+  .result-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-top: 2px;
+    line-height: 1;
+  }
+  .result-num.shortfall { color: var(--red-orange); }
+  .result-num.amt { color: var(--blue); }
+  .result-num.safe { color: var(--green); }
+  .result-sub {
+    margin-top: 2px;
+    font-size: 7.5px;
+    color: var(--slate-500);
+    line-height: 1.25;
+  }
+  .result-panel.safe { background: var(--green-50); border-color: #bbf7d0; }
+  .result-panel.shortfall { background: var(--red-50); border-color: #fed7aa; }
+  .result-panel.amt { background: var(--blue-50); border-color: var(--blue-100); }
+
+  .barchart {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 26px;
+  }
+  .barchart .bar {
+    flex: 1;
+    background: var(--slate-200);
+    border-radius: 2px 2px 0 0;
+  }
+  .barchart .bar.hl { background: var(--blue); }
+  .barchart .bar.warn { background: var(--red-orange); }
+
+  /* Contact footer */
+  .footer {
+    padding: 0.18in var(--margin-x);
+    background: var(--slate-900);
+    color: var(--slate-300);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+  .footer .who {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .footer .who-name {
+    color: white;
+    font-weight: 600;
+    font-size: 11.5px;
+  }
+  .footer .who-handle {
+    color: var(--slate-400);
+    font-size: 10px;
+  }
+  .footer .contact-items {
+    display: flex; gap: 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+  }
+  .footer .contact-item {
+    display: flex; align-items: center; gap: 6px;
+  }
+  .footer .contact-item svg { width: 11px; height: 11px; opacity: 0.7; }
+  .footer .contact-item b { color: white; font-weight: 500; }
+
+  .body-spacer { flex: 1; }
+
+  /* Filing-strip ornament under header */
+  .filing-strip {
+    display: flex;
+    gap: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    color: var(--slate-500);
+    padding: 0 var(--margin-x);
+    margin-top: 6px;
+    border-bottom: 1px solid var(--slate-200);
+    padding-bottom: 6px;
+  }
+  .filing-strip span {
+    padding: 0 10px;
+    border-right: 1px solid var(--slate-200);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .filing-strip span:first-child { padding-left: 0; }
+  .filing-strip span:last-child { border-right: 0; margin-left: auto; padding-right: 0; }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-row">
+      <div class="brand">
+        <span class="brand-mark"></span>
+        <span class="brand-name">mathstub<span class="brand-dot">.</span>com</span>
+        <span class="brand-dot">/</span>
+        <span class="brand-label">Partnership Brief</span>
+      </div>
+      <div class="header-meta">
+        <div><b>Doc</b> &nbsp; PB-2026-Q2</div>
+        <div><b>Filed</b> &nbsp; May 2026 · Tax Year 2025</div>
+      </div>
+    </div>
+
+    <div class="header-title">
+      <h1>Math you can <span class="em">cite</span>.<br/>
+          Traffic with intent. Partners welcome.</h1>
+    </div>
+    <p class="header-sub">A partnership brief for affiliate networks, tax-prep software, and CPA-matching services. We run a free tax-calculator suite for US tech workers with equity comp &mdash; small surface area, high purchase intent, IRS-citation-grade math underneath.</p>
+  </header>
+
+  <!-- Filing strip -->
+  <div class="filing-strip">
+    <span>For: CJ · FlexOffers · Impact</span>
+    <span>For: TurboTax · H&amp;R Block · Keeper · FlyFin</span>
+    <span>For: Harness Wealth · Tax Goddess</span>
+    <span>1 of 1</span>
+  </div>
+
+  <main class="body">
+
+    <!-- TWO-COLUMN: WHO + AUDIENCE -->
+    <section class="two-col">
+      <div>
+        <div class="sec-head">
+          <span class="sec-num">§ 01</span>
+          <span class="sec-title">Who We Are</span>
+        </div>
+        <p class="prose">A <b>free tax-calculator suite</b> for US tech workers with equity compensation. Eight live calculators, twenty-three blog guides, and a unit-tested calc layer. <b>Every claim cites an IRC section or IRS publication.</b> Built by one indie dev &mdash; Earth &mdash; with the discipline of a small audit firm and the build cadence of a solo engineer.</p>
+
+        <div class="stat-strip">
+          <div class="stat">
+            <div class="stat-num">8</div>
+            <div class="stat-label">Live calculators</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">23</div>
+            <div class="stat-label">Blog guides</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">446</div>
+            <div class="stat-label">Unit tests</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">100<span style="font-size:11px">%</span></div>
+            <div class="stat-label">Cited claims</div>
+          </div>
+        </div>
+
+        <p class="prose" style="margin-top:6px; font-size:9.5px; color:var(--slate-600);">
+          <b>Calculator coverage:</b> RSU, ISO/AMT, ESPP, NSO, Bonus, Quarterly Safe Harbor, AMT Credit Recovery, State Stock-Comp.
+        </p>
+      </div>
+
+      <div>
+        <div class="sec-head">
+          <span class="sec-num">§ 02</span>
+          <span class="sec-title">Audience</span>
+        </div>
+        <p class="prose"><b>US W-2 employees with equity compensation.</b> Mostly mobile, mostly anxious, mostly underserved by generic tax tools. They arrive after a vest, a payroll surprise, or a CPA invoice they didn&rsquo;t expect.</p>
+
+        <ul class="audience-list">
+          <li>
+            <span class="audience-key">Income</span>
+            <span class="audience-val">Median household <b>$150K&ndash;$500K</b></span>
+          </li>
+          <li>
+            <span class="audience-key">Employer</span>
+            <span class="audience-val">Public &amp; late-stage private tech, W-2 with RSU/ISO/ESPP</span>
+          </li>
+          <li>
+            <span class="audience-key">Peaks</span>
+            <span class="audience-val">
+              <span class="tag">Post-vest panic · Q1</span>
+              <span class="tag">Year-end · Nov&ndash;Dec</span>
+              <span class="tag">ESPP sale</span>
+              <span class="tag">ISO exercise</span>
+            </span>
+          </li>
+          <li>
+            <span class="audience-key">Device</span>
+            <span class="audience-val">Mobile-first; reads on phone, executes on laptop</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TRUST SIGNALS -->
+    <section>
+      <div class="sec-head">
+        <span class="sec-num">§ 03</span>
+        <span class="sec-title">Trust Signals</span>
+        <span class="sec-rule"></span>
+        <span class="sec-aside">YMYL discipline</span>
+      </div>
+      <div class="trust-grid">
+        <div class="trust">
+          <div class="trust-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L5 9L10 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="trust-title">446 unit tests</div>
+          <div class="trust-body">CI-gated; bracket edges, AMT crossover, and wash-sale paths all covered.</div>
+        </div>
+        <div class="trust">
+          <div class="trust-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L5 9L10 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="trust-title">Every calc cites IRC</div>
+          <div class="trust-body">Inline citations to IRC §§ and IRS Pubs on every result &mdash; no hand-waving.</div>
+        </div>
+        <div class="trust">
+          <div class="trust-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L5 9L10 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="trust-title">Pure functional math</div>
+          <div class="trust-body"><span style="font-family:'JetBrains Mono',monospace;color:var(--slate-700)">lib/tax</span> is side-effect free. Deterministic, auditable, diff-able.</div>
+        </div>
+        <div class="trust">
+          <div class="trust-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L5 9L10 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="trust-title">Versioned brackets</div>
+          <div class="trust-body">Constants pinned per tax year in git. TY2024, TY2025, TY2026 all reproducible.</div>
+        </div>
+        <div class="trust">
+          <div class="trust-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L5 9L10 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="trust-title">YMYL discipline</div>
+          <div class="trust-body">&ldquo;Pending CPA review&rdquo; byline today; credentialed reviewer engaged when revenue justifies.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT WE WANT -->
+    <section>
+      <div class="sec-head">
+        <span class="sec-num">§ 04</span>
+        <span class="sec-title">What We Want From Partners</span>
+        <span class="sec-rule"></span>
+        <span class="sec-aside">Affiliate · Direct · Hybrid</span>
+      </div>
+
+      <div class="ask-wrap">
+        <div class="ask-primary">
+          <div class="ask-eyebrow">The ask</div>
+          <div class="ask-headline">
+            Whitelisted <span class="hl">CPA &amp; tax-prep affiliate links</span> at the end of the RSU shortfall results panel and inside high-intent blog posts.
+          </div>
+          <div class="ask-body">
+            Example placement: bottom of the <span style="font-family:'JetBrains Mono',monospace;color:white;">/calculators/rsu-shortfall</span> results card, and inline in posts like <i>estimated-tax-after-rsu-vest</i>. The reader has just seen the size of the problem &mdash; they are looking for a next step.
+          </div>
+        </div>
+
+        <ul class="ask-list">
+          <li>
+            <span class="num">01</span>
+            <div><b>FTC-compliant disclosure.</b> Inline on every card. Never buried in a footer.</div>
+          </li>
+          <li>
+            <span class="num">02</span>
+            <div><b>Per-click or per-acquisition payouts accepted.</b> Open to flat, CPL, CPA, or hybrid.</div>
+          </li>
+          <li>
+            <span class="num">03</span>
+            <div><b>Direct partnership preferred</b> over affiliate network when feasible. Network is fine as a starting point.</div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CALCULATOR THUMBNAILS -->
+    <section>
+      <div class="sec-head">
+        <span class="sec-num">§ 05</span>
+        <span class="sec-title">The Surface Area</span>
+        <span class="sec-rule"></span>
+        <span class="sec-aside">3 of 8 calculators shown</span>
+      </div>
+
+      <div class="thumbs">
+
+        <!-- RSU Shortfall -->
+        <div class="thumb">
+          <div class="thumb-chrome">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="url">mathstub.com/rsu-shortfall</span>
+          </div>
+          <div class="thumb-body">
+            <div class="thumb-head">
+              <div class="thumb-name">RSU Shortfall</div>
+              <div class="thumb-cite">IRC §83</div>
+            </div>
+            <div class="field-row"><span class="field-label">Vest FMV</span><span class="field-val">$184,200</span></div>
+            <div class="field-row"><span class="field-label">Withheld (22%)</span><span class="field-val">$40,524</span></div>
+            <div class="field-row"><span class="field-label">Marginal bracket</span><span class="field-val">37%</span></div>
+            <div class="result-panel shortfall">
+              <div class="result-label">Estimated shortfall</div>
+              <div class="result-num shortfall">&minus;$27,630</div>
+              <div class="result-sub">Owed at filing. Consider a Q4 estimated payment &mdash; <span style="font-family:'JetBrains Mono',monospace">IRC §6654</span>.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ISO / AMT -->
+        <div class="thumb">
+          <div class="thumb-chrome">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="url">mathstub.com/iso-amt</span>
+          </div>
+          <div class="thumb-body">
+            <div class="thumb-head">
+              <div class="thumb-name">ISO / AMT</div>
+              <div class="thumb-cite">IRC §55, §422</div>
+            </div>
+            <div class="field-row"><span class="field-label">Exercised shares</span><span class="field-val">12,000</span></div>
+            <div class="field-row"><span class="field-label">Bargain element</span><span class="field-val">$312,000</span></div>
+            <div class="barchart" title="Regular vs. AMT taxable income">
+              <div class="bar" style="height:42%"></div>
+              <div class="bar" style="height:55%"></div>
+              <div class="bar" style="height:48%"></div>
+              <div class="bar hl" style="height:88%"></div>
+              <div class="bar hl" style="height:95%"></div>
+              <div class="bar" style="height:60%"></div>
+              <div class="bar" style="height:50%"></div>
+            </div>
+            <div class="result-panel amt">
+              <div class="result-label">AMT due</div>
+              <div class="result-num amt">$73,840</div>
+              <div class="result-sub">Crossover hit at exercise. Track basis for AMT Credit Recovery in future years.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quarterly Safe Harbor -->
+        <div class="thumb">
+          <div class="thumb-chrome">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="url">mathstub.com/quarterly</span>
+          </div>
+          <div class="thumb-body">
+            <div class="thumb-head">
+              <div class="thumb-name">Quarterly Safe Harbor</div>
+              <div class="thumb-cite">IRC §6654(d)</div>
+            </div>
+            <div class="field-row"><span class="field-label">Prior-year tax</span><span class="field-val">$94,210</span></div>
+            <div class="field-row"><span class="field-label">110% safe harbor</span><span class="field-val">$103,631</span></div>
+            <div class="field-row"><span class="field-label">YTD withheld</span><span class="field-val">$81,400</span></div>
+            <div class="result-panel safe">
+              <div class="result-label">Status</div>
+              <div class="result-num safe">Safe&nbsp;✓</div>
+              <div class="result-sub">$5,558/quarter through Q4 keeps you inside the 110% rule. No underpayment penalty.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="body-spacer"></div>
+
+  </main>
+
+  <!-- CONTACT FOOTER -->
+  <footer class="footer">
+    <div class="who">
+      <div>
+        <div class="who-name">Earth <span style="color:var(--slate-500);font-weight:400">(Singharash Rashasing)</span></div>
+        <div class="who-handle">Indie dev &middot; mathstub.com &middot; sole maintainer</div>
+      </div>
+    </div>
+    <div class="contact-items">
+      <span class="contact-item">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="3.5" width="12" height="9" rx="1.2"/><path d="M2.5 4.5l5.5 4 5.5-4"/></svg>
+        <b>hello@mathstub.com</b>
+      </span>
+      <span class="contact-item">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><path d="M2 8h12M8 2c2 1.8 3 4 3 6s-1 4.2-3 6c-2-1.8-3-4-3-6s1-4.2 3-6z"/></svg>
+        <b>mathstub.com</b>
+      </span>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
