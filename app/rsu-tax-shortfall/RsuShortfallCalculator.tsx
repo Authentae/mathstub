@@ -187,28 +187,28 @@ export function RsuShortfallCalculator() {
                 <button
                   type="button"
                   onClick={() => setStep(i)}
-                  className={`flex flex-1 items-center gap-2 rounded-md px-2 py-1.5 text-left transition ${
+                  className={`flex min-w-0 flex-1 items-center gap-2 rounded-md px-2 py-1.5 text-left transition ${
                     active
-                      ? 'bg-brand-50 text-brand-800 dark:bg-brand-950/40 dark:text-brand-200'
+                      ? 'bg-brand-600 text-white shadow-sm'
                       : done
-                        ? 'text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800'
-                        : 'text-gray-500 hover:bg-gray-50 dark:text-gray-500 dark:hover:bg-gray-800'
+                        ? 'text-brand-300 hover:bg-slate-800'
+                        : 'text-slate-500 hover:bg-slate-800'
                   }`}
                   aria-current={active ? 'step' : undefined}
                 >
                   <span
                     className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold ${
                       active
-                        ? 'bg-brand-600 text-white'
+                        ? 'bg-white text-brand-700'
                         : done
                           ? 'bg-brand-600 text-white'
-                          : 'bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-300'
+                          : 'bg-slate-700 text-slate-300'
                     }`}
                     aria-hidden="true"
                   >
                     {done ? '✓' : i + 1}
                   </span>
-                  <span className="font-semibold">{label}</span>
+                  <span className="truncate font-semibold">{label}</span>
                 </button>
               </li>
             );

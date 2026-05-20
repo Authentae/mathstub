@@ -90,7 +90,16 @@ export default function HomePage() {
               </span>{' '}
               owe.
               <br />
-              <span className="text-slate-400">In 30 seconds.</span>
+              <span className="text-slate-500">In </span>
+              <span
+                className="font-normal italic tracking-[-0.02em] text-brand-300"
+                style={{
+                  fontFamily:
+                    '"Source Serif 4", "Source Serif Pro", "Iowan Old Style", Georgia, serif',
+                }}
+              >
+                30 seconds.
+              </span>
             </h1>
             <p className="mt-7 max-w-[520px] text-lg leading-snug text-slate-200/85 sm:text-xl">
               Your employer withheld{' '}
@@ -162,7 +171,7 @@ export default function HomePage() {
                 not an rsu? · pick your situation
               </div>
               <h2
-                className="flex items-baseline gap-3 text-3xl font-bold leading-none tracking-[-0.03em] text-brand-50 sm:text-[44px]"
+                className="flex items-baseline gap-3 text-3xl font-bold leading-none tracking-[-0.03em] text-brand-100 sm:text-[44px]"
                 style={{ letterSpacing: '-0.03em' }}
               >
                 <span aria-hidden="true" className="h-2 w-2 rounded-full bg-brand-500 shadow-[0_0_12px_rgb(59,130,246)]" />
@@ -207,7 +216,7 @@ export default function HomePage() {
         {/* OTHER CALCULATORS */}
         <section className="mt-16">
           <div className="mb-8 flex items-baseline justify-between gap-4">
-            <h2 className="flex items-baseline gap-3 text-3xl font-bold leading-none tracking-[-0.03em] text-brand-50 sm:text-[44px]">
+            <h2 className="flex items-baseline gap-3 text-3xl font-bold leading-none tracking-[-0.03em] text-brand-100 sm:text-[44px]">
               <span aria-hidden="true" className="h-2 w-2 rounded-full bg-brand-500 shadow-[0_0_12px_rgb(59,130,246)]" />
               Other equity events.
             </h2>
@@ -231,7 +240,7 @@ export default function HomePage() {
                     </span>
                   </div>
                   <div
-                    className="text-xl font-semibold leading-tight tracking-tight text-brand-100"
+                    className="text-xl font-semibold leading-tight tracking-tight text-brand-200"
                     style={{ letterSpacing: '-0.01em' }}
                   >
                     {t.title}
@@ -283,7 +292,7 @@ export default function HomePage() {
         {/* LATEST FROM BLOG */}
         <section className="mt-16">
           <div className="mb-6 flex items-baseline justify-between">
-            <h2 className="flex items-baseline gap-3 text-2xl font-bold leading-none tracking-[-0.03em] text-brand-50 sm:text-3xl">
+            <h2 className="flex items-baseline gap-3 text-2xl font-bold leading-none tracking-[-0.03em] text-brand-100 sm:text-3xl">
               <span aria-hidden="true" className="h-2 w-2 rounded-full bg-brand-500 shadow-[0_0_12px_rgb(59,130,246)]" />
               Latest from the blog
             </h2>
@@ -318,7 +327,7 @@ export default function HomePage() {
                         </>
                       )}
                     </div>
-                    <h3 className="line-clamp-3 text-sm font-semibold leading-snug text-brand-100">
+                    <h3 className="line-clamp-3 text-sm font-semibold leading-snug text-brand-200">
                       {p.title}
                     </h3>
                     <p className="line-clamp-3 text-xs leading-snug text-slate-400">
@@ -374,7 +383,7 @@ function PersonaCard({
         <span className="text-3xl" aria-hidden="true">
           {emoji}
         </span>
-        <span className="mt-2 text-base font-semibold text-brand-100 group-hover:text-brand-200">{title}</span>
+        <span className="mt-2 text-base font-semibold text-brand-200 group-hover:text-brand-200">{title}</span>
         <span className="font-mono text-[10px] uppercase tracking-[0.06em] text-brand-400/80">
           {tag}
         </span>
