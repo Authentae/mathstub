@@ -56,10 +56,20 @@ export default function HomePage() {
         */}
         <section className="flex flex-col gap-10 lg:gap-14">
           <div className="max-w-3xl">
-            <div className="mb-7 flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.14em] text-brand-400">
+            {/*
+              Lime accent (`lime-400` = #a3e635) lifted from the
+              original Variant B mockup that Earth confirmed he wanted
+              back. Brand-blue stays the site primary everywhere else;
+              lime is reserved for the homepage hero's outcome-led
+              flourishes ("actually", 37% chip, primary CTA, eyebrow
+              dot, calc-card "open →", methodology "floor" accent) so
+              it reads as a distinct money-energy color without
+              colliding with the brand-blue calc surfaces.
+            */}
+            <div className="mb-7 flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.14em] text-lime-300">
               <span
-                className="h-1.5 w-1.5 rounded-full bg-brand-500"
-                style={{ boxShadow: '0 0 12px rgb(37,99,235)' }}
+                className="h-1.5 w-1.5 rounded-full bg-lime-400"
+                style={{ boxShadow: '0 0 12px rgb(163, 230, 53)' }}
                 aria-hidden="true"
               />
               rsu vest tax reality · ty 2026
@@ -69,7 +79,7 @@ export default function HomePage() {
               <br />
               you{' '}
               <span
-                className="font-normal italic tracking-[-0.02em] text-brand-400"
+                className="font-normal italic tracking-[-0.02em] text-lime-400"
                 style={{
                   fontFamily:
                     '"Source Serif 4", "Source Serif Pro", "Iowan Old Style", Georgia, serif',
@@ -87,7 +97,7 @@ export default function HomePage() {
                 22%
               </span>
               . Your real rate is probably closer to{' '}
-              <span className="rounded bg-brand-500 px-1.5 py-0.5 font-mono text-base text-slate-950">
+              <span className="rounded bg-lime-400 px-1.5 py-0.5 font-mono text-base text-slate-950">
                 37%
               </span>
               . Find the gap before April finds you.
@@ -96,7 +106,7 @@ export default function HomePage() {
             <div className="mt-10">
               <Link
                 href={`/${flagship.slug}`}
-                className="inline-flex items-center gap-3.5 rounded-md bg-brand-500 px-7 py-5 text-lg font-semibold tracking-tight text-slate-950 transition hover:bg-brand-400 sm:text-xl"
+                className="inline-flex items-center gap-3.5 rounded-md bg-lime-400 px-7 py-5 text-lg font-semibold tracking-tight text-slate-950 transition hover:bg-lime-300 sm:text-xl"
               >
                 Start with your RSU vest
                 <span aria-hidden="true" className="text-2xl">→</span>
@@ -147,7 +157,7 @@ export default function HomePage() {
         <section className="mt-16">
           <div className="mb-8 flex items-baseline justify-between gap-4">
             <div>
-              <div className="mb-2 font-mono text-[11px] uppercase tracking-[0.14em] text-brand-400">
+              <div className="mb-2 font-mono text-[11px] uppercase tracking-[0.14em] text-lime-300">
                 not an rsu? · pick your situation
               </div>
               <h2
@@ -207,10 +217,15 @@ export default function HomePage() {
               <li key={t.slug}>
                 <Link
                   href={`/${t.slug}`}
-                  className="flex h-full min-h-[150px] flex-col gap-2 rounded-md border border-slate-800 bg-slate-900/50 p-5 transition hover:border-brand-500 hover:bg-slate-900"
+                  className="flex h-full min-h-[150px] flex-col gap-2 rounded-md border border-slate-800 bg-slate-900/50 p-5 transition hover:border-lime-400/60 hover:bg-slate-900"
                 >
-                  <div className="font-mono text-[10px] uppercase tracking-[0.06em] text-slate-500">
-                    {t.title.split(' ').slice(0, 2).join(' ')}
+                  <div className="flex items-baseline justify-between gap-2">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.06em] text-slate-500">
+                      {t.title.split(' ').slice(0, 2).join(' ')}
+                    </span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.04em] text-slate-600">
+                      free · instant
+                    </span>
                   </div>
                   <div
                     className="text-xl font-semibold leading-tight tracking-tight text-white"
@@ -221,7 +236,7 @@ export default function HomePage() {
                   <div className="mt-1 flex-1 text-sm leading-snug text-slate-400">
                     {t.summary}
                   </div>
-                  <div className="mt-2 font-mono text-[11px] text-brand-400">open →</div>
+                  <div className="mt-2 font-mono text-[11px] text-lime-300">open →</div>
                 </Link>
               </li>
             ))}
@@ -243,19 +258,19 @@ export default function HomePage() {
                 }}
               >
                 The 22% supplemental flat rate is a{' '}
-                <em className="italic text-brand-400">floor</em>, not your bracket.
+                <em className="italic text-lime-400">floor</em>, not your bracket.
                 Most engineers find a five-figure surprise in their first vest.
               </p>
               <div className="mt-4 font-mono text-xs text-slate-500">
                 — methodology notes ·{' '}
-                <Link href="/methodology" className="text-slate-400 hover:text-brand-400">
+                <Link href="/methodology" className="text-slate-400 hover:text-lime-300">
                   read the full sourcing
                 </Link>
               </div>
             </div>
             <Link
               href={`/${flagship.slug}`}
-              className="whitespace-nowrap rounded-md border border-brand-500 px-6 py-3.5 text-sm font-medium text-slate-100 transition hover:bg-brand-500/10"
+              className="whitespace-nowrap rounded-md border border-lime-400/70 px-6 py-3.5 text-sm font-medium text-slate-100 transition hover:bg-lime-400/10"
             >
               Run the numbers →
             </Link>
@@ -350,7 +365,7 @@ function PersonaCard({
     <li>
       <Link
         href={href}
-        className="flex h-full flex-col gap-1.5 rounded-md border border-slate-800 bg-slate-900/50 p-5 transition hover:border-brand-500 hover:bg-slate-900"
+        className="flex h-full flex-col gap-1.5 rounded-md border border-slate-800 bg-slate-900/50 p-5 transition hover:border-lime-400/60 hover:bg-slate-900"
       >
         <span className="text-3xl" aria-hidden="true">
           {emoji}
