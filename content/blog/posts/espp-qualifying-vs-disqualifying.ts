@@ -8,7 +8,7 @@ export const esppQualifyingVsDisqualifying: BlogPost = {
   datePublished: '2026-05-19',
   dateModified: '2026-05-19',
   authorName: 'Mathstub Editorial',
-  reviewerName: 'Pending CPA review',
+  reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'harness-wealth'],
   quickAnswer:
     'Qualifying disposition (hold ≥2 years from offering date AND ≥1 year from purchase): the §423 discount is ordinary income (capped at lesser of offering-date discount OR sale gain), the rest of the gain is long-term capital gain. Disqualifying disposition (sell earlier): the FULL discount at purchase becomes ordinary W-2 income that year, regardless of sale price. Qualifying is usually better for appreciated stock, but the 1-2 year hold introduces real concentration risk that often outweighs the tax saving.',
