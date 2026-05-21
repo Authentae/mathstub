@@ -12,3 +12,4 @@ dist
 *.tsbuildinfo
 next-env.d.ts
 .claude/design-exports/
+notion-templates/*/preview.html

@@ -18,6 +18,7 @@
     "ext:icons": "node scripts/generate-extension-icons.mjs",
     "ext:zip": "node scripts/zip-extension.mjs",
     "notion:images": "node scripts/generate-notion-covers.mjs",
+    "notion:previews": "node scripts/generate-template-previews.mjs",
     "webstore:assets": "node scripts/generate-webstore-assets.mjs"
   },
   "dependencies": {
@@ -34,7 +35,9 @@
     "autoprefixer": "^10.4.20",
     "eslint": "^9.18.0",
     "eslint-config-next": "^15.1.6",
+    "marked": "^18.0.4",
     "postcss": "^8.5.1",
+    "puppeteer": "^25.0.4",
     "sharp": "^0.34.5",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.3",
