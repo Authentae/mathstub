@@ -1,6 +1,6 @@
 # Gumroad listing — Multi-State Equity Comp Tax Planner
 
-**Price:** $79 USD
+**Price:** $49 USD
 **Category:** Productivity → Templates → Notion
 
 ## Title
@@ -106,9 +106,9 @@ Earth, founder of [mathstub.com](https://mathstub.com).
 
 ## Pricing rationale
 
-$79 launch price. Multi-state equity-comp tax is a $500–$1,500 CPA-engagement
+$49 launch price. Multi-state equity-comp tax is a $500–$1,500 CPA-engagement
 problem; this template is the DIY for the audience that doesn't yet want to
 pay $1,500. No direct competitor at this price point on Gumroad / Notion
 Marketplace in 2026 — closest is Secfi's free equity-comp calculator (gated to
-push you into $1,800/quarter advisory). $79 is positioned at the natural ceiling
+push you into $1,800/quarter advisory). $49 is positioned at the natural ceiling
 of "I'll buy a tool" vs. "I'll hire a person."

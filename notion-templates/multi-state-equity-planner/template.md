@@ -4,6 +4,17 @@
 
 ---
 
+## ⚡ 30-Second TL;DR
+
+> 🎯 **If you remember 3 rules from this planner, remember these:**
+> 1. **Old state still gets a piece.** Work-source allocation taxes vests based on where you *worked during the vesting period*, NOT where you live now. (§A)
+> 2. **NY's "convenience of employer" can claim 100%** of your income even after you've left, if the employer is NY-based and the move was "for your convenience." (§B)
+> 3. **Document the move RUTHLESSLY.** Driver's license, voter registration, lease, utility bills, doctors, kids' schools — all need to point at the new state. Defeats dual-domicile claims. (§1)
+>
+> Everything else in this planner is the math + filing forms. The 3 rules above are 80% of the strategy.
+
+---
+
 > ▶️ **Watch the 25-minute walkthrough first**: `[paste your Loom share URL here]`
 > *The Loom should walk through Daniel's worked example (§0) end-to-end. This is the highest-leverage perceived-value lift for the $79 tier.*
 
@@ -290,6 +301,184 @@ ATTACHMENTS
 - [PA REV-714](https://www.revenue.pa.gov/FormsandPublications/FormsforIndividuals/PIT/Documents/2023/2023_pa-40.pdf) — PA personal income tax
 - [Mathstub 50-state stock-comp lookup](https://mathstub.com/state-stock-comp)
 - [Mathstub state RSU calculator](https://mathstub.com/rsu-tax-shortfall) — change state in dropdown
+
+---
+
+## 📖 §I — Scenario cookbook (8 recipes)
+
+The 8 most-common multi-state situations.
+
+### 🧂 Recipe 1 — CA → TX move with unvested RSUs
+
+The Daniel scenario from §0. Most common tech-worker move.
+
+```
+1. Set your TX move date in §1 Residency timeline.
+2. For every future RSU vest: compute work-source allocation (CA months / total months).
+3. CA's share at 13.3% top marginal will hit even after you've moved.
+4. Plan CA estimated payments for the CA share (CA Form 540-ES).
+5. After 4-yr vest cliff fully completes → 0% CA tax going forward (assuming no return).
+6. File CA Form 540NR + TX no-income-tax return for each year there's CA-sourced.
+```
+
+### 🧂 Recipe 2 — NY (or DE/NE/CT) → FL move while keeping the same employer
+
+The convenience-of-employer trap.
+
+```
+1. NY claims 100% of W-2 + equity comp if you work remote for own convenience.
+2. To defeat: get employer to document "necessity" (HR memo, written job description)
+   OR move the formal work-location to a non-NY office on payroll.
+3. If can't defeat → factor 10.9% NY state + 3.876% NYC into your moved-state planning.
+4. Easier path: switch to 1099 contractor (no W-2 convenience rule applies) — but
+   gains SE tax 15.3% and loses W-2 benefits.
+5. Most expensive path: accept and pay. Many do.
+```
+
+### 🧂 Recipe 3 — You're choosing between competing CA and TX offers
+
+The tax math is one factor. Quantify it.
+
+```
+1. Build the 4-year vest schedule for each offer in §C.
+2. CA path: 13.3% on entire vest schedule.
+3. TX path: 0% on vests AFTER you move, BUT work-source allocation taxes pre-move years.
+4. Net out into total tax over 4 years.
+5. Add COL delta (Bay Area vs Austin: ~30-40% lower COL in Austin).
+6. Subtract one-time move costs ($30-50k typical including double-rent).
+```
+
+### 🧂 Recipe 4 — Spouse and you live in different states (rare but happens)
+
+The post-COVID two-cities couple.
+
+```
+1. Determine each spouse's tax home + domicile separately.
+2. Filing status: MFJ federally is fine; states differ on whether to file MFJ or MFS.
+3. CA, NY, NJ: tend to want MFS for state returns when domiciles differ. Each files
+   own state return with own W-2.
+4. NIIT 3.8% threshold remains $250k MFJ even though state filings split.
+5. Document everything: where each spouse sleeps, where mail goes, kids' schools.
+```
+
+### 🧂 Recipe 5 — Mid-year remote-work apartment in another state
+
+You worked from your parents' place in another state for 2 months in summer.
+
+```
+1. Count days physically present in the secondary state.
+2. Most states' "income earned while physically present" threshold: 30+ days OR
+   exceeding a $ threshold ($600/$1k/$5k varies).
+3. If exceeded → file non-resident return in secondary state with apportioned income.
+4. Resident state gives double-tax credit for taxes paid to secondary.
+5. Track travel days in your calendar all year.
+```
+
+### 🧂 Recipe 6 — Statutory residency days (the surprise dual-residency)
+
+Some states make you a "statutory resident" if you spend > 183 days even without domicile.
+
+```
+1. Tag every day in §1 with the state you slept in.
+2. NY: > 183 days + maintaining "permanent place of abode" in NY = statutory resident
+   → taxed on 100% of worldwide income.
+3. CA: looks at "closest connections" rather than day-count for non-domicile cases.
+4. MA, NJ, IL: similar day-count rules.
+5. If you split half-year in NY but kept your apartment → you may have created a
+   statutory residency without intending to.
+```
+
+### 🧂 Recipe 7 — ISO exercise while in CA (state AMT applies)
+
+CA has its own AMT (1 of 4 states).
+
+```
+1. Confirm ISO exercise date + bargain element from §5 Equity Comp Decision Tracker.
+2. Federal Form 6251 → bargain element to federal AMTI.
+3. CA Form FTB 3510 → CA AMT computation. Triggers at lower exemption than federal.
+4. CA AMT credit recoverable on future CA returns same way as federal Form 8801.
+5. If you move to TX after exercise → still owe CA AMT for the exercise year.
+6. The CA AMT credit cannot recover after you're no longer a CA filer — use it or lose it.
+```
+
+### 🧂 Recipe 8 — Pre-IPO secondary sale during a state move
+
+You sold during the IPO secondary in May, moved states in August.
+
+```
+1. Sale date determines tax residency at time of sale.
+2. If May sale + CA-resident: CA taxes 100% of cap gain at 13.3%.
+3. If you'd waited until you moved to TX in August: CA could STILL claim via
+   "source rule" if the underlying stock was earned in CA. Check FTB Pub 1004.
+4. Form 540NR with apportionment if you became TX-resident after the sale.
+5. This is a "hire a CPA" situation if > $250k of gains involved.
+```
+
+---
+
+## ❓ §J — Frequently asked questions
+
+**1. I moved in October. Am I a part-year resident or non-resident?**
+Part-year. You file resident return for the months in the new state and either part-year OR non-resident return for the months in the old state. Both states' DORs have their own forms.
+
+**2. What if I move and immediately come back? Do I still owe?**
+Yes for the time you were a resident of the other state. Less common: if you maintained a "place of abode" in both, you could be statutory resident of both (taxed on 100% by both, minus the double-tax credit on the resident return).
+
+**3. Does the convenience-of-employer rule apply if I'm 1099?**
+No. The rule is specific to employer-employee W-2 relationships. Contractors source income to where they performed the work.
+
+**4. Can I just change my W-2 address to TX before I move?**
+No — and don't try. Your address on payroll is one input among many; the actual tax-home / domicile facts (where you slept, where your mail came, where kids went to school) are what auditors look at.
+
+**5. How does Florida treat my CA RSU vests after I move?**
+Florida doesn't tax personal income at all. So FL takes 0%. But CA still takes its work-source-allocated share. The combined rate is just the CA rate × allocation %.
+
+**6. What about my 401(k) distributions in retirement — which state taxes them?**
+Federal law (4 USC §114) says only the STATE WHERE YOU LIVE WHEN YOU TAKE THE DISTRIBUTION can tax it. Not the state where you contributed. So move to FL/TX before retirement and your 401(k) becomes 100% state-tax-free.
+
+**7. Does CA have a "tax-residency look-back" if I leave?**
+Yes-ish. CA has a "Closer Connection" test and is aggressive on residency disputes if you maintain ANY ties (driver's license, home, kids in school). Cut every tie when you leave. CA can ask for tax 4 years back during a residency audit.
+
+**8. What about Washington state's capital-gains tax?**
+WA has a 7% LTCG tax on gains > $250k/yr (as of 2023). Applies to RSU sales + ESPP sales while a WA resident. Plan accordingly if you're in WA + selling > $250k of equity.
+
+**9. The state DOR primary sources you list are scary documents. Do I need to read them?**
+Read the table of contents + skim the section about your specific situation (e.g., "non-resident stock compensation"). Bring the PDF to your CPA. They reference it back to you in plain English.
+
+**10. I've been moved for 3 years already and never filed in old state. How bad?**
+Statute of limitations on most states' assessment is 3-4 years. If audited NOW for those years, they'll demand back-tax + penalty + interest. Quietly file amended/missing returns BEFORE you get audited — voluntary disclosure programs usually waive penalties.
+
+---
+
+## 📚 §K — Glossary (multi-state terms)
+
+**Apportionment** — Allocating income across multiple jurisdictions per a formula. For stock comp: usually months-in-state / total-vesting-months.
+
+**Convenience of employer rule** — 7 states (NY, DE, NE, PA, AR, CT, and pre-2024 NJ) claim 100% of W-2 income if you work remote for *your own* convenience, not the employer's necessity.
+
+**Domicile** — Your "permanent home." Where you intend to return after temporary absences. One per person at any time. Harder to change than residency.
+
+**Double-tax credit** — A state gives credit for tax paid to another state on the SAME income. Available on the resident state's return.
+
+**Form 540 (CA)** — California full-year resident return.
+
+**Form 540NR (CA)** — California non-resident or part-year resident return.
+
+**Form IT-201 (NY)** — New York full-year resident return.
+
+**Form IT-203 (NY)** — New York non-resident or part-year resident return.
+
+**Non-resident** — Tax-filing status when you owe a state tax only on income sourced from there (not your worldwide income).
+
+**Part-year resident** — Tax-filing status during a year you moved. You owe full state tax on income during resident months + non-resident tax on source-state income during non-resident months.
+
+**Source of income / sourcing rule** — Where income is treated as "earned" for state-tax purposes. For wages: where the work was done. For equity: usually allocated across vesting period.
+
+**Statutory residency** — Some states (NY, CT, NJ, IL, MA) make you a resident if you spend > 183 days AND maintain a place of abode there — even if your domicile is elsewhere.
+
+**Tax home** — Your principal place of business / work. Often the same as domicile but can differ.
+
+**Work-source allocation** — The default method for splitting equity-comp income across states based on where work occurred during vesting.
 
 ---
 

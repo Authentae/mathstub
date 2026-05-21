@@ -4,6 +4,17 @@
 
 ---
 
+## ⚡ 30-Second TL;DR
+
+> 🎯 **If you do exactly 3 things in this template, do these:**
+> 1. **Run [RSU Shortfall calc](https://mathstub.com/rsu-tax-shortfall) the day every vest hits** → get the gap → file W-4 box 4(c) bump within 48 hours.
+> 2. **Before any ISO exercise, model AMT in [ISO/AMT calc](https://mathstub.com/iso-amt)** → if 5-figure bargain element + hold → confirm you have the April-15 cash.
+> 3. **Adjust Form 8949 column (g) on every RSU sale** (see §B) → stops TurboTax double-taxing the same dollars.
+>
+> Everything else in this template makes those 3 things faster, more accurate, or multi-year.
+
+---
+
 > ▶️ **Watch the 4-minute walkthrough** before you start: `[paste your Loom share URL here]`
 > *(After you record your walkthrough, drop the Loom link in this callout. Buyers prefer 3–5 min, casual, screen-share narration — no script.)*
 
@@ -440,6 +451,222 @@ The 18 questions a $300/hr CPA wishes you'd ask (because if you don't, they'll m
 - [Form 3921 — ISO Exercise Reporting](https://www.irs.gov/forms-pubs/about-form-3921)
 - [Form 3922 — ESPP Transfer Reporting](https://www.irs.gov/forms-pubs/about-form-3922)
 - [Form 8949 — Sales & Dispositions](https://www.irs.gov/forms-pubs/about-form-8949)
+
+---
+
+## 📖 §13 — Scenario cookbook (10 recipes)
+
+The 10 most-common equity-comp situations, each with the exact 3–6 step playbook. Find yours, follow the steps, done.
+
+### 🧂 Recipe 1 — Your first RSU vest
+
+You just had a vest hit. Here's the next 48 hours.
+
+```
+1. Add the row to §3 Vest log: vest date, shares, FMV, withholding from paystub.
+2. Run RSU Shortfall calc (mathstub.com/rsu-tax-shortfall) with YTD wages + this vest.
+3. If shortfall > $1,500 → file W-4 line 4(c) bump (§14 of Year-End Tax Playbook).
+4. If you're holding the shares → log to §5 ISO/RSU lots with FMV as cost basis.
+5. If sold-to-cover → net shares + per-share basis stay in §4 Sales log.
+```
+
+### 🧂 Recipe 2 — You're considering exercising ISOs and holding
+
+The exercise creates a tax bill in April even if the stock craters. Here's how to avoid disaster.
+
+```
+1. Run ISO/AMT calc (mathstub.com/iso-amt) with your strike + FMV + AGI.
+2. If TMT > regular tax → AMT amount is what you'll owe extra April 15. Have the cash.
+3. If you don't have the cash → exercise + same-day-sell to fund the AMT.
+4. If you do have the cash → exercise + hold. Log Form 3921 when it arrives in Jan.
+5. Add row to §5 AMT scratchpad. Project the credit recovery over the next 3-5 years.
+```
+
+### 🧂 Recipe 3 — You got hit with AMT last year, want the credit back this year
+
+It's real cash. Most people forget it exists.
+
+```
+1. Pull last year's Form 6251 — line with the AMT amount = your credit balance.
+2. This year, project regular tax vs. TMT in ISO/AMT calc. If regular > TMT, claim.
+3. Form 8801 → enter prior-year minimum tax credit carryforward.
+4. The credit caps at (regular − TMT). Excess carries to next year (no expiration).
+5. Track running balance in §B AMT scratchpad year over year until consumed.
+```
+
+### 🧂 Recipe 4 — You're selling RSU shares for the first time
+
+The broker WILL report cost basis wrong. Here's the fix.
+
+```
+1. Sale settles → 1099-B comes in Feb.
+2. Verify Box 1e (basis). If $0 or near-$0 → it's wrong (see §B).
+3. Pull FMV-at-vest from §3 Vest log row.
+4. On Form 8949: report exactly as 1099-B in cols (d), (e); enter code B in (f);
+   enter -(FMV × shares) in (g); col (h) calculates the corrected gain.
+5. Save the §3 row screenshot — IRS rarely asks but if they do, this is your evidence.
+```
+
+### 🧂 Recipe 5 — ESPP purchase: should you sell now or hold for qualifying?
+
+The discount you got is always ordinary income. The question is whether the rest qualifies for LTCG.
+
+```
+1. Confirm offer date + purchase date in §1 Grants.
+2. Run ESPP calc (mathstub.com/espp-qualifying-disposition) with both scenarios.
+3. If holding 2y-from-offer + 1y-from-purchase → entire gain above discount = LTCG.
+4. If selling early → entire gain to FMV-at-purchase = ordinary; rest = ST or LT cap gain.
+5. Math: if marginal rate is 32%+ and LTCG bracket is 15%, the qualifying disposition
+   saves you (32-15)% × (gain above discount). For a $20k gain, that's $3,400.
+```
+
+### 🧂 Recipe 6 — You just got a job offer with equity. Should you take it?
+
+The base + bonus is easy. The equity needs math.
+
+```
+1. Enter the offer in §1 Grants: total RSU shares, vest schedule, cliff months.
+2. Run a 4-year projection in §A using offer values.
+3. Compare to your current trajectory net of new state if you're moving.
+4. Factor in vesting risk: a 4-yr cliff means earliest 25% of stated value is realized.
+5. Don't let the equity sticker price (4-yr face value) drive the decision —
+   discount by vesting probability + dilution.
+```
+
+### 🧂 Recipe 7 — You moved states mid-vest (or are about to)
+
+Old state still gets a piece. Here's how much.
+
+```
+1. Document residency timeline (see Multi-State Equity Comp Tax Planner template).
+2. For each future vest, compute work-source allocation: months_in_state / months_total.
+3. Old state taxes the allocated portion at their top marginal even though you've moved.
+4. Withholding now goes 100% to new state. Cover the gap with old-state estimated payments.
+5. File part-year resident return in old state + full-year in new state. Credit on resident return.
+```
+
+### 🧂 Recipe 8 — Pre-IPO secondary sale: should you sell some of your vested ISO/NSO?
+
+You finally have liquidity. The temptation to sell everything is real. So is the tax bill.
+
+```
+1. Confirm holding period on each lot (>1 yr from exercise = LTCG).
+2. Project sale at current secondary price in §4 Sales log.
+3. If ISO + qualifying (>2yr grant + >1yr exercise) → entire gain = LTCG. Best case.
+4. If ISO + disqualifying → bargain at exercise = ordinary; rest = cap gain. Reverses AMT.
+5. Sell concentration down to your §10 target ceiling. Don't sell more than that "in case."
+```
+
+### 🧂 Recipe 9 — You missed an estimated payment last year. Now what?
+
+The §6654 penalty is real but bounded. Here's the recovery.
+
+```
+1. Form 2210 calculates the penalty. Use IRS's online calculator or your tax software.
+2. Penalty is roughly the underpayment × ~8% APR × time underpaid. Often $200-$2,000.
+3. PAY THE PENALTY. Disputing rarely works unless extraordinary circumstances.
+4. This year: hit §6654 safe harbor via W-4 4(c) bump (treated as paid evenly).
+5. Set EFTPS auto-scheduled quarterly payments. Never miss again.
+```
+
+### 🧂 Recipe 10 — You're leaving the company. What about your unvested + your ISOs?
+
+Vesting stops. ISO exercise window starts. Move fast.
+
+```
+1. Confirm post-separation exercise window (typically 90 days, sometimes 1+ years).
+2. Project AMT on any ISO exercise + hold via §5 — if you can't afford the April bill, sell.
+3. If post-90-day → ISOs convert to NSOs → bargain element at exercise becomes
+   immediate ordinary income (worse tax treatment).
+4. Unvested RSUs forfeit unless your separation agreement carved out a portion.
+5. ESPP: pending offer period ends; participate up to separation date.
+```
+
+---
+
+## ❓ §14 — Frequently asked questions
+
+**1. Do I need an accountant if I have this template?**
+Maybe. This template + the Mathstub calculators handle ~90% of standard equity-comp situations. The remaining 10% — multi-state with > $25k exposure, post-IPO sale > $500k, AMT credit > $50k, gift/estate planning — wants a CPA who has seen the situation before.
+
+**2. What about the IRS supplemental wage 37% rule?**
+If your YTD supplemental wages (RSU + bonus + commissions + ESPP) exceed $1M in a calendar year, **everything above $1M** is withheld at a mandatory 37% federal rate, not 22%. Most people don't hit this; if you might, factor into §A projection.
+
+**3. Does this work for non-US residents?**
+No. Equity-comp tax rules vary radically by country. This template is US-only (federal + state).
+
+**4. What about NSO vs ISO — should I prefer one?**
+ISOs are taxed more favorably (LTCG treatment + qualifying disposition path) but trigger AMT. NSOs are simpler (always ordinary at exercise + cap gain at sale) but more total tax. Most startups give a mix because of IRC §422's $100k ISO limit. The deciding factor for *exercising*: cash on hand to pay AMT.
+
+**5. I didn't make estimated payments. How bad is it?**
+Penalty is roughly the underpayment × IRS underpayment rate (~8% APR in 2025) × time underpaid. Often hundreds of dollars; rarely thousands unless you've been ignoring it for years.
+
+**6. What if my company is private — what's "FMV"?**
+The 409A valuation set by your company is the FMV for ISO/NSO bargain-element math. Don't use the most recent funding round (preferred shares) — payroll uses the 409A.
+
+**7. Should I sell to cover or hold to cover RSU withholding?**
+Sell-to-cover is the default for most W-2 employers (broker auto-sells enough to fund the 22% supplemental withhold). Hold-to-cover requires you to send the broker cash to fund withholding. Sell-to-cover is fine; just remember the FMV-at-vest is your cost basis on the net shares.
+
+**8. What's "double-trigger" RSU vesting?**
+Pre-IPO companies sometimes require BOTH a time-vest AND a liquidity event (IPO or acquisition) before RSUs vest. This means your "vested but not delivered" shares don't trigger tax until liquidity. Once liquidity hits, all of the time-vested shares vest in one big event — often a huge AMT-ish event for the year of the IPO.
+
+**9. Does this template integrate with Carta / Schwab / Shareworks?**
+No. Vests are entered manually. The complement is the [Mathstub Equity Comp Vest Tracker Chrome extension](https://mathstub.com), which sends a daily notification reminder to log new vests.
+
+**10. What changes year over year?**
+IRS limits (401(k), HSA, IRA, AMT exemption, FICA wage base, supplemental rates) update each November. We re-publish the template — your Gumroad library auto-updates. The structure stays stable.
+
+---
+
+## 📚 §15 — Glossary
+
+**AGI** — Adjusted Gross Income. Form 1040 line 11. Drives most income-based phaseouts.
+
+**AMT (Alternative Minimum Tax)** — A parallel tax system that prevents high-earners from using deductions to escape tax. Triggers commonly on ISO exercise + hold. IRC §55-§59.
+
+**AMT credit / Form 8801** — When you pay AMT, you generate a credit recoverable in future years where regular tax > TMT. No expiration. Track every year.
+
+**AMTI** — Alternative Minimum Taxable Income. AGI + AMT preferences − AMT exemption.
+
+**Bargain element** — (FMV at exercise − strike price) × shares. The "spread" on an option exercise.
+
+**Disqualifying disposition** — Selling ESPP / ISO shares before the holding-period threshold. Loses preferential tax treatment.
+
+**ESPP §423** — Employee Stock Purchase Plan that qualifies for tax-favored treatment under IRC §423. 15% discount, lookback feature.
+
+**FICA** — Federal Insurance Contributions Act. Social Security 6.2% (up to wage base $176,100 in 2025) + Medicare 1.45% (no cap) + Additional Medicare 0.9% (over $200k single / $250k MFJ).
+
+**FMV** — Fair Market Value. For RSUs, FMV at vest. For ISOs, FMV at exercise.
+
+**IPO** — Initial Public Offering. Often triggers double-trigger RSU vesting + ISO §422 disqualifying-disposition resets.
+
+**ISO §422** — Incentive Stock Option, qualifying under IRC §422. LTCG treatment if held >2y from grant + >1y from exercise. Generates AMT preference.
+
+**LTCG (Long-Term Capital Gain)** — Cap gain on assets held > 1 year. 0% / 15% / 20% federal + NIIT 3.8% on high earners.
+
+**MAGI** — Modified Adjusted Gross Income. For Roth IRA phaseouts: AGI + traditional IRA deduction (rare) + several other adjustments.
+
+**NIIT** — Net Investment Income Tax. 3.8% on investment income (interest, dividends, cap gains) over $200k single / $250k MFJ MAGI. Form 8960.
+
+**NSO** — Non-Qualified Stock Option. Bargain element at exercise = ordinary income. No AMT trigger. Simpler than ISO.
+
+**Qualifying disposition** — Selling ESPP / ISO shares after the holding-period threshold (ESPP: >2y offer + >1y purchase; ISO: >2y grant + >1y exercise). Preferential tax treatment.
+
+**RSU (Restricted Stock Unit)** — Promise to deliver shares on a vest date. FMV at vest = ordinary income. No exercise needed.
+
+**Safe harbor (§6654)** — Pay (a) 90% of current-year tax OR (b) 100% / 110% of prior-year tax → no underpayment penalty regardless of actual.
+
+**Section 83(b) election** — File within 30 days of receiving restricted stock to pay tax NOW on FMV instead of WHEN it vests. Risky if you forfeit; locks in LTCG clock.
+
+**Supplemental wages** — RSU, bonus, commissions, ESPP discount. Withheld at flat 22% federal (or 37% above $1M YTD). Often under-withholds. IRC §3402(g).
+
+**TMT (Tentative Minimum Tax)** — Per Form 6251 line 9. If TMT > regular tax → AMT applies.
+
+**Vesting** — The schedule on which RSU/ISO/NSO shares become yours. Typically 4 years monthly/quarterly with 1-year cliff.
+
+**W-4 line 4(c)** — Extra federal withholding per paycheck. Treated as evenly paid for §6654 purposes — best fix for mid-year shortfalls.
+
+**Wash sale** — Buying substantially-identical security within 30 days before/after a loss sale → loss is disallowed, added to basis of replacement. IRC §1091.
 
 ---
 

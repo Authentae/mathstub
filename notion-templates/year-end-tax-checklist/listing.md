@@ -1,6 +1,6 @@
 # Gumroad listing — Year-End Tax Playbook
 
-**Price:** $29 USD *(was $19 — repriced after 2026-05-21 substantive upgrade)*
+**Price:** $19 USD *(was $19 — repriced after 2026-05-21 substantive upgrade)*
 **Category:** Productivity → Templates → Notion
 
 ## Title
@@ -92,7 +92,7 @@ Use `cover.png`.
 
 ## Pricing rationale
 
-Repriced from $19 to $29 on 2026-05-21 after substantive content upgrade adding
+Repriced from $19 to $19 on 2026-05-21 after substantive content upgrade adding
 the 27-deadline calendar with IRC § + cost-of-missing per row, ICS calendar
-export, structured W-4 line 4(c) workbook, and CPA brief. $29 is the impulse-buy
+export, structured W-4 line 4(c) workbook, and CPA brief. $19 is the impulse-buy
 ceiling and competitive with the lower tier of personal-finance Notion templates.
