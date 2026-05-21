@@ -153,12 +153,57 @@ export default function HomePage() {
             </span>
           </div>
           <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-[0.08em] text-slate-400">
-            <li><span className="text-brand-400">✓</span> 8 calculators</li>
+            <li><span className="text-brand-400">✓</span> 10 calculators</li>
             <li><span className="text-brand-400">✓</span> 23 guides</li>
-            <li><span className="text-brand-400">✓</span> 446 unit tests</li>
+            <li><span className="text-brand-400">✓</span> 484 unit tests</li>
             <li><span className="text-brand-400">✓</span> Every claim cites IRC § or IRS Pub</li>
             <li><span className="text-brand-400">✓</span> Inputs stay in your browser</li>
             <li><span className="text-brand-400">✓</span> Free, no signup</li>
+          </ul>
+        </section>
+
+        {/* WHY TRUST — visual icon-card grid */}
+        <section className="mt-16">
+          <div className="mb-8">
+            <div className="mb-2 font-mono text-[11px] uppercase tracking-[0.14em] text-brand-300">
+              why tech workers trust mathstub
+            </div>
+            <h2 className="flex items-baseline gap-3 text-3xl font-bold leading-none tracking-[-0.03em] text-brand-100 sm:text-[44px]">
+              <span aria-hidden="true" className="h-2 w-2 rounded-full bg-brand-500 shadow-[0_0_12px_rgb(59,130,246)]" />
+              Built so you can verify it yourself.
+            </h2>
+          </div>
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <TrustCard
+              icon="📚"
+              title="IRS-cited, always"
+              sub="Every claim references an IRC § or IRS Pub#. Read the math, not the marketing."
+            />
+            <TrustCard
+              icon="🔒"
+              title="Runs in your browser"
+              sub="All math executes client-side. Your inputs never leave your machine."
+            />
+            <TrustCard
+              icon="⚡"
+              title="30-second results"
+              sub="No signup, no email walls, no &quot;sign in to see your answer.&quot;"
+            />
+            <TrustCard
+              icon="🧮"
+              title="484 unit tests"
+              sub="Every calc is cross-checked against worked examples from IRS publications."
+            />
+            <TrustCard
+              icon="🔄"
+              title="Year-aware"
+              sub="2024, 2025, 2026 brackets / limits / phaseouts all baked in. Updated every November."
+            />
+            <TrustCard
+              icon="🛠️"
+              title="Built by an indie founder"
+              sub="No VC, no enterprise sales motion. Just Earth, mathstub.com, on his own taxes."
+            />
           </ul>
         </section>
 
@@ -359,6 +404,23 @@ export default function HomePage() {
         </section>
       </main>
     </div>
+  );
+}
+
+function TrustCard({ icon, title, sub }: { icon: string; title: string; sub: string }) {
+  return (
+    <li className="relative overflow-hidden rounded-xl border border-slate-800 bg-slate-900/50 p-5 transition hover:border-brand-500/50">
+      <div className="absolute left-0 top-0 h-full w-1 bg-brand-500/70" aria-hidden="true" />
+      <div className="flex items-start gap-3">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-500/10 text-2xl">
+          {icon}
+        </span>
+        <div className="min-w-0">
+          <h3 className="text-base font-bold text-brand-100">{title}</h3>
+          <p className="mt-1 text-sm text-slate-400">{sub}</p>
+        </div>
+      </div>
+    </li>
   );
 }
 
