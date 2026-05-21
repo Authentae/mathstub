@@ -2,10 +2,100 @@ import Link from 'next/link';
 import { liveTools } from '@/lib/tools';
 import { SITE_NAME } from '@/lib/seo';
 
+interface EcosystemItem {
+  href: string;
+  label: string;
+  sub: string;
+  external?: boolean;
+  badge?: string;
+}
+
+const ECOSYSTEM: EcosystemItem[] = [
+  {
+    href: 'https://earthbound58.gumroad.com/l/bdlfo',
+    label: '📅 Year-End Tax Playbook',
+    sub: '27 IRS deadlines · ICS export',
+    external: true,
+    badge: '$19',
+  },
+  {
+    href: 'https://earthbound58.gumroad.com/l/jqyyp',
+    label: '📈 Equity Comp Decision Tracker',
+    sub: 'RSU + ESPP + ISO + 4-yr projection',
+    external: true,
+    badge: '$29',
+  },
+  {
+    href: 'https://earthbound58.gumroad.com/l/jlsppt',
+    label: '🎯 Tech Worker Annual Review',
+    sub: '90-min year-end for $200k+ earners',
+    external: true,
+    badge: '$39',
+  },
+  {
+    href: 'https://earthbound58.gumroad.com/l/athsk',
+    label: '🗺️ Multi-State Tax Planner',
+    sub: 'CA→TX work-source allocation',
+    external: true,
+    badge: '$49',
+  },
+];
+
 export function Footer() {
   const tools = liveTools();
   return (
-    <footer className="mt-16 border-t border-gray-200 bg-gray-50 py-8 dark:border-gray-800 dark:bg-gray-900">
+    <>
+      {/* Ecosystem band — Notion templates + cross-promotion */}
+      <section className="mt-16 border-t border-gray-200 bg-gray-50 px-4 py-10 dark:border-gray-800 dark:bg-gray-950">
+        <div className="mx-auto max-w-5xl">
+          <div className="mb-6 flex items-baseline justify-between gap-4">
+            <div>
+              <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-brand-300">
+                mathstub ecosystem · paid notion templates
+              </p>
+              <h2 className="mt-1 flex items-baseline gap-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-brand-100">
+                <span aria-hidden="true" className="h-2 w-2 rounded-full bg-brand-500 shadow-[0_0_12px_rgb(59,130,246)]" />
+                When a calculator isn&rsquo;t enough.
+              </h2>
+            </div>
+          </div>
+          <p className="mb-6 max-w-2xl text-sm text-gray-600 dark:text-gray-400">
+            Four Notion templates built around the same IRC-cited math the free
+            calculators run — for tracking, planning, and CPA prep across an
+            entire tax year. Lifetime updates included.
+          </p>
+          <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {ECOSYSTEM.map((e) => (
+              <li key={e.href}>
+                <a
+                  href={e.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex h-full flex-col gap-1.5 rounded-lg border border-slate-200 bg-white p-4 transition hover:border-brand-500 hover:shadow-md dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-brand-500/60"
+                >
+                  <div className="flex items-baseline justify-between gap-2">
+                    <span className="text-sm font-bold text-gray-900 group-hover:text-brand-700 dark:text-brand-100 dark:group-hover:text-brand-100">
+                      {e.label}
+                    </span>
+                    {e.badge && (
+                      <span className="rounded-full bg-brand-500/10 px-2 py-0.5 font-mono text-[10px] font-bold text-brand-600 dark:text-brand-300">
+                        {e.badge}
+                      </span>
+                    )}
+                  </div>
+                  <span className="text-xs text-gray-500 dark:text-gray-400">{e.sub}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 text-xs italic text-gray-500 dark:text-gray-500">
+            Affiliate disclosure — we earn from sales on Mathstub-owned products listed above.
+            Free calculators always stay free.
+          </p>
+        </div>
+      </section>
+
+    <footer className="border-t border-gray-200 bg-gray-50 py-8 dark:border-gray-800 dark:bg-gray-900">
       <div className="mx-auto grid max-w-5xl grid-cols-2 gap-8 px-4 text-sm md:grid-cols-4">
         <div>
           <h2 className="mb-2 font-semibold text-gray-900 dark:text-gray-100">{SITE_NAME}</h2>
@@ -116,5 +206,6 @@ export function Footer() {
         affiliate links — we may earn a commission at no extra cost to you.
       </p>
     </footer>
+    </>
   );
 }
