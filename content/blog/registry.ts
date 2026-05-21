@@ -66,6 +66,9 @@ import { esppQualifyingVsDisqualifying } from './posts/espp-qualifying-vs-disqua
 import { amtCreditRecoveryForm8801 } from './posts/amt-credit-recovery-form-8801';
 import { whyIsMyBonusTaxedAt40 } from './posts/why-is-my-bonus-taxed-at-40';
 import { isoDisqualifyingDisposition } from './posts/iso-disqualifying-disposition';
+import { megaBackdoorRothEligibility } from './posts/mega-backdoor-roth-eligibility';
+import { rsuCostBasisFixForm8949 } from './posts/rsu-cost-basis-fix-form-8949';
+import { caTxRsuWorkSourceAllocation } from './posts/ca-tx-rsu-work-source-allocation';
 
 export const blogPosts: BlogPost[] = [
   whyRsuTooHigh,
@@ -91,6 +94,9 @@ export const blogPosts: BlogPost[] = [
   amtCreditRecoveryForm8801,
   whyIsMyBonusTaxedAt40,
   isoDisqualifyingDisposition,
+  megaBackdoorRothEligibility,
+  rsuCostBasisFixForm8949,
+  caTxRsuWorkSourceAllocation,
 ];
 
 export function findPost(slug: string): BlogPost | undefined {
