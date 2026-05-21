@@ -10,6 +10,7 @@ const RELATED: Record<string, string[]> = {
   'espp-qualifying-disposition': ['iso-amt', 'nso-exercise', 'rsu-tax-shortfall'],
   'quarterly-estimated-tax': ['rsu-tax-shortfall', 'bonus-tax-shortfall', 'nso-exercise'],
   'state-stock-comp': ['rsu-tax-shortfall', 'iso-amt', 'espp-qualifying-disposition'],
+  'mega-backdoor-roth': ['quarterly-estimated-tax', 'rsu-tax-shortfall', 'amt-credit-recovery'],
 };
 
 export function RelatedCalcs({ currentSlug }: { currentSlug: string }) {

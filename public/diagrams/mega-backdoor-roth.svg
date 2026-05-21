@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 340" width="1100" height="340" font-family="Inter, system-ui, -apple-system, &#39;Segoe UI&#39;, sans-serif">
+<defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"></path>
+    </marker>
+    <filter id="boxShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#f1f5f9" flood-opacity="0.06"></feDropShadow>
+    </filter>
+  </defs>
+<rect width="1100" height="340" fill="#0f172a"></rect>
+<text x="50" y="40" font-size="14" font-weight="700" fill="#2563eb" letter-spacing="2.4">MATHSTUB · SHOW THE MATH</text>
+<text x="1050" y="40" font-size="14" font-weight="600" fill="#94a3b8" text-anchor="end" letter-spacing="1.4">09 OF 09</text>
+<line x1="50" y1="54" x2="1050" y2="54" stroke="#1f2937" stroke-width="1"></line>
+<text x="50" y="84" font-size="32" font-weight="700" fill="#f1f5f9">Mega-Backdoor Roth → §415 cap minus what&#39;s used</text>
+<text x="50" y="106" font-size="16" font-weight="400" fill="#94a3b8">After-tax 401(k) → in-plan Roth conversion → tax-free growth, on top of the $23.5k elective deferral.</text>
+
+<rect x="50" y="120" width="176" height="168" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.4" filter="url(#boxShadow)"></rect>
+<text x="66" y="146" font-size="13" font-weight="700" fill="#cbd5e1" letter-spacing="1.6">§415 CAP</text>
+<text x="66" y="186" font-size="18" font-weight="600" fill="#f1f5f9">$70,000</text>
+<text x="66" y="208" font-size="18" font-weight="600" fill="#f1f5f9">total limit</text>
+<text x="66" y="252" font-size="14" font-weight="400" fill="#94a3b8">2025 IRS limit</text>
+<text x="66" y="272" font-size="14" font-style="italic" font-weight="500" fill="#94a3b8">IRC §415(c)</text>
+
+<line x1="229" y1="204" x2="253" y2="204" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"></line>
+
+<rect x="256" y="120" width="176" height="168" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.4" filter="url(#boxShadow)"></rect>
+<rect x="256" y="132" width="3" height="20" rx="1.5" fill="#2563eb"></rect>
+<text x="272" y="146" font-size="13" font-weight="700" fill="#cbd5e1" letter-spacing="1.6">STEP 1 · ELECTIVE</text>
+<text x="272" y="186" font-size="18" font-weight="600" fill="#f1f5f9">− $23,500</text>
+<text x="272" y="208" font-size="18" font-weight="600" fill="#f1f5f9">pre-tax + Roth</text>
+<text x="272" y="252" font-size="14" font-weight="400" fill="#94a3b8">Your contribution</text>
+<text x="272" y="272" font-size="14" font-style="italic" font-weight="500" fill="#94a3b8">IRC §402(g)</text>
+
+<line x1="435" y1="204" x2="459" y2="204" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"></line>
+
+<rect x="462" y="120" width="176" height="168" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.4" filter="url(#boxShadow)"></rect>
+<rect x="462" y="132" width="3" height="20" rx="1.5" fill="#2563eb"></rect>
+<text x="478" y="146" font-size="13" font-weight="700" fill="#cbd5e1" letter-spacing="1.6">STEP 2 · MATCH</text>
+<text x="478" y="186" font-size="18" font-weight="600" fill="#f1f5f9">− $11,000</text>
+<text x="478" y="208" font-size="18" font-weight="600" fill="#f1f5f9">employer</text>
+<text x="478" y="252" font-size="14" font-weight="400" fill="#94a3b8">Counts against cap</text>
+<text x="478" y="272" font-size="14" font-style="italic" font-weight="500" fill="#94a3b8">Treas. Reg. §1.415</text>
+
+<line x1="641" y1="204" x2="665" y2="204" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"></line>
+
+<rect x="668" y="120" width="176" height="168" rx="10" fill="#0f2a1a" stroke="#16a34a" stroke-width="1.6" filter="url(#boxShadow)"></rect>
+<text x="684" y="146" font-size="13" font-weight="700" fill="#4ade80" letter-spacing="1.6">STEP 3 · ROOM</text>
+<text x="684" y="186" font-size="18" font-weight="600" fill="#bbf7d0">= $35,500</text>
+<text x="684" y="208" font-size="18" font-weight="600" fill="#bbf7d0">after-tax space</text>
+<text x="684" y="252" font-size="14" font-weight="400" fill="#94a3b8">Mega-Backdoor source</text>
+<text x="684" y="272" font-size="14" font-style="italic" font-weight="500" fill="#94a3b8">Notice 2014-54</text>
+
+<line x1="847" y1="204" x2="871" y2="204" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"></line>
+
+<rect x="874" y="120" width="176" height="168" rx="10" fill="#0f2a1a" stroke="#16a34a" stroke-width="2" filter="url(#boxShadow)"></rect>
+<text x="890" y="146" font-size="13" font-weight="700" fill="#4ade80" letter-spacing="1.2">CONVERTED TO ROTH</text>
+<text x="890" y="186" font-size="18" font-weight="600" fill="#bbf7d0">tax-free</text>
+<text x="890" y="208" font-size="18" font-weight="600" fill="#bbf7d0">growth forever</text>
+<text x="890" y="252" font-size="14" font-weight="400" fill="#94a3b8">IRR or in-service</text>
+<text x="890" y="272" font-size="14" font-style="italic" font-weight="500" fill="#94a3b8">IRC §408A</text>
+
+<line x1="50" y1="476" x2="1050" y2="476" stroke="#1f2937" stroke-width="1"></line>
+<text x="50" y="316" font-size="14" fill="#94a3b8">Citations refer to the Internal Revenue Code (Title 26 U.S.C.). Educational reference — not tax advice.</text>
+<text x="1050" y="316" font-size="14" font-weight="600" fill="#2563eb" text-anchor="end">mathstub.app</text>
+</svg>
