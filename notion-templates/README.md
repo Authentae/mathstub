@@ -4,12 +4,12 @@ Four Gumroad-ready Notion templates that pair with the [Mathstub](https://mathst
 
 | Template | Price | Source | Cover |
 |---|---|---|---|
-| **Year-End Tax Playbook** | **$29** | [year-end-tax-checklist/template.md](./year-end-tax-checklist/template.md) | [cover.png](./year-end-tax-checklist/cover.png) |
-| **Equity Comp Decision Tracker** | **$49** | [equity-comp-tracker/template.md](./equity-comp-tracker/template.md) | [cover.png](./equity-comp-tracker/cover.png) |
-| **Tech Worker Annual Financial Review** | **$79** | [tech-worker-annual-review/template.md](./tech-worker-annual-review/template.md) | [cover.png](./tech-worker-annual-review/cover.png) |
-| **Multi-State Equity Comp Tax Planner** | **$79** | [multi-state-equity-planner/template.md](./multi-state-equity-planner/template.md) | _cover TBD_ |
+| **Year-End Tax Playbook** | **$19** | [year-end-tax-checklist/template.md](./year-end-tax-checklist/template.md) | [cover.png](./year-end-tax-checklist/cover.png) |
+| **Equity Comp Decision Tracker** | **$29** | [equity-comp-tracker/template.md](./equity-comp-tracker/template.md) | [cover.png](./equity-comp-tracker/cover.png) |
+| **Tech Worker Annual Financial Review** | **$39** | [tech-worker-annual-review/template.md](./tech-worker-annual-review/template.md) | [cover.png](./tech-worker-annual-review/cover.png) |
+| **Multi-State Equity Comp Tax Planner** | **$49** | [multi-state-equity-planner/template.md](./multi-state-equity-planner/template.md) | [cover.png](./multi-state-equity-planner/cover.png) |
 
-> 📈 **Repriced 2026-05-21** after substantive content upgrade (4-year projection grids, AMT credit recovery, RSU basis fix kit, structured CPA briefs, ICS calendar export). New tier ladder: $29 / $49 / $79 / $79. Bundle pricing $159 (save $57) — turn on Gumroad's bundle feature after first sale of any single product.
+> 📈 **Path A pricing 2026-05-21** — impulse-buy ladder $19 / $29 / $39 / $49 lets buyers' enthusiasm validate the new content (cookbook recipes, FAQ, glossary, TL;DR cards, CSV companion files). Raise to $29/$49/$79/$79 once 10+ purchases of social proof exist. Bundle pricing $99 (save $37) — turn on Gumroad's bundle feature after first single-product sale.
 
 ## How buyers import
 
@@ -38,6 +38,7 @@ The buyer-facing zip should contain:
 - `template.md` — Notion-importable markdown
 - `cover.png` — 1280×720 cover (also used in the Gumroad listing)
 - `README.txt` — 5-step import + Loom walkthrough instructions
+- `companion-*.csv` (where present) — Excel/Sheets-importable data files (Decision Tracker ships a 4-year projection CSV; Multi-State Planner ships an allocation CSV)
 
 A standard `README.txt` template is at the bottom of this file — copy into each template directory.
 
@@ -117,14 +118,18 @@ calculators this template is built around live at https://mathstub.com.
 
 ## Pricing rationale (2026-05-21 reprice)
 
+**Path A: launch impulse-buy, raise on social proof.**
+
 | Old | New | Why |
 |---|---|---|
-| $19 | $29 | Year-End Playbook: 27-deadline calendar + ICS export + CPA brief justifies $29 entry tier. |
-| $29 | $49 | Decision Tracker: 4-year projection + RSU basis fix kit + AMT credit calendar is *decision* tooling, not tracking. $49 matches mid-tier Notion finance templates. |
-| $39 | $79 | Annual Review: $200k+ audience pays $1,500–$7,200/yr for advisors; $79 self-serve playbook is a non-decision. |
-| (new) | $79 | Multi-State Planner: no direct competitor in $29–$99 land; $500–$1,500 CPA-engagement DIY. |
+| n/a | $19 | Year-End Playbook: 27-deadline calendar + ICS export + cookbook + FAQ + CPA brief. Impulse-buy ceiling. |
+| n/a | $29 | Decision Tracker: 4-year projection + RSU basis fix + cookbook + glossary. "I'll definitely use this." |
+| n/a | $39 | Annual Review: 90-min framework for $200k+ earners. "I'm finally going to do this." |
+| n/a | $49 | Multi-State Planner: most niche but highest pain. Bundles up sharpest with the Decision Tracker. |
 
-Bundle: turn on Gumroad's 4-product bundle at **$159** ($236 → $159, save $77) after the first single-product sale.
+Bundle: turn on Gumroad's 4-product bundle at **$99** ($136 → $99, save $37) after the first single-product sale.
+
+**Raise the ladder to $29 / $49 / $79 / $79 once 10+ purchases of social proof exist.** The new content (cookbook recipes, FAQ, glossary, CSV companions, TL;DR cards) supports the higher tier — buyers just need to trust the brand first.
 
 ## Distribution beyond Gumroad
 

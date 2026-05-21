@@ -1,6 +1,6 @@
 # Gumroad listing — Equity Comp Decision Tracker
 
-**Price:** $49 USD *(was $29 — repriced after 2026-05-21 substantive upgrade)*
+**Price:** $29 USD *(was $29 — repriced after 2026-05-21 substantive upgrade)*
 **Category:** Productivity → Templates → Notion
 
 ## Title
@@ -102,8 +102,8 @@ Use `cover.png` — generated from `cover.svg` via `npm run notion:images`.
 
 ## Pricing rationale
 
-Repriced from $29 to $49 on 2026-05-21 after substantive content upgrade adding
+Repriced from $29 to $29 on 2026-05-21 after substantive content upgrade adding
 the §A 4-year projection grid, §B RSU basis fix kit, and §C structured CPA brief.
 The competitive landscape (Easlo $79, Thomas Frank $129, Notion-marketplace equity
-trackers all free-or-low-quality) supports $49 as the new entry tier for *decision*
+trackers all free-or-low-quality) supports $29 as the new entry tier for *decision*
 tooling. Lite version on Notion Marketplace stays free as funnel.

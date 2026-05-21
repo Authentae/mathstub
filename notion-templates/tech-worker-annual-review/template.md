@@ -4,6 +4,18 @@
 
 ---
 
+## ⚡ 30-Second TL;DR
+
+> 🎯 **If you only do 4 things from this review, do these:**
+> 1. **Run §3 Tax efficiency** → check AMT credit carryforward → claim if regular > TMT this year (typical recovery: 5-figure cash).
+> 2. **§5 Concentration check** → if employer stock > 20% of investable NW → set a sell schedule via §10.
+> 3. **§6 Retirement check** → confirm Mega-Backdoor Roth maxed if your plan allows. This is the single highest-leverage retirement move for $200k+ earners.
+> 4. **§4 Withholding tier** → match your gross + filing status → set W-4 box 4(c) for the year.
+>
+> The other 12 sections are the rounding error — important, but the 4 above are where the 5-figure savings live.
+
+---
+
 > ▶️ **Watch the 20-minute walkthrough first**: `[paste your Loom share URL here]`
 > *Loom recording: walk the buyer through Priya's worked example end-to-end. This is the highest-leverage perceived-value lift for the $79 tier.*
 
@@ -348,6 +360,133 @@ Joining a startup, getting an ISO grant?
 22. Insurance gaps?
 23. State-residency change ROI?
 24. Estate plan — when do we need a trust?
+
+---
+
+## 📖 §17 — Scenario cookbook (6 recipes)
+
+The most-common high-earner situations, each with the exact playbook.
+
+### 🧂 Recipe 1 — You hit $300k+ for the first time
+
+The bracket math changes; phaseouts kick in.
+
+```
+1. Run §3 Tax efficiency with this year's actuals. Effective + marginal rate.
+2. Roth IRA direct contribution phases out fully at $165k single / $246k MFJ →
+   switch to Backdoor Roth via Form 8606.
+3. NIIT 3.8% on investment income kicks in over $200k single / $250k MFJ MAGI →
+   account for it in projection.
+4. AMT phaseout starts at AMTI $626k single / $1.25M MFJ — usually still gives
+   you full exemption.
+5. Mega-Backdoor Roth becomes a top-3 priority. Check plan availability today.
+6. Reconsider asset location: bonds in retirement, equities in taxable.
+```
+
+### 🧂 Recipe 2 — Your equity-comp portfolio just crossed 35% concentration
+
+The Cisco / Enron / WorldCom / FTX risk band. Time to sell.
+
+```
+1. Set target ceiling in §10 (10–15% conservative, 20% aggressive).
+2. Compute current excess: (current % − target %) × invested NW = $ to sell.
+3. SELL plan:
+   - On every future RSU vest: sell-to-cover + sell-the-rest.
+   - On existing holdings: 25%/yr of excess until at target.
+4. Reinvest proceeds in a 3-fund index portfolio (VTI + VXUS + BND) or target-date fund.
+5. If insider/exec → set up a 10b5-1 plan to legally sell during blackouts.
+6. If > $1M concentrated + held > 7yr → consider an exchange fund.
+```
+
+### 🧂 Recipe 3 — You're about to take a sabbatical / parental leave / between jobs
+
+Low-income year is a tax-planning windfall.
+
+```
+1. Project AGI: (months worked × salary) + RSU vests during the year.
+2. Look for: Roth conversion room (convert to fill up your current bracket).
+3. Cap-gain harvest: if AGI < $47k single / $94k MFJ → LTCG is 0%. Sell + rebuy
+   to step-up basis.
+4. If have AMT credit balance: regular tax usually drops below TMT here → use credit.
+5. Backdoor Roth still allowed regardless of income.
+6. HSA still allowed if on HDHP — fund the max even from savings.
+```
+
+### 🧂 Recipe 4 — Pre-IPO secondary tender offer is open
+
+You finally have liquidity. The temptation is real.
+
+```
+1. Confirm holding-period status on each lot. >1yr exercise → LTCG eligible.
+2. Project tax under §3 if you sell X shares at tender price.
+3. Sell concentration down to target ceiling (§10) — not "in case it goes up more."
+4. If ISO + qualifying (>2y grant + >1y exercise) → entire gain = LTCG.
+5. State residency matters: if you're CA-domiciled, 13.3% state tax applies to
+   sale. Tender during a low-state-tax year if possible.
+6. If you're holding > $5M of pre-IPO stock → talk to a tax-pro about §1202 (QSBS).
+```
+
+### 🧂 Recipe 5 — You and spouse both have W-2 + equity comp
+
+Coordination is the entire game.
+
+```
+1. Add both incomes to §2. MFJ tax brackets are NOT 2× single — phaseouts hit earlier.
+2. Both 401(k)s: each maxes own $23.5k. Mega-Backdoor Roth in each plan if available.
+3. Backdoor Roth: each spouse does their own ($7k each = $14k household).
+4. Roth IRA direct phaseout: $236k–$246k MFJ MAGI. Backdoor for both above that.
+5. If one spouse is self-employed → Solo 401(k) opens up another $69k/yr of space.
+6. State tax: file MFJ federally; in some states MFJ saves; in others (CA) MFS
+   may save. Run both scenarios.
+```
+
+### 🧂 Recipe 6 — You're considering FIRE in 3–7 years
+
+Tax-planning now sets up the withdrawal-phase tax efficiency.
+
+```
+1. Aim for ratio: traditional 401(k) : Roth : taxable ≈ 60 : 20 : 20 by retirement.
+2. If currently heavy traditional → Roth conversion ladder during low-income years.
+3. Build a taxable bridge: 5 yr of expenses in a taxable brokerage for pre-59½ access.
+4. ACA subsidy math: at $40-60k AGI in retirement, ACA subsidy can save $10k+/yr.
+5. Plan SEPP (72(t)) if you'll need pre-59½ retirement access from 401(k).
+6. Run §14 YoY scoreboard every December — confirm trajectory.
+```
+
+---
+
+## ❓ §18 — Frequently asked questions
+
+**1. Is this overkill if I'm under $200k?**
+For $150k–$200k earners with equity, this still works but most sections are over-engineered. The Year-End Tax Playbook covers your needs. Use this template if you're 1–2 years away from the higher tier or already MFJ at combined $250k+.
+
+**2. Does this work for couples where one spouse is the high-earner?**
+Yes — and especially well. The Mega-Backdoor Roth, Backdoor Roth, and 401(k)-max checks all apply to BOTH spouses independently. Spousal Roth IRA opens up an extra $7k of contribution.
+
+**3. What about restricted equity at private companies?**
+The unvested RSUs are NOT net worth (you don't own them yet). Track in §1 as "future income" separately. Vested-but-illiquid ISO/NSO shares ARE net worth but illiquid; mark them as such in §1 "Liquid?" column.
+
+**4. I don't have an AMT credit. Should I skip §7?**
+Yes — only relevant if you've exercised ISOs + held. If you've never done that, §7 is reference material.
+
+**5. What's the difference between Backdoor Roth and Mega-Backdoor Roth?**
+- **Backdoor Roth**: $7k/yr ($8k if 50+). Contribute to traditional IRA → convert to Roth IRA. Works regardless of income. Need pristine traditional IRA (zero balance) to avoid pro-rata.
+- **Mega-Backdoor Roth**: up to ~$50k/yr depending on your match + already-contributed. After-tax 401(k) contributions → in-plan Roth conversion (IRR) or in-service distribution to Roth IRA. Plan-dependent.
+
+**6. The §6 contribution limits show 2025 numbers. When do 2026 update?**
+IRS publishes 2026 limits typically late October / early November 2025. We update this template within 2 weeks. Re-download from Gumroad.
+
+**7. I don't have a financial planner. Should I get one?**
+At $200k+: probably yes if either (a) you have equity > $500k, (b) you have multi-state complexity, (c) you don't want to do this template's work yourself. Fee-only fiduciary ($3-8k/yr) is the model.
+
+**8. Is this template a substitute for a CPA + financial planner?**
+No. It's the document that makes those conversations 10× more productive. The CPA brief in §15 is designed specifically for this.
+
+**9. What about estate planning?**
+§12 covers the basics. If NW > $13M single / $26M MFJ (2025 estate-tax thresholds), hire an estate attorney. Most tech workers don't hit this, but the SECURE Act's 10-year inherited-IRA rule applies broadly.
+
+**10. What if I'm an executive or board member?**
+You have 10b5-1 plan requirements, §16 short-swing profit rules, Form 4 reporting. This template covers the planning angle; you ALSO need a securities-aware attorney + CPA.
 
 ---
 

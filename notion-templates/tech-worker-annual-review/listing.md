@@ -1,6 +1,6 @@
 # Gumroad listing — Tech Worker Annual Financial Review
 
-**Price:** $79 USD *(was $39 — repriced after 2026-05-21 substantive upgrade)*
+**Price:** $39 USD *(was $39 — repriced after 2026-05-21 substantive upgrade)*
 **Category:** Productivity → Templates → Notion
 
 ## Title
@@ -100,8 +100,8 @@ for US tech workers with equity comp.
 
 ## Pricing rationale
 
-Repriced from $39 to $79 on 2026-05-21 after substantive content upgrade.
-$200k+ earners spend $1,500–$7,200/yr on tax/financial advisory. $79 for a
+Repriced from $39 to $39 on 2026-05-21 after substantive content upgrade.
+$200k+ earners spend $1,500–$7,200/yr on tax/financial advisory. $39 for a
 self-serve playbook that surfaces $10k+ of annual moves is a non-decision
-at that income tier. Competitive with Easlo Second Brain ($79–$99), Thomas
+at that income tier. Competitive with Easlo Second Brain ($39–$99), Thomas
 Frank Ultimate Brain ($129) and well below Maven cohort pricing ($595–$1,995).

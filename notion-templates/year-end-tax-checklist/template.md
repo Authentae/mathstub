@@ -4,6 +4,18 @@
 
 ---
 
+## ⚡ 30-Second TL;DR
+
+> 🎯 **If you do exactly 4 things from this playbook, do these:**
+> 1. **Oct 15:** Run [Quarterly Estimated Tax calc](https://mathstub.com/quarterly-estimated-tax) → confirm §6654 safe harbor → file W-4 box 4(c) bump if short.
+> 2. **Dec 15:** Max your 401(k) + HSA + Mega-Backdoor Roth via December paychecks.
+> 3. **Dec 28:** Tax-loss harvest sells must settle by Dec 31. Watch the wash-sale 30-day window.
+> 4. **Jan 15:** Q4 estimated payment due. Use [IRS Direct Pay](https://www.irs.gov/payments/direct-pay).
+>
+> Skip everything else and you'd still save more than the cost of this template. Read on for the other 23 deadlines that move money.
+
+---
+
 > ▶️ **Watch the 4-minute walkthrough** before you start: `[paste your Loom share URL here]`
 
 ---
@@ -410,6 +422,150 @@ ATTACHMENTS
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
+
+---
+
+## 📖 §15 — Scenario cookbook (8 recipes)
+
+The most-common year-end situations, each with the exact 3–6 step playbook.
+
+### 🧂 Recipe 1 — You had a big Q3 RSU vest and didn't bump withholding
+
+You found out in October. Here's the recovery.
+
+```
+1. Run RSU Shortfall calc with all YTD numbers including Q3 vest.
+2. Take the shortfall amount. Divide by pay periods left this year.
+3. File W-4 line 4(c) with payroll. Effective next paycheck.
+4. Verify on next paystub that the extra withholding came out.
+5. §6654(g) deems W-4 withholding as paid evenly → no penalty even mid-year.
+```
+
+### 🧂 Recipe 2 — You realized in November you're a Roth conversion year
+
+Low-income year (sabbatical, between jobs) + room before bracket-jump?
+
+```
+1. Run projected AGI in Quarterly Estimated Tax calc.
+2. Calculate room to bracket-top: (next bracket threshold − projected AGI).
+3. Convert that amount from traditional IRA / 401(k) → Roth IRA.
+4. Conversion is irreversible after 2018 — no recharacterization.
+5. Pay the tax from CASH (not from the conversion proceeds).
+6. Pay Q4 estimated payment if the conversion bumps you over §6654 safe harbor.
+```
+
+### 🧂 Recipe 3 — Tax-loss harvest before Dec 31
+
+You have losing positions and gains to offset.
+
+```
+1. List loss positions in your taxable brokerage. Note unrealized loss size.
+2. Match losses against realized gains this year (broker year-to-date 1099-B).
+3. Excess losses: up to $3,000 deductible against ordinary income; rest carries.
+4. SELL by Dec 28 (T+1 settlement to land by Dec 31).
+5. Wash-sale: cannot buy substantially-identical security 30 days before/after.
+6. Replace with a SIMILAR but not identical index (VOO → IVV avoids it).
+```
+
+### 🧂 Recipe 4 — Last-second 401(k) max in December
+
+You're behind on your 401(k) contributions, December is your last chance.
+
+```
+1. Pull YTD 401(k) deferred from paystub. Subtract from $23,500 (or $31,000 if 50+).
+2. Remaining ÷ (number of remaining December paychecks) = bump per paycheck.
+3. Submit deferral change to plan admin TODAY (most plans need 1 paycheck lead).
+4. Verify on first December paystub it took effect.
+5. If you over-shoot the limit, plan refunds the excess in March + adjusts W-2.
+```
+
+### 🧂 Recipe 5 — Charitable: bunch or take standard?
+
+The 2025 standard deduction is $15k single / $30k MFJ. Most W-2 workers take standard.
+
+```
+1. Sum your potential itemized: mortgage interest + SALT (capped $10k) + charitable.
+2. If sum > standard → itemize. Plan donations to maximize.
+3. If sum < standard → take standard. BUT consider "bunching":
+   3a. Skip charity in 2026.
+   3b. Give 2 years' worth in 2027 to clear the standard-deduction threshold.
+4. Donor-Advised Fund (DAF) lets you give a lump sum now, distribute over years.
+5. Appreciated stock > cash (avoids cap-gains tax AND deducts FMV).
+```
+
+### 🧂 Recipe 6 — FSA spend-down deadline
+
+Your healthcare FSA expires Dec 31. Money left = money lost.
+
+```
+1. Check FSA balance via your plan portal.
+2. Eligible expenses: medical/dental/vision visits, prescriptions, OTC meds, glasses.
+3. Schedule appointments NOW; pharmacies will fill receipt-based claims.
+4. Some plans allow $660 carryover OR 2.5-mo grace period — check your SPD.
+5. If you have a Dependent Care FSA, use it before Mar 15 grace.
+6. For 2027: re-elect during open enrollment — adjust based on this year's actual.
+```
+
+### 🧂 Recipe 7 — Q4 estimated tax payment (Jan 15 deadline)
+
+The last quarter of safe-harbor compliance.
+
+```
+1. Run Quarterly Estimated Tax calc with ALL YTD income + remaining year.
+2. Compute Q4 = (safe-harbor target − YTD withholding − Q1/Q2/Q3 paid).
+3. Use IRS Direct Pay (free, no account) by Jan 15. Save the confirmation #.
+4. ALSO send state Q4 estimate if applicable. Look up your state DOR portal.
+5. If Q4 is > $5,000 → file Form 1040-ES voucher for paper trail too.
+```
+
+### 🧂 Recipe 8 — Filing-time RSU cost-basis adjustment
+
+The most-important Form 8949 fix.
+
+```
+1. Get 1099-B from broker. Verify each RSU sale row.
+2. If box 1e (basis) = $0 or near-zero → wrong; needs adjustment.
+3. Look up FMV at vest for each lot (from Equity Comp Decision Tracker §3).
+4. On Form 8949: code B in column (f); negative adjustment in column (g).
+5. Adjusted gain in column (h) = (sale price − FMV at vest) × shares.
+6. Schedule D rolls up the adjusted totals automatically.
+```
+
+---
+
+## ❓ §16 — Frequently asked questions
+
+**1. What's the deal with $1M YTD supplemental wages and the 37% rate?**
+The IRS supplemental-wage rule (IRC §3402(g)) requires employer to withhold a flat 22% on supplemental income (RSU, bonus, commissions, ESPP) — UNLESS your YTD supplemental wages cross $1M in a calendar year. Then everything above $1M switches to a mandatory 37% withholding. Most tech workers don't hit this; if you might (post-IPO + big RSU vest), factor into Q4 planning.
+
+**2. I'm self-employed (1099). Does this playbook apply?**
+Mostly yes — but you also have SE tax (15.3% on net SE earnings, capped at SS wage base), Solo 401(k) eligibility, SEP-IRA, and the QBI 20% deduction. Add those to your year-end checklist. The 27 deadlines here still mostly apply.
+
+**3. What if I miss Q4 estimated payment?**
+You get a §6654 penalty — currently roughly the underpayment × 8% APR × (~3 months until April 15 filing). Often $100–$500. PAY THE PENALTY when you file; don't dispute unless extraordinary circumstances. Then set up EFTPS auto-scheduled payments for next year.
+
+**4. Should I overpay on Q4 just to be safe?**
+Yes if it's the difference between hitting safe harbor and not. The IRS pays minimal interest on overpayments (and the refund comes 2–4 months later) — minor cost. Penalty avoidance is the win.
+
+**5. Do I need to file in every state I worked in this year?**
+If you physically worked there OR earned source-of-employment income there. For multi-state filers, the Multi-State Equity Comp Tax Planner template covers the work-source allocation rules.
+
+**6. What if my W-2 Box 1 doesn't match my final paystub Box 1 YTD?**
+Common issue — RSU vest income gets reconciled at year-end. Compare:
+- W-2 Box 1 = (gross wages − pre-tax 401(k) − pre-tax HSA − pre-tax health/dental − pre-tax DCA) + RSU FMV-at-vest + ESPP discount + ISO disqualifying-disposition ordinary
+- Off by > $50? Call payroll before they go quiet.
+
+**7. I haven't bothered with Backdoor Roth before. Is it worth it now?**
+At $200k+ income, yes. Annual cost: 10 minutes filing Form 8606. Annual benefit: $7,000 of tax-free growth space ($14,000 if MFJ). Over 30 years compounding, that's 6 figures of after-tax money.
+
+**8. Does this template work if I'm in MD / NJ / IL / OR — states with local tax wrinkles?**
+The federal deadlines apply universally. State deadlines vary — most line up with federal (Apr 15) but check your state DOR. The [Mathstub 50-state lookup](https://mathstub.com/state-stock-comp) shows top marginal + supplemental rate per state.
+
+**9. When should I just hire a CPA instead?**
+When (a) you have multi-state with > $25k of equity tax exposure, (b) you have ISO exercise + hold of > $50k bargain element, (c) you have K-1 income from a private partnership, (d) you've fallen behind > 1 year on filings, or (e) you've had an IRS audit notice.
+
+**10. What changes year over year?**
+IRS publishes new annual limits each November (401(k), IRA, HSA, FSA, FICA wage base, AMT exemption, brackets). The template updates yearly. Re-download from your Gumroad library.
 
 ---
 

@@ -1,0 +1,11 @@
+Year,W-2 base + bonus,RSU vest income,ESPP discount realized,ISO bargain (held),NSO bargain,LTCG / STCG,AGI projection,Fed marginal rate,AMT triggered?,AMT credit balance EoY,Est. fed liability,Safe-harbor target,Action
+2026,,,,,,,,,N,,,,
+2027,,,,,,,,,N,,,,
+2028,,,,,,,,,N,,,,
+2029,,,,,,,,,N,,,,
+,,,,,,,,,,,,,
+EXAMPLE — Maya scenario,,,,,,,,,,,,,
+2026,$185000,$72000,$3000,$22000,0,$1800,$262000,32%,Y,$5800,$58000,$54000,Hit safe harbor via W-4 4(c) + Mega-Backdoor Roth
+2027,$195000,$72000,$3000,0,0,$2000,$272000,32%,N,$5800,$52000,$58000,Claim AMT credit Year 1; verify HSA + 401(k) max
+2028,$205000,$72000,$3000,0,0,$2500,$282500,32%,N,$3000,$54000,$58000,Continue AMT credit recovery; Backdoor Roth pristine check
+2029,$215000,$36000,$3000,0,0,$3000,$257000,32%,N,$0,$48000,$58000,Concentration sell: trim employer stock to 15%
