@@ -13,19 +13,19 @@ Four Gumroad-ready Notion templates that pair with the [Mathstub](https://mathst
 
 ## Listing imagery (per template, auto-generated)
 
-Each template directory ships with these preview assets — used on the Gumroad listing page as primary cover + gallery entries:
+Each template directory ships with these preview assets. **Only upload the first one to Gumroad** — the others spoil the content and create OCR-copy risk.
 
-| File | Size | Use it as |
-|---|---|---|
-| `cover.png` | 1280×720 | Gumroad **primary cover image** (the listing thumbnail) |
-| `preview-hero.png` | 1280×720 | Gumroad **gallery image #1** — shows the actual rendered template with TL;DR card visible |
-| `preview-full.png` | 1280×tall (~5MB) | Gumroad **gallery image #2** — full-length scroll-through (buyers see the whole template scope) |
-| `preview-strip.webp` | 960×~2700 | Gumroad **gallery image #3** — 5-frame composite showing different sections |
-| `preview-tour.webp` | animated 960×540 | Gumroad **gallery image #4** — auto-playing 18-frame scroll. Loom substitute. Browser-supported animated WebP. |
+| File | Size | Use it as | Upload to Gumroad? |
+|---|---|---|---|
+| `cover.png` | 1280×720 | **Primary cover image** + **Thumbnail** (use same file twice). Branded marketing card, zero content revealed. | ✅ Yes |
+| `preview-hero.png` | 1280×720 | Above-the-fold rendered template showing brand bar + title + TL;DR card. Earth's call: too revealing. | ⚠️ Optional |
+| `preview-full.png` | 1280×tall (~5MB) | **Internal use only** — full-length scroll-through. Reveals every recipe / FAQ / glossary entry. OCR-able. | ❌ No |
+| `preview-strip.webp` | 960×~2700 | **Internal use only** — 5 stacked frames. Same spoiler risk as full. | ❌ No |
+| `preview-tour.webp` | animated 960×540 | **Internal use only** — 18-frame animated scroll. Frame-by-frame pause exposes everything. | ❌ No |
 
 Regenerate any time: `npm run notion:images` (covers) + `npm run notion:previews` (preview assets).
 
-> 💡 **Why these matter.** Gumroad listings with a video / animated preview convert measurably better than static-only. The animated WebP plays automatically in modern browsers (Chrome/Edge/Safari/Firefox); buyers see the actual content scrolling without needing your voice. Treat it as the Loom-substitute until you record the real one.
+> 💡 **Why "less" is the right answer.** Standard Notion-template-on-Gumroad pattern: cover only. Show enough to prove quality; never ship the goods in the preview. Buyers pay for convenience + structure + lifetime updates, not raw text. The `preview-full` / `preview-strip` / `preview-tour` files remain useful for: your own visual QA, sharing on Twitter/HN/Reddit when launching, recording your eventual Loom walkthrough, and internal team review.
 
 ## How buyers import
 
