@@ -91,6 +91,16 @@ export const tools: Tool[] = [
     status: 'live',
     emoji: '🗺️',
   },
+  {
+    id: 'mega-backdoor-roth',
+    slug: 'mega-backdoor-roth',
+    title: 'Mega-Backdoor Roth Calculator',
+    shortTitle: 'Mega-Backdoor Roth',
+    summary:
+      'Estimate the after-tax 401(k) room your plan leaves under the §415(c) $70k cap — the source of the Mega-Backdoor Roth that high earners use for $30–46k/yr of extra Roth space.',
+    status: 'live',
+    emoji: '🌀',
+  },
 ];
 
 export function liveTools(): Tool[] {
