@@ -101,6 +101,16 @@ export const tools: Tool[] = [
     status: 'live',
     emoji: '🌀',
   },
+  {
+    id: 'backdoor-roth-ira',
+    slug: 'backdoor-roth-ira',
+    title: 'Backdoor Roth IRA Calculator',
+    shortTitle: 'Backdoor Roth IRA',
+    summary:
+      'Roth IRA phaseout check + pro-rata tax (§408(d)(2)) on the Trad-to-Roth conversion if you have a pre-tax IRA balance. With basis-isolation recommendation + 30-year projection.',
+    status: 'live',
+    emoji: '🔁',
+  },
 ];
 
 export function liveTools(): Tool[] {
