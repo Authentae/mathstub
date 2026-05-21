@@ -87,6 +87,8 @@ export const blogCategories: BlogCategory[] = [
       'estimated-tax-after-rsu-vest',
       'how-to-report-rsu-tax-return',
       'year-end-equity-comp-checklist',
+      'rsu-cost-basis-fix-form-8949',
+      'mega-backdoor-roth-eligibility',
     ],
   },
   {
@@ -98,6 +100,7 @@ export const blogCategories: BlogCategory[] = [
       'rsu-taxes-by-state',
       'multi-state-rsu-sourcing-california',
       'double-trigger-rsu-ipo-tax',
+      'ca-tx-rsu-work-source-allocation',
     ],
   },
 ];
