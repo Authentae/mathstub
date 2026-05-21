@@ -13,19 +13,19 @@ Four Gumroad-ready Notion templates that pair with the [Mathstub](https://mathst
 
 ## Listing imagery (per template, auto-generated)
 
-Each template directory ships with these preview assets. **Only upload the first two to Gumroad** — the others spoil the content and create OCR-copy risk.
+Each template directory ships with these preview assets. **Only upload the first one to Gumroad** — the others spoil the content and create OCR-copy risk.
 
 | File | Size | Use it as | Upload to Gumroad? |
 |---|---|---|---|
 | `cover.png` | 1280×720 | **Primary cover image** + **Thumbnail** (use same file twice). Branded marketing card, zero content revealed. | ✅ Yes |
-| `preview-hero.png` | 1280×720 | **Single gallery image** — above-the-fold rendered template showing brand bar + title + TL;DR card. Fair tease. | ✅ Yes |
-| `preview-full.png` | 1280×tall (~5MB) | **Internal use only** — full-length scroll-through. Reveals every recipe / FAQ / glossary entry. OCR-able. Use for Looms / reviews / your own QA. | ❌ No |
+| `preview-hero.png` | 1280×720 | Above-the-fold rendered template showing brand bar + title + TL;DR card. Earth's call: too revealing. | ⚠️ Optional |
+| `preview-full.png` | 1280×tall (~5MB) | **Internal use only** — full-length scroll-through. Reveals every recipe / FAQ / glossary entry. OCR-able. | ❌ No |
 | `preview-strip.webp` | 960×~2700 | **Internal use only** — 5 stacked frames. Same spoiler risk as full. | ❌ No |
 | `preview-tour.webp` | animated 960×540 | **Internal use only** — 18-frame animated scroll. Frame-by-frame pause exposes everything. | ❌ No |
 
 Regenerate any time: `npm run notion:images` (covers) + `npm run notion:previews` (preview assets).
 
-> 💡 **Why "less" is the right answer.** Standard Notion-template-on-Gumroad pattern: cover + one hero shot. Show enough to prove quality; never ship the goods in the preview. Buyers pay for convenience + structure + lifetime updates, not raw text. Don't compete with yourself by giving the text away. The `preview-full` / `preview-strip` / `preview-tour` files remain useful for: your own visual QA, sharing on Twitter/HN/Reddit when launching, recording your eventual Loom walkthrough, and internal team review.
+> 💡 **Why "less" is the right answer.** Standard Notion-template-on-Gumroad pattern: cover only. Show enough to prove quality; never ship the goods in the preview. Buyers pay for convenience + structure + lifetime updates, not raw text. The `preview-full` / `preview-strip` / `preview-tour` files remain useful for: your own visual QA, sharing on Twitter/HN/Reddit when launching, recording your eventual Loom walkthrough, and internal team review.
 
 ## How buyers import
 
