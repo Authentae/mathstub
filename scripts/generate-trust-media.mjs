@@ -28,10 +28,12 @@ const ACCENT_AMBER = '#fbbf24';
 
 function whatsInsideSvg({ title, accent, badge, items }) {
   // 6 cards in 3x2 grid, each with emoji icon + title
+  // Tightened from 360→344 card width to give 100px of right-edge safety
+  // (some Gumroad / Notion preview panes crop the 1280px master at ~88%).
   const cards = items.slice(0, 6);
-  const cardW = 360;
+  const cardW = 344;
   const cardH = 158;
-  const gapX = 24;
+  const gapX = 22;
   const gapY = 18;
   const gridX = 80;
   const gridY = 250;
