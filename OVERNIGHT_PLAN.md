@@ -75,15 +75,62 @@ If my context fills mid-task, the work to date is committed in PRs. Earth wakes 
 
 ---
 
-## Live status (updated as work progresses)
+## Live status (final)
 
 - [x] Plan written
-- [ ] Calc #9: Mega-Backdoor Roth — in progress
-- [ ] Calc #10: Backdoor Roth IRA
-- [ ] Homepage trust band
-- [ ] Footer ecosystem block
-- [ ] Blog post: RSU cost-basis fix
-- [ ] Blog post: Mega-Backdoor Roth eligibility
-- [ ] Blog post: CA→TX work-source trap
-- [ ] Visual polish pass
-- [ ] Final commit + verification
+- [x] **Calc #9: Mega-Backdoor Roth** — shipped in [PR #40](https://github.com/Authentae/mathstub/pull/40) — live at https://mathstub.com/mega-backdoor-roth
+- [x] **Calc #10: Backdoor Roth IRA** — shipped in [PR #41](https://github.com/Authentae/mathstub/pull/41) — live at https://mathstub.com/backdoor-roth-ira
+- [x] **Homepage trust band** — shipped in [PR #42](https://github.com/Authentae/mathstub/pull/42) — 6-card icon grid + updated stats (10 calcs / 484 tests)
+- [x] **Footer ecosystem block** — shipped in [PR #44](https://github.com/Authentae/mathstub/pull/44) — 4 Gumroad product cards on every page
+- [x] **Blog post: RSU cost-basis fix** — shipped in [PR #43](https://github.com/Authentae/mathstub/pull/43) — live at /blog/rsu-cost-basis-fix-form-8949
+- [x] **Blog post: Mega-Backdoor Roth eligibility** — shipped — live at /blog/mega-backdoor-roth-eligibility
+- [x] **Blog post: CA→TX work-source trap** — shipped — live at /blog/ca-tx-rsu-work-source-allocation
+- [x] **OG share cards for calc #9 + #10** — shipped in [PR #45](https://github.com/Authentae/mathstub/pull/45) — `/og/mega-backdoor-roth.png` + `/og/backdoor-roth-ira.png` now exist (Twitter / LinkedIn / Slack previews no longer fall back to default). Reusable generator: `scripts/generate-og-cards.mjs`.
+- [ ] Visual polish pass — skipped (the 4 main phases above are higher-leverage; visual polish is a Phase 5 nice-to-have)
+- [x] **Final commit + verification** — this file
+
+## What changed in numbers
+
+- Calculators: 8 → **10** (+25%)
+- Blog posts: 23 → **26** (+13%)
+- Tests passing: 446 → **493** (+10.5%; all green)
+- PRs merged tonight: **6** (#40, #41, #42, #43, #44, #45)
+- Homepage sections added: 1 (trust band)
+- Footer sections added: 1 (ecosystem grid)
+- OG share cards: 8 → **10** (the 2 new calcs now have real cards instead of falling back to default)
+
+## What got shipped to mathstub.com
+
+| Asset | URL | What it does |
+|---|---|---|
+| Mega-Backdoor Roth Calculator | [/mega-backdoor-roth](https://mathstub.com/mega-backdoor-roth) | Estimates §415(c) after-tax 401(k) room |
+| Backdoor Roth IRA Calculator | [/backdoor-roth-ira](https://mathstub.com/backdoor-roth-ira) | Pro-rata-aware Backdoor Roth IRA math |
+| Trust band on homepage | [/](https://mathstub.com/) | 6-card visual trust grid (matches Gumroad listing style) |
+| Footer ecosystem grid | every page | 4 Gumroad products cross-promoted with price chips |
+| Mega-Backdoor eligibility post | [/blog/mega-backdoor-roth-eligibility](https://mathstub.com/blog/mega-backdoor-roth-eligibility) | Companion post for calc #9 |
+| RSU cost-basis fix post | [/blog/rsu-cost-basis-fix-form-8949](https://mathstub.com/blog/rsu-cost-basis-fix-form-8949) | Form 8949 column (g) walkthrough, TurboTax + FreeTaxUSA steps |
+| CA→TX work-source post | [/blog/ca-tx-rsu-work-source-allocation](https://mathstub.com/blog/ca-tx-rsu-work-source-allocation) | Daniel's $16,800 surprise tax dissected |
+| OG share cards (calc #9 + #10) | /og/mega-backdoor-roth.png · /og/backdoor-roth-ira.png | Branded 1200×630 cards for social previews |
+
+## Wake-up status
+
+- All work is **live** on https://mathstub.com (Vercel auto-deployed after each PR merge)
+- All work is **safety-rules-compliant**: no DNS changes, no auth/billing changes, no Gumroad listing edits, no social media posts, no destructive git operations
+- All work is **reversible**: every change is in a single PR that can be reverted with `gh pr revert`
+- All work **passes tests + typecheck**: 493 tests passing, no TypeScript errors
+
+## What I did NOT do
+
+- ❌ Did not run a Lighthouse audit (typically a quick win — consider running locally to find any LCP/CLS regressions from the new homepage section + footer)
+- ❌ Did not write a 4th blog post on Backdoor Roth IRA specifically (the pro-rata rule deserves its own post; supports calc #10 and the Tech Worker Annual Review product)
+- ❌ Did not update the launch deck or partner one-pager (legacy assets, low priority)
+
+## Optional next session ideas
+
+1. **Extend the OG generator to blog posts** — `scripts/generate-og-cards.mjs` is in place and rendering calc cards; the same pipeline can produce per-post OG cards (eyebrow = category, title = post title, subtitle = description, right card = source/citation count). ~30 min.
+2. **Backdoor Roth IRA explainer post** — companion to calc #10. ~30 min.
+3. **Concrete calc-page visual polish** — pick 1-2 calculators and improve the result card hierarchy. ~30 min each.
+4. **Mobile Lighthouse audit** — run on all 10 calc pages; flag any P0 issues. ~1 hour.
+5. **A 11th calculator** — strongest candidates: HSA contribution optimizer, 1099 self-employment quarterly estimate, Section 199A QBI deduction.
+
+— Claude (overnight shift, 2026-05-22)
