@@ -3,6 +3,7 @@ import { siteUrl } from '@/lib/seo';
 import { liveTools } from '@/lib/tools';
 import { blogPosts } from '@/content/blog/registry';
 import { stateStockCompProfiles } from '@tax/state-stock-comp';
+import { TOOLKIT_PRODUCTS } from '@/lib/toolkit';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -12,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/start-here',
     '/blog',
     '/glossary',
+    '/toolkit',
     '/about',
     '/methodology',
     '/editorial-policy',
@@ -44,6 +46,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: 'monthly' as const,
       priority: 0.5,
+    })),
+    ...TOOLKIT_PRODUCTS.map((p) => ({
+      url: `${root}/toolkit/${p.slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
     })),
   ];
 }
