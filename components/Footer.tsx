@@ -8,6 +8,7 @@ interface EcosystemItem {
   sub: string;
   external?: boolean;
   badge?: string;
+  cover?: string;
 }
 
 const ECOSYSTEM: EcosystemItem[] = [
@@ -17,6 +18,7 @@ const ECOSYSTEM: EcosystemItem[] = [
     sub: '27 IRS deadlines · ICS export',
     external: true,
     badge: '$19',
+    cover: '/toolkit/year-end-tax-playbook.png',
   },
   {
     href: 'https://earthbound58.gumroad.com/l/jqyyp',
@@ -24,6 +26,7 @@ const ECOSYSTEM: EcosystemItem[] = [
     sub: 'RSU + ESPP + ISO + 4-yr projection',
     external: true,
     badge: '$29',
+    cover: '/toolkit/equity-comp-decision-tracker.png',
   },
   {
     href: 'https://earthbound58.gumroad.com/l/jlsppt',
@@ -31,6 +34,7 @@ const ECOSYSTEM: EcosystemItem[] = [
     sub: '90-min year-end for $200k+ earners',
     external: true,
     badge: '$39',
+    cover: '/toolkit/tech-worker-annual-review.png',
   },
   {
     href: 'https://earthbound58.gumroad.com/l/athsk',
@@ -38,6 +42,7 @@ const ECOSYSTEM: EcosystemItem[] = [
     sub: 'CA→TX work-source allocation',
     external: true,
     badge: '$49',
+    cover: '/toolkit/multi-state-equity-planner.png',
   },
 ];
 
@@ -71,19 +76,33 @@ export function Footer() {
                   href={e.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex h-full flex-col gap-1.5 rounded-lg border border-slate-200 bg-white p-4 transition hover:border-brand-500 hover:shadow-md dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-brand-500/60"
+                  className="group flex h-full flex-col gap-2.5 overflow-hidden rounded-lg border border-slate-200 bg-white p-3 transition hover:border-brand-500 hover:shadow-md dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-brand-500/60"
                 >
-                  <div className="flex items-baseline justify-between gap-2">
-                    <span className="text-sm font-bold text-gray-900 group-hover:text-brand-700 dark:text-brand-100 dark:group-hover:text-brand-100">
-                      {e.label}
-                    </span>
-                    {e.badge && (
-                      <span className="rounded-full bg-brand-500/10 px-2 py-0.5 font-mono text-[10px] font-bold text-brand-600 dark:text-brand-300">
-                        {e.badge}
+                  {e.cover && (
+                    <div className="relative aspect-[1280/720] w-full overflow-hidden rounded-md ring-1 ring-slate-200/70 dark:ring-slate-800/70">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={e.cover}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.02]"
+                      />
+                    </div>
+                  )}
+                  <div className="flex flex-col gap-1 px-1 pb-1">
+                    <div className="flex items-baseline justify-between gap-2">
+                      <span className="text-sm font-bold text-gray-900 group-hover:text-brand-700 dark:text-brand-100 dark:group-hover:text-brand-100">
+                        {e.label}
                       </span>
-                    )}
+                      {e.badge && (
+                        <span className="rounded-full bg-brand-500/10 px-2 py-0.5 font-mono text-[10px] font-bold text-brand-600 dark:text-brand-300">
+                          {e.badge}
+                        </span>
+                      )}
+                    </div>
+                    <span className="text-xs text-gray-500 dark:text-gray-400">{e.sub}</span>
                   </div>
-                  <span className="text-xs text-gray-500 dark:text-gray-400">{e.sub}</span>
                 </a>
               </li>
             ))}
