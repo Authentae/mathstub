@@ -5,6 +5,8 @@ export interface GumroadProduct {
   name: string;
   priceUsd: number;
   url: string;
+  /** Matching slug on /toolkit/<slug> — used for the "Learn more" warm-up link in upsells. */
+  toolkitSlug: string;
   pitchHeadline: string;
   pitchBody: string;
   /**
@@ -28,6 +30,7 @@ export const products: Record<GumroadProductId, GumroadProduct> = {
     name: 'Year-End Tax Checklist + Calculator Workbook',
     priceUsd: 19,
     url: `${GUMROAD_BASE}bdlfo`,
+    toolkitSlug: 'year-end-tax-playbook',
     pitchHeadline: 'Catch the Dec 31 deadlines that cost you money',
     pitchBody:
       'A Notion checklist of every tax-saving action with a hard deadline — 401k top-up, FSA spend-down, HSA, IRA, ESPP cycles, AMT planning. One $19 workbook saves people more than that on a single missed deadline.',
@@ -44,6 +47,7 @@ export const products: Record<GumroadProductId, GumroadProduct> = {
     name: 'Equity Comp Tracker',
     priceUsd: 29,
     url: `${GUMROAD_BASE}jqyyp`,
+    toolkitSlug: 'equity-comp-decision-tracker',
     pitchHeadline: 'Never get blindsided by another April again',
     pitchBody:
       'Model every RSU vest, ESPP cycle, and ISO exercise for the whole year — with projected tax owed quarter-by-quarter. Built around the same IRC-cited math this calculator runs. Updated every tax year.',
@@ -60,6 +64,7 @@ export const products: Record<GumroadProductId, GumroadProduct> = {
     name: 'Tech Worker Annual Financial Review',
     priceUsd: 39,
     url: `${GUMROAD_BASE}jlsppt`,
+    toolkitSlug: 'tech-worker-annual-review',
     pitchHeadline: 'A full annual playbook for high earners with equity',
     pitchBody:
       'For people who keep landing in five-figure surprise tax bills: a year-long workbook covering withholding strategy, AMT planning, estimated payments, and year-end moves. If your shortfall is $8k+, you need this view — not just one calculator.',
