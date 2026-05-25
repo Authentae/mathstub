@@ -116,6 +116,13 @@ export function GumroadUpsell({ shortfallUsd }: { shortfallUsd: number }) {
           Get it on Gumroad
           <span aria-hidden="true" className="text-xl">→</span>
         </a>
+        <a
+          href={`/toolkit/${p.toolkitSlug}`}
+          className="inline-flex items-center gap-1.5 rounded-md border border-slate-700 px-4 py-2.5 text-sm font-semibold text-slate-200 transition hover:border-brand-400 hover:text-white"
+        >
+          See what&rsquo;s inside
+          <span aria-hidden="true">→</span>
+        </a>
         <span className="font-mono text-[11px] uppercase tracking-[0.06em] text-slate-500">
           Pay once · lifetime updates · instant access
         </span>
