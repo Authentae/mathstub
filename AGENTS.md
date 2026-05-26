@@ -1,6 +1,8 @@
 # Mathstub — agent handoff notes
 
-Passive-income utility-site portfolio. Live at mathstub.com. Repo: authentae/reviewhub (deployed as Mathstub). Stack: Next.js 15 + React 19 + TS + Tailwind 3.4 + Vitest.
+Passive-income utility-site portfolio. Live at mathstub.com. **Production repo: `Authentae/mathstub`** (deploys to Vercel → mathstub.com). Stack: Next.js 15 + React 19 + TS + Tailwind 3.4 + Vitest.
+
+> **Note:** Earlier in this project's history Mathstub lived inside `Authentae/reviewhub`, which is why older notes reference that repo. As of mid-May 2026 Mathstub has its own dedicated repo at `Authentae/mathstub`. `Authentae/reviewhub` is now a separate, unrelated project (a local-business review dashboard) and should not be touched by Mathstub work.
 
 ## Working with the user (Earth)
 
@@ -19,6 +21,7 @@ Passive-income utility-site portfolio. Live at mathstub.com. Repo: authentae/rev
   3. `content/<slug>.ts` (copy, FAQs, howToSteps for SEO schema).
   4. `lib/<topic>/` pure calc module + types in `lib/tax/types.ts` if shared.
   5. `tests/tax/<topic>.test.ts` Vitest unit tests.
+- **Paid Notion templates registered in `lib/toolkit.ts`** — drives /toolkit, /toolkit/<slug>, the Footer ecosystem grid, and Product JSON-LD. Single source of truth for the 4 paid templates. No React/Next/DOM imports.
 - Path aliases: `@/*` → repo root, `@tax/*` → `lib/tax/*`.
 - Page must include `JsonLd` (webApp + howTo + faq schemas), `Disclaimer`, `LastUpdatedBadge`, FTC affiliate disclosure when affiliate cards render.
 - "Pending CPA review" stays in `reviewerName` until traffic justifies real CPA spend.
@@ -27,48 +30,77 @@ Passive-income utility-site portfolio. Live at mathstub.com. Repo: authentae/rev
 
 ## Repo / push flow
 
-- Sandbox can only push to `authentae/reviewhub`.
-- Mathstub repo updates go via the user's Codespace:
-  ```
-  git fetch https://github.com/Authentae/reviewhub.git <branch>
-  git push origin FETCH_HEAD:main
-  ```
-- Open PR #1 in authentae/reviewhub is staging-only (+12131 lines, draft). User can close anytime.
+- Production repo: **`Authentae/mathstub`** — `main` branch deploys to mathstub.com via Vercel.
+- Claude sandbox can push to `Authentae/mathstub` directly via `gh pr create` + `gh pr merge --squash --auto`. This is the standard flow used through May 2026.
+- Don't push to `Authentae/reviewhub` for Mathstub work — that repo is now an unrelated project.
 
 ## Blocked on user (don't attempt)
 
-(Most resolved 2026-05-10. Remaining:)
-- Stripe Connect ID upload (Gumroad payouts held until done; site can still take sales).
+- ~~Stripe Connect ID upload~~ — **RESOLVED 2026-05-26** via Payoneer USA (USD) receiving account XX-8040. Earth now needs to update Gumroad payout settings with the Payoneer USA bank details (routing + account numbers from the View account details page in the Payoneer onboarding email). Once that's done, accrued Gumroad balance pays out automatically.
 - Verify FlexOffers email when verification arrives.
-- Optional: submit 3 Notion templates to Notion Marketplace (free, separate review).
+- Optional: submit 4 Notion templates to Notion Marketplace (free, separate review).
+- Manual Gumroad re-upload of fresh `cover.png` + `trust-whats-inside.jpg` + `trust-why-trust.jpg` for all 4 products. Local files are correct (in `notion-templates/<slug>/`); Gumroad listings still show stale uploads. Drag-drop into the 4 product edit tabs takes ~10 min total. Mathstub.com /toolkit pages already show the fresh artwork.
 
-## Shipped 2026-05-11
+## Shipped 2026-05-22 → 2026-05-26 — autonomous overnight + morning
 
-- **PH launch scheduled** — Wed May 13, 12:01am PT. Form 100% complete. Real calculator screenshots replace auto-imported OG cards in gallery (1 brand card + 5 calc shots).
-- **Bonus Tax Withholding Shortfall calculator** — 6th calculator at `/bonus-tax-shortfall`. Reuses RSU shortfall engine (calc is pure, just relabeled UI + bonus-specific FAQ targeting "bonus tax 22% withheld" search queries). Different audience entry point than RSU (any cash bonus recipient, not just equity).
-- **NSO Exercise Tax calculator** — 7th calculator at `/nso-exercise`. Computes bargain element (FMV − strike) × shares, feeds it to the supplemental-withholding shortfall engine. Targets "NSO tax calculator" / "non-qualified stock options exercise tax" search queries. Audience: startup employees with NSOs (distinct from ISO §422 audience).
+11 PRs merged. Site state went from 8 calcs / 23 posts / 446 tests → **10 calcs / 26 posts / 493 tests**, plus the entire /toolkit funnel.
+
+- **Calc #9: Mega-Backdoor Roth** ([PR #40](https://github.com/Authentae/mathstub/pull/40)) — `/mega-backdoor-roth` — §415(c) after-tax 401(k) room math.
+- **Calc #10: Backdoor Roth IRA** ([PR #41](https://github.com/Authentae/mathstub/pull/41)) — `/backdoor-roth-ira` — pro-rata-aware conversion math.
+- **Homepage trust band** ([PR #42](https://github.com/Authentae/mathstub/pull/42)) — 6-card icon grid between hero and calc grid.
+- **3 blog posts** ([PR #43](https://github.com/Authentae/mathstub/pull/43)) — RSU cost-basis Form 8949 fix · Mega-Backdoor Roth eligibility · CA→TX work-source allocation. All "Pending CPA review", 800+ words, IRC-cited.
+- **Footer ecosystem grid v1** ([PR #44](https://github.com/Authentae/mathstub/pull/44)) — 4 paid Notion templates as cross-promo cards on every page.
+- **OG share cards** ([PR #45](https://github.com/Authentae/mathstub/pull/45)) — `/og/mega-backdoor-roth.png` + `/og/backdoor-roth-ira.png` for Twitter/LinkedIn/Slack previews. Reusable generator at `scripts/generate-og-cards.mjs`.
+- **Trust media tighter grid** ([PR #47](https://github.com/Authentae/mathstub/pull/47)) — `trust-whats-inside.jpg` cards re-rendered with 124px right-edge safety (was 72) so they survive Gumroad's preview-pane crop.
+- **Footer cover thumbnails** ([PR #48](https://github.com/Authentae/mathstub/pull/48)) — Real 1280×720 cover artwork replaces emoji-only on the 4 ecosystem cards.
+- **/toolkit landing pages** ([PR #49](https://github.com/Authentae/mathstub/pull/49)) — Index `/toolkit` + 4 detail pages `/toolkit/<slug>` with cover art, worked-example callouts, 6-tile what's-inside grid, trust-badges image, audience-match green/grey boxes, Product + Breadcrumb JSON-LD, two Gumroad CTAs per page. Data: `lib/toolkit.ts`.
+- **Toolkit funnel wiring** ([PR #50](https://github.com/Authentae/mathstub/pull/50)) — Header nav (desktop + mobile) gets a Toolkit link. 9 calc upsell cards get a secondary *See what's inside →* link to `/toolkit/<slug>` next to the primary Gumroad CTA. UTM tracking on Gumroad button preserved.
+
+Net effect: every page on mathstub.com now has ≥1 path into `/toolkit` (header nav, footer band, or calc upsell).
+
+## Earlier shipped (historical context)
+
+### Shipped 2026-05-11
+- **PH launch** scheduled Wed May 13, 12:01am PT. Form 100% complete. Real calculator screenshots replace auto-imported OG cards.
+- **Bonus Tax Withholding Shortfall calculator** (calc #6) at `/bonus-tax-shortfall`. Reuses RSU shortfall engine.
+- **NSO Exercise Tax calculator** (calc #7) at `/nso-exercise`. Computes bargain element × shares, feeds supplemental-withholding engine.
 - **Comment-reply playbook** — 18 pre-drafted patterns at `marketing/comment-replies.md` for HN/PH/Reddit launch responses.
 
-## Shipped 2026-05-10 — full launch session
-
+### Shipped 2026-05-10 — full launch session
 - **mathstub.com** bought on Cloudflare Registrar (~$10.46/yr forever), Vercel DNS connected via Cloudflare Domain Connect, SSL live, sitemap serving https://mathstub.com URLs.
-- **Gumroad** account live (Authentae / theearth1659@gmail.com), Thai bank + Stripe Connect connected, 3 products PUBLISHED:
-  - Equity Comp Tracker $29 (`/products/jqyyp`)
-  - Year-End Tax Checklist $19 (`/products/bdlfo`)
+- **Gumroad** account live (Authentae / theearth1659@gmail.com), now 4 products PUBLISHED:
+  - Year-End Tax Playbook $19 (`/products/bdlfo`)
+  - Equity Comp Decision Tracker $29 (`/products/jqyyp`)
   - Tech Worker Annual Review $39 (`/products/jlsppt`)
+  - Multi-State Equity Comp Tax Planner $49 (`/products/athsk`)
 - **AdSense** site verified, content review requested (1–14 day queue), Google CMP (3-choice GDPR) configured. Pub ID: `pub-6038024276617392`. Static `<script>` in app/layout.tsx renders the AdSense tag in initial HTML for crawler verification.
 - **FlexOffers** publisher account submitted (1–3 day review). Email verification pending on user.
-- **Chrome Web Store** extension submitted for review (1–7 day Google review). $5 dev fee paid. Trader status declared per EU consumer law. Web Store assets (440×280 promo + 1280×800 popup screenshot) generated via `npm run webstore:assets`.
+- **Chrome Web Store** extension submitted for review (1–7 day Google review). $5 dev fee paid. Trader status declared per EU consumer law.
 
-## Project context
+## Project context (as of 2026-05-26)
 
-- 5-tier asset plan: utility site → Chrome ext → Notion templates → Anthropic skills → sister site (Pension Lump-Sum, gated on Mathstub > $50/mo at month 6).
-- Tool #1 LIVE: RSU Tax Withholding Shortfall Calculator.
-- 8 calculators LIVE: RSU shortfall, ESPP qualifying, ISO/AMT, Quarterly estimated, Bonus tax shortfall, NSO exercise, AMT Credit Recovery (Form 8801 scheduler), State stock-comp lookup.
-- 446 tests across 17 files (calc + content cluster + a11y enforcement) as of 2026-05-19.
-- 23 blog posts shipped, marked "Pending CPA review" — all with QuickAnswer + Sources block + 800+ words + IRC citations. Cluster organized into 7 topic categories.
-- Internal-link cluster graph machine-enforced: every blog post has a relations entry referencing 3 sibling posts + 1–4 calculators; tests fail CI if any cross-reference breaks.
-- YMYL trust scaffolding done (about, editorial-policy, disclaimer, privacy, terms, JSON-LD).
+- **5-tier asset plan**: utility site → Chrome ext → Notion templates → Anthropic skills → sister site (Pension Lump-Sum, gated on Mathstub > $50/mo at month 6).
+- **10 calculators LIVE**: RSU shortfall · ESPP qualifying · ISO/AMT · Quarterly estimated · State stock-comp lookup · Bonus tax shortfall · NSO exercise · AMT Credit Recovery (Form 8801 scheduler) · Mega-Backdoor Roth · Backdoor Roth IRA.
+- **26 blog posts shipped**, marked "Pending CPA review" — all with QuickAnswer + Sources block + 800+ words + IRC citations. Cluster organized into 7 topic categories. See `content/blog/categories.ts`.
+- **/toolkit** landing pages live — `/toolkit` index + 4 detail pages with Product JSON-LD + Breadcrumb schema.
+- **493 tests passing** across 19 files (calc layer + content cluster integrity + a11y enforcement).
+- **Internal-link cluster**: every blog post has a `relations` entry (`content/blog/related.ts`) referencing 3 sibling posts + 1–4 calculators. Test suite enforces no broken cross-references.
+- **YMYL trust scaffolding** done (about, editorial-policy, disclaimer, privacy, terms, JSON-LD).
+- **Payments**: Gumroad payouts will flow once Earth updates payout settings with Payoneer USA (USD) receiving account XX-8040 (unblocked 2026-05-26).
+
+## Content/calc backlog (data-driven, from 2026-05-26 SEO research)
+
+Real qualitative SERP analysis ranked these as the highest-leverage next builds. NOT speculation — pulled from People Also Ask patterns + competitive gap analysis. Top 5:
+
+1. **W-4 Step 4(c) optimization calculator + companion blog post** — year-round demand, zero competitor coverage, reuses existing supplemental-withholding logic. Direct funnel into Year-End Tax Playbook + Tech Worker Annual Review.
+2. **Form 6251 full AMT calculator (multi-source: RSU + ISO + bonus + 1099)** — tax-season Feb–Apr surge. TurboTax paywalls; brokers don't offer; CPA-only territory today.
+3. **Double-Trigger RSU IPO/M&A calculator** — IPO/acquisition season spike. We have the blog (`/blog/double-trigger-rsu-ipo`) but no calc to convert traffic.
+4. **CA Form 540NR apportionment calculator** — companion to the CA→TX work-source blog. CA-specific, high-stakes (audit risk).
+5. **Backdoor + Mega-Backdoor sequencing optimizer** — fills the OR question gap between our 2 separate calcs.
+
+Lower-priority but real demand: LTCG state-preferential rate add-on to existing state-stock-comp calc · multi-RSU-vest scheduler add-on to existing quarterly-estimated-tax calc · ISO exercise timing vs market crash blog · Form 3115 late §83(b) remediation blog · real AMT credit recovery 10-year case study blog.
+
+Lesson: **do keyword research before content production.** The 3 overnight blog posts were intuition-based; the calc-shaped queries above are higher-leverage than blog posts because calcs earn backlinks + AI Overview citations + on-page time.
 
 ## Strategy: "5 assets, 4 channels, 1 audience"
 
@@ -78,37 +110,43 @@ Skip list (do not propose): 1000 thin sites (AdSense bans pattern), faceless You
 
 Y2 realistic total: $500–4,400/mo. Y3 ceiling: $1,500–10,000/mo. User time: ~30–60h Y1, ~5–15h/yr Y2+. Cash investment Y1: ~$25.
 
-## Build pipeline (in order, with time estimates)
+## Build pipeline (in order, with current state)
 
-**Tier 1 — Mathstub.com tool cluster (months 0–2)**
-1. RSU Tax Shortfall — **LIVE**.
-2. ESPP Qualifying Disposition (6h) — **LIVE**.
-3. ISO/AMT (8h) — **NEXT**. Highest-payout users.
-4. Quarterly Estimated Tax Safe-Harbor (5h) — same audience + 1099 freelancers.
-5. State Stock-Comp Tax Lookup (4h) — long-tail SEO goldmine.
+**Tier 1 — Mathstub.com tool cluster (months 0–2) — 10/10 calcs LIVE.**
+1. RSU Tax Shortfall — LIVE
+2. ESPP Qualifying Disposition — LIVE
+3. ISO/AMT — LIVE
+4. Quarterly Estimated Tax Safe-Harbor — LIVE
+5. State Stock-Comp Tax Lookup — LIVE
+6. Bonus Tax Shortfall — LIVE
+7. NSO Exercise Tax — LIVE
+8. AMT Credit Recovery (Form 8801) — LIVE
+9. Mega-Backdoor Roth — LIVE
+10. Backdoor Roth IRA — LIVE
 
-Net Tier 1 Y2 revenue: $50–800/mo. Single AdSense + affiliate approval covers all five.
+**Tier 2 — Chrome ext "Equity Comp Vest Tracker" — SUBMITTED, awaiting Google review (1–7 day queue).** MV3 extension at `chrome-extension/`, daily 9am alarm + chrome.notifications, popup + options pages, JSON import/export, deep links into the Mathstub calculators. Manual entry only in v0.1 (no host_permissions / no scraping). $5 dev fee paid. Trader status declared per EU consumer law.
 
-**Tier 2 — Chrome ext "Equity Comp Vest Tracker" — CODE COMPLETE.** MV3 extension at `chrome-extension/`, daily 9am alarm + chrome.notifications, popup + options pages, JSON import/export, deep links into the Mathstub calculators. Manual entry only in v0.1 (no host_permissions / no scraping). `npm run ext:zip` builds the Web Store upload. Submission checklist in `chrome-extension/SUBMISSION.md`. Privacy policy hosted at `/extension-privacy`. **Blocked on user:** $5 Web Store dev fee + manual upload.
+**Tier 3 — 4 Notion templates on Gumroad — ALL 4 LIVE on Gumroad + /toolkit pages on mathstub.com.**
+- Year-End Tax Playbook ($19) — `/toolkit/year-end-tax-playbook`
+- Equity Comp Decision Tracker ($29) — `/toolkit/equity-comp-decision-tracker`
+- Tech Worker Annual Review ($39) — `/toolkit/tech-worker-annual-review`
+- Multi-State Equity Comp Tax Planner ($49) — `/toolkit/multi-state-equity-planner`
 
-**Tier 3 — 3 Notion templates on Gumroad — CONTENT COMPLETE.** Templates at `notion-templates/`:
-- Equity Comp Tracker — `notion-templates/equity-comp-tracker/template.md` ($29).
-- Year-End Tax Checklist + Calculator Workbook — `notion-templates/year-end-tax-checklist/template.md` ($19).
-- Tech Worker Annual Financial Review — `notion-templates/tech-worker-annual-review/template.md` ($39).
-Each ships with a Gumroad listing copy (`listing.md`) + 1280×720 cover (`cover.png`). `npm run notion:images` regenerates covers from inline SVGs. **Blocked on user:** Gumroad account creation, payment setup, manual upload + publish per `notion-templates/README.md`. Distribution: Gumroad SEO + Notion Marketplace + Mathstub footer. Y2 $200–1,200/mo for 3.
+`npm run notion:images` regenerates covers · `scripts/generate-trust-media.mjs` regenerates trust media. Payouts unblocked via Payoneer 2026-05-26.
 
-**Tier 4 — Anthropic Skills marketplace bet (month 4, ~5h/skill).** Speculative first-mover. Build 1–2 niche skills wrapping the same calc logic (e.g., "Equity comp tax calculator skill"). Distribute as free MCP for now. If Anthropic ships paid marketplace, already ranked.
+**Tier 4 — Anthropic Skills marketplace bet (month 4, ~5h/skill).** Speculative first-mover. Build 1–2 niche skills wrapping the same calc logic. Distribute as free MCP for now.
 
-**Tier 5 — Sister utility site (month 6+, GATED).** Build Pension Lump-Sum vs Annuity Calculator on separate domain ONLY if Mathstub > $50/mo at month 6. Different audience (retiring boomers, $100–300/lead financial-advisor affiliates). Y2 ceiling $200–1,500/mo. If Mathstub NOT earning by month 6, pivot Mathstub niche instead.
+**Tier 5 — Sister utility site (month 6+, GATED).** Build Pension Lump-Sum vs Annuity Calculator on separate domain ONLY if Mathstub > $50/mo at month 6.
 
 ## Lessons learned
 
 1. **Math is sacred — cross-check before shipping.** Tests passing ≠ proof. For every new calc, run one real scenario by hand and verify against an IRS Pub example or a CPA blog example, BEFORE claiming "done." Coverage must include zero, negative, very large, year-boundary, rounding, and currency edge cases.
-2. **YMYL discipline — never invent credentials, always cite IRS by Pub# + year.** "Pending CPA review" stays as-is until user says a real CPA is reviewing. Tax claims in FAQs/copy must cite an IRS `.gov` source by publication number and year. No random tax-blog "authority" links. `LastUpdated` only bumps when content actually changed.
+2. **YMYL discipline — never invent credentials, always cite IRS by Pub# + year.** "Pending CPA review" stays as-is until user says a real CPA is reviewing. Tax claims in FAQs/copy must cite an IRS `.gov` source by publication number and year. `LastUpdated` only bumps when content actually changed.
 3. **Mobile-first or it doesn't ship.** Users are on phones in panicked moments. Every calculator must work one-thumb on iPhone. Test mobile viewport before claiming done.
 4. **Year-aware everything (current + prior 2 years minimum).** Every calc accepts a tax-year param and has data tables for current + prior 2 years. Never hardcode current-year values without a swap path.
 5. **Don't fabricate metrics or recall from memory.** Numerical claims need a query/grep/git command shown. If unverifiable, label "unverified — my hunch."
 6. **Verify before retracting.** A correction is itself a claim — get TWO independent verifications before publishing "actually X was wrong, the truth is Y."
 7. **Don't conflate UI labels with status badges.** Screenshot ≠ state. Confirm state via DB/API/code before reporting.
-8. **Domain not bought yet — no hardcoded mathstub.com.** Canonicals/sitemap/og:url must use the env-driven URL (currently vercel.app fallback). Don't hardcode the production domain until user confirms DNS is live.
-9. **Pre-revenue priority filter.** Things that move us toward first $1 of revenue beat polish. New tool > redesigning existing tool. Real CPA review > better fonts. AdSense application > logo iteration. Push back on low-leverage polish at the wrong stage.
+8. **Pre-revenue priority filter.** Things that move us toward first $1 of revenue beat polish. New tool > redesigning existing tool. Real CPA review > better fonts. AdSense application > logo iteration. Push back on low-leverage polish at the wrong stage.
+9. **Keyword research BEFORE content production, not after.** The 3 overnight blog posts shipped without anchoring to actual search demand. Calcs > blog posts for SEO leverage because calcs earn backlinks + AI Overview citations + on-page time. Use SERP People Also Ask + competitive gap analysis to rank the backlog.
+10. **Browser-driving Gumroad is hostile to automation.** Chrome MCP `file_upload` only accepts paths the user has explicitly shared via the Claude UI. The page never goes `document_idle` (long-poll), blocking `find` and `read_page`. Mixed-content blocks fetching files from local HTTP. For Gumroad-side updates, the manual drag-drop from File Explorer is unavoidable.
