@@ -151,6 +151,16 @@ export const tools: Tool[] = [
     status: 'live',
     emoji: '🔀',
   },
+  {
+    id: 'double-trigger-rsu',
+    slug: 'double-trigger-rsu',
+    title: 'Double-Trigger RSU IPO/M&A Tax Calculator',
+    shortTitle: 'Double-Trigger RSU',
+    summary:
+      'The trigger-day tax bomb when your pre-IPO startup goes public or gets acquired. Federal + state shortfall vs supplemental withholding, sell-to-cover share count, net cash value at trigger FMV.',
+    status: 'live',
+    emoji: '🚀',
+  },
 ];
 
 export function liveTools(): Tool[] {
