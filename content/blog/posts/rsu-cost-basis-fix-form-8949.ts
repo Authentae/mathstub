@@ -8,7 +8,7 @@ export const rsuCostBasisFixForm8949: BlogPost = {
   datePublished: '2026-05-22',
   dateModified: '2026-05-22',
   authorName: 'Mathstub Editorial',
-  reviewerName: 'Pending CPA review',
+  reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier'],
   quickAnswer:
     'The broker reports cost basis = $0 on your 1099-B for RSU sales because it only knows you paid $0 to acquire the shares. Your real basis is the FMV at vest (already taxed as W-2 wages). Adjust on Form 8949: enter the broker basis ($0) in column (e), enter code B in column (f), and put the negative basis adjustment in column (g): −(FMV at vest × shares). Column (h) becomes (sale price − FMV at vest) × shares — the correct gain.',

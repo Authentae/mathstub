@@ -39,6 +39,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     slug: `state-stock-comp/${profile.code.toLowerCase()}`,
     title: `${profile.name} Stock Compensation Tax — RSU, ESPP, ISO`,
     description: `${profile.name} top marginal rate, supplemental withholding for RSU/bonus, AMT status, and LTCG treatment. Quick reference for tech workers with equity comp.`,
+    // AdSense policy: state-stock-comp/[state] pages share a 50-state template
+    // (same 4-stat ProfileSummary + same EquityNotes + same FAQ shape) with
+    // only state-specific numbers differing. Noindex until each has
+    // substantive unique content (worked examples, state-specific cases,
+    // direct DOR citations) so they don't count as thin/templated pages.
+    noindex: true,
   });
 }
 
