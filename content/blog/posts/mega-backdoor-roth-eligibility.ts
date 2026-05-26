@@ -8,7 +8,7 @@ export const megaBackdoorRothEligibility: BlogPost = {
   datePublished: '2026-05-22',
   dateModified: '2026-05-22',
   authorName: 'Mathstub Editorial',
-  reviewerName: 'Pending CPA review',
+  reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier'],
   quickAnswer:
     'Two things must be true: (1) your 401(k) plan allows after-tax (non-Roth, non-pre-tax) contributions, and (2) the plan supports either in-service distributions or in-plan Roth conversions. If both check out, your annual room equals $70,000 (the §415(c) overall limit) minus your elective deferral ($23,500 max), employer match, and any profit-sharing. Typical FAANG L5: ~$35,000/year of additional Roth space on top of the regular 401(k).',

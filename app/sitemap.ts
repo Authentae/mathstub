@@ -41,12 +41,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.6,
     })),
-    ...stateStockCompProfiles.map((s) => ({
-      url: `${root}/state-stock-comp/${s.code.toLowerCase()}`,
-      lastModified: now,
-      changeFrequency: 'monthly' as const,
-      priority: 0.5,
-    })),
+    // Per-state pages currently noindexed (template-thin, see app/state-stock-comp/[state]/page.tsx).
+    // Re-add when each state has substantive unique content (worked examples, DOR citations, etc.).
     ...TOOLKIT_PRODUCTS.map((p) => ({
       url: `${root}/toolkit/${p.slug}`,
       lastModified: now,
