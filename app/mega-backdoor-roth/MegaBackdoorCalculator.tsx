@@ -102,7 +102,7 @@ export function MegaBackdoorCalculator() {
   if ('error' in result) {
     return (
       <div className="rounded-lg border border-red-500/40 bg-red-900/20 p-5 text-red-200">
-        <p className="font-bold">Couldn't calculate.</p>
+        <p className="font-bold">Couldn&rsquo;t calculate.</p>
         <p className="text-sm">{result.error}</p>
       </div>
     );
@@ -227,7 +227,7 @@ export function MegaBackdoorCalculator() {
                 My plan allows in-service distribution OR in-plan Roth conversion
               </span>
               <span className="block text-xs text-slate-400">
-                IRR / "Roth in-plan rollover" — without this, the after-tax money stays tax-deferred.
+                IRR / &ldquo;Roth in-plan rollover&rdquo; — without this, the after-tax money stays tax-deferred.
               </span>
             </span>
           </label>
