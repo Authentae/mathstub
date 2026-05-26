@@ -121,6 +121,16 @@ export const tools: Tool[] = [
     status: 'live',
     emoji: '🧾',
   },
+  {
+    id: 'form-6251',
+    slug: 'form-6251',
+    title: 'Form 6251 AMT Calculator (Multi-Source)',
+    shortTitle: 'Form 6251 AMT',
+    summary:
+      'Full Form 6251 walkthrough combining W-2 wages + 1099 self-employment + ISO bargain element + SALT add-back. Computes AMTI, AMT exemption with phaseout, TMT, AMT owed, and the recoverable §53 credit estimate.',
+    status: 'live',
+    emoji: '⚖️',
+  },
 ];
 
 export function liveTools(): Tool[] {
