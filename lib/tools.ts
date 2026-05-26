@@ -131,6 +131,16 @@ export const tools: Tool[] = [
     status: 'live',
     emoji: '⚖️',
   },
+  {
+    id: 'ca-540nr',
+    slug: 'ca-540nr',
+    title: 'CA Form 540NR Apportionment Calculator',
+    shortTitle: 'CA 540NR',
+    summary:
+      'Vest-by-vest CA tax for tech workers who moved CA→TX (or CA→NV/FL/WA) mid-vest. Implements FTB Pub 1004 work-source allocation + §19136 safe-harbor target + Q4 540-ES recommendation.',
+    status: 'live',
+    emoji: '🐻',
+  },
 ];
 
 export function liveTools(): Tool[] {
