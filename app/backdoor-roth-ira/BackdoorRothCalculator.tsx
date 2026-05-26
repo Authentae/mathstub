@@ -104,7 +104,7 @@ export function BackdoorRothCalculator() {
   if ('error' in result) {
     return (
       <div className="rounded-lg border border-red-500/40 bg-red-900/20 p-5 text-red-200">
-        <p className="font-bold">Couldn't calculate.</p>
+        <p className="font-bold">Couldn&rsquo;t calculate.</p>
         <p className="text-sm">{result.error}</p>
       </div>
     );

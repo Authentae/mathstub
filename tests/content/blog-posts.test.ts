@@ -151,4 +151,17 @@ describe('blogPosts — affiliate offers', () => {
     }
     expect(missing, `Posts missing affiliateOfferIds: ${JSON.stringify(missing)}`).toEqual([]);
   });
+
+  it('every referenced affiliateOfferId exists in lib/affiliates.ts', async () => {
+    // Lazy-import to avoid circular dep at module init.
+    const { affiliates } = await import('@/lib/affiliates');
+    const valid = new Set(Object.keys(affiliates));
+    const broken: Array<{ post: string; badId: string }> = [];
+    for (const post of blogPosts) {
+      for (const id of post.affiliateOfferIds ?? []) {
+        if (!valid.has(id)) broken.push({ post: post.slug, badId: id });
+      }
+    }
+    expect(broken, `Posts referencing missing offer IDs: ${JSON.stringify(broken)}`).toEqual([]);
+  });
 });
