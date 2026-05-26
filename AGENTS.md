@@ -41,11 +41,17 @@ Passive-income utility-site portfolio. Live at mathstub.com. **Production repo: 
 - Optional: submit 4 Notion templates to Notion Marketplace (free, separate review).
 - Manual Gumroad re-upload of fresh `cover.png` + `trust-whats-inside.jpg` + `trust-why-trust.jpg` for all 4 products. Local files are correct (in `notion-templates/<slug>/`); Gumroad listings still show stale uploads. Drag-drop into the 4 product edit tabs takes ~10 min total. Mathstub.com /toolkit pages already show the fresh artwork.
 
-## Shipped 2026-05-22 → 2026-05-26 — autonomous overnight + morning + AdSense rehab
+## Shipped 2026-05-22 → 2026-05-26 — autonomous overnight + morning + AdSense rehab + 4 new calcs
 
-17 PRs merged across two days. Site state went from 8 calcs / 23 posts / 446 tests → **11 calcs / 29 posts / 517 tests**, plus the entire /toolkit funnel, the AdSense low-value-content rehab, and the W-4 Line 4(c) calc cross-wired into 3 shortfall result panels.
+21 PRs merged across two days. Site state went from 8 calcs / 23 posts / 446 tests → **15 calcs / 29 posts / 556 tests**, plus the entire /toolkit funnel, the AdSense low-value-content rehab, and the entire top-5 SEO research backlog (W-4 4(c), Form 6251, CA 540NR, Roth sequencer, Double-Trigger RSU).
 
-### Day 2 (2026-05-26) — AdSense rehab + W-4 4(c) calc (PRs #51–#57)
+### Day 2 evening (2026-05-26 PM) — SEO research backlog clean-out (PRs #58–#61)
+- **PR #58** — `feat(calc)`: Form 6251 multi-source AMT calculator (calc #12). Combines W-2 + 1099 + ISO bargain element + SALT add-back into the full Form 6251 walkthrough. TurboTax paywalls it, brokers don't offer it.
+- **PR #59** — `feat(calc)`: CA Form 540NR Apportionment Calculator (calc #13). Calc-shaped version of Daniel's CA→TX case study math. Dynamic vest table, FTB Pub 1004 + §19136 safe harbor.
+- **PR #60** — `feat(calc)`: Backdoor + Mega-Backdoor Roth Sequencing Optimizer (calc #14). Delegates to existing 2 standalone calcs — no math duplication. Decides basis-isolation order + total annual Roth capacity.
+- **PR #61** — `feat(calc)`: Double-Trigger RSU IPO/M&A Tax Calculator (calc #15). YTD-threshold-aware 22%/37% supplemental withholding + sell-to-cover share count + state shortfall. Companion to the existing /blog/double-trigger-rsu-ipo post.
+
+### Day 2 (2026-05-26 AM) — AdSense rehab + W-4 4(c) calc (PRs #51–#57)
 - **PR #51** — memory sync (CLAUDE.md / AGENTS.md / OVERNIGHT_PLAN.md) + Payoneer USA (USD) XX-8040 resolution
 - **PR #52** — `fix(build)`: unbreak Vercel — escape entities in 2 calc files + drop missing `freetaxusa` offer ID + add `tests/content/blog-posts.test.ts` guard that cross-checks every post's `affiliateOfferIds` against `lib/affiliates.ts`
 - **PR #53** — `fix(adsense)`: kill 3 low-value-content signals — flip "Pending CPA review" → "Reviewed against IRS primary sources" on 3 posts; noindex 53 state-stock-comp/[state] pages + drop from sitemap; noindex /launch deck
@@ -91,10 +97,10 @@ Net effect: every page on mathstub.com now has ≥1 path into `/toolkit` (header
 ## Project context (as of 2026-05-26 PM)
 
 - **5-tier asset plan**: utility site → Chrome ext → Notion templates → Anthropic skills → sister site (Pension Lump-Sum, gated on Mathstub > $50/mo at month 6).
-- **11 calculators LIVE**: RSU shortfall · ESPP qualifying · ISO/AMT · Quarterly estimated · State stock-comp lookup · Bonus tax shortfall · NSO exercise · AMT Credit Recovery (Form 8801 scheduler) · Mega-Backdoor Roth · Backdoor Roth IRA · W-4 Step 4(c) Extra-Withholding.
+- **15 calculators LIVE**: RSU shortfall · ESPP qualifying · ISO/AMT · Quarterly estimated · State stock-comp lookup · Bonus tax shortfall · NSO exercise · AMT Credit Recovery (Form 8801 scheduler) · Mega-Backdoor Roth · Backdoor Roth IRA · W-4 Step 4(c) Extra-Withholding · Form 6251 multi-source AMT · CA Form 540NR Apportionment · Roth Sequencer · Double-Trigger RSU.
 - **29 blog posts shipped**, all marked "Reviewed against IRS primary sources" (the "Pending CPA review" framing was removed from 3 posts in PR #53 because AdSense reads it as a confession of unverified content). All posts have QuickAnswer + Sources block + 800+ words + IRC citations. Cluster organized into 7 topic categories. See `content/blog/categories.ts`. 3 of the 29 are dedicated narrative case study essays (Priya Annual Review, Maya RSU cost-basis, Daniel CA→TX).
 - **/toolkit** landing pages live — `/toolkit` index + 4 detail pages with Product JSON-LD + Breadcrumb schema.
-- **517 tests passing** across 20 files (calc layer + content cluster integrity + a11y enforcement + the affiliate-ID guard from PR #52 that cross-checks `post.affiliateOfferIds` against `lib/affiliates.ts` to prevent build crashes from missing offer references).
+- **556 tests passing** across 24 files (calc layer + content cluster integrity + a11y enforcement + the affiliate-ID guard from PR #52 that cross-checks `post.affiliateOfferIds` against `lib/affiliates.ts` to prevent build crashes from missing offer references).
 - **Internal-link cluster**: every blog post has a `relations` entry (`content/blog/related.ts`) referencing 3 sibling posts + 1–4 calculators. Test suite enforces no broken cross-references.
 - **YMYL trust scaffolding** done (about, editorial-policy, disclaimer, privacy, terms, JSON-LD). /about now has 5 founder bio paragraphs + a "Case studies" section linking the 3 narrative essays.
 - **AdSense**: rejected 2026-05-26 for "Low value content." PR #53 + #54 + #55 + #56 ship the rehab (noindex 53 templated state pages + drop from sitemap, remove "Pending CPA review" labels, add 3 narrative case studies, add the W-4 4(c) calc). Do NOT click "I confirm I have fixed the issues" until Google re-crawls — wait until at least 2026-06-09 (2 weeks after the noindex changes lands) so the templated state pages migrate out of "Discovered – currently not indexed" and into "Excluded by 'noindex' tag."
@@ -104,11 +110,13 @@ Net effect: every page on mathstub.com now has ≥1 path into `/toolkit` (header
 
 Real qualitative SERP analysis ranked these as the highest-leverage next builds. NOT speculation — pulled from People Also Ask patterns + competitive gap analysis. Top 5 (updated 2026-05-26 PM):
 
-1. ~~**W-4 Step 4(c) optimization calculator + companion blog post**~~ — **SHIPPED in PR #56** as calc #11. Also wired into RSU / Bonus / NSO shortfall result panels via W4Step4cLink CTA in PR #57.
-2. **Form 6251 full AMT calculator (multi-source: RSU + ISO + bonus + 1099)** — tax-season Feb–Apr surge. TurboTax paywalls; brokers don't offer; CPA-only territory today. **Next priority.**
-3. **Double-Trigger RSU IPO/M&A calculator** — IPO/acquisition season spike. We have the blog (`/blog/double-trigger-rsu-ipo`) but no calc to convert traffic.
-4. **CA Form 540NR apportionment calculator** — companion to the CA→TX work-source blog + Daniel case study. CA-specific, high-stakes (audit risk).
-5. **Backdoor + Mega-Backdoor sequencing optimizer** — fills the OR question gap between our 2 separate calcs.
+1. ~~**W-4 Step 4(c) optimization calculator**~~ — **SHIPPED PR #56** (calc #11). Wired into RSU/Bonus/NSO result panels via W4Step4cLink CTA in PR #57.
+2. ~~**Form 6251 full AMT calculator**~~ — **SHIPPED PR #58** (calc #12).
+3. ~~**Double-Trigger RSU IPO/M&A calculator**~~ — **SHIPPED PR #61** (calc #15). Wired into W4Step4cLink + GumroadUpsell on result panel.
+4. ~~**CA Form 540NR apportionment calculator**~~ — **SHIPPED PR #59** (calc #13). Cross-checked against Daniel case study.
+5. ~~**Backdoor + Mega-Backdoor sequencing optimizer**~~ — **SHIPPED PR #60** (calc #14). Zero math duplication — delegates to existing 2 modules.
+
+**The entire top-5 SEO backlog is now shipped.** Next-tier backlog items remain:
 
 Lower-priority but real demand: LTCG state-preferential rate add-on to existing state-stock-comp calc · multi-RSU-vest scheduler add-on to existing quarterly-estimated-tax calc · ISO exercise timing vs market crash blog · Form 3115 late §83(b) remediation blog · real AMT credit recovery 10-year case study blog.
 
@@ -124,7 +132,7 @@ Y2 realistic total: $500–4,400/mo. Y3 ceiling: $1,500–10,000/mo. User time: 
 
 ## Build pipeline (in order, with current state)
 
-**Tier 1 — Mathstub.com tool cluster (months 0–2) — 11/11 calcs LIVE.**
+**Tier 1 — Mathstub.com tool cluster (months 0–2) — 15/15 calcs LIVE.**
 1. RSU Tax Shortfall — LIVE
 2. ESPP Qualifying Disposition — LIVE
 3. ISO/AMT — LIVE
@@ -136,6 +144,10 @@ Y2 realistic total: $500–4,400/mo. Y3 ceiling: $1,500–10,000/mo. User time: 
 9. Mega-Backdoor Roth — LIVE
 10. Backdoor Roth IRA — LIVE
 11. W-4 Step 4(c) Extra-Withholding — LIVE (2026-05-26)
+12. Form 6251 multi-source AMT — LIVE (2026-05-26)
+13. CA Form 540NR Apportionment — LIVE (2026-05-26)
+14. Roth Sequencer (Backdoor + Mega-Backdoor) — LIVE (2026-05-26)
+15. Double-Trigger RSU IPO/M&A — LIVE (2026-05-26)
 
 **Tier 2 — Chrome ext "Equity Comp Vest Tracker" — SUBMITTED, awaiting Google review (1–7 day queue).** MV3 extension at `chrome-extension/`, daily 9am alarm + chrome.notifications, popup + options pages, JSON import/export, deep links into the Mathstub calculators. Manual entry only in v0.1 (no host_permissions / no scraping). $5 dev fee paid. Trader status declared per EU consumer law.
 
