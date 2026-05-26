@@ -102,10 +102,11 @@ export default function MethodologyPage() {
           <li>Cross-checks against worked examples from IRS Pubs and CPA blogs.</li>
         </ul>
         <p>
-          The current suite is 446 tests across 17 files — calculator
+          The current suite is 497 tests across 19 files — calculator
           modules, blog content invariants (every post has a Sources
           citation, every cross-reference resolves, every post is
-          assigned to exactly one category), and accessibility helpers.
+          assigned to exactly one category, every referenced affiliate
+          offer ID resolves to a real entry), and accessibility helpers.
           Coverage on the calculation layer is high; we deliberately do
           not over-test the React UI because the math layer is where the
           trust lives.

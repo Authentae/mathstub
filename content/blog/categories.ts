@@ -89,6 +89,7 @@ export const blogCategories: BlogCategory[] = [
       'year-end-equity-comp-checklist',
       'rsu-cost-basis-fix-form-8949',
       'mega-backdoor-roth-eligibility',
+      'priya-annual-review-case-study',
     ],
   },
   {

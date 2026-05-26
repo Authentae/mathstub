@@ -224,6 +224,14 @@ export const blogRelations: Record<string, BlogRelations> = {
     ],
     calcs: ['state-stock-comp', 'rsu-tax-shortfall', 'quarterly-estimated-tax'],
   },
+  'priya-annual-review-case-study': {
+    posts: [
+      'mega-backdoor-roth-eligibility',
+      'rsu-cost-basis-fix-form-8949',
+      'extra-w4-withholding-rsu',
+    ],
+    calcs: ['mega-backdoor-roth', 'rsu-tax-shortfall', 'iso-amt', 'amt-credit-recovery'],
+  },
 };
 
 /** Reverse index: for a given calculator slug, which blog posts discuss it. */
