@@ -141,6 +141,16 @@ export const tools: Tool[] = [
     status: 'live',
     emoji: '🐻',
   },
+  {
+    id: 'roth-sequencer',
+    slug: 'roth-sequencer',
+    title: 'Backdoor + Mega-Backdoor Roth Sequencing Optimizer',
+    shortTitle: 'Roth Sequencer',
+    summary:
+      'Combines the 2 standalone Roth calculators into one sequenced playbook. When to do basis isolation first (pre-tax IRA + §408(d)(2) pro-rata), Mega-Backdoor next, traditional Backdoor last. Total annual Roth capacity unlocked across all paths.',
+    status: 'live',
+    emoji: '🔀',
+  },
 ];
 
 export function liveTools(): Tool[] {
