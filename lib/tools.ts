@@ -111,6 +111,16 @@ export const tools: Tool[] = [
     status: 'live',
     emoji: '🔁',
   },
+  {
+    id: 'w4-step-4c',
+    slug: 'w4-step-4c',
+    title: 'W-4 Step 4(c) Extra-Withholding Calculator',
+    shortTitle: 'W-4 4(c)',
+    summary:
+      'Turn a federal tax shortfall into the exact Line 4(c) entry. §6654(g)(1) deems withholding ratable across the year — so a Q4 W-4 fix retroactively cures Q1–Q3 underpayment.',
+    status: 'live',
+    emoji: '🧾',
+  },
 ];
 
 export function liveTools(): Tool[] {
