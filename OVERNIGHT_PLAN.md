@@ -133,4 +133,52 @@ If my context fills mid-task, the work to date is committed in PRs. Earth wakes 
 4. **Mobile Lighthouse audit** — run on all 10 calc pages; flag any P0 issues. ~1 hour.
 5. **A 11th calculator** — strongest candidates: HSA contribution optimizer, 1099 self-employment quarterly estimate, Section 199A QBI deduction.
 
+---
+
+## Morning follow-up — 2026-05-26
+
+Earth woke up, reviewed the overnight work, then directed a follow-up session. Highlights:
+
+### 5 more PRs shipped (#47–#51)
+
+- **PR #47** — `fix(trust-media)`: tightened the trust-whats-inside.jpg grid from cardW=360 / gapX=24 to cardW=344 / gapX=22 so the rightmost card has 124px of right-edge safety on the 1280px master (was 72). Survives Gumroad / Notion preview-pane crops at ~88%.
+- **PR #48** — `feat(footer)`: real 1280×720 cover artwork replaces emoji-only on the 4 ecosystem cards in the footer band. Lazy-loaded, aspect-ratio reserved so no CLS.
+- **PR #49** — `feat(toolkit)`: dedicated /toolkit landing pages. `/toolkit` index + 4 detail pages with cover + worked-example callout + 6-tile what's-inside grid + trust-badges image + audience-match boxes + 2× Gumroad CTAs + Product/Breadcrumb JSON-LD. Data: `lib/toolkit.ts`.
+- **PR #50** — `feat(toolkit)`: funnel wiring. Header nav (desktop + mobile) gets a Toolkit link. 9 calc upsell cards get a *See what's inside →* secondary link to `/toolkit/<slug>` next to the primary Gumroad CTA. UTM tracking preserved.
+- **PR #51** — `docs(memory)`: this commit. CLAUDE.md + AGENTS.md + OVERNIGHT_PLAN.md synced to current state. Payoneer resolution recorded.
+
+### Payoneer USA (USD) receiving account approved — UNBLOCKS Gumroad payouts
+
+Earth got approved for Payoneer USA (USD) receiving account XX-8040 on 2026-05-26. This resolves the Stripe Connect blocker that had been pending since 2026-05-10 (logged in CLAUDE.md "Blocked on user"). To activate Gumroad payouts:
+
+1. Open the Payoneer onboarding email → click *View account details* → note the routing + account number for USA (USD) XX-8040.
+2. In Gumroad, go to Payouts → Bank account → add a US bank account with the Payoneer routing + account numbers.
+3. First payout auto-runs when balance > $10 USD (Gumroad's default minimum).
+
+### Real SEO research finally done
+
+Earth pushed back on whether content production had been anchored to real keyword data. Answer: no, it hadn't. The 3 overnight blog posts were intuition + the existing project plan. Real qualitative SERP analysis (People Also Ask + competitive gap) produced a ranked backlog of 15 opportunities, top 5:
+
+1. W-4 Step 4(c) optimization calculator (year-round demand, zero competitor coverage)
+2. Form 6251 full AMT calculator (multi-source: RSU + ISO + bonus + 1099)
+3. Double-Trigger RSU IPO/M&A calculator (we have the blog, no calc to convert traffic)
+4. CA Form 540NR apportionment calculator (CA-specific, high-stakes)
+5. Backdoor + Mega-Backdoor sequencing optimizer
+
+Lesson logged in CLAUDE.md lessons-learned: **keyword research BEFORE content production, not after.**
+
+### Gumroad listings still need a manual upload pass
+
+The local `notion-templates/<slug>/cover.png` + `trust-whats-inside.jpg` + `trust-why-trust.jpg` files are now correct for all 4 products. Gumroad listings still show stale uploads. Drag-drop from File Explorer into the 4 product edit tabs is unavoidable (Chrome MCP `file_upload` only accepts paths shared via the Claude UI). ~10 min total when Earth gets to it. Mathstub.com /toolkit pages already show the fresh artwork.
+
+### Net session totals (overnight + morning)
+
+- **11 PRs merged**: #40, #41, #42, #43, #44, #45, #46, #47, #48, #49, #50 (plus #51 docs sync)
+- **Calculators**: 8 → 10
+- **Blog posts**: 23 → 26
+- **Tests passing**: 446 → 493 (all green)
+- **New surfaces**: /toolkit + 4 detail pages, homepage trust band, footer ecosystem grid, /toolkit funnel across header / footer / calc-upsells
+- **Trust media**: stale on Gumroad → fresh on mathstub.com via /toolkit pages
+- **Payments**: Stripe Connect blocker resolved → Payoneer USA USD active
+
 — Claude (overnight shift, 2026-05-22)
