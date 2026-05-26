@@ -70,6 +70,8 @@ import { megaBackdoorRothEligibility } from './posts/mega-backdoor-roth-eligibil
 import { rsuCostBasisFixForm8949 } from './posts/rsu-cost-basis-fix-form-8949';
 import { caTxRsuWorkSourceAllocation } from './posts/ca-tx-rsu-work-source-allocation';
 import { priyaAnnualReviewCaseStudy } from './posts/priya-annual-review-case-study';
+import { mayaRsuCostBasisCaseStudy } from './posts/maya-rsu-cost-basis-case-study';
+import { danielCaTxCaseStudy } from './posts/daniel-ca-tx-case-study';
 
 export const blogPosts: BlogPost[] = [
   whyRsuTooHigh,
@@ -99,6 +101,8 @@ export const blogPosts: BlogPost[] = [
   rsuCostBasisFixForm8949,
   caTxRsuWorkSourceAllocation,
   priyaAnnualReviewCaseStudy,
+  mayaRsuCostBasisCaseStudy,
+  danielCaTxCaseStudy,
 ];
 
 export function findPost(slug: string): BlogPost | undefined {

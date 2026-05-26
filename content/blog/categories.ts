@@ -90,6 +90,7 @@ export const blogCategories: BlogCategory[] = [
       'rsu-cost-basis-fix-form-8949',
       'mega-backdoor-roth-eligibility',
       'priya-annual-review-case-study',
+      'maya-rsu-cost-basis-case-study',
     ],
   },
   {
@@ -102,6 +103,7 @@ export const blogCategories: BlogCategory[] = [
       'multi-state-rsu-sourcing-california',
       'double-trigger-rsu-ipo-tax',
       'ca-tx-rsu-work-source-allocation',
+      'daniel-ca-tx-case-study',
     ],
   },
 ];

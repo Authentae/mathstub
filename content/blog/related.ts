@@ -232,6 +232,22 @@ export const blogRelations: Record<string, BlogRelations> = {
     ],
     calcs: ['mega-backdoor-roth', 'rsu-tax-shortfall', 'iso-amt', 'amt-credit-recovery'],
   },
+  'maya-rsu-cost-basis-case-study': {
+    posts: [
+      'rsu-cost-basis-fix-form-8949',
+      'do-rsus-get-taxed-twice',
+      'how-to-report-rsu-tax-return',
+    ],
+    calcs: ['rsu-tax-shortfall', 'espp-qualifying-disposition'],
+  },
+  'daniel-ca-tx-case-study': {
+    posts: [
+      'ca-tx-rsu-work-source-allocation',
+      'multi-state-rsu-sourcing-california',
+      'rsu-taxes-by-state',
+    ],
+    calcs: ['state-stock-comp', 'rsu-tax-shortfall', 'quarterly-estimated-tax'],
+  },
 };
 
 /** Reverse index: for a given calculator slug, which blog posts discuss it. */

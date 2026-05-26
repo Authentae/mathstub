@@ -83,6 +83,30 @@ export default function AboutPage() {
           a real-world situation was painful enough that a focused tool was
           worth shipping.
         </p>
+        <p className="mt-3 text-gray-700 dark:text-gray-300">
+          What I actually do here: read IRS publications + the controlling
+          IRC sections, transcribe them into pure TypeScript math modules,
+          cross-check against worked examples in IRS Pubs and major CPA
+          blogs, and ship the result as a free browser-side calculator. The
+          pure math is unit-tested (497 tests across 19 files as of May 2026)
+          so the same engine can power the Chrome extension and the
+          Anthropic-skill version we&rsquo;re building next.
+        </p>
+        <p className="mt-3 text-gray-700 dark:text-gray-300">
+          What I am <em>not</em>: a CPA, an enrolled agent, or a tax attorney.
+          Mathstub does not give individual tax advice — it gives the math
+          and the IRC citation behind that math. For high-stakes situations
+          ($10,000+ exposure, ISO exercise timing, multi-state moves), every
+          calculator routes you to a CPA matching service. The whole
+          methodology is documented at{' '}
+          <Link
+            href="/methodology"
+            className="font-semibold text-brand-700 hover:underline dark:text-brand-300"
+          >
+            /methodology
+          </Link>
+          .
+        </p>
         <p className="mt-3 text-sm">
           Find me on{' '}
           <a
@@ -102,6 +126,60 @@ export default function AboutPage() {
             hello@mathstub.com
           </a>
           .
+        </p>
+      </section>
+
+      {/* Case studies — proves the site has narrative human-written content,
+          not just templated calculator pages. Direct anti-template signal. */}
+      <section className="mt-10 rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-900/50">
+        <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+          Case studies — what the math actually catches
+        </p>
+        <h2 className="mt-2 text-xl font-bold text-gray-900 dark:text-gray-100">
+          Real (composite) tax-prep saves, with the IRC citations.
+        </h2>
+        <p className="mt-2 text-gray-700 dark:text-gray-300">
+          Three deep narrative case studies showing the kind of finding the
+          calculators surface for typical $200k–$700k tech-worker scenarios:
+        </p>
+        <ul className="mt-3 space-y-2 text-gray-700 dark:text-gray-300">
+          <li>
+            <Link
+              href="/blog/priya-annual-review-case-study"
+              className="font-semibold text-brand-700 hover:underline dark:text-brand-300"
+            >
+              Priya&rsquo;s $11,300 cash + $77,000 tax-shelter Annual Review
+            </Link>{' '}
+            — $310k MFJ NY senior engineer, 90-minute year-end audit.
+            Withholding shortfall, Mega-Backdoor Roth capacity, ISO state-AMT,
+            RSU cost-basis flag, concentration risk.
+          </li>
+          <li>
+            <Link
+              href="/blog/maya-rsu-cost-basis-case-study"
+              className="font-semibold text-brand-700 hover:underline dark:text-brand-300"
+            >
+              Maya&rsquo;s $2,574 RSU cost-basis fix
+            </Link>{' '}
+            — $280k California engineer, 100-share RSU sale. The 60-second
+            Form 8949 column (g) adjustment that prevents broker $0-basis
+            double-taxation.
+          </li>
+          <li>
+            <Link
+              href="/blog/daniel-ca-tx-case-study"
+              className="font-semibold text-brand-700 hover:underline dark:text-brand-300"
+            >
+              Daniel&rsquo;s $34,000 CA→TX surprise
+            </Link>{' '}
+            — senior engineer moved CA→TX mid-vest, didn&rsquo;t realise FTB Pub
+            1004 still claims a share of every post-move vest. Caught it in
+            October, defeated the §19136 underpayment penalty.
+          </li>
+        </ul>
+        <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
+          Names are composites; IRC citations, dollar figures, and form
+          mechanics are concrete and verifiable in IRS primary sources.
         </p>
       </section>
 
