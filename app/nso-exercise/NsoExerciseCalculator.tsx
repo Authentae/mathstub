@@ -12,6 +12,7 @@ import { listStateCodes } from '@tax/state-rates';
 import { offersForShortfall } from '@/lib/affiliates';
 import { AffiliateCard } from '@/components/AffiliateCard';
 import { GumroadUpsell } from '@/components/GumroadUpsell';
+import { W4Step4cLink } from '@/components/W4Step4cLink';
 import { EmailCapture } from '@/components/EmailCapture';
 import { ShareCalculation } from '@/components/ShareCalculation';
 import { useUrlFormState } from '@/lib/useUrlFormState';
@@ -332,6 +333,8 @@ function Result({ result, bargainElement }: { result: RsuShortfallResult; bargai
       </div>
 
       <ShareCalculation what="this NSO exercise calculation" />
+
+      {!overWithheld && <W4Step4cLink shortfallUsd={r.shortfallUsd} />}
 
       {!overWithheld && <GumroadUpsell shortfallUsd={r.shortfallUsd} />}
 
