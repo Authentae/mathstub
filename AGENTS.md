@@ -12,6 +12,10 @@ Passive-income utility-site portfolio. Live at mathstub.com. **Production repo: 
 - Non-technical user. Don't surface decisions unless: irreversible, >$10, >10 min of his time, or genuinely needs his judgment.
 - One asset at a time. Don't fan out.
 
+## Agent skills
+
+A vetted skill library is checked into `.claude/skills/` (11 skills imported 2026-05-26 from karpathy/mattpocock/9arm public collections, triaged for Mathstub relevance). Highlights: `tdd`, `diagnose`, `post-mortem`, `scrutinize`, `handoff`, `karpathy-guidelines`, `caveman`. See `.claude/skills/README.md` for the full index + when-to-invoke mapping + suggested Mathstub-native skills to author next (e.g., `/ship-calc`, `/release-blog-post`, `/memory-sync`).
+
 ## Conventions (strict)
 
 - **Pure tax math lives in `lib/tax/`** — NO React/Next/DOM imports. Must stay portable for future Chrome ext + Anthropic skill reuse.
