@@ -12,6 +12,17 @@ Passive-income utility-site portfolio. Live at mathstub.com. **Production repo: 
 - Non-technical user. Don't surface decisions unless: irreversible, >$10, >10 min of his time, or genuinely needs his judgment.
 - One asset at a time. Don't fan out.
 
+## Coding discipline (always-on)
+
+Apply these on every coding turn. Full text + rationale in `.claude/skills/karpathy-guidelines/SKILL.md` (derived from [Andrej Karpathy's observations](https://x.com/karpathy/status/2015883857489522876)).
+
+1. **Think before coding.** State assumptions explicitly. If multiple interpretations exist, present them — don't pick silently. If a simpler approach exists, say so. If something is unclear, stop and ask.
+2. **Simplicity first.** Minimum code that solves the problem. No features beyond what was asked. No abstractions for single-use code. No "flexibility" that wasn't requested. If 200 lines could be 50, rewrite.
+3. **Surgical changes.** Touch only what you must. Don't refactor adjacent code. Match existing style. Don't delete pre-existing dead code — mention it. Every changed line should trace directly to the user's request.
+4. **Goal-driven execution.** Convert tasks into verifiable goals before starting. "Fix the bug" → "Write a test that reproduces it, then make it pass." For multi-step tasks, state a brief plan with verify-checks per step.
+
+These are the always-on baseline. Situational skills below trigger via `/<skill>` or natural-language phrases declared in each skill's front-matter.
+
 ## Agent skills
 
 A vetted skill library is checked into `.claude/skills/` (11 skills imported 2026-05-26 from karpathy/mattpocock/9arm public collections, triaged for Mathstub relevance). Highlights: `tdd`, `diagnose`, `post-mortem`, `scrutinize`, `handoff`, `karpathy-guidelines`, `caveman`. See `.claude/skills/README.md` for the full index + when-to-invoke mapping + suggested Mathstub-native skills to author next (e.g., `/ship-calc`, `/release-blog-post`, `/memory-sync`).
