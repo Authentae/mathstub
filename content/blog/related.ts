@@ -46,7 +46,7 @@ export const blogRelations: Record<string, BlogRelations> = {
       'rsu-over-withholding-explained',
       'why-rsu-tax-bill-too-high',
     ],
-    calcs: ['rsu-tax-shortfall', 'quarterly-estimated-tax'],
+    calcs: ['w4-step-4c', 'rsu-tax-shortfall', 'quarterly-estimated-tax'],
   },
   'rsu-taxes-by-state': {
     posts: [
@@ -78,7 +78,7 @@ export const blogRelations: Record<string, BlogRelations> = {
       'when-to-sell-rsus-after-vesting',
       'rsu-over-withholding-explained',
     ],
-    calcs: ['rsu-tax-shortfall', 'state-stock-comp'],
+    calcs: ['rsu-cost-basis', 'rsu-tax-shortfall', 'state-stock-comp'],
   },
   'when-to-sell-rsus-after-vesting': {
     posts: [
@@ -126,7 +126,7 @@ export const blogRelations: Record<string, BlogRelations> = {
       'rsu-tax-offset-paycheck',
       'year-end-equity-comp-checklist',
     ],
-    calcs: ['rsu-tax-shortfall', 'quarterly-estimated-tax'],
+    calcs: ['rsu-cost-basis', 'rsu-tax-shortfall', 'quarterly-estimated-tax'],
   },
   'rsu-tax-category-box-14-w2': {
     posts: [
@@ -158,7 +158,7 @@ export const blogRelations: Record<string, BlogRelations> = {
       'how-to-avoid-rsu-tax',
       'when-to-sell-rsus-after-vesting',
     ],
-    calcs: ['rsu-tax-shortfall', 'state-stock-comp'],
+    calcs: ['ca-540nr', 'rsu-tax-shortfall', 'state-stock-comp'],
   },
   'double-trigger-rsu-ipo-tax': {
     posts: [
@@ -166,7 +166,7 @@ export const blogRelations: Record<string, BlogRelations> = {
       'multi-state-rsu-sourcing-california',
       'how-to-avoid-rsu-tax',
     ],
-    calcs: ['rsu-tax-shortfall', 'quarterly-estimated-tax'],
+    calcs: ['double-trigger-rsu', 'rsu-tax-shortfall', 'quarterly-estimated-tax'],
   },
   'espp-qualifying-vs-disqualifying-disposition': {
     posts: [
@@ -182,7 +182,7 @@ export const blogRelations: Record<string, BlogRelations> = {
       'early-exercise-nso-83b-election',
       'year-end-equity-comp-checklist',
     ],
-    calcs: ['amt-credit-recovery', 'iso-amt'],
+    calcs: ['amt-credit-recovery', 'iso-amt', 'form-6251'],
   },
   'why-is-my-bonus-taxed-at-40-percent': {
     posts: [
@@ -198,7 +198,7 @@ export const blogRelations: Record<string, BlogRelations> = {
       'stock-options-vs-rsus-tax',
       'early-exercise-nso-83b-election',
     ],
-    calcs: ['iso-amt', 'amt-credit-recovery'],
+    calcs: ['iso-amt', 'amt-credit-recovery', 'form-6251'],
   },
   'mega-backdoor-roth-eligibility': {
     posts: [
@@ -206,7 +206,7 @@ export const blogRelations: Record<string, BlogRelations> = {
       'how-to-avoid-rsu-tax',
       'estimated-tax-after-rsu-vest',
     ],
-    calcs: ['mega-backdoor-roth', 'backdoor-roth-ira', 'quarterly-estimated-tax'],
+    calcs: ['mega-backdoor-roth', 'backdoor-roth-ira', 'roth-sequencer', 'quarterly-estimated-tax'],
   },
   'rsu-cost-basis-fix-form-8949': {
     posts: [
@@ -214,7 +214,7 @@ export const blogRelations: Record<string, BlogRelations> = {
       'how-to-report-rsu-tax-return',
       'sell-to-cover-vs-net-share-settlement-rsu',
     ],
-    calcs: ['rsu-tax-shortfall', 'espp-qualifying-disposition'],
+    calcs: ['rsu-cost-basis', 'rsu-tax-shortfall', 'espp-qualifying-disposition'],
   },
   'ca-tx-rsu-work-source-allocation': {
     posts: [
@@ -222,7 +222,7 @@ export const blogRelations: Record<string, BlogRelations> = {
       'rsu-taxes-by-state',
       'estimated-tax-after-rsu-vest',
     ],
-    calcs: ['state-stock-comp', 'rsu-tax-shortfall', 'quarterly-estimated-tax'],
+    calcs: ['ca-540nr', 'state-stock-comp', 'rsu-tax-shortfall', 'quarterly-estimated-tax'],
   },
   'priya-annual-review-case-study': {
     posts: [
@@ -238,7 +238,7 @@ export const blogRelations: Record<string, BlogRelations> = {
       'do-rsus-get-taxed-twice',
       'how-to-report-rsu-tax-return',
     ],
-    calcs: ['rsu-tax-shortfall', 'espp-qualifying-disposition'],
+    calcs: ['rsu-cost-basis', 'rsu-tax-shortfall', 'espp-qualifying-disposition'],
   },
   'daniel-ca-tx-case-study': {
     posts: [
@@ -246,7 +246,7 @@ export const blogRelations: Record<string, BlogRelations> = {
       'multi-state-rsu-sourcing-california',
       'rsu-taxes-by-state',
     ],
-    calcs: ['state-stock-comp', 'rsu-tax-shortfall', 'quarterly-estimated-tax'],
+    calcs: ['ca-540nr', 'state-stock-comp', 'rsu-tax-shortfall', 'quarterly-estimated-tax'],
   },
 };
 

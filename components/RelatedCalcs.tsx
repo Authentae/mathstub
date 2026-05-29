@@ -2,7 +2,8 @@ import Link from 'next/link';
 import { liveTools } from '@/lib/tools';
 
 const RELATED: Record<string, string[]> = {
-  'rsu-tax-shortfall': ['bonus-tax-shortfall', 'espp-qualifying-disposition', 'quarterly-estimated-tax'],
+  'rsu-tax-shortfall': ['rsu-cost-basis', 'bonus-tax-shortfall', 'espp-qualifying-disposition', 'quarterly-estimated-tax'],
+  'rsu-cost-basis': ['rsu-tax-shortfall', 'espp-qualifying-disposition', 'state-stock-comp'],
   'bonus-tax-shortfall': ['rsu-tax-shortfall', 'quarterly-estimated-tax', 'nso-exercise'],
   'nso-exercise': ['iso-amt', 'rsu-tax-shortfall', 'quarterly-estimated-tax'],
   'iso-amt': ['amt-credit-recovery', 'nso-exercise', 'espp-qualifying-disposition'],
@@ -10,8 +11,13 @@ const RELATED: Record<string, string[]> = {
   'espp-qualifying-disposition': ['iso-amt', 'nso-exercise', 'rsu-tax-shortfall'],
   'quarterly-estimated-tax': ['rsu-tax-shortfall', 'bonus-tax-shortfall', 'nso-exercise'],
   'state-stock-comp': ['rsu-tax-shortfall', 'iso-amt', 'espp-qualifying-disposition'],
-  'mega-backdoor-roth': ['backdoor-roth-ira', 'quarterly-estimated-tax', 'rsu-tax-shortfall'],
-  'backdoor-roth-ira': ['mega-backdoor-roth', 'quarterly-estimated-tax', 'rsu-tax-shortfall'],
+  'mega-backdoor-roth': ['roth-sequencer', 'backdoor-roth-ira', 'quarterly-estimated-tax', 'rsu-tax-shortfall'],
+  'backdoor-roth-ira': ['roth-sequencer', 'mega-backdoor-roth', 'quarterly-estimated-tax', 'rsu-tax-shortfall'],
+  'roth-sequencer': ['mega-backdoor-roth', 'backdoor-roth-ira', 'quarterly-estimated-tax'],
+  'w4-step-4c': ['rsu-tax-shortfall', 'bonus-tax-shortfall', 'quarterly-estimated-tax'],
+  'form-6251': ['iso-amt', 'amt-credit-recovery', 'nso-exercise'],
+  'ca-540nr': ['state-stock-comp', 'rsu-tax-shortfall', 'quarterly-estimated-tax'],
+  'double-trigger-rsu': ['rsu-tax-shortfall', 'rsu-cost-basis', 'quarterly-estimated-tax'],
 };
 
 export function RelatedCalcs({ currentSlug }: { currentSlug: string }) {
