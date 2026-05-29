@@ -4,23 +4,16 @@ _Last updated 2026-05-29. Everything here is written for you to do once. Claude 
 
 ---
 
-## JOB #1 (do this first) — Turn on the money. ~10 minutes.
+## JOB #1 — Turn on the money. ✅ ALREADY DONE.
 
-Right now, even if someone buys a template, the cash can't reach your bank. Fix:
+Earth confirmed 2026-05-29 (screenshot): Gumroad payout is **already configured**.
+- Payout method: **Bank Account** connected (account ending 0818).
+- Schedule: **Weekly**, once balance reaches the **$100** minimum.
+- This is a **Thai** bank account (Gumroad shows "minimum payout threshold for Thailand is $100").
 
-1. Go to **gumroad.com** and log in (Authentae / theearth1659@gmail.com).
-2. Click **Settings** → **Payments**.
-3. Under payout method, choose **Bank account (United States / direct deposit)**.
-4. Open the **Payoneer onboarding email** → "View account details" page. Copy these three things:
-   - **Routing number**
-   - **Account number**
-   - **Account type** (Checking)
-5. Paste them into Gumroad. Use the account-holder **name + address** exactly as Payoneer shows them.
-6. **Save.**
+Nothing to do. (Claude's earlier "set up Payoneer USA details" instruction was based on a **stale** CLAUDE.md note and was wrong — the account is connected, just to a Thai bank rather than the Payoneer USA account the old notes assumed.)
 
-Done. Gumroad pays out every Friday once your balance is at least $10. The money then lands in Payoneer, then your bank.
-
-> If a label looks slightly different than above, match by meaning — Gumroad tweaks its menus. The three values (routing, account, type) are what matter.
+> Untested only because there are **no sales yet** — nothing to pay out. We'll know it works in practice when the first $100 actually lands. No action needed until then.
 
 ---
 
