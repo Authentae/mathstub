@@ -1,4 +1,8 @@
-export type GumroadProductId = 'equity-tracker' | 'year-end-checklist' | 'annual-review';
+export type GumroadProductId =
+  | 'equity-tracker'
+  | 'year-end-checklist'
+  | 'annual-review'
+  | 'multi-state-equity-planner';
 
 export interface GumroadProduct {
   id: GumroadProductId;
@@ -16,10 +20,10 @@ export interface GumroadProduct {
    * enough to feel like a real product, few enough to scan in 2 sec.
    */
   features: readonly [string, string, string];
-  /** Lower bound of shortfall this product is best matched to. */
-  minShortfallUsd: number;
-  /** Upper bound (exclusive) of shortfall this product is best matched to. */
-  maxShortfallUsd: number;
+  /** Lower bound of shortfall the band-fallback match uses. Omit on products surfaced only via explicit `preferredProductId`. */
+  minShortfallUsd?: number;
+  /** Upper bound (exclusive) of shortfall the band-fallback match uses. */
+  maxShortfallUsd?: number;
 }
 
 const GUMROAD_BASE = 'https://gumroad.com/l/';
@@ -76,13 +80,38 @@ export const products: Record<GumroadProductId, GumroadProduct> = {
     minShortfallUsd: 8_000,
     maxShortfallUsd: Number.POSITIVE_INFINITY,
   },
+  'multi-state-equity-planner': {
+    id: 'multi-state-equity-planner',
+    name: 'Multi-State Equity Comp Tax Planner',
+    priceUsd: 49,
+    url: `${GUMROAD_BASE}athsk`,
+    toolkitSlug: 'multi-state-equity-planner',
+    pitchHeadline: "Catch the state tax you didn't know you still owed",
+    pitchBody:
+      "California doesn't stop taxing your RSUs when you move. New York can claim 100% of your remote income via the convenience-of-employer rule. Vest-by-vest work-source math, NY trap decoder, move ROI net of state-tax savings — the brief you bring to a multi-state CPA.",
+    features: [
+      'Work-source vest allocation across moving states',
+      'NY convenience-of-employer rule + 4 defeats',
+      'Move ROI calculator with breakeven heuristic',
+    ],
+  },
 };
 
-export function bestProductForShortfall(shortfallUsd: number): GumroadProduct {
+export function bestProductForShortfall(
+  shortfallUsd: number,
+  preferredProductId?: GumroadProductId,
+): GumroadProduct {
+  if (preferredProductId && products[preferredProductId]) {
+    return products[preferredProductId];
+  }
   const s = Math.max(0, shortfallUsd);
   return (
     Object.values(products).find(
-      (p) => s >= p.minShortfallUsd && s < p.maxShortfallUsd,
+      (p) =>
+        p.minShortfallUsd !== undefined &&
+        p.maxShortfallUsd !== undefined &&
+        s >= p.minShortfallUsd &&
+        s < p.maxShortfallUsd,
     ) ?? products['equity-tracker']
   );
 }

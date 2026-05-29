@@ -196,7 +196,10 @@ export function Ca540NrCalculator() {
       )}
 
       {result.ok && result.data.totalCaTaxUsd > 0 && (
-        <GumroadUpsell shortfallUsd={result.data.totalCaTaxUsd} />
+        <GumroadUpsell
+          shortfallUsd={result.data.totalCaTaxUsd}
+          preferredProduct="multi-state-equity-planner"
+        />
       )}
     </div>
   );

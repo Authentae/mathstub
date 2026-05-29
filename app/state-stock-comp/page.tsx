@@ -4,6 +4,7 @@ import { buildMetadata } from '@/lib/seo';
 import { ToolShell } from '@/components/ToolShell';
 import { MathDiagram } from '@/components/MathDiagram';
 import { Disclaimer } from '@/components/Disclaimer';
+import { GumroadUpsell } from '@/components/GumroadUpsell';
 import { stateStockCompProfiles } from '@tax/state-stock-comp';
 
 const pct = new Intl.NumberFormat('en-US', {
@@ -75,6 +76,7 @@ export default function Page() {
               </tbody>
             </table>
           </div>
+          <GumroadUpsell preferredProduct="multi-state-equity-planner" />
         </>
       }
       fullWidthDiagram={

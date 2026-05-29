@@ -1,4 +1,4 @@
-import { bestProductForShortfall } from '@/lib/gumroad';
+import { bestProductForShortfall, type GumroadProductId } from '@/lib/gumroad';
 
 const usd = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -7,33 +7,29 @@ const usd = new Intl.NumberFormat('en-US', {
 });
 
 /**
- * GumroadUpsell — premium-feeling product card surfaced after the calc
- * shows a positive shortfall. Designed to look like a real $29 product,
- * not a banner ad. Visual hierarchy:
+ * GumroadUpsell — premium-feeling product card surfaced when either
+ *   (a) the calc returns a positive shortfall (shortfall-keyed match), or
+ *   (b) the page explicitly routes to a product via `preferredProduct`
+ *       (lookup pages and non-shortfall calcs).
  *
- *   1. Eyebrow + price chip          (context + commitment)
- *   2. Big H3 pitch headline         (the promise)
- *   3. Body copy                     (the proof)
- *   4. 3 bulleted features w/ checks (the deliverable)
- *   5. ROI line keyed to user's
- *      actual shortfall              ("$30,200 surprise this year.
- *                                     $29 to know it's coming next.
- *                                     1,041× return.")
- *   6. Big CTA button                (low-friction conversion)
- *   7. Trust micro-copy underneath   (Gumroad guarantee, lifetime
- *                                     updates, instant access)
+ * Money-line row 5 is only rendered when `shortfallUsd > 0`, so pure
+ * lookup pages get the product card without a misleading "surprise this
+ * year" anchor.
  *
  * Always-dark concrete classes (no `dark:` variants) so it can't
  * regress to light-on-dark like QuickAnswer did before its hardening.
  */
-export function GumroadUpsell({ shortfallUsd }: { shortfallUsd: number }) {
-  if (shortfallUsd <= 0) return null;
-  const p = bestProductForShortfall(shortfallUsd);
+export function GumroadUpsell({
+  shortfallUsd,
+  preferredProduct,
+}: {
+  shortfallUsd?: number;
+  preferredProduct?: GumroadProductId;
+}) {
+  const hasShortfall = typeof shortfallUsd === 'number' && shortfallUsd > 0;
+  if (!preferredProduct && !hasShortfall) return null;
+  const p = bestProductForShortfall(shortfallUsd ?? 0, preferredProduct);
   const utm = `?utm_source=mathstub&utm_medium=calc-upsell&utm_campaign=shortfall&utm_content=${p.id}`;
-
-  // ROI multiplier — how much surprise this year vs the product price.
-  // Floored at 1× so we never show "0× ROI" for tiny shortfalls.
-  const roiMultiplier = Math.max(1, Math.round(shortfallUsd / p.priceUsd));
 
   return (
     <aside
@@ -96,14 +92,15 @@ export function GumroadUpsell({ shortfallUsd }: { shortfallUsd: number }) {
         ))}
       </ul>
 
-      {/* Row 5 — ROI line */}
-      <div className="relative mb-5 rounded-lg border border-brand-500/30 bg-slate-950/40 px-4 py-3 font-mono text-xs leading-relaxed text-slate-300">
-        <span className="font-bold text-orange-300">{usd.format(shortfallUsd)}</span>
-        <span className="text-slate-500"> surprise this year.</span>{' '}
-        <span className="font-bold text-brand-300">{usd.format(p.priceUsd)}</span>
-        <span className="text-slate-500"> to know it&rsquo;s coming next.</span>{' '}
-        <span className="font-bold text-white">{roiMultiplier.toLocaleString()}× ROI.</span>
-      </div>
+      {/* Row 5 — money line (only when we have a concrete shortfall to anchor on) */}
+      {hasShortfall && (
+        <div className="relative mb-5 rounded-lg border border-brand-500/30 bg-slate-950/40 px-4 py-3 font-mono text-xs leading-relaxed text-slate-300">
+          <span className="font-bold text-orange-300">{usd.format(shortfallUsd!)}</span>
+          <span className="text-slate-500"> surprise this year.</span>{' '}
+          <span className="font-bold text-brand-300">{usd.format(p.priceUsd)}</span>
+          <span className="text-slate-500"> to see the next one coming.</span>
+        </div>
+      )}
 
       {/* Row 6 — Big CTA */}
       <div className="relative flex flex-wrap items-center gap-3">

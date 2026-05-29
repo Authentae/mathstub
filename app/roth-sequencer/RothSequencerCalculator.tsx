@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import { calculateRothSequencer, type RothSequencerResult, type SequencerStep } from '@tax/roth-sequencer';
 import { TaxCalcError, type FilingStatus, type TaxYear } from '@tax/types';
 import { useUrlFormState } from '@/lib/useUrlFormState';
+import { GumroadUpsell } from '@/components/GumroadUpsell';
 
 const usd = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -174,6 +175,10 @@ export function RothSequencerCalculator() {
         </div>
       ) : (
         <ResultPanel r={result.data} />
+      )}
+
+      {result.ok && result.data.totalAnnualRothCapacityUsd > 0 && (
+        <GumroadUpsell preferredProduct="annual-review" />
       )}
     </div>
   );
