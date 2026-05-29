@@ -54,7 +54,7 @@ A vetted skill library is checked into `.claude/skills/` (11 skills imported 202
 - ~~Stripe Connect ID upload~~ — **RESOLVED 2026-05-26** via Payoneer USA (USD) receiving account XX-8040. Earth now needs to update Gumroad payout settings with the Payoneer USA bank details (routing + account numbers from the View account details page in the Payoneer onboarding email). Once that's done, accrued Gumroad balance pays out automatically.
 - Verify FlexOffers email when verification arrives.
 - Optional: submit 4 Notion templates to Notion Marketplace (free, separate review).
-- Manual Gumroad re-upload of fresh `cover.png` + `trust-whats-inside.jpg` + `trust-why-trust.jpg` for all 4 products. Local files are correct (in `notion-templates/<slug>/`); Gumroad listings still show stale uploads. Drag-drop into the 4 product edit tabs takes ~10 min total. Mathstub.com /toolkit pages already show the fresh artwork.
+- ~~Manual Gumroad re-upload of fresh `cover.png` + `trust-whats-inside.jpg` + `trust-why-trust.jpg` for all 4 products.~~ **DONE 2026-05-30** — Earth re-uploaded the fresh artwork to all 4 Gumroad listings. (Claude can't visually diff Gumroad images, so taken on Earth's word; no reason to doubt. Don't re-prompt.) Guiding checklist: `marketing/gumroad-artwork-reupload-checklist.md`.
 
 ## Shipped 2026-05-22 → 2026-05-26 — autonomous overnight + morning + AdSense rehab + 4 new calcs
 
