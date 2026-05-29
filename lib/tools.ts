@@ -22,6 +22,16 @@ export const tools: Tool[] = [
     emoji: '📈',
   },
   {
+    id: 'rsu-cost-basis',
+    slug: 'rsu-cost-basis',
+    title: 'RSU Cost Basis Correction Calculator',
+    shortTitle: 'RSU Cost Basis Fix',
+    summary:
+      'Brokers report $0 cost basis on RSU sales, double-taxing income already on your W-2. See your correct basis (FMV at vest), the tax you’d overpay, and the exact Form 8949 code-B adjustment.',
+    status: 'live',
+    emoji: '🧮',
+  },
+  {
     id: 'espp-qualifying-disposition',
     slug: 'espp-qualifying-disposition',
     title: 'ESPP Qualifying Disposition Tax Calculator',
