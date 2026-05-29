@@ -254,6 +254,36 @@ export function productSchema(p: ToolkitProduct, siteUrl: string) {
       price: String(p.priceUsd),
       availability: 'https://schema.org/InStock',
       seller: { '@type': 'Organization', name: 'Mathstub' },
+      // Digital download — no physical shipping, so the rate is $0 with no
+      // handling/transit time. Declaring this resolves Google's "missing
+      // shippingDetails" Merchant-listing suggestion honestly.
+      shippingDetails: {
+        '@type': 'OfferShippingDetails',
+        shippingRate: {
+          '@type': 'MonetaryAmount',
+          value: '0',
+          currency: 'USD',
+        },
+        shippingDestination: {
+          '@type': 'DefinedRegion',
+          addressCountry: 'US',
+        },
+        deliveryTime: {
+          '@type': 'ShippingDeliveryTime',
+          handlingTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 0, unitCode: 'DAY' },
+          transitTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 0, unitCode: 'DAY' },
+        },
+      },
+      // Matches the money-back guarantee already stated on the product page
+      // (a 14-day floor). 14-day, free, finite window.
+      hasMerchantReturnPolicy: {
+        '@type': 'MerchantReturnPolicy',
+        applicableCountry: 'US',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+        merchantReturnDays: 14,
+        returnMethod: 'https://schema.org/ReturnByMail',
+        returnFees: 'https://schema.org/FreeReturn',
+      },
     },
   };
 }
