@@ -19,7 +19,8 @@
     "ext:zip": "node scripts/zip-extension.mjs",
     "notion:images": "node scripts/generate-notion-covers.mjs",
     "notion:previews": "node scripts/generate-template-previews.mjs",
-    "webstore:assets": "node scripts/generate-webstore-assets.mjs"
+    "webstore:assets": "node scripts/generate-webstore-assets.mjs",
+    "indexnow": "node scripts/indexnow-submit.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
