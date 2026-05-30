@@ -120,13 +120,13 @@ export function GumroadUpsell({
           See what&rsquo;s inside
           <span aria-hidden="true">→</span>
         </a>
-        <span className="font-mono text-[11px] uppercase tracking-[0.06em] text-slate-500">
+        <span className="font-mono text-[11px] uppercase tracking-[0.06em] text-slate-400">
           Pay once · lifetime updates · instant access
         </span>
       </div>
 
       {/* Row 7 — Trust micro-copy */}
-      <div className="relative mt-5 flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-slate-800 pt-4 text-[11px] text-slate-500">
+      <div className="relative mt-5 flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-slate-800 pt-4 text-[11px] text-slate-400">
         <span className="flex items-center gap-1.5">
           <span aria-hidden="true" className="text-brand-400">✓</span>
           Gumroad-secured checkout

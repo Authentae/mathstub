@@ -98,7 +98,7 @@ export default function HomePage() {
                 but it read as two equal accents, diluting the eye's
                 anchor on "actually." Plain mute restores the contrast.
               */}
-              <span className="text-slate-500">In 30 seconds.</span>
+              <span className="text-slate-400">In 30 seconds.</span>
             </h1>
             <p className="mt-7 max-w-[520px] text-lg leading-snug text-slate-200/85 sm:text-xl">
               Your employer withheld{' '}
@@ -120,7 +120,7 @@ export default function HomePage() {
                 Start with your RSU vest
                 <span aria-hidden="true" className="text-2xl">→</span>
               </Link>
-              <div className="mt-4 font-mono text-[11px] uppercase tracking-[0.04em] text-slate-500">
+              <div className="mt-4 font-mono text-[11px] uppercase tracking-[0.04em] text-slate-400">
                 free · no signup · 30 seconds · runs in your browser
               </div>
             </div>
@@ -140,7 +140,7 @@ export default function HomePage() {
         {/* SOCIAL PROOF / TRUST BAND — combined */}
         <section className="mt-16 border-y border-slate-800 py-7">
           <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <span className="font-mono text-xs uppercase tracking-[0.1em] text-slate-500">
+            <span className="font-mono text-xs uppercase tracking-[0.1em] text-slate-400">
               Built for engineers at
             </span>
             <span className="flex flex-wrap gap-x-7 gap-y-2 text-sm font-semibold tracking-tight text-slate-300/70 sm:text-base">
@@ -224,7 +224,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/start-here"
-              className="hidden font-mono text-xs text-slate-500 hover:text-slate-300 sm:inline"
+              className="hidden font-mono text-xs text-slate-400 hover:text-slate-300 sm:inline"
             >
               full diagnostic →
             </Link>
@@ -264,7 +264,7 @@ export default function HomePage() {
               <span aria-hidden="true" className="h-2 w-2 rounded-full bg-brand-500 shadow-[0_0_12px_rgb(59,130,246)]" />
               Other equity events.
             </h2>
-            <span className="font-mono text-xs text-slate-500">
+            <span className="font-mono text-xs text-slate-400">
               {otherTools.length} calculators · all free
             </span>
           </div>
@@ -303,7 +303,7 @@ export default function HomePage() {
         <section className="mt-16 rounded-lg border border-slate-800 bg-slate-900/40 p-8 sm:p-11">
           <div className="grid items-center gap-8 sm:grid-cols-[1fr_auto]">
             <div>
-              <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.1em] text-slate-500">
+              <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.1em] text-slate-400">
                 why this matters
               </div>
               <p
@@ -317,7 +317,7 @@ export default function HomePage() {
                 <em className="italic text-brand-300">floor</em>, not your bracket.
                 Most engineers find a five-figure surprise in their first vest.
               </p>
-              <div className="mt-4 font-mono text-xs text-slate-500">
+              <div className="mt-4 font-mono text-xs text-slate-400">
                 — methodology notes ·{' '}
                 <Link href="/methodology" className="text-slate-400 hover:text-brand-300">
                   read the full sourcing
@@ -356,7 +356,7 @@ export default function HomePage() {
                     href={`/blog/${p.slug}`}
                     className="flex h-full flex-col gap-2 rounded-md border border-slate-800 bg-slate-900/50 p-4 transition hover:border-brand-500 hover:bg-slate-900"
                   >
-                    <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.06em] text-slate-500">
+                    <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.06em] text-slate-400">
                       <span>
                         {new Date(p.datePublished).toLocaleDateString('en-US', {
                           year: 'numeric',
@@ -385,7 +385,7 @@ export default function HomePage() {
         </section>
 
         {/* FOOTNOTE LINE */}
-        <section className="mt-16 border-t border-slate-800 pt-6 font-mono text-xs text-slate-500">
+        <section className="mt-16 border-t border-slate-800 pt-6 font-mono text-xs text-slate-400">
           Not sure which calculator?{' '}
           <Link
             href="/start-here"
