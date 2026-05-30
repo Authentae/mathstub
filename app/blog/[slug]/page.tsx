@@ -18,6 +18,7 @@ import { CalcCta } from '@/components/CalcCta';
 import { QuickAnswer } from '@/components/QuickAnswer';
 import { KeyPoints } from '@/components/KeyPoints';
 import { TableOfContents, slugifyHeading } from '@/components/TableOfContents';
+import { renderInline } from '@/components/InlineText';
 import { ReadTime } from '@/components/ReadTime';
 import { WasThisHelpful } from '@/components/WasThisHelpful';
 import { findPost, blogPosts, type BlogBlock } from '@/content/blog/registry';
@@ -120,7 +121,7 @@ export default async function PostPage({ params }: Props) {
 
         <Disclaimer />
 
-        <div className="mt-6 space-y-4 text-base leading-relaxed text-gray-800 dark:text-gray-200">
+        <div className="mt-6 space-y-5 text-[17px] leading-[1.75] text-gray-800 dark:text-gray-200">
           {post.blocks.map((block, i) => (
             <Block key={i} block={block} />
           ))}
@@ -164,7 +165,7 @@ export default async function PostPage({ params }: Props) {
 function Block({ block }: { block: BlogBlock }) {
   switch (block.type) {
     case 'p':
-      return <p>{block.text}</p>;
+      return <p>{renderInline(block.text)}</p>;
     case 'h2':
       return (
         <h2
@@ -185,31 +186,31 @@ function Block({ block }: { block: BlogBlock }) {
       );
     case 'ul':
       return (
-        <ul className="ml-5 list-disc space-y-1">
+        <ul className="ml-5 list-disc space-y-2 marker:text-brand-500">
           {block.items.map((it, i) => (
-            <li key={i}>{it}</li>
+            <li key={i} className="pl-1">{renderInline(it)}</li>
           ))}
         </ul>
       );
     case 'ol':
       return (
-        <ol className="ml-5 list-decimal space-y-1">
+        <ol className="ml-5 list-decimal space-y-2 marker:font-semibold marker:text-brand-500">
           {block.items.map((it, i) => (
-            <li key={i}>{it}</li>
+            <li key={i} className="pl-1">{renderInline(it)}</li>
           ))}
         </ol>
       );
     case 'quote':
       return (
         <blockquote className="border-l-4 border-gray-300 pl-4 italic text-gray-700 dark:border-gray-700 dark:text-gray-300">
-          {block.text}
+          {renderInline(block.text)}
           {block.cite && <cite className="block text-sm not-italic">— {block.cite}</cite>}
         </blockquote>
       );
     case 'callout':
       return (
-        <div className="rounded-md border-l-4 border-brand-500 bg-brand-50 p-4 text-sm text-gray-800 dark:bg-gray-900 dark:text-gray-200">
-          {block.text}
+        <div className="rounded-md border-l-4 border-brand-500 bg-brand-50 p-4 text-[15px] text-gray-800 dark:bg-gray-900 dark:text-gray-200">
+          {renderInline(block.text)}
         </div>
       );
   }
