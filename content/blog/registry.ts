@@ -38,6 +38,12 @@ export interface BlogPost {
    * 3 seconds.
    */
   quickAnswer?: string;
+  /**
+   * Optional "skim layer" — 3-6 plain-English bullets rendered under the
+   * QuickAnswer. Lets a non-reader get the whole post in ~15s while the full
+   * body below stays for depth + SEO. Keep each bullet to one scannable line.
+   */
+  keyPoints?: string[];
   blocks: BlogBlock[];
   /** Suggested affiliate offer to render below content. */
   affiliateOfferIds?: string[];
