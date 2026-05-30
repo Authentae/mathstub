@@ -2,9 +2,9 @@ import type { BlogPost } from '../registry';
 
 export const rsusTaxedTwice: BlogPost = {
   slug: 'do-rsus-get-taxed-twice',
-  title: 'Do RSUs get taxed twice? The double-taxation myth, explained with math',
+  title: 'Do RSUs get taxed twice? The simple answer, with real examples',
   description:
-    'Short answer: no — but RSUs do trigger two separate tax events. Walk the math: vest taxes the FMV as ordinary income, sale taxes only the appreciation as capital gain. Most "double taxation" claims trace to a misread W-2 or 1099-B.',
+    'Short answer: no. RSUs are taxed once, in two pieces — income tax when they vest, and a smaller gain tax later if the price goes up. The “double tax” scare is almost always one fixable mistake on your broker’s form. Here it is in plain English.',
   datePublished: '2026-05-16',
   dateModified: '2026-05-16',
   authorName: 'Mathstub Editorial',
@@ -23,117 +23,112 @@ export const rsusTaxedTwice: BlogPost = {
     {
       type: 'p',
       text:
-        'Every tax season, the same thread appears on r/personalfinance: "My RSUs were taxed at vest, and now they are being taxed AGAIN when I sell? Am I being double-taxed?" The short answer is no. But there are two real tax events on a vested RSU share, and if you read your W-2 and 1099-B wrong (which most people do), the math looks like double taxation. Here is the actual rule, with the cost-basis logic that resolves it.',
+        'You got RSUs. They vested, and a big chunk vanished to tax. Then you sold the shares — and it looks like you are getting taxed all over again. So you are sitting there thinking: wait, am I paying tax twice on the same money?',
     },
-    { type: 'h2', text: 'The two tax events on a vested RSU' },
     {
       type: 'p',
       text:
-        'Every RSU share you receive has exactly two tax moments. They tax different things, not the same thing twice.',
+        'It is the most common RSU question online. The answer is no — you are not being taxed twice. But it sure can look that way, and there is one common mistake that can turn the myth into a real, expensive problem. Here is the whole thing in plain English.',
+    },
+    { type: 'h2', text: 'The simple way to picture it' },
+    {
+      type: 'p',
+      text:
+        'Think of your shares walking through two doors. Each door has its own toll. The two tolls are for different things — you are not paying the same toll twice.',
     },
     {
       type: 'ol',
       items: [
-        '**At vest.** The fair-market value of the share on the vesting date is treated as ordinary W-2 income. Your employer withholds at the supplemental rate (22% federal, plus state, Medicare, and Social Security). This is reported in Box 1 of your W-2.',
-        '**At sale.** The capital gain or loss is calculated as (sale price − cost basis) × shares. Your cost basis is the FMV at vest — the same value already taxed as W-2 income at step 1. So the sale only taxes the appreciation FROM vest TO sale, not the value of the share itself.',
+        '**Door 1 — the shares land in your account (this is called "vesting").** The day they vest, they are worth something. The IRS treats that value just like salary, so you pay regular income tax on it. Your employer usually grabs that tax automatically — often around 30–40% once you add up federal, state, Social Security, and Medicare.',
+        '**Door 2 — you sell the shares later.** Now you only pay tax on the *growth* — how much the price went up *after* they vested. If the price never moved, there is no extra tax at all.',
       ],
     },
     {
       type: 'p',
       text:
-        'Result: each dollar is taxed exactly once. The vested value is taxed at ordinary rates (step 1). The appreciation is taxed at capital-gain rates (step 2). The two amounts are mutually exclusive — they add up to the total economic gain, no overlap.',
+        'That is the whole rule. Door 1 taxes what the shares were worth when you got them. Door 2 taxes only what they gained after that. No single dollar gets taxed twice.',
     },
-    { type: 'h2', text: 'Worked example — same FMV, no double tax' },
+    { type: 'h2', text: 'Example 1: you sell right away' },
     {
       type: 'p',
       text:
-        'You receive 100 RSUs that vest at $50/share (total FMV = $5,000). You sell all 100 immediately at $50/share. How much tax?',
+        'Say 100 shares vest at $50 each. That is $5,000 worth. You sell them the same day, still at $50.',
     },
     {
       type: 'ul',
       items: [
-        'Step 1 (vest): $5,000 ordinary W-2 income. At a 32% federal marginal rate plus 9.3% CA state plus 1.45% Medicare, that is roughly $2,140 in tax.',
-        'Step 2 (sale): cost basis = $50/share × 100 = $5,000. Sale proceeds = $5,000. Capital gain = $0. Tax on sale = $0.',
-        'Total tax: $2,140 on a $5,000 gain. Effective rate ~43%. Not double, just once at ordinary income rates because the price did not move between vest and sale.',
+        '**At vesting:** that $5,000 counts as income. At a typical high earner’s rate (32% federal + 9.3% California + 1.45% Medicare), the tax is about **$2,140**.',
+        '**At the sale:** the price did not move, so there is no growth. Tax on the sale: **$0**.',
+        '**Total: about $2,140** — paid once, because the price never changed. Not double.',
       ],
     },
-    { type: 'h2', text: 'Worked example — stock appreciated between vest and sale' },
+    { type: 'h2', text: 'Example 2: you hold, and the stock goes up' },
     {
       type: 'p',
       text:
-        'Same 100 RSUs vest at $50/share, but you hold for 18 months and sell at $80/share.',
+        'Same 100 shares vest at $50 ($5,000). But this time you wait 18 months and sell at $80.',
     },
     {
       type: 'ul',
       items: [
-        'Step 1 (vest): $5,000 ordinary W-2 income, ~$2,140 in tax (same as above).',
-        'Step 2 (sale): cost basis = $50/share × 100 = $5,000. Sale proceeds = $80/share × 100 = $8,000. Long-term capital gain = $3,000. At 15% federal LTCG + 9.3% CA + 3.8% NIIT (if MAGI > $200k single) = $840 in tax.',
-        'Total tax: $2,140 + $840 = $2,980 on an $8,000 gain. The $5,000 from step 1 is taxed at ordinary rates. The $3,000 of appreciation from $50 to $80 is taxed at LTCG rates. No dollar is taxed twice.',
+        '**At vesting:** still $5,000 of income, still about **$2,140** in tax.',
+        '**At the sale:** you sell for $8,000. You already settled up on the first $5,000 (taxed at vesting), so now you are only taxed on the **$3,000 of growth**. That costs about **$840** (15% federal + 9.3% California + 3.8% on investment income for higher earners).',
+        '**Total: about $2,980** on $8,000. The first $5,000 was taxed as income. The $3,000 of growth was taxed as a gain. Two different things — never the same dollar twice.',
       ],
     },
-    { type: 'h2', text: 'Why people think they are being double-taxed' },
+    { type: 'h2', text: 'So why does it FEEL like double tax?' },
     {
       type: 'p',
       text:
-        'Three common misreadings cause the panic:',
+        'Almost always, it comes down to one of these three things:',
     },
     {
       type: 'ol',
       items: [
-        '**Brokers report the wrong cost basis on Form 1099-B.** Many brokers (Schwab, Fidelity, Etrade) historically reported the cost basis as $0 or as the purchase price (which for RSUs is $0). This means your tax software calculates a capital gain on the FULL sale price, not just the appreciation — overstating your gain by the vested value. The fix: manually adjust the cost basis on Form 8949 to equal the FMV at vest, which is the actual value already taxed as W-2 income. Look for "Box 12 cost basis was not reported to the IRS" on your 1099-B.',
-        '**The vest hits Box 1 of W-2 in the same year as the sale.** When both events happen in the same calendar year, the W-2 income figure looks inflated, and people assume the proceeds are being counted twice. They are not — the W-2 has the vest, the 1099-B has the sale, and they are separate line items on your return.',
-        '**Withholding looks too high at vest.** Supplemental withholding can stack to 30-40% (federal 22% + state + Medicare + SS), which people misread as "double tax." It is only one tax event being withheld at high rates because of the supplemental wage rule. (See our separate post on RSU over-withholding for the full math.)',
+        '**Your broker reports the wrong number — this is the big one.** When you sell, your broker sends a form called a 1099-B. For RSUs, it often lists your "cost" as **$0**, as if the shares were free. They were not — you already paid income tax on them at vesting. If you leave that $0 in place, your tax software thinks your *entire* sale was profit and taxes all of it. THAT is real double tax. The good news: it is a mistake you can fix.',
+        '**Both events land in the same year.** If you vest and sell in the same year, your W-2 looks huge and it feels like the shares got counted twice. They did not — the W-2 has the vesting, the broker form has the sale. They are separate lines.',
+        '**The withholding looks scary.** Seeing 30–40% disappear at vesting makes people shout "double tax!" It is not — it is one tax, just held back at a high combined rate.',
       ],
     },
     {
       type: 'callout',
       text:
-        'The single most common RSU tax error is failing to adjust the 1099-B cost basis to the FMV at vest. This causes you to pay tax twice on the vested value — once via W-2 at vest, again via Schedule D at sale. The IRS allows you to fix this on Form 8949 column (g) "adjustment". If you do not, you are literally double-paying.',
+        'The #1 RSU mistake: leaving that $0 cost on your tax return. If you do, you really will pay tax twice — once at vesting, once when you sell. The fix is one line on a form called Form 8949: change the cost to what the shares were worth on your vest day. Miss it, and you could hand the IRS thousands for no reason.',
     },
-    { type: 'h2', text: 'How to verify your own RSU taxes are clean' },
-    {
-      type: 'p',
-      text:
-        'Three checks to run when you file:',
-    },
+    { type: 'h2', text: 'How to check your own taxes in 3 steps' },
     {
       type: 'ol',
       items: [
-        '**Trace the vest gross.** Your year-end W-2 Box 1 should include the vested FMV. Your December pay stub (or Workday/ADP year-to-date earnings statement) should show "RSU vest" as a line item. Confirm the two numbers reconcile.',
-        '**Check the 1099-B cost basis.** Pull your 1099-B from the broker. For each RSU sale lot, the cost basis should equal the FMV at the corresponding vest date × shares sold. If the 1099-B shows $0 or a different number, you must adjust it on Form 8949.',
-        '**Calculate the implied total tax.** Add the W-2 ordinary tax on the vest to the capital-gain tax on (sale price − basis). This should equal your total RSU-related tax owed for the year. If it does not match what your return shows, the cost-basis adjustment is missing.',
+        '**Find your vest value.** Your December pay stub (or Workday / ADP) lists each "RSU vest." That dollar amount should already be baked into your W-2 wages.',
+        '**Check the broker’s cost number.** On your 1099-B, the cost for each RSU sale should equal what the shares were worth on the day they vested. If it says $0, that is the error — fix it on Form 8949.',
+        '**Sanity-check the total.** Income tax on the vest, plus a little gain tax on any growth, should roughly equal your total RSU tax for the year. If your bill looks way bigger, the $0-cost mistake is probably hiding in there.',
       ],
     },
-    { type: 'h2', text: 'What is NOT a tax event' },
-    {
-      type: 'p',
-      text:
-        'A few moments that look like they should trigger tax but do not:',
-    },
+    { type: 'h2', text: 'Things that are NOT taxed (good news)' },
     {
       type: 'ul',
       items: [
-        'The grant of RSUs. No tax until they actually vest. The grant itself is just a promise.',
-        'Holding vested RSU shares without selling. No tax. The FMV-at-vest was already taxed; further holding only changes the eventual capital-gain math.',
-        'Transferring vested shares into your own brokerage account. No tax. It is the same owner, no taxable disposition.',
-        'Donating RSUs to charity. This is a deductible event — you can take a deduction at FMV without paying cap gain on the appreciation. (Separate post topic.)',
+        '**Getting the grant.** When the company first promises you RSUs, nothing is taxed. The clock has not started.',
+        '**Holding shares after they vest.** Just sitting on them? No tax. You only deal with tax again when you sell.',
+        '**Moving shares to your own brokerage account.** Same owner, no sale, no tax.',
+        '**Donating shares to charity.** Often a tax *win* — you can skip the gain tax entirely. (That is its own post.)',
       ],
     },
-    { type: 'h2', text: 'The takeaway' },
+    { type: 'h2', text: 'Bottom line' },
     {
       type: 'p',
       text:
-        'RSUs are taxed once, in two parts: ordinary income at vest, and capital gain/loss at sale. The "double-taxation" complaint almost always traces to a broker reporting a $0 cost basis on Form 1099-B that you forgot to adjust. If you adjust the basis correctly, the math works out clean — each dollar is taxed exactly once at the rate appropriate to its character (ordinary at vest, capital at appreciation).',
+        'RSUs are taxed once — just in two pieces. Income tax when they vest, and a smaller gain tax later if the price went up. The "I am being double-taxed!" panic is almost always that $0 cost on the broker form. Fix that one number and everything lines up.',
     },
     {
       type: 'p',
       text:
-        'Use the RSU Tax Shortfall calculator to project your total tax owed for the year and check whether your withholding plus expected tax owed matches. Catch the cost-basis error in March, not April.',
+        'Want to make sure enough tax is being held back so April does not bite? Run your numbers through the RSU Tax Shortfall calculator. It is a lot easier to catch a problem in March than to discover it on April 15.',
     },
     {
       type: 'p',
       text:
-        'Sources: IRC §83(a) (taxation of property transferred for services); IRC §1012 (cost basis); Treas. Reg. §1.83-2; IRS Publication 525 (Taxable and Nontaxable Income); IRS Form 8949 instructions (cost basis adjustments); IRC §6654 (estimated tax safe harbor).',
+        'Sources: IRC §83(a) (RSUs taxed as income at vest); IRC §1012 (your cost basis); Treas. Reg. §1.83-2; IRS Publication 525 (Taxable and Nontaxable Income); IRS Form 8949 instructions (fixing cost basis); IRC §6654 (estimated-tax safe harbor).',
     },
   ],
 };
