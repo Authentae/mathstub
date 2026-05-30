@@ -12,6 +12,14 @@ export const rsuCostBasisFixForm8949: BlogPost = {
   affiliateOfferIds: ['turbotax-premier'],
   quickAnswer:
     'The broker reports cost basis = $0 on your 1099-B for RSU sales because it only knows you paid $0 to acquire the shares. Your real basis is the FMV at vest (already taxed as W-2 wages). Adjust on Form 8949: enter the broker basis ($0) in column (e), enter code B in column (f), and put the negative basis adjustment in column (g): −(FMV at vest × shares). Column (h) becomes (sale price − FMV at vest) × shares — the correct gain.',
+  keyPoints: [
+    'Brokers often report a $0 cost basis on sold RSU shares, which is wrong.',
+    'Cost basis is what the shares were already worth — for RSUs, their value on vest day.',
+    'A $0 basis makes the IRS treat your whole sale price as profit, so you overpay.',
+    'You already paid wage tax on that value at vesting, so this taxes it twice.',
+    'Fix it on Form 8949: keep the $0, add code B, and subtract the vest-day value in column (g).',
+    'You can amend the last 3 years if you already overpaid from this error.',
+  ],
   blocks: [
     {
       type: 'p',

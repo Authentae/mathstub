@@ -12,6 +12,14 @@ export const byState: BlogPost = {
   affiliateOfferIds: ['turbotax-premier', 'harness-wealth'],
   quickAnswer:
     'State tax on RSU vests in the four biggest tech states: California withholds at 10.23% supplemental and taxes up to 13.3% marginal (or 14.3% with the Mental Health Services Tax surcharge). New York withholds at 11.7% supplemental, with NYC residents adding up to 3.876% local. Washington and Texas have zero state income tax — though Washington does have a 7% capital-gains excise tax on sales above the indexed threshold. Combined federal + state + FICA typically lands in the 35-47% range for high earners.',
+  keyPoints: [
+    'Federal tax on RSUs is the same in every state; your state tax is what changes the total.',
+    'California is the priciest: up to about 13.3% (more with a surcharge) and it chases people who move away.',
+    'New York is also steep, and New York City adds its own tax on top.',
+    'Texas and Washington charge no state income tax on your paycheck.',
+    'Washington does tax big stock-sale gains above roughly $270k at 7%.',
+    "If you moved mid-year, both states can tax a slice based on where you worked while the shares vested.",
+  ],
   blocks: [
     {
       type: 'p',

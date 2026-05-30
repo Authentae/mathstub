@@ -12,6 +12,13 @@ export const supplementalRule: BlogPost = {
   affiliateOfferIds: ['turbotax-premier', 'harness-wealth'],
   quickAnswer:
     'Employers withhold federal tax on bonuses and RSU vests at a flat 22% on the first $1,000,000 of supplemental wages paid in a calendar year, then 37% on every dollar above that. The threshold is per-employee per-employer per-year, not per-payment. Multi-employer mid-year switches reset the counter, which can create an under-withholding gap. Rule: Treas. Reg. §31.3402(g)-1; IRS Pub 15-T.',
+  keyPoints: [
+    'Bonuses and RSU vests are withheld at a flat 22%, then 37% past $1M in a year.',
+    'That $1M limit resets for each employer — so switching jobs mid-year can under-withhold a lot.',
+    'These flat rates are usually too low if your real tax bracket is higher than 22%.',
+    'At the very top, even 37% misses state, Medicare, and local taxes that stack on top.',
+    'Fix a shortfall before Dec 31: add extra withholding on your W-4 or pay the IRS directly.',
+  ],
   blocks: [
     {
       type: 'p',

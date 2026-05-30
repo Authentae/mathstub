@@ -16,6 +16,7 @@ import { ReportIssue } from '@/components/ReportIssue';
 import { RelatedPosts } from '@/components/RelatedPosts';
 import { CalcCta } from '@/components/CalcCta';
 import { QuickAnswer } from '@/components/QuickAnswer';
+import { KeyPoints } from '@/components/KeyPoints';
 import { TableOfContents, slugifyHeading } from '@/components/TableOfContents';
 import { ReadTime } from '@/components/ReadTime';
 import { WasThisHelpful } from '@/components/WasThisHelpful';
@@ -110,6 +111,10 @@ export default async function PostPage({ params }: Props) {
         </div>
 
         {post.quickAnswer && <QuickAnswer text={post.quickAnswer} />}
+
+        {post.keyPoints && post.keyPoints.length > 0 && (
+          <KeyPoints points={post.keyPoints} />
+        )}
 
         <TableOfContents blocks={post.blocks} />
 

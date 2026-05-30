@@ -12,6 +12,13 @@ export const doubleTriggerRsuIpo: BlogPost = {
   affiliateOfferIds: ['harness-wealth', 'turbotax-premier'],
   quickAnswer:
     'Double-trigger RSUs do not vest for tax purposes until BOTH (1) the time-based vesting schedule completes for a tranche AND (2) a qualifying liquidity event occurs (typically IPO + the post-IPO lockup expires). Until the second trigger fires, no tax — the shares are still subject to substantial risk of forfeiture under IRC §83(a). When IPO finally happens, every previously time-vested tranche becomes ordinary W-2 income at the same moment, at the post-lockup share price. Often results in $500k-$5M+ ordinary income concentrated in one tax year.',
+  keyPoints: [
+    'Pre-IPO RSUs are not taxed until two things happen: they time-vest AND the company goes public.',
+    'When the IPO finally hits, years of vested shares all become taxable income in one year.',
+    'That one-year spike is often $500k to $5M+ of income — sometimes more than your total pay there.',
+    "The flat 22%/37% withholding usually won't cover the bill, so you can owe a lot more in April.",
+    'Best moves: sell at lockup to diversify, top up withholding, and get a CPA before IPO.',
+  ],
   blocks: [
     {
       type: 'p',

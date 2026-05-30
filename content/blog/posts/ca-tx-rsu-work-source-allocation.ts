@@ -12,6 +12,13 @@ export const caTxRsuWorkSourceAllocation: BlogPost = {
   affiliateOfferIds: ['turbotax-premier'],
   quickAnswer:
     'When you move CA → TX with unvested RSUs, California does not stop taxing them. CA uses "work-source allocation" (per FTB Pub 1004): for each vest, the vesting period is split by months worked in each state, and CA taxes its share of the vest at the top marginal rate (13.3%) even after you have moved. A 4-year vest cliff with a Year 2 move means CA taxes ~50% of remaining vests over the next 2 years — typically $20–$40k of surprise tax. Plan estimated payments to CA for the post-move years to avoid §19136 underpayment penalties.',
+  keyPoints: [
+    'Moving to Texas does NOT make your future RSU vests California-tax-free.',
+    'California taxes each vest based on the months you worked in CA while it was vesting.',
+    "CA taxes its share at its top rate (13.3%), no matter where you live when it vests.",
+    'A mid-cliff move can leave CA taxing ~50% of your remaining vests — often $20k–$40k.',
+    'Pay CA quarterly estimates after the move, or you owe a §19136 underpayment penalty.',
+  ],
   blocks: [
     {
       type: 'p',

@@ -12,6 +12,14 @@ export const howToReportRsuTaxReturn: BlogPost = {
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],
   quickAnswer:
     'Report RSUs in two places on your federal return: (1) RSU vest income is already in W-2 Box 1 — nothing to add. (2) Any shares you sold during the year get reported on Form 8949 with the sale rolled up to Schedule D. The critical step: adjust the cost basis on Form 8949 column (g) to equal the FMV at vest. Most brokers report $0 cost basis on the 1099-B, which would double-tax the vested value. The adjustment fixes it.',
+  keyPoints: [
+    'Your vest income is already in W-2 Box 1 — don’t add it again.',
+    'If you sold any shares, report each sale on Form 8949, which rolls up to Schedule D.',
+    'Watch out: your broker’s 1099-B often shows a $0 cost basis, which double-taxes you.',
+    'Fix it on Form 8949: set the cost basis to the share value on your vest day.',
+    'Use adjustment code B to flag that the broker’s basis was wrong.',
+    'If you didn’t sell any shares, there’s nothing extra to file — the W-2 handled it.',
+  ],
   blocks: [
     {
       type: 'p',

@@ -12,6 +12,14 @@ export const whenToSellRsus: BlogPost = {
   affiliateOfferIds: ['turbotax-premier', 'harness-wealth'],
   quickAnswer:
     'For most tech workers, sell at vest. The FMV is already taxed as W-2 income whether you sell or hold, so holding is equivalent to taking a cash bonus and buying $X of your employer\'s stock with it. Holding past 1 year saves ~5-7% in LTCG tax versus ordinary rates, but exposes you to 30-50% single-stock volatility. Default: same-day sale + reinvest in a diversified portfolio.',
+  keyPoints: [
+    'For most people, the smart move is to sell RSUs the day they vest.',
+    'You pay the same income tax whether you sell now or keep the shares.',
+    'Holding the shares is like taking cash and buying your own company stock with it.',
+    'Waiting over a year saves only about 5-7% in tax on any growth.',
+    'But one stock can swing 30-50% in a year — far more than that tax saving.',
+    'Default plan: sell at vest, set aside the tax, and reinvest in a mix of funds.',
+  ],
   blocks: [
     {
       type: 'p',

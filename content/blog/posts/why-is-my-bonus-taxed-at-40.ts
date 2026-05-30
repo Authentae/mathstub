@@ -12,6 +12,14 @@ export const whyIsMyBonusTaxedAt40: BlogPost = {
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],
   quickAnswer:
     'A cash bonus is "supplemental wages" under Treas. Reg. §31.3402(g)-1. Federal income tax withholds at a flat 22% (or 37% above $1M YTD), regardless of your marginal rate. Add state supplemental (CA 10.23%, NY 11.7%, TX 0%), Medicare 1.45%, Additional Medicare 0.9% above $200k YTD, and Social Security 6.2% up to the wage base — and the deduction routinely lands in the 35-40% range. None of this is a mistake; it is the IRS-mandated formula. Reconcile at filing.',
+  keyPoints: [
+    'The big bite is not a mistake — the IRS has a special flat rule for bonuses.',
+    'Bonuses are "supplemental wages": the federal piece is a flat 22% no matter your bracket.',
+    'On top of that come state tax, Medicare, and Social Security, which stack to about 40%.',
+    'When these all hit at once, roughly 40% withheld is normal, not an error.',
+    'If your real tax rate is above 22%, you may still owe more at tax time.',
+    'Fix any shortfall before year-end with extra W-4 withholding (line 4(c)).',
+  ],
   blocks: [
     {
       type: 'p',

@@ -12,6 +12,14 @@ export const megaBackdoorRothEligibility: BlogPost = {
   affiliateOfferIds: ['turbotax-premier'],
   quickAnswer:
     'Two things must be true: (1) your 401(k) plan allows after-tax (non-Roth, non-pre-tax) contributions, and (2) the plan supports either in-service distributions or in-plan Roth conversions. If both check out, your annual room equals $70,000 (the §415(c) overall limit) minus your elective deferral ($23,500 max), employer match, and any profit-sharing. Typical FAANG L5: ~$35,000/year of additional Roth space on top of the regular 401(k).',
+  keyPoints: [
+    'It works only if your 401(k) plan offers two specific features.',
+    'Feature 1: lets you add extra "after-tax" money beyond the normal $23,500 cap.',
+    'Feature 2: lets you move that money into a Roth (in-plan or as a rollout).',
+    'In 2025 the overall cap is $70,000, minus what you and your employer already put in.',
+    'A typical senior engineer gets about $35,000/year of extra Roth room this way.',
+    'Convert the money fast — earnings that pile up first get taxed when you convert.',
+  ],
   blocks: [
     {
       type: 'p',

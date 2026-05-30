@@ -12,6 +12,13 @@ export const rsusTaxedTwice: BlogPost = {
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],
   quickAnswer:
     'No. Each RSU dollar is taxed exactly once. At vest, the fair-market value is taxed as ordinary W-2 income under IRC §83(a). Your cost basis equals that FMV per IRC §1012. At sale, only the appreciation FROM vest TO sale is taxed as capital gain. The "double taxation" panic almost always traces to a Form 1099-B showing $0 cost basis — fix it on Form 8949 column (g).',
+  keyPoints: [
+    'No, RSUs are not taxed twice — each dollar is taxed once.',
+    'Tax #1: when shares vest, their value counts as normal salary income.',
+    'Tax #2: when you sell, only the gain since vesting is taxed.',
+    'The “double tax” scare is usually a broker mistake: your 1099-B shows a $0 cost basis.',
+    'The fix: set your cost basis to the share price on your vest day (Form 8949).',
+  ],
   blocks: [
     {
       type: 'p',
