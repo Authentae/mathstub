@@ -393,6 +393,13 @@ export default function HomePage() {
           >
             see the diagnostic guide →
           </Link>{' '}
+          · see the whole journey →{' '}
+          <Link
+            href="/equity-comp-tax-map"
+            className="text-brand-400 hover:text-brand-300"
+          >
+            /equity-comp-tax-map
+          </Link>{' '}
           · embed mathstub on your site →{' '}
           <Link href="/embed" className="text-brand-400 hover:text-brand-300">
             /embed
