@@ -64,7 +64,7 @@ export function Footer() {
               </li>
             ))}
           </ul>
-          <p className="mt-4 text-xs italic text-gray-500 dark:text-gray-500">
+          <p className="mt-4 text-xs italic text-gray-500 dark:text-gray-400">
             Affiliate disclosure — we earn from sales on Mathstub-owned products listed above.
             Free calculators always stay free.
           </p>
@@ -185,7 +185,7 @@ export function Footer() {
           </ul>
         </div>
       </div>
-      <p className="mx-auto mt-8 max-w-5xl px-4 text-xs text-gray-500 dark:text-gray-500">
+      <p className="mx-auto mt-8 max-w-5xl px-4 text-xs text-gray-500 dark:text-gray-400">
         © {new Date().getFullYear()} {SITE_NAME}. Some links on this site are
         affiliate links — we may earn a commission at no extra cost to you.
       </p>
