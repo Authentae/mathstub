@@ -218,7 +218,7 @@ function ResultPanel({ r }: { r: RothSequencerResult }) {
         }`}>
           {usd.format(r.totalAnnualRothCapacityUsd)}
         </p>
-        <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">{r.recommendationHeadline}</p>
+        <p className="mt-2 text-sm font-medium text-gray-800 dark:text-gray-200">{r.recommendationHeadline}</p>
       </div>
 
       <ol className="space-y-3">
@@ -247,7 +247,7 @@ function StepCard({ step }: { step: SequencerStep }) {
           </span>
         )}
       </div>
-      <p className={`mt-2 text-sm ${blocked ? 'text-slate-500 dark:text-slate-400' : 'text-gray-700 dark:text-gray-300'}`}>
+      <p className={`mt-2 text-sm leading-relaxed ${blocked ? 'text-slate-600 dark:text-slate-400' : 'text-gray-700 dark:text-gray-200'}`}>
         {step.body}
       </p>
     </li>
