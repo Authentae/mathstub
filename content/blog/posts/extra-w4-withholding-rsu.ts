@@ -12,6 +12,14 @@ export const extraW4: BlogPost = {
   affiliateOfferIds: ['turbotax-premier', 'empower'],
   quickAnswer:
     'To cover an RSU shortfall: log into your payroll system (Workday, ADP, Gusto, Rippling, Justworks), open Form W-4, and enter a flat dollar amount on line 4(c) labelled "Additional withholding per pay period". Withholding is treated as paid evenly across the year per IRC §6654(g)(1), so a Q4 top-up retroactively cures earlier under-withholding — unlike a late quarterly estimated payment, which only counts from the date it is paid. The single most powerful tool for cleaning up an equity-comp tax shortfall mid-year.',
+  keyPoints: [
+    'Form W-4 line 4(c) lets you add a flat extra dollar amount to each paycheck’s tax.',
+    'To find the amount: divide your shortfall by the pay periods left this year.',
+    'Update it in your payroll system (Workday, ADP, Gusto) — no math, no IRS forms.',
+    'Big perk: the IRS treats withholding as paid evenly all year, even a Q4 top-up.',
+    'That beats a late estimated payment, which only counts from the day you pay it.',
+    'Undo it next January, or you’ll over-withhold all year and lend the IRS money free.',
+  ],
   blocks: [
     {
       type: 'p',

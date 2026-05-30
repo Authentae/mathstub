@@ -12,6 +12,13 @@ export const esppQualifyingVsDisqualifying: BlogPost = {
   affiliateOfferIds: ['turbotax-premier', 'harness-wealth'],
   quickAnswer:
     'Qualifying disposition (hold ≥2 years from offering date AND ≥1 year from purchase): the §423 discount is ordinary income (capped at lesser of offering-date discount OR sale gain), the rest of the gain is long-term capital gain. Disqualifying disposition (sell earlier): the FULL discount at purchase becomes ordinary W-2 income that year, regardless of sale price. Qualifying is usually better for appreciated stock, but the 1-2 year hold introduces real concentration risk that often outweighs the tax saving.',
+  keyPoints: [
+    'Hold ESPP shares long enough (2 years from offer, 1 from purchase) for the lower-tax "qualifying" sale.',
+    'Sell earlier and the whole discount is taxed as regular income — even if the stock dropped.',
+    'Holding usually wins on taxes when the stock has gone up a lot past the discount.',
+    'Holding also wins if the stock crashed: you skip being taxed on a discount you no longer have.',
+    "But holding one stock 1-2 years is risky — that risk often outweighs the tax savings.",
+  ],
   blocks: [
     {
       type: 'p',

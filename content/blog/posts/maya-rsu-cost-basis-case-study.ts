@@ -13,6 +13,14 @@ export const mayaRsuCostBasisCaseStudy: BlogPost = {
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],
   quickAnswer:
     "Maya's broker reported $0 cost basis on her 100-share RSU sale 1099-B because IRC §6045 only asks brokers to report what the holder paid — and Maya paid $0 at vest. Her real basis is FMV at vest ($50 × 100 = $5,000), already taxed as W-2 ordinary income. Without the Form 8949 column (g) adjustment, the IRS taxes the same $5,000 twice: once at vest, once at sale. The fix takes 60 seconds: enter $0 in column (e), code 'B' in (f), −$5,000 in (g). Column (h) auto-computes the correct $3,000 long-term capital gain instead of the wrong $8,000.",
+  keyPoints: [
+    'Maya, an engineer, saved up to $2,574 by fixing one number on her tax return.',
+    'Her broker’s 1099-B wrongly showed a $0 cost basis on shares she sold for $8,000.',
+    'She had already paid tax on $5,000 of that at vest, so $5,000 was her real basis.',
+    'On Form 8949 she set the basis to $5,000, cutting her taxable gain to $3,000.',
+    'She also amended an old return with the same mistake, recovering about $1,635 more.',
+    'Lesson: never trust a $0 basis — the bigger your share sales, the more it saves.',
+  ],
   blocks: [
     {
       type: 'p',

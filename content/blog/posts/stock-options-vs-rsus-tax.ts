@@ -12,6 +12,14 @@ export const stockOptionsVsRsusTax: BlogPost = {
   affiliateOfferIds: ['harness-wealth', 'turbotax-premier'],
   quickAnswer:
     'RSUs are taxed at vest as ordinary W-2 income on the full FMV under IRC §83(a). Stock options are taxed at exercise, not at grant or vest. ISOs (IRC §422) add the bargain element to AMT income but not regular income — sometimes triggering AMT but allowing long-term capital gains treatment on a later qualifying sale. NSOs (IRC §83) tax the bargain element as ordinary W-2 income at exercise plus FICA. Net: RSUs are simpler but always trigger ordinary tax; options defer tax until exercise and can convert appreciation to LTCG.',
+  keyPoints: [
+    'RSUs are taxed the moment they vest, on their full value, as regular salary.',
+    'Stock options are only taxed when you buy (exercise) the shares — not before.',
+    'ISOs can dodge regular income tax but may trigger the AMT, a separate tax.',
+    'NSOs are taxed as regular salary on your discount the day you exercise.',
+    'Options can turn more of your gain into lower-taxed long-term capital gains.',
+    'RSUs are simplest and need no cash; options need cash up front but can save tax.',
+  ],
   blocks: [
     {
       type: 'p',

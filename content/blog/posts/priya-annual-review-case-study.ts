@@ -13,6 +13,14 @@ export const priyaAnnualReviewCaseStudy: BlogPost = {
   affiliateOfferIds: ['turbotax-premier', 'harness-wealth'],
   quickAnswer:
     'A 90-minute year-end tax review for a $200k+ tech worker with equity catches things tax-prep software cannot — because the math happens in October–December, not in April. Priya, a $310k MFJ NY senior engineer, found 5 issues: a $1,400 §6654 underpayment penalty she could still avoid, $77,000 of Mega-Backdoor Roth capacity her HR plan allowed but her broker never surfaced, state AMT compounding on her ISO exercise, an RSU cost-basis flag on her September 1099-B preview, and a 38% AAPL concentration risk. Total: $11,300 of cash saved + $77k of tax-shelter capacity unlocked.',
+  keyPoints: [
+    'A 90-minute year-end review saved Priya $11,300 in cash and unlocked $77,000 of tax-free savings room.',
+    "She did it in October, while she could still change things — not in April when it's too late.",
+    'She topped up her paycheck withholding (W-4 line 4c) to dodge a $1,400 penalty.',
+    "She found her 401(k) allowed a Mega-Backdoor Roth her HR never mentioned.",
+    'She caught a broker error that would have overtaxed her sold RSUs by about $11,000.',
+    "She even amended a past return to recover $4,800 from the same broker mistake.",
+  ],
   blocks: [
     {
       type: 'p',

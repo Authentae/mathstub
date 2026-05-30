@@ -12,6 +12,14 @@ export const whyRsuTooHigh: BlogPost = {
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],
   quickAnswer:
     'Your employer withholds federal tax on RSU vests at a flat 22% under IRS supplemental-wage rules, but your real marginal rate is often 32-37%. The gap creates an April surprise that hits high earners hardest. Fix it before year-end by topping up Form W-4 line 4(c) (treated as paid evenly across the year per IRC §6654(g)) or making a quarterly estimated payment via IRS Direct Pay.',
+  keyPoints: [
+    'Your employer only holds back 22% in federal tax when RSUs vest.',
+    'But high earners are often really in the 32-37% tax bracket.',
+    'That gap is why you can owe thousands more in April than expected.',
+    'On a $50k vest at a 35% rate, the federal shortfall is about $6,500.',
+    'Best fix: add extra withholding on Form W-4 line 4(c) before year-end.',
+    'A W-4 top-up counts as paid all year, so it erases the earlier shortfall.',
+  ],
   blocks: [
     {
       type: 'p',

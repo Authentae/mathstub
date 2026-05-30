@@ -13,6 +13,13 @@ export const danielCaTxCaseStudy: BlogPost = {
   affiliateOfferIds: ['harness-wealth', 'turbotax-premier'],
   quickAnswer:
     "Daniel moved CA→TX in August 2024 with 1,600 unvested RSUs from a 2022 grant. He assumed TX residency = $0 state tax on future vests. Wrong. CA FTB Pub 1004 sources equity comp by where services were performed during the vesting period, not where the holder lives at vest. CA still claims its proportional share of every post-move vest. Daniel's 9 post-move vests: ~$17,000 CA tax. Adding ISO bargain-element exposure: $34,000 total. He caught it in October, set up CA Form 540-ES quarterly payments to satisfy §19136 safe harbor, avoided the ~$1,400 penalty. File Form 540NR (non-resident) for 2024 onward.",
+  keyPoints: [
+    'An engineer moved CA→TX expecting $0 state tax on future vests — he actually owed $34,000.',
+    'California still taxes each vest based on the months he worked in CA while it vested.',
+    "His 9 post-move RSU vests alone cost about $17,000 in CA tax; stock options pushed it to $34,000.",
+    'He caught it in October and set up quarterly CA payments before the deadline.',
+    'That avoided a ~$1,400 underpayment penalty; he files a CA non-resident return (Form 540NR).',
+  ],
   blocks: [
     {
       type: 'p',

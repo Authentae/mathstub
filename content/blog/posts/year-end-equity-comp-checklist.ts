@@ -12,6 +12,14 @@ export const yearEndChecklist: BlogPost = {
   affiliateOfferIds: ['turbotax-premier', 'harness-wealth', 'carta'],
   quickAnswer:
     'Run this in December: (1) project YTD withholding vs actual tax owed, (2) top up Form W-4 line 4(c) if shortfall > $1,000, (3) check ESPP qualifying-disposition holding periods, (4) model AMT on any ISO exercises, (5) confirm 1099-B cost-basis adjustments for vested RSUs sold, (6) max 401(k) and HSA, (7) tax-loss harvest, (8) decide on charitable stock gifts, (9) verify state residency sourcing, (10) export records for your CPA.',
+  keyPoints: [
+    'A 10-item December checklist to dodge an April tax surprise on your equity pay.',
+    'Start by comparing what was withheld this year against what you will actually owe.',
+    'If you are short by more than $1,000, add extra W-4 withholding before year-end.',
+    'Five moves lock in at midnight Dec 31: charity stock gifts, loss harvesting, 401(k)/HSA, ISO timing, and W-4.',
+    'Things like IRA contributions and fixing your 1099-B basis can wait until April.',
+    "The two highest-value steps take 15 minutes: run the shortfall calculator and update line 4(c).",
+  ],
   blocks: [
     {
       type: 'p',

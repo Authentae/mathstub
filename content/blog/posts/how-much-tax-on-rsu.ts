@@ -12,6 +12,14 @@ export const howMuchTaxOnRsu: BlogPost = {
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],
   quickAnswer:
     'Most US tech workers pay 30-40% of an RSU vest in combined federal income tax, state tax, and FICA. Effective rate by state at the 32% federal bracket: ~34% in Texas/Florida/Washington, ~39% in Illinois/Massachusetts, ~43% in California, ~46% in New York City. Your employer typically withholds at 22% federal supplemental — well below most workers\' real marginal rate, hence the April surprise.',
+  keyPoints: [
+    'Most US tech workers lose 30–40% of an RSU vest to combined tax.',
+    'Four taxes stack at vest: federal, state, Medicare, and Social Security.',
+    'No-tax states (TX, FL, WA) land near 34%; California can reach 43–46%.',
+    'Your employer usually withholds just 22% federal — below your real rate.',
+    'That gap between 22% and your true rate is the classic April tax surprise.',
+    'Rule of thumb: a $50k vest is really worth about $28–35k after tax.',
+  ],
   blocks: [
     {
       type: 'p',

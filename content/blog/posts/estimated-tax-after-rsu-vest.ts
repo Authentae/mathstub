@@ -12,6 +12,14 @@ export const estimatedTax: BlogPost = {
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],
   quickAnswer:
     'You only owe a federal underpayment penalty under IRC §6654 if your total unpaid tax for the year exceeds $1,000 AND your withholding falls below the safe harbor (90% of current-year tax OR 100% of prior-year tax, 110% if prior AGI > $150k). If a vest pushes you past those thresholds, top up Form W-4 line 4(c) before December 31 (treated as paid evenly across the year per §6654(g)(1)) or send a quarterly estimated payment via IRS Direct Pay.',
+  keyPoints: [
+    'Maybe — you only owe an estimated payment if too little tax was withheld this year.',
+    'RSU vests are often withheld at a flat 22%, well below most high earners’ real rate.',
+    "The IRS won't penalize you for owing tax, only for prepaying too little during the year.",
+    'You’re safe if you prepay 90% of this year’s tax, or 100–110% of last year’s.',
+    'No penalty at all if your total unpaid tax for the year is under $1,000.',
+    'Best fix: extra W-4 paycheck withholding counts as paid all year, even if you start late.',
+  ],
   blocks: [
     {
       type: 'p',

@@ -12,6 +12,14 @@ export const multiStateRsuSourcingCalifornia: BlogPost = {
   affiliateOfferIds: ['harness-wealth', 'turbotax-premier'],
   quickAnswer:
     'California uses "workday allocation" to source RSU income: at each vest, the FTB calculates the percentage of working days during the vesting period that were physically performed in California and applies that fraction to the FMV. If you worked 60% of the vesting period in CA and 40% in TX, CA claims 60% of the vest regardless of where you live on vest day. Same rule applies in reverse for inbound movers. Per FTB Pub 1004; Cal. Code Regs. tit. 18, §17951-4(d).',
+  keyPoints: [
+    'Moving out of California before a vest does not fully escape California tax.',
+    'California taxes based on where you did the work, not where you live at vesting.',
+    'The math: CA workdays from grant to vest, divided by your total workdays.',
+    'That fraction of the vest is California-source income and gets taxed there.',
+    'The rule works in reverse too: moving into CA can lower your CA share.',
+    'Track your workdays carefully — California audits this aggressively.',
+  ],
   blocks: [
     {
       type: 'p',

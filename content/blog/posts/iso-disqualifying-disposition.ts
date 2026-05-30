@@ -12,6 +12,14 @@ export const isoDisqualifyingDisposition: BlogPost = {
   affiliateOfferIds: ['harness-wealth', 'turbotax-premier'],
   quickAnswer:
     'A disqualifying disposition of ISO shares (sale before 2 years from grant AND 1 year from exercise) reclassifies the bargain element from an AMT preference item back into ordinary W-2 income — and the previously-paid AMT becomes recoverable as a Minimum Tax Credit under IRC §53. Disqualifying is usually worse than qualifying, but two narrow cases reverse it: (1) the stock has crashed since exercise — the disqualifying disposition reduces ordinary income to the actual gain, freeing capital loss; or (2) you exercised at a high FMV and the price has been flat — disqualifying lets you recover AMT immediately instead of waiting years.',
+  keyPoints: [
+    'It means selling ISO shares early — before 2 years from grant and 1 year from exercise.',
+    'Selling early taxes your exercise discount as salary instead of lower capital-gains rates.',
+    'Usually that costs more — but in two cases it’s actually the smarter move.',
+    'If the stock crashed, selling shrinks your taxable income to the real, smaller gain.',
+    'It also lets you recover the alternative minimum tax (AMT) you prepaid right away.',
+    'You can split the shares: sell some now, hold the rest for the lower tax rate.',
+  ],
   blocks: [
     {
       type: 'p',
