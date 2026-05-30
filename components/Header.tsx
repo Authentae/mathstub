@@ -40,6 +40,14 @@ export function Header() {
             </li>
             <li>
               <Link
+                href="/equity-comp-tax-map"
+                className="text-gray-700 hover:text-brand-700 dark:text-gray-200 dark:hover:text-brand-100"
+              >
+                Tax Map
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="/blog"
                 className="text-gray-700 hover:text-brand-700 dark:text-gray-200 dark:hover:text-brand-100"
               >
@@ -82,6 +90,14 @@ export function Header() {
                   ))}
                 </ul>
               </details>
+            </li>
+            <li>
+              <Link
+                href="/equity-comp-tax-map"
+                className="inline-flex min-h-11 items-center rounded-md px-3 py-2 text-gray-700 hover:bg-gray-100 hover:text-brand-700 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-brand-100"
+              >
+                Tax Map
+              </Link>
             </li>
             <li>
               <Link

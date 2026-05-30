@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
     '',
     '/start-here',
+    '/equity-comp-tax-map',
     '/blog',
     '/glossary',
     '/toolkit',
