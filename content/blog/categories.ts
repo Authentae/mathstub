@@ -18,11 +18,14 @@ export interface BlogCategory {
   blurb: string;
   /** Post slugs in this category. */
   slugs: string[];
+  /** OG share-card path under /public for posts in this category. */
+  card: string;
 }
 
 export const blogCategories: BlogCategory[] = [
   {
     id: 'rsu-basics',
+    card: '/og/cat-rsu.png',
     name: 'RSU basics',
     blurb:
       'The 22% supplemental withholding gap, double-taxation myth, vest mechanics, and the questions everyone googles after their first vest.',
@@ -37,6 +40,7 @@ export const blogCategories: BlogCategory[] = [
   },
   {
     id: 'paystub-w2',
+    card: '/og/cat-paystub.png',
     name: 'Paystub & W-2 mechanics',
     blurb:
       'Decoding the strange line items on your paystub and W-2 — the RSU tax offset, Box 14 codes, and the sell-to-cover vs net-share-settlement withholding mechanic.',
@@ -48,6 +52,7 @@ export const blogCategories: BlogCategory[] = [
   },
   {
     id: 'stock-options',
+    card: '/og/cat-options.png',
     name: 'Stock options (ISO / NSO)',
     blurb:
       'ISOs, NSOs, AMT, the §83(b) early-exercise election, and AMT credit recovery — the full equity-options tax cluster.',
@@ -60,6 +65,7 @@ export const blogCategories: BlogCategory[] = [
   },
   {
     id: 'espp',
+    card: '/og/cat-espp.png',
     name: 'ESPP',
     blurb:
       'Employee Stock Purchase Plan tax math — qualifying vs disqualifying disposition timing under IRC §423.',
@@ -69,6 +75,7 @@ export const blogCategories: BlogCategory[] = [
   },
   {
     id: 'bonus-supplemental',
+    card: '/og/cat-bonus.png',
     name: 'Bonus & supplemental wages',
     blurb:
       'The 22%/37% supplemental withholding rule that applies to bonuses, RSU vests, and NSO exercises alike.',
@@ -79,6 +86,7 @@ export const blogCategories: BlogCategory[] = [
   },
   {
     id: 'filing-strategy',
+    card: '/og/cat-filing.png',
     name: 'Filing & withholding strategy',
     blurb:
       'How to fix the shortfall before April: W-4 line 4(c), IRC §6654 safe harbor, quarterly estimates, Form 8949 cost-basis adjustments, and the year-end checklist.',
@@ -95,6 +103,7 @@ export const blogCategories: BlogCategory[] = [
   },
   {
     id: 'multi-state-ipo',
+    card: '/og/cat-multistate.png',
     name: 'Multi-state moves & IPO events',
     blurb:
       'State-residency sourcing rules, California workday allocation, and the double-trigger lockup tax bomb at IPO.',
