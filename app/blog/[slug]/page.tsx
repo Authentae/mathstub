@@ -38,10 +38,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = findPost(slug);
   if (!post) return {};
+  const category = findCategoryForSlug(post.slug);
   return buildMetadata({
     slug: `blog/${post.slug}`,
     title: post.title,
     description: post.description,
+    ogImagePath: category?.card,
   });
 }
 
