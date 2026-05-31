@@ -73,7 +73,7 @@ export default async function PostPage({ params }: Props) {
         ])}
       />
 
-      <article className="mx-auto max-w-3xl px-4 py-12">
+      <article className="mx-auto max-w-[680px] px-5 py-16 sm:py-20">
         {/*
           Breadcrumb: All posts → Category. Uses the categories.ts mapping
           so it stays in sync with the /blog index. Renders even if the
@@ -103,12 +103,15 @@ export default async function PostPage({ params }: Props) {
             </p>
           );
         })()}
-        <h1 className="mt-2 text-3xl font-bold text-gray-900 dark:text-gray-100">
+        <h1 className="mt-3 text-[32px] font-bold leading-[1.12] tracking-[-0.02em] text-gray-900 dark:text-gray-50 sm:text-[40px]">
           {post.title}
         </h1>
-        <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1">
-          <LastUpdatedBadge taxYear={2026} isoDate={post.dateModified} />
+        <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 border-b border-gray-200 pb-5 text-sm text-gray-500 dark:border-gray-800">
+          <span className="font-medium text-gray-700 dark:text-gray-300">{post.authorName}</span>
+          <span aria-hidden="true">·</span>
           <ReadTime blocks={post.blocks} />
+          <span aria-hidden="true">·</span>
+          <LastUpdatedBadge taxYear={2026} isoDate={post.dateModified} />
         </div>
 
         {post.quickAnswer && <QuickAnswer text={post.quickAnswer} />}
@@ -121,9 +124,9 @@ export default async function PostPage({ params }: Props) {
 
         <Disclaimer />
 
-        <div className="mt-6 space-y-5 text-[17px] leading-[1.75] text-gray-800 dark:text-gray-200">
+        <div className="mt-10 space-y-6 text-[18px] leading-[1.8] text-gray-700 dark:text-gray-300">
           {post.blocks.map((block, i) => (
-            <Block key={i} block={block} />
+            <Block key={i} block={block} isLede={i === 0 && block.type === 'p'} />
           ))}
         </div>
 
@@ -162,15 +165,28 @@ export default async function PostPage({ params }: Props) {
   );
 }
 
-function Block({ block }: { block: BlogBlock }) {
+function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }) {
   switch (block.type) {
     case 'p':
+      // First paragraph reads as a quiet "lede" — a touch larger and lighter,
+      // easing the reader in. No drop-cap: on a tax site it reads gimmicky;
+      // calm sophistication beats decoration.
+      if (isLede) {
+        return (
+          <p className="text-[21px] leading-[1.7] text-gray-600 dark:text-gray-300">
+            {renderInline(block.text)}
+          </p>
+        );
+      }
       return <p>{renderInline(block.text)}</p>;
     case 'h2':
+      // Section heading: generous space above is the visual break (the
+      // Stripe/Substack approach) — no rules or accent bars cluttering it.
+      // Strong size + tight tracking does the work.
       return (
         <h2
           id={slugifyHeading(block.text)}
-          className="mt-6 scroll-mt-20 text-2xl font-bold text-gray-900 dark:text-gray-100"
+          className="mt-14 scroll-mt-24 text-[28px] font-bold leading-tight tracking-[-0.01em] text-gray-900 dark:text-gray-50"
         >
           {block.text}
         </h2>
@@ -179,39 +195,65 @@ function Block({ block }: { block: BlogBlock }) {
       return (
         <h3
           id={slugifyHeading(block.text)}
-          className="mt-4 scroll-mt-20 text-xl font-semibold text-gray-900 dark:text-gray-100"
+          className="mt-10 scroll-mt-24 text-[21px] font-semibold tracking-[-0.01em] text-gray-900 dark:text-gray-100"
         >
           {block.text}
         </h3>
       );
     case 'ul':
       return (
-        <ul className="ml-5 list-disc space-y-2 marker:text-brand-500">
+        <ul className="space-y-2.5 pl-1">
           {block.items.map((it, i) => (
-            <li key={i} className="pl-1">{renderInline(it)}</li>
+            <li key={i} className="flex gap-3">
+              <span
+                aria-hidden="true"
+                className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500"
+              />
+              <span>{renderInline(it)}</span>
+            </li>
           ))}
         </ul>
       );
     case 'ol':
       return (
-        <ol className="ml-5 list-decimal space-y-2 marker:font-semibold marker:text-brand-500">
+        <ol className="space-y-2.5">
           {block.items.map((it, i) => (
-            <li key={i} className="pl-1">{renderInline(it)}</li>
+            <li key={i} className="flex gap-3">
+              <span
+                aria-hidden="true"
+                className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-500/15 text-sm font-bold text-brand-700 dark:text-brand-300"
+              >
+                {i + 1}
+              </span>
+              <span className="pt-0.5">{renderInline(it)}</span>
+            </li>
           ))}
         </ol>
       );
     case 'quote':
       return (
-        <blockquote className="border-l-4 border-gray-300 pl-4 italic text-gray-700 dark:border-gray-700 dark:text-gray-300">
+        <blockquote className="my-2 border-l-4 border-brand-400 pl-5 text-xl font-medium italic leading-relaxed text-gray-700 dark:border-brand-500 dark:text-gray-200">
           {renderInline(block.text)}
-          {block.cite && <cite className="block text-sm not-italic">— {block.cite}</cite>}
+          {block.cite && (
+            <cite className="mt-2 block text-sm font-normal not-italic text-gray-500">
+              — {block.cite}
+            </cite>
+          )}
         </blockquote>
       );
     case 'callout':
+      // Highlight box — a quiet "key takeaway" card. A small uppercase label
+      // does the signposting instead of an emoji; restrained tint keeps it
+      // premium rather than loud.
       return (
-        <div className="rounded-md border-l-4 border-brand-500 bg-brand-50 p-4 text-[15px] text-gray-800 dark:bg-gray-900 dark:text-gray-200">
-          {renderInline(block.text)}
-        </div>
+        <aside className="my-4 rounded-lg border border-gray-200 bg-gray-50 p-5 dark:border-gray-800 dark:bg-gray-900/60">
+          <p className="mb-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-600 dark:text-brand-400">
+            Key point
+          </p>
+          <div className="text-[16px] leading-relaxed text-gray-700 dark:text-gray-200">
+            {renderInline(block.text)}
+          </div>
+        </aside>
       );
   }
 }
