@@ -24,132 +24,132 @@ export const yearEndChecklist: BlogPost = {
     {
       type: 'p',
       text:
-        'December is the last useful month to act on equity-comp tax planning for the current year. Five things go irreversible at midnight on December 31: charitable donations of appreciated stock, tax-loss harvesting, 401(k) and HSA contribution caps, ISO holding-period decisions that affect qualifying-disposition status, and Form W-4 line 4(c) updates that retroactively cure earlier under-withholding. Miss the window and the only fix is paying full ordinary rates at April reconciliation. This checklist walks the 10 items that matter, with the IRC citation and deeper-post link for each.',
+        'December is your last real chance to do anything about this year’s equity-comp taxes. Five things lock shut at midnight on December 31: donating appreciated stock, harvesting tax losses, maxing your 401(k) and HSA, the ISO timing that decides whether you get the good tax rate, and a W-4 line 4(c) update that can patch earlier under-withholding. Miss the window, and your only option is paying full price at the April reckoning. Here are the 10 items that matter, each with the rule behind it and a link to the deeper post.',
     },
     { type: 'h2', text: 'The 10-item December checklist' },
-    { type: 'h3', text: '1. Pull your YTD wages and project total federal tax' },
+    { type: 'h3', text: '1. Pull your year-to-date pay and estimate your total federal tax' },
     {
       type: 'p',
       text:
-        'Open your most recent paystub. Note YTD W-2 wages, YTD federal withholding, and YTD supplemental wages (look for "RSU" or "Bonus" line items). Project the rest of the year by adding remaining paychecks at your regular rate plus any expected vests. Compare YTD withholding against your projected total federal tax. The gap is the shortfall.',
+        'Grab your latest paystub. Note your year-to-date wages, year-to-date federal tax withheld, and year-to-date bonus-style pay (look for "RSU" or "Bonus" lines). Estimate the rest of the year by adding your remaining paychecks plus any vests still coming. Compare what has been withheld against what you will actually owe. The gap is your shortfall.',
     },
-    { type: 'h3', text: '2. Run the RSU Tax Shortfall calculator for each remaining vest' },
+    { type: 'h3', text: '2. Run the RSU Tax Shortfall calculator for each vest still coming' },
     {
       type: 'p',
       text:
-        'For every RSU vest expected before December 31, plug the vest gross + your projected YTD wages into the calculator. It computes the federal supplemental withholding gap (22% vs your real marginal rate) and the state piece. If the cumulative annual shortfall exceeds $1,000, you have IRC §6654 underpayment-penalty exposure.',
+        'For every RSU vest expected before December 31, drop the vest amount plus your year-to-date wages into the calculator. It works out the federal gap (22% held back vs your real rate) and the state piece. If your total shortfall for the year tops $1,000, you have underpayment-penalty exposure.',
     },
-    { type: 'h3', text: '3. Top up Form W-4 line 4(c) before the last December paycheck' },
+    { type: 'h3', text: '3. Top up Form W-4 line 4(c) before your last December paycheck' },
     {
       type: 'p',
       text:
-        'The single most powerful December action. Federal withholding is treated as paid evenly across the year per IRC §6654(g)(1), so a December W-4 top-up retroactively cures earlier under-withholding — eliminating per-quarter penalty risk. Divide the projected shortfall by the number of remaining paychecks (typically 1-2 in late December) and enter on line 4(c). See the dedicated extra-w4-withholding-rsu post for step-by-step mechanics by payroll system (Workday, ADP, Rippling, etc.).',
+        'This is the single most powerful December move. Federal withholding counts as paid evenly across the whole year, so a December top-up retroactively patches earlier under-withholding — wiping out the per-quarter penalty risk. Take your projected shortfall, divide it by the paychecks you have left (usually 1-2 in late December), and enter that on line 4(c). The dedicated post on extra W-4 withholding for RSUs walks through the exact steps by payroll system (Workday, ADP, Rippling, and so on).',
     },
-    { type: 'h3', text: '4. Check ESPP qualifying-disposition holding periods' },
+    { type: 'h3', text: '4. Check your ESPP holding periods' },
     {
       type: 'p',
       text:
-        'For each ESPP lot purchased in prior years, calculate two dates: 2 years from the offering date AND 1 year from the purchase date. The LATER date is when the lot qualifies for §423 preferential treatment. If you\'re considering a sale, the qualifying date determines whether the gain split is favorable (qualifying) or fully ordinary on the discount (disqualifying). See the espp-qualifying-vs-disqualifying-disposition post for the full math.',
+        'For each ESPP batch you bought in earlier years, work out two dates: 2 years from the offering date AND 1 year from the purchase date. The LATER of those is when the batch qualifies for the better tax treatment. If you are thinking about selling, that date decides whether your gain gets the favorable split or whether the whole discount is taxed as regular income. The ESPP qualifying-vs-disqualifying post has the full math.',
     },
-    { type: 'h3', text: '5. Model AMT on any ISO exercises this year' },
+    { type: 'h3', text: '5. Estimate AMT on any ISO buys this year' },
     {
       type: 'p',
       text:
-        'For ISOs you exercised in the current year (or are about to exercise before December 31), compute the bargain element (FMV at exercise − strike) × shares. This becomes an AMT preference item under IRC §56(b)(3) — added to your AMT income, not your regular ordinary income. Run the ISO/AMT calculator with your full-year income to estimate AMT due. The cash bill from AMT can dwarf the federal income tax on regular wages.',
+        'For ISOs you bought this year (or are about to buy before December 31), work out your discount: (share value when you bought − your buy price) × shares. That amount counts toward the AMT — added to your AMT income, not your regular income. Run the ISO/AMT calculator with your full-year income to estimate the AMT due. That cash bill can be bigger than the regular income tax on your wages.',
     },
-    { type: 'h3', text: '6. Confirm 1099-B cost-basis adjustments for vested RSUs sold' },
+    { type: 'h3', text: '6. Line up your 1099-B cost-basis fix for any RSUs you sold' },
     {
       type: 'p',
       text:
-        'For any RSU shares sold during the year, your broker will issue Form 1099-B in January reporting the sale. Most brokers report cost basis as $0 — which would double-tax the vested value. Plan to adjust on Form 8949 column (g): correct basis = FMV at vest. December is the right time to verify your broker can provide the per-lot FMV-at-vest data needed for the adjustment. See the how-to-report-rsu-tax-return post.',
+        'For any RSU shares you sold this year, your broker will send a 1099-B in January reporting the sale. Most brokers list your cost as $0 — which would tax the vested value twice. You will fix it on Form 8949 column (g): your real cost is the vest-day value. December is a good time to make sure your broker can give you the per-batch vest-day values you will need. See the how-to-report-RSU-tax-return post.',
     },
-    { type: 'h3', text: '7. Max 401(k) and HSA contributions before year-end' },
+    { type: 'h3', text: '7. Max out 401(k) and HSA before year-end' },
     {
       type: 'p',
       text:
-        'Pre-tax 401(k) and HSA contributions reduce your W-2 Box 1 ordinary income dollar-for-dollar — directly cutting the marginal-rate tax on the next dollar of supplemental income. 2026 limits (projected): $24,000 401(k) elective + $8,000 catch-up at 50+; $4,400/$8,750 HSA self/family + $1,000 catch-up at 55+. The mega-backdoor Roth (if your 401(k) plan supports it) can add up to $46,500 more in after-tax contributions converted to Roth.',
+        'Pre-tax 401(k) and HSA contributions cut your taxable wages dollar-for-dollar — directly lowering the tax on your next dollar of bonus-style income. 2026 limits (projected): $24,000 401(k) plus $8,000 catch-up at 50+; $4,400/$8,750 HSA self/family plus $1,000 catch-up at 55+. If your 401(k) plan allows it, the mega-backdoor Roth can add up to $46,500 more in after-tax money converted to Roth.',
     },
-    { type: 'h3', text: '8. Tax-loss harvest before December 31' },
+    { type: 'h3', text: '8. Harvest tax losses before December 31' },
     {
       type: 'p',
       text:
-        'Realized capital losses offset realized capital gains dollar-for-dollar plus up to $3,000 of ordinary income per year under IRC §1211(b). Excess losses carry forward indefinitely. Watch the §1091 wash-sale rule — do not repurchase the same security within 30 days before or after the sale. Tax-loss harvesting does NOT offset the ordinary-income portion of an RSU vest (only the capital-gain portion of post-vest appreciation if you sold).',
+        'Selling investments at a loss offsets your gains dollar-for-dollar, plus up to $3,000 of regular income a year. Anything extra carries forward indefinitely. Watch the wash-sale rule — do not rebuy the same investment within 30 days before or after the sale. One caveat: harvesting losses does NOT offset the regular-income part of an RSU vest (only the gain on shares you held and then sold).',
     },
     { type: 'h3', text: '9. Decide on charitable stock gifts' },
     {
       type: 'p',
       text:
-        'Donating appreciated long-term stock directly (instead of selling and donating cash) avoids capital-gains tax AND gives you a deduction at FMV — up to 30% of AGI for long-term appreciated property per IRC §170(b)(1)(C). Transfers must be COMPLETED by December 31 for current-year deduction. Donor-advised funds (Fidelity Charitable, Schwab Charitable, Vanguard) let you stockpile the deduction this year and distribute to specific charities later. Especially powerful in a year with concentrated RSU vest income pushing you into a higher bracket.',
+        'Donating appreciated stock you have held over a year (instead of selling it and donating the cash) skips the capital-gains tax AND gets you a deduction at the full value — up to 30% of your income for this kind of property. The transfer has to be DONE by December 31 to count this year. Donor-advised funds (Fidelity Charitable, Schwab Charitable, Vanguard) let you bank the deduction now and pick the charities later. Especially handy in a year when a big RSU vest pushed you into a higher bracket.',
     },
-    { type: 'h3', text: '10. Verify state-residency sourcing if you moved' },
+    { type: 'h3', text: '10. Sort out state sourcing if you moved' },
     {
       type: 'p',
       text:
-        'If you changed states during the vesting period for any RSU that vested this year, the income may be split between states based on workday allocation. California and New York are aggressive about claiming the workday-fractional portion even after you move out. Identify any cross-state vests and plan to file a part-year resident return (Form 540NR for CA, IT-203 for NY) plus your new-state resident return. See the multi-state-rsu-sourcing-california post.',
+        'If you changed states during the vesting period of any RSU that vested this year, the income may get split between states based on where you worked. California and New York are aggressive about grabbing their workday slice even after you move out. Spot any cross-state vests and plan to file a part-year return (Form 540NR for California, IT-203 for New York) plus your new state’s return. See the multi-state RSU sourcing post for California.',
     },
     {
       type: 'callout',
       text:
-        'If you do nothing else this December, run the RSU shortfall calculator for your next vest and update W-4 line 4(c). Those two actions alone fix 80% of April surprises and take 15 minutes total.',
+        'If you do just one thing this December: run the RSU shortfall calculator for your next vest and update W-4 line 4(c). Those two moves alone fix 80% of April surprises and take 15 minutes total.',
     },
-    { type: 'h2', text: 'What goes irreversible at midnight on December 31' },
+    { type: 'h2', text: 'What locks shut at midnight on December 31' },
     {
       type: 'p',
       text:
-        'Five categories of tax-planning moves cannot be made after the calendar year ends:',
+        'Five kinds of tax moves cannot be done once the year ends:',
     },
     {
       type: 'ul',
       items: [
-        '**Charitable stock donations.** Must be transferred to the donee organization\'s brokerage account (not just initiated) by December 31 to deduct in the current year. Allow 5-10 business days for the broker-to-broker transfer.',
-        '**Tax-loss harvesting.** Realized losses must be settled by December 31 (T+1 in current settlement rules — so the sale needs to execute by December 30 at latest).',
-        '**401(k) and HSA contributions.** 401(k) elective deferrals must be processed through payroll by your final December paycheck. HSA contributions have an April 15 deadline for IRA-style funding but employer-payroll HSA must be by year-end.',
-        '**ISO disqualifying disposition timing.** Selling ISO shares before the qualifying-disposition window expires changes the character of gain from LTCG to ordinary income. The window is exactly 2 years from grant + 1 year from exercise — if you can wait one more month, the lot becomes qualifying.',
-        '**Form W-4 line 4(c) update.** The §6654(g)(1) "treated as paid evenly across the year" mechanic only applies to wages withheld during the calendar year. A January update can\'t retroactively cure prior-year under-withholding.',
+        '**Charitable stock gifts.** The shares have to actually land in the charity’s brokerage account (not just be started) by December 31 to count this year. Give it 5-10 business days for the transfer.',
+        '**Tax-loss harvesting.** The losing sale has to settle by December 31 — so it needs to go through by about December 30 at the latest.',
+        '**401(k) and HSA contributions.** 401(k) money has to run through payroll by your last December paycheck. Payroll-based HSA contributions have to be done by year-end too (direct HSA deposits get until April 15).',
+        '**ISO timing.** Selling ISO shares before they qualify changes your gain from the good rate to regular income. The window is exactly 2 years from grant + 1 year from buying — so if you can wait one more month, the batch may flip to qualifying.',
+        '**Form W-4 line 4(c).** The "counts as paid evenly all year" trick only works for tax withheld during the calendar year. A January update cannot reach back and fix last year.',
       ],
     },
-    { type: 'h2', text: 'Things you CAN fix after December 31' },
+    { type: 'h2', text: 'What you CAN still fix after December 31' },
     {
       type: 'ul',
       items: [
-        '**IRA contributions (Traditional or Roth).** Deadline is April 15 of the following year — full year buffer.',
-        '**HSA contributions (if not employer-payroll).** April 15 deadline if making direct contributions to an HSA bank like Fidelity HSA.',
-        '**SEP-IRA / Solo 401(k) (if self-employed).** Up to extended filing deadline (October 15 with extension) for prior-year contribution.',
-        '**1099-B cost-basis adjustment on Form 8949.** Done at filing time, not before year-end — but only effective if you have the per-lot FMV-at-vest data.',
-        '**Form 2210 Schedule AI annualized income installment method.** Filed with your 1040; can reduce IRC §6654 penalty on shortfalls that arose late in the year.',
+        '**IRA contributions (Traditional or Roth).** Deadline is April 15 of next year — a full extra buffer.',
+        '**HSA contributions (if not through payroll).** April 15 deadline for direct deposits to an HSA like Fidelity HSA.',
+        '**SEP-IRA / Solo 401(k) (if self-employed).** Up to your extended filing deadline (October 15 with an extension) for a prior-year contribution.',
+        '**The 1099-B cost-basis fix on Form 8949.** Done at filing time, not before year-end — but only if you have the per-batch vest-day values.',
+        '**Form 2210 Schedule AI (annualized income method).** Filed with your 1040; it can shrink the underpayment penalty on shortfalls that showed up late in the year.',
       ],
     },
-    { type: 'h2', text: 'For complex situations — get a CPA consult before December 31' },
+    { type: 'h2', text: 'For complex situations — get a CPA before December 31' },
     {
       type: 'p',
       text:
-        'Five trigger conditions where the December planning window is too tight for a DIY pass:',
+        'Five signs the December window is too tight for a do-it-yourself pass:',
     },
     {
       type: 'ol',
       items: [
-        'Total RSU + bonus + NSO + ISO income > $500k for the year.',
-        'You exercised ISOs in the current year and AMT is a meaningful number (>$10k).',
-        'You moved states during the vesting period for a large RSU.',
-        'Pre-IPO double-trigger lockup expiration happened this year.',
+        'Total RSU + bonus + NSO + ISO income over $500k for the year.',
+        'You bought ISOs this year and the AMT is a real number (over $10k).',
+        'You moved states during the vesting period of a big RSU.',
+        'A pre-IPO double-trigger lockup expired this year.',
         'Multiple employers in the same year with overlapping equity grants.',
       ],
     },
     {
       type: 'p',
       text:
-        'A CPA consult costs $200-500 for the planning conversation. For any of the above triggers, the savings on optimization or avoided penalties typically pays for it 10x. Mathstub matches you with equity-comp specialists via Harness Wealth — disclosed affiliate link.',
+        'A CPA consult runs $200-500 for the planning chat. For any of the triggers above, the savings or avoided penalties usually pay for it 10x over. Mathstub matches you with equity-comp specialists via Harness Wealth — disclosed affiliate link.',
     },
     { type: 'h2', text: 'The takeaway' },
     {
       type: 'p',
       text:
-        'Ten items, fifteen minutes for the simple ones, a CPA call for the complex ones. The single highest-leverage action is updating Form W-4 line 4(c) before the last December paycheck — the §6654(g)(1) evenly-paid mechanic means a December top-up retroactively cures earlier under-withholding without per-quarter penalty risk. Charitable stock gifts and tax-loss harvesting are the next most time-sensitive because they go irreversible at midnight on December 31. Everything else has more flexibility, but the rhythm of running this checklist every December prevents the April surprise that almost every first-time equity-comp employee experiences.',
+        'Ten items — fifteen minutes for the easy ones, a CPA call for the hard ones. The single biggest move is updating Form W-4 line 4(c) before your last December paycheck — because withholding counts as paid evenly all year, a December top-up retroactively patches the earlier shortfall with no per-quarter penalty. Charitable stock gifts and tax-loss harvesting are next most urgent, since they lock shut at midnight on December 31. Everything else has more wiggle room — but running this checklist every December is what prevents the April surprise nearly every first-time equity-comp employee runs into.',
     },
     {
       type: 'p',
       text:
-        'For specific calculations: RSU Tax Shortfall, Bonus Tax Shortfall, ISO/AMT, NSO Exercise, ESPP Qualifying Disposition, AMT Credit Recovery, Quarterly Estimated Tax — every calculator on Mathstub runs in your browser, no signup, inputs never leave your device. Use the Year-End Tax Quick Checklist PDF (free download via the calculator pages) to print the list and check off items as you go.',
+        'For the specific math: RSU Tax Shortfall, Bonus Tax Shortfall, ISO/AMT, NSO Exercise, ESPP Qualifying Disposition, AMT Credit Recovery, Quarterly Estimated Tax — every calculator on Mathstub runs in your browser, no signup, and your inputs never leave your device. Use the Year-End Tax Quick Checklist PDF (free download on the calculator pages) to print the list and check items off as you go.',
     },
     {
       type: 'p',

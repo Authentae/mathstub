@@ -2,144 +2,141 @@ import type { BlogPost } from '../registry';
 
 export const rsuOverWithholding: BlogPost = {
   slug: 'rsu-over-withholding-explained',
-  title: 'RSU over-withholding: when 30–35% taken from your vest is normal (and when it isn\'t)',
+  title: 'Why did my RSUs over-withhold? When 22% is too much',
   description:
-    'Your employer withheld 30–35% on your RSU vest and you think they made a mistake. Walk the math: federal supplemental, state, Medicare, and Additional Medicare stack quickly. Most of the time it is correct.',
-  datePublished: '2026-05-15',
-  dateModified: '2026-05-15',
+    'Not everyone under-withholds on RSUs. If you are in a lower bracket, the flat 22% supplemental rate can take MORE than you owe — locking up your cash until refund season. Here is when that happens.',
+  datePublished: '2026-05-28',
+  dateModified: '2026-05-28',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
-  affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],
+  affiliateOfferIds: ['turbotax-premier'],
   quickAnswer:
-    'A 30-35% deduction on an RSU vest is usually correct, not a mistake. The deduction stacks federal supplemental (22%) + state supplemental (e.g. CA 10.23%, NY 11.7%) + Medicare (1.45%) + Additional Medicare (0.9% above $200k YTD) + Social Security (6.2% up to wage base). Sometimes employers use the IRS aggregate method per Treas. Reg. §31.3402(g)-1(a)(2), which can withhold even more. Reconcile at filing — not with HR.',
+    'Yes, RSUs can over-withhold. Employers withhold federal tax on RSU vesting at the flat 22% supplemental rate (under $1M). If your actual marginal rate is below 22% — common for those earning under about $100,000 — too much tax is withheld, and you get it back as a refund. The fix is adjusting your W-4 or other withholding, not the RSU withholding itself.',
   keyPoints: [
-    'Seeing 30–35% taken from an RSU vest is usually correct, not a payroll mistake.',
-    'The "22% rule" is only the federal piece — it is just one of several layers.',
-    'State tax, Medicare, extra Medicare, and Social Security all stack on top.',
-    "Some employers use the IRS \"aggregate method,\" which can withhold even more.",
-    'Withholding is a deposit, not your final bill — extra comes back as a refund.',
-    'Fix any gap at filing or via your W-4, not by emailing HR.',
+    'RSUs are withheld at a flat 22% federal supplemental rate (under $1M in supplemental wages).',
+    'If your marginal rate is below 22%, you over-withhold and get a refund.',
+    'This is the opposite of the usual high-earner under-withholding problem.',
+    'You cannot change the 22% RSU rate, but you can adjust your regular W-4 withholding.',
+    'Over-withholding is an interest-free loan to the IRS until you file.',
   ],
   blocks: [
     {
       type: 'p',
       text:
-        'You got an RSU vest, looked at the deduction line, and saw 30–35% taken out. Your instinct is "that\'s wrong — they should have taken 22%, right?" — and then you start thinking about emailing HR. Pause first. Walk the math. Most of the time the 30–35% number is correct, not a mistake, and the path forward is reconciliation at filing time, not a fight with payroll.',
-    },
-    { type: 'h2', text: 'Where the 22% number comes from' },
-    {
-      type: 'p',
-      text:
-        'There is a real IRS rule that says "22% flat" on supplemental wages. It is in IRS Publication 15 and codified under Treasury Regulation §31.3402(g)-1. That rule applies to the federal income tax piece, on supplemental wage payments up to $1,000,000 of YTD supplemental wages.',
+        'Most RSU tax advice assumes you are a high earner who has too little tax taken out. But there is a flip side that hits plenty of people: having too much taken out. If your income lands you in a bracket below 22%, the flat rate your employer uses when your RSUs vest can grab more than you actually owe.',
     },
     {
       type: 'p',
       text:
-        'But "22% federal" is only one of four or five layers of withholding that hit an RSU vest. By the time all of them stack up, the total deduction can easily reach 30–35% even when nobody is doing anything wrong.',
+        'It is not a disaster — you get the money back as a refund — but it means the IRS is sitting on your cash, interest-free, for months. Here is when over-withholding happens and what you can (and cannot) do about it.',
     },
-    { type: 'h2', text: 'The full stack of withholding on an RSU vest' },
+    {
+      type: 'h2',
+      text: 'How RSU withholding actually works',
+    },
     {
       type: 'p',
       text:
-        'For a high-earner equity employee, the deduction from a vest is built from these layers:',
+        'When your RSUs vest, that value counts as "supplemental wages" — basically a bonus on top of your salary. Employers almost always use one flat number: 22% federal on supplemental wages under $1 million in a year. (Anything over $1 million gets withheld at 37%.)',
+    },
+    {
+      type: 'p',
+      text:
+        'For a high earner whose top rate is 32% or 35%, that 22% is too little — they end up owing at tax time. But if your top rate is 12% or 22%, the math tips the other way, and they take out too much.',
+    },
+    {
+      type: 'h2',
+      text: 'When 22% is too much',
+    },
+    {
+      type: 'p',
+      text:
+        'Say your income puts you in the 12% federal bracket. Your RSUs vest, and your employer withholds 22% — nearly double your real rate. You get the difference back, but only after you file your return.',
     },
     {
       type: 'ul',
       items: [
-        'Federal supplemental withholding — 22% (or 37% above $1M YTD supplemental). This is the federal income tax piece.',
-        'State supplemental withholding — varies. California 10.23%, New York 11.7%, Illinois 4.95%, Texas/Florida/Washington 0%. Some states do not have a separate "supplemental" rate and instead use your normal payroll table.',
-        'Medicare — 1.45% on every dollar.',
-        'Additional Medicare — 0.9% on wages above $200,000 YTD. If you cross that threshold during the year, the additional rate kicks in mid-year.',
-        'Social Security — 6.2% on every dollar of wages up to the SS wage base ($168,600 for 2025, $176,100 projected for 2026). If you have already maxed out SS for the year by hitting the wage base in earlier paychecks, this layer drops off and the deduction looks smaller.',
+        'You earn $70,000 in salary, which puts you in the 12% bracket.',
+        'You get $10,000 in RSUs that vest during the year.',
+        'Your employer withholds 22% — $2,200 — on that RSU income.',
+        'Your real rate is 12%, so you actually owe about $1,200.',
+        'You over-withheld by roughly **$1,000**, refunded after you file.',
       ],
-    },
-    {
-      type: 'p',
-      text:
-        'Add 22% (fed) + 10.23% (CA state) + 1.45% (Medicare) + 0.9% (Add\'l Medicare, if applicable) + 6.2% (SS, if not maxed) = 40.78% on a single vest. That is before the employer has done anything you would call "wrong" — those are all statutorily required rates.',
-    },
-    { type: 'h2', text: 'When the number is even higher — the aggregate method' },
-    {
-      type: 'p',
-      text:
-        'There is a second method an employer can legally use, called the aggregate method, under Treasury Regulation §31.3402(g)-1(a)(2). Instead of 22% flat, the employer adds the vest to your regular paycheck wages and withholds at your marginal rate as calculated from IRS payroll tables.',
-    },
-    {
-      type: 'p',
-      text:
-        'For a higher-bracket employee, the aggregate method can withhold at 28%, 32%, or higher on the federal piece. Combined with state and FICA, the total deduction can hit 38–42% on a vest, all perfectly legal and arguably more accurate to your actual tax liability than the 22% flat rule.',
     },
     {
       type: 'callout',
       text:
-        'Most companies default to the 22% flat (supplemental) method because it is operationally simpler. A minority use aggregate. Both are legal. Your offer letter and equity plan document will usually specify which.',
+        'Over-withholding is not a penalty and not a mistake — the money is yours and you get it all back. But handing the IRS an interest-free loan for up to 16 months is not great if you could be using that cash right now.',
     },
-    { type: 'h2', text: 'When 35% is actually wrong (the rare cases)' },
+    {
+      type: 'h2',
+      text: 'What you can and cannot change',
+    },
     {
       type: 'p',
       text:
-        'There are three situations where a 30–35% deduction is genuinely worth a closer look:',
+        'Here is the annoying part: you usually cannot tell your employer to withhold less on the RSUs themselves. That flat 22% is the IRS default, and most payroll systems apply it on autopilot.',
+    },
+    {
+      type: 'p',
+      text:
+        'What you CAN do is dial back your other withholding to balance it out. If RSUs make you over-withhold year after year, you can take less out of your regular paycheck through your W-4 (for example, by claiming dependents or using the deductions worksheet). That pulls your total withholding back down toward what you actually owe.',
     },
     {
       type: 'ol',
       items: [
-        'Wrong state withheld. If you live in a 0% state (TX/FL/WA) and the broker withheld California supplemental anyway, that is a clerical error. Check your employer\'s record of your state of residence on file.',
-        'Social Security double-withheld. If you have two jobs and combined wages exceed the SS wage base, the second employer may over-withhold SS. You get the excess back at filing via Form 1040 Schedule 3.',
-        'Vest reported as additional payroll wages on top of W-2 boxes that already include it. This is a rare reporting error but possible — verify by tracing the vest gross to YTD payroll, then to Box 1 of your year-end W-2.',
+        'Estimate your total tax for the year, RSU income included.',
+        'Add up everything withheld so far — regular paycheck plus RSU withholding.',
+        'If you are clearly headed for big over-withholding, adjust your W-4 to take less out of your paycheck.',
+        'Check again mid-year so you do not overcorrect and end up under-withholding instead.',
       ],
     },
     {
-      type: 'p',
-      text:
-        'If none of those three apply, the 30–35% is the system working as designed. Annoying, but correct.',
-    },
-    { type: 'h2', text: 'What to do (instead of fighting HR)' },
-    {
-      type: 'p',
-      text:
-        'Withholding is not your final tax. It is a deposit. The IRS reconciles your actual liability when you file the following April:',
-    },
-    {
-      type: 'ul',
-      items: [
-        'If withholding > actual liability → you get the difference back as a refund.',
-        'If withholding < actual liability → you owe the difference plus possibly an underpayment penalty under IRC §6654.',
-      ],
+      type: 'h2',
+      text: 'Is it even worth bothering?',
     },
     {
       type: 'p',
       text:
-        'For most high-bracket employees, 22% flat federal is actually under-withholding (their real marginal rate is 32–37%), which is the more common complaint we see. If your employer used the aggregate method and withheld 28–32% federal instead, you may be closer to break-even at filing — or even slightly over-withheld, in which case you get a refund.',
-    },
-    { type: 'h2', text: 'How to forecast your actual position before April' },
-    {
-      type: 'p',
-      text:
-        'The point of getting this math right during the year is to avoid surprises. Three numbers tell you where you stand:',
-    },
-    {
-      type: 'ol',
-      items: [
-        'Projected total federal tax for the year. Use last year\'s 1040 line 24 if your income is similar, otherwise estimate from current brackets.',
-        'YTD federal withholding + expected withholding through year-end at current pace.',
-        'Difference between (1) and (2). If positive, you owe that at filing. If negative, you get refunded.',
-      ],
+        'For some people, a refund is forced savings they genuinely enjoy. If that is you, there is nothing wrong with letting the over-withholding ride and pocketing the refund. The "interest-free loan to the IRS" complaint only matters if you would actually invest or use that money in the meantime.',
     },
     {
       type: 'p',
       text:
-        'Our RSU Tax Shortfall calculator runs this math for any combination of base salary, vest size, state, and filing status. Inputs stay in your browser. If the projected shortfall is over $1,000, add the difference to W-4 line 4(c) over the remaining paychecks — that fixes the underpayment-penalty exposure under §6654 retroactively for the whole year, which a Q4 estimated tax payment does not.',
+        'But if you are carrying credit card debt or trying to build an emergency fund, that monthly cash could be working for you instead of parked with the IRS. In that case, a W-4 tweak is well worth the ten minutes it takes.',
     },
-    { type: 'h2', text: 'The takeaway' },
     {
-      type: 'p',
-      text:
-        '30–35% withheld on an RSU vest is almost always the correct stacking of federal supplemental + state + Medicare + (sometimes) Social Security. The fight is not with HR. The action is to reconcile your projected vs. actual liability for the year, and either let the over-withholding become a refund or top up the under-withholding via W-4 line 4(c) before year-end.',
+      type: 'h2',
+      text: 'Why your employer cannot just fix it for you',
     },
     {
       type: 'p',
       text:
-        'Sources: IRC §3402(g); Treas. Reg. §31.3402(g)-1; IRS Publication 15 and 15-T; IRC §6654 (estimated tax safe harbor); IRC §6621 (underpayment penalty rate).',
+        'People often ask payroll to "just withhold less" on the RSUs, and get told no. That is not your company being difficult. The flat 22% is a federal rule for supplemental wages, and most big payroll systems are built to apply it automatically, with no per-person dial to turn. Your company is following the IRS default, not picking a number.',
+    },
+    {
+      type: 'p',
+      text:
+        'The one lever that IS in your control is your regular paycheck. Your W-4 controls how much comes out of your salary, and that is where you make up the difference. Think of it as two buckets feeding the same pot: you cannot shrink the RSU bucket, but you can shrink the salary bucket so the total lands closer to what you actually owe.',
+    },
+    {
+      type: 'h2',
+      text: 'A quick gut check before you change anything',
+    },
+    {
+      type: 'p',
+      text:
+        'Before you touch your W-4, run one rough number: last year, did you get a big refund? If you got back $2,000 or more and you have RSUs, over-withholding is probably the reason. That is your signal that a W-4 tweak could put real money back in each paycheck. If you roughly broke even or owed a little, leave it alone — you are already close to right, and over-correcting could leave you owing next April.',
+    },
+    {
+      type: 'p',
+      text:
+        'Use the RSU Tax Shortfall calculator to see, in 30 seconds, whether your withholding is running ahead of or behind your real tax. It is the fastest way to know which way to nudge things.',
+    },
+    {
+      type: 'p',
+      text:
+        'Sources: IRC §3402(a) (wage withholding); Treas. Reg. §31.3402(g)-1 (supplemental wage withholding); IRS Publication 15 (Circular E, flat supplemental rates); IRS Form W-4 instructions.',
     },
   ],
 };

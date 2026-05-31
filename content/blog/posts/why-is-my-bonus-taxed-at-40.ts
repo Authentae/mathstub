@@ -24,67 +24,45 @@ export const whyIsMyBonusTaxedAt40: BlogPost = {
     {
       type: 'p',
       text:
-        'Year-end bonus hits your paycheck and ~40% is gone before it reaches your account. The instinct is "this is wrong, payroll messed up, I should call HR." Almost always the instinct is wrong. The 40% deduction is the IRS-mandated supplemental-wage withholding formula stacking five separate layers, and it produces this number by design. Whether you owe more or get refunded at filing depends entirely on your real marginal rate vs the flat supplemental rate. This post walks the five layers and shows where the 40% comes from.',
+        'Your bonus hits, and about 40% is gone before it ever reaches your account. Your first thought: "Something is broken. Payroll messed up. I should call HR." Almost always, that thought is wrong. The 40% is the IRS’s bonus-withholding formula, stacking five separate pieces, and it is supposed to come out to roughly this. Whether you owe more later or get some back depends on how your real tax rate compares to that flat bonus rate. Let us walk through the five pieces and show exactly where the 40% comes from.',
     },
-    { type: 'h2', text: 'Why "supplemental wages" have special rules' },
+    { type: 'h2', text: 'Why bonuses get special rules' },
     {
       type: 'p',
       text:
-        'A bonus is not a regular paycheck. It does not fit your normal payroll calendar, your normal W-4 settings, or the standard withholding tables. The IRS solved this with a special category — "supplemental wages" — and a special withholding rule under Treas. Reg. §31.3402(g)-1.',
+        'A bonus is not a normal paycheck. It does not fit your usual pay schedule, your usual W-4 settings, or the standard withholding tables. So the IRS made a special bucket for it — called "supplemental wages" — with its own withholding rule.',
     },
     {
       type: 'p',
       text:
-        'Supplemental wages include: cash bonuses, RSU vests, NSO bargain elements at exercise, commissions, severance, retroactive pay raises, accumulated leave payouts, taxable fringe benefits, and tip payments above the regular wage rate. All of these are handled with the same flat-rate withholding regardless of your actual tax bracket.',
+        'Supplemental wages cover: cash bonuses, RSU vests, the discount on NSO stock-option buys, commissions, severance, back pay from a raise, payouts of unused leave, taxable perks, and tips above your regular wage. All of these get the same flat-rate withholding, no matter what tax bracket you are actually in.',
     },
-    { type: 'h2', text: 'The five withholding layers' },
+    { type: 'h2', text: 'The five pieces of the bite' },
     {
       type: 'p',
       text:
-        'For a bonus paid to a higher-earning tech worker, the deduction stacks:',
+        'For a bonus paid to a higher-earning tech worker, here is what stacks up:',
     },
     {
       type: 'ul',
       items: [
-        '**Federal income tax — 22% (or 37% above $1M YTD).** The flat federal supplemental rate per Treas. Reg. §31.3402(g)-1. The 37% rate kicks in only once your year-to-date supplemental wages cross $1,000,000 — uncommon outside executive comp.',
-        '**State income tax — 0% to 12%.** Varies by state. CA uses 10.23% supplemental, NY 11.7%, IL 4.95%, MA 5%. Texas, Florida, Washington, Tennessee, Nevada — all 0%. Other states default to the top marginal rate.',
-        '**Medicare — 1.45% on every dollar.** No cap, no rate variation. Applies to all wages including supplemental.',
-        '**Additional Medicare — 0.9% above $200k YTD.** Adds on top of regular Medicare once YTD wages cross $200,000 (single threshold). Applies to wage income only.',
-        '**Social Security — 6.2% up to the wage base ($176,100 projected 2026).** If your YTD wages already crossed the wage base before the bonus, this layer drops off. For mid-year bonuses on lower earners, this layer can apply fully or partially.',
+        '**Federal income tax — 22% (or 37% above $1M for the year).** This is the flat federal bonus rate. The 37% rate only kicks in once your bonus-style pay for the year tops $1,000,000 — rare outside executive pay.',
+        '**State income tax — 0% to 12%.** Depends on the state. California uses 10.23%, New York 11.7%, Illinois 4.95%, Massachusetts 5%. Texas, Florida, Washington, Tennessee, Nevada — all 0%. Other states default to their top rate.',
+        '**Medicare — 1.45% on every dollar.** No cap, no exceptions. Hits all wages, bonuses included.',
+        '**Extra Medicare — 0.9% above $200k for the year.** Adds on top of regular Medicare once your year-to-date wages pass $200,000 (single threshold). Wages only.',
+        '**Social Security — 6.2% up to the wage cap ($176,100 projected for 2026).** If you already passed the cap before the bonus, this piece drops off. For mid-year bonuses on lower earners, it can apply fully or partly.',
       ],
     },
     {
       type: 'callout',
       text:
-        'Add 22% (fed) + 10.23% (CA state) + 1.45% (Medicare) + 0.9% (Add\'l Medicare) + 6.2% (SS, if not yet maxed) = 40.78% on a single bonus payment. That is the floor for high earners, not the ceiling.',
+        'Add it up: 22% (fed) + 10.23% (CA) + 1.45% (Medicare) + 0.9% (extra Medicare) + 6.2% (Social Security, if not maxed yet) = 40.78% on a single bonus. For high earners, that is the floor — not the ceiling.',
     },
-    { type: 'h2', text: 'Worked example — $30,000 bonus, mid-year, $200k base' },
+    { type: 'h2', text: 'Worked example — $30,000 bonus in June, $200k salary' },
     {
       type: 'p',
       text:
-        'You earn $200,000 base salary and receive a $30,000 cash bonus in June. By June, your YTD wages are roughly $100,000 (half a year of base). Bonus withholding:',
-    },
-    {
-      type: 'ul',
-      items: [
-        'Federal supplemental: $30,000 × 22% = **$6,600**.',
-        'State (CA): $30,000 × 10.23% = **$3,069**.',
-        'Medicare: $30,000 × 1.45% = **$435**.',
-        'Additional Medicare: YTD wages will be $130k after the bonus, still below the $200k threshold = **$0**.',
-        'Social Security: YTD wages $100k, well below the $176.1k base. Full SS applies. $30,000 × 6.2% = **$1,860**.',
-        'Total withheld: **$11,964 on $30,000 = 39.9%**.',
-      ],
-    },
-    {
-      type: 'p',
-      text:
-        'Almost exactly 40%, with no error or special circumstance. This is the IRS-mandated formula playing out.',
-    },
-    { type: 'h2', text: 'Worked example — $30,000 bonus, December, $180k base' },
-    {
-      type: 'p',
-      text:
-        'Same employee but the bonus comes in December. By December, YTD wages are $180,000 (full base). Bonus withholding:',
+        'You make $200,000 a year and get a $30,000 cash bonus in June. By June, your wages so far are roughly $100,000 (half a year). Here is the bonus withholding:',
     },
     {
       type: 'ul',
@@ -92,85 +70,107 @@ export const whyIsMyBonusTaxedAt40: BlogPost = {
         'Federal: $30,000 × 22% = **$6,600**.',
         'State (CA): $30,000 × 10.23% = **$3,069**.',
         'Medicare: $30,000 × 1.45% = **$435**.',
-        'Additional Medicare: YTD wages were $180k, crossing $200k mid-bonus. The piece above $200k ($10k) gets 0.9% = **$90**.',
-        'Social Security: $176.1k wage base already crossed at YTD = **$0**.',
-        'Total withheld: **$10,194 on $30,000 = 34.0%**.',
+        'Extra Medicare: your year-to-date wages will be $130k after the bonus, still under $200k = **$0**.',
+        'Social Security: at $100k so far, you are well under the $176.1k cap, so it applies fully. $30,000 × 6.2% = **$1,860**.',
+        'Total taken out: **$11,964 on $30,000 = 39.9%**.',
       ],
     },
     {
       type: 'p',
       text:
-        'Lower deduction because Social Security maxed out at the wage base earlier in the year. Same nominal bonus, ~6% less withholding because of WHEN it was paid.',
+        'Almost exactly 40%, with nothing wrong and nothing unusual. Just the formula doing its thing.',
     },
-    { type: 'h2', text: 'When 22% federal is actually under-withholding' },
+    { type: 'h2', text: 'Worked example — $30,000 bonus in December, $180k salary' },
     {
       type: 'p',
       text:
-        'At higher incomes the 22% flat federal supplemental rate is BELOW your actual marginal tax bracket. The brackets that exceed 22% in 2026:',
+        'Same person, but the bonus comes in December. By then, wages so far are $180,000 (the full salary). Bonus withholding:',
     },
     {
       type: 'ul',
       items: [
-        '24% bracket: kicks in around $103k taxable income for singles.',
-        '32% bracket: kicks in around $197k for singles. Most senior tech workers.',
-        '35% bracket: kicks in around $251k for singles. Director-level + bonus stack.',
-        '37% bracket: kicks in above $626k for singles. Senior executives + IPO years.',
+        'Federal: $30,000 × 22% = **$6,600**.',
+        'State (CA): $30,000 × 10.23% = **$3,069**.',
+        'Medicare: $30,000 × 1.45% = **$435**.',
+        'Extra Medicare: wages were $180k, so the bonus pushes you past $200k mid-payment. The part above $200k ($10k) gets 0.9% = **$90**.',
+        'Social Security: the $176.1k cap was already passed earlier in the year = **$0**.',
+        'Total taken out: **$10,194 on $30,000 = 34.0%**.',
       ],
     },
     {
       type: 'p',
       text:
-        'If your real marginal rate is 32% and supplemental withholding is 22%, the bonus is under-withheld by 10 percentage points federally. On a $30,000 bonus that\'s $3,000 of additional federal tax owed at filing. Add state and Medicare/SS reconciliation and the total can easily clear the IRS $1,000 safe-harbor threshold under IRC §6654 — triggering an underpayment penalty if you don\'t cover it via either W-4 line 4(c) adjustment or quarterly estimated payment.',
+        'Less is withheld here because Social Security already maxed out earlier in the year. Same bonus, about 6% less withheld — just because of WHEN it was paid.',
     },
-    { type: 'h2', text: 'When the aggregate method withholds even more' },
+    { type: 'h2', text: 'When that 22% is actually too little' },
     {
       type: 'p',
       text:
-        'There is a second method the IRS lets employers use, called the "aggregate method" under Treas. Reg. §31.3402(g)-1(a)(2). Instead of flat 22%, the employer adds the bonus to your most-recent regular paycheck wages and withholds at your effective rate from the IRS withholding tables. For high earners that calculation produces withholding closer to 28-32% federal — closer to your actual marginal rate.',
+        'At higher incomes, the flat 22% federal bonus rate is BELOW your real tax bracket. The brackets above 22% in 2026:',
     },
     {
-      type: 'p',
-      text:
-        'Most companies use the flat 22% supplemental method because it\'s operationally simpler. A minority use aggregate. Both are legal. You usually cannot choose. Check your offer letter or plan documents.',
-    },
-    { type: 'h2', text: 'When 30-40% withholding is genuinely wrong (rare)' },
-    {
-      type: 'ol',
+      type: 'ul',
       items: [
-        '**Wrong state withheld.** If you live in a 0% state (TX/FL/WA) and your employer withheld California state tax anyway, that\'s a clerical error. Check your state of residence on file with payroll.',
-        '**Social Security double-withheld via two jobs.** If you have a second employer and combined YTD wages crossed the wage base earlier, the second employer may over-withhold SS. Reclaim on Form 1040 Schedule 3 line 11.',
-        '**Bonus paid as Box 14 income on top of bonus paid as Box 1.** Rare reporting error where the same amount is double-counted on your W-2. Cross-check December pay stub YTD against W-2 Box 1.',
-        '**Imputed income confused with a real bonus.** Some non-cash benefits (group-term life insurance over $50k, certain expense reimbursements) appear as income on your paystub but you never received the cash. The corresponding withholding can look like a deduction without an offsetting cash payment.',
+        '24% bracket: starts around $103k of taxable income for singles.',
+        '32% bracket: starts around $197k for singles. Most senior tech workers.',
+        '35% bracket: starts around $251k for singles. Director level plus a bonus.',
+        '37% bracket: starts above $626k for singles. Senior execs and IPO years.',
       ],
     },
-    { type: 'h2', text: 'What to do about it' },
     {
       type: 'p',
       text:
-        'If your bonus withholding is in the 30-40% range and your real marginal rate is in that range too: you are roughly break-even at filing, possibly a small refund or small balance due depending on state and Social Security position. No action needed.',
+        'If your real rate is 32% but only 22% got withheld, your bonus came up 10 points short on the federal side. On a $30,000 bonus that is $3,000 of extra federal tax due at filing. Add in the state and Medicare/Social Security reconciliation and the total can easily clear the IRS’s $1,000 safe-harbor line — which can trigger an underpayment penalty if you do not cover it, either through your W-4 line 4(c) or a quarterly estimated payment.',
+    },
+    { type: 'h2', text: 'When a different method takes out even more' },
+    {
+      type: 'p',
+      text:
+        'There is a second method the IRS lets employers use, called the "aggregate method." Instead of a flat 22%, the employer lumps the bonus in with your most recent regular paycheck and withholds at your effective rate from the IRS tables. For high earners, that usually lands closer to 28-32% federal — much nearer your real rate.',
     },
     {
       type: 'p',
       text:
-        'If your real marginal rate is materially HIGHER than the 22% federal supplemental rate (i.e., you\'re in the 32%+ bracket) AND your total expected shortfall for the year is $1,000+: you have IRC §6654 underpayment-penalty exposure. Fix it before December 31 via:',
+        'Most companies use the flat 22% method because it is simpler to run. A minority use the aggregate method. Both are legal. You usually do not get to choose. Check your offer letter or plan documents.',
+    },
+    { type: 'h2', text: 'When 30-40% really is wrong (rare)' },
+    {
+      type: 'ol',
+      items: [
+        '**Wrong state withheld.** If you live in a 0% state (TX/FL/WA) but your employer withheld California tax anyway, that is a clerical mistake. Check what state of residence payroll has on file.',
+        '**Social Security double-withheld across two jobs.** If you have a second employer and your combined wages passed the cap earlier, the second employer may over-withhold Social Security. You claim it back on Form 1040 Schedule 3, line 11.',
+        '**Same bonus counted twice on your W-2.** A rare reporting slip where the same amount shows up in both Box 14 and Box 1. Cross-check your December paystub against W-2 Box 1.',
+        '**"Imputed income" mistaken for a real bonus.** Some non-cash perks (like group-term life insurance over $50k, or certain reimbursements) show up as income on your paystub even though you never got cash. The withholding on those can look like a deduction with no matching cash.',
+      ],
+    },
+    { type: 'h2', text: 'What to actually do' },
+    {
+      type: 'p',
+      text:
+        'If your bonus withholding is in the 30-40% range and your real tax rate is in that range too, you are roughly even at filing — maybe a small refund or a small amount due, depending on your state and Social Security. No action needed.',
+    },
+    {
+      type: 'p',
+      text:
+        'If your real rate is clearly HIGHER than the flat 22% federal bonus rate (you are in the 32%+ bracket) AND your total expected shortfall for the year is $1,000 or more, you have penalty exposure. Fix it before December 31 with one of these:',
     },
     {
       type: 'ol',
       items: [
-        '**W-4 line 4(c) extra withholding** on remaining paychecks. Treated as paid evenly across the year per §6654(g)(1) — retroactively cures earlier under-withholding. This is the preferred fix.',
-        '**Q4 estimated tax payment via IRS Direct Pay.** Only counts from the payment date, so it doesn\'t cure under-withholding from earlier in the year — but it does cover the shortfall going forward.',
+        '**Extra withholding on W-4 line 4(c)** for your remaining paychecks. Withholding counts as if it were paid evenly all year, so a top-up now retroactively patches the earlier shortfall. This is the better fix.',
+        '**A Q4 estimated payment through IRS Direct Pay.** This only counts from the day you pay it, so it does not fix earlier under-withholding — but it does cover the gap going forward.',
       ],
     },
     { type: 'h2', text: 'The takeaway' },
     {
       type: 'p',
       text:
-        'A 30-40% deduction on a bonus is usually the IRS-mandated supplemental withholding formula stacking correctly: 22% federal + state supplemental + Medicare + Additional Medicare + Social Security. The number can flex to 25-35% if Social Security is already maxed or to 40%+ if multiple layers all hit. None of this is a payroll error. The real question — different from whether the deduction is correct — is whether your full-year tax bill will be covered, which depends on how your real marginal rate compares to the flat 22% federal supplemental rate.',
+        'A 30-40% bite on a bonus is usually just the IRS bonus formula stacking up correctly: 22% federal + state + Medicare + extra Medicare + Social Security. It can dip to 25-35% if Social Security is already maxed, or climb past 40% when every piece hits at once. None of it is a payroll error. The real question — separate from whether the withholding is "correct" — is whether your full-year bill will be covered. And that comes down to how your real tax rate stacks up against the flat 22% federal bonus rate.',
     },
     {
       type: 'p',
       text:
-        'For your specific bonus, plug your gross bonus, YTD wages, state, and filing status into the Bonus Tax Shortfall calculator. It computes both the withholding amount and your expected full-year tax position so you can see whether to top up via W-4 line 4(c) before year-end.',
+        'For your exact bonus, drop your gross bonus, year-to-date wages, state, and filing status into the Bonus Tax Shortfall calculator. It works out both the withholding and your expected full-year position, so you can see whether to top up your W-4 line 4(c) before year-end.',
     },
     {
       type: 'p',

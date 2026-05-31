@@ -24,64 +24,64 @@ export const whenToSellRsus: BlogPost = {
     {
       type: 'p',
       text:
-        'Your RSUs vested. The shares are in your brokerage account. Now you have a decision: sell today (same-day sale, sometimes called "sell-to-cover plus immediate sale"), or hold and hope the stock keeps going up. The "obvious" answer most people land on — "hold for long-term capital gains, that\'s cheaper tax!" — is usually wrong once you walk the actual math. Here is the framework.',
+        'Your RSUs vested. The shares are sitting in your brokerage account. Now you have to decide: sell today, or hold and hope the stock keeps climbing? Most people land on "hold for long-term capital gains — that is cheaper tax!" And most people are wrong, once you actually run the numbers. Here is how to think about it.',
     },
-    { type: 'h2', text: 'The "free money" mental trap' },
+    { type: 'h2', text: 'The "free money" trap' },
     {
       type: 'p',
       text:
-        'When RSUs vest, the FMV is taxed as ordinary income whether you sell or hold. Your cost basis is set to that FMV. Economically, the moment shares hit your account, you have already received a cash bonus equal to the post-tax FMV — the broker just delivered it in the form of stock instead of dollars. Holding the shares is mathematically the same decision as receiving a cash bonus and choosing to buy your employer\'s stock with it.',
+        'When RSUs vest, their value is taxed as regular income whether you sell or hold — that part is already done. Your cost (what you already paid tax on) is set to that value. So the moment the shares hit your account, you have basically already received a cash bonus equal to the after-tax value — the broker just handed it to you as stock instead of dollars. Holding those shares is exactly the same choice as getting a cash bonus and using it to buy your own company’s stock.',
     },
     {
       type: 'callout',
       text:
-        'Ask yourself: if my employer handed me $50,000 in cash today, would I take that money and buy $50,000 of company stock? If the answer is no, then holding vested RSUs is the same trade you just refused.',
+        'Ask yourself this: if my employer handed me $50,000 in cash today, would I turn around and buy $50,000 of company stock with it? If the answer is no, then holding your vested RSUs is the same trade you just turned down.',
     },
-    { type: 'h2', text: 'Case 1 — same-day sale (the default for most people)' },
+    { type: 'h2', text: 'Option 1 — sell the same day (the default for most people)' },
     {
       type: 'p',
       text:
-        'You sell all vested shares the day they vest at the same price they were valued at. The tax outcome:',
+        'You sell all the vested shares the day they vest, at the same price they were valued at. The tax result:',
     },
     {
       type: 'ul',
       items: [
-        'Ordinary income tax on the FMV at vest (already taxed via W-2).',
-        'Capital gain on sale = $0 (sale price = cost basis).',
-        'No further tax exposure. The cash hits your brokerage account, you can deploy it anywhere.',
+        'Regular income tax on the vest value (already handled through your W-2).',
+        'Capital gain on the sale = $0 (sale price equals your cost).',
+        'No more tax to deal with. The cash lands in your account, and you can put it anywhere.',
       ],
     },
     {
       type: 'p',
       text:
-        'This is the cleanest, simplest, lowest-risk path. You convert equity comp into diversified cash. The only "loss" is the upside if the stock rips after vest — which is balanced against the loss you would take if the stock dropped instead.',
+        'This is the cleanest, simplest, lowest-risk path. You swap company stock for diversified cash. The only thing you "lose" is the upside if the stock takes off after vest — but that is balanced against the loss you would eat if it dropped instead.',
     },
-    { type: 'h2', text: 'Case 2 — hold for >1 year (the long-term capital gains play)' },
+    { type: 'h2', text: 'Option 2 — hold for over a year (the long-term gains play)' },
     {
       type: 'p',
       text:
-        'You hold the vested shares for at least 366 days, then sell. Any appreciation above the FMV-at-vest gets taxed at long-term capital gains rates (0/15/20% federal, plus state, plus 3.8% NIIT for high earners) instead of ordinary income rates. The tax savings are real but smaller than people imagine.',
-    },
-    {
-      type: 'p',
-      text:
-        'Example: 100 RSUs vest at $50/share = $5,000 FMV. You hold 18 months and sell at $80/share = $8,000 proceeds. The $3,000 of appreciation is taxed at 15% LTCG + 3.8% NIIT + 9.3% CA = ~$840. If you had instead sold at $80 inside 1 year, the same $3,000 would be taxed at ordinary rates (~35% federal + 9.3% CA = ~$1,330). LTCG saves you $490 on $3,000 of gain — about 6% of the gain itself.',
+        'You hold the shares at least 366 days, then sell. Any growth above the vest value gets the lower long-term capital-gains rate (0/15/20% federal, plus state, plus 3.8% NIIT for high earners) instead of regular income rates. The tax savings are real — but smaller than people think.',
     },
     {
       type: 'p',
       text:
-        'For that $490 of tax savings, you took on 18 months of single-stock concentration risk on $8,000 of exposure. If the stock had dropped 30% in those 18 months — common for tech stocks in a down year — you would have lost $2,400, more than 4× the tax savings you were chasing.',
-    },
-    { type: 'h2', text: 'The concentration-risk math' },
-    {
-      type: 'p',
-      text:
-        'Individual stocks have annualized volatility around 30-50%. The S&P 500 has annualized volatility around 15-18%. Holding a single stock instead of selling and reinvesting in an index fund means you accept roughly 2-3× the volatility for the same expected return. That is a worse risk-adjusted trade.',
+        'Example: 100 RSUs vest at $50/share = $5,000. You hold 18 months and sell at $80/share = $8,000. The $3,000 of growth is taxed at 15% long-term + 3.8% NIIT + 9.3% CA = ~$840. If instead you had sold at $80 within a year, that same $3,000 would be taxed at regular rates (~35% federal + 9.3% CA = ~$1,330). So holding saved you $490 on $3,000 of gain — about 6% of the gain.',
     },
     {
       type: 'p',
       text:
-        'If your employer-stock holdings are already >10% of your total net worth (very common for tech workers with vesting RSUs), the rule of thumb from fee-only financial planners is: sell down to 10% or less. Cash from same-day sale, redeployed into a diversified portfolio, beats single-stock LTCG savings in almost every realistic scenario.',
+        'For that $490 of tax savings, you carried 18 months of single-stock risk on $8,000. If the stock had dropped 30% in those 18 months — totally normal for a tech stock in a bad year — you would have lost $2,400. That is more than 4× the tax savings you were chasing.',
+    },
+    { type: 'h2', text: 'The risk math, plainly' },
+    {
+      type: 'p',
+      text:
+        'A single stock typically bounces around 30-50% a year. A broad index like the S&P 500 bounces around 15-18%. So holding one company’s stock instead of selling and buying an index fund means you take on roughly 2-3× the risk for the same expected return. That is a worse deal, plain and simple.',
+    },
+    {
+      type: 'p',
+      text:
+        'If your company stock is already more than 10% of your total net worth (super common for tech workers with vesting RSUs), the rule of thumb from fee-only planners is: sell down to 10% or less. Cash from a same-day sale, reinvested into a diversified mix, beats single-stock long-term-gains savings in almost every realistic case.',
     },
     { type: 'h2', text: 'When holding actually makes sense' },
     {
@@ -92,51 +92,51 @@ export const whenToSellRsus: BlogPost = {
     {
       type: 'ol',
       items: [
-        '**You have strong, non-public conviction that the stock is mispriced.** "I work here, the product roadmap is amazing" does not count — that is exactly the bias every employee has. This means real informational edge that you also need to be careful about disclosing under insider-trading rules.',
-        '**Your total employer-stock concentration is already low (<5% of net worth).** A small additional position does not move your overall risk much.',
-        '**The vest just barely puts you over the 1-year LTCG threshold and the tax savings are large in absolute dollars.** E.g., if you have $500k of appreciation and holding 30 more days flips the entire gain from short-term to long-term, the math may justify the risk.',
+        '**You genuinely know something the market does not.** "I work here and the roadmap looks amazing" does NOT count — that is the exact bias every employee has. This means a real informational edge, which also means being careful about insider-trading rules.',
+        '**Your company stock is already a tiny slice of your net worth (under 5%).** A little more does not move your overall risk much.',
+        '**The vest barely crosses the 1-year line and the dollar savings are big.** For example, if you have $500k of growth and waiting 30 more days flips the whole thing from short-term to long-term, the math might be worth the risk.',
       ],
     },
-    { type: 'h2', text: 'The "sell at vest, buy index" framework' },
+    { type: 'h2', text: 'The "sell at vest, buy index" playbook' },
     {
       type: 'p',
       text:
-        'The default mental model that wins for most tech workers:',
+        'The default approach that works for most tech workers:',
     },
     {
       type: 'ol',
       items: [
-        'At each vest, sell 100% of the shares same-day.',
-        'Set aside the projected tax shortfall (use our RSU Tax Shortfall calculator — supplemental withholding usually leaves you short).',
-        'Deploy the remaining cash into a diversified portfolio per your written investment plan — broad index funds, bonds, real estate, whatever your allocation calls for.',
-        'Repeat at every vest. Do not anchor on the share price.',
+        'At every vest, sell 100% of the shares the same day.',
+        'Set aside the expected tax shortfall (use our RSU Tax Shortfall calculator — the 22% they held back usually leaves you short).',
+        'Put the rest into a diversified mix per your written plan — broad index funds, bonds, real estate, whatever your plan calls for.',
+        'Repeat at every vest. Do not get attached to the share price.',
       ],
     },
     {
       type: 'p',
       text:
-        'This automates away the "should I sell?" question forever. You are no longer making a stock-picking decision every quarter — you are executing a pre-committed plan that captures the equity compensation without the single-stock risk.',
+        'This kills the "should I sell?" question forever. You are no longer making a stock-picking bet every quarter — you are just running a plan you decided on ahead of time, capturing the equity pay without the single-stock risk.',
     },
     { type: 'h2', text: 'Edge cases worth knowing' },
     {
       type: 'ul',
       items: [
-        'Blackout windows. Many public companies prohibit trading during earnings blackout periods. Plan vest-sales around your company\'s trading calendar, or set up a 10b5-1 plan that pre-schedules sales automatically.',
-        'Insider status. If you are a Section 16 officer or have material non-public information, your sale options are restricted. Talk to your General Counsel before transacting.',
-        'Highly concentrated single position you cannot easily sell. Some pre-IPO RSUs or executive-level grants have legitimate hold restrictions. Different math applies — discuss with a CPA who knows §83 and §409A.',
-        'Carried short-term loss positions you can harvest. If other lots in your account would generate a short-term capital loss on sale, selling vested RSUs at a gain can be offset against those losses, reducing the effective cost of liquidating.',
+        'Blackout windows. Lots of public companies block trading during earnings blackout periods. Plan your vest-sales around your company’s trading calendar, or set up a 10b5-1 plan that schedules sales for you automatically.',
+        'Insider status. If you are a company officer or you have material non-public information, your selling options are limited. Talk to your legal team before trading.',
+        'A concentrated position you cannot easily sell. Some pre-IPO RSUs or executive grants have real hold restrictions. Different math applies — talk to a CPA who knows §83 and §409A.',
+        'Loss positions you can use. If other lots in your account would sell at a short-term loss, selling vested RSUs at a gain can be offset against those losses, lowering the real cost of cashing out.',
       ],
     },
     { type: 'h2', text: 'The takeaway' },
     {
       type: 'p',
       text:
-        'For most tech workers, the answer is sell at vest, every time, and reinvest the proceeds into a diversified portfolio. The LTCG savings from holding are real but small in absolute terms, and they are almost always swamped by the concentration risk of holding a single volatile stock. The "I\'ll just hold for long-term gains" instinct is a tax-tail-wagging-the-investment-dog problem — you are taking on 30-50% annualized volatility to save 5-7% in tax.',
+        'For most tech workers, the answer is: sell at vest, every time, and reinvest into a diversified mix. The savings from holding for long-term rates are real but small in dollars, and they are almost always swamped by the risk of holding one jumpy stock. The "I will just hold for long-term gains" instinct is a case of the tax tail wagging the investment dog — you are taking on 30-50% yearly swings to save 5-7% in tax.',
     },
     {
       type: 'p',
       text:
-        'If you are a high-earner with a complex equity-comp picture (mix of RSUs, ISOs, NSOs, ESPP), the same-day-sale-then-reinvest framework is almost always the right default. The exceptions are narrow and you will know if they apply to you. When in doubt, talk to a fee-only fiduciary or a CPA who specializes in equity compensation — not a stockbroker whose incentives push you toward holding.',
+        'If you are a high earner with a complex equity picture (a mix of RSUs, ISOs, NSOs, ESPP), the sell-at-vest-then-reinvest playbook is almost always the right default. The exceptions are narrow, and you will know if they apply to you. When in doubt, talk to a fee-only fiduciary or a CPA who specializes in equity comp — not a stockbroker whose paycheck depends on you holding.',
     },
     {
       type: 'p',

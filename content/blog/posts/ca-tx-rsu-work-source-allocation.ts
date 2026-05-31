@@ -2,158 +2,116 @@ import type { BlogPost } from '../registry';
 
 export const caTxRsuWorkSourceAllocation: BlogPost = {
   slug: 'ca-tx-rsu-work-source-allocation',
-  title: 'CA → TX with unvested RSUs: the work-source allocation trap',
+  title: 'Moved from CA to TX? Your RSUs are still partly California-taxed',
   description:
-    'Moving from California to Texas while you still have a multi-year RSU vesting cliff? CA does not stop taxing the vesting period after you move. The work-source allocation rule (FTB Pub 1004) splits each vest by months-worked-in-each-state. Worked example: $34,000 in surprise CA tax across 3 post-move years.',
+    'California taxes the portion of your RSU income you earned while working in California — even if you vest after moving to Texas. The allocation is based on workdays between grant and vest. Here is how the CA FTB sources equity comp, with a worked example.',
   datePublished: '2026-05-22',
   dateModified: '2026-05-22',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
-  affiliateOfferIds: ['turbotax-premier'],
+  affiliateOfferIds: ['turbotax-premier', 'harness-wealth'],
   quickAnswer:
-    'When you move CA → TX with unvested RSUs, California does not stop taxing them. CA uses "work-source allocation" (per FTB Pub 1004): for each vest, the vesting period is split by months worked in each state, and CA taxes its share of the vest at the top marginal rate (13.3%) even after you have moved. A 4-year vest cliff with a Year 2 move means CA taxes ~50% of remaining vests over the next 2 years — typically $20–$40k of surprise tax. Plan estimated payments to CA for the post-move years to avoid §19136 underpayment penalties.',
+    'California taxes RSU income based on the share of workdays you spent in California between grant and vest. Move to Texas partway through the vesting period and California still taxes the CA-workday fraction. The allocation uses the grant-to-vest workday ratio per FTB guidance (Schedule S / FTB Pub 1004). Texas has no income tax, but that does not erase the California-source portion.',
   keyPoints: [
-    'Moving to Texas does NOT make your future RSU vests California-tax-free.',
-    'California taxes each vest based on the months you worked in CA while it was vesting.',
-    "CA taxes its share at its top rate (13.3%), no matter where you live when it vests.",
-    'A mid-cliff move can leave CA taxing ~50% of your remaining vests — often $20k–$40k.',
-    'Pay CA quarterly estimates after the move, or you owe a §19136 underpayment penalty.',
+    'California taxes the part of your RSU income you earned while physically working in CA.',
+    'The split is based on workdays in CA between grant and vest — not where you live at vest.',
+    'Moving to Texas before vest does NOT make the CA-source portion disappear.',
+    'You file a CA nonresident return (540NR) for the CA-source slice after you move.',
+    'Keep a workday log — the FTB can audit the allocation years later.',
   ],
   blocks: [
     {
       type: 'p',
-      text: 'A common belief: "I moved from California to Texas in August. Texas has no state income tax. So my future RSU vests are tax-free at the state level." This is wrong, and it is wrong by tens of thousands of dollars over a typical 4-year vest cliff. California uses a work-source allocation rule that taxes your unvested equity comp based on where you worked during the vesting period — not where you live when it vests.',
+      text:
+        'You did everything right. You took the Texas job, sold the California house, and waved goodbye to that 13.3% state income tax. Then your RSUs vest — and your tax software (or your old employer\'s payroll) shows that California *still* wants a piece. That is not a glitch. California taxes equity comp based on where you were working when you earned it, not where you live on the day it vests.',
     },
-    { type: 'h2', text: 'The work-source rule, explained' },
     {
       type: 'p',
-      text: 'California Franchise Tax Board (FTB) Publication 1004, "Stock Options," articulates the rule clearly: equity compensation income is sourced to the state where the services were performed during the vesting period. For a 4-year RSU vest:',
+      text:
+        'This trips up a ton of tech workers who move from the Bay Area to Austin, Seattle, or Miami. The California Franchise Tax Board (the FTB) has a specific, well-documented way of splitting RSU income across state lines, and it all comes down to **workdays**.',
+    },
+    { type: 'h2', text: 'The rule: it is about where you worked, day by day' },
+    {
+      type: 'p',
+      text:
+        'RSUs are pay you earn slowly over time — usually across the stretch between when they are granted and when each batch vests. To figure out California\'s share, the state asks one question: of all the workdays between grant and vest, how many were physically spent in California?',
+    },
+    {
+      type: 'p',
+      text:
+        'Take that fraction, multiply it by what the vest is worth, and that is your California income. The rest belongs to wherever you worked the other days — Texas, in this case, which has no income tax, so that slice dodges state tax completely.',
+    },
+    {
+      type: 'callout',
+      text:
+        'The fraction is simply: CA workdays divided by total workdays between grant and vest. This is the FTB\'s documented method in Publication 1004 (Stock Options and Deferred Compensation) and on Schedule S. It is not about where you lived at grant or at vest — it is about where you were physically working while the shares were vesting.',
+    },
+    { type: 'h2', text: 'A worked example' },
+    {
+      type: 'p',
+      text:
+        'Say you were granted 4,000 RSUs on January 1, 2024, vesting 25% a year over 4 years. You worked in California for the first 2 years, then moved to Texas on January 1, 2026. Now look at the third vest, on January 1, 2027 (1,000 shares):',
     },
     {
       type: 'ul',
       items: [
-        'Each quarterly vest covers a portion of the vesting period (typically the months between grant and that vest).',
-        'For each vest, the vesting period is split into "months worked in CA" and "months worked elsewhere."',
-        'CA taxes its proportional share of the vest at its top marginal rate (13.3% — the highest state rate in the US).',
-        'The OTHER state (or no state, if you move to TX/FL/NV/WA) taxes its share.',
+        'This batch of 1,000 shares was earned over the 3 years from grant (Jan 2024) to vest (Jan 2027).',
+        'Of those 3 years, you worked 2 in California and 1 in Texas.',
+        'California\'s share: 2 out of 3 years = 66.7% (counted in workdays, that is roughly 500 of 750).',
+        'If the 1,000 shares vest at $100 = $100,000, then $66,700 is California income and CA taxes it.',
+        'The other $33,300 is Texas income — no state tax.',
+      ],
+    },
+    {
+      type: 'p',
+      text:
+        'Even though you were a full Texas resident on the day it vested, California still taxes $66,700 of that $100,000 vest — because you earned that part while working in California. At California\'s top 13.3% rate, that is about $8,871 of California tax on a single vest you might have figured was completely tax-free.',
+    },
+    { type: 'h2', text: 'Why your workday log is your best friend' },
+    {
+      type: 'p',
+      text:
+        'The whole split rides on how many workdays you spent in each state. If you cannot back up your numbers, the FTB gets to fill in the blanks — and they tend to assume *more* California days than you actually worked. A solid workday log is your defense if they ever come asking.',
+    },
+    {
+      type: 'ul',
+      items: [
+        'Keep a calendar of where you physically worked each day during the vesting period.',
+        'Hang onto travel records (flights, hotel receipts) that prove your out-of-state workdays.',
+        'Remember: vacation days and weekends usually do not count as workdays — the math uses workdays, not every day on the calendar.',
+        'Keep all of this for at least 4 years after the vest — that is how long the FTB has to audit you.',
+      ],
+    },
+    { type: 'h2', text: 'How filing works once you have moved' },
+    {
+      type: 'p',
+      text:
+        'For every year you have California RSU income but live somewhere else, you file Form 540NR (California\'s Nonresident or Part-Year Resident Return). You report California\'s slice of each vest as CA income. If your new state has an income tax, it might give you a credit for what you paid California — but Texas has no income tax, so there is no credit to offset it. The California tax is just pure extra.',
+    },
+    {
+      type: 'p',
+      text:
+        'And this keeps going for years after you move — right up until the last batch you were granted while working in California has fully vested. A 4-year grant from your final California year can mean filing as a California nonresident for 4 or more years to come.',
+    },
+    { type: 'h2', text: 'When to get help' },
+    {
+      type: 'ul',
+      items: [
+        'You moved partway through a vesting period and have several grants with overlapping CA/non-CA workdays.',
+        'You have a big vest (over $100k) where the split really moves your tax bill.',
+        'You also exercised ISOs or sold ESPP shares around the move — those follow different sourcing rules.',
+        'The FTB sent you a notice questioning how you split it.',
       ],
     },
     {
       type: 'callout',
-      text: 'The rule applies to ALL forms of equity comp earned during your CA work period: RSUs, ESPP discounts, ISO exercises, NSO exercises, SAR settlements. California claims its piece regardless of your post-move residence.',
-    },
-    { type: 'h2', text: 'Worked example — Daniel\'s CA→TX move' },
-    {
-      type: 'p',
-      text: 'Daniel is a senior engineer who:',
-    },
-    {
-      type: 'ul',
-      items: [
-        'Worked in CA from August 15, 2022 to July 31, 2024 (24 months in CA).',
-        'Moved to TX on August 1, 2024.',
-        'Has 1,600 unvested RSUs from a grant dated August 15, 2022, vesting quarterly through August 2026.',
-        'Each vest hits at ~$20,000 FMV.',
-      ],
+      text:
+        'Splitting equity comp across states is one of the most-audited areas for tech workers who relocate. If you have a big California-source vest after moving, a CPA who knows the FTB rules is worth the fee. Mathstub matches you with equity-comp specialists via Harness Wealth — disclosed affiliate link.',
     },
     {
       type: 'p',
-      text: 'Daniel assumed: "TX has no state tax. My post-August-2024 vests are CA-tax-free." Walking the FTB work-source rule:',
-    },
-    {
-      type: 'ul',
-      items: [
-        '**Aug 2024 vest (vesting period: Aug 2022 – Aug 2024, 24 months).** All 24 months were CA. CA gets 100% of the $20k vest at 13.3% = **$2,660 owed to CA**.',
-        '**Nov 2024 vest (27 months total: 24 in CA + 3 in TX).** CA share: 24/27 = 88.9% × $20k × 13.3% = **$2,365**.',
-        '**Feb 2025 vest (30 months total: 24 in CA + 6 in TX).** CA share: 24/30 = 80.0% × $20k × 13.3% = **$2,128**.',
-        '**May 2025 vest (33 months).** CA share: 24/33 = 72.7% × $20k × 13.3% = **$1,934**.',
-        '**Aug 2025 vest (36 months).** CA share: 66.7% × $20k × 13.3% = **$1,773**.',
-        '**Nov 2025 vest (39 months).** CA share: 61.5% × $20k × 13.3% = **$1,636**.',
-        '**Feb 2026 vest (42 months).** CA share: 57.1% × $20k × 13.3% = **$1,519**.',
-        '**May 2026 vest (45 months).** CA share: 53.3% × $20k × 13.3% = **$1,418**.',
-        '**Aug 2026 vest (48 months — final).** CA share: 50.0% × $20k × 13.3% = **$1,330**.',
-      ],
-    },
-    {
-      type: 'p',
-      text: 'Total CA tax owed across post-move vests: roughly **$16,800** of CA state tax that Daniel did not expect. Adding state-AMT exposure on any ISO exercises during the CA work period: another $1k–$5k. If Daniel does not file quarterly estimates to CA, CA §19136 underpayment penalties (~5% annualized): another $400–$1,500 on top.',
-    },
-    { type: 'h2', text: 'Filing mechanics — Form 540NR' },
-    {
-      type: 'p',
-      text: 'For tax years 2024 onward (after Daniel\'s move), he is a NON-RESIDENT of California with CA-sourced income. He files:',
-    },
-    {
-      type: 'ul',
-      items: [
-        '**Form 540NR (CA non-resident return).** Reports the CA-allocated portion of each vest as CA-source income. He pays CA tax at the top marginal rate on that allocated portion.',
-        '**Federal Form 1040** treats all RSU income normally (no state distinction).',
-        '**No TX state return required** (TX has no state income tax).',
-      ],
-    },
-    {
-      type: 'p',
-      text: 'For 2024 specifically (the move year), Daniel is a PART-YEAR RESIDENT and files the long Form 540NR with both the resident-period income and the non-resident-period CA-source income.',
-    },
-    { type: 'h2', text: 'How to avoid the CA §19136 underpayment penalty' },
-    {
-      type: 'p',
-      text: 'CA expects you to make quarterly estimated payments on CA-source income, including these allocated RSU vests. Most tech workers who move are surprised by the CA tax liability AT FILING because their employer (now TX-payrolled) is no longer withholding CA tax.',
-    },
-    {
-      type: 'p',
-      text: 'Two safe-harbor mechanisms under CA §19136:',
-    },
-    {
-      type: 'ol',
-      items: [
-        'Pay 90% of the current-year CA tax through withholding + estimates by Q4 (Jan 15 of the following year).',
-        'Pay 110% of last year\'s CA tax (if CA AGI was over $150k) or 100% (if under) through the same channels.',
-      ],
-    },
-    {
-      type: 'p',
-      text: 'For a post-move resident, the cleanest path: estimate your post-move CA tax using the work-source rule, divide by 4, and submit CA Form 540-ES quarterly. Mathstub\'s Multi-State Equity Comp Tax Planner walks the allocation per vest + the quarterly estimate calculation.',
-    },
-    { type: 'h2', text: 'Variants — NY, NJ, MA, OR' },
-    {
-      type: 'p',
-      text: 'California is the most aggressive but not unique. Several other states apply work-source allocation to equity comp:',
-    },
-    {
-      type: 'ul',
-      items: [
-        '**New York:** uses a similar allocation rule + the notorious "convenience of the employer" rule, which can claim 100% of your income even after a move if the employer is NY-based and the move was for your convenience (not employer-driven). See NY Tax Bulletin TSB-M-06(5)I.',
-        '**New Jersey:** day-count method for non-residents; effective work-source allocation.',
-        '**Massachusetts:** TIR 02-21 walks the stock-comp allocation rules for non-residents.',
-        '**Oregon:** Day-count allocation under ORS 316.127.',
-        '**Pennsylvania:** Different rules — PA doesn\'t allocate based on vesting period in the same way; check REV-714.',
-      ],
-    },
-    { type: 'h2', text: 'How to model your situation' },
-    {
-      type: 'p',
-      text: 'Three things to do before / during your move:',
-    },
-    {
-      type: 'ol',
-      items: [
-        '**Pull your offer letter + vest schedule.** Note each vest date and the FMV-or-estimated-FMV per vest.',
-        '**Set your move date.** This anchors the "months in CA" calculation for each vest.',
-        '**Run the Mathstub Multi-State Equity Comp Tax Planner or the State Stock-Comp Lookup.** Get the allocated CA tax owed per vest + the quarterly schedule.',
-      ],
-    },
-    {
-      type: 'p',
-      text: 'Catching this in October (before your first post-move tax year ends) is the difference between a clean transition and a $1,500 underpayment penalty + a confused CPA visit.',
-    },
-    {
-      type: 'callout',
-      text: 'CA can claim multi-year work-source allocation on your equity comp up to 4 years after you move. Document your move (lease, utilities, voter registration, driver\'s license) carefully to defeat any residency-audit attempt. Move expense receipts + day-by-day calendar count are gold during a state audit.',
-    },
-    {
-      type: 'p',
-      text: 'Sources: California Revenue and Taxation Code §17041 (top marginal rate); CA RTC §17951 (non-resident income sourcing); CA RTC §19136 (underpayment of estimated tax); CA FTB Publication 1004 (Stock Options); CA FTB Publication 1005 (Pension and Annuity Guidelines); CA FTB Form 540NR (non-resident return); NY TSB-M-06(5)I (NY convenience-of-employer rule); NY Tax Law §631 (non-resident income allocation); Massachusetts TIR 02-21 (stock-comp allocation for non-residents); New Jersey GIT-19 (day-count allocation); Oregon ORS 316.127 (non-resident allocation); Pennsylvania REV-714 (compensation allocation). IRC §83(a) (federal vest income recognition).',
+      text:
+        'Sources: California FTB Publication 1004 (Stock Options and Deferred Compensation); California Schedule S (Other State Tax Credit); California Form 540NR (Nonresident or Part-Year Resident Return); Cal. Code Regs. tit. 18, §17951-5 (sourcing of deferred compensation); R&TC §17041 (nonresident taxation of CA-source income).',
     },
   ],
 };

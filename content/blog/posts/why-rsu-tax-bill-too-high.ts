@@ -24,129 +24,129 @@ export const whyRsuTooHigh: BlogPost = {
     {
       type: 'p',
       text:
-        'If you got an RSU vest this year and a tax bill that made you blink twice in April, you are not alone. The cause is almost always the same: your employer withheld federal income tax at a flat 22% under IRS supplemental-wage rules, but your actual marginal rate is much higher. The gap between those two numbers is the shortfall — and for a typical tech worker in the 32% or 35% bracket, it routinely lands between $2,000 and $30,000 on a single vest.',
+        'Got an RSU vest this year, then a tax bill in April that made you blink twice? You are not alone, and the cause is almost always the same: your employer only held back 22% in federal tax, but your real tax rate is a lot higher. That gap is your shortfall — and for a typical tech worker in the 32% or 35% bracket, it usually lands somewhere between $2,000 and $30,000 on a single vest.',
     },
     { type: 'h2', text: 'How RSU withholding works' },
     {
       type: 'p',
       text:
-        'When RSUs vest, the IRS treats their fair-market value as ordinary wages. But because vests do not happen on a regular pay cycle, employers default to a flat "supplemental wage" withholding rate published by the IRS in Publication 15-T:',
+        'When RSUs vest, the IRS treats their value as regular wages. But because vests do not land on your normal pay schedule, employers fall back on a flat "bonus-style" withholding rate set by the IRS:',
     },
     {
       type: 'ul',
       items: [
-        '22% on the first $1,000,000 of supplemental wages paid to you in the calendar year.',
-        '37% on every dollar of supplemental wages above $1,000,000.',
+        '22% on the first $1,000,000 of bonus-style pay you get in a calendar year.',
+        '37% on every dollar of bonus-style pay above $1,000,000.',
       ],
     },
     {
       type: 'p',
       text:
-        'Your employer applies these rates regardless of your actual tax bracket. The 22% number is not based on any specific worker\'s tax situation — it is a one-size-fits-all default set by Treasury under Treas. Reg. §31.3402(g)-1. The gap between this flat rate and your real marginal rate is what creates the April surprise.',
+        'Your employer uses these rates no matter what your real tax bracket is. The 22% is not based on your personal situation — it is a one-size-fits-all default set by the Treasury. The gap between that flat rate and your real rate is what blindsides people in April.',
     },
     { type: 'h2', text: 'Where the 22% rule came from' },
     {
       type: 'p',
       text:
-        'The supplemental-wage withholding rule traces back to the 1986 Tax Reform Act and has been adjusted only modestly since. Treasury set 22% as an approximation of the average filer\'s marginal rate on incremental wages — historically reasonable when most filers landed in the 25% bracket. After the 2017 Tax Cuts and Jobs Act lowered the brackets to 22%, the flat rate happened to match the new third bracket — but for anyone in the 32%, 35%, or 37% brackets (most senior tech workers), the rate now under-withholds materially.',
+        'This bonus-withholding rule goes back to the 1986 Tax Reform Act and has barely changed since. The Treasury set 22% as a rough stand-in for the average person’s rate on extra wages — which made sense back when most people were in the 25% bracket. After the 2017 tax law dropped the brackets, the flat rate happened to line up with the new third bracket. But for anyone in the 32%, 35%, or 37% bracket (most senior tech workers), that flat rate now holds back too little.',
     },
     {
       type: 'p',
       text:
-        'There is no mechanism in the rule for the employer to adjust based on your actual W-2 wages. The flat 22% applies whether you earn $80,000 or $800,000.',
+        'There is no way for the rule to adjust based on your actual wages. The flat 22% applies whether you make $80,000 or $800,000.',
     },
-    { type: 'h2', text: 'Worked example — single filer, $200k base, $50k vest' },
+    { type: 'h2', text: 'Worked example — single filer, $200k salary, $50k vest' },
     {
       type: 'p',
       text:
-        'You are single, earn $200,000 in regular W-2 wages, and receive a $50,000 RSU vest in March. Federal piece only (ignoring state, Medicare, Social Security for clarity):',
+        'You are single, earn $200,000 in regular wages, and get a $50,000 RSU vest in March. Just the federal part (ignoring state, Medicare, and Social Security to keep it clean):',
     },
     {
       type: 'ul',
       items: [
-        'Employer withholds federal supplemental at 22% × $50,000 = **$11,000**.',
-        'Your total taxable income for the year (with the vest) is $250,000. At 2026 single brackets, the marginal rate at $250k is 35%.',
-        'Actual federal tax owed on the $50,000 vest at the margin: $50,000 × 35% = **$17,500**.',
-        'Shortfall: $17,500 − $11,000 = **$6,500** owed at filing time.',
+        'Your employer holds back 22% × $50,000 = **$11,000**.',
+        'With the vest, your total income for the year is $250,000. At 2026 single brackets, your rate at $250k is 35%.',
+        'The federal tax you actually owe on the $50,000 vest: $50,000 × 35% = **$17,500**.',
+        'Shortfall: $17,500 − $11,000 = **$6,500** owed at filing.',
       ],
     },
     {
       type: 'p',
       text:
-        'Add California state shortfall (~$1,000–$2,000 on top, since CA supplemental is also a flat 10.23% vs ~12.3% marginal) and Additional Medicare reconciliation, and the all-in April balance owed often crosses the IRS $1,000 safe-harbor threshold under IRC §6654 — triggering an underpayment penalty in addition to the tax itself.',
+        'Add the California state shortfall (~$1,000–$2,000 on top, since CA also holds back a flat 10.23% vs a ~12.3% real rate) plus the extra-Medicare reconciliation, and your April bill often clears the IRS’s $1,000 safe-harbor line — which can tack on an underpayment penalty on top of the tax itself.',
     },
     {
       type: 'callout',
       text:
-        'Run your own number with the RSU Tax Shortfall calculator — inputs stay in your browser, nothing is sent to a server. If the projected shortfall exceeds $1,000 for the year, you have IRC §6654 underpayment-penalty exposure that should be addressed before December 31.',
+        'Run your own numbers with the RSU Tax Shortfall calculator — everything stays in your browser, nothing gets sent to a server. If your projected shortfall tops $1,000 for the year, you have underpayment-penalty exposure worth fixing before December 31.',
     },
-    { type: 'h2', text: 'State withholding makes it worse in a few states' },
+    { type: 'h2', text: 'A few states make it worse' },
     {
       type: 'p',
       text:
-        'Some states apply a flat supplemental rate to RSU vests, mirroring the federal rule:',
+        'Some states use their own flat bonus rate on RSU vests, just like the federal rule:',
     },
     {
       type: 'ul',
       items: [
-        '**California** — 10.23% supplemental, but top marginal is 13.3% (or 14.3% above $1M with the Mental Health Services Tax surcharge under Cal. Code Regs. tit. 18, §17041). Real marginal gap: 2–4 percentage points.',
-        '**New York** — 11.7% supplemental for high earners, top marginal 10.9% state + up to 3.876% NYC. The gap can be small at state level but compounds with NYC local tax for residents.',
+        '**California** — holds back 10.23%, but the top rate is 13.3% (or 14.3% above $1M with the mental-health surcharge). Real gap: 2–4 points.',
+        '**New York** — holds back 11.7% for high earners; top rate is 10.9% state plus up to 3.876% NYC. The state gap can be small, but it adds up with the NYC tax for city residents.',
         '**Texas, Florida, Washington, Tennessee, Nevada, South Dakota, Wyoming** — 0% state, no gap.',
       ],
     },
     {
       type: 'p',
       text:
-        'For a CA tech worker, the combined federal + state shortfall on a $50,000 vest with the same $250k total income works out to roughly $8,500 — close to a fifth of the net vest value, owed back to tax authorities by April.',
+        'For a California tech worker, the combined federal + state shortfall on a $50,000 vest at that same $250k total income comes to roughly $8,500 — close to a fifth of the vest, owed back to the tax authorities by April.',
     },
-    { type: 'h2', text: 'When 22% is actually enough (the under-the-radar case)' },
+    { type: 'h2', text: 'When 22% is actually enough' },
     {
       type: 'p',
       text:
-        'If your taxable income (including the vest) keeps you in the 22% federal bracket, then 22% supplemental withholding correctly covers the federal piece — no shortfall. This happens for:',
+        'If your income (vest included) keeps you in the 22% federal bracket, then 22% withholding covers the federal part just fine — no shortfall. That happens for:',
     },
     {
       type: 'ul',
       items: [
-        'Single filers with total taxable income under ~$48,000 in 2026 (the top of the 22% bracket starts at $48,475 for singles).',
+        'Single filers with total taxable income under ~$48,000 in 2026 (the 22% bracket tops out at $48,475 for singles).',
         'Married-filing-jointly with combined taxable income under ~$96,950.',
-        'Smaller vests on lower base salaries — e.g., a $5,000 vest for someone earning $50,000 base stays inside the 22% bracket.',
+        'Smaller vests on lower salaries — say a $5,000 vest for someone earning $50,000, which stays inside the 22% bracket.',
       ],
     },
     {
       type: 'p',
       text:
-        'For most tech workers with senior salaries plus equity, this safe zone does not apply. But it is worth knowing: 22% is not under-withholding for everyone, just for high earners.',
+        'For most tech workers with senior salaries plus equity, this safe zone does not apply. But it is worth knowing: 22% is not too low for everyone — just for high earners.',
     },
     { type: 'h2', text: 'How to fix it before December 31' },
     {
       type: 'p',
       text:
-        'Two approved methods to cover the shortfall before year-end:',
+        'Two approved ways to cover the shortfall before year-end:',
     },
     {
       type: 'ol',
       items: [
-        '**Form W-4 line 4(c) — "Extra withholding".** Open your payroll system (Workday, ADP, Gusto), find the W-4 form, enter a flat dollar amount on Line 4(c) labeled "Additional withholding per pay period." Federal withholding is treated as paid evenly across the year per IRC §6654(g)(1) — so a Q4 top-up retroactively cures earlier under-withholding without triggering the per-quarter underpayment math. This is the preferred fix.',
-        '**Quarterly estimated tax payment via IRS Direct Pay.** Pay the shortfall as a "Form 1040 estimated tax" payment at irs.gov/payments. Only counts from the payment date — does not retroactively fix earlier-year under-withholding. Use this if you missed the W-4 window before December 31.',
+        '**Form W-4 line 4(c) — "Extra withholding."** Open your payroll system (Workday, ADP, Gusto), find the W-4, and enter a flat dollar amount on Line 4(c) ("Additional withholding per pay period"). Federal withholding counts as paid evenly across the whole year — so even a Q4 top-up retroactively patches earlier under-withholding without the per-quarter penalty math. This is the better fix.',
+        '**A quarterly estimated payment via IRS Direct Pay.** Pay the shortfall as a "Form 1040 estimated tax" payment at irs.gov/payments. It only counts from the day you pay — it does not retroactively fix earlier under-withholding. Use this if you miss the W-4 window before December 31.',
       ],
     },
-    { type: 'h2', text: 'Long-term fix: aggregate-method withholding' },
+    { type: 'h2', text: 'The longer-term fix: ask about the aggregate method' },
     {
       type: 'p',
       text:
-        'Treas. Reg. §31.3402(g)-1(a)(2) authorizes employers to use the "aggregate method" instead of the 22% flat — adding the vest to your regular paycheck wages and withholding at your effective rate from the IRS withholding tables. For high earners this typically produces 28–32% federal withholding, much closer to the actual marginal rate.',
+        'The IRS also lets employers use the "aggregate method" instead of the flat 22% — adding the vest to your regular paycheck and withholding at your effective rate from the IRS tables. For high earners, that usually produces 28–32% federal withholding, much closer to your real rate.',
     },
     {
       type: 'p',
       text:
-        'Most companies default to the flat supplemental method because it is operationally simpler. A minority (some financial-services firms, some legacy industrials) use aggregate. Both are legal. You usually cannot pick — but it is worth asking HR or reading your equity plan document to find out which method applies, so you know whether to expect a shortfall or not.',
+        'Most companies stick with the flat method because it is simpler. A minority (some financial firms, some older industrials) use the aggregate method. Both are legal. You usually cannot pick — but it is worth asking HR or reading your equity plan to find out which one applies, so you know whether to expect a shortfall.',
     },
     { type: 'h2', text: 'The takeaway' },
     {
       type: 'p',
       text:
-        'The 22% federal supplemental withholding rate is the IRS-mandated default for RSU vests, set by Treasury under Treas. Reg. §31.3402(g)-1. For most tech workers in the 32%, 35%, or 37% bracket, that flat rate under-withholds the actual federal tax by 10-15 percentage points. The gap is the April surprise. Fix it before December 31 with Form W-4 line 4(c) — the most powerful single tool because §6654(g) treats withholding as paid evenly throughout the year, retroactively curing earlier under-withholding. The math is not magic; the IRS rule was just designed for a 1986 payroll system, not for modern equity comp.',
+        'The 22% federal withholding on RSU vests is the IRS’s default, set by the Treasury. For most tech workers in the 32%, 35%, or 37% bracket, it holds back 10-15 points too little on the federal side. That gap is your April surprise. Fix it before December 31 with Form W-4 line 4(c) — the single best tool, because withholding counts as paid evenly all year, retroactively patching the earlier shortfall. The math is not magic; the IRS rule was just built for a 1986 payroll world, not for modern equity comp.',
     },
     {
       type: 'p',
