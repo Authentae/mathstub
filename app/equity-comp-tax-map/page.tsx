@@ -11,7 +11,7 @@ export const metadata: Metadata = buildMetadata({
   title: 'Equity Comp Tax Map — Every Tax Moment From Grant to Retirement',
   description:
     'A visual map of every tax decision a tech worker with equity faces — RSU vests, option exercises, AMT, selling shares, multi-state moves, and Roth — each linked to a free calculator.',
-  ogImagePath: '/og/default.png',
+  ogImagePath: '/og/equity-comp-tax-map.png',
 });
 
 export default function TaxMapPage() {

@@ -102,7 +102,7 @@ export default function MethodologyPage() {
           <li>Cross-checks against worked examples from IRS Pubs and CPA blogs.</li>
         </ul>
         <p>
-          The current suite is 556 tests across 24 files — calculator
+          The current suite is 571 tests across 26 files — calculator
           modules, blog content invariants (every post has a Sources
           citation, every cross-reference resolves, every post is
           assigned to exactly one category, every referenced affiliate
