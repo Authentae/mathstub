@@ -103,12 +103,15 @@ export default async function PostPage({ params }: Props) {
             </p>
           );
         })()}
-        <h1 className="mt-2 text-3xl font-bold text-gray-900 dark:text-gray-100">
+        <h1 className="mt-3 text-[34px] font-bold leading-[1.15] tracking-tight text-gray-900 dark:text-gray-50 sm:text-[42px]">
           {post.title}
         </h1>
-        <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1">
-          <LastUpdatedBadge taxYear={2026} isoDate={post.dateModified} />
+        <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 border-b border-gray-200 pb-5 text-sm text-gray-500 dark:border-gray-800">
+          <span className="font-medium text-gray-700 dark:text-gray-300">{post.authorName}</span>
+          <span aria-hidden="true">·</span>
           <ReadTime blocks={post.blocks} />
+          <span aria-hidden="true">·</span>
+          <LastUpdatedBadge taxYear={2026} isoDate={post.dateModified} />
         </div>
 
         {post.quickAnswer && <QuickAnswer text={post.quickAnswer} />}
@@ -121,9 +124,9 @@ export default async function PostPage({ params }: Props) {
 
         <Disclaimer />
 
-        <div className="mt-6 space-y-5 text-[17px] leading-[1.75] text-gray-800 dark:text-gray-200">
+        <div className="mt-8 space-y-5 text-[17px] leading-[1.8] text-gray-800 dark:text-gray-200">
           {post.blocks.map((block, i) => (
-            <Block key={i} block={block} />
+            <Block key={i} block={block} isLede={i === 0 && block.type === 'p'} />
           ))}
         </div>
 
@@ -162,16 +165,32 @@ export default async function PostPage({ params }: Props) {
   );
 }
 
-function Block({ block }: { block: BlogBlock }) {
+function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }) {
   switch (block.type) {
     case 'p':
+      // First paragraph reads as a magazine "lede" — larger, lighter weight,
+      // sets the scene before the body settles into normal size.
+      if (isLede) {
+        return (
+          <p className="text-xl leading-relaxed text-gray-700 first-letter:float-left first-letter:mr-3 first-letter:mt-1 first-letter:font-serif first-letter:text-6xl first-letter:font-bold first-letter:leading-[0.8] first-letter:text-brand-600 dark:text-gray-300 dark:first-letter:text-brand-400">
+            {renderInline(block.text)}
+          </p>
+        );
+      }
       return <p>{renderInline(block.text)}</p>;
     case 'h2':
+      // Section heading as a clear visual break: hairline rule above + a brand
+      // accent bar before the title. Reads like a magazine section, not a
+      // numbered academic subsection.
       return (
         <h2
           id={slugifyHeading(block.text)}
-          className="mt-6 scroll-mt-20 text-2xl font-bold text-gray-900 dark:text-gray-100"
+          className="mt-12 scroll-mt-24 flex items-center gap-3 border-t border-gray-200 pt-8 text-[26px] font-bold leading-tight tracking-tight text-gray-900 dark:border-gray-800 dark:text-gray-50"
         >
+          <span
+            aria-hidden="true"
+            className="h-7 w-1.5 shrink-0 rounded-full bg-brand-500"
+          />
           {block.text}
         </h2>
       );
@@ -179,39 +198,62 @@ function Block({ block }: { block: BlogBlock }) {
       return (
         <h3
           id={slugifyHeading(block.text)}
-          className="mt-4 scroll-mt-20 text-xl font-semibold text-gray-900 dark:text-gray-100"
+          className="mt-8 scroll-mt-24 text-xl font-semibold text-gray-900 dark:text-gray-100"
         >
           {block.text}
         </h3>
       );
     case 'ul':
       return (
-        <ul className="ml-5 list-disc space-y-2 marker:text-brand-500">
+        <ul className="space-y-2.5 pl-1">
           {block.items.map((it, i) => (
-            <li key={i} className="pl-1">{renderInline(it)}</li>
+            <li key={i} className="flex gap-3">
+              <span
+                aria-hidden="true"
+                className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500"
+              />
+              <span>{renderInline(it)}</span>
+            </li>
           ))}
         </ul>
       );
     case 'ol':
       return (
-        <ol className="ml-5 list-decimal space-y-2 marker:font-semibold marker:text-brand-500">
+        <ol className="space-y-2.5">
           {block.items.map((it, i) => (
-            <li key={i} className="pl-1">{renderInline(it)}</li>
+            <li key={i} className="flex gap-3">
+              <span
+                aria-hidden="true"
+                className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-500/15 text-sm font-bold text-brand-700 dark:text-brand-300"
+              >
+                {i + 1}
+              </span>
+              <span className="pt-0.5">{renderInline(it)}</span>
+            </li>
           ))}
         </ol>
       );
     case 'quote':
       return (
-        <blockquote className="border-l-4 border-gray-300 pl-4 italic text-gray-700 dark:border-gray-700 dark:text-gray-300">
+        <blockquote className="my-2 border-l-4 border-brand-400 pl-5 text-xl font-medium italic leading-relaxed text-gray-700 dark:border-brand-500 dark:text-gray-200">
           {renderInline(block.text)}
-          {block.cite && <cite className="block text-sm not-italic">— {block.cite}</cite>}
+          {block.cite && (
+            <cite className="mt-2 block text-sm font-normal not-italic text-gray-500">
+              — {block.cite}
+            </cite>
+          )}
         </blockquote>
       );
     case 'callout':
+      // Highlight box — a "stop and read this" card with an icon, distinct
+      // from body text so the key takeaway pops on a skim.
       return (
-        <div className="rounded-md border-l-4 border-brand-500 bg-brand-50 p-4 text-[15px] text-gray-800 dark:bg-gray-900 dark:text-gray-200">
-          {renderInline(block.text)}
-        </div>
+        <aside className="my-2 flex gap-3 rounded-xl border border-brand-500/30 bg-brand-50 p-5 dark:bg-brand-950/40">
+          <span aria-hidden="true" className="mt-0.5 text-xl">💡</span>
+          <div className="text-[15px] leading-relaxed text-gray-800 dark:text-gray-100">
+            {renderInline(block.text)}
+          </div>
+        </aside>
       );
   }
 }
