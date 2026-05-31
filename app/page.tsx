@@ -153,9 +153,9 @@ export default function HomePage() {
             </span>
           </div>
           <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-[0.08em] text-slate-400">
-            <li><span className="text-brand-400">✓</span> 10 calculators</li>
-            <li><span className="text-brand-400">✓</span> 23 guides</li>
-            <li><span className="text-brand-400">✓</span> 484 unit tests</li>
+            <li><span className="text-brand-400">✓</span> 16 calculators</li>
+            <li><span className="text-brand-400">✓</span> 29 guides</li>
+            <li><span className="text-brand-400">✓</span> 571 unit tests</li>
             <li><span className="text-brand-400">✓</span> Every claim cites IRC § or IRS Pub</li>
             <li><span className="text-brand-400">✓</span> Inputs stay in your browser</li>
             <li><span className="text-brand-400">✓</span> Free, no signup</li>
@@ -191,7 +191,7 @@ export default function HomePage() {
             />
             <TrustCard
               icon="🧮"
-              title="484 unit tests"
+              title="571 unit tests"
               sub="Every calc is cross-checked against worked examples from IRS publications."
             />
             <TrustCard
