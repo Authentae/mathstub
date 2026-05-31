@@ -73,7 +73,7 @@ export default async function PostPage({ params }: Props) {
         ])}
       />
 
-      <article className="mx-auto max-w-3xl px-4 py-12">
+      <article className="mx-auto max-w-[680px] px-5 py-16 sm:py-20">
         {/*
           Breadcrumb: All posts → Category. Uses the categories.ts mapping
           so it stays in sync with the /blog index. Renders even if the
@@ -103,7 +103,7 @@ export default async function PostPage({ params }: Props) {
             </p>
           );
         })()}
-        <h1 className="mt-3 text-[34px] font-bold leading-[1.15] tracking-tight text-gray-900 dark:text-gray-50 sm:text-[42px]">
+        <h1 className="mt-3 text-[32px] font-bold leading-[1.12] tracking-[-0.02em] text-gray-900 dark:text-gray-50 sm:text-[40px]">
           {post.title}
         </h1>
         <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 border-b border-gray-200 pb-5 text-sm text-gray-500 dark:border-gray-800">
@@ -124,7 +124,7 @@ export default async function PostPage({ params }: Props) {
 
         <Disclaimer />
 
-        <div className="mt-8 space-y-5 text-[17px] leading-[1.8] text-gray-800 dark:text-gray-200">
+        <div className="mt-10 space-y-6 text-[18px] leading-[1.8] text-gray-700 dark:text-gray-300">
           {post.blocks.map((block, i) => (
             <Block key={i} block={block} isLede={i === 0 && block.type === 'p'} />
           ))}
@@ -168,29 +168,26 @@ export default async function PostPage({ params }: Props) {
 function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }) {
   switch (block.type) {
     case 'p':
-      // First paragraph reads as a magazine "lede" — larger, lighter weight,
-      // sets the scene before the body settles into normal size.
+      // First paragraph reads as a quiet "lede" — a touch larger and lighter,
+      // easing the reader in. No drop-cap: on a tax site it reads gimmicky;
+      // calm sophistication beats decoration.
       if (isLede) {
         return (
-          <p className="text-xl leading-relaxed text-gray-700 first-letter:float-left first-letter:mr-3 first-letter:mt-1 first-letter:font-serif first-letter:text-6xl first-letter:font-bold first-letter:leading-[0.8] first-letter:text-brand-600 dark:text-gray-300 dark:first-letter:text-brand-400">
+          <p className="text-[21px] leading-[1.7] text-gray-600 dark:text-gray-300">
             {renderInline(block.text)}
           </p>
         );
       }
       return <p>{renderInline(block.text)}</p>;
     case 'h2':
-      // Section heading as a clear visual break: hairline rule above + a brand
-      // accent bar before the title. Reads like a magazine section, not a
-      // numbered academic subsection.
+      // Section heading: generous space above is the visual break (the
+      // Stripe/Substack approach) — no rules or accent bars cluttering it.
+      // Strong size + tight tracking does the work.
       return (
         <h2
           id={slugifyHeading(block.text)}
-          className="mt-12 scroll-mt-24 flex items-center gap-3 border-t border-gray-200 pt-8 text-[26px] font-bold leading-tight tracking-tight text-gray-900 dark:border-gray-800 dark:text-gray-50"
+          className="mt-14 scroll-mt-24 text-[28px] font-bold leading-tight tracking-[-0.01em] text-gray-900 dark:text-gray-50"
         >
-          <span
-            aria-hidden="true"
-            className="h-7 w-1.5 shrink-0 rounded-full bg-brand-500"
-          />
           {block.text}
         </h2>
       );
@@ -198,7 +195,7 @@ function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }
       return (
         <h3
           id={slugifyHeading(block.text)}
-          className="mt-8 scroll-mt-24 text-xl font-semibold text-gray-900 dark:text-gray-100"
+          className="mt-10 scroll-mt-24 text-[21px] font-semibold tracking-[-0.01em] text-gray-900 dark:text-gray-100"
         >
           {block.text}
         </h3>
@@ -245,12 +242,15 @@ function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }
         </blockquote>
       );
     case 'callout':
-      // Highlight box — a "stop and read this" card with an icon, distinct
-      // from body text so the key takeaway pops on a skim.
+      // Highlight box — a quiet "key takeaway" card. A small uppercase label
+      // does the signposting instead of an emoji; restrained tint keeps it
+      // premium rather than loud.
       return (
-        <aside className="my-2 flex gap-3 rounded-xl border border-brand-500/30 bg-brand-50 p-5 dark:bg-brand-950/40">
-          <span aria-hidden="true" className="mt-0.5 text-xl">💡</span>
-          <div className="text-[15px] leading-relaxed text-gray-800 dark:text-gray-100">
+        <aside className="my-4 rounded-lg border border-gray-200 bg-gray-50 p-5 dark:border-gray-800 dark:bg-gray-900/60">
+          <p className="mb-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-600 dark:text-brand-400">
+            Key point
+          </p>
+          <div className="text-[16px] leading-relaxed text-gray-700 dark:text-gray-200">
             {renderInline(block.text)}
           </div>
         </aside>
