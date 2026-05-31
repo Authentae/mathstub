@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import {
   buildMetadata,
   canonical,
@@ -40,9 +40,9 @@ export default function Page() {
             <Disclaimer />
             <CalcIntro
               kicker="mathstub / form 540nr"
-              question="How much California tax do you owe on equity vests after a CA→TX move? Vest-by-vest math under FTB Pub 1004."
-              ircCite="CA Franchise Tax Board Pub 1004 + CA Revenue and Taxation Code §17951 source equity comp income to where services were performed during the vesting period — not where the holder lives at vest. CA still claims its proportional share of every post-move vest."
-              irc="CA RTC § 17951"
+              question="How much California tax do you owe on equity vests after a CAโ’TX move? Vest-by-vest math under FTB Pub 1004."
+              ircCite="CA Franchise Tax Board Pub 1004 + CA Revenue and Taxation Code ยง17951 source equity comp income to where services were performed during the vesting period โ€” not where the holder lives at vest. CA still claims its proportional share of every post-move vest."
+              irc="CA RTC ยง 17951"
             />
             <Ca540NrCalculator />
           </>
