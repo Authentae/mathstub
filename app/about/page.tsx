@@ -88,7 +88,7 @@ export default function AboutPage() {
           IRC sections, transcribe them into pure TypeScript math modules,
           cross-check against worked examples in IRS Pubs and major CPA
           blogs, and ship the result as a free browser-side calculator. The
-          pure math is unit-tested (497 tests across 19 files as of May 2026)
+          pure math is unit-tested (571 tests across 26 files as of June 2026)
           so the same engine can power the Chrome extension and the
           Anthropic-skill version we&rsquo;re building next.
         </p>

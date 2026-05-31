@@ -122,6 +122,32 @@ const cards = [
       { label: 'Roth space', value: '$7,000', highlight: true },
     ],
   },
+  {
+    slug: 'rsu-cost-basis',
+    eyebrow: 'rsu cost basis',
+    title: 'Stop paying tax\ntwice on your RSUs.',
+    subtitle: 'Your broker’s $0 cost basis double-taxes you. Fix it.',
+    sampleHeader: 'FORM 8949 FIX',
+    sampleRows: [
+      { label: 'Sale proceeds', value: '$6,000' },
+      { label: 'Broker basis', value: '$0' },
+      { label: 'Correct basis', value: '$5,000', color: 'brand' },
+      { label: 'Tax saved', value: '$940', highlight: true },
+    ],
+  },
+  {
+    slug: 'equity-comp-tax-map',
+    eyebrow: 'the big picture',
+    title: 'Your equity tax,\nstart to finish.',
+    subtitle: 'Every tax moment from grant to retirement, mapped.',
+    sampleHeader: 'THE JOURNEY',
+    sampleRows: [
+      { label: 'Vest', value: 'Income tax' },
+      { label: 'Exercise', value: 'AMT' },
+      { label: 'Sell', value: 'Cap gains' },
+      { label: 'Move states', value: 'Sourcing', highlight: true },
+    ],
+  },
 ];
 
 async function main() {
