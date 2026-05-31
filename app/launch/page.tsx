@@ -6,7 +6,7 @@ export const metadata: Metadata = buildMetadata({
   slug: 'launch',
   title: 'Launch deck — what mathstub is and why it exists',
   description:
-    'A 10-slide visual walkthrough of mathstub.com — the audience, the problem (22% supplemental vs ~37% marginal), the calculator suite, the trust signals (493 unit tests, every claim cites IRC), and the roadmap.',
+    'A 10-slide visual walkthrough of mathstub.com — the audience, the problem (22% supplemental vs ~37% marginal), the calculator suite, the trust signals (571 unit tests, every claim cites IRC), and the roadmap.',
   ogImagePath: '/og/default.png',
   // Iframe-only launch deck — not substantive content from Google's POV.
   // Direct-link surface for press / partners, not for organic search.
