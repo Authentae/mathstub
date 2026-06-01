@@ -200,6 +200,14 @@ export const blogRelations: Record<string, BlogRelations> = {
     ],
     calcs: ['iso-amt', 'amt-credit-recovery', 'form-6251'],
   },
+  'qsbs-section-1202-startup-equity': {
+    posts: [
+      'early-exercise-nso-83b-election',
+      'double-trigger-rsu-ipo-tax',
+      'stock-options-vs-rsus-tax',
+    ],
+    calcs: ['iso-amt', 'nso-exercise', 'double-trigger-rsu'],
+  },
   'mega-backdoor-roth-eligibility': {
     posts: [
       'year-end-equity-comp-checklist',

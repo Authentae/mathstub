@@ -61,6 +61,7 @@ export const blogCategories: BlogCategory[] = [
       'early-exercise-nso-83b-election',
       'iso-disqualifying-disposition-tax',
       'amt-credit-recovery-form-8801',
+      'qsbs-section-1202-startup-equity',
     ],
   },
   {
