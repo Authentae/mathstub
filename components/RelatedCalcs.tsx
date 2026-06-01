@@ -17,7 +17,8 @@ const RELATED: Record<string, string[]> = {
   'w4-step-4c': ['rsu-tax-shortfall', 'bonus-tax-shortfall', 'quarterly-estimated-tax'],
   'form-6251': ['iso-amt', 'amt-credit-recovery', 'nso-exercise'],
   'ca-540nr': ['state-stock-comp', 'rsu-tax-shortfall', 'quarterly-estimated-tax'],
-  'double-trigger-rsu': ['rsu-tax-shortfall', 'rsu-cost-basis', 'quarterly-estimated-tax'],
+  'double-trigger-rsu': ['rsu-tax-shortfall', 'rsu-cost-basis', 'qsbs', 'quarterly-estimated-tax'],
+  'qsbs': ['iso-amt', 'nso-exercise', 'double-trigger-rsu'],
 };
 
 export function RelatedCalcs({ currentSlug }: { currentSlug: string }) {

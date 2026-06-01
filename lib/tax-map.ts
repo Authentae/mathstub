@@ -110,8 +110,8 @@ export const TAX_MAP_STAGES: TaxMapStage[] = [
     emoji: '🌀',
     title: 'Build tax-free wealth',
     blurb:
-      'Once the comp tax is handled, route the surplus into the Roth space most high earners don’t realize they have.',
-    calcSlugs: ['mega-backdoor-roth', 'backdoor-roth-ira', 'roth-sequencer'],
+      'Once the comp tax is handled, route the surplus into the Roth space most high earners don’t realize they have — and if you hold startup stock, see how much of the eventual exit gain QSBS can make federal-tax-free.',
+    calcSlugs: ['mega-backdoor-roth', 'backdoor-roth-ira', 'roth-sequencer', 'qsbs'],
   },
 ];
 
