@@ -171,6 +171,16 @@ export const tools: Tool[] = [
     status: 'live',
     emoji: '🚀',
   },
+  {
+    id: 'qsbs',
+    slug: 'qsbs',
+    title: 'QSBS / Section 1202 Exclusion Calculator',
+    shortTitle: 'QSBS / §1202',
+    summary:
+      'How much of your startup-stock gain is federal-tax-free under IRC §1202. Models the new 2025 (OBBBA) tiered 50/75/100% exclusion, the greater-of-$15M-or-10×-basis cap, the 28%-rate gain on the taxable portion, and state non-conformity.',
+    status: 'live',
+    emoji: '🦄',
+  },
 ];
 
 export function liveTools(): Tool[] {

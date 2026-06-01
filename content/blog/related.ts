@@ -206,7 +206,7 @@ export const blogRelations: Record<string, BlogRelations> = {
       'double-trigger-rsu-ipo-tax',
       'stock-options-vs-rsus-tax',
     ],
-    calcs: ['iso-amt', 'nso-exercise', 'double-trigger-rsu'],
+    calcs: ['qsbs', 'iso-amt', 'nso-exercise'],
   },
   'mega-backdoor-roth-eligibility': {
     posts: [
