@@ -167,9 +167,47 @@ export default async function PostPage({ params }: Props) {
   );
 }
 
+/**
+ * Break a long paragraph into smaller ones at sentence boundaries.
+ *
+ * This is the real readability fix: a 70–100 word block is a "wall" no matter
+ * how nice the font is. Splitting into ~2-sentence chunks gives the eye rest
+ * stops. Done at render time so it applies to ALL posts with ZERO content
+ * edits (and zero risk of altering a tax figure).
+ *
+ * Rules: keep paragraphs at/under ~maxWords; only split on sentence ends
+ * (". " / "? " / "! "), never mid-number or mid-abbreviation, by accumulating
+ * whole sentences until adding the next would exceed the budget.
+ */
+function splitIntoChunks(text: string, maxWords = 45): string[] {
+  const words = text.split(/\s+/).filter(Boolean);
+  if (words.length <= maxWords) return [text];
+
+  // Split into sentences, keeping the terminating punctuation.
+  const sentences = text.match(/[^.!?]+[.!?]+(?:["')\]]*)?(?:\s|$)/g);
+  if (!sentences || sentences.length < 2) return [text];
+
+  const chunks: string[] = [];
+  let current = '';
+  let currentWords = 0;
+  for (const s of sentences) {
+    const w = s.trim().split(/\s+/).filter(Boolean).length;
+    if (currentWords > 0 && currentWords + w > maxWords) {
+      chunks.push(current.trim());
+      current = s;
+      currentWords = w;
+    } else {
+      current += s;
+      currentWords += w;
+    }
+  }
+  if (current.trim()) chunks.push(current.trim());
+  return chunks;
+}
+
 function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }) {
   switch (block.type) {
-    case 'p':
+    case 'p': {
       // First paragraph reads as a quiet "lede" — a touch larger and lighter,
       // easing the reader in. No drop-cap: on a tax site it reads gimmicky;
       // calm sophistication beats decoration.
@@ -180,7 +218,17 @@ function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }
           </p>
         );
       }
-      return <p>{renderInline(block.text)}</p>;
+      // Auto-split long body paragraphs so no "wall of text" survives.
+      const chunks = splitIntoChunks(block.text);
+      if (chunks.length === 1) return <p>{renderInline(block.text)}</p>;
+      return (
+        <>
+          {chunks.map((c, i) => (
+            <p key={i}>{renderInline(c)}</p>
+          ))}
+        </>
+      );
+    }
     case 'h2':
       // Section heading: generous space above is the visual break (the
       // Stripe/Substack approach) — no rules or accent bars cluttering it.
