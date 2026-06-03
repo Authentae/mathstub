@@ -2,6 +2,7 @@ import type { BlogPost } from '../registry';
 
 export const mayaRsuCostBasisCaseStudy: BlogPost = {
   slug: 'maya-rsu-cost-basis-case-study',
+  landing: true,
   title:
     "Maya's $2,574 RSU cost-basis fix — the 60-second Form 8949 column (g) save on a single 100-share sale",
   description:

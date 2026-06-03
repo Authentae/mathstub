@@ -110,6 +110,13 @@ export interface BlogPost {
    */
   quickAnswer?: string;
   /**
+   * Opt-in to the homepage-style "landing" layout: dark hero with blue radial
+   * glow, mono eyebrow, huge headline, and glowing-dot section headings — the
+   * post reads like a designed landing page, not a text column. Defaults to the
+   * standard article layout when omitted, so existing posts are untouched.
+   */
+  landing?: boolean;
+  /**
    * Optional "skim layer" — 3-6 plain-English bullets rendered under the
    * QuickAnswer. Lets a non-reader get the whole post in ~15s while the full
    * body below stays for depth + SEO. Keep each bullet to one scannable line.
