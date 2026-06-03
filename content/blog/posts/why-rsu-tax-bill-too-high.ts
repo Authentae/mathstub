@@ -44,6 +44,10 @@ export const whyRsuTooHigh: BlogPost = {
       text:
         'Your employer applies these rates regardless of your actual tax bracket. The 22% number is not based on any specific worker\'s tax situation — it is a one-size-fits-all default set by Treasury under Treas. Reg. §31.3402(g)-1. The gap between this flat rate and your real marginal rate is what creates the April surprise.',
     },
+    {
+      type: 'analogy',
+      text: 'Think of the 22% like a restaurant that adds an automatic 22% tip to every table. Fine if 22% is what you meant to leave — but if your bill really calls for 35%, you\'re short, and you only find out when the bill is reconciled in April. The IRS uses one flat "tip" for everyone instead of your real rate.',
+    },
     { type: 'h2', text: 'Where the 22% rule came from' },
     {
       type: 'p',
@@ -60,6 +64,16 @@ export const whyRsuTooHigh: BlogPost = {
       type: 'p',
       text:
         'You are single, earn $200,000 in regular W-2 wages, and receive a $50,000 RSU vest in March. Federal piece only (ignoring state, Medicare, Social Security for clarity):',
+    },
+    {
+      type: 'flow',
+      caption: 'Where the $6,500 surprise comes from',
+      steps: [
+        { label: 'Vest value', value: '$50,000' },
+        { label: 'Withheld (22%)', value: '$11,000', tone: 'bad' },
+        { label: 'Really owed (35%)', value: '$17,500' },
+        { label: 'April shortfall', value: '$6,500', tone: 'bad' },
+      ],
     },
     {
       type: 'ul',
@@ -80,11 +94,26 @@ export const whyRsuTooHigh: BlogPost = {
       text:
         'Run your own number with the RSU Tax Shortfall calculator — inputs stay in your browser, nothing is sent to a server. If the projected shortfall exceeds $1,000 for the year, you have IRC §6654 underpayment-penalty exposure that should be addressed before December 31.',
     },
+    {
+      type: 'embed',
+      calc: 'rsu-shortfall',
+      caption: 'Your vest, your number — live',
+    },
     { type: 'h2', text: 'State withholding makes it worse in a few states' },
     {
       type: 'p',
       text:
         'Some states apply a flat supplemental rate to RSU vests, mirroring the federal rule:',
+    },
+    {
+      type: 'table',
+      caption: 'State supplemental rate vs real top rate',
+      headers: ['State', 'Withheld at vest', 'Real top rate', 'Gap'],
+      rows: [
+        ['California', '10.23%', '13.3%+', '2–4 pts'],
+        ['New York', '11.7%', '10.9% + NYC', 'compounds with NYC'],
+        ['TX / FL / WA / NV', '0%', '0%', 'none'],
+      ],
     },
     {
       type: 'ul',

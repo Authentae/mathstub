@@ -316,9 +316,9 @@ function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }
               {block.caption}
             </figcaption>
           )}
-          <div className="flex flex-wrap items-stretch gap-2">
+          <div className="flex items-stretch gap-2 overflow-x-auto pb-1">
             {block.steps.map((s, i) => (
-              <div key={i} className="flex items-stretch gap-2">
+              <div key={i} className="flex shrink-0 items-stretch gap-2">
                 <div
                   className={`flex min-w-[110px] flex-col justify-center rounded-lg border px-3 py-2.5 ${
                     s.tone === 'bad'
