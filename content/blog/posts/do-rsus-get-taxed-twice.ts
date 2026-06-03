@@ -44,6 +44,14 @@ export const rsusTaxedTwice: BlogPost = {
       ],
     },
     {
+      type: 'flow',
+      caption: 'Two doors, two different tolls',
+      steps: [
+        { label: 'Door 1: vest', value: 'Tax the value' },
+        { label: 'Door 2: sell', value: 'Tax only the growth', tone: 'good' },
+      ],
+    },
+    {
       type: 'p',
       text:
         'That is the whole rule. Door 1 taxes what the shares were worth when you got them. Door 2 taxes only what they gained after that. No single dollar gets taxed twice.',
@@ -69,14 +77,26 @@ export const rsusTaxedTwice: BlogPost = {
         'Same 100 shares vest at $50 ($5,000). But this time you wait 18 months and sell at $80.',
     },
     {
-      type: 'ul',
-      items: [
-        '**At vesting:** still $5,000 of income, still about **$2,140** in tax.',
-        '**At the sale:** you sell for $8,000. You already settled up on the first $5,000 (taxed at vesting), so now you are only taxed on the **$3,000 of growth**. That costs about **$840** (15% federal + 9.3% California + 3.8% on investment income for higher earners).',
-        '**Total: about $2,980** on $8,000. The first $5,000 was taxed as income. The $3,000 of growth was taxed as a gain. Two different things — never the same dollar twice.',
+      type: 'table',
+      caption: 'Sell right away vs hold and grow',
+      headers: ['', 'Sell same day', 'Hold, sell at $80'],
+      rows: [
+        ['Tax at vesting', '$2,140', '$2,140'],
+        ['Growth after vest', '$0', '$3,000'],
+        ['Tax on the sale', '$0', '$840'],
+        ['Total tax', '$2,140', '$2,980'],
       ],
     },
+    {
+      type: 'p',
+      text:
+        'The first $5,000 was taxed as income. The $3,000 of growth was taxed as a gain. Two different things — never the same dollar twice.',
+    },
     { type: 'h2', text: 'So why does it FEEL like double tax?' },
+    {
+      type: 'analogy',
+      text: 'Imagine you buy a $50 toy, then sell it to a friend for $80. You should only owe on the $30 you made. But the receipt machine misprints your buy price as $0 — now it looks like you made the whole $80. You did not get robbed twice; the receipt is just wrong. That misprint is your broker writing "$0" — and you fix it with one number.',
+    },
     {
       type: 'p',
       text:
