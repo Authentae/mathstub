@@ -19,7 +19,62 @@ export interface BlogCallout {
   type: 'callout';
   text: string;
 }
-export type BlogBlock = BlogParagraph | BlogHeading | BlogList | BlogQuote | BlogCallout;
+/**
+ * Visual "money-flow" — a horizontal chain of labeled amounts with arrows
+ * between them (e.g. $50k vest → −22% withheld → 35% owed → $6.5k surprise).
+ * Dual-coding: pairs the verbal explanation with a picture the eye can grasp
+ * instantly and screenshot/share.
+ */
+export interface BlogFlow {
+  type: 'flow';
+  /** Optional small heading above the flow. */
+  caption?: string;
+  steps: Array<{
+    label: string;
+    value: string;
+    /** 'good' = green, 'bad' = red/amber emphasis, undefined = neutral. */
+    tone?: 'good' | 'bad';
+  }>;
+}
+/**
+ * Scannable comparison table — header row + rows. Beats three paragraphs for
+ * "X vs Y vs Z" and is featured-snippet bait.
+ */
+export interface BlogTable {
+  type: 'table';
+  caption?: string;
+  headers: string[];
+  rows: string[][];
+}
+/**
+ * Analogy box — bridges an unfamiliar tax concept to a familiar one. Distinct
+ * styling so the "think of it like…" moment stands out and sticks in memory.
+ */
+export interface BlogAnalogy {
+  type: 'analogy';
+  text: string;
+}
+/**
+ * Embedded interactive calculator. Renders the live mini-widget for `calc`
+ * (an iframe to /embed/<calc>) inside the post so readers see THEIR number
+ * without leaving the page — the one thing a plain-text blog can't copy.
+ */
+export interface BlogEmbed {
+  type: 'embed';
+  /** Embed slug under /public/embed (currently: 'rsu-shortfall'). */
+  calc: string;
+  caption?: string;
+}
+export type BlogBlock =
+  | BlogParagraph
+  | BlogHeading
+  | BlogList
+  | BlogQuote
+  | BlogCallout
+  | BlogFlow
+  | BlogTable
+  | BlogAnalogy
+  | BlogEmbed;
 
 export interface BlogPost {
   slug: string;

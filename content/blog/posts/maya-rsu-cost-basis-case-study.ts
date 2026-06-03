@@ -27,6 +27,17 @@ export const mayaRsuCostBasisCaseStudy: BlogPost = {
       text: 'The single biggest tax-prep mistake in the equity-comp world is letting your broker\'s $0 cost basis stand on an RSU sale 1099-B. The IRS does not refund the overpayment automatically. You have to know to fix it. Maya — a software engineer at a mid-stage startup in San Francisco — almost made this mistake on her 2025 return. She caught it because she opened the Mathstub RSU cost-basis calculator on a hunch. The fix took 60 seconds. The savings: $2,574 on a single 100-share sale, plus an additional refund recovered by amending her 2023 return where the same mistake had quietly slipped through.',
     },
     {
+      type: 'flow',
+      caption: 'The whole story in one line',
+      steps: [
+        { label: 'Sold for', value: '$8,000' },
+        { label: 'Broker says basis', value: '$0', tone: 'bad' },
+        { label: 'Real basis', value: '$5,000', tone: 'good' },
+        { label: 'True gain', value: '$3,000', tone: 'good' },
+        { label: 'Tax saved', value: '$2,574', tone: 'good' },
+      ],
+    },
+    {
       type: 'callout',
       text: 'Maya is a composite case constructed from the actual error pattern the Mathstub RSU cost-basis fix walkthrough exists for. The IRC citations, the Form 8949 mechanics, the tax software steps, and the dollar figures are concrete. The name is not.',
     },
@@ -52,6 +63,10 @@ export const mayaRsuCostBasisCaseStudy: BlogPost = {
     },
 
     { type: 'h2', text: "Why brokers report $0 — and why the IRS lets them" },
+    {
+      type: 'analogy',
+      text: 'Your broker is like a coat-check that only writes down what you paid at the door. You paid $0 to "check" your RSU shares, so the ticket says $0. It has no idea you already paid $5,000 for that coat on a different receipt (your W-2). The IRS wants you to staple the two receipts together — that\'s all Form 8949 does.',
+    },
     {
       type: 'p',
       text: 'Under IRC §6045, brokers are required to report cost basis on covered securities. The basis they report is the amount the holder actually paid for the security at acquisition. For granted shares (RSUs, ESPP, stock options, gift), the holder paid $0 — so the broker reports $0. This is correct from the broker\'s perspective and consistent with the §6045 reporting rule.',
@@ -93,6 +108,18 @@ export const mayaRsuCostBasisCaseStudy: BlogPost = {
       type: 'p',
       text: 'Three scenarios — unfixed wrong, fixed right, and "is it really long-term?"',
     },
+    {
+      type: 'table',
+      caption: 'Same shares, three outcomes',
+      headers: ['', 'Left $0 basis (worst case)', 'Left $0 basis (LTCG)', 'Fixed on Form 8949'],
+      rows: [
+        ['Cost basis claimed', '$0', '$0', '**$5,000**'],
+        ['Taxable gain', '$8,000', '$8,000', '**$3,000**'],
+        ['Tax on the sale', '$3,304', '$1,944', '**$729**'],
+        ['Already paid at vest', '$1,900', '$1,900', '$1,900'],
+        ['Total tax outlay', '$5,204', '$3,844', '**$2,629**'],
+      ],
+    },
     { type: 'h3', text: 'Scenario 1: Unfixed (wrong)' },
     {
       type: 'ul',
@@ -128,6 +155,16 @@ export const mayaRsuCostBasisCaseStudy: BlogPost = {
       text: 'But there\'s more. Maya\'s federal marginal rate is 32%. If she had let the broker basis stand and the IRS had categorised the sale wrong (or her tax software had defaulted to short-term because the broker basis matched a $0 acquisition cost), the federal tax on the wrong $8,000 gain at her marginal rate (treating it as ordinary) would have been $8,000 × 32% + $8,000 × 9.3% (CA) = $3,304. Plus the $1,900 already paid at vest. **Total wrong-case outlay: $5,204.** Compare to the correct $2,629. Worst-case savings from the fix: **$2,574** — the headline number.',
     },
 
+    { type: 'h2', text: 'Run your own number' },
+    {
+      type: 'p',
+      text: 'Maya\'s shares were a $2,574 save. Yours could be more or less — it scales with how many shares you sold and your tax rate. Plug in your own sale below and see your number before you file:',
+    },
+    {
+      type: 'embed',
+      calc: 'rsu-shortfall',
+      caption: 'Live calculator — your inputs stay in your browser',
+    },
     { type: 'h2', text: 'Step-by-step in TurboTax' },
     {
       type: 'ol',
