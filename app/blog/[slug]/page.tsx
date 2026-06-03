@@ -305,5 +305,134 @@ function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }
           </div>
         </aside>
       );
+    case 'flow':
+      // Visual money-flow: a chain of labeled amounts with arrows between them.
+      // The single biggest "wall-breaker" — turns an invisible tax concept into
+      // a picture the eye grasps instantly and readers screenshot/share.
+      return (
+        <figure className="my-6 rounded-xl border border-gray-200 bg-gray-50 p-5 dark:border-gray-800 dark:bg-gray-900/60">
+          {block.caption && (
+            <figcaption className="mb-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-600 dark:text-brand-400">
+              {block.caption}
+            </figcaption>
+          )}
+          <div className="flex flex-wrap items-stretch gap-2">
+            {block.steps.map((s, i) => (
+              <div key={i} className="flex items-stretch gap-2">
+                <div
+                  className={`flex min-w-[110px] flex-col justify-center rounded-lg border px-3 py-2.5 ${
+                    s.tone === 'bad'
+                      ? 'border-red-300 bg-red-50 dark:border-red-800/60 dark:bg-red-950/40'
+                      : s.tone === 'good'
+                        ? 'border-emerald-300 bg-emerald-50 dark:border-emerald-800/60 dark:bg-emerald-950/40'
+                        : 'border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-950'
+                  }`}
+                >
+                  <span className="text-[11px] uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                    {s.label}
+                  </span>
+                  <span
+                    className={`text-lg font-bold tabular-nums ${
+                      s.tone === 'bad'
+                        ? 'text-red-700 dark:text-red-300'
+                        : s.tone === 'good'
+                          ? 'text-emerald-700 dark:text-emerald-300'
+                          : 'text-gray-900 dark:text-gray-100'
+                    }`}
+                  >
+                    {s.value}
+                  </span>
+                </div>
+                {i < block.steps.length - 1 && (
+                  <span aria-hidden="true" className="self-center text-xl text-gray-400 dark:text-gray-600">
+                    →
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        </figure>
+      );
+    case 'table':
+      // Scannable comparison grid — beats parallel bullet lists for "X vs Y".
+      return (
+        <figure className="my-6 overflow-x-auto">
+          {block.caption && (
+            <figcaption className="mb-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-600 dark:text-brand-400">
+              {block.caption}
+            </figcaption>
+          )}
+          <table className="w-full border-collapse overflow-hidden rounded-lg text-[15px]">
+            <thead>
+              <tr className="bg-gray-100 dark:bg-gray-800">
+                {block.headers.map((h, i) => (
+                  <th
+                    key={i}
+                    className={`border-b border-gray-200 px-4 py-2.5 font-semibold text-gray-900 dark:border-gray-700 dark:text-gray-100 ${
+                      i === 0 ? 'text-left' : 'text-right'
+                    }`}
+                  >
+                    {h}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {block.rows.map((row, ri) => (
+                <tr key={ri} className="odd:bg-white even:bg-gray-50 dark:odd:bg-gray-950 dark:even:bg-gray-900/50">
+                  {row.map((cell, ci) => (
+                    <td
+                      key={ci}
+                      className={`border-b border-gray-100 px-4 py-2.5 dark:border-gray-800 ${
+                        ci === 0
+                          ? 'text-left font-medium text-gray-900 dark:text-gray-100'
+                          : 'text-right tabular-nums text-gray-700 dark:text-gray-300'
+                      }`}
+                    >
+                      {renderInline(cell)}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </figure>
+      );
+    case 'analogy':
+      // "Think of it like…" memory hook — bridges unfamiliar tax → familiar idea.
+      return (
+        <aside className="my-5 flex gap-3 rounded-xl border-l-4 border-brand-400 bg-brand-50 p-5 dark:border-brand-500 dark:bg-brand-950/40">
+          <span aria-hidden="true" className="text-2xl">🧠</span>
+          <div>
+            <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-700 dark:text-brand-300">
+              Think of it like this
+            </p>
+            <div className="text-[16px] leading-relaxed text-gray-800 dark:text-gray-100">
+              {renderInline(block.text)}
+            </div>
+          </div>
+        </aside>
+      );
+    case 'embed':
+      // Live interactive mini-calculator — the reader sees THEIR number without
+      // leaving the page. Iframes the self-contained widget under /public/embed.
+      return (
+        <figure className="my-6">
+          {block.caption && (
+            <figcaption className="mb-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-600 dark:text-brand-400">
+              {block.caption}
+            </figcaption>
+          )}
+          <div className="overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800">
+            <iframe
+              src={`/embed/${block.calc}/?theme=dark`}
+              title="Interactive calculator"
+              loading="lazy"
+              className="block w-full border-0"
+              style={{ height: 520 }}
+            />
+          </div>
+        </figure>
+      );
   }
 }
