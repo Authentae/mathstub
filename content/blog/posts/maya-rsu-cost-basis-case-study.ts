@@ -68,16 +68,22 @@ export const mayaRsuCostBasisCaseStudy: BlogPost = {
       text: 'Your broker is like a coat-check that only writes down what you paid at the door. You paid $0 to "check" your RSU shares, so the ticket says $0. It has no idea you already paid $5,000 for that coat on a different receipt (your W-2). The IRS wants you to staple the two receipts together — that\'s all Form 8949 does.',
     },
     {
-      type: 'p',
-      text: 'Under IRC §6045, brokers are required to report cost basis on covered securities. The basis they report is the amount the holder actually paid for the security at acquisition. For granted shares (RSUs, ESPP, stock options, gift), the holder paid $0 — so the broker reports $0. This is correct from the broker\'s perspective and consistent with the §6045 reporting rule.',
-    },
-    {
-      type: 'p',
-      text: 'But the holder\'s real cost basis is different. Under IRC §83(a), when property is transferred to a service provider in exchange for services, the property\'s fair market value at vesting is included in ordinary income — meaning the holder has effectively "paid" that FMV via their wages. The basis in the property steps up to that FMV per Treas. Reg. §1.83-4(b). So for Maya, the basis is $5,000 (FMV at vest), not $0 (cash paid at vest).',
-    },
-    {
-      type: 'p',
-      text: 'The broker does not know this. The broker sees only the share transfer event, not Maya\'s W-2. So the 1099-B is technically correct per §6045 — but Maya is responsible for adjusting it on Form 8949 when she files her 1040.',
+      type: 'details',
+      summary: 'The full why, with the IRC citations',
+      blocks: [
+        {
+          type: 'p',
+          text: 'Under IRC §6045, brokers are required to report cost basis on covered securities. The basis they report is the amount the holder actually paid for the security at acquisition. For granted shares (RSUs, ESPP, stock options, gift), the holder paid $0 — so the broker reports $0. This is correct from the broker\'s perspective and consistent with the §6045 reporting rule.',
+        },
+        {
+          type: 'p',
+          text: 'But the holder\'s real cost basis is different. Under IRC §83(a), when property is transferred to a service provider in exchange for services, the property\'s fair market value at vesting is included in ordinary income — meaning the holder has effectively "paid" that FMV via their wages. The basis in the property steps up to that FMV per Treas. Reg. §1.83-4(b). So for Maya, the basis is $5,000 (FMV at vest), not $0 (cash paid at vest).',
+        },
+        {
+          type: 'p',
+          text: 'The broker does not know this. The broker sees only the share transfer event, not Maya\'s W-2. So the 1099-B is technically correct per §6045 — but Maya is responsible for adjusting it on Form 8949 when she files her 1040.',
+        },
+      ],
     },
 
     { type: 'h2', text: 'The Form 8949 column (g) fix, step by step' },
@@ -165,27 +171,42 @@ export const mayaRsuCostBasisCaseStudy: BlogPost = {
       calc: 'rsu-shortfall',
       caption: 'Live calculator — your inputs stay in your browser',
     },
-    { type: 'h2', text: 'Step-by-step in TurboTax' },
+    { type: 'h2', text: 'Doing it in your tax software' },
     {
-      type: 'ol',
-      items: [
-        'Go to **Income → Investments → Stocks, Mutual Funds, Bonds**. Import the 1099-B from your broker if you have not already.',
-        'Find the RSU sale row (100 sh ACMECO). Click **Edit** or the pencil icon.',
-        'Scroll to the **"I\'ll enter additional info on my own"** option → **"This is a less common situation"**.',
-        'Check **"The cost basis on my 1099-B is incorrect or missing"**.',
-        'Enter the **corrected basis** in the "Corrected cost basis" field: $5,000 (FMV at vest × shares). Pull this from your final paystub the year of vest, your W-2 box 14 RSU code, or your Mathstub Equity Comp Decision Tracker §3 Vest log row.',
-        'TurboTax automatically generates the Form 8949 row with code "B" in column (f) and the −$5,000 adjustment in column (g). You do not enter column (g) directly.',
+      type: 'p',
+      text: 'The exact clicks, if you use TurboTax or TaxAct — open whichever you need:',
+    },
+    {
+      type: 'details',
+      summary: 'Step-by-step in TurboTax',
+      blocks: [
+        {
+          type: 'ol',
+          items: [
+            'Go to **Income → Investments → Stocks, Mutual Funds, Bonds**. Import the 1099-B from your broker if you have not already.',
+            'Find the RSU sale row (100 sh ACMECO). Click **Edit** or the pencil icon.',
+            'Scroll to the **"I\'ll enter additional info on my own"** option → **"This is a less common situation"**.',
+            'Check **"The cost basis on my 1099-B is incorrect or missing"**.',
+            'Enter the **corrected basis** in the "Corrected cost basis" field: $5,000 (FMV at vest × shares). Pull this from your final paystub the year of vest, your W-2 box 14 RSU code, or your Mathstub Equity Comp Decision Tracker §3 Vest log row.',
+            'TurboTax automatically generates the Form 8949 row with code "B" in column (f) and the −$5,000 adjustment in column (g). You do not enter column (g) directly.',
+          ],
+        },
       ],
     },
-    { type: 'h2', text: 'Step-by-step in TaxAct' },
     {
-      type: 'ol',
-      items: [
-        'In the **Federal Q&A** flow, navigate to **Investment Income → Stocks, Mutual Funds, Bonds (1099-B)**.',
-        'Add or edit the lot for the RSU sale.',
-        'On the lot detail page, check **"Reported cost basis is incorrect"**.',
-        'Enter the corrected basis (same as TurboTax: FMV at vest × shares).',
-        'TaxAct writes the proper adjustment to your generated Form 8949 column (g) and code (f).',
+      type: 'details',
+      summary: 'Step-by-step in TaxAct',
+      blocks: [
+        {
+          type: 'ol',
+          items: [
+            'In the **Federal Q&A** flow, navigate to **Investment Income → Stocks, Mutual Funds, Bonds (1099-B)**.',
+            'Add or edit the lot for the RSU sale.',
+            'On the lot detail page, check **"Reported cost basis is incorrect"**.',
+            'Enter the corrected basis (same as TurboTax: FMV at vest × shares).',
+            'TaxAct writes the proper adjustment to your generated Form 8949 column (g) and code (f).',
+          ],
+        },
       ],
     },
 

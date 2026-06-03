@@ -7,6 +7,26 @@ function countWords(text: string): number {
   return text.split(/\s+/).filter(Boolean).length;
 }
 
+/**
+ * Count words across blocks, recursing into collapsible `details` blocks —
+ * their text is in the page HTML (just CSS-collapsed), so it legitimately
+ * counts toward the SEO word-count floor.
+ */
+function countBlockWords(blocks: BlogBlock[]): number {
+  return blocks.reduce((sum, b) => {
+    if (b.type === 'p' || b.type === 'h2' || b.type === 'h3' || b.type === 'callout' || b.type === 'quote') {
+      return sum + countWords(b.text);
+    }
+    if (b.type === 'ul' || b.type === 'ol') {
+      return sum + b.items.reduce((s, it) => s + countWords(it), 0);
+    }
+    if (b.type === 'details') {
+      return sum + countWords(b.summary) + countBlockWords(b.blocks);
+    }
+    return sum;
+  }, 0);
+}
+
 function lastParagraph(blocks: BlogBlock[]): string | null {
   for (let i = blocks.length - 1; i >= 0; i--) {
     const b = blocks[i]!;
@@ -75,15 +95,7 @@ describe('blogPosts — content structure', () => {
   it('every post has at least 800 words total', () => {
     const thin: Array<{ slug: string; words: number }> = [];
     for (const post of blogPosts) {
-      const words = post.blocks.reduce((sum, b) => {
-        if (b.type === 'p' || b.type === 'h2' || b.type === 'h3' || b.type === 'callout' || b.type === 'quote') {
-          return sum + countWords(b.text);
-        }
-        if (b.type === 'ul' || b.type === 'ol') {
-          return sum + b.items.reduce((s, it) => s + countWords(it), 0);
-        }
-        return sum;
-      }, 0);
+      const words = countBlockWords(post.blocks);
       if (words < 800) thin.push({ slug: post.slug, words });
     }
     expect(thin, `Thin posts (<800 words): ${JSON.stringify(thin)}`).toEqual([]);

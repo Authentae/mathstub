@@ -65,6 +65,21 @@ export interface BlogEmbed {
   calc: string;
   caption?: string;
 }
+/**
+ * Collapsible "deep dive" — a click-to-expand section (native <details>) that
+ * holds the long, thorough prose. The default view stays mostly-visual; the
+ * depth is one tap away. Crucially the full text is in the page HTML at all
+ * times (details is just CSS-collapsed), so Google/AI still see every word for
+ * ranking + citations — we get "looks 90% visual" WITHOUT losing SEO depth.
+ *
+ * `summary` is the clickable label; `blocks` are the nested content blocks
+ * (paragraphs, lists, tables, etc.) revealed on expand.
+ */
+export interface BlogDetails {
+  type: 'details';
+  summary: string;
+  blocks: BlogBlock[];
+}
 export type BlogBlock =
   | BlogParagraph
   | BlogHeading
@@ -74,7 +89,8 @@ export type BlogBlock =
   | BlogFlow
   | BlogTable
   | BlogAnalogy
-  | BlogEmbed;
+  | BlogEmbed
+  | BlogDetails;
 
 export interface BlogPost {
   slug: string;
