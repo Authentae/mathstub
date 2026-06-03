@@ -24,7 +24,11 @@ export const mayaRsuCostBasisCaseStudy: BlogPost = {
   blocks: [
     {
       type: 'p',
-      text: 'The single biggest tax-prep mistake in the equity-comp world is letting your broker\'s $0 cost basis stand on an RSU sale 1099-B. The IRS does not refund the overpayment automatically. You have to know to fix it. Maya — a software engineer at a mid-stage startup in San Francisco — almost made this mistake on her 2025 return. She caught it because she opened the Mathstub RSU cost-basis calculator on a hunch. The fix took 60 seconds. The savings: $2,574 on a single 100-share sale, plus an additional refund recovered by amending her 2023 return where the same mistake had quietly slipped through.',
+      text: 'The biggest tax-prep mistake in equity comp: letting your broker\'s $0 cost basis stand on an RSU sale. The IRS won\'t refund the overpayment for you — you have to catch it.',
+    },
+    {
+      type: 'p',
+      text: 'Maya, a software engineer in San Francisco, almost did. She caught it on a hunch. The fix took 60 seconds and saved **$2,574** on one 100-share sale — plus more from amending an old return.',
     },
     {
       type: 'flow',
@@ -55,11 +59,17 @@ export const mayaRsuCostBasisCaseStudy: BlogPost = {
     },
     {
       type: 'p',
-      text: 'If Maya filed her 2025 return using the broker\'s $0 cost basis as-is, her tax software would compute a long-term capital gain (held >1 year) of $8,000. At her federal LTCG rate (15% — she falls in the 15% bracket for LTCG with $280k AGI) + California rate (9.3% — California taxes LTCG as ordinary income, no preferential rate), her total tax on this single sale would be $8,000 × (15% + 9.3%) = $1,944. Plus the $1,900 she already paid at vest on the $5,000 of W-2 ordinary income that funded her acquisition. Total tax outlay on these shares: $3,844.',
+      text: 'File with that $0 and her tax software taxes the **whole $8,000** as gain — even though she already paid tax on $5,000 of it at vest. That\'s the double-tax.',
     },
     {
-      type: 'p',
-      text: 'Wait — but she already paid tax on $5,000 of that $8,000. The vest event was taxed. The sale should only be taxing the appreciation. Letting the broker basis stand double-taxes the original $5,000.',
+      type: 'details',
+      summary: 'The $3,844 breakdown, if she did nothing',
+      blocks: [
+        {
+          type: 'p',
+          text: 'If Maya filed her 2025 return using the broker\'s $0 cost basis as-is, her tax software would compute a long-term capital gain (held >1 year) of $8,000. At her federal LTCG rate (15% — she falls in the 15% bracket for LTCG with $280k AGI) + California rate (9.3% — California taxes LTCG as ordinary income, no preferential rate), her total tax on this single sale would be $8,000 × (15% + 9.3%) = $1,944. Plus the $1,900 she already paid at vest on the $5,000 of W-2 ordinary income that funded her acquisition. Total tax outlay on these shares: $3,844.',
+        },
+      ],
     },
 
     { type: 'h2', text: "Why brokers report $0 — and why the IRS lets them" },
@@ -158,7 +168,17 @@ export const mayaRsuCostBasisCaseStudy: BlogPost = {
     },
     {
       type: 'p',
-      text: 'But there\'s more. Maya\'s federal marginal rate is 32%. If she had let the broker basis stand and the IRS had categorised the sale wrong (or her tax software had defaulted to short-term because the broker basis matched a $0 acquisition cost), the federal tax on the wrong $8,000 gain at her marginal rate (treating it as ordinary) would have been $8,000 × 32% + $8,000 × 9.3% (CA) = $3,304. Plus the $1,900 already paid at vest. **Total wrong-case outlay: $5,204.** Compare to the correct $2,629. Worst-case savings from the fix: **$2,574** — the headline number.',
+      text: 'And it can get worse. If the sale got taxed at her full 32% rate instead of the 15% long-term rate, the gap balloons — that\'s where the headline **$2,574** worst-case number comes from.',
+    },
+    {
+      type: 'details',
+      summary: 'The worst-case math, step by step',
+      blocks: [
+        {
+          type: 'p',
+          text: 'Maya\'s federal marginal rate is 32%. If she had let the broker basis stand and the IRS had categorised the sale wrong (or her tax software had defaulted to short-term because the broker basis matched a $0 acquisition cost), the federal tax on the wrong $8,000 gain at her marginal rate (treating it as ordinary) would have been $8,000 × 32% + $8,000 × 9.3% (CA) = $3,304. Plus the $1,900 already paid at vest. Total wrong-case outlay: $5,204. Compare to the correct $2,629. Worst-case savings from the fix: $2,574 — the headline number.',
+        },
+      ],
     },
 
     { type: 'h2', text: 'Run your own number' },
@@ -210,28 +230,67 @@ export const mayaRsuCostBasisCaseStudy: BlogPost = {
       ],
     },
 
-    { type: 'h2', text: 'The 3-year amendment opportunity' },
+    { type: 'h2', text: 'Old returns count too — the 3-year rule' },
     {
       type: 'p',
-      text: 'When Maya caught the error on her 2025 return, she also pulled her 2023 and 2024 returns to verify the cost-basis adjustment was made. 2024 was clean (she had used the calculator before filing). 2023 had the same error — 50 shares sold with $0 basis stand, $1,500 of overpaid tax.',
+      text: 'Maya found the **same mistake on her 2023 return** (50 shares, $0 basis, $1,500 overpaid). You can fix old returns for a refund — up to 3 years back.',
     },
     {
-      type: 'p',
-      text: 'IRC §6511 gives a 3-year statute of limitations to amend a return for refund. Maya filed Form 1040-X for tax year 2023 within the 3-year window (deadline: 4/15/2027). The amendment generated a $1,500 refund + 6% IRS interest (~$135). Total recovered from the 2023 amendment: ~$1,635. Combined with the 2025 save: **$1,215 + $1,635 = $2,850 across two tax years from a single afternoon\'s work.**',
+      type: 'flow',
+      caption: 'What amending 2023 got her back',
+      steps: [
+        { label: 'Overpaid in 2023', value: '$1,500', tone: 'bad' },
+        { label: '+ IRS interest', value: '$135', tone: 'good' },
+        { label: '2023 refund', value: '$1,635', tone: 'good' },
+        { label: '+ 2025 save', value: '$1,215', tone: 'good' },
+        { label: 'Two-year total', value: '$2,850', tone: 'good' },
+      ],
+    },
+    {
+      type: 'details',
+      summary: 'The rule + the deadline (IRC §6511)',
+      blocks: [
+        {
+          type: 'p',
+          text: 'IRC §6511 gives a 3-year statute of limitations to amend a return for refund. Maya filed Form 1040-X for tax year 2023 within the 3-year window (deadline: 4/15/2027). The amendment generated a $1,500 refund + 6% IRS interest (~$135). Total recovered from the 2023 amendment: ~$1,635. Combined with the 2025 save: $1,215 + $1,635 = $2,850 across two tax years from a single afternoon\'s work.',
+        },
+      ],
     },
 
-    { type: 'h2', text: 'Why this matters across the whole tech-worker audience' },
+    { type: 'h2', text: 'This isn’t just an RSU thing' },
     {
       type: 'p',
-      text: 'This pattern is the most-googled equity-comp tax mistake for a reason. Every high-earner with vested RSU sales should verify their 1099-B basis against W-2 supporting docs. The mistake compounds: a single 100-share sale at $80/share is a $2k–$3k impact, but a senior engineer with 1,000+ shares sold across the year can lose $20k–$30k by letting broker basis stand.',
+      text: 'The same $0-basis trap hits **every kind of employer stock** that ran through your W-2. Your real basis is whatever value was already taxed — here’s the cheat sheet:',
     },
     {
-      type: 'p',
-      text: 'The same cost-basis fix mechanic applies to ALL employer stock that flows through W-2 income: RSUs (real basis = FMV at vest); ESPP qualifying dispositions (real basis = FMV at purchase, even though only the discount portion was taxed); ESPP disqualifying dispositions (real basis = FMV at purchase, full spread taxed as W-2); ISO disqualifying dispositions (real basis = FMV at exercise, bargain element taxed as W-2); NSO exercises (real basis = FMV at exercise). The full taxonomy with citations is in our companion post: /blog/rsu-cost-basis-fix-form-8949.',
+      type: 'table',
+      caption: 'Your real cost basis, by stock type',
+      headers: ['Stock type', 'Your real basis is…'],
+      rows: [
+        ['RSUs', 'Share value on the vest day'],
+        ['ESPP (qualifying)', 'Value on the purchase day'],
+        ['ESPP (disqualifying)', 'Value on the purchase day'],
+        ['ISO (disqualifying)', 'Value on the exercise day'],
+        ['NSO exercise', 'Value on the exercise day'],
+      ],
     },
     {
-      type: 'p',
-      text: 'For high-stakes situations ($10,000+ of basis adjustment across multiple lots, multi-year amendments, or ISO disqualifying dispositions with AMT credit interactions), engage a CPA. The Mathstub /toolkit/equity-comp-decision-tracker template includes a full RSU cost-basis fix kit that catches this exact error pattern before you file.',
+      type: 'callout',
+      text: 'A single 100-share sale is a $2k–$3k save. A senior engineer selling 1,000+ shares a year can lose **$20k–$30k** by letting the broker’s $0 basis stand. The bigger your sales, the more this one fix is worth.',
+    },
+    {
+      type: 'details',
+      summary: 'The full taxonomy + when to get a CPA',
+      blocks: [
+        {
+          type: 'p',
+          text: 'The same cost-basis fix mechanic applies to ALL employer stock that flows through W-2 income: RSUs (real basis = FMV at vest); ESPP qualifying dispositions (real basis = FMV at purchase, even though only the discount portion was taxed); ESPP disqualifying dispositions (real basis = FMV at purchase, full spread taxed as W-2); ISO disqualifying dispositions (real basis = FMV at exercise, bargain element taxed as W-2); NSO exercises (real basis = FMV at exercise). The full taxonomy with citations is in our companion post: /blog/rsu-cost-basis-fix-form-8949.',
+        },
+        {
+          type: 'p',
+          text: 'For high-stakes situations ($10,000+ of basis adjustment across multiple lots, multi-year amendments, or ISO disqualifying dispositions with AMT credit interactions), engage a CPA. The Mathstub /toolkit/equity-comp-decision-tracker template includes a full RSU cost-basis fix kit that catches this exact error pattern before you file.',
+        },
+      ],
     },
     {
       type: 'p',
