@@ -434,5 +434,30 @@ function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }
           </div>
         </figure>
       );
+    case 'details':
+      // Collapsible "deep dive": default-closed, but the full content is in the
+      // HTML (just CSS-hidden) so search engines + AI still index every word.
+      // Keeps the visible page mostly-visual while preserving SEO depth.
+      return (
+        <details className="group my-4 rounded-lg border border-gray-200 bg-gray-50/60 dark:border-gray-800 dark:bg-gray-900/40">
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-3.5 text-[15px] font-semibold text-gray-800 hover:text-brand-700 dark:text-gray-100 dark:hover:text-brand-300">
+            <span className="flex items-center gap-2">
+              <span aria-hidden="true" className="text-brand-500">📖</span>
+              {block.summary}
+            </span>
+            <span
+              aria-hidden="true"
+              className="shrink-0 text-gray-400 transition-transform group-open:rotate-180"
+            >
+              ▾
+            </span>
+          </summary>
+          <div className="space-y-5 border-t border-gray-200 px-5 py-4 text-[17px] leading-[1.8] text-gray-700 dark:border-gray-800 dark:text-gray-300">
+            {block.blocks.map((b, i) => (
+              <Block key={i} block={b} />
+            ))}
+          </div>
+        </details>
+      );
   }
 }
