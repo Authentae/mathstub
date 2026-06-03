@@ -96,22 +96,24 @@ export const mayaRsuCostBasisCaseStudy: BlogPost = {
       ],
     },
 
-    { type: 'h2', text: 'The Form 8949 column (g) fix, step by step' },
+    { type: 'h2', text: 'The Form 8949 fix — what goes in each box' },
     {
       type: 'p',
-      text: 'Form 8949 is where Schedule D capital gain entries are reconciled. For each sale, the holder enters 7 columns. The fix uses columns (e), (f), (g), and (h):',
+      text: 'Maya\'s exact entries. Copy this row pattern for any RSU sale:',
     },
     {
-      type: 'ul',
-      items: [
-        '**Column (a) Description:** "100 sh ACMECO (RSU vested 2024-04-15)".',
-        '**Column (b) Date acquired:** 04/15/2024 (the vest date).',
-        '**Column (c) Date sold:** 09/01/2025.',
-        '**Column (d) Proceeds:** $8,000 (matches the broker 1099-B Box 1d).',
-        '**Column (e) Cost basis as reported:** $0 (matches the broker 1099-B Box 1e exactly — required so the IRS can reconcile against the broker\'s filed copy).',
-        '**Column (f) Code:** "B" (cost basis reported on 1099-B is incorrect).',
-        '**Column (g) Amount of adjustment:** −$5,000 (negative — this REDUCES the gain).',
-        '**Column (h) Gain or loss:** $3,000 (auto-computed as proceeds − basis − adjustment: $8,000 − $0 − (−$5,000) = $3,000).',
+      type: 'table',
+      caption: 'Form 8949 — Maya\'s row',
+      headers: ['Box', 'She enters', 'Why'],
+      rows: [
+        ['(a) Description', '100 sh ACMECO', 'identify the lot'],
+        ['(b) Acquired', '04/15/2024', 'the vest date'],
+        ['(c) Sold', '09/01/2025', 'the sale date'],
+        ['(d) Proceeds', '$8,000', 'matches 1099-B box 1d'],
+        ['(e) Reported basis', '$0', 'must match the wrong 1099-B'],
+        ['(f) Code', 'B', '“basis is incorrect”'],
+        ['(g) Adjustment', '−$5,000', 'this cuts the gain'],
+        ['(h) Real gain', '$3,000', 'auto-computed'],
       ],
     },
     {
