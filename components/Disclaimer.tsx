@@ -4,7 +4,7 @@ export function Disclaimer() {
   return (
     <aside
       role="note"
-      className="my-4 rounded-md border-l-4 border-red-500 bg-red-50 p-4 text-sm text-red-900 dark:bg-red-950 dark:text-red-200"
+      className="my-4 rounded-lg bg-red-500/10 p-4 text-sm text-red-200 ring-1 ring-red-500/30"
     >
       <strong>This is an estimate, not tax advice.</strong> Numbers are based on
       published IRS and state tax rules and your inputs. Real tax outcomes

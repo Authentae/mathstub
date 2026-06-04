@@ -19,7 +19,7 @@ export function QuickAnswer({ text }: Props) {
       // fallback (bg-brand-50) entirely so the callout can never render
       // light-on-light if the dark class on <html> regresses. Concrete
       // dark classes instead of dark: variants.
-      className="mt-4 rounded-lg border-l-4 border-brand-400 bg-brand-950/40 p-5"
+      className="mt-4 rounded-xl bg-brand-950/40 p-5 ring-1 ring-brand-500/25"
     >
       <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-brand-300">
         Quick answer

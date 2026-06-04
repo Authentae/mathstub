@@ -188,7 +188,7 @@ export function QuarterlyEstimatedTaxCalculator() {
       </form>
 
       {'error' in result ? (
-        <div className="rounded-md border-l-4 border-amber-500 bg-amber-50 p-4 text-sm text-amber-900">
+        <div className="rounded-lg bg-amber-500/10 p-4 text-sm text-amber-200 ring-1 ring-amber-500/30">
           {result.error}
         </div>
       ) : (
