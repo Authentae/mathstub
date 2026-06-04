@@ -202,7 +202,7 @@ const HERO_CSS = `
   --ease-out:  cubic-bezier(.22,.61,.36,1);
   --ease-in:   cubic-bezier(.55,.05,.68,.19);
   --ease-io:   cubic-bezier(.65,.05,.36,1);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -264,7 +264,7 @@ const HERO_CSS = `
 }
 
 .mathstub-hero .hero-num {
-  font-family: 'Inter', sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
   font-weight: 800;
   font-size: clamp(96px, 14vw, 196px);
   line-height: .95;
@@ -324,7 +324,7 @@ const HERO_CSS = `
 }
 
 .mathstub-hero .num-static {
-  font-family: 'Inter', sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
   font-weight: 700;
   font-size: clamp(32px, 4.5vw, 56px);
   letter-spacing: -.025em;
@@ -456,7 +456,7 @@ const HERO_CSS = `
   font-weight: 600;
 }
 .mathstub-hero .shortfall__num {
-  font-family: 'Inter', sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
   font-feature-settings: 'tnum';
   font-weight: 700;
   font-size: clamp(36px, 5.5vw, 64px);
@@ -509,7 +509,7 @@ const HERO_CSS = `
 
 .mathstub-hero .logo { display: inline-flex; align-items: center; gap: clamp(8px, 1.6vw, 18px); color: var(--text); }
 .mathstub-hero .logo__mark { width: clamp(32px, 4.5vw, 56px); height: clamp(32px, 4.5vw, 56px); display: inline-flex; color: var(--brand-2); }
-.mathstub-hero .logo__word { font-family: 'Inter', sans-serif; font-weight: 700; font-size: clamp(36px, 5.2vw, 64px); letter-spacing: -.035em; color: var(--text); }
+.mathstub-hero .logo__word { font-family: system-ui, -apple-system, sans-serif; font-weight: 700; font-size: clamp(36px, 5.2vw, 64px); letter-spacing: -.035em; color: var(--text); }
 
 .mathstub-hero .cta {
   display: inline-flex;

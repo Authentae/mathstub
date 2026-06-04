@@ -296,10 +296,18 @@ function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }
       );
     case 'quote':
       return (
-        <blockquote className="my-2 border-l-4 border-brand-400 pl-5 text-xl font-medium italic leading-relaxed text-gray-700 dark:border-brand-500 dark:text-gray-200">
-          {renderInline(block.text)}
+        <blockquote className="relative my-5 overflow-hidden rounded-2xl bg-brand-950/30 px-6 py-5 ring-1 ring-brand-500/15">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute -top-3 right-4 select-none font-serif text-7xl leading-none text-brand-500/15"
+          >
+            ”
+          </span>
+          <p className="relative text-xl font-medium italic leading-relaxed text-slate-100">
+            {renderInline(block.text)}
+          </p>
           {block.cite && (
-            <cite className="mt-2 block text-sm font-normal not-italic text-gray-500">
+            <cite className="relative mt-3 block text-sm font-normal not-italic text-slate-400">
               — {block.cite}
             </cite>
           )}
