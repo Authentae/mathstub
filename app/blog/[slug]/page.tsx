@@ -17,6 +17,7 @@ import { RelatedPosts } from '@/components/RelatedPosts';
 import { CalcCta } from '@/components/CalcCta';
 import { QuickAnswer } from '@/components/QuickAnswer';
 import { KeyPoints } from '@/components/KeyPoints';
+import { BlogHero } from '@/components/BlogHero';
 import { TableOfContents, slugifyHeading } from '@/components/TableOfContents';
 import { renderInline } from '@/components/InlineText';
 import { ReadTime } from '@/components/ReadTime';
@@ -75,48 +76,56 @@ export default async function PostPage({ params }: Props) {
         ])}
       />
 
-      <article className="mx-auto max-w-[680px] px-5 py-16 sm:py-20">
-        {/*
-          Breadcrumb: All posts → Category. Uses the categories.ts mapping
-          so it stays in sync with the /blog index. Renders even if the
-          category is missing (defensive — keeps the "All posts" trail).
-        */}
-        {(() => {
-          const category = findCategoryForSlug(post.slug);
-          return (
-            <p
-              className="text-sm text-gray-500 dark:text-gray-400"
-              aria-label="Breadcrumb"
-            >
-              <Link href="/blog" className="hover:underline">
-                ← All posts
-              </Link>
-              {category && (
-                <>
-                  {' · '}
-                  <Link
-                    href={`/blog#${category.id}`}
-                    className="text-brand-700 hover:underline dark:text-brand-300"
-                  >
-                    {category.name}
-                  </Link>
-                </>
-              )}
-            </p>
-          );
-        })()}
-        <h1 className="mt-3 text-[32px] font-bold leading-[1.12] tracking-[-0.02em] text-gray-900 dark:text-gray-50 sm:text-[40px]">
-          {post.title}
-        </h1>
-        <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 border-b border-gray-200 pb-5 text-sm text-gray-500 dark:border-gray-800">
-          <span className="font-medium text-gray-700 dark:text-gray-300">{post.authorName}</span>
-          <span aria-hidden="true">·</span>
-          <ReadTime blocks={post.blocks} />
-          <span aria-hidden="true">·</span>
-          <LastUpdatedBadge taxYear={2026} isoDate={post.dateModified} />
-        </div>
+      {post.landing && (
+        <BlogHero post={post} category={findCategoryForSlug(post.slug)} />
+      )}
 
-        {post.quickAnswer && <QuickAnswer text={post.quickAnswer} />}
+      <article className="mx-auto max-w-[680px] px-5 py-16 sm:py-20">
+        {!post.landing && (
+          <>
+            {/*
+              Breadcrumb: All posts → Category. Uses the categories.ts mapping
+              so it stays in sync with the /blog index. Renders even if the
+              category is missing (defensive — keeps the "All posts" trail).
+            */}
+            {(() => {
+              const category = findCategoryForSlug(post.slug);
+              return (
+                <p
+                  className="text-sm text-gray-500 dark:text-gray-400"
+                  aria-label="Breadcrumb"
+                >
+                  <Link href="/blog" className="hover:underline">
+                    ← All posts
+                  </Link>
+                  {category && (
+                    <>
+                      {' · '}
+                      <Link
+                        href={`/blog#${category.id}`}
+                        className="text-brand-700 hover:underline dark:text-brand-300"
+                      >
+                        {category.name}
+                      </Link>
+                    </>
+                  )}
+                </p>
+              );
+            })()}
+            <h1 className="mt-3 text-[32px] font-bold leading-[1.12] tracking-[-0.02em] text-gray-900 dark:text-gray-50 sm:text-[40px]">
+              {post.title}
+            </h1>
+            <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 border-b border-gray-200 pb-5 text-sm text-gray-500 dark:border-gray-800">
+              <span className="font-medium text-gray-700 dark:text-gray-300">{post.authorName}</span>
+              <span aria-hidden="true">·</span>
+              <ReadTime blocks={post.blocks} />
+              <span aria-hidden="true">·</span>
+              <LastUpdatedBadge taxYear={2026} isoDate={post.dateModified} />
+            </div>
+          </>
+        )}
+
+        {!post.landing && post.quickAnswer && <QuickAnswer text={post.quickAnswer} />}
 
         {post.keyPoints && post.keyPoints.length > 0 && (
           <KeyPoints points={post.keyPoints} />
@@ -230,15 +239,20 @@ function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }
       );
     }
     case 'h2':
-      // Section heading: generous space above is the visual break (the
-      // Stripe/Substack approach) — no rules or accent bars cluttering it.
-      // Strong size + tight tracking does the work.
+      // Section heading with the homepage's signature glowing brand dot — turns
+      // each section into a designed "landing" block rather than a plain text
+      // break, while staying brand-consistent across the site.
       return (
         <h2
           id={slugifyHeading(block.text)}
-          className="mt-14 scroll-mt-24 text-[28px] font-bold leading-tight tracking-[-0.01em] text-gray-900 dark:text-gray-50"
+          className="mt-14 flex items-baseline gap-3 scroll-mt-24 text-[28px] font-bold leading-tight tracking-[-0.01em] text-gray-900 dark:text-gray-50"
         >
-          {block.text}
+          <span
+            aria-hidden="true"
+            className="h-2.5 w-2.5 shrink-0 translate-y-[-0.1em] rounded-full bg-brand-500"
+            style={{ boxShadow: '0 0 12px rgb(59,130,246)' }}
+          />
+          <span>{block.text}</span>
         </h2>
       );
     case 'h3':
