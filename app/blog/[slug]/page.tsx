@@ -413,10 +413,17 @@ function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }
         </figure>
       );
     case 'analogy':
-      // "Think of it like…" memory hook — bridges unfamiliar tax → familiar idea.
+      // "Think of it like…" memory hook. De-slopped per Impeccable: no thick
+      // left slab-border (the #1 AI tell). Soft full ring + a tinted icon chip
+      // carries the emphasis instead — quieter, more crafted.
       return (
-        <aside className="my-5 flex gap-3 rounded-xl border-l-4 border-brand-400 bg-brand-50 p-5 dark:border-brand-500 dark:bg-brand-950/40">
-          <span aria-hidden="true" className="text-2xl">🧠</span>
+        <aside className="my-5 flex gap-4 rounded-2xl bg-brand-50/70 p-5 ring-1 ring-brand-500/15 dark:bg-brand-950/30 dark:ring-brand-400/15">
+          <span
+            aria-hidden="true"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-500/10 text-lg ring-1 ring-inset ring-brand-500/20"
+          >
+            🧠
+          </span>
           <div>
             <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-700 dark:text-brand-300">
               Think of it like this
