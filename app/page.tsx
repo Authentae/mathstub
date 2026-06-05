@@ -1,5 +1,10 @@
 import Link from 'next/link';
-import { liveTools } from '@/lib/tools';
+import {
+  liveTools,
+  toolCategoryOrder,
+  toolCategoryMeta,
+  type Tool,
+} from '@/lib/tools';
 import { blogPosts } from '@/content/blog/registry';
 import { findCategoryForSlug } from '@/content/blog/categories';
 import { HeroAnimation } from '@/components/HeroAnimation';
@@ -35,13 +40,30 @@ const TEST_COUNT = 586;
 export default function HomePage() {
   const tools = liveTools();
   const flagship = tools[0];
-  const otherTools = tools.slice(1);
   const calcCount = tools.length;
   const guideCount = blogPosts.length;
   if (!flagship) {
     // Defensive guard — TS widens destructured access to possibly undefined.
     return null;
   }
+
+  // Group the full calculator directory by topic so it reads as labeled
+  // clusters instead of one flat 16-card wall. Any tool whose category isn't
+  // in the display order falls into a defensive "More" bucket — a new calc can
+  // never silently drop off the homepage.
+  const knownGroups = toolCategoryOrder
+    .map((key) => ({
+      key,
+      label: toolCategoryMeta[key].label,
+      emoji: toolCategoryMeta[key].emoji,
+      items: tools.filter((t) => t.category === key),
+    }))
+    .filter((g) => g.items.length > 0);
+  const orphans = tools.filter((t) => !toolCategoryOrder.includes(t.category));
+  const toolGroups =
+    orphans.length > 0
+      ? [...knownGroups, { key: 'more', label: 'More', emoji: '🧰', items: orphans }]
+      : knownGroups;
   const latestPosts = [...blogPosts]
     .sort((a, b) => (a.datePublished < b.datePublished ? 1 : -1))
     .slice(0, 3);
@@ -264,46 +286,34 @@ export default function HomePage() {
           </ul>
         </section>
 
-        {/* OTHER CALCULATORS */}
-        <section className="mt-20 sm:mt-24">
-          <div className="mb-8 flex items-baseline justify-between gap-4">
+        {/* CALCULATOR DIRECTORY — grouped by topic */}
+        <section className="mt-24 sm:mt-32">
+          <div className="mb-10 flex items-baseline justify-between gap-4">
             <h2 className="flex items-baseline gap-3 text-4xl font-bold leading-[1.05] tracking-[-0.04em] text-balance text-white sm:text-[56px]">
               <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-brand-500 shadow-[0_0_16px_rgb(59,130,246)]" />
-              Other equity events.
+              Every calculator, by topic.
             </h2>
-            <span className="font-mono text-xs text-slate-400">
-              {otherTools.length} calculators · all free
+            <span className="shrink-0 font-mono text-xs text-slate-400">
+              {calcCount} calculators · all free
             </span>
           </div>
-          <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {otherTools.map((t) => (
-              <li key={t.slug}>
-                <Link
-                  href={`/${t.slug}`}
-                  className="flex h-full min-h-[150px] flex-col gap-2 rounded-md border border-slate-800 bg-slate-900/50 p-5 transition duration-200 hover:-translate-y-1 hover:border-brand-500/60 hover:bg-slate-900 hover:shadow-[0_12px_44px_-14px_rgba(37,99,235,0.5)] motion-reduce:hover:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
-                >
-                  <div className="flex items-baseline justify-between gap-2">
-                    <span className="font-mono text-[10px] uppercase tracking-[0.06em] text-brand-300">
-                      {t.title.split(' ').slice(0, 2).join(' ')}
-                    </span>
-                    <span className="font-mono text-[10px] uppercase tracking-[0.04em] text-brand-400/70">
-                      free · instant
-                    </span>
-                  </div>
-                  <div
-                    className="text-xl font-semibold leading-tight tracking-tight text-brand-200"
-                    style={{ letterSpacing: '-0.01em' }}
-                  >
-                    {t.title}
-                  </div>
-                  <div className="mt-1 flex-1 text-sm leading-snug text-slate-400">
-                    {t.summary}
-                  </div>
-                  <div className="mt-2 font-mono text-[11px] text-brand-300">open →</div>
-                </Link>
-              </li>
+          <div className="flex flex-col gap-12">
+            {toolGroups.map((group) => (
+              <div key={group.key}>
+                <div className="mb-4 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] text-brand-300">
+                  <span aria-hidden="true" className="text-sm">{group.emoji}</span>
+                  {group.label}
+                  <span aria-hidden="true" className="text-slate-600">·</span>
+                  <span className="text-slate-500">{group.items.length}</span>
+                </div>
+                <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  {group.items.map((t) => (
+                    <CalcCard key={t.slug} tool={t} />
+                  ))}
+                </ul>
+              </div>
             ))}
-          </ul>
+          </div>
         </section>
 
         {/* GAP STORY CALLOUT */}
@@ -429,6 +439,34 @@ export default function HomePage() {
         </section>
       </main>
     </div>
+  );
+}
+
+function CalcCard({ tool }: { tool: Tool }) {
+  return (
+    <li>
+      <Link
+        href={`/${tool.slug}`}
+        className="flex h-full min-h-[150px] flex-col gap-2 rounded-md border border-slate-800 bg-slate-900/50 p-5 transition duration-200 hover:-translate-y-1 hover:border-brand-500/60 hover:bg-slate-900 hover:shadow-[0_12px_44px_-14px_rgba(37,99,235,0.5)] motion-reduce:hover:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+      >
+        <div className="flex items-baseline justify-between gap-2">
+          <span className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.06em] text-brand-300">
+            {tool.emoji && <span aria-hidden="true">{tool.emoji}</span>}
+            {tool.shortTitle}
+          </span>
+          <span className="shrink-0 font-mono text-[10px] uppercase tracking-[0.04em] text-brand-400/70">
+            free · instant
+          </span>
+        </div>
+        <div className="text-xl font-semibold leading-tight tracking-[-0.01em] text-brand-200">
+          {tool.title}
+        </div>
+        <div className="mt-1 flex-1 text-sm leading-snug text-slate-400">
+          {tool.summary}
+        </div>
+        <div className="mt-2 font-mono text-[11px] text-brand-300">open →</div>
+      </Link>
+    </li>
   );
 }
 
