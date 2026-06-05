@@ -97,7 +97,7 @@ export function RothSequencerCalculator() {
 
   return (
     <div className="space-y-6">
-      <fieldset className="space-y-4 rounded-lg border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900">
+      <fieldset className="space-y-4 rounded-lg border border-slate-800 bg-slate-900 p-5">
         <legend className="px-2 text-sm font-bold uppercase tracking-wide text-brand-700 dark:text-brand-300">
           1. Filer
         </legend>
@@ -142,7 +142,7 @@ export function RothSequencerCalculator() {
         </div>
       </fieldset>
 
-      <fieldset className="space-y-4 rounded-lg border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900">
+      <fieldset className="space-y-4 rounded-lg border border-slate-800 bg-slate-900 p-5">
         <legend className="px-2 text-sm font-bold uppercase tracking-wide text-brand-700 dark:text-brand-300">
           2. 401(k) plan setup
         </legend>
@@ -218,7 +218,7 @@ function ResultPanel({ r }: { r: RothSequencerResult }) {
         }`}>
           {usd.format(r.totalAnnualRothCapacityUsd)}
         </p>
-        <p className="mt-2 text-sm font-medium text-gray-800 dark:text-gray-200">{r.recommendationHeadline}</p>
+        <p className="mt-2 text-sm font-medium text-slate-200">{r.recommendationHeadline}</p>
       </div>
 
       <ol className="space-y-3">

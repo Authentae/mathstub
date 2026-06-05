@@ -138,7 +138,7 @@ export function IsoAmtCalculator() {
 
   return (
     <div className="space-y-6">
-      <form className="grid gap-4 rounded-lg border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900 md:grid-cols-2">
+      <form className="grid gap-4 rounded-lg border border-slate-800 bg-slate-900 p-5 md:grid-cols-2">
         <Field label="Scenario" full>
           <div className="mt-1 flex flex-wrap gap-2 text-sm">
             <ScenarioPill
@@ -303,7 +303,7 @@ function Field({
 }) {
   return (
     <label className={`block text-sm ${full ? 'md:col-span-2' : ''}`}>
-      <span className="font-medium text-gray-800 dark:text-gray-200">{label}</span>
+      <span className="font-medium text-slate-200">{label}</span>
       {children}
     </label>
   );

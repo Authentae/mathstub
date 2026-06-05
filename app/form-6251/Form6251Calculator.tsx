@@ -82,7 +82,7 @@ export function Form6251Calculator() {
 
   return (
     <div className="space-y-6">
-      <fieldset className="space-y-4 rounded-lg border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900">
+      <fieldset className="space-y-4 rounded-lg border border-slate-800 bg-slate-900 p-5">
         <legend className="px-2 text-sm font-bold uppercase tracking-wide text-brand-700 dark:text-brand-300">
           1. Filing setup
         </legend>
@@ -113,7 +113,7 @@ export function Form6251Calculator() {
         </div>
       </fieldset>
 
-      <fieldset className="space-y-4 rounded-lg border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900">
+      <fieldset className="space-y-4 rounded-lg border border-slate-800 bg-slate-900 p-5">
         <legend className="px-2 text-sm font-bold uppercase tracking-wide text-brand-700 dark:text-brand-300">
           2. Income sources
         </legend>
@@ -134,7 +134,7 @@ export function Form6251Calculator() {
         </Field>
       </fieldset>
 
-      <fieldset className="space-y-4 rounded-lg border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900">
+      <fieldset className="space-y-4 rounded-lg border border-slate-800 bg-slate-900 p-5">
         <legend className="px-2 text-sm font-bold uppercase tracking-wide text-brand-700 dark:text-brand-300">
           3. Deductions
         </legend>
