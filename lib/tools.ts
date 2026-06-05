@@ -32,7 +32,7 @@ export const tools: Tool[] = [
     title: 'RSU Tax Withholding Shortfall Calculator',
     shortTitle: 'RSU Tax Shortfall',
     summary:
-      'Estimate the gap between what your employer withholds at RSU vest (22% or 37%) and what you actually owe at your marginal rate.',
+      'See the gap between the 22% (or 37%) your employer holds back when RSUs vest and what you’ll actually owe at your real tax rate.',
     status: 'live',
     category: 'rsu',
     emoji: '📈',
@@ -43,7 +43,7 @@ export const tools: Tool[] = [
     title: 'RSU Cost Basis Correction Calculator',
     shortTitle: 'RSU Cost Basis Fix',
     summary:
-      'Brokers report $0 cost basis on RSU sales, double-taxing income already on your W-2. See your correct basis (FMV at vest), the tax you’d overpay, and the exact Form 8949 code-B adjustment.',
+      'Brokers report $0 cost basis on RSU sales, which double-taxes income already on your W-2. See your correct basis (the share price on your vest day), what you’d overpay, and the exact one-line Form 8949 fix.',
     status: 'live',
     category: 'rsu',
     emoji: '🧮',
@@ -54,7 +54,7 @@ export const tools: Tool[] = [
     title: 'ESPP Qualifying Disposition Tax Calculator',
     shortTitle: 'ESPP Qualifying Disposition',
     summary:
-      'Split a §423 ESPP sale into ordinary income vs. long-term capital gain, apply federal LTCG + NIIT + state tax, and compare against disqualifying treatment.',
+      'See how much of your ESPP sale is taxed as regular income vs. the lower long-term gains rate, with federal, state, and the 3.8% investment surtax — and whether holding long enough to “qualify” actually saves you money.',
     status: 'live',
     category: 'espp-startup',
     emoji: '🧾',
@@ -65,7 +65,7 @@ export const tools: Tool[] = [
     title: 'ISO Exercise AMT Calculator',
     shortTitle: 'ISO / AMT',
     summary:
-      'Estimate the Alternative Minimum Tax on an ISO exercise, the cash required, and the AMT credit you’ll carry forward — plus a same-year-sale comparison.',
+      'Estimate the Alternative Minimum Tax (AMT) when you exercise ISOs, the cash you’ll need, and the credit you get back in later years — plus a sell-the-same-year comparison.',
     status: 'live',
     category: 'options',
     emoji: '⚡',
@@ -76,7 +76,7 @@ export const tools: Tool[] = [
     title: 'Quarterly Estimated Tax Safe-Harbor Calculator',
     shortTitle: 'Quarterly Estimated Tax',
     summary:
-      'Compute your IRS §6654 safe-harbor target, see the per-quarter cumulative payment schedule, and get the exact dollar amount to send before the next due date.',
+      'Find the “safe harbor” amount you need to prepay to avoid an IRS underpayment penalty, see the schedule quarter by quarter, and get the exact dollar amount to send before the next deadline.',
     status: 'live',
     category: 'withholding',
     emoji: '🗓️',
@@ -87,7 +87,7 @@ export const tools: Tool[] = [
     title: 'AMT Credit Recovery Calculator',
     shortTitle: 'AMT Credit Recovery',
     summary:
-      'Project your IRC §53 Minimum Tax Credit (Form 8801) recovery year-by-year — see when the balance hits $0 based on your projected income.',
+      'If you paid AMT in a past year, you’re owed a credit back. Project how much you recover each year (Form 8801) and when the balance reaches $0, based on your future income.',
     status: 'live',
     category: 'options',
     emoji: '♻️',
@@ -98,7 +98,7 @@ export const tools: Tool[] = [
     title: 'NSO Exercise Tax Calculator',
     shortTitle: 'NSO Exercise',
     summary:
-      'Estimate the ordinary-income tax + FICA on a non-qualified stock option exercise — bargain element, supplemental withholding, marginal-rate shortfall, and state.',
+      'Estimate the income tax and payroll (FICA) bill when you exercise non-qualified stock options (NSOs) — the “spread” you’re taxed on, what’s withheld, the gap to your real rate, and state tax.',
     status: 'live',
     category: 'options',
     emoji: '🎯',
@@ -109,7 +109,7 @@ export const tools: Tool[] = [
     title: 'Bonus Tax Withholding Shortfall Calculator',
     shortTitle: 'Bonus Tax Shortfall',
     summary:
-      'Estimate the gap between the flat 22% (or 37%) supplemental withholding on your cash bonus and what you actually owe at your marginal rate.',
+      'See the gap between the flat 22% (or 37%) held back on your cash bonus and what you’ll actually owe at your real tax rate.',
     status: 'live',
     category: 'withholding',
     emoji: '💵',
@@ -120,7 +120,7 @@ export const tools: Tool[] = [
     title: 'State Stock-Comp Tax Lookup',
     shortTitle: 'State Stock-Comp Lookup',
     summary:
-      'Top marginal rate, supplemental withholding, AMT status, and LTCG treatment for RSU/ESPP/ISO income across all 50 states + DC.',
+      'Look up the top tax rate, withholding, AMT, and capital-gains treatment for RSU/ESPP/ISO income in any of the 50 states + DC.',
     status: 'live',
     category: 'multistate',
     emoji: '🗺️',
@@ -131,7 +131,7 @@ export const tools: Tool[] = [
     title: 'Mega-Backdoor Roth Calculator',
     shortTitle: 'Mega-Backdoor Roth',
     summary:
-      'Estimate the after-tax 401(k) room your plan leaves under the §415(c) $70k cap — the source of the Mega-Backdoor Roth that high earners use for $30–46k/yr of extra Roth space.',
+      'Find the extra after-tax 401(k) room your plan allows under the $70k total cap — the “Mega-Backdoor Roth” move high earners use for $30–46k/yr of extra Roth savings.',
     status: 'live',
     category: 'roth',
     emoji: '🌀',
@@ -142,7 +142,7 @@ export const tools: Tool[] = [
     title: 'Backdoor Roth IRA Calculator',
     shortTitle: 'Backdoor Roth IRA',
     summary:
-      'Roth IRA phaseout check + pro-rata tax (§408(d)(2)) on the Trad-to-Roth conversion if you have a pre-tax IRA balance. With basis-isolation recommendation + 30-year projection.',
+      'Check if your income is over the Roth IRA limit, and the tax on a “backdoor” conversion if you hold pre-tax IRA money (the pro-rata rule) — plus how to avoid it and a 30-year projection.',
     status: 'live',
     category: 'roth',
     emoji: '🔁',
@@ -153,7 +153,7 @@ export const tools: Tool[] = [
     title: 'W-4 Step 4(c) Extra-Withholding Calculator',
     shortTitle: 'W-4 4(c)',
     summary:
-      'Turn a federal tax shortfall into the exact Line 4(c) entry. §6654(g)(1) deems withholding ratable across the year — so a Q4 W-4 fix retroactively cures Q1–Q3 underpayment.',
+      'Turn a tax shortfall into the exact number to put on your W-4 Line 4(c). Because withholding counts as paid evenly across the year, a late-year fix can retroactively cover the earlier quarters.',
     status: 'live',
     category: 'withholding',
     emoji: '🧾',
@@ -164,7 +164,7 @@ export const tools: Tool[] = [
     title: 'Form 6251 AMT Calculator (Multi-Source)',
     shortTitle: 'Form 6251 AMT',
     summary:
-      'Full Form 6251 walkthrough combining W-2 wages + 1099 self-employment + ISO bargain element + SALT add-back. Computes AMTI, AMT exemption with phaseout, TMT, AMT owed, and the recoverable §53 credit estimate.',
+      'Full Alternative Minimum Tax (Form 6251) walkthrough combining your W-2 wages, freelance 1099 income, ISO exercises, and state-tax add-back — to compute the AMT you owe and the credit you get back.',
     status: 'live',
     category: 'options',
     emoji: '⚖️',
@@ -175,7 +175,7 @@ export const tools: Tool[] = [
     title: 'CA Form 540NR Apportionment Calculator',
     shortTitle: 'CA 540NR',
     summary:
-      'Vest-by-vest CA tax for tech workers who moved CA→TX (or CA→NV/FL/WA) mid-vest. Implements FTB Pub 1004 work-source allocation + §19136 safe-harbor target + Q4 540-ES recommendation.',
+      'Vest-by-vest California tax if you moved out of CA (to TX/NV/FL/WA) partway through earning your RSUs — how much California still taxes, the penalty-safe target, and what to prepay.',
     status: 'live',
     category: 'multistate',
     emoji: '🐻',
@@ -186,7 +186,7 @@ export const tools: Tool[] = [
     title: 'Backdoor + Mega-Backdoor Roth Sequencing Optimizer',
     shortTitle: 'Roth Sequencer',
     summary:
-      'Combines the 2 standalone Roth calculators into one sequenced playbook. When to do basis isolation first (pre-tax IRA + §408(d)(2) pro-rata), Mega-Backdoor next, traditional Backdoor last. Total annual Roth capacity unlocked across all paths.',
+      'Combines both Roth moves into one ordered playbook — what to do first, next, and last (clear out pre-tax IRA money, then Mega-Backdoor, then Backdoor) to maximize your tax-free Roth savings for the year.',
     status: 'live',
     category: 'roth',
     emoji: '🔀',
@@ -197,7 +197,7 @@ export const tools: Tool[] = [
     title: 'Double-Trigger RSU IPO/M&A Tax Calculator',
     shortTitle: 'Double-Trigger RSU',
     summary:
-      'The trigger-day tax bomb when your pre-IPO startup goes public or gets acquired. Federal + state shortfall vs supplemental withholding, sell-to-cover share count, net cash value at trigger FMV.',
+      'The tax hit when your pre-IPO startup goes public or gets acquired and your RSUs finally pay out. Federal + state shortfall vs. what’s withheld, shares sold to cover it, and your net cash.',
     status: 'live',
     category: 'rsu',
     emoji: '🚀',
@@ -208,7 +208,7 @@ export const tools: Tool[] = [
     title: 'QSBS / Section 1202 Exclusion Calculator',
     shortTitle: 'QSBS / §1202',
     summary:
-      'How much of your startup-stock gain is federal-tax-free under IRC §1202. Models the new 2025 (OBBBA) tiered 50/75/100% exclusion, the greater-of-$15M-or-10×-basis cap, the 28%-rate gain on the taxable portion, and state non-conformity.',
+      'How much of your startup-stock gain is completely federal-tax-free under the QSBS rule (§1202). Covers the new 2025 tiers (50/75/100%), the dollar cap, the rate on the taxable part, and states that don’t follow it.',
     status: 'live',
     category: 'espp-startup',
     emoji: '🦄',
