@@ -51,7 +51,7 @@ export default function HomePage() {
       className="relative min-h-screen overflow-hidden bg-slate-950 text-slate-100"
       style={{
         backgroundImage:
-          'radial-gradient(900px 600px at 90% -10%, rgba(37,99,235,0.18), transparent 60%), radial-gradient(700px 500px at 5% 20%, rgba(29,78,216,0.10), transparent 60%)',
+          'radial-gradient(1000px 680px at 90% -12%, rgba(37,99,235,0.26), transparent 60%), radial-gradient(780px 560px at 3% 18%, rgba(29,78,216,0.16), transparent 60%)',
       }}
     >
       <main className="mx-auto max-w-6xl px-6 py-12 sm:px-10 sm:py-16">
@@ -153,7 +153,7 @@ export default function HomePage() {
             <span className="font-mono text-xs uppercase tracking-[0.1em] text-slate-400">
               Built for engineers at
             </span>
-            <span className="flex flex-wrap gap-x-7 gap-y-2 text-sm font-semibold tracking-tight text-slate-300/70 sm:text-base">
+            <span className="flex flex-wrap gap-x-7 gap-y-2 text-base font-bold tracking-tight text-slate-200 sm:text-lg">
               <span>stripe.</span>
               <span>shopify</span>
               <span>databricks</span>
@@ -173,13 +173,13 @@ export default function HomePage() {
         </section>
 
         {/* WHY TRUST — visual icon-card grid */}
-        <section className="mt-16">
+        <section className="mt-24 sm:mt-32">
           <div className="mb-8">
             <div className="mb-2 font-mono text-[11px] uppercase tracking-[0.14em] text-brand-300">
               why tech workers trust mathstub
             </div>
-            <h2 className="flex items-baseline gap-3 text-3xl font-bold leading-none tracking-[-0.03em] text-brand-100 sm:text-[44px]">
-              <span aria-hidden="true" className="h-2 w-2 rounded-full bg-brand-500 shadow-[0_0_12px_rgb(59,130,246)]" />
+            <h2 className="flex items-baseline gap-3 text-4xl font-bold leading-[1.05] tracking-[-0.04em] text-balance text-white sm:text-[56px]">
+              <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-brand-500 shadow-[0_0_16px_rgb(59,130,246)]" />
               Built so you can verify it yourself.
             </h2>
           </div>
@@ -218,17 +218,17 @@ export default function HomePage() {
         </section>
 
         {/* PERSONA ROUTER */}
-        <section className="mt-16">
+        <section className="mt-24 sm:mt-32">
           <div className="mb-8 flex items-baseline justify-between gap-4">
             <div>
               <div className="mb-2 font-mono text-[11px] uppercase tracking-[0.14em] text-brand-300">
                 not an rsu? · pick your situation
               </div>
               <h2
-                className="flex items-baseline gap-3 text-3xl font-bold leading-none tracking-[-0.03em] text-brand-100 sm:text-[44px]"
+                className="flex items-baseline gap-3 text-4xl font-bold leading-[1.05] tracking-[-0.04em] text-balance text-white sm:text-[56px]"
                 style={{ letterSpacing: '-0.03em' }}
               >
-                <span aria-hidden="true" className="h-2 w-2 rounded-full bg-brand-500 shadow-[0_0_12px_rgb(59,130,246)]" />
+                <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-brand-500 shadow-[0_0_16px_rgb(59,130,246)]" />
                 What just happened?
               </h2>
             </div>
@@ -268,10 +268,10 @@ export default function HomePage() {
         </section>
 
         {/* OTHER CALCULATORS */}
-        <section className="mt-16">
+        <section className="mt-20 sm:mt-24">
           <div className="mb-8 flex items-baseline justify-between gap-4">
-            <h2 className="flex items-baseline gap-3 text-3xl font-bold leading-none tracking-[-0.03em] text-brand-100 sm:text-[44px]">
-              <span aria-hidden="true" className="h-2 w-2 rounded-full bg-brand-500 shadow-[0_0_12px_rgb(59,130,246)]" />
+            <h2 className="flex items-baseline gap-3 text-4xl font-bold leading-[1.05] tracking-[-0.04em] text-balance text-white sm:text-[56px]">
+              <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-brand-500 shadow-[0_0_16px_rgb(59,130,246)]" />
               Other equity events.
             </h2>
             <span className="font-mono text-xs text-slate-400">
@@ -283,7 +283,7 @@ export default function HomePage() {
               <li key={t.slug}>
                 <Link
                   href={`/${t.slug}`}
-                  className="flex h-full min-h-[150px] flex-col gap-2 rounded-md border border-slate-800 bg-slate-900/50 p-5 transition hover:border-brand-500/60 hover:bg-slate-900"
+                  className="flex h-full min-h-[150px] flex-col gap-2 rounded-md border border-slate-800 bg-slate-900/50 p-5 transition duration-200 hover:-translate-y-1 hover:border-brand-500/60 hover:bg-slate-900 hover:shadow-[0_12px_44px_-14px_rgba(37,99,235,0.5)] motion-reduce:hover:translate-y-0"
                 >
                   <div className="flex items-baseline justify-between gap-2">
                     <span className="font-mono text-[10px] uppercase tracking-[0.06em] text-brand-300">
@@ -313,11 +313,22 @@ export default function HomePage() {
         <section className="mt-16 rounded-lg border border-slate-800 bg-slate-900/40 p-8 sm:p-11">
           <div className="grid items-center gap-8 sm:grid-cols-[1fr_auto]">
             <div>
-              <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.1em] text-slate-400">
+              <div className="mb-4 font-mono text-[11px] uppercase tracking-[0.1em] text-slate-400">
                 why this matters
               </div>
+              <div className="mb-6 flex items-center gap-3 font-mono font-bold tabular-nums">
+                <span className="rounded-lg bg-slate-800 px-3.5 py-2 text-3xl text-slate-200 sm:text-4xl">
+                  22%
+                </span>
+                <span aria-hidden="true" className="text-3xl text-brand-400 sm:text-4xl">
+                  →
+                </span>
+                <span className="rounded-lg bg-brand-500 px-3.5 py-2 text-3xl text-slate-950 sm:text-4xl">
+                  37%
+                </span>
+              </div>
               <p
-                className="text-2xl leading-snug tracking-[-0.01em] text-slate-100 sm:text-[32px]"
+                className="text-[28px] leading-[1.12] tracking-[-0.015em] text-slate-50 sm:text-[44px]"
                 style={{
                   fontFamily:
                     '"Source Serif 4", "Source Serif Pro", "Iowan Old Style", Georgia, serif',
@@ -344,10 +355,10 @@ export default function HomePage() {
         </section>
 
         {/* LATEST FROM BLOG */}
-        <section className="mt-16">
+        <section className="mt-20 sm:mt-24">
           <div className="mb-6 flex items-baseline justify-between">
-            <h2 className="flex items-baseline gap-3 text-2xl font-bold leading-none tracking-[-0.03em] text-brand-100 sm:text-3xl">
-              <span aria-hidden="true" className="h-2 w-2 rounded-full bg-brand-500 shadow-[0_0_12px_rgb(59,130,246)]" />
+            <h2 className="flex items-baseline gap-3 text-3xl font-bold leading-[1.05] tracking-[-0.04em] text-white sm:text-4xl">
+              <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-brand-500 shadow-[0_0_16px_rgb(59,130,246)]" />
               Latest from the blog
             </h2>
             <Link
@@ -364,7 +375,7 @@ export default function HomePage() {
                 <li key={p.slug}>
                   <Link
                     href={`/blog/${p.slug}`}
-                    className="flex h-full flex-col gap-2 rounded-md border border-slate-800 bg-slate-900/50 p-4 transition hover:border-brand-500 hover:bg-slate-900"
+                    className="flex h-full flex-col gap-2 rounded-md border border-slate-800 bg-slate-900/50 p-4 transition duration-200 hover:-translate-y-1 hover:border-brand-500 hover:bg-slate-900 hover:shadow-[0_12px_44px_-14px_rgba(37,99,235,0.5)] motion-reduce:hover:translate-y-0"
                   >
                     <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.06em] text-slate-400">
                       <span>
@@ -395,7 +406,7 @@ export default function HomePage() {
         </section>
 
         {/* FOOTNOTE LINE */}
-        <section className="mt-16 border-t border-slate-800 pt-6 font-mono text-xs text-slate-400">
+        <section className="mt-20 sm:mt-24 border-t border-slate-800 pt-6 font-mono text-xs text-slate-400">
           Not sure which calculator?{' '}
           <Link
             href="/start-here"
@@ -458,12 +469,12 @@ function PersonaCard({
     <li>
       <Link
         href={href}
-        className="group flex h-full flex-col gap-1.5 rounded-md border border-slate-800 bg-slate-900/50 p-5 transition hover:border-brand-500/60 hover:bg-slate-900"
+        className="group flex h-full flex-col gap-1.5 rounded-md border border-slate-800 bg-slate-900/50 p-5 transition duration-200 hover:-translate-y-1 hover:border-brand-500/60 hover:bg-slate-900 hover:shadow-[0_12px_44px_-14px_rgba(37,99,235,0.5)] motion-reduce:hover:translate-y-0"
       >
-        <span className="text-3xl" aria-hidden="true">
+        <span className="text-4xl transition-transform duration-200 group-hover:scale-110 motion-reduce:group-hover:scale-100" aria-hidden="true">
           {emoji}
         </span>
-        <span className="mt-2 text-base font-semibold text-brand-200 group-hover:text-brand-200">{title}</span>
+        <span className="mt-2 text-lg font-semibold tracking-tight text-white sm:text-xl">{title}</span>
         <span className="font-mono text-[10px] uppercase tracking-[0.06em] text-brand-400/80">
           {tag}
         </span>
