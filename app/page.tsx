@@ -125,7 +125,7 @@ export default function HomePage() {
             <div className="mt-10">
               <Link
                 href={`/${flagship.slug}`}
-                className="inline-flex items-center gap-3.5 rounded-md bg-brand-500 px-7 py-5 text-lg font-semibold tracking-tight text-slate-950 transition hover:bg-brand-400 sm:text-xl"
+                className="inline-flex items-center gap-3.5 rounded-md bg-brand-500 px-7 py-5 text-lg font-semibold tracking-tight text-slate-950 transition hover:bg-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 sm:text-xl"
               >
                 Start with your RSU vest
                 <span aria-hidden="true" className="text-2xl">→</span>
@@ -224,10 +224,7 @@ export default function HomePage() {
               <div className="mb-2 font-mono text-[11px] uppercase tracking-[0.14em] text-brand-300">
                 not an rsu? · pick your situation
               </div>
-              <h2
-                className="flex items-baseline gap-3 text-4xl font-bold leading-[1.05] tracking-[-0.04em] text-balance text-white sm:text-[56px]"
-                style={{ letterSpacing: '-0.03em' }}
-              >
+              <h2 className="flex items-baseline gap-3 text-4xl font-bold leading-[1.05] tracking-[-0.04em] text-balance text-white sm:text-[56px]">
                 <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-brand-500 shadow-[0_0_16px_rgb(59,130,246)]" />
                 What just happened?
               </h2>
@@ -283,7 +280,7 @@ export default function HomePage() {
               <li key={t.slug}>
                 <Link
                   href={`/${t.slug}`}
-                  className="flex h-full min-h-[150px] flex-col gap-2 rounded-md border border-slate-800 bg-slate-900/50 p-5 transition duration-200 hover:-translate-y-1 hover:border-brand-500/60 hover:bg-slate-900 hover:shadow-[0_12px_44px_-14px_rgba(37,99,235,0.5)] motion-reduce:hover:translate-y-0"
+                  className="flex h-full min-h-[150px] flex-col gap-2 rounded-md border border-slate-800 bg-slate-900/50 p-5 transition duration-200 hover:-translate-y-1 hover:border-brand-500/60 hover:bg-slate-900 hover:shadow-[0_12px_44px_-14px_rgba(37,99,235,0.5)] motion-reduce:hover:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                 >
                   <div className="flex items-baseline justify-between gap-2">
                     <span className="font-mono text-[10px] uppercase tracking-[0.06em] text-brand-300">
@@ -310,7 +307,7 @@ export default function HomePage() {
         </section>
 
         {/* GAP STORY CALLOUT */}
-        <section className="mt-16 rounded-lg border border-slate-800 bg-slate-900/40 p-8 sm:p-11">
+        <section className="mt-24 rounded-lg border border-slate-800 bg-slate-900/40 p-8 sm:mt-32 sm:p-11">
           <div className="grid items-center gap-8 sm:grid-cols-[1fr_auto]">
             <div>
               <div className="mb-4 font-mono text-[11px] uppercase tracking-[0.1em] text-slate-400">
@@ -347,7 +344,7 @@ export default function HomePage() {
             </div>
             <Link
               href={`/${flagship.slug}`}
-              className="whitespace-nowrap rounded-md border border-brand-500/70 px-6 py-3.5 text-sm font-medium text-slate-100 transition hover:bg-brand-500/10"
+              className="whitespace-nowrap rounded-md border border-brand-500/70 px-6 py-3.5 text-sm font-medium text-slate-100 transition hover:bg-brand-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
               Run the numbers →
             </Link>
@@ -375,7 +372,7 @@ export default function HomePage() {
                 <li key={p.slug}>
                   <Link
                     href={`/blog/${p.slug}`}
-                    className="flex h-full flex-col gap-2 rounded-md border border-slate-800 bg-slate-900/50 p-4 transition duration-200 hover:-translate-y-1 hover:border-brand-500 hover:bg-slate-900 hover:shadow-[0_12px_44px_-14px_rgba(37,99,235,0.5)] motion-reduce:hover:translate-y-0"
+                    className="flex h-full flex-col gap-2 rounded-md border border-slate-800 bg-slate-900/50 p-4 transition duration-200 hover:-translate-y-1 hover:border-brand-500 hover:bg-slate-900 hover:shadow-[0_12px_44px_-14px_rgba(37,99,235,0.5)] motion-reduce:hover:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                   >
                     <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.06em] text-slate-400">
                       <span>
@@ -437,7 +434,7 @@ export default function HomePage() {
 
 function TrustCard({ icon, title, sub }: { icon: string; title: string; sub: string }) {
   return (
-    <li className="rounded-xl border border-slate-800 bg-slate-900/50 p-5 transition hover:border-brand-500/50">
+    <li className="rounded-xl border border-slate-800 bg-slate-900/50 p-5 transition hover:border-brand-500/60">
       <div className="flex items-start gap-3">
         <span
           aria-hidden="true"
@@ -469,7 +466,7 @@ function PersonaCard({
     <li>
       <Link
         href={href}
-        className="group flex h-full flex-col gap-1.5 rounded-md border border-slate-800 bg-slate-900/50 p-5 transition duration-200 hover:-translate-y-1 hover:border-brand-500/60 hover:bg-slate-900 hover:shadow-[0_12px_44px_-14px_rgba(37,99,235,0.5)] motion-reduce:hover:translate-y-0"
+        className="group flex h-full flex-col gap-1.5 rounded-md border border-slate-800 bg-slate-900/50 p-5 transition duration-200 hover:-translate-y-1 hover:border-brand-500/60 hover:bg-slate-900 hover:shadow-[0_12px_44px_-14px_rgba(37,99,235,0.5)] motion-reduce:hover:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
       >
         <span className="text-4xl transition-transform duration-200 group-hover:scale-110 motion-reduce:group-hover:scale-100" aria-hidden="true">
           {emoji}
