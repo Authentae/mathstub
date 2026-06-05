@@ -656,7 +656,7 @@ function Waterfall({ result: r }: { result: RsuShortfallResult }) {
         : 'text-gray-900 dark:text-gray-100';
 
   return (
-    <div className="space-y-3 rounded-lg border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900">
+    <div className="space-y-3 rounded-lg border border-slate-800 bg-slate-900 p-5">
       {steps.map((s, i) => {
         const width = Math.max(6, (s.val / max) * 100);
         return (
