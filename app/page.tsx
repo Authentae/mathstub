@@ -24,10 +24,20 @@ import { HeroAnimation } from '@/components/HeroAnimation';
  * tolerate dark backgrounds because the site supports dark mode; here we
  * just lock the homepage to dark independent of preference.
  */
+/**
+ * Total automated tests in the suite. Not derivable at runtime, so it's a
+ * single named constant here. To refresh: run `npx vitest run` and copy the
+ * "Tests N passed" total. (Calculator + guide counts below ARE derived from
+ * code, so they never go stale.)
+ */
+const TEST_COUNT = 586;
+
 export default function HomePage() {
   const tools = liveTools();
   const flagship = tools[0];
   const otherTools = tools.slice(1);
+  const calcCount = tools.length;
+  const guideCount = blogPosts.length;
   if (!flagship) {
     // Defensive guard — TS widens destructured access to possibly undefined.
     return null;
@@ -153,9 +163,9 @@ export default function HomePage() {
             </span>
           </div>
           <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-[0.08em] text-slate-400">
-            <li><span className="text-brand-400">✓</span> 16 calculators</li>
-            <li><span className="text-brand-400">✓</span> 29 guides</li>
-            <li><span className="text-brand-400">✓</span> 571 unit tests</li>
+            <li><span className="text-brand-400">✓</span> {calcCount} calculators</li>
+            <li><span className="text-brand-400">✓</span> {guideCount} guides</li>
+            <li><span className="text-brand-400">✓</span> {TEST_COUNT} unit tests</li>
             <li><span className="text-brand-400">✓</span> Every claim cites IRC § or IRS Pub</li>
             <li><span className="text-brand-400">✓</span> Inputs stay in your browser</li>
             <li><span className="text-brand-400">✓</span> Free, no signup</li>
@@ -191,7 +201,7 @@ export default function HomePage() {
             />
             <TrustCard
               icon="🧮"
-              title="571 unit tests"
+              title={`${TEST_COUNT} unit tests`}
               sub="Every calc is cross-checked against worked examples from IRS publications."
             />
             <TrustCard
@@ -416,10 +426,12 @@ export default function HomePage() {
 
 function TrustCard({ icon, title, sub }: { icon: string; title: string; sub: string }) {
   return (
-    <li className="relative overflow-hidden rounded-xl border border-slate-800 bg-slate-900/50 p-5 transition hover:border-brand-500/50">
-      <div className="absolute left-0 top-0 h-full w-1 bg-brand-500/70" aria-hidden="true" />
+    <li className="rounded-xl border border-slate-800 bg-slate-900/50 p-5 transition hover:border-brand-500/50">
       <div className="flex items-start gap-3">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-500/10 text-2xl">
+        <span
+          aria-hidden="true"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-500/10 text-2xl ring-1 ring-inset ring-brand-500/20"
+        >
           {icon}
         </span>
         <div className="min-w-0">
