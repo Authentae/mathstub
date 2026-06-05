@@ -165,7 +165,9 @@ export function RsuShortfallCalculator() {
           <Field label="Vest value (gross, USD)">
             <input
               type="number"
+              inputMode="decimal"
               min="0"
+              max="100000000"
               value={form.vestGrossUsd}
               onChange={(e) => update('vestGrossUsd', e.target.value)}
               className={inputCls}
@@ -178,7 +180,9 @@ export function RsuShortfallCalculator() {
           <Field label="Other YTD wages (before this vest)">
             <input
               type="number"
+              inputMode="decimal"
               min="0"
+              max="100000000"
               value={form.ytdRegularWagesUsd}
               onChange={(e) => update('ytdRegularWagesUsd', e.target.value)}
               className={inputCls}
@@ -199,6 +203,7 @@ export function RsuShortfallCalculator() {
               <option value="mfs">Married filing separately</option>
               <option value="hoh">Head of household</option>
             </select>
+            <p className="mt-1 text-xs text-slate-400">How you file your federal return.</p>
           </Field>
           <Field label="State of residence">
             <select
@@ -212,6 +217,7 @@ export function RsuShortfallCalculator() {
                 </option>
               ))}
             </select>
+            <p className="mt-1 text-xs text-slate-400">Where you live — sets your state tax rate.</p>
           </Field>
           <Field label="Tax year">
             <select
@@ -223,16 +229,22 @@ export function RsuShortfallCalculator() {
               <option value={2025}>2025</option>
               <option value={2026}>2026</option>
             </select>
+            <p className="mt-1 text-xs text-slate-400">The year this vest happened.</p>
           </Field>
           <Field label="YTD pre-tax deductions (401k + HSA)">
             <input
               type="number"
+              inputMode="decimal"
               min="0"
+              max="100000000"
               value={form.preTaxDeductionsUsd}
               onChange={(e) => update('preTaxDeductionsUsd', e.target.value)}
               className={inputCls}
               placeholder="23,500"
             />
+            <p className="mt-1 text-xs text-slate-400">
+              Your 401(k) + HSA contributions so far this year — they lower taxable income.
+            </p>
           </Field>
 
           {/*
@@ -256,7 +268,9 @@ export function RsuShortfallCalculator() {
               <Field label="YTD supplemental wages (prior RSU vests, bonuses)">
                 <input
                   type="number"
+                  inputMode="decimal"
                   min="0"
+                  max="100000000"
                   value={form.ytdSupplementalWagesUsd}
                   onChange={(e) => update('ytdSupplementalWagesUsd', e.target.value)}
                   className={inputCls}
@@ -265,7 +279,9 @@ export function RsuShortfallCalculator() {
               <Field label="Other taxable income (spouse W-2, dividends, etc.)">
                 <input
                   type="number"
+                  inputMode="decimal"
                   min="0"
+                  max="100000000"
                   value={form.otherTaxableIncomeUsd}
                   onChange={(e) => update('otherTaxableIncomeUsd', e.target.value)}
                   className={inputCls}
@@ -308,7 +324,11 @@ export function RsuShortfallCalculator() {
       </div>
 
       {'error' in result ? (
-        <div className="rounded-lg bg-amber-500/10 p-4 text-sm text-amber-200 ring-1 ring-amber-500/30">
+        <div
+          role="alert"
+          aria-live="polite"
+          className="rounded-lg bg-amber-500/10 p-4 text-sm text-amber-200 ring-1 ring-amber-500/30"
+        >
           {result.error}
         </div>
       ) : (
