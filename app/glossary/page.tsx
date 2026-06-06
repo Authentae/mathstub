@@ -39,15 +39,15 @@ export default function GlossaryPage() {
     <main className="mx-auto max-w-3xl px-4 py-12">
       <JsonLd data={schema} />
 
-      <p className="text-sm text-gray-500 dark:text-gray-400">
+      <p className="text-sm text-slate-500 dark:text-slate-400">
         <Link href="/" className="hover:underline">
           ← Home
         </Link>
       </p>
-      <h1 className="mt-2 text-3xl font-bold text-gray-900 dark:text-gray-100">
+      <h1 className="mt-2 text-3xl font-bold text-slate-900 dark:text-slate-100">
         Equity comp tax glossary
       </h1>
-      <p className="mt-2 text-lg text-gray-700 dark:text-gray-300">
+      <p className="mt-2 text-lg text-slate-700 dark:text-slate-300">
         Plain-language definitions of the {glossary.length} tax terms we use
         across the calculators and blog. Each entry cites the controlling IRC
         section or IRS publication.
@@ -56,9 +56,9 @@ export default function GlossaryPage() {
       {/* Quick A-Z index */}
       <nav
         aria-label="Glossary index"
-        className="mt-6 rounded-md border border-gray-200 bg-gray-50 p-4 text-sm dark:border-gray-800 dark:bg-gray-900"
+        className="mt-6 rounded-md border border-slate-200 bg-slate-50 p-4 text-sm dark:border-slate-800 dark:bg-slate-900"
       >
-        <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
+        <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
           Jump to a term
         </p>
         <ul className="flex flex-wrap gap-x-3 gap-y-1">
@@ -80,20 +80,20 @@ export default function GlossaryPage() {
           <article
             key={g.slug}
             id={g.slug}
-            className="scroll-mt-20 border-b border-gray-200 pb-6 dark:border-gray-800"
+            className="scroll-mt-20 border-b border-slate-200 pb-6 dark:border-slate-800"
           >
-            <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100">
               {g.term}
             </h2>
-            <p className="mt-2 text-gray-700 dark:text-gray-300">{g.definition}</p>
+            <p className="mt-2 text-slate-700 dark:text-slate-300">{g.definition}</p>
             {g.source && (
-              <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+              <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">
                 <span className="font-semibold">Source:</span> {g.source}
               </p>
             )}
             {g.calcs && g.calcs.length > 0 && (
               <p className="mt-3 text-sm">
-                <span className="text-gray-500 dark:text-gray-400">Calculator: </span>
+                <span className="text-slate-500 dark:text-slate-400">Calculator: </span>
                 {g.calcs.map((slug, i) => {
                   const tool = findTool(slug);
                   if (!tool) return null;
@@ -113,7 +113,7 @@ export default function GlossaryPage() {
             )}
             {g.see && g.see.length > 0 && (
               <p className="mt-2 text-sm">
-                <span className="text-gray-500 dark:text-gray-400">See also: </span>
+                <span className="text-slate-500 dark:text-slate-400">See also: </span>
                 {g.see.map((slug, i) => (
                   <span key={slug}>
                     {i > 0 && ', '}

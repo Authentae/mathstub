@@ -126,7 +126,7 @@ export function RsuCostBasisCalculator() {
             inputMode="decimal"
             value={form.sharesSold}
             onChange={(e) => setForm({ sharesSold: e.target.value })}
-            className="w-full rounded-md border border-gray-300 px-3 py-2 dark:border-gray-700 dark:bg-gray-900"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900"
           />
         </Field>
         <Field label="FMV per share at vest (your real basis)">
@@ -135,7 +135,7 @@ export function RsuCostBasisCalculator() {
             inputMode="decimal"
             value={form.fmvAtVestPerShare}
             onChange={(e) => setForm({ fmvAtVestPerShare: e.target.value })}
-            className="w-full rounded-md border border-gray-300 px-3 py-2 dark:border-gray-700 dark:bg-gray-900"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900"
           />
         </Field>
         <Field label="Sale price per share">
@@ -144,7 +144,7 @@ export function RsuCostBasisCalculator() {
             inputMode="decimal"
             value={form.salePricePerShare}
             onChange={(e) => setForm({ salePricePerShare: e.target.value })}
-            className="w-full rounded-md border border-gray-300 px-3 py-2 dark:border-gray-700 dark:bg-gray-900"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900"
           />
         </Field>
         <Field label="Cost basis your broker reported (Box 1e — often $0)">
@@ -155,7 +155,7 @@ export function RsuCostBasisCalculator() {
             onChange={(e) =>
               setForm({ brokerReportedBasisPerShare: e.target.value })
             }
-            className="w-full rounded-md border border-gray-300 px-3 py-2 dark:border-gray-700 dark:bg-gray-900"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900"
           />
         </Field>
         <Field label="Holding period">
@@ -164,7 +164,7 @@ export function RsuCostBasisCalculator() {
             onChange={(e) =>
               setForm({ holdingPeriod: e.target.value as HoldingPeriod })
             }
-            className="w-full rounded-md border border-gray-300 px-3 py-2 dark:border-gray-700 dark:bg-gray-900"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900"
           >
             <option value="long">Long-term (held &gt; 1 year after vest)</option>
             <option value="short">Short-term (held 1 year or less)</option>
@@ -176,7 +176,7 @@ export function RsuCostBasisCalculator() {
             onChange={(e) =>
               setForm({ filingStatus: e.target.value as FilingStatus })
             }
-            className="w-full rounded-md border border-gray-300 px-3 py-2 dark:border-gray-700 dark:bg-gray-900"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900"
           >
             {Object.entries(FILING_LABELS).map(([v, l]) => (
               <option key={v} value={v}>
@@ -191,14 +191,14 @@ export function RsuCostBasisCalculator() {
             inputMode="decimal"
             value={form.taxableIncomeUsd}
             onChange={(e) => setForm({ taxableIncomeUsd: e.target.value })}
-            className="w-full rounded-md border border-gray-300 px-3 py-2 dark:border-gray-700 dark:bg-gray-900"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900"
           />
         </Field>
         <Field label="Tax year">
           <select
             value={form.taxYear}
             onChange={(e) => setForm({ taxYear: Number(e.target.value) as TaxYear })}
-            className="w-full rounded-md border border-gray-300 px-3 py-2 dark:border-gray-700 dark:bg-gray-900"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900"
           >
             <option value={2024}>2024</option>
             <option value={2025}>2025</option>
@@ -211,7 +211,7 @@ export function RsuCostBasisCalculator() {
             inputMode="decimal"
             value={form.stateRatePct}
             onChange={(e) => setForm({ stateRatePct: e.target.value })}
-            className="w-full rounded-md border border-gray-300 px-3 py-2 dark:border-gray-700 dark:bg-gray-900"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900"
           />
         </Field>
       </div>
@@ -268,7 +268,7 @@ function ResultPanel({ r }: { r: RsuCostBasisResult }) {
         />
       </div>
 
-      <div className="rounded-lg border border-gray-200 p-4 text-sm dark:border-gray-800">
+      <div className="rounded-lg border border-slate-200 p-4 text-sm dark:border-slate-800">
         <p className="font-semibold">What is going wrong</p>
         <p className="mt-1 text-slate-300">
           Your broker reported a {usd.format(r.brokerReportedBasisUsd)} basis, so
@@ -311,10 +311,10 @@ function Stat({
       className={`rounded-lg border p-4 ${
         highlight
           ? 'border-brand-500 bg-brand-50 dark:bg-brand-950'
-          : 'border-gray-200 dark:border-gray-800'
+          : 'border-slate-200 dark:border-slate-800'
       }`}
     >
-      <span className="block text-xs uppercase tracking-wide text-gray-500">
+      <span className="block text-xs uppercase tracking-wide text-slate-500">
         {label}
       </span>
       <span className="mt-1 block text-2xl font-bold">{value}</span>

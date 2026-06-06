@@ -25,7 +25,7 @@ export function ReadTime({ blocks, wordsPerMinute = 220 }: Props) {
   const minutes = Math.max(1, Math.round(words / wordsPerMinute));
 
   return (
-    <span className="text-xs text-gray-500 dark:text-gray-400">
+    <span className="text-xs text-slate-500 dark:text-slate-400">
       {minutes} min read · {words.toLocaleString()} words
     </span>
   );

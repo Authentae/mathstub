@@ -36,15 +36,15 @@ export default function EmbedPage() {
 
   return (
     <main className="mx-auto max-w-4xl px-4 py-8">
-      <p className="text-sm text-gray-500 dark:text-gray-400">
+      <p className="text-sm text-slate-500 dark:text-slate-400">
         <Link href="/" className="hover:underline">
           ← Home
         </Link>
       </p>
-      <h1 className="mt-2 text-3xl font-bold text-gray-900 dark:text-gray-100">
+      <h1 className="mt-2 text-3xl font-bold text-slate-900 dark:text-slate-100">
         Embed the RSU Shortfall calculator on your site
       </h1>
-      <p className="mt-3 max-w-2xl text-base text-gray-700 dark:text-gray-300">
+      <p className="mt-3 max-w-2xl text-base text-slate-700 dark:text-slate-300">
         Drop the calculator on your CPA blog, finance newsletter, or
         financial-advisor site. One iframe tag, no JavaScript required
         on the host page. Visitors fill in their numbers, see the
@@ -53,13 +53,13 @@ export default function EmbedPage() {
 
       <section className="mt-8 grid gap-8 md:grid-cols-2">
         <div>
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">
             Light theme
           </h2>
-          <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
             For sites with white or light backgrounds.
           </p>
-          <div className="mt-3 overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800">
+          <div className="mt-3 overflow-hidden rounded-lg border border-slate-200 dark:border-slate-800">
             <iframe
               src="/embed/rsu-shortfall/?theme=light"
               width={400}
@@ -70,19 +70,19 @@ export default function EmbedPage() {
               style={{ height: 500 }}
             />
           </div>
-          <pre className="mt-3 overflow-x-auto rounded-md bg-gray-900 p-3 text-xs text-gray-100">
+          <pre className="mt-3 overflow-x-auto rounded-md bg-slate-900 p-3 text-xs text-slate-100">
             <code>{lightSnippet}</code>
           </pre>
         </div>
 
         <div>
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">
             Dark theme
           </h2>
-          <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
             For sites with dark or slate backgrounds.
           </p>
-          <div className="mt-3 overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800">
+          <div className="mt-3 overflow-hidden rounded-lg border border-slate-200 dark:border-slate-800">
             <iframe
               src="/embed/rsu-shortfall/?theme=dark"
               width={400}
@@ -93,38 +93,38 @@ export default function EmbedPage() {
               style={{ height: 500 }}
             />
           </div>
-          <pre className="mt-3 overflow-x-auto rounded-md bg-gray-900 p-3 text-xs text-gray-100">
+          <pre className="mt-3 overflow-x-auto rounded-md bg-slate-900 p-3 text-xs text-slate-100">
             <code>{darkSnippet}</code>
           </pre>
         </div>
       </section>
 
-      <section className="mt-10 rounded-md border border-gray-200 bg-gray-50 p-5 text-sm dark:border-gray-800 dark:bg-gray-900">
-        <p className="font-semibold text-gray-900 dark:text-gray-100">FAQ</p>
+      <section className="mt-10 rounded-md border border-slate-200 bg-slate-50 p-5 text-sm dark:border-slate-800 dark:bg-slate-900">
+        <p className="font-semibold text-slate-900 dark:text-slate-100">FAQ</p>
         <dl className="mt-3 space-y-3">
           <div>
-            <dt className="font-semibold text-gray-800 dark:text-gray-200">
+            <dt className="font-semibold text-slate-800 dark:text-slate-200">
               Is the embed free?
             </dt>
-            <dd className="mt-1 text-gray-700 dark:text-gray-300">
+            <dd className="mt-1 text-slate-700 dark:text-slate-300">
               Yes. Attribution required (the &ldquo;Powered by mathstub.com&rdquo; link
               in the widget). No commercial restrictions otherwise.
             </dd>
           </div>
           <div>
-            <dt className="font-semibold text-gray-800 dark:text-gray-200">
+            <dt className="font-semibold text-slate-800 dark:text-slate-200">
               Does the host page need any JavaScript?
             </dt>
-            <dd className="mt-1 text-gray-700 dark:text-gray-300">
+            <dd className="mt-1 text-slate-700 dark:text-slate-300">
               No. The widget is a single iframe — the calculator runs
               inside it. Your page is unaffected.
             </dd>
           </div>
           <div>
-            <dt className="font-semibold text-gray-800 dark:text-gray-200">
+            <dt className="font-semibold text-slate-800 dark:text-slate-200">
               Do you track visitors on the embed?
             </dt>
-            <dd className="mt-1 text-gray-700 dark:text-gray-300">
+            <dd className="mt-1 text-slate-700 dark:text-slate-300">
               The math runs entirely in the visitor&rsquo;s browser. No
               third-party analytics on the widget itself. The
               &ldquo;Run full breakdown&rdquo; link goes to mathstub.com where our
@@ -132,14 +132,14 @@ export default function EmbedPage() {
             </dd>
           </div>
           <div>
-            <dt className="font-semibold text-gray-800 dark:text-gray-200">
+            <dt className="font-semibold text-slate-800 dark:text-slate-200">
               Can I customize the styling?
             </dt>
-            <dd className="mt-1 text-gray-700 dark:text-gray-300">
+            <dd className="mt-1 text-slate-700 dark:text-slate-300">
               Light / dark theme via{' '}
-              <code className="rounded bg-gray-100 px-1 py-0.5 dark:bg-gray-800">?theme=light</code>{' '}
+              <code className="rounded bg-slate-100 px-1 py-0.5 dark:bg-slate-800">?theme=light</code>{' '}
               or{' '}
-              <code className="rounded bg-gray-100 px-1 py-0.5 dark:bg-gray-800">?theme=dark</code>.
+              <code className="rounded bg-slate-100 px-1 py-0.5 dark:bg-slate-800">?theme=dark</code>.
               For deeper customization (brand color, fonts), email{' '}
               <a
                 href="mailto:hello@mathstub.com?subject=Embed%20widget%20customization"

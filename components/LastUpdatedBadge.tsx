@@ -11,7 +11,7 @@ export function LastUpdatedBadge({ taxYear, isoDate }: Props) {
     timeZone: 'UTC',
   });
   return (
-    <p className="text-xs text-gray-500 dark:text-gray-400">
+    <p className="text-xs text-slate-500 dark:text-slate-400">
       Tax year {taxYear} · Last updated {formatted}
     </p>
   );

@@ -16,13 +16,13 @@ export default function NotFound() {
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-16">
-      <p className="text-sm font-semibold uppercase tracking-wide text-gray-500">
+      <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
         404 — page not found
       </p>
-      <h1 className="mt-2 text-3xl font-bold text-gray-900 dark:text-gray-100">
+      <h1 className="mt-2 text-3xl font-bold text-slate-900 dark:text-slate-100">
         Looks like this page doesn&apos;t exist.
       </h1>
-      <p className="mt-3 text-gray-700 dark:text-gray-300">
+      <p className="mt-3 text-slate-700 dark:text-slate-300">
         It may have been moved, the URL may have a typo, or the link that
         brought you here is out of date. Here are the most useful pages on
         Mathstub to get you back on track.
@@ -38,11 +38,11 @@ export default function NotFound() {
             <p className="text-xs font-semibold uppercase tracking-wide text-brand-700 dark:text-brand-300">
               Most popular calculator
             </p>
-            <h2 className="mt-1 text-xl font-bold text-gray-900 dark:text-gray-100">
+            <h2 className="mt-1 text-xl font-bold text-slate-900 dark:text-slate-100">
               {flagship.emoji ? `${flagship.emoji} ` : ''}
               {flagship.title}
             </h2>
-            <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+            <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
               {flagship.summary}
             </p>
             <p className="mt-2 inline-block text-sm font-semibold text-brand-700 hover:underline dark:text-brand-200">
@@ -54,40 +54,40 @@ export default function NotFound() {
 
       {/* Quick-access pills for the three main navigation hubs */}
       <section className="mt-6">
-        <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
           Or pick a starting point
         </p>
         <div className="mt-3 grid gap-3 sm:grid-cols-3">
           <Link
             href="/start-here"
-            className="block rounded-md border border-gray-200 bg-white p-4 text-sm shadow-sm transition hover:border-brand-500 hover:shadow dark:border-gray-800 dark:bg-gray-900"
+            className="block rounded-md border border-slate-200 bg-white p-4 text-sm shadow-sm transition hover:border-brand-500 hover:shadow dark:border-slate-800 dark:bg-slate-900"
           >
             <p className="font-semibold text-brand-700 dark:text-brand-300">
               🧭 Start here
             </p>
-            <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">
+            <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">
               Diagnostic guide — which calculator fits your situation?
             </p>
           </Link>
           <Link
             href="/blog"
-            className="block rounded-md border border-gray-200 bg-white p-4 text-sm shadow-sm transition hover:border-brand-500 hover:shadow dark:border-gray-800 dark:bg-gray-900"
+            className="block rounded-md border border-slate-200 bg-white p-4 text-sm shadow-sm transition hover:border-brand-500 hover:shadow dark:border-slate-800 dark:bg-slate-900"
           >
             <p className="font-semibold text-brand-700 dark:text-brand-300">
               📚 Blog ({blogPosts.length} posts)
             </p>
-            <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">
+            <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">
               Equity-comp tax mechanics with worked examples and IRC citations.
             </p>
           </Link>
           <Link
             href="/glossary"
-            className="block rounded-md border border-gray-200 bg-white p-4 text-sm shadow-sm transition hover:border-brand-500 hover:shadow dark:border-gray-800 dark:bg-gray-900"
+            className="block rounded-md border border-slate-200 bg-white p-4 text-sm shadow-sm transition hover:border-brand-500 hover:shadow dark:border-slate-800 dark:bg-slate-900"
           >
             <p className="font-semibold text-brand-700 dark:text-brand-300">
               🔤 Glossary
             </p>
-            <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">
+            <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">
               Plain-language definitions of every equity-comp term — RSU,
               ISO, AMT, §83(b), NIIT, and 28 more.
             </p>
@@ -97,7 +97,7 @@ export default function NotFound() {
 
       {/* All calculators */}
       <section className="mt-8">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+        <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">
           All calculators
         </h2>
         <ul className="mt-2 grid gap-2 sm:grid-cols-2">
@@ -117,7 +117,7 @@ export default function NotFound() {
 
       {/* Recent posts so the lost visitor sees Mathstub is actively maintained */}
       <section className="mt-8">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+        <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">
           Recent posts
         </h2>
         <ul className="mt-2 space-y-2">
@@ -136,7 +136,7 @@ export default function NotFound() {
 
       {/* Blog category list — picks up users searching for a topic */}
       <section className="mt-8">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+        <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">
           Browse by topic
         </h2>
         <ul className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-sm">
@@ -153,7 +153,7 @@ export default function NotFound() {
         </ul>
       </section>
 
-      <p className="mt-10 text-sm text-gray-500 dark:text-gray-400">
+      <p className="mt-10 text-sm text-slate-500 dark:text-slate-400">
         <Link href="/" className="hover:underline">
           ← Back to home
         </Link>

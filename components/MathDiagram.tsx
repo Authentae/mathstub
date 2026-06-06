@@ -54,7 +54,7 @@ export function MathDiagram({
           className="mx-auto block h-auto w-full"
         />
       </div>
-      <figcaption className="mt-2 text-center text-xs text-gray-500 dark:text-gray-400">
+      <figcaption className="mt-2 text-center text-xs text-slate-500 dark:text-slate-400">
         How the math flows — every step cites the IRC section that controls it.
       </figcaption>
     </figure>

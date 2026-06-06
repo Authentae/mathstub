@@ -31,8 +31,8 @@ export function RelatedCalcs({ currentSlug }: { currentSlug: string }) {
   if (related.length === 0) return null;
 
   return (
-    <aside className="mt-8 rounded-md border border-gray-200 bg-gray-50 p-5 dark:border-gray-800 dark:bg-gray-900">
-      <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-gray-500">
+    <aside className="mt-8 rounded-md border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-900">
+      <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">
         Related calculators
       </p>
       <ul className="grid gap-3 md:grid-cols-3">
@@ -40,13 +40,13 @@ export function RelatedCalcs({ currentSlug }: { currentSlug: string }) {
           <li key={t.slug}>
             <Link
               href={`/${t.slug}`}
-              className="block rounded-md border border-gray-200 bg-white p-3 text-sm shadow-sm transition hover:border-brand-500 hover:shadow dark:border-gray-700 dark:bg-gray-950"
+              className="block rounded-md border border-slate-200 bg-white p-3 text-sm shadow-sm transition hover:border-brand-500 hover:shadow dark:border-slate-700 dark:bg-slate-950"
             >
-              <div className="flex items-center gap-2 font-semibold text-gray-900 dark:text-gray-100">
+              <div className="flex items-center gap-2 font-semibold text-slate-900 dark:text-slate-100">
                 {t.emoji && <span aria-hidden>{t.emoji}</span>}
                 <span>{t.shortTitle}</span>
               </div>
-              <p className="mt-1 text-xs text-gray-600 dark:text-gray-400 line-clamp-3">
+              <p className="mt-1 text-xs text-slate-600 dark:text-slate-400 line-clamp-3">
                 {t.summary}
               </p>
             </Link>

@@ -33,35 +33,35 @@ export function CalcIntro({
         <p className="text-xs font-semibold uppercase tracking-wide text-brand-700 dark:text-brand-300">
           {kicker}
         </p>
-        <h2 className="text-2xl font-bold leading-tight text-gray-900 dark:text-gray-100 sm:text-3xl">
+        <h2 className="text-2xl font-bold leading-tight text-slate-900 dark:text-slate-100 sm:text-3xl">
           {question}
         </h2>
-        <p className="max-w-prose text-sm text-gray-600 dark:text-gray-400">
+        <p className="max-w-prose text-sm text-slate-600 dark:text-slate-400">
           {ircCite}{' '}
-          <cite className="not-italic text-gray-500 dark:text-gray-500">({irc})</cite>
+          <cite className="not-italic text-slate-500 dark:text-slate-500">({irc})</cite>
         </p>
       </header>
 
-      <ul className="grid gap-3 rounded-lg border border-gray-200 bg-gray-50 p-4 text-xs dark:border-gray-800 dark:bg-gray-900/40 sm:grid-cols-3">
+      <ul className="grid gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 text-xs dark:border-slate-800 dark:bg-slate-900/40 sm:grid-cols-3">
         <li className="flex items-start gap-2">
           <span aria-hidden="true" className="text-brand-700 dark:text-brand-300">✓</span>
           <span>
-            <strong className="block font-semibold text-gray-900 dark:text-gray-100">No signup, ever</strong>
-            <span className="text-gray-500 dark:text-gray-500">No tracking, no email required.</span>
+            <strong className="block font-semibold text-slate-900 dark:text-slate-100">No signup, ever</strong>
+            <span className="text-slate-500 dark:text-slate-500">No tracking, no email required.</span>
           </span>
         </li>
         <li className="flex items-start gap-2">
           <span aria-hidden="true" className="text-brand-700 dark:text-brand-300">✓</span>
           <span>
-            <strong className="block font-semibold text-gray-900 dark:text-gray-100">Math runs in your browser</strong>
-            <span className="text-gray-500 dark:text-gray-500">No data leaves this page.</span>
+            <strong className="block font-semibold text-slate-900 dark:text-slate-100">Math runs in your browser</strong>
+            <span className="text-slate-500 dark:text-slate-500">No data leaves this page.</span>
           </span>
         </li>
         <li className="flex items-start gap-2">
           <span aria-hidden="true" className="text-brand-700 dark:text-brand-300">✓</span>
           <span>
-            <strong className="block font-semibold text-gray-900 dark:text-gray-100">Every claim cites IRC § or IRS Pub</strong>
-            <span className="text-gray-500 dark:text-gray-500">Reviewed against IRS primary sources — see footer.</span>
+            <strong className="block font-semibold text-slate-900 dark:text-slate-100">Every claim cites IRC § or IRS Pub</strong>
+            <span className="text-slate-500 dark:text-slate-500">Reviewed against IRS primary sources — see footer.</span>
           </span>
         </li>
       </ul>

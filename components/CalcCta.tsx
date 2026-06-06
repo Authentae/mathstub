@@ -30,13 +30,13 @@ export function CalcCta({ slugs, heading = 'Run your own numbers' }: Props) {
           <li key={t.slug}>
             <Link
               href={`/${t.slug}`}
-              className="block rounded-md border border-brand-200 bg-white p-3 shadow-sm transition hover:border-brand-500 hover:shadow dark:border-brand-900 dark:bg-gray-950"
+              className="block rounded-md border border-brand-200 bg-white p-3 shadow-sm transition hover:border-brand-500 hover:shadow dark:border-brand-900 dark:bg-slate-950"
             >
-              <div className="flex items-center gap-2 font-semibold text-gray-900 dark:text-gray-100">
+              <div className="flex items-center gap-2 font-semibold text-slate-900 dark:text-slate-100">
                 {t.emoji && <span aria-hidden>{t.emoji}</span>}
                 <span>{t.shortTitle}</span>
               </div>
-              <p className="mt-1 text-xs text-gray-600 dark:text-gray-400 line-clamp-2">
+              <p className="mt-1 text-xs text-slate-600 dark:text-slate-400 line-clamp-2">
                 {t.summary}
               </p>
             </Link>

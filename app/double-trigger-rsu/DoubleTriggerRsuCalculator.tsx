@@ -77,17 +77,17 @@ export function DoubleTriggerRsuCalculator() {
           <Field label="Time-vested shares released" hint="Shares that hit service-vesting milestones AND release on the trigger date.">
             <input type="number" inputMode="numeric" min={0} value={form.sharesReleased}
               onChange={(e) => setForm({ sharesReleased: e.target.value })}
-              className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100" />
+              className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" />
           </Field>
           <Field label="Trigger-date FMV per share" hint="IPO open price (for IPO) or per-share deal price (for M&A).">
             <input type="number" inputMode="decimal" min={0} step={0.01} value={form.triggerFmvUsd}
               onChange={(e) => setForm({ triggerFmvUsd: e.target.value })}
-              className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100" />
+              className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" />
           </Field>
           <Field label="YTD supplemental wages so far this year" hint="Prior RSU vests, bonuses. Used to check the $1M threshold.">
             <input type="number" inputMode="numeric" min={0} value={form.ytdSupplementalWagesUsd}
               onChange={(e) => setForm({ ytdSupplementalWagesUsd: e.target.value })}
-              className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100" />
+              className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" />
           </Field>
         </div>
       </fieldset>
@@ -100,17 +100,17 @@ export function DoubleTriggerRsuCalculator() {
           <Field label="Federal marginal rate" hint="0.32 / 0.35 / 0.37 typical for $200k+ earners. Bump +0.009 if you'll cross the Add'l Medicare threshold.">
             <input type="number" inputMode="decimal" min={0} max={1} step={0.01} value={form.federalMarginalRate}
               onChange={(e) => setForm({ federalMarginalRate: e.target.value })}
-              className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100" />
+              className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" />
           </Field>
           <Field label="State marginal rate" hint="CA 0.133, NY 0.109, MA 0.05, TX/NV/FL/WA 0.">
             <input type="number" inputMode="decimal" min={0} max={1} step={0.001} value={form.stateMarginalRate}
               onChange={(e) => setForm({ stateMarginalRate: e.target.value })}
-              className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100" />
+              className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" />
           </Field>
           <Field label="State supplemental withholding rate" hint="CA 0.1023, NY 0.117, MA 0.05. Often differs from state marginal.">
             <input type="number" inputMode="decimal" min={0} max={1} step={0.001} value={form.stateSupplementalRate}
               onChange={(e) => setForm({ stateSupplementalRate: e.target.value })}
-              className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100" />
+              className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" />
           </Field>
         </div>
       </fieldset>

@@ -248,9 +248,9 @@ function Result({ result }: { result: AmtCreditRecoveryResult }) {
 
       <GumroadUpsell shortfallUsd={r.startingCreditBalanceUsd} />
 
-      <div className="overflow-x-auto rounded-md border border-gray-200 bg-white text-sm dark:border-gray-800 dark:bg-gray-900">
+      <div className="overflow-x-auto rounded-md border border-slate-200 bg-white text-sm dark:border-slate-800 dark:bg-slate-900">
         <table className="w-full min-w-[640px]">
-          <thead className="bg-gray-50 text-left text-xs uppercase tracking-wide text-gray-500 dark:bg-gray-950">
+          <thead className="bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500 dark:bg-slate-950">
             <tr>
               <th className="px-3 py-2">Year</th>
               <th className="px-3 py-2 text-right">Income</th>
@@ -262,7 +262,7 @@ function Result({ result }: { result: AmtCreditRecoveryResult }) {
           </thead>
           <tbody>
             {r.schedule.map((row) => (
-              <tr key={row.taxYear} className="border-t border-gray-200 dark:border-gray-800">
+              <tr key={row.taxYear} className="border-t border-slate-200 dark:border-slate-800">
                 <td className="px-3 py-2 font-medium">{row.taxYear}</td>
                 <td className="px-3 py-2 text-right">{usd.format(row.projectedIncomeUsd)}</td>
                 <td className="px-3 py-2 text-right">{usd.format(row.regularFederalTaxUsd)}</td>
@@ -271,7 +271,7 @@ function Result({ result }: { result: AmtCreditRecoveryResult }) {
                   className={`px-3 py-2 text-right font-medium ${
                     row.creditAppliedUsd > 0
                       ? 'text-emerald-700 dark:text-emerald-300'
-                      : 'text-gray-500 dark:text-gray-500'
+                      : 'text-slate-500 dark:text-slate-500'
                   }`}
                 >
                   {row.creditAppliedUsd > 0 ? usd.format(row.creditAppliedUsd) : '—'}
@@ -295,7 +295,7 @@ function Result({ result }: { result: AmtCreditRecoveryResult }) {
 
       {offers.length > 0 && (
         <div>
-          <p className="mb-2 text-xs uppercase tracking-wide text-gray-500">
+          <p className="mb-2 text-xs uppercase tracking-wide text-slate-500">
             Recommended next steps
           </p>
           <div className="grid gap-3 md:grid-cols-2">

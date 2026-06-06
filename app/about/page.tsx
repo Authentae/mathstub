@@ -51,15 +51,15 @@ export default function AboutPage() {
       <JsonLd data={orgSchema} />
       <JsonLd data={personSchema} />
 
-      <p className="text-sm text-gray-500 dark:text-gray-400">
+      <p className="text-sm text-slate-500 dark:text-slate-400">
         <Link href="/" className="hover:underline">
           ← Home
         </Link>
       </p>
-      <h1 className="mt-2 text-3xl font-bold text-gray-900 dark:text-gray-100">
+      <h1 className="mt-2 text-3xl font-bold text-slate-900 dark:text-slate-100">
         About Mathstub
       </h1>
-      <p className="mt-2 text-lg text-gray-700 dark:text-gray-300">
+      <p className="mt-2 text-lg text-slate-700 dark:text-slate-300">
         Free tax calculators for US tech workers with equity compensation —
         RSUs, ISO/AMT, ESPP, NSO, bonuses, quarterly estimates, state lookups.
         Independent. No signup. Inputs never leave your browser.
@@ -68,14 +68,14 @@ export default function AboutPage() {
       {/* Founder block — the single most-important E-E-A-T signal on a YMYL
           site is a real-person face attached to the content. Until a
           photo is uploaded, render the founder identity without an image. */}
-      <section className="mt-10 rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-800 dark:bg-gray-900">
-        <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+      <section className="mt-10 rounded-lg border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-900">
+        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
           Who builds it
         </p>
-        <h2 className="mt-2 text-xl font-bold text-gray-900 dark:text-gray-100">
+        <h2 className="mt-2 text-xl font-bold text-slate-900 dark:text-slate-100">
           {FOUNDER_NAME}
         </h2>
-        <p className="mt-2 text-gray-700 dark:text-gray-300">
+        <p className="mt-2 text-slate-700 dark:text-slate-300">
           Solo indie maker. Built Mathstub after losing $6,000 to an
           April-surprise RSU underwithholding penalty — the kind of mistake
           off-the-shelf tax software does not flag because the math happens
@@ -83,7 +83,7 @@ export default function AboutPage() {
           a real-world situation was painful enough that a focused tool was
           worth shipping.
         </p>
-        <p className="mt-3 text-gray-700 dark:text-gray-300">
+        <p className="mt-3 text-slate-700 dark:text-slate-300">
           What I actually do here: read IRS publications + the controlling
           IRC sections, transcribe them into pure TypeScript math modules,
           cross-check against worked examples in IRS Pubs and major CPA
@@ -92,7 +92,7 @@ export default function AboutPage() {
           so the same engine can power the Chrome extension and the
           Anthropic-skill version we&rsquo;re building next.
         </p>
-        <p className="mt-3 text-gray-700 dark:text-gray-300">
+        <p className="mt-3 text-slate-700 dark:text-slate-300">
           What I am <em>not</em>: a CPA, an enrolled agent, or a tax attorney.
           Mathstub does not give individual tax advice — it gives the math
           and the IRC citation behind that math. For high-stakes situations
@@ -131,18 +131,18 @@ export default function AboutPage() {
 
       {/* Case studies — proves the site has narrative human-written content,
           not just templated calculator pages. Direct anti-template signal. */}
-      <section className="mt-10 rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-900/50">
-        <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+      <section className="mt-10 rounded-lg border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900/50">
+        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
           Case studies — what the math actually catches
         </p>
-        <h2 className="mt-2 text-xl font-bold text-gray-900 dark:text-gray-100">
+        <h2 className="mt-2 text-xl font-bold text-slate-900 dark:text-slate-100">
           Real (composite) tax-prep saves, with the IRC citations.
         </h2>
-        <p className="mt-2 text-gray-700 dark:text-gray-300">
+        <p className="mt-2 text-slate-700 dark:text-slate-300">
           Three deep narrative case studies showing the kind of finding the
           calculators surface for typical $200k–$700k tech-worker scenarios:
         </p>
-        <ul className="mt-3 space-y-2 text-gray-700 dark:text-gray-300">
+        <ul className="mt-3 space-y-2 text-slate-700 dark:text-slate-300">
           <li>
             <Link
               href="/blog/priya-annual-review-case-study"
@@ -177,7 +177,7 @@ export default function AboutPage() {
             October, defeated the §19136 underpayment penalty.
           </li>
         </ul>
-        <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
+        <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">
           Names are composites; IRC citations, dollar figures, and form
           mechanics are concrete and verifiable in IRS primary sources.
         </p>

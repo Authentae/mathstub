@@ -31,12 +31,12 @@ export function TableOfContents({ blocks, minHeadings = 4 }: Props) {
   return (
     <nav
       aria-label="Table of contents"
-      className="my-6 rounded-md border border-gray-200 bg-gray-50 p-4 text-sm dark:border-gray-800 dark:bg-gray-900"
+      className="my-6 rounded-md border border-slate-200 bg-slate-50 p-4 text-sm dark:border-slate-800 dark:bg-slate-900"
     >
-      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
+      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
         In this article
       </p>
-      <ol className="list-decimal space-y-1 pl-5 text-gray-700 dark:text-gray-300">
+      <ol className="list-decimal space-y-1 pl-5 text-slate-700 dark:text-slate-300">
         {headings.map((h) => (
           <li key={h.id}>
             <a

@@ -56,9 +56,9 @@ export function ToolShell({
           dropped — searchers landed here because their query matched. They
           want the form, not a pitch.
         */}
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 sm:text-3xl">{title}</h1>
-        <p className="mt-1 text-base text-gray-700 dark:text-gray-300">{lede}</p>
-        <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500 dark:text-gray-400">
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100 sm:text-3xl">{title}</h1>
+        <p className="mt-1 text-base text-slate-700 dark:text-slate-300">{lede}</p>
+        <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 dark:text-slate-400">
           <span>⚡ 30 seconds</span>
           <span>🔒 Runs in your browser</span>
           <span>✓ Free, no signup</span>
@@ -73,13 +73,13 @@ export function ToolShell({
 
         {howItWorks && (
           <section id="how-it-works" className="mt-8">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">How it works</h2>
-            <div className="mt-3 text-gray-700 dark:text-gray-300">{howItWorks}</div>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">How it works</h2>
+            <div className="mt-3 text-slate-700 dark:text-slate-300">{howItWorks}</div>
           </section>
         )}
         {faq && (
           <section id="faq" className="mt-8">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
               Frequently asked questions
             </h2>
             <div className="mt-3">{faq}</div>

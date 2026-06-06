@@ -27,22 +27,22 @@ export const metadata: Metadata = buildMetadata({
 export default function LaunchPage() {
   return (
     <main className="mx-auto max-w-5xl px-4 py-8">
-      <p className="text-sm text-gray-500 dark:text-gray-400">
+      <p className="text-sm text-slate-500 dark:text-slate-400">
         <Link href="/" className="hover:underline">
           ← Home
         </Link>
       </p>
-      <h1 className="mt-2 text-3xl font-bold text-gray-900 dark:text-gray-100">
+      <h1 className="mt-2 text-3xl font-bold text-slate-900 dark:text-slate-100">
         Launch deck
       </h1>
-      <p className="mt-2 max-w-2xl text-base text-gray-700 dark:text-gray-300">
+      <p className="mt-2 max-w-2xl text-base text-slate-700 dark:text-slate-300">
         A 10-slide visual walkthrough of mathstub: the audience, the math
         problem, the calculator suite, the trust signals, and the roadmap.
         Use this if you want a quick overview before clicking into the
         calculators themselves.
       </p>
 
-      <div className="mt-6 overflow-hidden rounded-xl border border-gray-200 bg-slate-900 shadow-lg dark:border-gray-800">
+      <div className="mt-6 overflow-hidden rounded-xl border border-slate-200 bg-slate-900 shadow-lg dark:border-slate-800">
         <iframe
           src="/launch/"
           title="Mathstub launch deck — 10 slides covering audience, problem, solution, proof, roadmap"
@@ -52,7 +52,7 @@ export default function LaunchPage() {
         />
       </div>
 
-      <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
+      <p className="mt-4 text-sm text-slate-600 dark:text-slate-400">
         Open the deck in its own window for full screen:{' '}
         <a
           href="/launch/"
@@ -62,7 +62,7 @@ export default function LaunchPage() {
         >
           /launch/ ↗
         </a>
-        . Sharing this URL — <code className="rounded bg-gray-100 px-1 py-0.5 text-xs dark:bg-gray-800">mathstub.com/launch</code> —
+        . Sharing this URL — <code className="rounded bg-slate-100 px-1 py-0.5 text-xs dark:bg-slate-800">mathstub.com/launch</code> —
         is the fastest way to give someone the full pitch in one link.
       </p>
     </main>

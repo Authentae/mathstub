@@ -132,7 +132,7 @@ export function QsbsCalculator() {
         <label className="flex items-start gap-2 text-sm sm:col-span-2">
           <input type="checkbox" checked={form.issuedUnderObbba}
             onChange={(e) => setForm({ issuedUnderObbba: e.target.checked })}
-            className="mt-1 h-4 w-4 rounded border-gray-300" />
+            className="mt-1 h-4 w-4 rounded border-slate-300" />
           <span className="text-slate-300">
             Shares were issued on or after July 4, 2025 (uses the new tiered 50/75/100% exclusion + $15M cap).
             Uncheck for older stock (legacy 5-year all-or-nothing + $10M cap).
@@ -172,7 +172,7 @@ function ResultPanel({ r }: { r: QsbsResult }) {
         <Stat label="Effective federal rate on the gain" value={pct.format(r.effectiveFederalRatePct / 100)} />
       </div>
 
-      <div className="rounded-lg border border-gray-200 p-4 text-sm dark:border-gray-800">
+      <div className="rounded-lg border border-slate-200 p-4 text-sm dark:border-slate-800">
         <p className="font-semibold text-slate-100">The breakdown</p>
         <ul className="mt-2 space-y-1 text-slate-300">
           <li>Total gain: <strong>{usd.format(r.gainUsd)}</strong></li>
@@ -207,8 +207,8 @@ function ResultPanel({ r }: { r: QsbsResult }) {
 
 function Stat({ label, value, highlight }: { label: string; value: string; highlight?: boolean }) {
   return (
-    <div className={`rounded-lg border p-4 ${highlight ? 'border-brand-500 bg-brand-50 dark:bg-brand-950' : 'border-gray-200 dark:border-gray-800'}`}>
-      <span className="block text-xs uppercase tracking-wide text-gray-500">{label}</span>
+    <div className={`rounded-lg border p-4 ${highlight ? 'border-brand-500 bg-brand-50 dark:bg-brand-950' : 'border-slate-200 dark:border-slate-800'}`}>
+      <span className="block text-xs uppercase tracking-wide text-slate-500">{label}</span>
       <span className="mt-1 block text-2xl font-bold">{value}</span>
     </div>
   );

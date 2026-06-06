@@ -13,15 +13,15 @@ export const metadata: Metadata = buildMetadata({
 export default function MethodologyPage() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-12">
-      <p className="text-sm text-gray-500 dark:text-gray-400">
+      <p className="text-sm text-slate-500 dark:text-slate-400">
         <Link href="/" className="hover:underline">
           ← Home
         </Link>
       </p>
-      <h1 className="mt-2 text-3xl font-bold text-gray-900 dark:text-gray-100">
+      <h1 className="mt-2 text-3xl font-bold text-slate-900 dark:text-slate-100">
         Methodology
       </h1>
-      <p className="mt-2 text-lg text-gray-700 dark:text-gray-300">
+      <p className="mt-2 text-lg text-slate-700 dark:text-slate-300">
         How the math on Mathstub gets sourced, tested, and updated. The
         short version: every number cites the IRC section or IRS publication
         that controls it, every calculation is unit-tested against worked
