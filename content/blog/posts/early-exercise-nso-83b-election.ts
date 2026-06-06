@@ -53,27 +53,25 @@ export const earlyExerciseNso83b: BlogPost = {
       text:
         'You join a Series A startup. Grant: 100,000 NSOs at $0.10 strike. Current 409A FMV: $0.10/share. 4-year vest, 1-year cliff. Plan allows early exercise. Five years later, the company IPOs at $10/share. You sell all 100,000 shares.',
     },
-    { type: 'h3', text: 'Path A — early exercise + §83(b)' },
     {
-      type: 'ul',
-      items: [
-        'Day 1: pay $10,000 cash to exercise 100,000 shares at $0.10. Bargain element at exercise = ($0.10 − $0.10) × 100,000 = **$0 ordinary income**.',
-        'Day 1: file §83(b) election with IRS within 30 days. Cost basis is now locked at $10,000.',
-        'Year 5: sell at $10/share. Proceeds: $1,000,000. Cost basis: $10,000. Long-term capital gain (held > 1 year past exercise): $990,000.',
-        'Tax on the gain: 20% federal LTCG + 3.8% NIIT + 9.3% CA = ~$328,680.',
-        'Total tax across the lifecycle: **$328,680**.',
+      type: 'table',
+      caption: '100,000 NSOs · $0.10 strike · exit at $10 — two paths',
+      headers: ['', 'Early exercise + §83(b)', 'Normal vested exercise'],
+      rows: [
+        ['Ordinary income at exercise', '$0', '$190,000 (≈$95k tax)'],
+        ['Cost basis', '$10,000', '$200,000'],
+        ['Long-term gain at sale', '$990,000', '$800,000'],
+        ['Tax on the gain', '~$328,680', '~$265,600'],
+        ['**Total lifecycle tax**', '**$328,680**', '**$360,600**'],
       ],
     },
-    { type: 'h3', text: 'Path B — no early exercise, normal vested exercise' },
     {
-      type: 'ul',
-      items: [
-        'Year 1-4: shares vest gradually. No tax events.',
-        'Year 4 (post-cliff and final vest): exercise 100,000 shares at $0.10. By then, FMV has risen to $2/share. Bargain element = ($2 − $0.10) × 100,000 = $190,000 ordinary W-2 income at exercise. Tax on the bargain: 37% federal + FICA (since these are NSOs) + 9.3% CA = ~$95,000.',
-        'Cost basis after exercise: $200,000 (FMV at exercise × shares).',
-        'Year 5: sell at $10/share. Proceeds: $1,000,000. Cost basis: $200,000. Long-term gain: $800,000.',
-        'Tax on the gain: 20% federal LTCG + 3.8% NIIT + 9.3% CA = ~$265,600.',
-        'Total tax across the lifecycle: **$360,600**.',
+      type: 'flow',
+      caption: 'What filing the §83(b) saves here',
+      steps: [
+        { label: 'With §83(b)', value: '$328,680', tone: 'good' },
+        { label: 'Without', value: '$360,600', tone: 'bad' },
+        { label: 'Saved', value: '~$32,000', tone: 'good' },
       ],
     },
     {
