@@ -68,9 +68,27 @@ export const whenToSellRsus: BlogPost = {
         'Example: 100 RSUs vest at $50/share = $5,000 FMV. You hold 18 months and sell at $80/share = $8,000 proceeds. The $3,000 of appreciation is taxed at 15% LTCG + 3.8% NIIT + 9.3% CA = ~$840. If you had instead sold at $80 inside 1 year, the same $3,000 would be taxed at ordinary rates (~35% federal + 9.3% CA = ~$1,330). LTCG saves you $490 on $3,000 of gain — about 6% of the gain itself.',
     },
     {
+      type: 'table',
+      caption: '100 RSUs vest at $50, later sold at $80 ($3,000 gain)',
+      headers: ['', 'Sell within 1 yr', 'Hold >1 yr'],
+      rows: [
+        ['Rate on the gain', '~44% ordinary', '~28% LTCG'],
+        ['Tax on the $3,000 gain', '~$1,330', '~$840'],
+        ['You save by holding', '—', '~$490'],
+      ],
+    },
+    {
       type: 'p',
       text:
         'For that $490 of tax savings, you took on 18 months of single-stock concentration risk on $8,000 of exposure. If the stock had dropped 30% in those 18 months — common for tech stocks in a down year — you would have lost $2,400, more than 4× the tax savings you were chasing.',
+    },
+    {
+      type: 'flow',
+      caption: 'The trade you’re actually making',
+      steps: [
+        { label: 'LTCG tax saved', value: '$490', tone: 'good' },
+        { label: 'If the stock drops 30%', value: '−$2,400', tone: 'bad' },
+      ],
     },
     { type: 'h2', text: 'The concentration-risk math' },
     {
