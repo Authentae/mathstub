@@ -77,6 +77,11 @@ export const howMuchTaxOnRsu: BlogPost = {
         { label: 'You still owe', value: '~$6,000', tone: 'bad' },
       ],
     },
+    {
+      type: 'p',
+      text:
+        'That ~$6,000 gap is not a penalty or a mistake — it is simply the difference between the flat 22% your employer withholds and the 35% bracket the vest actually lands in, plus the state and Medicare layers on top. The further your real bracket sits above 22%, the bigger the gap you have to cover yourself before April. This is why the same $50,000 vest feels fine in your paycheck but stings at filing time.',
+    },
     { type: 'h2', text: 'Worked example — single filer, $120k base, $30k RSU vest, Texas' },
     {
       type: 'p',
