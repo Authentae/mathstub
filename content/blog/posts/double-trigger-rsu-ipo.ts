@@ -37,10 +37,19 @@ export const doubleTriggerRsuIpo: BlogPost = {
         'Private pre-IPO companies cannot easily do that — the shares are not freely tradeable, so taxing the FMV at time-vest would create a tax bill with no liquid way to pay it. The solution: the grant agreement adds a second trigger, the "performance condition" or "liquidity event," that must also occur before the RSU is treated as vested for tax purposes.',
     },
     {
+      type: 'flow',
+      caption: 'Both triggers must fire before any tax',
+      steps: [
+        { label: 'Trigger 1', value: 'Time-vest' },
+        { label: 'Trigger 2', value: 'IPO + lockup' },
+        { label: 'Result', value: 'Taxed at once', tone: 'bad' },
+      ],
+    },
+    {
       type: 'ul',
       items: [
-        '**First trigger** — time-based vesting. Standard 4-year vest, often with a 1-year cliff. Each month you stay, more shares "time-vest." But no tax event yet.',
-        '**Second trigger** — a qualifying liquidity event. Typically defined as an IPO (S-1 effectiveness) plus expiration of the post-IPO lockup (usually 180 days). Some grants also accept acquisition, secondary tender offer, or merger as the second trigger.',
+        '**Trigger 1 — time vesting.** Standard 4-year vest with a 1-year cliff. Shares "time-vest" as you stay — but no tax yet.',
+        '**Trigger 2 — a liquidity event.** Usually an IPO plus the ~180-day lockup expiring (some grants also accept an acquisition or tender offer). Only now does tax hit.',
       ],
     },
     {
@@ -65,19 +74,35 @@ export const doubleTriggerRsuIpo: BlogPost = {
         'Time-vesting was complete by 2024 (4 years post-grant). For tax purposes, NO INCOME was recognized in 2020-2025 because the second trigger had not fired. On the lockup expiration date in 2026, the second trigger fires. All 100,000 shares are deemed to vest at $100/share = $10,000,000 ordinary income, all in tax year 2026.',
     },
     {
-      type: 'p',
-      text:
-        'Tax owed (single filer, California):',
+      type: 'flow',
+      caption: '100,000 shares · IPO at $100/share · single CA filer',
+      steps: [
+        { label: 'Deemed income', value: '$10M', tone: 'bad' },
+        { label: 'Total tax', value: '$5.1M', tone: 'bad' },
+        { label: 'Effective rate', value: '51%', tone: 'bad' },
+        { label: 'Net', value: '~$4.9M', tone: 'good' },
+      ],
     },
     {
-      type: 'ul',
-      items: [
-        'Federal supplemental — 22% on the first $1M of YTD supplemental wages + 37% on the next $9M = $220,000 + $3,330,000 = $3,550,000.',
-        'CA state — 13.3% × $10,000,000 = $1,330,000 (top bracket + $1M+ mental-health surcharge).',
-        'Medicare + Add\'l Medicare — 1.45% + 0.9% × $10M = $235,000.',
-        'Social Security — capped at the wage base, so trivial relative to the rest.',
-        'Total tax: **~$5,115,000 on $10M of ordinary income** — a 51% effective rate.',
+      type: 'p',
+      text:
+        'Here is where that ~$5.1M comes from (single filer, California):',
+    },
+    {
+      type: 'table',
+      caption: 'The tax on $10M of ordinary income',
+      headers: ['Tax', 'How it’s figured', 'Amount'],
+      rows: [
+        ['Federal supplemental', '22% to $1M, then 37% on $9M', '$3,550,000'],
+        ['California', '13.3% (top bracket + $1M surcharge)', '$1,330,000'],
+        ['Medicare + Add’l', '1.45% + 0.9%', '$235,000'],
+        ['**Total**', '**~51% effective**', '**$5,115,000**'],
       ],
+    },
+    {
+      type: 'p',
+      text:
+        'Social Security is capped at the wage base, so it is trivial next to the rest.',
     },
     {
       type: 'p',
