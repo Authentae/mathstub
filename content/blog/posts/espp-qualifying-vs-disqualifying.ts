@@ -48,41 +48,20 @@ export const esppQualifyingVsDisqualifying: BlogPost = {
       text:
         '§423 holding period: max(offering_date + 2 years, purchase_date + 1 year). Sell before that and it\'s a disqualifying disposition. Sell on or after that and it\'s qualifying.',
     },
-    { type: 'h2', text: 'Tax math — qualifying disposition' },
+    { type: 'h2', text: 'How each disposition is taxed' },
     {
-      type: 'p',
-      text:
-        'In a qualifying disposition, the IRS splits the gain into two pieces:',
-    },
-    {
-      type: 'ul',
-      items: [
-        '**Ordinary income** = LESSER OF (a) the offering-date discount × shares OR (b) the actual gain (sale price − purchase price) × shares. The 15% discount cap protects you when the stock has appreciated way past the cap.',
-        '**Long-term capital gain** = sale proceeds − (purchase price + ordinary income recognized). Whatever is left of the gain beyond the ordinary-income piece.',
+      type: 'table',
+      caption: 'Qualifying vs disqualifying — the tax rules',
+      headers: ['', 'Qualifying (held long enough)', 'Disqualifying (sold early)'],
+      rows: [
+        ['Ordinary income', 'Lesser of the offering-date discount OR the actual gain (so $0 if there’s no gain)', 'The FULL discount at purchase — even if you sold at a loss'],
+        ['The rest of the gain', 'Long-term capital gain (0/15/20%)', 'Capital gain or loss (short- or long-term)'],
       ],
     },
     {
       type: 'p',
       text:
-        'The favorable tax treatment is the long-term capital-gain portion. LTCG rates are 0/15/20% federal vs ordinary rates of up to 37% — a 17-percentage-point swing at the top bracket. The bigger the appreciation past the discount cap, the more of the gain qualifies for LTCG and the bigger the §423 advantage.',
-    },
-    { type: 'h2', text: 'Tax math — disqualifying disposition' },
-    {
-      type: 'p',
-      text:
-        'In a disqualifying disposition, the IRS treats:',
-    },
-    {
-      type: 'ul',
-      items: [
-        '**Ordinary income** = (FMV at purchase − purchase price) × shares. The FULL discount at purchase, NOT capped, NOT limited to actual gain. Even if you sell at a loss, you still owe ordinary income on the embedded discount at purchase.',
-        '**Capital gain or loss** = sale proceeds − (purchase price + ordinary income recognized). Can be a loss if the share price has dropped since purchase. Short-term if held <1 year past purchase; long-term if held >1 year past purchase but <2 years past offering.',
-      ],
-    },
-    {
-      type: 'p',
-      text:
-        'The trap: disqualifying-disposition ordinary income is "phantom" if the stock has crashed since purchase. You owe tax on the original discount even though the shares are now worth less. Bankruptcies have followed.',
+        'The favorable piece is the long-term capital-gain portion: LTCG rates (0/15/20%) vs ordinary rates up to 37% — a ~17-point swing at the top. The disqualifying trap is "phantom" income: if the stock crashed you still owe ordinary tax on the original discount even though the shares are now worth less. Bankruptcies have followed.',
     },
     { type: 'h2', text: 'Worked example 1 — stock appreciated 50%' },
     {
@@ -90,24 +69,16 @@ export const esppQualifyingVsDisqualifying: BlogPost = {
       text:
         'Your company\'s ESPP has a 15% discount with a 24-month lookback (the favorable design). Offering date: Jan 2024, share price $100. Purchase date: June 2024, share price $120. Purchase price = lesser of (offering × 85%, purchase × 85%) = lesser of $85, $102 = **$85**. You bought 100 shares for $8,500. By Jan 2027 (qualifying date), price is $180.',
     },
-    { type: 'h3', text: 'Qualifying — sold Jan 2027 at $180' },
     {
-      type: 'ul',
-      items: [
-        'Sale proceeds: $18,000. Purchase cost: $8,500.',
-        'Ordinary income = min($100 × 15% × 100, $18,000 − $8,500) = min($1,500, $9,500) = **$1,500**.',
-        'Long-term capital gain = $18,000 − $8,500 − $1,500 = **$8,000**.',
-        'Total tax (35% federal + 9.3% CA on ordinary, 15% fed + 9.3% CA on LTCG, plus 3.8% NIIT on LTCG): ~$663 ordinary + $2,248 LTCG = **$2,911 total**.',
-      ],
-    },
-    { type: 'h3', text: 'Disqualifying — sold Dec 2024 at $130 (6 months after purchase)' },
-    {
-      type: 'ul',
-      items: [
-        'Sale proceeds: $13,000. Purchase cost: $8,500.',
-        'Ordinary income = (FMV at purchase − purchase price) × shares = ($120 − $85) × 100 = **$3,500**. This is the full discount, NOT capped at the offering-date amount.',
-        'Short-term capital gain = $13,000 − $8,500 − $3,500 = **$1,000**.',
-        'Total tax (35% federal + 9.3% CA + 1.45% Medicare on ordinary; ordinary rates on STCG): ~$1,560 ordinary + $443 STCG = **$2,003 total**.',
+      type: 'table',
+      caption: '100 shares bought at $85 — two exit timings',
+      headers: ['', 'Qualifying (2027 @ $180)', 'Disqualifying (2024 @ $130)'],
+      rows: [
+        ['Proceeds', '$18,000', '$13,000'],
+        ['Ordinary income', '$1,500 (capped discount)', '$3,500 (full discount)'],
+        ['Capital gain', '$8,000 long-term', '$1,000 short-term'],
+        ['**Total tax**', '**$2,911**', '**$2,003**'],
+        ['Pre-tax gain', '$9,500', '$4,500'],
       ],
     },
     {
@@ -121,26 +92,15 @@ export const esppQualifyingVsDisqualifying: BlogPost = {
       text:
         'Same ESPP setup. Purchase 100 shares at $85. By June 2025 (still in the 2-year offering window), share price has crashed to $40.',
     },
-    { type: 'h3', text: 'Sell June 2025 at $40 (disqualifying)' },
     {
-      type: 'ul',
-      items: [
-        'Sale proceeds: $4,000. Purchase cost: $8,500.',
-        'Ordinary income = ($120 − $85) × 100 = **$3,500** (still owed, regardless of the price crash).',
-        'Short-term capital loss = $4,000 − $8,500 − $3,500 = **−$8,000**.',
-        'Net tax effect: ordinary tax on $3,500 = ~$1,560; STCG loss can offset other gains and up to $3,000 of ordinary income annually (IRC §1211(b)) = ~$1,340 saving; excess loss carries forward.',
-        'Net cash position: you paid $8,500 for shares now worth $4,000, plus owe net ~$220 in current-year tax (after loss offset). Total loss: ~$4,720.',
-      ],
-    },
-    { type: 'h3', text: 'Hold to qualifying date (Jan 2027) at $40 (qualifying)' },
-    {
-      type: 'ul',
-      items: [
-        'Sale proceeds: $4,000. Purchase cost: $8,500.',
-        'Ordinary income = min($1,500, max(0, $4,000 − $8,500)) = min($1,500, 0) = **$0** (when there\'s no gain, no ordinary income on the discount).',
-        'Long-term capital loss = $4,000 − $8,500 − $0 = **−$4,500**.',
-        'Net tax effect: ~$754 saving from $3k of LTCL offset; ~$1,500 carries forward.',
-        'Net cash position: $4,500 loss, partially offset by $754 tax saving.',
+      type: 'table',
+      caption: 'Same shares, stock crashed to $40',
+      headers: ['', 'Disqualifying (sell now)', 'Qualifying (hold to 2027)'],
+      rows: [
+        ['Proceeds', '$4,000', '$4,000'],
+        ['Ordinary income', '$3,500 (still owed!)', '$0'],
+        ['Capital loss', '−$8,000 short-term', '−$4,500 long-term'],
+        ['Current-year tax', 'owe ~$220 net', '~$754 saving'],
       ],
     },
     {
