@@ -33,13 +33,15 @@ export const howMuchTaxOnRsu: BlogPost = {
         'When RSUs vest, the IRS treats the fair-market value of the shares as ordinary wages on your W-2. Four separate taxes apply:',
     },
     {
-      type: 'ul',
-      items: [
-        '**Federal income tax** — your marginal bracket, somewhere between 22% and 37% for most equity-comp employees.',
-        '**State income tax** — 0% in TX/FL/WA, up to ~13.3% in CA (or higher with mental-health surcharge).',
-        '**Medicare** — 1.45% on every dollar of wages.',
-        '**Additional Medicare** — extra 0.9% on wages above $200,000 YTD.',
-        '**Social Security** — 6.2% on wages up to the wage base ($168,600 in 2025; $176,100 projected for 2026). Drops off once you cross the base.',
+      type: 'table',
+      caption: 'The taxes that stack at vest',
+      headers: ['Tax', 'Rate'],
+      rows: [
+        ['Federal income', 'Your bracket — 22% to 37%'],
+        ['State income', '0% (TX/FL/WA) up to ~13.3% (CA)'],
+        ['Medicare', '1.45% on every dollar'],
+        ['Additional Medicare', '+0.9% above $200k YTD'],
+        ['Social Security', '6.2% up to the wage base (~$176,100 in 2026)'],
       ],
     },
     {
@@ -54,19 +56,26 @@ export const howMuchTaxOnRsu: BlogPost = {
         'You are single, earning $200,000 in regular W-2 wages, and you receive a $50,000 RSU vest in March. You have already paid Social Security on the first $176,100 of wages, so SS does not apply to the vest. Here is the actual tax owed on the vest:',
     },
     {
-      type: 'ul',
-      items: [
-        'Federal — at $250,000 total income you are in the 35% marginal bracket. $50,000 × 35% = **$17,500**.',
-        'California — at $250,000 you are in the 9.3% bracket. $50,000 × 9.3% = **$4,650**.',
-        'Medicare — $50,000 × 1.45% = **$725**.',
-        'Additional Medicare — entire $50k is above the $200k YTD threshold, so $50,000 × 0.9% = **$450**.',
-        'Social Security — $0 (already maxed).',
+      type: 'table',
+      caption: '$50k vest · single · $200k base · California',
+      headers: ['Tax', 'Amount'],
+      rows: [
+        ['Federal (35% bracket)', '$17,500'],
+        ['California (9.3%)', '$4,650'],
+        ['Medicare (1.45%)', '$725'],
+        ['Additional Medicare (0.9%)', '$450'],
+        ['Social Security', '$0 (already maxed)'],
+        ['**Total**', '**$23,325 (46.6%)**'],
       ],
     },
     {
-      type: 'p',
-      text:
-        'Total tax owed: **$23,325 on $50,000 = 46.6%**. Your employer withheld at the 22% federal + 10.23% CA supplemental rates: $11,000 + $5,115 + $725 + $450 = $17,290 (34.6%). The April shortfall: **~$6,000**.',
+      type: 'flow',
+      caption: 'Why April hurts',
+      steps: [
+        { label: 'Real tax', value: '$23,325 (47%)', tone: 'bad' },
+        { label: 'Withheld', value: '$17,290 (35%)', tone: 'bad' },
+        { label: 'You still owe', value: '~$6,000', tone: 'bad' },
+      ],
     },
     { type: 'h2', text: 'Worked example — single filer, $120k base, $30k RSU vest, Texas' },
     {
@@ -75,13 +84,16 @@ export const howMuchTaxOnRsu: BlogPost = {
         'Lower income, no state tax, smaller vest. Same single filer in TX:',
     },
     {
-      type: 'ul',
-      items: [
-        'Federal — at $150,000 total income you are in the 24% marginal bracket. $30,000 × 24% = **$7,200**.',
-        'Texas state tax — **$0**.',
-        'Medicare — $30,000 × 1.45% = **$435**.',
-        'Additional Medicare — none of the vest is above the $200k YTD threshold = **$0**.',
-        'Social Security — first ~$26,100 of the vest is below the wage base, taxed at 6.2% = **$1,618**. Remaining $3,900 above the cap = $0.',
+      type: 'table',
+      caption: '$30k vest · single · $120k base · Texas',
+      headers: ['Tax', 'Amount'],
+      rows: [
+        ['Federal (24% bracket)', '$7,200'],
+        ['Texas state', '$0'],
+        ['Medicare (1.45%)', '$435'],
+        ['Additional Medicare', '$0'],
+        ['Social Security (6.2% under the cap)', '$1,618'],
+        ['**Total**', '**$9,253 (30.8%)**'],
       ],
     },
     {
@@ -96,14 +108,17 @@ export const howMuchTaxOnRsu: BlogPost = {
         'Approximate total tax on an RSU vest as a percentage of vest FMV, for a single filer in the 32% federal bracket (combined income $200–500k), assuming SS already maxed:',
     },
     {
-      type: 'ul',
-      items: [
-        'Texas / Florida / Washington (0% state): ~34%',
-        'Illinois (4.95% flat): ~39%',
-        'Massachusetts (5%): ~39%',
-        'New York (6.85% state + ~3.9% NYC for residents): ~43% (NYC) / ~39% (rest of NY)',
-        'California (9.3–13.3% by income): ~43–46%',
-        'New York City + CA top bracket equivalent: ~46–47% (highest in the US)',
+      type: 'table',
+      caption: 'Typical all-in rate on a vest (32% federal bracket, SS maxed)',
+      headers: ['Where you live', '~Effective rate'],
+      rows: [
+        ['Texas / Florida / Washington', '~34%'],
+        ['Illinois (4.95%)', '~39%'],
+        ['Massachusetts (5%)', '~39%'],
+        ['New York (rest of state)', '~39%'],
+        ['New York City', '~43%'],
+        ['California (9.3–13.3%)', '~43–46%'],
+        ['NYC + CA-top equivalent', '~46–47% (highest in US)'],
       ],
     },
     {
