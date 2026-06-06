@@ -29,6 +29,15 @@ export const danielCaTxCaseStudy: BlogPost = {
       type: 'callout',
       text: 'Daniel is a composite case based on the FTB Pub 1004 work-source allocation rule + the exact scenario the Mathstub Multi-State Equity Comp Tax Planner template was built for. The CA citations, the vest math, the penalty mechanics, and the filing-form references are concrete. The name is not.',
     },
+    {
+      type: 'flow',
+      caption: 'CA → TX move with 1,600 unvested RSUs',
+      steps: [
+        { label: 'Daniel assumed', value: '$0 CA tax', tone: 'good' },
+        { label: 'RSU vests still owe', value: '~$17,000', tone: 'bad' },
+        { label: '+ ISO/AMT', value: '~$34,000', tone: 'bad' },
+      ],
+    },
     { type: 'h2', text: "Who Daniel is and what he was moving" },
     {
       type: 'ul',
@@ -76,17 +85,19 @@ export const danielCaTxCaseStudy: BlogPost = {
       text: 'For each post-move vest, the formula is: CA-source income = (months in CA / total vesting-period months) × FMV at vest. CA tax = CA-source income × 13.3%.',
     },
     {
-      type: 'ul',
-      items: [
-        '**Aug 2024 vest (vesting period: Aug 2022 – Aug 2024, 24 months).** All 24 months were in CA. CA share: 100% × $20,000 × 13.3% = **$2,660 owed to CA.**',
-        '**Nov 2024 vest (27 months total: 24 in CA + 3 in TX).** CA share: 24/27 = 88.9% × $20,000 × 13.3% = **$2,365.**',
-        '**Feb 2025 vest (30 months total: 24 in CA + 6 in TX).** CA share: 24/30 = 80.0% × $20,000 × 13.3% = **$2,128.**',
-        '**May 2025 vest (33 months).** CA share: 24/33 = 72.7% × $20,000 × 13.3% = **$1,934.**',
-        '**Aug 2025 vest (36 months).** CA share: 66.7% × $20,000 × 13.3% = **$1,773.**',
-        '**Nov 2025 vest (39 months).** CA share: 61.5% × $20,000 × 13.3% = **$1,636.**',
-        '**Feb 2026 vest (42 months).** CA share: 57.1% × $20,000 × 13.3% = **$1,519.**',
-        '**May 2026 vest (45 months).** CA share: 53.3% × $20,000 × 13.3% = **$1,418.**',
-        '**Aug 2026 vest (48 months — final).** CA share: 50.0% × $20,000 × 13.3% = **$1,330.**',
+      type: 'table',
+      caption: 'Each $20k vest still owes CA — its share shrinks as TX months add up',
+      headers: ['Vest', 'CA months / total', 'CA %', 'CA tax'],
+      rows: [
+        ['Aug 2024', '24 / 24', '100%', '$2,660'],
+        ['Nov 2024', '24 / 27', '88.9%', '$2,365'],
+        ['Feb 2025', '24 / 30', '80.0%', '$2,128'],
+        ['May 2025', '24 / 33', '72.7%', '$1,934'],
+        ['Aug 2025', '24 / 36', '66.7%', '$1,773'],
+        ['Nov 2025', '24 / 39', '61.5%', '$1,636'],
+        ['Feb 2026', '24 / 42', '57.1%', '$1,519'],
+        ['May 2026', '24 / 45', '53.3%', '$1,418'],
+        ['Aug 2026', '24 / 48', '50.0%', '$1,330'],
       ],
     },
     {
