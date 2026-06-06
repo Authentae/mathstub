@@ -72,14 +72,14 @@ function Card({ row }: { row: Row }) {
   const tool: Tool | undefined = findTool(row.toolSlug);
   if (!tool) return null;
   return (
-    <article className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900">
+    <article className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
       <p className="text-sm font-semibold text-brand-700 dark:text-brand-300">
         If…
       </p>
-      <p className="mt-1 text-base font-medium text-gray-900 dark:text-gray-100">
+      <p className="mt-1 text-base font-medium text-slate-900 dark:text-slate-100">
         {row.question}
       </p>
-      <p className="mt-3 text-xs uppercase tracking-wide text-gray-500">Then use</p>
+      <p className="mt-3 text-xs uppercase tracking-wide text-slate-500">Then use</p>
       <Link
         href={`/${tool.slug}`}
         className="mt-1 block text-lg font-semibold text-brand-700 hover:underline dark:text-brand-100"
@@ -87,9 +87,9 @@ function Card({ row }: { row: Row }) {
         {tool.emoji ? `${tool.emoji} ` : ''}
         {tool.title} →
       </Link>
-      <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">{row.answer}</p>
+      <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{row.answer}</p>
       {row.helperPostSlug && (
-        <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
+        <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">
           Background reading:{' '}
           <Link
             href={`/blog/${row.helperPostSlug}`}
@@ -106,15 +106,15 @@ function Card({ row }: { row: Row }) {
 export default function StartHerePage() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-12">
-      <p className="text-sm text-gray-500 dark:text-gray-400">
+      <p className="text-sm text-slate-500 dark:text-slate-400">
         <Link href="/" className="hover:underline">
           ← Home
         </Link>
       </p>
-      <h1 className="mt-2 text-3xl font-bold text-gray-900 dark:text-gray-100">
+      <h1 className="mt-2 text-3xl font-bold text-slate-900 dark:text-slate-100">
         Start here — which calculator do I need?
       </h1>
-      <p className="mt-2 text-lg text-gray-700 dark:text-gray-300">
+      <p className="mt-2 text-lg text-slate-700 dark:text-slate-300">
         Find the row that matches what just happened in your equity comp,
         then click through to the right calculator. Each calculation runs in
         your browser — no signup, nothing leaves your device.
@@ -126,11 +126,11 @@ export default function StartHerePage() {
         ))}
       </section>
 
-      <section className="mt-10 rounded-md border border-gray-200 bg-gray-50 p-5 text-sm dark:border-gray-800 dark:bg-gray-900">
-        <p className="font-semibold text-gray-900 dark:text-gray-100">
+      <section className="mt-10 rounded-md border border-slate-200 bg-slate-50 p-5 text-sm dark:border-slate-800 dark:bg-slate-900">
+        <p className="font-semibold text-slate-900 dark:text-slate-100">
           Still not sure?
         </p>
-        <p className="mt-2 text-gray-700 dark:text-gray-300">
+        <p className="mt-2 text-slate-700 dark:text-slate-300">
           The two most common starting points are{' '}
           <Link
             href="/rsu-tax-shortfall"

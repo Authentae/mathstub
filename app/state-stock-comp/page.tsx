@@ -32,9 +32,9 @@ export default function Page() {
       toolUi={
         <>
           <Disclaimer />
-          <div className="overflow-x-auto rounded-md border border-gray-200 bg-white text-sm dark:border-gray-800 dark:bg-gray-900">
+          <div className="overflow-x-auto rounded-md border border-slate-200 bg-white text-sm dark:border-slate-800 dark:bg-slate-900">
             <table className="w-full min-w-[440px]">
-              <thead className="bg-gray-50 text-left text-xs uppercase tracking-wide text-gray-500 dark:bg-gray-950">
+              <thead className="bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500 dark:bg-slate-950">
                 <tr>
                   <th className="px-3 py-2">State</th>
                   <th className="px-3 py-2 text-right">Top rate</th>
@@ -47,7 +47,7 @@ export default function Page() {
                 {sorted.map((s) => (
                   <tr
                     key={s.code}
-                    className="border-t border-gray-200 hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-950"
+                    className="border-t border-slate-200 hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-950"
                   >
                     <td className="px-3 py-2 font-medium">
                       <Link

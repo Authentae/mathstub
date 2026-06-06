@@ -26,7 +26,7 @@ export function renderInline(text: string): ReactNode {
   segments.forEach((seg, i) => {
     if (seg === '') return;
     if (i % 2 === 1) {
-      parts.push(<strong key={i} className="font-semibold text-gray-900 dark:text-gray-50">{seg}</strong>);
+      parts.push(<strong key={i} className="font-semibold text-slate-900 dark:text-slate-50">{seg}</strong>);
     } else {
       parts.push(<Fragment key={i}>{seg}</Fragment>);
     }

@@ -23,7 +23,7 @@ export function AffiliateRow({
 
   return (
     <section>
-      <p className="mb-2 text-xs uppercase tracking-wide text-gray-500">{heading}</p>
+      <p className="mb-2 text-xs uppercase tracking-wide text-slate-500">{heading}</p>
       <div className="grid gap-3 md:grid-cols-2">
         {ids.map((id) => (
           <AffiliateCard key={id} offerId={id} />

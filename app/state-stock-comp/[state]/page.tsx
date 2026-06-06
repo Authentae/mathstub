@@ -81,7 +81,7 @@ export default async function Page({ params }: PageProps) {
         faq={<FaqAccordion items={faqs} />}
         related={
           <div>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-slate-600 dark:text-slate-400">
               <Link href="/state-stock-comp" className="text-brand-700 hover:underline dark:text-brand-100">
                 ← Back to all 50 states
               </Link>
@@ -95,7 +95,7 @@ export default async function Page({ params }: PageProps) {
 
 function ProfileSummary({ profile }: { profile: StateStockCompProfile }) {
   return (
-    <div className="grid gap-3 rounded-md border border-gray-200 bg-white p-4 text-sm dark:border-gray-800 dark:bg-gray-900 sm:grid-cols-2">
+    <div className="grid gap-3 rounded-md border border-slate-200 bg-white p-4 text-sm dark:border-slate-800 dark:bg-slate-900 sm:grid-cols-2">
       <Stat
         label="Top marginal income tax rate"
         value={profile.topMarginalRate === 0 ? 'No state income tax' : pct.format(profile.topMarginalRate)}
@@ -123,7 +123,7 @@ function ProfileSummary({ profile }: { profile: StateStockCompProfile }) {
         }
       />
       <div className="sm:col-span-2">
-        <p className="text-xs uppercase tracking-wide text-gray-500">Source</p>
+        <p className="text-xs uppercase tracking-wide text-slate-500">Source</p>
         <a
           href={profile.revenueDeptUrl}
           target="_blank"
@@ -140,8 +140,8 @@ function ProfileSummary({ profile }: { profile: StateStockCompProfile }) {
 function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="text-xs uppercase tracking-wide text-gray-500">{label}</p>
-      <p className="text-lg font-semibold text-gray-900 dark:text-gray-100">{value}</p>
+      <p className="text-xs uppercase tracking-wide text-slate-500">{label}</p>
+      <p className="text-lg font-semibold text-slate-900 dark:text-slate-100">{value}</p>
     </div>
   );
 }

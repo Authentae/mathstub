@@ -60,11 +60,11 @@ export function ShareCalculation({ what = 'this calculation' }: Props) {
   };
 
   return (
-    <div className="my-4 rounded-md border border-gray-200 bg-white p-4 text-sm dark:border-gray-800 dark:bg-gray-900">
-      <p className="font-semibold text-gray-800 dark:text-gray-200">
+    <div className="my-4 rounded-md border border-slate-200 bg-white p-4 text-sm dark:border-slate-800 dark:bg-slate-900">
+      <p className="font-semibold text-slate-800 dark:text-slate-200">
         Save or share {what}
       </p>
-      <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">
+      <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">
         Get a link that reloads the same inputs. Bookmark it, paste it to your
         spouse, or send it to your CPA — your inputs are encoded in the URL
         and nothing is stored on our servers.
@@ -76,7 +76,7 @@ export function ShareCalculation({ what = 'this calculation' }: Props) {
         // screen readers don't reread the button name on every state change.
         // The visual text still flips for sighted users.
         aria-label="Copy share link for this calculation"
-        className="mt-3 inline-flex items-center rounded-md bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900"
+        className="mt-3 inline-flex items-center rounded-md bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900"
       >
         {copied ? '✓ Link copied' : 'Copy share link'}
       </button>

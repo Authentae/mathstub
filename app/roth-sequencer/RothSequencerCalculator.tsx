@@ -104,7 +104,7 @@ export function RothSequencerCalculator() {
         <div className="grid gap-4 sm:grid-cols-2">
           <Field label="Tax year">
             <select value={form.taxYear} onChange={(e) => setForm({ taxYear: Number(e.target.value) as TaxYear })}
-              className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base text-gray-900 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100">
+              className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100">
               <option value={2024}>2024</option>
               <option value={2025}>2025</option>
               <option value={2026}>2026</option>
@@ -112,7 +112,7 @@ export function RothSequencerCalculator() {
           </Field>
           <Field label="Filing status">
             <select value={form.filingStatus} onChange={(e) => setForm({ filingStatus: e.target.value as FilingStatus })}
-              className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base text-gray-900 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100">
+              className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100">
               <option value="single">Single</option>
               <option value="mfj">Married filing jointly</option>
               <option value="mfs">Married filing separately</option>
@@ -122,22 +122,22 @@ export function RothSequencerCalculator() {
           <Field label="Age">
             <input type="number" inputMode="numeric" min={0} max={120} value={form.age}
               onChange={(e) => setForm({ age: e.target.value })}
-              className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100" />
+              className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" />
           </Field>
           <Field label="Modified AGI" hint="From your last 1040 (close to AGI for most filers).">
             <input type="number" inputMode="numeric" min={0} value={form.magi}
               onChange={(e) => setForm({ magi: e.target.value })}
-              className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100" />
+              className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" />
           </Field>
           <Field label="Federal marginal rate (decimal)" hint="0.24, 0.32, or 0.35 typical for $200k+ earners.">
             <input type="number" inputMode="decimal" min={0} max={1} step={0.01} value={form.marginalRate}
               onChange={(e) => setForm({ marginalRate: e.target.value })}
-              className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100" />
+              className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" />
           </Field>
           <Field label="Pre-tax Traditional IRA balance" hint="Sum across all Traditional/SEP/SIMPLE IRAs. Triggers pro-rata rule.">
             <input type="number" inputMode="numeric" min={0} value={form.preTaxIraBalance}
               onChange={(e) => setForm({ preTaxIraBalance: e.target.value })}
-              className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100" />
+              className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" />
           </Field>
         </div>
       </fieldset>
@@ -150,12 +150,12 @@ export function RothSequencerCalculator() {
           <Field label="Annual elective deferral" hint="2026 limit: $23,500 ($31,000 if 50+).">
             <input type="number" inputMode="numeric" min={0} value={form.employeeElectiveDeferral}
               onChange={(e) => setForm({ employeeElectiveDeferral: e.target.value })}
-              className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100" />
+              className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" />
           </Field>
           <Field label="Expected employer match $/yr">
             <input type="number" inputMode="numeric" min={0} value={form.employerMatch}
               onChange={(e) => setForm({ employerMatch: e.target.value })}
-              className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100" />
+              className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" />
           </Field>
         </div>
         <div className="space-y-2 text-sm">
@@ -198,7 +198,7 @@ function Checkbox({ checked, onChange, label }: { checked: boolean; onChange: (v
   return (
     <label className="flex items-start gap-2 text-slate-300">
       <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)}
-        className="mt-1 h-4 w-4 rounded border-gray-300" />
+        className="mt-1 h-4 w-4 rounded border-slate-300" />
       <span>{label}</span>
     </label>
   );

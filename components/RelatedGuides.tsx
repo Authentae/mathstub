@@ -22,8 +22,8 @@ export function RelatedGuides({ calcSlug, max = 3 }: Props) {
   if (posts.length === 0) return null;
 
   return (
-    <aside className="mt-8 rounded-md border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-950">
-      <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-gray-500">
+    <aside className="mt-8 rounded-md border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-950">
+      <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">
         Guides for this topic
       </p>
       <ul className="space-y-2">
@@ -31,12 +31,12 @@ export function RelatedGuides({ calcSlug, max = 3 }: Props) {
           <li key={p.slug}>
             <Link
               href={`/blog/${p.slug}`}
-              className="block rounded-md p-2 transition hover:bg-gray-50 dark:hover:bg-gray-900"
+              className="block rounded-md p-2 transition hover:bg-slate-50 dark:hover:bg-slate-900"
             >
               <p className="text-sm font-semibold text-brand-700 hover:underline dark:text-brand-300">
                 {p.title}
               </p>
-              <p className="mt-1 text-xs text-gray-600 dark:text-gray-400 line-clamp-2">
+              <p className="mt-1 text-xs text-slate-600 dark:text-slate-400 line-clamp-2">
                 {p.description}
               </p>
             </Link>

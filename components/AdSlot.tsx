@@ -38,7 +38,7 @@ export function AdSlot({ slot, className }: { slot: Slot; className?: string }) 
   if (!client || !slotId) {
     return (
       <div
-        className={`flex items-center justify-center rounded-md border border-dashed border-gray-300 bg-gray-50 text-xs text-gray-400 dark:border-gray-700 dark:bg-gray-900 ${DEV_MIN_HEIGHTS[slot]} ${className ?? ''}`}
+        className={`flex items-center justify-center rounded-md border border-dashed border-slate-300 bg-slate-50 text-xs text-slate-400 dark:border-slate-700 dark:bg-slate-900 ${DEV_MIN_HEIGHTS[slot]} ${className ?? ''}`}
         aria-hidden="true"
       >
         Ad placeholder · {slot}

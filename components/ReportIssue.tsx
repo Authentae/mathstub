@@ -21,7 +21,7 @@ export function ReportIssue({ context }: Props) {
   const href = `mailto:${email}?subject=${subject}&body=${body}`;
 
   return (
-    <p className="mt-8 border-t border-dashed border-gray-200 pt-4 text-center text-xs text-gray-500 dark:border-gray-800 dark:text-gray-400">
+    <p className="mt-8 border-t border-dashed border-slate-200 pt-4 text-center text-xs text-slate-500 dark:border-slate-800 dark:text-slate-400">
       Spotted a bug, edge case, or numbers that look off?{' '}
       <a
         href={href}

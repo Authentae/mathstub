@@ -126,7 +126,7 @@ export function W4Step4cCalculator() {
             min={0}
             value={form.projectedAnnualTaxUsd}
             onChange={(e) => setForm({ projectedAnnualTaxUsd: e.target.value })}
-            className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base text-gray-900 placeholder-gray-400 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100"
+            className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
           />
         </Field>
 
@@ -140,7 +140,7 @@ export function W4Step4cCalculator() {
             min={0}
             value={form.withholdingYtdUsd}
             onChange={(e) => setForm({ withholdingYtdUsd: e.target.value })}
-            className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base text-gray-900 placeholder-gray-400 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100"
+            className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
           />
         </Field>
 
@@ -154,7 +154,7 @@ export function W4Step4cCalculator() {
             min={0}
             value={form.projectedRemainingWithholdingUsd}
             onChange={(e) => setForm({ projectedRemainingWithholdingUsd: e.target.value })}
-            className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base text-gray-900 placeholder-gray-400 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100"
+            className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
           />
         </Field>
 
@@ -169,7 +169,7 @@ export function W4Step4cCalculator() {
             max={52}
             value={form.remainingPayPeriods}
             onChange={(e) => setForm({ remainingPayPeriods: e.target.value })}
-            className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base text-gray-900 placeholder-gray-400 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100"
+            className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
           />
         </Field>
       </fieldset>
@@ -184,7 +184,7 @@ export function W4Step4cCalculator() {
             type="checkbox"
             checked={form.usePriorYear}
             onChange={(e) => setForm({ usePriorYear: e.target.checked })}
-            className="mt-1 h-4 w-4 rounded border-gray-300"
+            className="mt-1 h-4 w-4 rounded border-slate-300"
           />
           <span className="text-slate-300">
             Use prior-year safe-harbor branch (recommended — almost always
@@ -205,7 +205,7 @@ export function W4Step4cCalculator() {
                 min={0}
                 value={form.priorYearTaxUsd}
                 onChange={(e) => setForm({ priorYearTaxUsd: e.target.value })}
-                className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base text-gray-900 placeholder-gray-400 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100"
+                className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
               />
             </Field>
             <Field
@@ -218,7 +218,7 @@ export function W4Step4cCalculator() {
                 min={0}
                 value={form.priorYearAgiUsd}
                 onChange={(e) => setForm({ priorYearAgiUsd: e.target.value })}
-                className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base text-gray-900 placeholder-gray-400 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100"
+                className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
               />
             </Field>
             <Field label="Prior-year filing status">
@@ -227,7 +227,7 @@ export function W4Step4cCalculator() {
                 onChange={(e) =>
                   setForm({ priorYearFilingStatus: e.target.value as FilingStatus })
                 }
-                className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base text-gray-900 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100"
+                className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
               >
                 <option value="single">Single</option>
                 <option value="mfj">Married filing jointly</option>
@@ -297,7 +297,7 @@ function ResultPanel({ result }: { result: W4Step4cResult }) {
           </p>
           <p className="mt-1 text-4xl font-bold tracking-tight text-slate-100">
             {usd.format(result.perPeriodExtraRoundedUsd)}
-            <span className="ml-2 text-base font-normal text-gray-500">/ pay period</span>
+            <span className="ml-2 text-base font-normal text-slate-500">/ pay period</span>
           </p>
           <p className="mt-2 text-sm text-slate-300">
             Exact unrounded: {usdCents.format(result.perPeriodExtraUsd)}. Rounded UP to the nearest $5 because payroll systems handle whole-dollar amounts cleanly and over-withholding refunds at filing.
@@ -355,7 +355,7 @@ function SafeHarborTile({
           : 'border-slate-300 bg-white dark:border-slate-700 dark:bg-slate-900/40'
       }`}
     >
-      <p className="text-xs uppercase tracking-wide text-gray-500">{heading}</p>
+      <p className="text-xs uppercase tracking-wide text-slate-500">{heading}</p>
       <p className={`mt-1 font-mono text-base font-bold ${clearColor}`}>
         {snapshot.willClear ? '✓ Clears' : '✗ Short by ' + usd.format(snapshot.shortfallVsThresholdUsd)}
       </p>
@@ -363,7 +363,7 @@ function SafeHarborTile({
         {safeHarborLabel(snapshot.branch)}
       </p>
       {snapshot.thresholdUsd > 0 && (
-        <p className="text-xs text-gray-500 dark:text-gray-500">
+        <p className="text-xs text-slate-500 dark:text-slate-500">
           Threshold: {usd.format(snapshot.thresholdUsd)} paid in by year-end
         </p>
       )}

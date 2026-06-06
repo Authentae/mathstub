@@ -17,10 +17,10 @@ export default function ToolkitIndex() {
         <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand-500 dark:text-brand-300">
           mathstub · notion toolkit
         </p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-brand-100 md:text-4xl">
+        <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-brand-100 md:text-4xl">
           When a calculator isn&rsquo;t enough.
         </h1>
-        <p className="mt-3 max-w-2xl text-base text-gray-700 dark:text-gray-300">
+        <p className="mt-3 max-w-2xl text-base text-slate-700 dark:text-slate-300">
           Four Notion templates built around the same IRC-cited math the free
           calculators run — for tracking, planning, and CPA prep across an
           entire tax year. Lifetime updates included through tax year 2028.
@@ -54,11 +54,11 @@ export default function ToolkitIndex() {
                   </span>
                 </div>
                 <div className="px-1">
-                  <h2 className="text-lg font-bold text-gray-900 dark:text-brand-100 group-hover:text-brand-700 dark:group-hover:text-brand-100">
+                  <h2 className="text-lg font-bold text-slate-900 dark:text-brand-100 group-hover:text-brand-700 dark:group-hover:text-brand-100">
                     {p.labelWithEmoji}
                   </h2>
-                  <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{p.shortSub}</p>
-                  <p className="mt-2 line-clamp-2 text-sm text-gray-700 dark:text-gray-300">
+                  <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">{p.shortSub}</p>
+                  <p className="mt-2 line-clamp-2 text-sm text-slate-700 dark:text-slate-300">
                     {p.elevatorPitch}
                   </p>
                   <p className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-brand-700 dark:text-brand-300">
@@ -72,8 +72,8 @@ export default function ToolkitIndex() {
       </ul>
 
       <section className="mt-12 rounded-xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-900/40">
-        <h2 className="text-xl font-bold text-gray-900 dark:text-brand-100">Bundle &amp; updates</h2>
-        <ul className="mt-3 space-y-2 text-sm text-gray-700 dark:text-gray-300">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-brand-100">Bundle &amp; updates</h2>
+        <ul className="mt-3 space-y-2 text-sm text-slate-700 dark:text-slate-300">
           <li>
             <strong>Lifetime updates through tax year 2028.</strong> IRS limits +
             §415, §401(k), §6654 thresholds change yearly. Each template is
@@ -95,7 +95,7 @@ export default function ToolkitIndex() {
             math live.
           </li>
         </ul>
-        <p className="mt-4 text-xs italic text-gray-500 dark:text-gray-500">
+        <p className="mt-4 text-xs italic text-slate-500 dark:text-slate-500">
           Affiliate disclosure: Mathstub earns from sales on the Mathstub-owned
           templates listed above. The free calculators stay free.
         </p>

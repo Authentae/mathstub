@@ -61,7 +61,7 @@ export default async function ToolkitDetail({ params }: RouteParams) {
       ))}
 
       {/* Breadcrumb */}
-      <nav className="mb-6 text-xs text-gray-500 dark:text-gray-400" aria-label="Breadcrumb">
+      <nav className="mb-6 text-xs text-slate-500 dark:text-slate-400" aria-label="Breadcrumb">
         <Link href="/" className="hover:text-brand-700 dark:hover:text-brand-300">
           Home
         </Link>
@@ -70,7 +70,7 @@ export default async function ToolkitDetail({ params }: RouteParams) {
           Toolkit
         </Link>
         <span className="mx-2" aria-hidden="true">/</span>
-        <span className="text-gray-700 dark:text-gray-300">{product.title}</span>
+        <span className="text-slate-700 dark:text-slate-300">{product.title}</span>
       </nav>
 
       {/* Hero */}
@@ -79,10 +79,10 @@ export default async function ToolkitDetail({ params }: RouteParams) {
           <p className={`font-mono text-[11px] uppercase tracking-[0.18em] ${accent.text}`}>
             mathstub notion toolkit · {product.price}
           </p>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-brand-100 md:text-4xl">
+          <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-brand-100 md:text-4xl">
             {product.title}
           </h1>
-          <p className="mt-3 text-base text-gray-700 dark:text-gray-300">
+          <p className="mt-3 text-base text-slate-700 dark:text-slate-300">
             {product.elevatorPitch}
           </p>
 
@@ -95,7 +95,7 @@ export default async function ToolkitDetail({ params }: RouteParams) {
             Buy on Gumroad · {product.price}
             <span aria-hidden="true">→</span>
           </a>
-          <p className="mt-2 text-xs text-gray-500 dark:text-gray-500">
+          <p className="mt-2 text-xs text-slate-500 dark:text-slate-500">
             Secure checkout via Gumroad · 14–30 day money-back guarantee · Lifetime updates
           </p>
         </div>
@@ -121,11 +121,11 @@ export default async function ToolkitDetail({ params }: RouteParams) {
         </p>
         <h2
           id="worked-example"
-          className="mt-1 text-xl font-bold text-gray-900 dark:text-brand-100"
+          className="mt-1 text-xl font-bold text-slate-900 dark:text-brand-100"
         >
           {product.workedExampleHeadline}
         </h2>
-        <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+        <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
           {product.workedExampleBody}
         </p>
       </section>
@@ -134,11 +134,11 @@ export default async function ToolkitDetail({ params }: RouteParams) {
       <section className="mt-12" aria-labelledby="whats-inside">
         <h2
           id="whats-inside"
-          className="text-2xl font-bold text-gray-900 dark:text-brand-100"
+          className="text-2xl font-bold text-slate-900 dark:text-brand-100"
         >
           What&rsquo;s inside
         </h2>
-        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+        <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
           Six sections, each with worked math + a live Notion database + a deep-link
           to the matching free Mathstub calculator.
         </p>
@@ -150,8 +150,8 @@ export default async function ToolkitDetail({ params }: RouteParams) {
                 key={f.title}
                 className="rounded-lg border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900/40"
               >
-                <p className="text-sm font-bold text-gray-900 dark:text-brand-100">{f.title}</p>
-                <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">{f.body}</p>
+                <p className="text-sm font-bold text-slate-900 dark:text-brand-100">{f.title}</p>
+                <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">{f.body}</p>
               </li>
             ))}
           </ul>
@@ -173,7 +173,7 @@ export default async function ToolkitDetail({ params }: RouteParams) {
       <section className="mt-12" aria-labelledby="why-trust">
         <h2
           id="why-trust"
-          className="text-2xl font-bold text-gray-900 dark:text-brand-100"
+          className="text-2xl font-bold text-slate-900 dark:text-brand-100"
         >
           Why buyers trust this
         </h2>
@@ -195,7 +195,7 @@ export default async function ToolkitDetail({ params }: RouteParams) {
           <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">
             Good fit if
           </p>
-          <ul className="mt-2 space-y-2 text-sm text-gray-800 dark:text-gray-200">
+          <ul className="mt-2 space-y-2 text-sm text-slate-800 dark:text-slate-200">
             {product.goodFitBullets.map((b, i) => (
               <li key={i} className="flex gap-2">
                 <span aria-hidden="true" className="mt-0.5 text-emerald-600 dark:text-emerald-400">✓</span>
@@ -208,7 +208,7 @@ export default async function ToolkitDetail({ params }: RouteParams) {
           <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-slate-600 dark:text-slate-400">
             Not a good fit if
           </p>
-          <ul className="mt-2 space-y-2 text-sm text-gray-700 dark:text-gray-300">
+          <ul className="mt-2 space-y-2 text-sm text-slate-700 dark:text-slate-300">
             {product.badFitBullets.map((b, i) => (
               <li key={i} className="flex gap-2">
                 <span aria-hidden="true" className="mt-0.5 text-slate-500">·</span>
@@ -223,10 +223,10 @@ export default async function ToolkitDetail({ params }: RouteParams) {
       <section className="mt-12 rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900/40">
         <div className="flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
           <div>
-            <h2 className="text-lg font-bold text-gray-900 dark:text-brand-100">
+            <h2 className="text-lg font-bold text-slate-900 dark:text-brand-100">
               Ready when you are.
             </h2>
-            <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
               30-second Notion import. Lifetime updates. Money-back guarantee.
             </p>
           </div>
@@ -246,7 +246,7 @@ export default async function ToolkitDetail({ params }: RouteParams) {
       <section className="mt-12" aria-labelledby="other-templates">
         <h2
           id="other-templates"
-          className="text-xl font-bold text-gray-900 dark:text-brand-100"
+          className="text-xl font-bold text-slate-900 dark:text-brand-100"
         >
           Other templates in the toolkit
         </h2>
@@ -270,14 +270,14 @@ export default async function ToolkitDetail({ params }: RouteParams) {
                     />
                   </div>
                   <div className="flex items-baseline justify-between gap-2">
-                    <span className="text-sm font-bold text-gray-900 dark:text-brand-100 group-hover:text-brand-700">
+                    <span className="text-sm font-bold text-slate-900 dark:text-brand-100 group-hover:text-brand-700">
                       {o.labelWithEmoji}
                     </span>
                     <span className={`rounded-full ${a.bg} ${a.text} px-2 py-0.5 font-mono text-[10px] font-bold`}>
                       {o.price}
                     </span>
                   </div>
-                  <span className="text-xs text-gray-500 dark:text-gray-400">{o.shortSub}</span>
+                  <span className="text-xs text-slate-500 dark:text-slate-400">{o.shortSub}</span>
                 </Link>
               </li>
             );
@@ -285,7 +285,7 @@ export default async function ToolkitDetail({ params }: RouteParams) {
         </ul>
       </section>
 
-      <p className="mt-10 text-xs italic text-gray-500 dark:text-gray-500">
+      <p className="mt-10 text-xs italic text-slate-500 dark:text-slate-500">
         Affiliate disclosure — Mathstub earns from sales on this Mathstub-owned
         template. The free calculators stay free.
       </p>

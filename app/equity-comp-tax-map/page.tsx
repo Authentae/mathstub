@@ -51,10 +51,10 @@ export default function TaxMapPage() {
         <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand-600 dark:text-brand-400">
           The big picture
         </p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">
+        <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-4xl">
           The Equity Comp Tax Map
         </h1>
-        <p className="mt-3 max-w-2xl text-base text-gray-700 dark:text-gray-300">
+        <p className="mt-3 max-w-2xl text-base text-slate-700 dark:text-slate-300">
           Every tech worker with equity walks the same road — from the day you’re
           granted shares to the day you retire. At each stop, a different tax
           shows up. Here’s the whole journey on one page, with the free
@@ -73,19 +73,19 @@ export default function TaxMapPage() {
             {stages.map((s) => (
               <li key={s.id} className="relative pl-16">
                 {/* node */}
-                <div className="absolute left-0 top-0 grid h-10 w-10 place-items-center rounded-full border-2 border-brand-500 bg-white text-lg shadow-sm dark:bg-gray-950">
+                <div className="absolute left-0 top-0 grid h-10 w-10 place-items-center rounded-full border-2 border-brand-500 bg-white text-lg shadow-sm dark:bg-slate-950">
                   <span aria-hidden="true">{s.emoji}</span>
                 </div>
 
                 {/* card */}
-                <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-800 dark:bg-gray-900">
+                <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                   <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400">
                     Step {s.step}
                   </p>
-                  <h2 className="mt-1 text-lg font-bold text-gray-900 dark:text-gray-100">
+                  <h2 className="mt-1 text-lg font-bold text-slate-900 dark:text-slate-100">
                     {s.title}
                   </h2>
-                  <p className="mt-1.5 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                  <p className="mt-1.5 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                     {s.blurb}
                   </p>
 
@@ -95,7 +95,7 @@ export default function TaxMapPage() {
                         <Link
                           key={c.slug}
                           href={`/${c.slug}`}
-                          className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-gray-50 px-3 py-1.5 text-sm font-medium text-gray-800 transition hover:border-brand-400 hover:bg-brand-50 hover:text-brand-700 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-200 dark:hover:border-brand-500 dark:hover:bg-brand-950/40 dark:hover:text-brand-200"
+                          className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm font-medium text-slate-800 transition hover:border-brand-400 hover:bg-brand-50 hover:text-brand-700 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200 dark:hover:border-brand-500 dark:hover:bg-brand-950/40 dark:hover:text-brand-200"
                         >
                           {c.emoji && <span aria-hidden="true">{c.emoji}</span>}
                           {c.shortTitle}
@@ -121,10 +121,10 @@ export default function TaxMapPage() {
 
         {/* Closing CTA */}
         <section className="mt-12 rounded-xl border border-brand-200 bg-brand-50 p-6 text-center dark:border-brand-900 dark:bg-brand-950/40">
-          <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">
+          <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100">
             Not sure where you are on the map?
           </h2>
-          <p className="mx-auto mt-1 max-w-md text-sm text-gray-700 dark:text-gray-300">
+          <p className="mx-auto mt-1 max-w-md text-sm text-slate-700 dark:text-slate-300">
             Most people start at their next vest or a sale they’re about to make.
             Pick the calculator that matches what’s happening this month.
           </p>

@@ -89,12 +89,12 @@ export function Ca540NrCalculator() {
         </p>
         <div className="space-y-2">
           {vests.map((v, i) => (
-            <div key={i} className="grid grid-cols-12 items-center gap-2 rounded-md border border-gray-200 bg-gray-50 p-2 dark:border-gray-800 dark:bg-gray-950">
+            <div key={i} className="grid grid-cols-12 items-center gap-2 rounded-md border border-slate-200 bg-slate-50 p-2 dark:border-slate-800 dark:bg-slate-950">
               <input
                 value={v.label}
                 placeholder="Aug 2025"
                 onChange={(e) => updateVest(i, 'label', e.target.value)}
-                className="col-span-3 rounded border border-gray-300 bg-white px-2 py-1 text-sm dark:border-gray-700 dark:bg-gray-900"
+                className="col-span-3 rounded border border-slate-300 bg-white px-2 py-1 text-sm dark:border-slate-700 dark:bg-slate-900"
               />
               <input
                 type="number"
@@ -102,7 +102,7 @@ export function Ca540NrCalculator() {
                 min={1}
                 value={v.vestingPeriodMonths}
                 onChange={(e) => updateVest(i, 'vestingPeriodMonths', e.target.value)}
-                className="col-span-2 rounded border border-gray-300 bg-white px-2 py-1 text-sm dark:border-gray-700 dark:bg-gray-900"
+                className="col-span-2 rounded border border-slate-300 bg-white px-2 py-1 text-sm dark:border-slate-700 dark:bg-slate-900"
                 aria-label="vesting period months"
               />
               <input
@@ -111,7 +111,7 @@ export function Ca540NrCalculator() {
                 min={0}
                 value={v.monthsInCalifornia}
                 onChange={(e) => updateVest(i, 'monthsInCalifornia', e.target.value)}
-                className="col-span-2 rounded border border-gray-300 bg-white px-2 py-1 text-sm dark:border-gray-700 dark:bg-gray-900"
+                className="col-span-2 rounded border border-slate-300 bg-white px-2 py-1 text-sm dark:border-slate-700 dark:bg-slate-900"
                 aria-label="months in California"
               />
               <input
@@ -120,7 +120,7 @@ export function Ca540NrCalculator() {
                 min={0}
                 value={v.fmvAtVestUsd}
                 onChange={(e) => updateVest(i, 'fmvAtVestUsd', e.target.value)}
-                className="col-span-3 rounded border border-gray-300 bg-white px-2 py-1 text-sm dark:border-gray-700 dark:bg-gray-900"
+                className="col-span-3 rounded border border-slate-300 bg-white px-2 py-1 text-sm dark:border-slate-700 dark:bg-slate-900"
                 aria-label="FMV at vest USD"
               />
               <button
@@ -132,7 +132,7 @@ export function Ca540NrCalculator() {
               </button>
             </div>
           ))}
-          <div className="grid grid-cols-12 gap-2 text-[10px] font-mono uppercase tracking-wide text-gray-500">
+          <div className="grid grid-cols-12 gap-2 text-[10px] font-mono uppercase tracking-wide text-slate-500">
             <span className="col-span-3">Label</span>
             <span className="col-span-2">Vest period mo.</span>
             <span className="col-span-2">Months in CA</span>
@@ -150,7 +150,7 @@ export function Ca540NrCalculator() {
             <button
               type="button"
               onClick={resetToDaniel}
-              className="rounded border border-gray-300 px-3 py-1.5 text-xs font-semibold text-gray-700 hover:bg-gray-100 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
+              className="rounded border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
             >
               Reset to Daniel example
             </button>
@@ -170,7 +170,7 @@ export function Ca540NrCalculator() {
               type="number" inputMode="numeric" min={0} placeholder="(blank if unknown)"
               value={priorYearCaTax}
               onChange={(e) => setPriorYearCaTax(e.target.value)}
-              className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base text-gray-900 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100"
+              className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
             />
           </label>
           <label className="block space-y-1">
@@ -180,7 +180,7 @@ export function Ca540NrCalculator() {
               type="number" inputMode="numeric" min={0} placeholder="(blank if unknown)"
               value={priorYearCaAgi}
               onChange={(e) => setPriorYearCaAgi(e.target.value)}
-              className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base text-gray-900 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100"
+              className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
             />
           </label>
         </div>
@@ -222,8 +222,8 @@ function ResultPanel({ r }: { r: Ca540NrResult }) {
 
       <div className="overflow-x-auto rounded-md border border-brand-500/30 bg-white p-4 text-sm dark:border-brand-500/20 dark:bg-slate-900/40">
         <table className="w-full text-left text-xs">
-          <thead className="text-gray-500">
-            <tr className="border-b border-gray-200 dark:border-gray-700">
+          <thead className="text-slate-500">
+            <tr className="border-b border-slate-200 dark:border-slate-700">
               <th className="py-2 pr-3">Vest</th>
               <th className="py-2 pr-3">Vest period</th>
               <th className="py-2 pr-3">Mos in CA</th>
@@ -235,7 +235,7 @@ function ResultPanel({ r }: { r: Ca540NrResult }) {
           </thead>
           <tbody className="font-mono">
             {r.vestBreakdown.map((v, i) => (
-              <tr key={i} className="border-b border-gray-100 dark:border-gray-800">
+              <tr key={i} className="border-b border-slate-100 dark:border-slate-800">
                 <td className="py-1.5 pr-3 font-sans">{v.label}</td>
                 <td className="py-1.5 pr-3">{v.vestingPeriodMonths} mo</td>
                 <td className="py-1.5 pr-3">{v.monthsInCalifornia}</td>

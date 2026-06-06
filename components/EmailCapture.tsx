@@ -65,15 +65,15 @@ export function EmailCapture({ source, shortfallUsd }: Props) {
   return (
     <aside
       aria-labelledby={labelId}
-      className="my-4 rounded-lg border border-gray-200 bg-gray-50 p-5 dark:border-gray-800 dark:bg-gray-900"
+      className="my-4 rounded-lg border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-900"
     >
-      <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+      <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
         Free download
       </p>
-      <h3 id={labelId} className="mt-1 text-base font-bold text-gray-900 dark:text-gray-100">
+      <h3 id={labelId} className="mt-1 text-base font-bold text-slate-900 dark:text-slate-100">
         Get the Year-End Tax Quick Checklist (free PDF)
       </h3>
-      <p id={helpId} className="mt-1 text-sm text-gray-700 dark:text-gray-300">
+      <p id={helpId} className="mt-1 text-sm text-slate-700 dark:text-slate-300">
         The 1-page deadline list (401k top-up, FSA spend-down, HSA, IRA, ESPP, AMT planning) — sent to your inbox now.
       </p>
       <form onSubmit={submit} className="mt-3 flex flex-wrap items-center gap-2">
@@ -93,14 +93,14 @@ export function EmailCapture({ source, shortfallUsd }: Props) {
           aria-describedby={helpId}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="flex-1 min-w-[200px] rounded-md border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600 dark:border-gray-700 dark:bg-gray-950"
+          className="flex-1 min-w-[200px] rounded-md border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600 dark:border-slate-700 dark:bg-slate-950"
           disabled={status === 'submitting'}
         />
         <button
           type="submit"
           disabled={status === 'submitting'}
           aria-label="Send me the year-end tax checklist PDF"
-          className="inline-flex items-center rounded-md bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 disabled:opacity-60 dark:focus-visible:ring-offset-gray-900"
+          className="inline-flex items-center rounded-md bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 disabled:opacity-60 dark:focus-visible:ring-offset-slate-900"
         >
           {status === 'submitting' ? 'Sending…' : 'Send me the PDF'}
         </button>
@@ -117,7 +117,7 @@ export function EmailCapture({ source, shortfallUsd }: Props) {
           Couldn’t submit ({errMsg}). Try again or email theearth1659@gmail.com directly.
         </p>
       )}
-      <p className="mt-2 text-[11px] text-gray-500">
+      <p className="mt-2 text-[11px] text-slate-500">
         We’ll only email you about Mathstub updates and tax-year changes. Unsubscribe anytime.
       </p>
     </aside>

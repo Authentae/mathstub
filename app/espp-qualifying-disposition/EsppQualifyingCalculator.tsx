@@ -418,7 +418,7 @@ function Result({ result }: { result: EsppQualifyingResult }) {
 
       {offers.length > 0 && (
         <div>
-          <p className="mb-2 text-xs uppercase tracking-wide text-gray-500">
+          <p className="mb-2 text-xs uppercase tracking-wide text-slate-500">
             Recommended next steps
           </p>
           <div className="grid gap-3 md:grid-cols-2">
@@ -435,7 +435,7 @@ function Result({ result }: { result: EsppQualifyingResult }) {
 function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="text-xs uppercase tracking-wide text-gray-500">{label}</p>
+      <p className="text-xs uppercase tracking-wide text-slate-500">{label}</p>
       <p className="text-xl font-bold text-brand-700 dark:text-brand-100">{value}</p>
     </div>
   );

@@ -263,7 +263,7 @@ export function NsoExerciseCalculator() {
             type="checkbox"
             checked={form.ficaAlreadyMaxed}
             onChange={(e) => update('ficaAlreadyMaxed', e.target.checked)}
-            className="h-4 w-4 rounded border-gray-300"
+            className="h-4 w-4 rounded border-slate-300"
           />
           I’ve already hit the Social Security wage base via another employer this year
         </label>
@@ -399,7 +399,7 @@ function Result({ result, bargainElement }: { result: RsuShortfallResult; bargai
 
       {offers.length > 0 && (
         <div>
-          <p className="mb-2 text-xs uppercase tracking-wide text-gray-500">Recommended next steps</p>
+          <p className="mb-2 text-xs uppercase tracking-wide text-slate-500">Recommended next steps</p>
           <div className="grid gap-3 md:grid-cols-2">
             {offers.slice(0, 4).map((o) => (
               <AffiliateCard key={o.id} offerId={o.id} />

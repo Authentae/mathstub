@@ -91,7 +91,7 @@ export function Form6251Calculator() {
             <select
               value={form.taxYear}
               onChange={(e) => setForm({ taxYear: Number(e.target.value) as TaxYear })}
-              className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base text-gray-900 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100"
+              className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
             >
               <option value={2024}>2024</option>
               <option value={2025}>2025</option>
@@ -102,7 +102,7 @@ export function Form6251Calculator() {
             <select
               value={form.filingStatus}
               onChange={(e) => setForm({ filingStatus: e.target.value as FilingStatus })}
-              className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base text-gray-900 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100"
+              className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
             >
               <option value="single">Single</option>
               <option value="mfj">Married filing jointly</option>
@@ -120,17 +120,17 @@ export function Form6251Calculator() {
         <Field label="W-2 wages (Box 1 — includes vested RSU + bonus)" hint="The number on your most recent W-2 Box 1 if December — or sum YTD + projected remaining if you're modeling pre-year-end.">
           <input type="number" inputMode="numeric" min={0} value={form.w2WagesUsd}
             onChange={(e) => setForm({ w2WagesUsd: e.target.value })}
-            className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base text-gray-900 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100" />
+            className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" />
         </Field>
         <Field label="1099 self-employment net income" hint="Schedule C net profit. 0 if no side business.">
           <input type="number" inputMode="numeric" min={0} value={form.selfEmploymentNetUsd}
             onChange={(e) => setForm({ selfEmploymentNetUsd: e.target.value })}
-            className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base text-gray-900 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100" />
+            className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" />
         </Field>
         <Field label="ISO bargain element (held past year-end)" hint="(FMV at exercise − strike) × shares for ISOs exercised AND held past December 31. Set to 0 for same-year disqualifying dispositions (those flow into W-2 instead).">
           <input type="number" inputMode="numeric" min={0} value={form.isoBargainElementUsd}
             onChange={(e) => setForm({ isoBargainElementUsd: e.target.value })}
-            className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base text-gray-900 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100" />
+            className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" />
         </Field>
       </fieldset>
 
@@ -159,12 +159,12 @@ export function Form6251Calculator() {
             <Field label="Total itemized deductions" hint="Schedule A total (mortgage interest + SALT + charitable + medical, etc.).">
               <input type="number" inputMode="numeric" min={0} value={form.itemizedDeductionsUsd}
                 onChange={(e) => setForm({ itemizedDeductionsUsd: e.target.value })}
-                className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base text-gray-900 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100" />
+                className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" />
             </Field>
             <Field label="SALT portion (capped at $10k / $5k MFS)" hint="State + local + property tax deduction taken. Added back as AMT preference on Form 6251 line 2a.">
               <input type="number" inputMode="numeric" min={0} max={10000} value={form.saltDeductionUsd}
                 onChange={(e) => setForm({ saltDeductionUsd: e.target.value })}
-                className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base text-gray-900 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100" />
+                className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" />
             </Field>
           </div>
         )}

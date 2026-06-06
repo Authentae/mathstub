@@ -273,9 +273,9 @@ function Result({
         )}
       </div>
 
-      <div className="overflow-x-auto rounded-md border border-gray-200 bg-white text-sm dark:border-gray-800 dark:bg-gray-900">
+      <div className="overflow-x-auto rounded-md border border-slate-200 bg-white text-sm dark:border-slate-800 dark:bg-slate-900">
         <table className="w-full min-w-[480px]">
-          <thead className="bg-gray-50 text-left text-xs uppercase tracking-wide text-gray-500 dark:bg-gray-950">
+          <thead className="bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500 dark:bg-slate-950">
             <tr>
               <th className="px-3 py-2">Q</th>
               <th className="px-3 py-2">Due</th>
@@ -288,7 +288,7 @@ function Result({
             {r.quarters.map((q) => (
               <tr
                 key={q.quarter}
-                className={`border-t border-gray-200 dark:border-gray-800 ${
+                className={`border-t border-slate-200 dark:border-slate-800 ${
                   q.quarter === nextQuarter ? 'bg-brand-50 dark:bg-brand-950/30' : ''
                 }`}
               >

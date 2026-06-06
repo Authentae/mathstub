@@ -23,10 +23,10 @@ function PostCard({ post }: { post: BlogPost }) {
   const category = findCategoryForSlug(post.slug);
   return (
     <li
-      className="rounded-md border border-gray-200 bg-white p-5 transition hover:border-brand-500 hover:shadow-sm dark:border-gray-800 dark:bg-gray-900"
+      className="rounded-md border border-slate-200 bg-white p-5 transition hover:border-brand-500 hover:shadow-sm dark:border-slate-800 dark:bg-slate-900"
     >
       <Link href={`/blog/${post.slug}`} className="block">
-        <div className="mb-1 flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+        <div className="mb-1 flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
           <span>{dateLabel(post.datePublished)}</span>
           {category && (
             <>
@@ -40,7 +40,7 @@ function PostCard({ post }: { post: BlogPost }) {
         <h2 className="text-xl font-semibold text-brand-700 dark:text-brand-100">
           {post.title}
         </h2>
-        <p className="mt-2 text-gray-700 dark:text-gray-300">{post.description}</p>
+        <p className="mt-2 text-slate-700 dark:text-slate-300">{post.description}</p>
       </Link>
     </li>
   );
@@ -55,8 +55,8 @@ export default function BlogIndex() {
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-12">
-      <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Blog</h1>
-      <p className="mt-2 text-gray-700 dark:text-gray-300">
+      <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100">Blog</h1>
+      <p className="mt-2 text-slate-700 dark:text-slate-300">
         Articles on equity-comp tax mechanics, RSU planning, and the rules
         behind every calculator on this site. {blogPosts.length} posts so
         far, each citing the IRC section or IRS publication that controls
@@ -64,8 +64,8 @@ export default function BlogIndex() {
       </p>
 
       {/* Jump-to-section list — useful when the page gets long */}
-      <nav aria-label="Blog categories" className="mt-6 rounded-md border border-gray-200 bg-gray-50 p-4 text-sm dark:border-gray-800 dark:bg-gray-900">
-        <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
+      <nav aria-label="Blog categories" className="mt-6 rounded-md border border-slate-200 bg-slate-50 p-4 text-sm dark:border-slate-800 dark:bg-slate-900">
+        <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
           Jump to a topic
         </p>
         <ul className="flex flex-wrap gap-x-3 gap-y-1">
@@ -85,8 +85,8 @@ export default function BlogIndex() {
       </nav>
 
       <section id="latest" className="mt-10 scroll-mt-20">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Latest</h2>
-        <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Latest</h2>
+        <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
           The {latest.length} most recently published or substantively updated posts.
         </p>
         <ul className="mt-4 space-y-4">
@@ -106,12 +106,12 @@ export default function BlogIndex() {
           <section
             key={category.id}
             id={category.id}
-            className="mt-12 scroll-mt-20 border-t border-gray-200 pt-8 dark:border-gray-800"
+            className="mt-12 scroll-mt-20 border-t border-slate-200 pt-8 dark:border-slate-800"
           >
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
               {category.name}
             </h2>
-            <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{category.blurb}</p>
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">{category.blurb}</p>
             <ul className="mt-4 space-y-4">
               {categoryPosts.map((p) => (
                 <PostCard key={p.slug} post={p} />

@@ -648,7 +648,7 @@ function Waterfall({ result: r }: { result: RsuShortfallResult }) {
       ? 'bg-brand-600 dark:bg-brand-500'
       : tone === 'danger'
         ? 'bg-orange-600 dark:bg-orange-500'
-        : 'bg-gray-400/40 dark:bg-gray-500/40';
+        : 'bg-slate-400/40 dark:bg-slate-500/40';
   const numColor = (tone: Step['tone']) =>
     tone === 'brand'
       ? 'text-brand-700 dark:text-brand-300'
@@ -670,14 +670,14 @@ function Waterfall({ result: r }: { result: RsuShortfallResult }) {
                 {usd.format(Math.round(s.val))}
               </span>
             </div>
-            <div className="h-2 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-800">
+            <div className="h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
               <div
                 className={`h-full transition-all duration-300 ${barColor(s.tone)}`}
                 style={{ width: `${width}%` }}
               />
             </div>
             <p className="text-xs text-slate-400">
-              {s.sub} · <cite className="not-italic italic text-gray-400">{s.cite}</cite>
+              {s.sub} · <cite className="not-italic italic text-slate-400">{s.cite}</cite>
             </p>
           </div>
         );
