@@ -4,9 +4,9 @@ export const mayaRsuCostBasisCaseStudy: BlogPost = {
   slug: 'maya-rsu-cost-basis-case-study',
   landing: true,
   title:
-    "Maya's $2,574 RSU cost-basis fix — the 60-second Form 8949 column (g) save on a single 100-share sale",
+    "Maya's RSU cost-basis fix: $1,215 saved on one 100-share sale (up to $2,574 worst-case) — the 60-second Form 8949 column (g) correction",
   description:
-    'Engineer, $280k W-2 California. Sold 100 RSU shares in September, broker reported cost basis = $0 on the 1099-B. Letting the broker basis stand would have cost her $5,204 of tax. The correct Form 8949 column (g) adjustment cost her 60 seconds and saved $2,574. Step-by-step worked math with the IRC and broker-reporting citations.',
+    'Engineer, $280k W-2 California. Sold 100 RSU shares in September, broker reported cost basis = $0 on the 1099-B. The correct Form 8949 column (g) adjustment took 60 seconds and saved her $1,215 on the sale — up to $2,574 in the worst case where her software also taxed it at the wrong rate. Step-by-step worked math with the IRC and broker-reporting citations.',
   datePublished: '2026-05-26',
   dateModified: '2026-05-26',
   authorName: 'Mathstub Editorial',
@@ -15,7 +15,7 @@ export const mayaRsuCostBasisCaseStudy: BlogPost = {
   quickAnswer:
     "Maya's broker reported $0 cost basis on her 100-share RSU sale 1099-B because IRC §6045 only asks brokers to report what the holder paid — and Maya paid $0 at vest. Her real basis is FMV at vest ($50 × 100 = $5,000), already taxed as W-2 ordinary income. Without the Form 8949 column (g) adjustment, the IRS taxes the same $5,000 twice: once at vest, once at sale. The fix takes 60 seconds: enter $0 in column (e), code 'B' in (f), −$5,000 in (g). Column (h) auto-computes the correct $3,000 long-term capital gain instead of the wrong $8,000.",
   keyPoints: [
-    'Maya, an engineer, saved up to $2,574 by fixing one number on her tax return.',
+    'Maya, an engineer, saved $1,215 on this sale (up to $2,574 worst-case) by fixing one number on her tax return.',
     'Her broker’s 1099-B wrongly showed a $0 cost basis on shares she sold for $8,000.',
     'She had already paid tax on $5,000 of that at vest, so $5,000 was her real basis.',
     'On Form 8949 she set the basis to $5,000, cutting her taxable gain to $3,000.',
@@ -29,7 +29,7 @@ export const mayaRsuCostBasisCaseStudy: BlogPost = {
     },
     {
       type: 'p',
-      text: 'Maya, a software engineer in San Francisco, almost did. She caught it on a hunch. The fix took 60 seconds and saved **$2,574** on one 100-share sale — plus more from amending an old return.',
+      text: 'Maya, a software engineer in San Francisco, almost did. She caught it on a hunch. The fix took 60 seconds and saved her **$1,215** on this one 100-share sale — up to **$2,574** in the worst case where her software had also taxed it at the wrong rate — plus more from amending an old return.',
     },
     {
       type: 'flow',
@@ -39,7 +39,7 @@ export const mayaRsuCostBasisCaseStudy: BlogPost = {
         { label: 'Broker says basis', value: '$0', tone: 'bad' },
         { label: 'Real basis', value: '$5,000', tone: 'good' },
         { label: 'True gain', value: '$3,000', tone: 'good' },
-        { label: 'Tax saved', value: '$2,574', tone: 'good' },
+        { label: 'Tax saved', value: '$1,215', tone: 'good' },
       ],
     },
     {
@@ -179,7 +179,7 @@ export const mayaRsuCostBasisCaseStudy: BlogPost = {
       blocks: [
         {
           type: 'p',
-          text: 'Maya\'s federal marginal rate is 32%. If she had let the broker basis stand and the IRS had categorised the sale wrong (or her tax software had defaulted to short-term because the broker basis matched a $0 acquisition cost), the federal tax on the wrong $8,000 gain at her marginal rate (treating it as ordinary) would have been $8,000 × 32% + $8,000 × 9.3% (CA) = $3,304. Plus the $1,900 already paid at vest. Total wrong-case outlay: $5,204. Compare to the correct $2,629. Worst-case savings from the fix: $2,574 — the headline number.',
+          text: 'Maya\'s federal marginal rate is 32%. If she had let the broker basis stand and the IRS had categorised the sale wrong (or her tax software had defaulted to short-term because the broker basis matched a $0 acquisition cost), the federal tax on the wrong $8,000 gain at her marginal rate (treating it as ordinary) would have been $8,000 × 32% + $8,000 × 9.3% (CA) = $3,304. Plus the $1,900 already paid at vest. Total wrong-case outlay: $5,204. Compare to the correct $2,629. Worst-case savings from the fix: $2,574 (vs. the realistic $1,215 when the rate is correct).',
         },
       ],
     },
@@ -187,7 +187,7 @@ export const mayaRsuCostBasisCaseStudy: BlogPost = {
     { type: 'h2', text: 'Run your own number' },
     {
       type: 'p',
-      text: 'Maya\'s shares were a $2,574 save. Yours could be more or less — it scales with how many shares you sold and your tax rate. Plug in your own sale below and see your number before you file:',
+      text: 'Maya\'s shares were a $1,215 save (up to $2,574 worst-case). Yours could be more or less — it scales with how many shares you sold and your tax rate. Plug in your own sale below and see your number before you file:',
     },
     {
       type: 'embed',
