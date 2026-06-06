@@ -183,38 +183,49 @@ export function IsoAmtCalculator() {
         <Field label="Strike price ($/share)">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
+            max="100000000"
             step="0.01"
             value={form.strikePricePerShareUsd}
             onChange={(e) => update('strikePricePerShareUsd', e.target.value)}
             className={inputCls}
           />
+          <p className="mt-1 text-xs text-slate-400">What you pay per share to exercise your options.</p>
         </Field>
         <Field label="FMV at exercise ($/share, e.g. 409A)">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
+            max="100000000"
             step="0.01"
             value={form.fmvAtExercisePerShareUsd}
             onChange={(e) => update('fmvAtExercisePerShareUsd', e.target.value)}
             className={inputCls}
           />
+          <p className="mt-1 text-xs text-slate-400">The share&rsquo;s value on exercise day — your latest 409A price.</p>
         </Field>
         <Field label="Shares exercised">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
+            max="100000000"
             value={form.sharesExercised}
             onChange={(e) => update('sharesExercised', e.target.value)}
             className={inputCls}
           />
+          <p className="mt-1 text-xs text-slate-400">How many option shares you&rsquo;re exercising.</p>
         </Field>
 
         {form.scenario === 'exercise-and-sell-same-year' && (
           <Field label="Sale price ($/share) — optional, defaults to FMV">
             <input
               type="number"
+              inputMode="decimal"
               min="0"
+              max="100000000"
               step="0.01"
               placeholder="leave blank to use FMV at exercise"
               value={form.salePricePerShareUsd}
@@ -240,7 +251,9 @@ export function IsoAmtCalculator() {
         <Field label="YTD regular W-2 wages">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
+            max="100000000"
             value={form.ytdRegularWagesUsd}
             onChange={(e) => update('ytdRegularWagesUsd', e.target.value)}
             className={inputCls}
@@ -249,7 +262,9 @@ export function IsoAmtCalculator() {
         <Field label="Other taxable income (spouse W-2, dividends)">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
+            max="100000000"
             value={form.otherTaxableIncomeUsd}
             onChange={(e) => update('otherTaxableIncomeUsd', e.target.value)}
             className={inputCls}
@@ -258,7 +273,9 @@ export function IsoAmtCalculator() {
         <Field label="YTD pre-tax deductions (401k + HSA)">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
+            max="100000000"
             value={form.preTaxDeductionsUsd}
             onChange={(e) => update('preTaxDeductionsUsd', e.target.value)}
             className={inputCls}
@@ -276,10 +293,24 @@ export function IsoAmtCalculator() {
             className={inputCls}
           />
         </Field>
+
+        <div className="-mt-1 flex justify-end md:col-span-2">
+          <button
+            type="button"
+            onClick={() => setForm(DEFAULTS)}
+            className="rounded text-xs font-medium text-slate-400 underline-offset-2 hover:text-slate-200 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+          >
+            Reset to example values
+          </button>
+        </div>
       </form>
 
       {'error' in result ? (
-        <div className="rounded-lg bg-amber-500/10 p-4 text-sm text-amber-200 ring-1 ring-amber-500/30">
+        <div
+          role="alert"
+          aria-live="polite"
+          className="rounded-lg bg-amber-500/10 p-4 text-sm text-amber-200 ring-1 ring-amber-500/30"
+        >
           {result.error}
         </div>
       ) : (
@@ -326,10 +357,10 @@ function ScenarioPill({
       // muted slate text + slate border so the two states are clearly
       // distinct at a glance (earlier styling gave both states white
       // text, just differing in fill, which read as "both selected").
-      className={`rounded-full border px-3 py-1.5 text-sm font-medium transition ${
+      className={`rounded-full border px-3 py-1.5 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 ${
         active
           ? 'border-brand-600 bg-brand-600 text-white shadow-sm'
-          : 'border-gray-300 bg-white text-gray-500 hover:border-brand-400 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-500 dark:hover:text-gray-200'
+          : 'border-slate-700 bg-slate-950 text-slate-400 hover:border-brand-400 hover:text-slate-200'
       }`}
     >
       {children}
@@ -351,7 +382,7 @@ function Result({ result }: { result: IsoAmtResult }) {
             : 'border-emerald-200 bg-emerald-50 dark:border-emerald-900 dark:bg-emerald-950'
         }`}
       >
-        <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+        <p className="text-sm font-semibold text-slate-300">
           Total tax increase from this {isHold ? 'exercise' : 'exercise + sale'}
         </p>
         <p
@@ -363,13 +394,13 @@ function Result({ result }: { result: IsoAmtResult }) {
         >
           {usd.format(r.totalTaxIncreaseUsd)}
         </p>
-        <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+        <p className="mt-2 text-sm text-slate-300">
           Cash required to exercise: <strong>{usd.format(r.cashRequiredToExerciseUsd)}</strong>{' '}
           (strike × shares).
         </p>
       </div>
 
-      <div className="grid gap-3 rounded-md border border-gray-200 bg-white p-4 text-sm dark:border-gray-800 dark:bg-gray-900 md:grid-cols-3">
+      <div className="grid gap-3 rounded-md border border-slate-800 bg-slate-900 p-4 text-sm md:grid-cols-3">
         <Stat label="Bargain element" value={usd.format(r.totalBargainElementUsd)} />
         {isHold ? (
           <>
@@ -405,8 +436,8 @@ function Result({ result }: { result: IsoAmtResult }) {
         </ul>
       )}
 
-      <details className="rounded-md border border-gray-200 bg-white p-4 text-sm dark:border-gray-800 dark:bg-gray-900">
-        <summary className="cursor-pointer font-semibold text-gray-800 dark:text-gray-200">
+      <details className="rounded-md border border-slate-800 bg-slate-900 p-4 text-sm">
+        <summary className="cursor-pointer font-semibold text-slate-200">
           Show the math
         </summary>
         <div className="mt-3 grid gap-2 md:grid-cols-2">
@@ -427,11 +458,11 @@ function Result({ result }: { result: IsoAmtResult }) {
 
       {offers.length > 0 && (
         <div>
-          <p className="mb-2 text-xs uppercase tracking-wide text-gray-500">
+          <p className="mb-2 text-xs uppercase tracking-wide text-slate-400">
             Recommended next steps
           </p>
           <div className="grid gap-3 md:grid-cols-2">
-            {offers.slice(0, 4).map((o) => (
+            {offers.slice(0, 2).map((o) => (
               <AffiliateCard key={o.id} offerId={o.id} />
             ))}
           </div>
@@ -444,17 +475,17 @@ function Result({ result }: { result: IsoAmtResult }) {
 function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="text-xs uppercase tracking-wide text-gray-500">{label}</p>
-      <p className="text-xl font-bold text-brand-700 dark:text-brand-100">{value}</p>
+      <p className="text-xs uppercase tracking-wide text-slate-400">{label}</p>
+      <p className="text-xl font-bold text-brand-100">{value}</p>
     </div>
   );
 }
 
 function Row({ k, v }: { k: string; v: string }) {
   return (
-    <div className="flex justify-between border-b border-dashed border-gray-200 py-1 dark:border-gray-800">
-      <span className="text-gray-600 dark:text-gray-400">{k}</span>
-      <span className="font-medium text-gray-900 dark:text-gray-100">{v}</span>
+    <div className="flex justify-between border-b border-dashed border-slate-800 py-1">
+      <span className="text-slate-400">{k}</span>
+      <span className="font-medium text-slate-100">{v}</span>
     </div>
   );
 }
