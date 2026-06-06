@@ -230,7 +230,7 @@ export function RsuCostBasisCalculator() {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block space-y-1">
-      <span className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+      <span className="block text-sm font-medium text-slate-300">
         {label}
       </span>
       {children}
@@ -270,7 +270,7 @@ function ResultPanel({ r }: { r: RsuCostBasisResult }) {
 
       <div className="rounded-lg border border-gray-200 p-4 text-sm dark:border-gray-800">
         <p className="font-semibold">What is going wrong</p>
-        <p className="mt-1 text-gray-700 dark:text-gray-300">
+        <p className="mt-1 text-slate-300">
           Your broker reported a {usd.format(r.brokerReportedBasisUsd)} basis, so
           you would report a {usd.format(r.reportedGainUsd)} gain. Your real gain
           is only {usd.format(r.correctGainUsd)} — the extra{' '}
@@ -282,7 +282,7 @@ function ResultPanel({ r }: { r: RsuCostBasisResult }) {
 
       <div className="rounded-lg border border-brand-500/40 bg-brand-50 p-4 text-sm dark:bg-brand-950/40">
         <p className="font-semibold">The Form 8949 fix</p>
-        <ul className="mt-2 space-y-1 font-mono text-xs text-gray-700 dark:text-gray-300">
+        <ul className="mt-2 space-y-1 font-mono text-xs text-slate-300">
           <li>Column (d) Proceeds: {usd2.format(r.proceedsUsd)}</li>
           <li>Column (e) Cost basis (as on 1099-B): {usd2.format(r.brokerReportedBasisUsd)}</li>
           <li>Column (f) Code: B</li>

@@ -284,6 +284,7 @@ export function IsoAmtCalculator() {
         <Field label="State rate override (%) — optional">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             max="100"
             step="0.1"

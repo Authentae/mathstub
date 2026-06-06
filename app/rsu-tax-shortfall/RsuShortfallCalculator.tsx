@@ -290,6 +290,7 @@ export function RsuShortfallCalculator() {
               <Field label="State rate override (%) — optional">
                 <input
                   type="number"
+                  inputMode="decimal"
                   min="0"
                   max="100"
                   step="0.1"
@@ -653,7 +654,7 @@ function Waterfall({ result: r }: { result: RsuShortfallResult }) {
       ? 'text-brand-700 dark:text-brand-300'
       : tone === 'danger'
         ? 'text-orange-700 dark:text-orange-300'
-        : 'text-gray-900 dark:text-gray-100';
+        : 'text-slate-100';
 
   return (
     <div className="space-y-3 rounded-lg border border-slate-800 bg-slate-900 p-5">
@@ -662,7 +663,7 @@ function Waterfall({ result: r }: { result: RsuShortfallResult }) {
         return (
           <div key={i} className="space-y-1">
             <div className="flex items-baseline justify-between gap-3">
-              <span className="text-sm font-semibold text-gray-900 dark:text-gray-100">
+              <span className="text-sm font-semibold text-slate-100">
                 {i + 1}. {s.label}
               </span>
               <span className={`text-lg font-bold tabular-nums ${numColor(s.tone)}`}>
@@ -675,7 +676,7 @@ function Waterfall({ result: r }: { result: RsuShortfallResult }) {
                 style={{ width: `${width}%` }}
               />
             </div>
-            <p className="text-xs text-gray-500 dark:text-gray-400">
+            <p className="text-xs text-slate-400">
               {s.sub} · <cite className="not-italic italic text-gray-400">{s.cite}</cite>
             </p>
           </div>

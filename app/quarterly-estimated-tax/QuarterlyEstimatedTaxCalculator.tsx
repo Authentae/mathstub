@@ -131,6 +131,7 @@ export function QuarterlyEstimatedTaxCalculator() {
         <Field label="Expected total federal tax this year ($)">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             value={form.expectedCurrentYearTaxUsd}
             onChange={(e) => update('expectedCurrentYearTaxUsd', e.target.value)}
@@ -140,6 +141,7 @@ export function QuarterlyEstimatedTaxCalculator() {
         <Field label="Prior-year total federal tax (Form 1040 line 24)">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             value={form.priorYearTaxUsd}
             onChange={(e) => update('priorYearTaxUsd', e.target.value)}
@@ -149,6 +151,7 @@ export function QuarterlyEstimatedTaxCalculator() {
         <Field label="Prior-year AGI (Form 1040 line 11)">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             value={form.priorYearAgiUsd}
             onChange={(e) => update('priorYearAgiUsd', e.target.value)}
@@ -158,6 +161,7 @@ export function QuarterlyEstimatedTaxCalculator() {
         <Field label="Expected annual federal withholding (W-2 + 1099)">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             value={form.expectedAnnualWithholdingUsd}
             onChange={(e) => update('expectedAnnualWithholdingUsd', e.target.value)}
@@ -167,6 +171,7 @@ export function QuarterlyEstimatedTaxCalculator() {
         <Field label="Estimated payments already made this year">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             value={form.estimatedPaymentsMadeUsd}
             onChange={(e) => update('estimatedPaymentsMadeUsd', e.target.value)}
@@ -185,10 +190,23 @@ export function QuarterlyEstimatedTaxCalculator() {
             <option value={4}>Q4 — January 15 (next year)</option>
           </select>
         </Field>
+        <div className="-mt-1 flex justify-end md:col-span-2">
+          <button
+            type="button"
+            onClick={() => setForm(DEFAULTS)}
+            className="rounded text-xs font-medium text-slate-400 underline-offset-2 hover:text-slate-200 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+          >
+            Reset to example values
+          </button>
+        </div>
       </form>
 
       {'error' in result ? (
-        <div className="rounded-lg bg-amber-500/10 p-4 text-sm text-amber-200 ring-1 ring-amber-500/30">
+        <div
+          role="alert"
+          aria-live="polite"
+          className="rounded-lg bg-amber-500/10 p-4 text-sm text-amber-200 ring-1 ring-amber-500/30"
+        >
           {result.error}
         </div>
       ) : (
@@ -229,7 +247,7 @@ function Result({
             : 'border-emerald-200 bg-emerald-50 dark:border-emerald-900 dark:bg-emerald-950'
         }`}
       >
-        <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+        <p className="text-sm font-semibold text-slate-300">
           Recommended payment by {dueLabel}
         </p>
         <p
@@ -241,7 +259,7 @@ function Result({
         >
           {usd.format(r.recommendedNextPaymentUsd)}
         </p>
-        <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+        <p className="mt-2 text-sm text-slate-300">
           Safe-harbor target for the year: <strong>{usd.format(r.safeHarborTargetUsd)}</strong>{' '}
           (the lesser of {usd.format(r.safeHarbor90PctCurrentUsd)} = 90% of this year, and{' '}
           {usd.format(r.safeHarborPriorYearUsd)} ={' '}

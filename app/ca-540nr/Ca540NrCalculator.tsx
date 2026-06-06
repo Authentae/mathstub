@@ -84,7 +84,7 @@ export function Ca540NrCalculator() {
         <legend className="px-2 text-sm font-bold uppercase tracking-wide text-brand-700 dark:text-brand-300">
           1. Vest schedule
         </legend>
-        <p className="text-xs text-gray-600 dark:text-gray-400">
+        <p className="text-xs text-slate-400">
           Each row: a vest event. Vesting-period months = elapsed months from grant to that vest. Months in CA = of those, how many you physically performed services in California.
         </p>
         <div className="space-y-2">
@@ -164,8 +164,8 @@ export function Ca540NrCalculator() {
         </legend>
         <div className="grid gap-4 sm:grid-cols-2">
           <label className="block space-y-1">
-            <span className="block text-sm font-semibold text-gray-900 dark:text-gray-100">Prior-year CA tax</span>
-            <span className="block text-xs text-gray-500 dark:text-gray-400">From your last CA 540 or 540NR tax line.</span>
+            <span className="block text-sm font-semibold text-slate-100">Prior-year CA tax</span>
+            <span className="block text-xs text-slate-400">From your last CA 540 or 540NR tax line.</span>
             <input
               type="number" inputMode="numeric" min={0} placeholder="(blank if unknown)"
               value={priorYearCaTax}
@@ -174,8 +174,8 @@ export function Ca540NrCalculator() {
             />
           </label>
           <label className="block space-y-1">
-            <span className="block text-sm font-semibold text-gray-900 dark:text-gray-100">Prior-year CA AGI</span>
-            <span className="block text-xs text-gray-500 dark:text-gray-400">{'>'} $150k triggers 110% factor instead of 100%.</span>
+            <span className="block text-sm font-semibold text-slate-100">Prior-year CA AGI</span>
+            <span className="block text-xs text-slate-400">{'>'} $150k triggers 110% factor instead of 100%.</span>
             <input
               type="number" inputMode="numeric" min={0} placeholder="(blank if unknown)"
               value={priorYearCaAgi}
@@ -215,7 +215,7 @@ function ResultPanel({ r }: { r: Ca540NrResult }) {
         <p className="mt-1 text-4xl font-bold tracking-tight text-orange-700 dark:text-orange-300">
           {usd.format(r.totalCaTaxUsd)}
         </p>
-        <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+        <p className="mt-2 text-sm text-slate-300">
           On {usd.format(r.totalCaSourceIncomeUsd)} of CA-source income (Schedule CA(540NR) column E). Effective CA rate: {pct.format(r.effectiveCaRate)}.
         </p>
       </div>
@@ -256,10 +256,10 @@ function ResultPanel({ r }: { r: Ca540NrResult }) {
           <p className="text-xs font-mono uppercase tracking-wide text-amber-800 dark:text-amber-300">
             §19136 safe-harbor target
           </p>
-          <p className="mt-1 text-xl font-bold text-gray-900 dark:text-gray-100">
+          <p className="mt-1 text-xl font-bold text-slate-100">
             {usd.format(r.safeHarborThresholdUsd)}
           </p>
-          <p className="mt-1 text-xs text-gray-700 dark:text-gray-300">
+          <p className="mt-1 text-xs text-slate-300">
             Lower of 90% current-year CA tax or 100%/110% of prior-year. Pay this amount in via withholding + Form 540-ES estimates by Jan 15 to defeat the penalty.
           </p>
         </div>
@@ -267,10 +267,10 @@ function ResultPanel({ r }: { r: Ca540NrResult }) {
           <p className="text-xs font-mono uppercase tracking-wide text-orange-800 dark:text-orange-300">
             Estimated §19136 penalty if no estimates
           </p>
-          <p className="mt-1 text-xl font-bold text-gray-900 dark:text-gray-100">
+          <p className="mt-1 text-xl font-bold text-slate-100">
             {usd.format(r.estimatedPenaltyUsd)}
           </p>
-          <p className="mt-1 text-xs text-gray-700 dark:text-gray-300">
+          <p className="mt-1 text-xs text-slate-300">
             Planning estimate at ~6% annualised × default 120-day shortfall window. Filing Form 540-ES Q3 + Q4 brings this to $0.
           </p>
         </div>
@@ -280,7 +280,7 @@ function ResultPanel({ r }: { r: Ca540NrResult }) {
         <p className="font-bold text-emerald-700 dark:text-emerald-300">
           Recommended Q4 540-ES payment: {usd.format(r.recommendedQ4EstimateUsd)}
         </p>
-        <p className="mt-1 text-xs text-gray-700 dark:text-gray-300">
+        <p className="mt-1 text-xs text-slate-300">
           File Form 540-ES at <a href="https://www.ftb.ca.gov/forms/" target="_blank" rel="noopener noreferrer" className="font-semibold underline">FTB forms</a>. Submit by Jan 15 of the following year to satisfy §19136 safe harbor.
         </p>
       </div>
