@@ -187,8 +187,8 @@ export function RothSequencerCalculator() {
 function Field({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) {
   return (
     <label className="block space-y-1">
-      <span className="block text-sm font-semibold text-gray-900 dark:text-gray-100">{label}</span>
-      {hint && <span className="block text-xs text-gray-500 dark:text-gray-400">{hint}</span>}
+      <span className="block text-sm font-semibold text-slate-100">{label}</span>
+      {hint && <span className="block text-xs text-slate-400">{hint}</span>}
       {children}
     </label>
   );
@@ -196,7 +196,7 @@ function Field({ label, hint, children }: { label: string; hint?: string; childr
 
 function Checkbox({ checked, onChange, label }: { checked: boolean; onChange: (v: boolean) => void; label: string }) {
   return (
-    <label className="flex items-start gap-2 text-gray-700 dark:text-gray-300">
+    <label className="flex items-start gap-2 text-slate-300">
       <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)}
         className="mt-1 h-4 w-4 rounded border-gray-300" />
       <span>{label}</span>
@@ -214,7 +214,7 @@ function ResultPanel({ r }: { r: RothSequencerResult }) {
         <p className={`mt-1 text-4xl font-bold tracking-tight ${
           r.totalAnnualRothCapacityUsd > 0
             ? 'text-emerald-700 dark:text-emerald-300'
-            : 'text-gray-700 dark:text-gray-300'
+            : 'text-slate-300'
         }`}>
           {usd.format(r.totalAnnualRothCapacityUsd)}
         </p>
@@ -238,7 +238,7 @@ function StepCard({ step }: { step: SequencerStep }) {
   return (
     <li className={`rounded-md border p-4 ${accentClass}`}>
       <div className="flex items-baseline justify-between gap-3">
-        <h3 className={`text-base font-bold ${blocked ? 'text-slate-500 dark:text-slate-400 line-through' : 'text-gray-900 dark:text-gray-100'}`}>
+        <h3 className={`text-base font-bold ${blocked ? 'text-slate-500 dark:text-slate-400 line-through' : 'text-slate-100'}`}>
           {step.headline}
         </h3>
         {step.rothCapacityUsd > 0 && (
@@ -247,7 +247,7 @@ function StepCard({ step }: { step: SequencerStep }) {
           </span>
         )}
       </div>
-      <p className={`mt-2 text-sm leading-relaxed ${blocked ? 'text-slate-600 dark:text-slate-400' : 'text-gray-700 dark:text-gray-200'}`}>
+      <p className={`mt-2 text-sm leading-relaxed ${blocked ? 'text-slate-600 dark:text-slate-400' : 'text-slate-200'}`}>
         {step.body}
       </p>
     </li>

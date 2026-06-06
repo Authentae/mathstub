@@ -140,6 +140,7 @@ export function NsoExerciseCalculator() {
         <Field label="Strike price ($/share)">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             step="0.01"
             value={form.strikeUsd}
@@ -150,6 +151,7 @@ export function NsoExerciseCalculator() {
         <Field label="FMV at exercise ($/share)">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             step="0.01"
             value={form.fmvUsd}
@@ -160,6 +162,7 @@ export function NsoExerciseCalculator() {
         <Field label="Shares to exercise">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             value={form.shares}
             onChange={(e) => update('shares', e.target.value)}
@@ -205,6 +208,7 @@ export function NsoExerciseCalculator() {
         <Field label="YTD regular W-2 wages (before this exercise)">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             value={form.ytdRegularWagesUsd}
             onChange={(e) => update('ytdRegularWagesUsd', e.target.value)}
@@ -214,6 +218,7 @@ export function NsoExerciseCalculator() {
         <Field label="YTD supplemental wages (RSU vests, bonuses, prior NSO exercises)">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             value={form.ytdSupplementalWagesUsd}
             onChange={(e) => update('ytdSupplementalWagesUsd', e.target.value)}
@@ -223,6 +228,7 @@ export function NsoExerciseCalculator() {
         <Field label="Other taxable income (spouse W-2, dividends, etc.)">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             value={form.otherTaxableIncomeUsd}
             onChange={(e) => update('otherTaxableIncomeUsd', e.target.value)}
@@ -232,6 +238,7 @@ export function NsoExerciseCalculator() {
         <Field label="YTD pre-tax deductions (401k + HSA)">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             value={form.preTaxDeductionsUsd}
             onChange={(e) => update('preTaxDeductionsUsd', e.target.value)}
@@ -241,6 +248,7 @@ export function NsoExerciseCalculator() {
         <Field label="State rate override (%) — optional">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             max="100"
             step="0.1"
@@ -259,6 +267,15 @@ export function NsoExerciseCalculator() {
           />
           I’ve already hit the Social Security wage base via another employer this year
         </label>
+        <div className="-mt-1 flex justify-end md:col-span-2">
+          <button
+            type="button"
+            onClick={() => setForm(DEFAULTS)}
+            className="rounded text-xs font-medium text-slate-400 underline-offset-2 hover:text-slate-200 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+          >
+            Reset to example values
+          </button>
+        </div>
       </form>
 
       <div className="grid gap-3 rounded-md border border-blue-200 bg-blue-50 p-4 text-sm dark:border-blue-900 dark:bg-blue-950 md:grid-cols-2">
@@ -275,7 +292,11 @@ export function NsoExerciseCalculator() {
       </div>
 
       {'error' in result ? (
-        <div className="rounded-lg bg-amber-500/10 p-4 text-sm text-amber-200 ring-1 ring-amber-500/30">
+        <div
+          role="alert"
+          aria-live="polite"
+          className="rounded-lg bg-amber-500/10 p-4 text-sm text-amber-200 ring-1 ring-amber-500/30"
+        >
           {result.error}
         </div>
       ) : (
@@ -311,7 +332,7 @@ function Result({ result, bargainElement }: { result: RsuShortfallResult; bargai
             : 'border-amber-200 bg-amber-50 dark:border-amber-900 dark:bg-amber-950'
         }`}
       >
-        <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+        <p className="text-sm font-semibold text-slate-300">
           Estimated shortfall on this exercise
         </p>
         <p
@@ -339,15 +360,15 @@ function Result({ result, bargainElement }: { result: RsuShortfallResult; bargai
       {!overWithheld && <GumroadUpsell shortfallUsd={r.shortfallUsd} />}
 
       {!overWithheld && (
-        <div className="grid gap-3 rounded-md border border-gray-200 bg-white p-4 text-sm dark:border-gray-800 dark:bg-gray-900 md:grid-cols-2">
+        <div className="grid gap-3 rounded-md border border-slate-800 bg-slate-900 p-4 text-sm md:grid-cols-2">
           <div>
-            <p className="font-semibold text-gray-800 dark:text-gray-200">Suggested quarterly estimated payment</p>
+            <p className="font-semibold text-slate-200">Suggested quarterly estimated payment</p>
             <p className="text-2xl font-bold text-brand-700 dark:text-brand-100">
               {usd.format(r.suggestedQuarterlyEstimateUsd)}
             </p>
           </div>
           <div>
-            <p className="font-semibold text-gray-800 dark:text-gray-200">
+            <p className="font-semibold text-slate-200">
               Or extra W-4 withholding (~{r.paychecksRemainingThisYear} bi-weekly checks left)
             </p>
             <p className="text-2xl font-bold text-brand-700 dark:text-brand-100">
@@ -357,8 +378,8 @@ function Result({ result, bargainElement }: { result: RsuShortfallResult; bargai
         </div>
       )}
 
-      <details className="rounded-md border border-gray-200 bg-white p-4 text-sm dark:border-gray-800 dark:bg-gray-900">
-        <summary className="cursor-pointer font-semibold text-gray-800 dark:text-gray-200">
+      <details className="rounded-md border border-slate-800 bg-slate-900 p-4 text-sm">
+        <summary className="cursor-pointer font-semibold text-slate-200">
           Show the math
         </summary>
         <div className="mt-3 grid gap-2 md:grid-cols-2">
@@ -394,9 +415,9 @@ function Result({ result, bargainElement }: { result: RsuShortfallResult; bargai
 
 function Row({ k, v }: { k: string; v: string }) {
   return (
-    <div className="flex justify-between border-b border-dashed border-gray-200 py-1 dark:border-gray-800">
-      <span className="text-gray-600 dark:text-gray-400">{k}</span>
-      <span className="font-medium text-gray-900 dark:text-gray-100">{v}</span>
+    <div className="flex justify-between border-b border-dashed border-slate-800 py-1">
+      <span className="text-slate-400">{k}</span>
+      <span className="font-medium text-slate-100">{v}</span>
     </div>
   );
 }

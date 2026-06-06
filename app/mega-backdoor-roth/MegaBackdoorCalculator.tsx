@@ -137,6 +137,7 @@ export function MegaBackdoorCalculator() {
           <Field label="Your age">
             <input
               type="number"
+              inputMode="decimal"
               value={form.age}
               onChange={(e) => setForm({ age: e.target.value })}
               className={inputClass}
@@ -150,6 +151,7 @@ export function MegaBackdoorCalculator() {
           >
             <input
               type="number"
+              inputMode="decimal"
               value={form.electiveDeferralUsd}
               onChange={(e) => setForm({ electiveDeferralUsd: e.target.value })}
               className={inputClass}
@@ -159,6 +161,7 @@ export function MegaBackdoorCalculator() {
           <Field label="Annual employer match ($)">
             <input
               type="number"
+              inputMode="decimal"
               value={form.employerMatchUsd}
               onChange={(e) => setForm({ employerMatchUsd: e.target.value })}
               className={inputClass}
@@ -171,6 +174,7 @@ export function MegaBackdoorCalculator() {
           >
             <input
               type="number"
+              inputMode="decimal"
               value={form.employerProfitSharingUsd}
               onChange={(e) => setForm({ employerProfitSharingUsd: e.target.value })}
               className={inputClass}
@@ -180,6 +184,7 @@ export function MegaBackdoorCalculator() {
           <Field label="Years until retirement (for projection)">
             <input
               type="number"
+              inputMode="decimal"
               value={form.yearsToRetirement}
               onChange={(e) => setForm({ yearsToRetirement: e.target.value })}
               className={inputClass}
@@ -190,6 +195,7 @@ export function MegaBackdoorCalculator() {
           <Field label="Expected annual return %" hint="Default 7% — historical S&P 500 real return.">
             <input
               type="number"
+              inputMode="decimal"
               value={form.expectedReturnPct}
               onChange={(e) => setForm({ expectedReturnPct: e.target.value })}
               className={inputClass}

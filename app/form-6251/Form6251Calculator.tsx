@@ -189,8 +189,8 @@ export function Form6251Calculator() {
 function Field({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) {
   return (
     <label className="block space-y-1">
-      <span className="block text-sm font-semibold text-gray-900 dark:text-gray-100">{label}</span>
-      {hint && <span className="block text-xs text-gray-500 dark:text-gray-400">{hint}</span>}
+      <span className="block text-sm font-semibold text-slate-100">{label}</span>
+      {hint && <span className="block text-xs text-slate-400">{hint}</span>}
       {children}
     </label>
   );
@@ -206,7 +206,7 @@ function ResultPanel({ r }: { r: Form6251Result }) {
         <p className={`mt-1 text-4xl font-bold tracking-tight ${r.amtApplies ? 'text-orange-700 dark:text-orange-300' : 'text-emerald-700 dark:text-emerald-300'}`}>
           {usd.format(r.amtOwedUsd)}
         </p>
-        <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+        <p className="mt-2 text-sm text-slate-300">
           {r.amtApplies
             ? `Owed in addition to regular tax. TMT ${usd.format(r.tentativeMinimumTaxUsd)} exceeded regular tax ${usd.format(r.regularTaxUsd)} by this amount.`
             : `Regular tax ${usd.format(r.regularTaxUsd)} >= TMT ${usd.format(r.tentativeMinimumTaxUsd)} so no AMT.`}
@@ -234,7 +234,7 @@ function ResultPanel({ r }: { r: Form6251Result }) {
           <p className="font-bold text-emerald-700 dark:text-emerald-300">
             Estimated recoverable AMT credit: {usd.format(r.recoverableCreditEstimateUsd)}
           </p>
-          <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">
+          <p className="mt-1 text-xs text-slate-400">
             Per IRC §53, AMT attributable to deferral items (mainly ISO bargain element) is recoverable as Form 8801 credit in future years when regular tax exceeds TMT. Run the{' '}
             <a href="/amt-credit-recovery" className="font-semibold underline">AMT Credit Recovery scheduler</a> for a year-by-year projection.
           </p>
@@ -247,7 +247,7 @@ function ResultPanel({ r }: { r: Form6251Result }) {
 function Row({ label, value, bold, highlight }: { label: string; value: number; bold?: boolean; highlight?: boolean }) {
   const cls = [
     'flex justify-between py-1.5 text-sm',
-    bold ? 'font-bold text-gray-900 dark:text-gray-100' : 'text-gray-700 dark:text-gray-300',
+    bold ? 'font-bold text-slate-100' : 'text-slate-300',
     highlight ? 'rounded bg-orange-100 px-2 dark:bg-orange-900/30' : '',
   ].filter(Boolean).join(' ');
   return (

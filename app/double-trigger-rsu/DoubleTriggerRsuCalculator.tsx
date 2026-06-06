@@ -134,8 +134,8 @@ export function DoubleTriggerRsuCalculator() {
 function Field({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) {
   return (
     <label className="block space-y-1">
-      <span className="block text-sm font-semibold text-gray-900 dark:text-gray-100">{label}</span>
-      {hint && <span className="block text-xs text-gray-500 dark:text-gray-400">{hint}</span>}
+      <span className="block text-sm font-semibold text-slate-100">{label}</span>
+      {hint && <span className="block text-xs text-slate-400">{hint}</span>}
       {children}
     </label>
   );
@@ -151,7 +151,7 @@ function ResultPanel({ r }: { r: DoubleTriggerRsuResult }) {
         <p className="mt-1 text-4xl font-bold tracking-tight text-orange-700 dark:text-orange-300">
           {usd.format(r.totalShortfallUsd)}
         </p>
-        <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+        <p className="mt-2 text-sm text-slate-300">
           On {usd.format(r.taxableW2IncomeUsd)} of W-2 income recognized at trigger.
         </p>
       </div>
@@ -195,7 +195,7 @@ function Card({ title, children }: { title: string; children: React.ReactNode })
 function Row({ label, value, bold, highlight }: { label: string; value: number | string; bold?: boolean; highlight?: boolean }) {
   const cls = [
     'flex justify-between py-1 text-sm',
-    bold ? 'font-bold text-gray-900 dark:text-gray-100' : 'text-gray-700 dark:text-gray-300',
+    bold ? 'font-bold text-slate-100' : 'text-slate-300',
     highlight ? 'rounded bg-orange-100 px-2 dark:bg-orange-900/30' : '',
   ].filter(Boolean).join(' ');
   return (

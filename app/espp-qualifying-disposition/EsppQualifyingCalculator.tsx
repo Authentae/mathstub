@@ -165,6 +165,7 @@ export function EsppQualifyingCalculator() {
         <Field label="Offer-date FMV ($/share)">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             step="0.01"
             value={form.offerDateFmvUsd}
@@ -175,6 +176,7 @@ export function EsppQualifyingCalculator() {
         <Field label="Purchase-date FMV ($/share)">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             step="0.01"
             value={form.purchaseDateFmvUsd}
@@ -185,6 +187,7 @@ export function EsppQualifyingCalculator() {
         <Field label="Plan discount (%)">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             max="50"
             step="0.1"
@@ -196,6 +199,7 @@ export function EsppQualifyingCalculator() {
         <Field label="Shares purchased">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             value={form.sharesPurchased}
             onChange={(e) => update('sharesPurchased', e.target.value)}
@@ -205,6 +209,7 @@ export function EsppQualifyingCalculator() {
         <Field label="Sale price ($/share)">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             step="0.01"
             value={form.salePricePerShareUsd}
@@ -254,6 +259,7 @@ export function EsppQualifyingCalculator() {
         <Field label="YTD regular W-2 wages">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             value={form.ytdRegularWagesUsd}
             onChange={(e) => update('ytdRegularWagesUsd', e.target.value)}
@@ -263,6 +269,7 @@ export function EsppQualifyingCalculator() {
         <Field label="Other taxable income (spouse W-2, dividends)">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             value={form.otherTaxableIncomeUsd}
             onChange={(e) => update('otherTaxableIncomeUsd', e.target.value)}
@@ -272,6 +279,7 @@ export function EsppQualifyingCalculator() {
         <Field label="YTD pre-tax deductions (401k + HSA)">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             value={form.preTaxDeductionsUsd}
             onChange={(e) => update('preTaxDeductionsUsd', e.target.value)}
@@ -281,6 +289,7 @@ export function EsppQualifyingCalculator() {
         <Field label="State rate override (%) — optional">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             max="100"
             step="0.1"
@@ -290,10 +299,23 @@ export function EsppQualifyingCalculator() {
             className={inputCls}
           />
         </Field>
+        <div className="-mt-1 flex justify-end md:col-span-2">
+          <button
+            type="button"
+            onClick={() => setForm(DEFAULTS)}
+            className="rounded text-xs font-medium text-slate-400 underline-offset-2 hover:text-slate-200 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+          >
+            Reset to example values
+          </button>
+        </div>
       </form>
 
       {'error' in result ? (
-        <div className="rounded-lg bg-amber-500/10 p-4 text-sm text-amber-200 ring-1 ring-amber-500/30">
+        <div
+          role="alert"
+          aria-live="polite"
+          className="rounded-lg bg-amber-500/10 p-4 text-sm text-amber-200 ring-1 ring-amber-500/30"
+        >
           {result.error}
         </div>
       ) : (
@@ -328,7 +350,7 @@ function Result({ result }: { result: EsppQualifyingResult }) {
             : 'border-amber-200 bg-amber-50 dark:border-amber-900 dark:bg-amber-950'
         }`}
       >
-        <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+        <p className="text-sm font-semibold text-slate-300">
           {r.isQualifying ? 'Qualifying disposition' : 'NOT qualifying yet'} —{' '}
           {r.monthsFromOffer} mo from offer, {r.monthsFromPurchase} mo from purchase
         </p>
@@ -357,7 +379,7 @@ function Result({ result }: { result: EsppQualifyingResult }) {
         )}
       </div>
 
-      <div className="grid gap-3 rounded-md border border-gray-200 bg-white p-4 text-sm dark:border-gray-800 dark:bg-gray-900 md:grid-cols-3">
+      <div className="grid gap-3 rounded-md border border-slate-800 bg-slate-900 p-4 text-sm md:grid-cols-3">
         <Stat label="Ordinary income" value={usd.format(r.totalOrdinaryIncomeUsd)} />
         <Stat
           label={r.totalCapitalGainUsd >= 0 ? 'Long-term capital gain' : 'Long-term capital loss'}
@@ -370,8 +392,8 @@ function Result({ result }: { result: EsppQualifyingResult }) {
 
       {r.totalTaxUsd > 0 && <GumroadUpsell shortfallUsd={r.totalTaxUsd} />}
 
-      <details className="rounded-md border border-gray-200 bg-white p-4 text-sm dark:border-gray-800 dark:bg-gray-900">
-        <summary className="cursor-pointer font-semibold text-gray-800 dark:text-gray-200">
+      <details className="rounded-md border border-slate-800 bg-slate-900 p-4 text-sm">
+        <summary className="cursor-pointer font-semibold text-slate-200">
           Show the math
         </summary>
         <div className="mt-3 grid gap-2 md:grid-cols-2">
@@ -421,9 +443,9 @@ function Stat({ label, value }: { label: string; value: string }) {
 
 function Row({ k, v }: { k: string; v: string }) {
   return (
-    <div className="flex justify-between border-b border-dashed border-gray-200 py-1 dark:border-gray-800">
-      <span className="text-gray-600 dark:text-gray-400">{k}</span>
-      <span className="font-medium text-gray-900 dark:text-gray-100">{v}</span>
+    <div className="flex justify-between border-b border-dashed border-slate-800 py-1">
+      <span className="text-slate-400">{k}</span>
+      <span className="font-medium text-slate-100">{v}</span>
     </div>
   );
 }

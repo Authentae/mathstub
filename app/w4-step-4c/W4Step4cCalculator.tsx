@@ -186,7 +186,7 @@ export function W4Step4cCalculator() {
             onChange={(e) => setForm({ usePriorYear: e.target.checked })}
             className="mt-1 h-4 w-4 rounded border-gray-300"
           />
-          <span className="text-gray-700 dark:text-gray-300">
+          <span className="text-slate-300">
             Use prior-year safe-harbor branch (recommended — almost always
             gives a lower required-paid-in threshold than the current-year 90%
             branch for tech workers with a high prior-year tax bill).
@@ -266,8 +266,8 @@ function Field({
 }) {
   return (
     <label className="block space-y-1">
-      <span className="block text-sm font-semibold text-gray-900 dark:text-gray-100">{label}</span>
-      {hint && <span className="block text-xs text-gray-500 dark:text-gray-400">{hint}</span>}
+      <span className="block text-sm font-semibold text-slate-100">{label}</span>
+      {hint && <span className="block text-xs text-slate-400">{hint}</span>}
       {children}
     </label>
   );
@@ -283,10 +283,10 @@ function ResultPanel({ result }: { result: W4Step4cResult }) {
           <p className="text-sm font-mono uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
             No shortfall
           </p>
-          <p className="mt-1 text-2xl font-bold text-gray-900 dark:text-gray-100">
+          <p className="mt-1 text-2xl font-bold text-slate-100">
             You&rsquo;re on track. No W-4 4(c) change needed.
           </p>
-          <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+          <p className="mt-2 text-sm text-slate-300">
             Projected withholding ({usd.format(result.baselineAnnualWithholdingUsd)}) meets or exceeds projected tax owed.
           </p>
         </div>
@@ -295,11 +295,11 @@ function ResultPanel({ result }: { result: W4Step4cResult }) {
           <p className="text-sm font-mono uppercase tracking-wide text-brand-700 dark:text-brand-300">
             Recommended W-4 Line 4(c) entry
           </p>
-          <p className="mt-1 text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
+          <p className="mt-1 text-4xl font-bold tracking-tight text-slate-100">
             {usd.format(result.perPeriodExtraRoundedUsd)}
             <span className="ml-2 text-base font-normal text-gray-500">/ pay period</span>
           </p>
-          <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+          <p className="mt-2 text-sm text-slate-300">
             Exact unrounded: {usdCents.format(result.perPeriodExtraUsd)}. Rounded UP to the nearest $5 because payroll systems handle whole-dollar amounts cleanly and over-withholding refunds at filing.
           </p>
           <p className="mt-3 rounded-md border border-amber-500/30 bg-amber-500/10 p-3 text-xs text-amber-900 dark:text-amber-200">
@@ -326,7 +326,7 @@ function ResultPanel({ result }: { result: W4Step4cResult }) {
               positive
             />
           </div>
-          <p className="mt-3 text-xs italic text-gray-600 dark:text-gray-400">
+          <p className="mt-3 text-xs italic text-slate-400">
             §6654(g)(1) — withholding is deemed ratable across the year, so a Q4 W-4 boost retroactively cures Q1–Q3 underpayment.
           </p>
         </div>
@@ -359,7 +359,7 @@ function SafeHarborTile({
       <p className={`mt-1 font-mono text-base font-bold ${clearColor}`}>
         {snapshot.willClear ? '✓ Clears' : '✗ Short by ' + usd.format(snapshot.shortfallVsThresholdUsd)}
       </p>
-      <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">
+      <p className="mt-1 text-xs text-slate-400">
         {safeHarborLabel(snapshot.branch)}
       </p>
       {snapshot.thresholdUsd > 0 && (

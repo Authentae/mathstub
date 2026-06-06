@@ -99,6 +99,7 @@ export function AmtCreditRecoveryCalculator() {
         <Field label="AMT credit balance from Form 8801 (USD)">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             value={form.creditBalanceUsd}
             onChange={(e) => update('creditBalanceUsd', e.target.value)}
@@ -131,6 +132,7 @@ export function AmtCreditRecoveryCalculator() {
         <Field label="Projected gross income (year 1)">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             value={form.projectedIncomeUsd}
             onChange={(e) => update('projectedIncomeUsd', e.target.value)}
@@ -140,6 +142,7 @@ export function AmtCreditRecoveryCalculator() {
         <Field label="Pre-tax deductions (401k + HSA)">
           <input
             type="number"
+            inputMode="decimal"
             min="0"
             value={form.preTaxDeductionsUsd}
             onChange={(e) => update('preTaxDeductionsUsd', e.target.value)}
@@ -149,6 +152,7 @@ export function AmtCreditRecoveryCalculator() {
         <Field label="Annual income growth (%)">
           <input
             type="number"
+            inputMode="decimal"
             min="-50"
             max="100"
             step="0.1"
@@ -160,6 +164,7 @@ export function AmtCreditRecoveryCalculator() {
         <Field label="Years to project (1–30)">
           <input
             type="number"
+            inputMode="decimal"
             min="1"
             max="30"
             value={form.yearsToProject}
@@ -167,10 +172,23 @@ export function AmtCreditRecoveryCalculator() {
             className={inputCls}
           />
         </Field>
+        <div className="-mt-1 flex justify-end md:col-span-2">
+          <button
+            type="button"
+            onClick={() => setForm(DEFAULTS)}
+            className="rounded text-xs font-medium text-slate-400 underline-offset-2 hover:text-slate-200 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+          >
+            Reset to example values
+          </button>
+        </div>
       </form>
 
       {'error' in result ? (
-        <div className="rounded-lg bg-amber-500/10 p-4 text-sm text-amber-200 ring-1 ring-amber-500/30">
+        <div
+          role="alert"
+          aria-live="polite"
+          className="rounded-lg bg-amber-500/10 p-4 text-sm text-amber-200 ring-1 ring-amber-500/30"
+        >
           {result.error}
         </div>
       ) : (
@@ -206,7 +224,7 @@ function Result({ result }: { result: AmtCreditRecoveryResult }) {
             : 'border-amber-200 bg-amber-50 dark:border-amber-900 dark:bg-amber-950'
         }`}
       >
-        <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+        <p className="text-sm font-semibold text-slate-300">
           Projected recovery
         </p>
         <p
@@ -220,7 +238,7 @@ function Result({ result }: { result: AmtCreditRecoveryResult }) {
             ? `${r.yearsToFullRecovery} year${r.yearsToFullRecovery === 1 ? '' : 's'} to full recovery`
             : `${usd.format(r.remainingBalanceAfterHorizonUsd)} unused after ${r.schedule.length} years`}
         </p>
-        <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+        <p className="mt-2 text-sm text-slate-300">
           Starting balance: <strong>{usd.format(r.startingCreditBalanceUsd)}</strong>. Total
           credit applied: <strong>{usd.format(r.totalCreditAppliedUsd)}</strong>.
         </p>

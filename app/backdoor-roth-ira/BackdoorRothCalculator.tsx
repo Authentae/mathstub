@@ -166,6 +166,7 @@ export function BackdoorRothCalculator() {
           <Field label="Your age" hint="Catch-up adds $1,000 to limit at 50+">
             <input
               type="number"
+              inputMode="decimal"
               value={form.age}
               onChange={(e) => setForm({ age: e.target.value })}
               className={inputClass}
@@ -179,6 +180,7 @@ export function BackdoorRothCalculator() {
           >
             <input
               type="number"
+              inputMode="decimal"
               value={form.magiUsd}
               onChange={(e) => setForm({ magiUsd: e.target.value })}
               className={inputClass}
@@ -191,6 +193,7 @@ export function BackdoorRothCalculator() {
           >
             <input
               type="number"
+              inputMode="decimal"
               value={form.preTaxIraBalanceUsd}
               onChange={(e) => setForm({ preTaxIraBalanceUsd: e.target.value })}
               className={inputClass}
@@ -200,6 +203,7 @@ export function BackdoorRothCalculator() {
           <Field label="Federal marginal rate (%)" hint="Default 32% — most high earners">
             <input
               type="number"
+              inputMode="decimal"
               value={form.marginalRatePct}
               onChange={(e) => setForm({ marginalRatePct: e.target.value })}
               className={inputClass}
@@ -211,6 +215,7 @@ export function BackdoorRothCalculator() {
           <Field label="Years to retirement (projection)">
             <input
               type="number"
+              inputMode="decimal"
               value={form.yearsToRetirement}
               onChange={(e) => setForm({ yearsToRetirement: e.target.value })}
               className={inputClass}
@@ -221,6 +226,7 @@ export function BackdoorRothCalculator() {
           <Field label="Expected annual return %">
             <input
               type="number"
+              inputMode="decimal"
               value={form.expectedReturnPct}
               onChange={(e) => setForm({ expectedReturnPct: e.target.value })}
               className={inputClass}

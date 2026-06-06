@@ -133,7 +133,7 @@ export function QsbsCalculator() {
           <input type="checkbox" checked={form.issuedUnderObbba}
             onChange={(e) => setForm({ issuedUnderObbba: e.target.checked })}
             className="mt-1 h-4 w-4 rounded border-gray-300" />
-          <span className="text-gray-700 dark:text-gray-300">
+          <span className="text-slate-300">
             Shares were issued on or after July 4, 2025 (uses the new tiered 50/75/100% exclusion + $15M cap).
             Uncheck for older stock (legacy 5-year all-or-nothing + $10M cap).
           </span>
@@ -157,7 +157,7 @@ const inputCls =
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block space-y-1">
-      <span className="block text-sm font-medium text-gray-700 dark:text-gray-300">{label}</span>
+      <span className="block text-sm font-medium text-slate-300">{label}</span>
       {children}
     </label>
   );
@@ -173,8 +173,8 @@ function ResultPanel({ r }: { r: QsbsResult }) {
       </div>
 
       <div className="rounded-lg border border-gray-200 p-4 text-sm dark:border-gray-800">
-        <p className="font-semibold text-gray-900 dark:text-gray-100">The breakdown</p>
-        <ul className="mt-2 space-y-1 text-gray-700 dark:text-gray-300">
+        <p className="font-semibold text-slate-100">The breakdown</p>
+        <ul className="mt-2 space-y-1 text-slate-300">
           <li>Total gain: <strong>{usd.format(r.gainUsd)}</strong></li>
           <li>Exclusion applied: <strong>{pct.format(r.exclusionPct)}</strong> {r.exclusionPct > 0 ? '(based on your holding period)' : '(does not qualify yet)'}</li>
           <li>Per-issuer cap (greater of $15M or 10× basis): <strong>{usd.format(r.perIssuerCapUsd)}</strong></li>
