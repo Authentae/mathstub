@@ -65,13 +65,19 @@ export const megaBackdoorRothEligibility: BlogPost = {
       text: 'Worked example — typical FAANG L5 senior engineer in 2025:',
     },
     {
-      type: 'ul',
-      items: [
-        'Elective deferral (pre-tax + Roth 401(k) combined): $23,500 (the §402(g) cap).',
-        'Employer match: $11,000 (typical 50% match on first 6% of $360k base salary equivalent — varies by employer, often capped at $11k–$15k).',
-        'Profit-sharing: $0 (most large tech employers do not have this).',
-        'Mega-Backdoor room: $70,000 − $23,500 − $11,000 − $0 = $35,500.',
+      type: 'flow',
+      caption: 'A typical FAANG L5’s room (2025)',
+      steps: [
+        { label: '§415 cap', value: '$70,000' },
+        { label: '− your deferral', value: '$23,500', tone: 'bad' },
+        { label: '− employer match', value: '$11,000', tone: 'bad' },
+        { label: 'Mega-Backdoor room', value: '$35,500', tone: 'good' },
       ],
+    },
+    {
+      type: 'p',
+      text:
+        'Elective deferral is the $23,500 §402(g) cap (pre-tax + Roth 401(k) combined); the employer match is a typical $11,000 (it varies, often $11k–$15k); most large tech plans have no profit-sharing. Whatever the §415 cap minus those leaves is your after-tax room.',
     },
     {
       type: 'p',
