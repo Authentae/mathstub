@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
 import {
   articleSchema,
   buildMetadata,
@@ -15,7 +14,6 @@ import { AmazonBookCTA } from '@/components/AmazonBookCTA';
 import { ReportIssue } from '@/components/ReportIssue';
 import { RelatedPosts } from '@/components/RelatedPosts';
 import { CalcCta } from '@/components/CalcCta';
-import { QuickAnswer } from '@/components/QuickAnswer';
 import { KeyPoints } from '@/components/KeyPoints';
 import { BlogHero } from '@/components/BlogHero';
 import { TableOfContents, slugifyHeading } from '@/components/TableOfContents';
@@ -76,56 +74,22 @@ export default async function PostPage({ params }: Props) {
         ])}
       />
 
-      {post.landing && (
-        <BlogHero post={post} category={findCategoryForSlug(post.slug)} />
-      )}
+      {/*
+        Presentation layout is the default for EVERY post: the homepage-style
+        dark hero (category eyebrow, big headline, quickAnswer as subtitle)
+        carries the title + framing, so a post reads like a designed landing
+        page, not a text column. Goal: easiest to read, presentation-feel,
+        without cutting any of the (SEO-critical) depth below.
+      */}
+      <BlogHero post={post} category={findCategoryForSlug(post.slug)} />
 
-      <article className="mx-auto max-w-[680px] px-5 py-16 sm:py-20">
-        {!post.landing && (
-          <>
-            {/*
-              Breadcrumb: All posts → Category. Uses the categories.ts mapping
-              so it stays in sync with the /blog index. Renders even if the
-              category is missing (defensive — keeps the "All posts" trail).
-            */}
-            {(() => {
-              const category = findCategoryForSlug(post.slug);
-              return (
-                <p
-                  className="text-sm text-gray-500 dark:text-gray-400"
-                  aria-label="Breadcrumb"
-                >
-                  <Link href="/blog" className="hover:underline">
-                    ← All posts
-                  </Link>
-                  {category && (
-                    <>
-                      {' · '}
-                      <Link
-                        href={`/blog#${category.id}`}
-                        className="text-brand-700 hover:underline dark:text-brand-300"
-                      >
-                        {category.name}
-                      </Link>
-                    </>
-                  )}
-                </p>
-              );
-            })()}
-            <h1 className="mt-3 text-[32px] font-bold leading-[1.12] tracking-[-0.02em] text-gray-900 dark:text-gray-50 sm:text-[40px]">
-              {post.title}
-            </h1>
-            <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 border-b border-gray-200 pb-5 text-sm text-gray-500 dark:border-gray-800">
-              <span className="font-medium text-gray-700 dark:text-gray-300">{post.authorName}</span>
-              <span aria-hidden="true">·</span>
-              <ReadTime blocks={post.blocks} />
-              <span aria-hidden="true">·</span>
-              <LastUpdatedBadge taxYear={2026} isoDate={post.dateModified} />
-            </div>
-          </>
-        )}
-
-        {!post.landing && post.quickAnswer && <QuickAnswer text={post.quickAnswer} />}
+      <article className="mx-auto max-w-[680px] px-5 py-12 sm:py-16">
+        {/* Compact meta row — read time + freshness, under the hero. */}
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-slate-400">
+          <ReadTime blocks={post.blocks} />
+          <span aria-hidden="true">·</span>
+          <LastUpdatedBadge taxYear={2026} isoDate={post.dateModified} />
+        </div>
 
         {post.keyPoints && post.keyPoints.length > 0 && (
           <KeyPoints points={post.keyPoints} />
@@ -135,7 +99,7 @@ export default async function PostPage({ params }: Props) {
 
         <Disclaimer />
 
-        <div className="mt-10 space-y-6 text-[18px] leading-[1.8] text-gray-700 dark:text-gray-300">
+        <div className="mt-10 space-y-6 text-[18px] leading-[1.8] text-slate-300">
           {post.blocks.map((block, i) => (
             <Block key={i} block={block} isLede={i === 0 && block.type === 'p'} />
           ))}
@@ -150,8 +114,8 @@ export default async function PostPage({ params }: Props) {
         )}
 
         {post.affiliateOfferIds && post.affiliateOfferIds.length > 0 && (
-          <section className="mt-10 border-t border-gray-200 pt-8 dark:border-gray-800">
-            <h2 className="mb-3 text-xl font-bold text-gray-900 dark:text-gray-100">
+          <section className="mt-10 border-t border-slate-800 pt-8">
+            <h2 className="mb-3 text-xl font-bold text-slate-100">
               Recommended next step
             </h2>
             <div className="grid gap-3 md:grid-cols-2">
@@ -164,7 +128,7 @@ export default async function PostPage({ params }: Props) {
 
         <AmazonBookCTA />
 
-        <p className="mt-10 text-sm text-gray-500">
+        <p className="mt-10 text-sm text-slate-400">
           By {post.authorName}
           {post.reviewerName ? ` · Reviewed by ${post.reviewerName}` : ''}
         </p>
@@ -222,7 +186,7 @@ function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }
       // calm sophistication beats decoration.
       if (isLede) {
         return (
-          <p className="text-[21px] leading-[1.7] text-gray-600 dark:text-gray-300">
+          <p className="text-[21px] leading-[1.75] text-slate-200">
             {renderInline(block.text)}
           </p>
         );
@@ -245,7 +209,7 @@ function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }
       return (
         <h2
           id={slugifyHeading(block.text)}
-          className="mt-14 flex items-baseline gap-3 scroll-mt-24 text-[28px] font-bold leading-tight tracking-[-0.01em] text-gray-900 dark:text-gray-50"
+          className="mt-14 flex items-baseline gap-3 scroll-mt-24 text-[28px] font-bold leading-tight tracking-[-0.02em] text-balance text-white"
         >
           <span
             aria-hidden="true"
@@ -259,7 +223,7 @@ function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }
       return (
         <h3
           id={slugifyHeading(block.text)}
-          className="mt-10 scroll-mt-24 text-[21px] font-semibold tracking-[-0.01em] text-gray-900 dark:text-gray-100"
+          className="mt-10 scroll-mt-24 text-[21px] font-semibold tracking-[-0.01em] text-slate-100"
         >
           {block.text}
         </h3>
@@ -318,11 +282,11 @@ function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }
       // does the signposting instead of an emoji; restrained tint keeps it
       // premium rather than loud.
       return (
-        <aside className="my-4 rounded-lg border border-gray-200 bg-gray-50 p-5 dark:border-gray-800 dark:bg-gray-900/60">
+        <aside className="my-4 rounded-lg border border-slate-800 bg-slate-900/60 p-5">
           <p className="mb-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-600 dark:text-brand-400">
             Key point
           </p>
-          <div className="text-[16px] leading-relaxed text-gray-700 dark:text-gray-200">
+          <div className="text-[16px] leading-relaxed text-slate-200">
             {renderInline(block.text)}
           </div>
         </aside>
@@ -332,7 +296,7 @@ function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }
       // The single biggest "wall-breaker" — turns an invisible tax concept into
       // a picture the eye grasps instantly and readers screenshot/share.
       return (
-        <figure className="my-6 rounded-xl border border-gray-200 bg-gray-50 p-5 dark:border-gray-800 dark:bg-gray-900/60">
+        <figure className="my-6 rounded-xl border border-slate-800 bg-slate-900/60 p-5">
           {block.caption && (
             <figcaption className="mb-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-600 dark:text-brand-400">
               {block.caption}
@@ -347,10 +311,10 @@ function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }
                       ? 'border-red-300 bg-red-50 dark:border-red-800/60 dark:bg-red-950/40'
                       : s.tone === 'good'
                         ? 'border-emerald-300 bg-emerald-50 dark:border-emerald-800/60 dark:bg-emerald-950/40'
-                        : 'border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-950'
+                        : 'border-slate-700 bg-slate-950'
                   }`}
                 >
-                  <span className="text-[11px] uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                  <span className="text-[11px] uppercase tracking-wide text-slate-400">
                     {s.label}
                   </span>
                   <span
@@ -359,14 +323,14 @@ function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }
                         ? 'text-red-700 dark:text-red-300'
                         : s.tone === 'good'
                           ? 'text-emerald-700 dark:text-emerald-300'
-                          : 'text-gray-900 dark:text-gray-100'
+                          : 'text-slate-100'
                     }`}
                   >
                     {s.value}
                   </span>
                 </div>
                 {i < block.steps.length - 1 && (
-                  <span aria-hidden="true" className="self-center text-xl text-gray-400 dark:text-gray-600">
+                  <span aria-hidden="true" className="self-center text-xl text-slate-600">
                     →
                   </span>
                 )}
@@ -386,11 +350,11 @@ function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }
           )}
           <table className="w-full border-collapse overflow-hidden rounded-lg text-[15px]">
             <thead>
-              <tr className="bg-gray-100 dark:bg-gray-800">
+              <tr className="bg-slate-800">
                 {block.headers.map((h, i) => (
                   <th
                     key={i}
-                    className={`border-b border-gray-200 px-4 py-2.5 font-semibold text-gray-900 dark:border-gray-700 dark:text-gray-100 ${
+                    className={`border-b border-slate-700 px-4 py-2.5 font-semibold text-slate-100 ${
                       i === 0 ? 'text-left' : 'text-right'
                     }`}
                   >
@@ -401,14 +365,14 @@ function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }
             </thead>
             <tbody>
               {block.rows.map((row, ri) => (
-                <tr key={ri} className="odd:bg-white even:bg-gray-50 dark:odd:bg-gray-950 dark:even:bg-gray-900/50">
+                <tr key={ri} className="odd:bg-slate-950 even:bg-slate-900/50">
                   {row.map((cell, ci) => (
                     <td
                       key={ci}
-                      className={`border-b border-gray-100 px-4 py-2.5 dark:border-gray-800 ${
+                      className={`border-b border-slate-800 px-4 py-2.5 ${
                         ci === 0
-                          ? 'text-left font-medium text-gray-900 dark:text-gray-100'
-                          : 'text-right tabular-nums text-gray-700 dark:text-gray-300'
+                          ? 'text-left font-medium text-slate-100'
+                          : 'text-right tabular-nums text-slate-300'
                       }`}
                     >
                       {renderInline(cell)}
@@ -425,7 +389,7 @@ function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }
       // left slab-border (the #1 AI tell). Soft full ring + a tinted icon chip
       // carries the emphasis instead — quieter, more crafted.
       return (
-        <aside className="my-5 flex gap-4 rounded-2xl bg-brand-50/70 p-5 ring-1 ring-brand-500/15 dark:bg-brand-950/30 dark:ring-brand-400/15">
+        <aside className="my-5 flex gap-4 rounded-2xl bg-brand-950/30 p-5 ring-1 dark:ring-brand-400/15">
           <span
             aria-hidden="true"
             className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-500/10 text-lg ring-1 ring-inset ring-brand-500/20"
@@ -436,7 +400,7 @@ function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }
             <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-700 dark:text-brand-300">
               Think of it like this
             </p>
-            <div className="text-[16px] leading-relaxed text-gray-800 dark:text-gray-100">
+            <div className="text-[16px] leading-relaxed text-slate-100">
               {renderInline(block.text)}
             </div>
           </div>
@@ -452,7 +416,7 @@ function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }
               {block.caption}
             </figcaption>
           )}
-          <div className="overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800">
+          <div className="overflow-hidden rounded-xl border border-slate-800">
             <iframe
               src={`/embed/${block.calc}/?theme=dark`}
               title="Interactive calculator"
@@ -468,20 +432,20 @@ function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }
       // HTML (just CSS-hidden) so search engines + AI still index every word.
       // Keeps the visible page mostly-visual while preserving SEO depth.
       return (
-        <details className="group my-4 rounded-lg border border-gray-200 bg-gray-50/60 dark:border-gray-800 dark:bg-gray-900/40">
-          <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-3.5 text-[15px] font-semibold text-gray-800 hover:text-brand-700 dark:text-gray-100 dark:hover:text-brand-300">
+        <details className="group my-4 rounded-lg border border-slate-800 bg-slate-900/40">
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-3.5 text-[15px] font-semibold text-slate-100 hover:text-brand-300">
             <span className="flex items-center gap-2">
               <span aria-hidden="true" className="text-brand-500">📖</span>
               {block.summary}
             </span>
             <span
               aria-hidden="true"
-              className="shrink-0 text-gray-400 transition-transform group-open:rotate-180"
+              className="shrink-0 text-slate-500 transition-transform group-open:rotate-180"
             >
               ▾
             </span>
           </summary>
-          <div className="space-y-5 border-t border-gray-200 px-5 py-4 text-[17px] leading-[1.8] text-gray-700 dark:border-gray-800 dark:text-gray-300">
+          <div className="space-y-5 border-t border-slate-800 px-5 py-4 text-[17px] leading-[1.8] text-slate-300">
             {block.blocks.map((b, i) => (
               <Block key={i} block={b} />
             ))}
