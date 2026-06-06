@@ -61,17 +61,27 @@ export const caTxRsuWorkSourceAllocation: BlogPost = {
       text: 'Daniel assumed: "TX has no state tax. My post-August-2024 vests are CA-tax-free." Walking the FTB work-source rule:',
     },
     {
-      type: 'ul',
-      items: [
-        '**Aug 2024 vest (vesting period: Aug 2022 – Aug 2024, 24 months).** All 24 months were CA. CA gets 100% of the $20k vest at 13.3% = **$2,660 owed to CA**.',
-        '**Nov 2024 vest (27 months total: 24 in CA + 3 in TX).** CA share: 24/27 = 88.9% × $20k × 13.3% = **$2,365**.',
-        '**Feb 2025 vest (30 months total: 24 in CA + 6 in TX).** CA share: 24/30 = 80.0% × $20k × 13.3% = **$2,128**.',
-        '**May 2025 vest (33 months).** CA share: 24/33 = 72.7% × $20k × 13.3% = **$1,934**.',
-        '**Aug 2025 vest (36 months).** CA share: 66.7% × $20k × 13.3% = **$1,773**.',
-        '**Nov 2025 vest (39 months).** CA share: 61.5% × $20k × 13.3% = **$1,636**.',
-        '**Feb 2026 vest (42 months).** CA share: 57.1% × $20k × 13.3% = **$1,519**.',
-        '**May 2026 vest (45 months).** CA share: 53.3% × $20k × 13.3% = **$1,418**.',
-        '**Aug 2026 vest (48 months — final).** CA share: 50.0% × $20k × 13.3% = **$1,330**.',
+      type: 'flow',
+      caption: 'CA → TX move with 1,600 unvested RSUs',
+      steps: [
+        { label: 'Daniel assumed', value: '$0 CA tax', tone: 'good' },
+        { label: 'CA actually claims', value: '~$16,800', tone: 'bad' },
+      ],
+    },
+    {
+      type: 'table',
+      caption: 'Each $20k vest still owes CA — its share shrinks as TX months add up',
+      headers: ['Vest', 'CA months / total', 'CA %', 'CA tax'],
+      rows: [
+        ['Aug 2024', '24 / 24', '100%', '$2,660'],
+        ['Nov 2024', '24 / 27', '88.9%', '$2,365'],
+        ['Feb 2025', '24 / 30', '80.0%', '$2,128'],
+        ['May 2025', '24 / 33', '72.7%', '$1,934'],
+        ['Aug 2025', '24 / 36', '66.7%', '$1,773'],
+        ['Nov 2025', '24 / 39', '61.5%', '$1,636'],
+        ['Feb 2026', '24 / 42', '57.1%', '$1,519'],
+        ['May 2026', '24 / 45', '53.3%', '$1,418'],
+        ['Aug 2026', '24 / 48', '50.0%', '$1,330'],
       ],
     },
     {
