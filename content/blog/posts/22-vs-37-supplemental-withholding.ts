@@ -27,10 +27,12 @@ export const supplementalRule: BlogPost = {
     },
     { type: 'h2', text: 'The two rates' },
     {
-      type: 'ul',
-      items: [
-        '**22%** on the first $1,000,000 of supplemental wages paid to you by a single employer in the calendar year.',
-        '**37%** on every dollar above $1,000,000.',
+      type: 'table',
+      caption: 'The flat supplemental-withholding rates',
+      headers: ['YTD supplemental wages (per employer)', 'Federal withholding'],
+      rows: [
+        ['First $1,000,000', '22%'],
+        ['Every dollar above $1M', '37%'],
       ],
     },
     {
@@ -56,12 +58,13 @@ export const supplementalRule: BlogPost = {
         'If your YTD supplemental wages going into a vest are $800k and the vest is $400k, the math:',
     },
     {
-      type: 'ul',
-      items: [
-        'First $200k of the vest (bringing YTD supplemental to $1M): withheld at 22% = $44,000.',
-        'Next $200k of the vest (above $1M): withheld at 37% = $74,000.',
-        'Total withheld on the $400k vest: $118,000.',
-        'Blended effective rate: 29.5%.',
+      type: 'table',
+      caption: '$800k YTD supplemental, then a $400k vest',
+      headers: ['Slice of the vest', 'Rate', 'Withheld'],
+      rows: [
+        ['First $200k (brings YTD to $1M)', '22%', '$44,000'],
+        ['Next $200k (above $1M)', '37%', '$74,000'],
+        ['**Total on the $400k vest**', '**29.5% blended**', '**$118,000**'],
       ],
     },
     {
@@ -81,18 +84,21 @@ export const supplementalRule: BlogPost = {
         'Once your total taxable income passes the top federal bracket threshold ($626,350 single, $751,600 MFJ in 2025; projected ~$640k single in 2026), every additional dollar of ordinary income is taxed at:',
     },
     {
-      type: 'ul',
-      items: [
-        '**Federal** — 37% (matches supplemental rate, so no federal gap above $1M YTD supplemental).',
-        '**Additional Medicare** — 0.9% on all wages above $200k (single) / $250k (joint) YTD per IRC §3101(b)(2).',
-        '**State income tax** — up to 13.3% in CA (or 14.3% with the Mental Health Services Tax surcharge), 10.9% in NY, ~13% in NJ, ~10.75% in DC.',
-        '**NYC local tax** — up to 3.876% for residents.',
+      type: 'table',
+      caption: 'A top NYC earner’s true marginal rate',
+      headers: ['Layer', 'Rate'],
+      rows: [
+        ['Federal', '37%'],
+        ['Additional Medicare (§3101(b)(2))', '0.9%'],
+        ['New York state', '10.9%'],
+        ['NYC local', '3.876%'],
+        ['**True marginal**', '**~51.7%**'],
       ],
     },
     {
       type: 'p',
       text:
-        'A senior NYC-resident tech worker in the 37% federal bracket faces a true marginal rate of approximately 51.7% (37% federal + 0.9% Add\'l Medicare + 10.9% NY state + 3.876% NYC). The 37% supplemental withholding alone leaves a 14-point gap to actual marginal rate at the very top.',
+        'So the 37% supplemental withholding still leaves a ~14-point gap to the real marginal rate at the very top. Other high-tax states stack similarly: California up to 14.3% (with the mental-health surcharge), New Jersey ~13%, DC ~10.75%. Additional Medicare applies above $200k single / $250k joint.',
     },
     { type: 'h2', text: 'Worked example — mid-year job change' },
     {
@@ -101,14 +107,28 @@ export const supplementalRule: BlogPost = {
         'You leave Employer A in June with $600k of YTD supplemental wages already paid (large pre-IPO RSU lockup vest in March). You start at Employer B in July with a $300k signing bonus paid that month. Each employer\'s view:',
     },
     {
-      type: 'ul',
-      items: [
-        'Employer A withheld 22% × $600,000 = **$132,000** (well under their $1M threshold).',
-        'Employer B withholds 22% × $300,000 = **$66,000** (starts at $0 YTD from their perspective).',
-        'Combined withheld: $198,000 on $900,000 supplemental = blended **22%**.',
-        'Actual federal tax owed at the 37% marginal rate (since total income is now well above $626k bracket): $900,000 × 37% = $333,000.',
-        'Shortfall: $135,000 at filing time.',
+      type: 'flow',
+      caption: 'Two employers · $900k supplemental · one year',
+      steps: [
+        { label: 'Withheld (22%)', value: '$198k', tone: 'bad' },
+        { label: 'Actually owed (37%)', value: '$333k', tone: 'bad' },
+        { label: 'April shortfall', value: '$135k', tone: 'bad' },
       ],
+    },
+    {
+      type: 'table',
+      caption: 'Each employer resets the $1M counter from $0',
+      headers: ['Employer', 'Supplemental paid', 'Withheld'],
+      rows: [
+        ['A (Jan–Jun)', '$600,000', '$132,000 (22%)'],
+        ['B (Jul onward)', '$300,000', '$66,000 (22%)'],
+        ['**Combined**', '**$900,000**', '**$198,000 (22% blended)**'],
+      ],
+    },
+    {
+      type: 'p',
+      text:
+        'At your real 37% marginal rate (total income is well above the ~$626k top-bracket threshold), the actual federal tax is $900,000 × 37% = **$333,000** — a **$135,000 shortfall** at filing.',
     },
     {
       type: 'p',
