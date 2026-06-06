@@ -33,10 +33,12 @@ export const estimatedTax: BlogPost = {
         'You will NOT owe an underpayment penalty for the year if you paid in (via withholding + estimated taxes) at least the smaller of:',
     },
     {
-      type: 'ul',
-      items: [
-        '**90% of the tax owed for the current year**, OR',
-        '**100% of the tax owed for the prior year** (110% if your prior-year AGI was over $150,000).',
+      type: 'flow',
+      caption: 'No penalty if you prepay the LOWER of these',
+      steps: [
+        { label: 'This year', value: '90% of tax' },
+        { label: 'OR last year', value: '100% (110% if AGI > $150k)' },
+        { label: 'Beat the lower one', value: 'Safe', tone: 'good' },
       ],
     },
     {
@@ -61,13 +63,19 @@ export const estimatedTax: BlogPost = {
         '2025 changes: you get a $200,000 RSU vest in March. Your 2025 total taxable income is now $400,000. At 32% marginal, your projected 2025 federal tax is approximately $90,000.',
     },
     {
-      type: 'ul',
-      items: [
-        '**Current-year safe harbor target** = 90% × $90,000 = $81,000 federal withholding needed.',
-        '**Prior-year safe harbor target** = $39,600 (lower of the two — usually the binding test).',
-        'Vest withheld at 22% × $200k = $44,000 federal. Add $30,000 from base-salary regular withholding through year-end = $74,000 total federal withholding.',
-        '$74,000 vs $39,600 — prior-year safe harbor is met. No underpayment penalty, regardless of how much you owe at filing.',
+      type: 'table',
+      caption: '$200k vest · $200k base · single (2025)',
+      headers: ['Safe-harbor test', 'Target', 'Met by $74k withholding?'],
+      rows: [
+        ['Current-year (90% of $90k)', '$81,000', 'No'],
+        ['Prior-year (110% of $36k)', '$39,600', '✓ Yes — the lower bar'],
+        ['**Result**', '**beat the lower**', '**No penalty**'],
       ],
+    },
+    {
+      type: 'p',
+      text:
+        'Your withholding ($44,000 from the 22% vest withholding + ~$30,000 from regular base-salary withholding = $74,000) clears the $39,600 prior-year bar — so there is no penalty, even though you still owe more at filing.',
     },
     {
       type: 'p',
