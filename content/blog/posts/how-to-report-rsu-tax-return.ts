@@ -98,16 +98,16 @@ export const howToReportRsuTaxReturn: BlogPost = {
         'Each row has columns:',
     },
     {
-      type: 'ul',
-      items: [
-        '(a) Description of property',
-        '(b) Date acquired',
-        '(c) Date sold',
-        '(d) Proceeds',
-        '(e) Cost or other basis — as reported on 1099-B (often wrong)',
-        '(f) Code — letter codes for adjustments. Use **code B** when you correct an incorrect basis reported on 1099-B.',
-        '(g) Amount of adjustment — the difference between the WRONG basis on 1099-B and the CORRECT basis (FMV at vest × shares sold).',
-        '(h) Gain or loss — calculated automatically as (d) − (e) + (g).',
+      type: 'table',
+      caption: 'Form 8949 — what each column holds',
+      headers: ['Column', 'What goes there'],
+      rows: [
+        ['(a)–(c)', 'Description, date acquired (your vest date), date sold'],
+        ['(d) Proceeds', 'Sale price × shares'],
+        ['(e) Reported basis', 'As shown on the 1099-B — often wrong ($0)'],
+        ['(f) Code', '**B** when you’re correcting the basis'],
+        ['(g) Adjustment', 'The difference to the correct basis (FMV at vest × shares)'],
+        ['(h) Gain/loss', 'Auto-computed: (d) − (e) + (g)'],
       ],
     },
     { type: 'h2', text: 'Worked example — adjusting the cost basis' },
@@ -117,35 +117,30 @@ export const howToReportRsuTaxReturn: BlogPost = {
         '100 RSUs vest on 2025-03-15 at $50/share = $5,000 FMV. Your employer adds $5,000 to W-2 Box 1 and withholds taxes via share-sell. You receive 65 shares net after withholding. On 2025-06-30, you sell all 65 shares at $55/share = $3,575 proceeds. Your 1099-B reports:',
     },
     {
-      type: 'ul',
-      items: [
-        '(a) Description: GOOGL',
-        '(b) Date acquired: 2025-03-15',
-        '(c) Date sold: 2025-06-30',
-        '(d) Proceeds: $3,575',
-        '(e) Cost basis (as reported): **$0** — wrong',
-        '(h) Computed gain (1099-B): $3,575 — wrong, would tax already-taxed wage income',
+      type: 'table',
+      caption: 'Broker’s broken 1099-B vs your one-line fix (65 shares sold at $55)',
+      headers: ['Form 8949 column', 'Broker’s 1099-B', 'Your fix'],
+      rows: [
+        ['(d) Proceeds', '$3,575', '$3,575'],
+        ['(e) Reported basis', '$0', '$0'],
+        ['(f) Code', '—', 'B'],
+        ['(g) Adjustment', '—', '−$3,250'],
+        ['(h) **Taxable gain**', '**$3,575**', '**$325**'],
+      ],
+    },
+    {
+      type: 'flow',
+      caption: 'What the fix is worth',
+      steps: [
+        { label: 'Broker "gain"', value: '$3,575', tone: 'bad' },
+        { label: 'Real gain', value: '$325', tone: 'good' },
+        { label: 'Tax saved', value: '$1,358', tone: 'good' },
       ],
     },
     {
       type: 'p',
       text:
-        'Your correction on Form 8949 Part I Box B:',
-    },
-    {
-      type: 'ul',
-      items: [
-        '(d) Proceeds: $3,575',
-        '(e) Cost basis (as reported): $0',
-        '(f) Code: **B**',
-        '(g) Adjustment: **−$3,250** (corrected basis = 65 shares × $50 FMV at vest = $3,250)',
-        '(h) Corrected gain: $3,575 − $0 + (−$3,250) = **$325**',
-      ],
-    },
-    {
-      type: 'p',
-      text:
-        'You pay short-term capital gains tax (ordinary rates) on $325, not $3,575. Saving on the example: at a 32% federal + 9.3% CA marginal rate, the adjustment saves $1,358. The remaining $3,250 of value was already taxed via W-2 Box 1.',
+        'The corrected basis is 65 shares × $50 FMV at vest = $3,250, so you pay tax on $325, not $3,575. At a 32% federal + 9.3% CA rate the adjustment saves **$1,358** — the rest was already taxed in W-2 Box 1.',
     },
     { type: 'h2', text: 'Schedule D — the rollup' },
     {
@@ -168,13 +163,15 @@ export const howToReportRsuTaxReturn: BlogPost = {
     },
     { type: 'h2', text: 'Common reporting mistakes (and how to avoid each)' },
     {
-      type: 'ol',
-      items: [
-        '**Forgetting the cost-basis adjustment entirely.** Most common error. Tax software (TurboTax, TaxAct, H&R Block) imports 1099-B with the wrong $0 basis and accepts it unless you manually flag and correct. Use the "I need to adjust this" workflow in your tax software for every RSU lot.',
-        '**Double-reporting the vest income.** Some filers add their RSU vest amount as additional wages on top of W-2 Box 1 — but Box 1 already includes it. Trust Box 1.',
-        '**Mis-classifying short-term vs long-term.** RSU shares sold within 1 year of the VEST DATE (not grant date) are short-term. Beyond 1 year past vest they are long-term. The 1099-B "date acquired" field is the vest date — use that to determine holding period.',
-        '**Reporting share-withholding as a separate sale.** The shares your employer sold to cover taxes at vest are sometimes reported on a separate 1099-B row. If your broker handled this correctly, the proceeds equal the tax withheld and no further action is needed. If proceeds differ materially from the tax withheld at vest, you may have a small gain/loss on the share-sell — report normally with the FMV-at-vest cost basis.',
-        '**Missing wash-sale risk.** If you sell RSU shares at a loss and your employer vests new RSUs within 30 days before or after, IRS §1091 wash-sale rules may disallow the loss. Rare but real for employees on monthly vest schedules.',
+      type: 'table',
+      caption: 'The 5 reporting mistakes — and the fix',
+      headers: ['Mistake', 'How to avoid it'],
+      rows: [
+        ['Forgetting the basis adjustment', 'The big one. Use your software’s "I need to adjust this" flow on every RSU lot.'],
+        ['Double-reporting vest income', 'It’s already in W-2 Box 1 — don’t add it again. Trust Box 1.'],
+        ['Wrong short- vs long-term', 'Count from the VEST date (the 1099-B "date acquired"), not the grant date.'],
+        ['Re-reporting the sell-to-cover', 'Usually already handled; only report a gain/loss if proceeds differ from the tax withheld.'],
+        ['Missing wash-sale risk', 'A loss sale within 30 days of a new vest can be disallowed (§1091) — watch monthly vesters.'],
       ],
     },
     { type: 'h2', text: 'When tax software handles this automatically' },
