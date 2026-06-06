@@ -69,13 +69,24 @@ export const amtCreditRecoveryForm8801: BlogPost = {
         'Each subsequent year:',
     },
     {
-      type: 'ul',
-      items: [
-        '**2025**: regular tax $48,000, TMT $42,000. Usable credit = $6,000. Apply $6,000 against regular tax. Net federal tax $42,000. Remaining credit: $34,000.',
-        '**2026**: regular tax $52,000, TMT $44,000. Usable credit = $8,000. Apply $8,000. Net $44,000. Remaining: $26,000.',
-        '**2027**: regular tax $55,000, TMT $46,000. Usable $9,000. Apply $9,000. Net $46,000. Remaining: $17,000.',
-        '**2028**: regular tax $60,000, TMT $48,000. Usable $12,000 — but only $17,000 of credit left. Apply $12,000. Net $48,000. Remaining: $5,000.',
-        '**2029**: regular tax $65,000, TMT $50,000. Usable $15,000 — but only $5,000 left. Apply $5,000. Net $60,000. **Credit fully recovered.**',
+      type: 'table',
+      caption: '$40k AMT from a 2024 ISO exercise — recovered year by year',
+      headers: ['Year', 'Regular tax', 'TMT', 'Credit used', 'Balance left'],
+      rows: [
+        ['2025', '$48,000', '$42,000', '$6,000', '$34,000'],
+        ['2026', '$52,000', '$44,000', '$8,000', '$26,000'],
+        ['2027', '$55,000', '$46,000', '$9,000', '$17,000'],
+        ['2028', '$60,000', '$48,000', '$12,000', '$5,000'],
+        ['2029', '$65,000', '$50,000', '$5,000', '$0 ✓'],
+      ],
+    },
+    {
+      type: 'flow',
+      caption: 'The credit only comes back if you file',
+      steps: [
+        { label: 'AMT paid 2024', value: '$40,000', tone: 'bad' },
+        { label: 'Recovered by 2029', value: '$40,000', tone: 'good' },
+        { label: 'If you skip Form 8801', value: '$0 back', tone: 'bad' },
       ],
     },
     {
