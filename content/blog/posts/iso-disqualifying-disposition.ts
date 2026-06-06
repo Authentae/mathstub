@@ -33,10 +33,12 @@ export const isoDisqualifyingDisposition: BlogPost = {
         'Under IRC §422, an Incentive Stock Option qualifies for preferential tax treatment if you hold the exercised shares for:',
     },
     {
-      type: 'ol',
-      items: [
-        'At least 2 years from the grant date (when the option was granted), AND',
-        'At least 1 year from the exercise date (when you bought the shares with the option).',
+      type: 'flow',
+      caption: 'Qualifying needs BOTH clocks',
+      steps: [
+        { label: 'From grant', value: '2 years' },
+        { label: 'AND from exercise', value: '1 year' },
+        { label: 'Then', value: 'Qualifying', tone: 'good' },
       ],
     },
     {
@@ -80,25 +82,15 @@ export const isoDisqualifyingDisposition: BlogPost = {
       text:
         'By October 2025, the share price has crashed to $15. You want out of the position. Two paths:',
     },
-    { type: 'h3', text: 'Path A — hold to qualifying disposition (sell March 2027 at $15)' },
     {
-      type: 'ul',
-      items: [
-        'Sale proceeds: $150,000. Cost basis (strike): $50,000.',
-        'Long-term capital gain: $100,000. LTCG tax: $100,000 × 15% federal + 3.8% NIIT + 9.3% CA = ~$28,100.',
-        'AMT credit from 2025: $120,000 carryforward, slowly recovering over future years as regular tax exceeds TMT (typically $10-20k/year recovery).',
-        'But meanwhile, you carried the position through a possible further decline, and the $120,000 AMT is locked away until recovery.',
-      ],
-    },
-    { type: 'h3', text: 'Path B — disqualifying disposition (sell October 2025 at $15)' },
-    {
-      type: 'ul',
-      items: [
-        'Reclassify the bargain element from AMT preference to ordinary income — but only up to the gain at sale: min($450,000 bargain element, ($15 − $5) × 10,000 = $100,000) = $100,000 ordinary income.',
-        'The original $120,000 AMT bill from 2025 gets reduced because the bargain element is now $100,000 (not $450,000) for AMT purposes. AMT recalculation often eliminates most of the original AMT — recoverable as an amended return or a §53 credit applied immediately.',
-        'Ordinary income tax: $100,000 × 35% federal + 9.3% CA + 1.45% Medicare = ~$45,750.',
-        'No further capital gain (proceeds = $150,000, basis after ordinary income recognition = strike + ordinary = $50,000 + $100,000 = $150,000).',
-        'Net 2025 tax impact: ordinary tax $45,750 instead of the original $120,000 AMT — saving ~$74,250.',
+      type: 'table',
+      caption: 'Stock crashed $50 → $15 (10,000 sh · $5 strike · $120k AMT paid)',
+      headers: ['', 'Hold to qualifying (2027)', 'Disqualify now (2025)'],
+      rows: [
+        ['Bargain-element income', '$0 (stays AMT-only)', '$100,000 (capped at the real gain)'],
+        ['Tax on this path', '~$28,100 LTCG', '~$45,750 ordinary'],
+        ['Original $120k AMT', 'Recovers slowly over years', 'Mostly recovered immediately'],
+        ['**Net 2025 effect**', '**$120k AMT still tied up**', '**~$45,750 — saves ~$74,250**'],
       ],
     },
     {
@@ -123,11 +115,13 @@ export const isoDisqualifyingDisposition: BlogPost = {
         'A qualifying disposition in March 2027 (at the 2-year-from-grant mark) at $50 would yield:',
     },
     {
-      type: 'ul',
-      items: [
-        'Proceeds $500,000. Cost basis $50,000. LTCG $450,000. Tax: 20% federal + 3.8% NIIT + 9.3% CA = ~149,850.',
-        'AMT credit recovery: $120,000 over several future years, no immediate offset.',
-        'Total federal tax over the period: $149,850 LTCG + $120,000 AMT already paid − $120,000 eventually recovered = ~$149,850.',
+      type: 'table',
+      caption: 'Hold to qualifying (2027) at $50',
+      headers: ['Item', 'Amount'],
+      rows: [
+        ['Long-term gain', '$450,000'],
+        ['Tax (20% + 3.8% NIIT + 9.3% CA)', '~$149,850'],
+        ['$120k AMT', 'recovers over future years'],
       ],
     },
     {
@@ -136,12 +130,15 @@ export const isoDisqualifyingDisposition: BlogPost = {
         'Disqualifying in October 2026 (before the 1-year-from-exercise mark) at $50:',
     },
     {
-      type: 'ul',
-      items: [
-        'Ordinary income = bargain element = $450,000. Tax: 35% federal + 9.3% CA + 1.45% Medicare = ~205,650.',
-        'Original AMT (~$120,000) is recoverable on amended return or as a credit against the disqualifying-year regular tax.',
-        'Capital gain after the disqualifying date: 0 (proceeds $500k = basis after ordinary income).',
-        'Net cash position: ~$205,650 ordinary minus $120,000 AMT recovery = $85,650 incremental tax.',
+      type: 'table',
+      caption: 'Disqualify (Oct 2026) at $50',
+      headers: ['Item', 'Amount'],
+      rows: [
+        ['Ordinary income (bargain element)', '$450,000'],
+        ['Tax (35% + 9.3% CA + 1.45%)', '~$205,650'],
+        ['$120k AMT', 'recovered now (amended / credit)'],
+        ['Capital gain after', '$0'],
+        ['Net incremental tax', '~$85,650'],
       ],
     },
     {
