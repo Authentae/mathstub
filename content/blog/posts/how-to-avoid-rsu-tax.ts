@@ -31,6 +31,18 @@ export const howToAvoidRsuTax: BlogPost = {
       text:
         'There is no "avoid" button. You can only reduce taxable income elsewhere (deductions), defer when tax is paid (timing), or convert ordinary income to lower-rate capital gain on the appreciation portion (post-vest holding). The vest itself always hits ordinary rates.',
     },
+    {
+      type: 'table',
+      caption: 'The 5 legal levers — none erase the vest tax itself',
+      headers: ['Lever', 'What it does', 'Rough saving'],
+      rows: [
+        ['Move before a vest', 'Skips state tax on future vests', 'Up to ~13% of the vest'],
+        ['Max 401(k) + HSA', 'Lowers your taxable income that year', '~$13k on $400k income'],
+        ['Donate appreciated shares', 'Skips capital-gains tax + full deduction', '~$840 per $8k gifted'],
+        ['Tax-loss harvesting', 'Offsets capital gains (not the vest)', 'Varies'],
+        ['Hold 1+ year', 'Appreciation taxed at the lower LTCG rate', 'Small; risk tradeoff'],
+      ],
+    },
     { type: 'h2', text: 'Strategy 1 — State residency arbitrage (before vest, not after)' },
     {
       type: 'p',
@@ -78,7 +90,21 @@ export const howToAvoidRsuTax: BlogPost = {
     {
       type: 'p',
       text:
-        'Example: 100 shares vested at $50 (cost basis $5,000), now worth $80 each ($8,000). Donate the shares directly: $8,000 deduction, zero cap-gain tax. Donate cash $8,000 after selling: $8,000 deduction, but you owe ~$840 in LTCG tax (15% federal + 3.8% NIIT). The stock donation is ~$840 better per $8,000 donated. For larger gifts, consider a donor-advised fund (Fidelity Charitable, Schwab Charitable, Vanguard) to time the deduction.',
+        'Example — 100 shares (cost basis $5,000) now worth $8,000:',
+    },
+    {
+      type: 'table',
+      caption: 'Donate the shares vs sell first, then donate cash',
+      headers: ['', 'Deduction', 'Capital-gains tax'],
+      rows: [
+        ['Donate shares directly', '$8,000', '$0'],
+        ['Sell, then donate cash', '$8,000', '~$840'],
+      ],
+    },
+    {
+      type: 'p',
+      text:
+        'Same $8,000 deduction either way — but donating the shares directly saves the ~$840 of capital-gains tax (15% + 3.8% NIIT). For larger gifts, a donor-advised fund (Fidelity Charitable, Schwab, Vanguard) lets you time the deduction.',
     },
     { type: 'h2', text: 'Strategy 4 — Tax-loss harvesting (offset cap gains, not ordinary income)' },
     {
@@ -117,13 +143,15 @@ export const howToAvoidRsuTax: BlogPost = {
     },
     { type: 'h2', text: 'What does NOT work (avoid these "loopholes")' },
     {
-      type: 'ul',
-      items: [
-        '**"83(b) election" on RSUs** — does NOT apply. The §83(b) election only works for restricted STOCK (granted at vesting commencement) or stock OPTIONS, not RSUs. RSUs are taxed at vesting per §83(a), with no election available.',
-        '**"Refuse the vest"** — you cannot refuse a vest to avoid tax. The grant agreement controls. Forfeiting unvested shares forfeits the entire grant; vested shares cannot be returned to the employer for a tax do-over.',
-        '**"Defer with an NQDC plan"** — some companies offer non-qualified deferred compensation plans that can defer RSU income, but these have strict §409A rules, are usually only available to executives, and carry counterparty risk (your deferred comp is a general unsecured creditor claim on your employer).',
-        '**"Move to Puerto Rico under Act 60"** — Puerto Rico\'s tax incentives apply to Puerto Rico-source income earned after bona fide residency is established. RSU income from US-sourced work performed before the move is still federally taxable to the US, and IRS Pub 570 + Act 60 sourcing rules are aggressively audited.',
-        '**"Set up an offshore entity to hold the RSUs"** — illegal. RSU income is W-2 wages assigned to you personally. Funneling it through an entity is tax evasion under IRC §61 and §7201.',
+      type: 'table',
+      caption: 'The "loopholes" that don’t work',
+      headers: ['The "trick"', 'Why it fails'],
+      rows: [
+        ['83(b) election on RSUs', 'Doesn’t apply — RSUs are taxed at vest under §83(a); no election exists (it’s for restricted stock or options).'],
+        ['Refuse the vest', 'You can’t. The grant controls; vested shares can’t be returned for a tax do-over.'],
+        ['Defer with an NQDC plan', 'Strict §409A rules, usually execs only, and your deferral is an unsecured claim on the employer.'],
+        ['Move to Puerto Rico (Act 60)', 'US-source work done before the move stays federally taxable; Pub 570 / Act 60 sourcing is aggressively audited.'],
+        ['Offshore entity to hold RSUs', 'Illegal — RSU income is your personal W-2 wages; routing it through an entity is evasion (§61, §7201).'],
       ],
     },
     { type: 'h2', text: 'The takeaway' },
