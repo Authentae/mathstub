@@ -48,16 +48,18 @@ export const rsuCostBasisFixForm8949: BlogPost = {
       text: 'Form 8949 is where Schedule D capital gain entries are reconciled. The form has 7 columns for each sale. Here is what to enter:',
     },
     {
-      type: 'ul',
-      items: [
-        '**Column (a) Description:** "100 sh ACME (RSU vested 2024-04-15)".',
-        '**Column (b) Date acquired:** the vest date.',
-        '**Column (c) Date sold:** the sale date.',
-        '**Column (d) Proceeds:** sale price × shares (matches Box 1d on 1099-B).',
-        '**Column (e) Cost basis as reported:** $0 (matches Box 1e on 1099-B — required for IRS reconciliation).',
-        '**Column (f) Code:** "B" (cost basis reported on 1099-B is incorrect).',
-        '**Column (g) Amount of adjustment:** NEGATIVE basis adjustment. Enter: −(FMV at vest × shares).',
-        '**Column (h) Gain or loss:** auto-calculated. Should equal (sale price − FMV at vest) × shares.',
+      type: 'table',
+      caption: 'Form 8949 — what to enter for an RSU sale',
+      headers: ['Column', 'What to enter'],
+      rows: [
+        ['(a) Description', '“100 sh ACME (RSU vested 2024-04-15)”'],
+        ['(b) Acquired', 'the vest date'],
+        ['(c) Sold', 'the sale date'],
+        ['(d) Proceeds', 'sale price × shares (matches 1099-B box 1d)'],
+        ['(e) Reported basis', '$0 — must match the 1099-B'],
+        ['(f) Code', 'B (basis is incorrect)'],
+        ['(g) Adjustment', '−(FMV at vest × shares)'],
+        ['(h) Gain', 'auto: (sale price − FMV at vest) × shares'],
       ],
     },
     {
@@ -70,12 +72,28 @@ export const rsuCostBasisFixForm8949: BlogPost = {
       text: '100 RSUs vested on April 15, 2024 at FMV $50/share = $5,000 ordinary W-2 income (reported in W-2 Box 1). You sold all 100 on September 1, 2025 at $80/share = $8,000 sale proceeds. Form 1099-B reports cost basis = $0.',
     },
     {
-      type: 'ul',
-      items: [
-        'Unfixed (wrong): capital gain = $8,000 − $0 = $8,000. At 32% federal + 9.3% CA, tax = $3,304. Plus you already paid $1,900 at vest on the $5,000 W-2 income. Total: $5,204.',
-        'Fixed (correct): column (e) = $0 (per 1099-B), column (f) = B, column (g) = −$5,000, column (h) = $3,000 long-term capital gain. Tax on $3,000 LTCG at 15% federal + 9.3% CA = $730. Plus the $1,900 from vest. Total: $2,630.',
-        'Savings from the fix: $5,204 − $2,630 = **$2,574** on a single 100-share sale.',
+      type: 'table',
+      caption: '100 sh vested at $50, sold at $80 — broker vs fixed',
+      headers: ['', 'Unfixed ($0 basis)', 'Fixed (col g = −$5,000)'],
+      rows: [
+        ['Capital gain', '$8,000', '$3,000'],
+        ['Tax on the sale', '$3,304', '$730'],
+        ['+ already paid at vest', '$1,900', '$1,900'],
+        ['**Total**', '**$5,204**', '**$2,630**'],
       ],
+    },
+    {
+      type: 'flow',
+      caption: 'One 60-second column-(g) fix',
+      steps: [
+        { label: 'Unfixed', value: '$5,204', tone: 'bad' },
+        { label: 'Fixed', value: '$2,630', tone: 'good' },
+        { label: 'Saved', value: '$2,574', tone: 'good' },
+      ],
+    },
+    {
+      type: 'p',
+      text: 'The reason the fix is worth so much: without it you pay tax on the full $8,000 sale as if every dollar were profit, when in reality $5,000 of it was already taxed as wages on your vest-day paycheck. The column-(g) adjustment simply tells the IRS "this $5,000 was already taxed once" — so you are only taxed on the true $3,000 of growth. Same sale, same shares, less than a minute of work, $2,574 back in your pocket.',
     },
     { type: 'h2', text: 'TurboTax walkthrough' },
     {
@@ -106,13 +124,15 @@ export const rsuCostBasisFixForm8949: BlogPost = {
       text: 'The cost-basis double-tax pattern applies to ALL employer stock that flows through W-2 income:',
     },
     {
-      type: 'ul',
-      items: [
-        '**ESPP (qualifying disposition):** real basis = FMV at purchase. The discount portion was already taxed as W-2 income.',
-        '**ESPP (disqualifying disposition):** real basis = FMV at purchase. The entire spread between purchase price and FMV at purchase was taxed as W-2 income, and your basis steps up to FMV.',
-        '**ISO (qualifying disposition, held >2y grant + >1y exercise):** real basis = exercise price. You paid that cash; nothing else was taxed (the bargain element was AMT preference but not regular income).',
-        '**ISO (disqualifying):** real basis = FMV at exercise. The bargain element became ordinary W-2 income in the year of disqualification.',
-        '**NSO:** real basis = FMV at exercise. The bargain element (FMV − strike) was taxed as W-2 income at exercise.',
+      type: 'table',
+      caption: 'Your real cost basis, by stock type',
+      headers: ['Type', 'Real basis', 'Why'],
+      rows: [
+        ['ESPP (qualifying)', 'FMV at purchase', 'discount was W-2 income'],
+        ['ESPP (disqualifying)', 'FMV at purchase', 'full spread was W-2 income'],
+        ['ISO (qualifying)', 'Exercise price', 'only AMT, no regular income'],
+        ['ISO (disqualifying)', 'FMV at exercise', 'bargain element became W-2 income'],
+        ['NSO', 'FMV at exercise', 'bargain element was W-2 income'],
       ],
     },
     {
