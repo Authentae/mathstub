@@ -49,14 +49,16 @@ export const extraW4: BlogPost = {
         'Most modern employers let you update W-4 directly in their HR portal. Specific menus by system:',
     },
     {
-      type: 'ul',
-      items: [
-        '**Workday** — Pay → Withholding Elections → Federal Elections → Update.',
-        '**ADP / Workforce Now** — Myself → Pay → Tax Withholdings → Federal W-4.',
-        '**Rippling** — Pay → Tax Withholding → Federal.',
-        '**Justworks** — Personal → Tax Info → Federal W-4.',
-        '**Gusto** — Documents → Tax Forms → Federal W-4.',
-        '**Paychex Flex** — Profile → Payroll → Tax Setup → Federal W-4.',
+      type: 'table',
+      caption: 'Where to find Form W-4 in your payroll system',
+      headers: ['System', 'Path to the W-4'],
+      rows: [
+        ['Workday', 'Pay → Withholding Elections → Federal → Update'],
+        ['ADP / Workforce Now', 'Myself → Pay → Tax Withholdings → Federal W-4'],
+        ['Rippling', 'Pay → Tax Withholding → Federal'],
+        ['Justworks', 'Personal → Tax Info → Federal W-4'],
+        ['Gusto', 'Documents → Tax Forms → Federal W-4'],
+        ['Paychex Flex', 'Profile → Payroll → Tax Setup → Federal W-4'],
       ],
     },
     {
@@ -112,10 +114,13 @@ export const extraW4: BlogPost = {
         'Concrete example. You have a $200,000 RSU vest in March that creates a $30,000 federal shortfall. Two paths to cure:',
     },
     {
-      type: 'ul',
-      items: [
-        '**Path A (W-4 line 4(c)):** in November, you update W-4 to withhold an extra $5,000 per remaining paycheck (6 paychecks × $5,000 = $30,000 by year-end). Per §6654(g)(1), the IRS treats the $30,000 as if it was paid $7,500 per quarter (Q1, Q2, Q3, Q4 — evenly). No quarter is under-paid. Zero §6654 penalty.',
-        '**Path B (Q4 estimated payment):** in November, you make a $30,000 IRS Direct Pay quarterly estimated payment. The IRS credits this entirely to Q4 (the quarter it was paid). Q1, Q2, and Q3 remain under-paid for the part of the year that included the March vest. §6654 penalty applies on the under-paid quarters even though the full amount was paid by year-end.',
+      type: 'table',
+      caption: '$30k shortfall from a March vest, both cured in November',
+      headers: ['', 'W-4 line 4(c)', 'Q4 estimated payment'],
+      rows: [
+        ['How the IRS credits it', 'Spread evenly across all 4 quarters', 'Only to Q4 (when paid)'],
+        ['Q1–Q3 underpayment', 'Cured retroactively', 'Still under-paid'],
+        ['**§6654 penalty**', '**$0**', '**~$450+**'],
       ],
     },
     {
