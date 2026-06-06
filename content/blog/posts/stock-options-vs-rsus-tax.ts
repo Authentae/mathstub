@@ -28,12 +28,19 @@ export const stockOptionsVsRsusTax: BlogPost = {
     },
     { type: 'h2', text: 'The three regimes at a glance' },
     {
-      type: 'ul',
-      items: [
-        '**RSU (Restricted Stock Unit).** Promise to deliver shares on a future vesting date. Taxed at vest on the FMV of the delivered shares as ordinary W-2 income under IRC §83(a). Cost basis = FMV at vest. No tax at grant.',
-        '**ISO (Incentive Stock Option).** Right to buy shares at a fixed strike price. Tax-favored under IRC §422. No ordinary income at grant, vest, or exercise. The bargain element (FMV at exercise minus strike) is an AMT preference item under IRC §56(b)(3). If you hold the exercised shares for the qualifying-disposition period (2 years from grant, 1 year from exercise), the entire gain is taxed as long-term capital gain.',
-        '**NSO (Non-Qualified Stock Option).** Right to buy shares at a fixed strike price, no §422 preferences. The bargain element at exercise is ordinary W-2 income under IRC §83(a) plus FICA. Cost basis after exercise = FMV at exercise. Any further appreciation is capital gain at sale.',
+      type: 'table',
+      caption: 'RSU vs ISO vs NSO — the core mechanics',
+      headers: ['', 'When you’re taxed', 'What’s taxed', 'Cost basis'],
+      rows: [
+        ['RSU', 'At vest', 'Full share value as W-2 income (§83(a))', 'Value at vest'],
+        ['ISO', 'At sale (AMT may bite at exercise)', 'Bargain element is an AMT item (§56(b)(3)); the gain is long-term if you qualify', 'Your strike price'],
+        ['NSO', 'At exercise', 'Bargain element as W-2 income + FICA (§83)', 'Value at exercise'],
       ],
+    },
+    {
+      type: 'p',
+      text:
+        'The ISO "qualifying" hold is 2 years from grant **and** 1 year from exercise. Meet it and the entire gain is long-term capital gain; miss it and the bargain element flips to ordinary income.',
     },
     {
       type: 'callout',
@@ -45,6 +52,21 @@ export const stockOptionsVsRsusTax: BlogPost = {
       type: 'p',
       text:
         'You receive a grant of 1,000 shares (or option-equivalent) from a tech employer. Grant-date FMV is $10/share, strike (for options) is $10/share, vesting is 1-year cliff plus 36-month monthly thereafter. Two years in, all 1,000 shares vest. Share price has risen to $50/share. You hold 2 more years, share price hits $100/share, and you sell. Single filer, CA resident, $200k of other W-2 income. Tax math:',
+    },
+    {
+      type: 'table',
+      caption: 'Same 1,000 shares, three grant types — the bottom line',
+      headers: ['Path', 'Tax at vest / exercise', 'Tax at sale', 'Total', 'Effective rate'],
+      rows: [
+        ['RSU', '$21,375 (vest)', '$14,050', '$35,425', '35.4%'],
+        ['ISO', '~$8,000 AMT (exercise)', '$25,290', '$25,290*', '25.3%'],
+        ['NSO', '$17,500 (exercise)', '$14,050', '$31,550', '31.5%'],
+      ],
+    },
+    {
+      type: 'p',
+      text:
+        '*The ISO total is after recovering the ~$8,000 AMT as a credit in later years. Full worked math for each path below.',
     },
     { type: 'h3', text: 'Path A — RSUs' },
     {
@@ -91,15 +113,21 @@ export const stockOptionsVsRsusTax: BlogPost = {
         'The total-tax differences are real but they hide important non-tax tradeoffs:',
     },
     {
-      type: 'ul',
-      items: [
-        '**Cash flow.** RSUs require no out-of-pocket cash (employer withholds via share-sell). ISO and NSO exercises require cash to pay the strike price (and NSO also requires withholding on the bargain element). For a 10,000-share grant at $10 strike: $100,000 cash to exercise. Many employees never exercise because the cash isn\'t there.',
-        '**Downside risk.** RSUs deliver shares whether the stock has gone up or down — you always get something. Options can expire worthless if the stock never crosses the strike price.',
-        '**Holding period flexibility.** RSUs: you can sell same-day with zero tax penalty (cost basis = sale price). ISOs: same-day sale is a disqualifying disposition, converting the entire spread to ordinary income (defeats the §422 advantage). NSOs: same-day sale is fine, fully taxed but no extra trap.',
-        '**AMT exposure.** Only ISOs trigger AMT. RSUs and NSOs add to regular ordinary income (no AMT impact from the grant itself).',
-        '**Liquidity windows.** Private-company ISOs and NSOs often have only narrow exercise windows (post-termination 90-day window is common). RSUs are simpler — at vest, you get shares.',
-        '**State residency arbitrage.** RSU vests are sourced to where you worked during the vesting period. Option exercises are sourced to where you live at exercise. Movers gain more flexibility with options.',
+      type: 'table',
+      caption: 'The non-tax tradeoffs (often they matter more)',
+      headers: ['', 'RSU', 'ISO', 'NSO'],
+      rows: [
+        ['Cash to exercise', 'None — employer sells to cover', 'Strike price up front', 'Strike + withholding'],
+        ['If the stock drops', 'Always worth something', 'Can expire worthless', 'Can expire worthless'],
+        ['Same-day sale', 'Fine, no penalty', 'Disqualifying — kills the §422 break', 'Fine, fully taxed'],
+        ['Triggers AMT?', 'No', 'Yes', 'No'],
+        ['Where it’s taxed', 'Where you worked while vesting', 'Where you live at exercise', 'Where you live at exercise'],
       ],
+    },
+    {
+      type: 'p',
+      text:
+        'One more practical gap: private-company options often have a tight post-termination exercise window (90 days is common), while RSUs simply deliver shares at vest. And on cash: a 10,000-share grant at a $10 strike needs $100,000 to exercise — the reason many employees never do.',
     },
     { type: 'h2', text: 'When each regime wins' },
     {
