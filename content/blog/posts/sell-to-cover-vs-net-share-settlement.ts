@@ -71,6 +71,19 @@ export const sellToCoverVsNss: BlogPost = {
       text:
         'For YOU the employee: same net shares, same tax withheld, same final tax bill. The choice between sell-to-cover and NSS is the employer\'s, not yours. You usually cannot pick.',
     },
+    {
+      type: 'table',
+      caption: 'Sell-to-cover vs net share settlement',
+      headers: ['', 'Sell-to-cover', 'Net share settlement'],
+      rows: [
+        ['How tax is funded', 'Broker sells some shares on the market', 'Company keeps shares, pays cash itself'],
+        ['Shares hit your account?', 'Yes, then some sold', 'No — withheld before delivery'],
+        ['1099-B generated?', 'Yes (a tiny share-sell)', 'No'],
+        ['Net shares to you', 'Same', 'Same'],
+        ['Total tax', 'Same', 'Same'],
+        ['Typical user', 'Public companies', 'Private / pre-IPO'],
+      ],
+    },
     { type: 'h2', text: 'Which companies use which mechanism' },
     {
       type: 'ul',
@@ -122,13 +135,15 @@ export const sellToCoverVsNss: BlogPost = {
     },
     { type: 'h2', text: 'Common confusions worth dispelling' },
     {
-      type: 'ul',
-      items: [
-        '**"NSS means I owe less tax."** No. The total tax owed is identical — federal income + state + FICA + Medicare on the gross vest FMV.',
-        '**"Sell-to-cover means I sold shares and owe capital-gains tax."** Effectively no. The share-sell happens at the vest price (your cost basis), so gain/loss is bounded by intraday movement and is usually trivial.',
-        '**"I can choose NSS to avoid the share-sell on my 1099-B."** Almost never. The mechanism is set by your employer\'s equity plan and you cannot override.',
-        '**"NSS dilutes my ownership less."** This is the company\'s concern, not yours. Your ownership is fixed by the net shares delivered — same number either way.',
-        '**"Sell-to-cover counts as me trading my company\'s stock for §16 / blackout-window purposes."** Generally no — the share-sell is a mechanical tax-withholding step, not a discretionary insider trade. But Section 16 officers should confirm with their company\'s general counsel.',
+      type: 'table',
+      caption: 'Myths worth dispelling',
+      headers: ['Myth', 'Reality'],
+      rows: [
+        ['"NSS means I owe less tax"', 'No — total tax is identical (income + state + FICA + Medicare on the full FMV).'],
+        ['"Sell-to-cover means capital-gains tax"', 'Effectively no — sold at the vest price, so gain ≈ $0.'],
+        ['"I can pick NSS to skip the 1099-B"', 'Almost never — your employer’s plan sets the method.'],
+        ['"NSS dilutes my ownership less"', 'That’s the company’s concern; your net shares are the same either way.'],
+        ['"Sell-to-cover is an insider trade"', 'Generally no (it’s mechanical) — §16 officers should confirm with counsel.'],
       ],
     },
     { type: 'h2', text: 'When this matters more than usual' },
