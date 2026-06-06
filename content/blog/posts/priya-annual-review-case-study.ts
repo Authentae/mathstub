@@ -27,6 +27,15 @@ export const priyaAnnualReviewCaseStudy: BlogPost = {
       text: 'TurboTax and FreeTaxUSA solve the wrong problem. They help you compute the tax you already owe — in April, after every economic decision is locked in. The problem high earners actually have happens between October 1 and December 31: the year-end window when withholding, contributions, exercises, sales, and Roth conversions can still be moved before the calendar flips. Priya, the senior engineer in this case study, ran her 90-minute year-end review on October 15. By December 31 she had captured $11,300 of cash + unlocked $77,000 of tax-shelter capacity she did not know existed. Here is exactly what she found and the math behind each save.',
     },
     {
+      type: 'flow',
+      caption: 'One 90-minute review, before December 31',
+      steps: [
+        { label: 'Time invested', value: '90 min' },
+        { label: 'Cash saved', value: '$11,300', tone: 'good' },
+        { label: 'Roth shelter', value: '$77,000', tone: 'good' },
+      ],
+    },
+    {
       type: 'callout',
       text: 'Priya is a composite case based on the kind of $200k–$700k MFJ-NY tech-worker scenario the Mathstub Annual Review template is built for. Numbers are concrete; the IRC citations are verbatim. Names are not.',
     },
@@ -47,6 +56,18 @@ export const priyaAnnualReviewCaseStudy: BlogPost = {
       text: 'When Priya sat down on October 15 with the Mathstub Annual Review template, she ran each of its 6 sections in order. Each section took 10–20 minutes. The Notion template links every row into one of the free Mathstub calculators so the math happens live in the browser as the numbers go in.',
     },
 
+    {
+      type: 'table',
+      caption: 'What the 90-minute review caught',
+      headers: ['#', 'Finding', 'Result'],
+      rows: [
+        ['1', '§6654 penalty, still avoidable', '$1,400 saved'],
+        ['2', 'Hidden Mega-Backdoor Roth capacity', '$77k shelter unlocked'],
+        ['3', 'State AMT compounding on ISO', '~$6,200 net AMT, credit tracked'],
+        ['4', 'Broker $0 cost-basis error', '~$11,280 saved (+ $4,800 refund)'],
+        ['5', '38% AAPL concentration', 'Flagged + diversification plan'],
+      ],
+    },
     { type: 'h2', text: 'Finding #1 — $1,400 §6654 penalty she could still avoid' },
     {
       type: 'p',
@@ -151,13 +172,15 @@ export const priyaAnnualReviewCaseStudy: BlogPost = {
       text: 'Adding the cash items:',
     },
     {
-      type: 'ul',
-      items: [
-        '$1,400 — §6654 underpayment penalty avoided via Q4 W-4 4(c) correction',
-        '$11,280 — RSU cost-basis adjustment on 2026 sales (Form 8949 column (g))',
-        '$4,800 — refund recovered via Form 1040-X for tax year 2024 (same cost-basis error)',
-        '−$6,200 — net new AMT she actually owes on the ISO exercise (federal + NY combined, net of recoverable credit)',
-        'Net cash saved/recovered: ~$11,280 in 2026 + $4,800 refund = $16,080 cash. Headline rounded down to $11,300 to reflect the immediate-year impact after the AMT exposure.',
+      type: 'table',
+      caption: 'Cash saved / recovered',
+      headers: ['Item', 'Amount'],
+      rows: [
+        ['§6654 penalty avoided (Q4 W-4 fix)', '+$1,400'],
+        ['RSU cost-basis fix on 2026 sales (Form 8949 col g)', '+$11,280'],
+        ['Form 1040-X refund (2024, same error)', '+$4,800'],
+        ['Net new AMT on the ISO exercise', '−$6,200'],
+        ['**Net immediate-year cash**', '**~$11,300**'],
       ],
     },
     {
@@ -165,12 +188,15 @@ export const priyaAnnualReviewCaseStudy: BlogPost = {
       text: 'Tax-shelter capacity unlocked:',
     },
     {
-      type: 'ul',
-      items: [
-        '$35,500 of Mega-Backdoor Roth capacity captured in Q4 2026',
-        '$71,000 of Mega-Backdoor Roth capacity made available over the next 2 years before her vesting cliff',
-        'Lifetime tax saved on year-one capacity alone (25-year horizon, 7% growth): roughly $46,000 in present value',
-        'Total $106,500 of additional Roth capacity unlocked — the $77,000 headline is the present-value tax shelter portion',
+      type: 'table',
+      caption: 'Roth shelter unlocked',
+      headers: ['Item', 'Amount'],
+      rows: [
+        ['Captured in Q4 2026', '$35,500'],
+        ['Available over the next 2 years', '$71,000'],
+        ['Total capacity unlocked', '$106,500'],
+        ['Lifetime tax saved on yr-1 capacity (PV, 25yr @ 7%)', '~$46,000'],
+        ['**Present-value tax shelter (the headline)**', '**$77,000**'],
       ],
     },
     {
