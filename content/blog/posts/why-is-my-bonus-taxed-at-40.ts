@@ -44,13 +44,15 @@ export const whyIsMyBonusTaxedAt40: BlogPost = {
         'For a bonus paid to a higher-earning tech worker, the deduction stacks:',
     },
     {
-      type: 'ul',
-      items: [
-        '**Federal income tax — 22% (or 37% above $1M YTD).** The flat federal supplemental rate per Treas. Reg. §31.3402(g)-1. The 37% rate kicks in only once your year-to-date supplemental wages cross $1,000,000 — uncommon outside executive comp.',
-        '**State income tax — 0% to 12%.** Varies by state. CA uses 10.23% supplemental, NY 11.7%, IL 4.95%, MA 5%. Texas, Florida, Washington, Tennessee, Nevada — all 0%. Other states default to the top marginal rate.',
-        '**Medicare — 1.45% on every dollar.** No cap, no rate variation. Applies to all wages including supplemental.',
-        '**Additional Medicare — 0.9% above $200k YTD.** Adds on top of regular Medicare once YTD wages cross $200,000 (single threshold). Applies to wage income only.',
-        '**Social Security — 6.2% up to the wage base ($176,100 projected 2026).** If your YTD wages already crossed the wage base before the bonus, this layer drops off. For mid-year bonuses on lower earners, this layer can apply fully or partially.',
+      type: 'table',
+      caption: 'The five layers that stack on a bonus',
+      headers: ['Layer', 'Rate'],
+      rows: [
+        ['Federal supplemental', '22% (37% above $1M YTD)'],
+        ['State', '0% (TX/FL/WA) to ~12% (CA 10.23%, NY 11.7%)'],
+        ['Medicare', '1.45%, every dollar'],
+        ['Additional Medicare', '+0.9% above $200k YTD'],
+        ['Social Security', '6.2% up to ~$176,100 (drops once maxed)'],
       ],
     },
     {
@@ -65,14 +67,16 @@ export const whyIsMyBonusTaxedAt40: BlogPost = {
         'You earn $200,000 base salary and receive a $30,000 cash bonus in June. By June, your YTD wages are roughly $100,000 (half a year of base). Bonus withholding:',
     },
     {
-      type: 'ul',
-      items: [
-        'Federal supplemental: $30,000 × 22% = **$6,600**.',
-        'State (CA): $30,000 × 10.23% = **$3,069**.',
-        'Medicare: $30,000 × 1.45% = **$435**.',
-        'Additional Medicare: YTD wages will be $130k after the bonus, still below the $200k threshold = **$0**.',
-        'Social Security: YTD wages $100k, well below the $176.1k base. Full SS applies. $30,000 × 6.2% = **$1,860**.',
-        'Total withheld: **$11,964 on $30,000 = 39.9%**.',
+      type: 'table',
+      caption: '$30k bonus in June · $200k base (SS not yet maxed)',
+      headers: ['Tax', 'Amount'],
+      rows: [
+        ['Federal (22%)', '$6,600'],
+        ['California (10.23%)', '$3,069'],
+        ['Medicare (1.45%)', '$435'],
+        ['Additional Medicare', '$0 (under $200k YTD)'],
+        ['Social Security (6.2%)', '$1,860'],
+        ['**Total**', '**$11,964 (39.9%)**'],
       ],
     },
     {
@@ -87,14 +91,16 @@ export const whyIsMyBonusTaxedAt40: BlogPost = {
         'Same employee but the bonus comes in December. By December, YTD wages are $180,000 (full base). Bonus withholding:',
     },
     {
-      type: 'ul',
-      items: [
-        'Federal: $30,000 × 22% = **$6,600**.',
-        'State (CA): $30,000 × 10.23% = **$3,069**.',
-        'Medicare: $30,000 × 1.45% = **$435**.',
-        'Additional Medicare: YTD wages were $180k, crossing $200k mid-bonus. The piece above $200k ($10k) gets 0.9% = **$90**.',
-        'Social Security: $176.1k wage base already crossed at YTD = **$0**.',
-        'Total withheld: **$10,194 on $30,000 = 34.0%**.',
+      type: 'table',
+      caption: 'Same $30k bonus in December (SS already maxed)',
+      headers: ['Tax', 'Amount'],
+      rows: [
+        ['Federal (22%)', '$6,600'],
+        ['California (10.23%)', '$3,069'],
+        ['Medicare (1.45%)', '$435'],
+        ['Additional Medicare (0.9% on $10k)', '$90'],
+        ['Social Security', '$0 (already maxed)'],
+        ['**Total**', '**$10,194 (34.0%)**'],
       ],
     },
     {
