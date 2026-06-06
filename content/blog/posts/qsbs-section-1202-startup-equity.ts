@@ -59,12 +59,19 @@ export const qsbsSection1202: BlogPost = {
         'The One Big Beautiful Bill Act (OBBBA), signed July 2025, replaced that all-or-nothing rule with a sliding scale — but only for **stock issued on or after July 4, 2025**:',
     },
     {
-      type: 'ul',
-      items: [
-        '**Hold 3 years → 50% of the gain is tax-free.** (Effective federal rate on the rest works out to about 15.9%, including the 3.8% investment-income tax.)',
-        '**Hold 4 years → 75% tax-free.** (Effective rate about 7.95%.)',
-        '**Hold 5+ years → 100% tax-free.** (The full $0 outcome.)',
+      type: 'table',
+      caption: 'New sliding scale — shares issued on/after July 4, 2025',
+      headers: ['How long you hold', 'Gain that’s tax-free', 'All-in federal rate on the rest'],
+      rows: [
+        ['3 years', '50%', '~15.9%'],
+        ['4 years', '75%', '~7.95%'],
+        ['5+ years', '100%', '$0'],
       ],
+    },
+    {
+      type: 'p',
+      text:
+        '(Those “all-in” rates already include the 3.8% net investment income tax on the portion that is still taxed.)',
     },
     {
       type: 'p',
@@ -85,10 +92,10 @@ export const qsbsSection1202: BlogPost = {
     {
       type: 'ul',
       items: [
-        '**It is a US C-corporation.** Not an S-corp, not an LLC, not a partnership. Most venture-backed startups are C-corps, so this is usually fine — but worth confirming.',
-        '**It was small when your shares were issued.** The company’s total gross assets had to be **$75 million or less** at the moment your stock was issued (it was $50M for stock issued before July 4, 2025). It is fine if the company grows huge later — what matters is the size on the day you got the shares.',
-        '**It is a real operating business, not a service firm.** The law excludes most professional-service and finance-type businesses (law, accounting, consulting, health, financial services, and a few others). A typical software/product startup qualifies; a consulting shop does not.',
-        '**You got the shares straight from the company.** "Original issuance" — you exercised options or bought shares directly from the company, rather than buying them from another shareholder.',
+        '**US C-corporation** — not an S-corp, LLC, or partnership. Most venture-backed startups already are.',
+        '**Under $75M in assets when your shares were issued** ($50M before July 4, 2025). Growing huge later is fine — only the size on issue day counts.',
+        '**A real operating business, not a service firm.** Software/product startups qualify; law, accounting, consulting, health, and finance shops are excluded.',
+        '**Shares bought straight from the company** ("original issuance") — exercised options or a direct purchase, not bought from another shareholder.',
       ],
     },
     { type: 'h2', text: 'The trap that catches employees: options are not QSBS' },
@@ -103,6 +110,11 @@ export const qsbsSection1202: BlogPost = {
         'That means your QSBS holding period starts on the day you exercise, not the day you were granted the options. The practical takeaway is brutal in its simplicity: **the earlier you exercise, the sooner your QSBS clock starts.** People who wait until right before an exit to exercise often blow past any chance at the exclusion, because they never held actual shares long enough.',
     },
     {
+      type: 'analogy',
+      text:
+        'Think of options like a ticket to buy a seat — not the seat itself. The QSBS clock only starts once you actually own the seat (exercise into real shares). Holding the ticket for years counts for nothing.',
+    },
+    {
       type: 'callout',
       text:
         'If you are holding vested options at a qualifying startup and you can afford the exercise cost (and any AMT), exercising early does two things: it starts your QSBS clock, and it locks in a low cost basis. This is exactly the kind of move worth modeling with a CPA before a liquidity event is on the horizon — not after.',
@@ -114,13 +126,19 @@ export const qsbsSection1202: BlogPost = {
         'Say you join a software startup and exercise your options in 2026 for $50,000 total, when the company has $20 million in assets (well under the $75M cap). Five years later the company is acquired and your shares are worth $5,050,000 — a $5,000,000 gain.',
     },
     {
-      type: 'ul',
-      items: [
-        'Your shares were issued after July 4, 2025, so the new sliding scale applies.',
-        'You held 5 years → **100% of the $5,000,000 gain is excluded from federal tax.**',
-        'Without QSBS, that gain at the top 23.8% federal rate (20% long-term + 3.8% NIIT) would have cost about **$1,190,000**.',
-        'With QSBS: **$0 federal tax** on the gain. That is the whole point.',
+      type: 'flow',
+      caption: 'Exercise $50k → hold 5 years → $5M gain',
+      steps: [
+        { label: 'Exercise cost', value: '$50k' },
+        { label: 'Gain at exit', value: '$5M', tone: 'good' },
+        { label: 'Tax without QSBS', value: '−$1.19M', tone: 'bad' },
+        { label: 'Tax with QSBS', value: '$0', tone: 'good' },
       ],
+    },
+    {
+      type: 'p',
+      text:
+        'The shares were issued after July 4, 2025 and held 5 full years, so **100% of the $5,000,000 gain is federal-tax-free**. Without QSBS, that gain at the top 23.8% rate (20% long-term + 3.8% NIIT) would have cost about **$1,190,000**.',
     },
     {
       type: 'p',

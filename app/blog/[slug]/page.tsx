@@ -163,9 +163,14 @@ function splitIntoChunks(text: string, maxWords = 45): string[] {
   const chunks: string[] = [];
   let current = '';
   let currentWords = 0;
+  // Only break where the accumulated text has balanced `**` markers — never
+  // split inside a bold span. A bold phrase that ends a sentence
+  // ("…clock starts.**") would otherwise put the opening `**` in one chunk and
+  // the closing `**` at the start of the next, rendering a literal "** ".
+  const boldBalanced = (s: string) => ((s.match(/\*\*/g) || []).length % 2 === 0);
   for (const s of sentences) {
     const w = s.trim().split(/\s+/).filter(Boolean).length;
-    if (currentWords > 0 && currentWords + w > maxWords) {
+    if (currentWords > 0 && currentWords + w > maxWords && boldBalanced(current)) {
       chunks.push(current.trim());
       current = s;
       currentWords = w;
