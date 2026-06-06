@@ -42,6 +42,11 @@ export const multiStateRsuSourcingCalifornia: BlogPost = {
       text:
         'California sources RSU income to CA based on workdays during the vesting period (FTB Pub 1004, Cal. Code Regs. tit. 18, §17951-4(d)) — NOT based on where you live on vest day. Moving the week before a vest does not move the tax bill.',
     },
+    {
+      type: 'analogy',
+      text:
+        'Think of it like rent for the months you lived somewhere. California charges tax for the slice of the vesting period you actually worked in California — moving out the day before the "lease" ends doesn’t erase the months you already stayed.',
+    },
     { type: 'h2', text: 'Worked example 1 — outbound: CA → TX mid-vest' },
     {
       type: 'p',
@@ -54,14 +59,12 @@ export const multiStateRsuSourcingCalifornia: BlogPost = {
         'California\'s claim on this final tranche:',
     },
     {
-      type: 'ul',
-      items: [
-        'Vesting period for THIS tranche = Jan 2022 – Jan 2026 (4 years total).',
-        'Workdays in CA during the period = ~750 (3 years × 250 days).',
-        'Workdays in TX during the period = ~250 (1 year × 250 days).',
-        'CA allocation fraction = 750 / 1,000 = 75%.',
-        'CA-sourced income = $50,000 × 0.75 = **$37,500**.',
-        'CA tax at the 9.3% marginal rate = ~$3,488.',
+      type: 'flow',
+      caption: 'CA → TX · $50k final tranche · 3 of 4 years worked in CA',
+      steps: [
+        { label: 'CA workdays', value: '750 / 1,000 = 75%' },
+        { label: 'CA-source income', value: '$37,500', tone: 'bad' },
+        { label: 'CA tax (9.3%)', value: '$3,488', tone: 'bad' },
       ],
     },
     {
@@ -76,13 +79,12 @@ export const multiStateRsuSourcingCalifornia: BlogPost = {
         'Reverse scenario. You receive a 4-year grant in January 2022 while working in Texas. After 3 years (Dec 2024), you accept a CA-based role and move to San Francisco. The final tranche vests in January 2026 at $50,000 FMV.',
     },
     {
-      type: 'ul',
-      items: [
-        'Vesting period = Jan 2022 – Jan 2026 (4 years).',
-        'Workdays in TX = ~750. Workdays in CA = ~250.',
-        'CA allocation fraction = 250 / 1,000 = 25%.',
-        'CA-sourced income = $50,000 × 0.25 = **$12,500**.',
-        'CA tax at the 9.3% rate = ~$1,163.',
+      type: 'flow',
+      caption: 'TX → CA · $50k final tranche · only 1 of 4 years worked in CA',
+      steps: [
+        { label: 'CA workdays', value: '250 / 1,000 = 25%' },
+        { label: 'CA-source income', value: '$12,500', tone: 'good' },
+        { label: 'CA tax (9.3%)', value: '$1,163', tone: 'good' },
       ],
     },
     {
