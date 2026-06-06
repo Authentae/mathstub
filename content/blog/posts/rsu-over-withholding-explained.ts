@@ -44,13 +44,15 @@ export const rsuOverWithholding: BlogPost = {
         'For a high-earner equity employee, the deduction from a vest is built from these layers:',
     },
     {
-      type: 'ul',
-      items: [
-        'Federal supplemental withholding — 22% (or 37% above $1M YTD supplemental). This is the federal income tax piece.',
-        'State supplemental withholding — varies. California 10.23%, New York 11.7%, Illinois 4.95%, Texas/Florida/Washington 0%. Some states do not have a separate "supplemental" rate and instead use your normal payroll table.',
-        'Medicare — 1.45% on every dollar.',
-        'Additional Medicare — 0.9% on wages above $200,000 YTD. If you cross that threshold during the year, the additional rate kicks in mid-year.',
-        'Social Security — 6.2% on every dollar of wages up to the SS wage base ($168,600 for 2025, $176,100 projected for 2026). If you have already maxed out SS for the year by hitting the wage base in earlier paychecks, this layer drops off and the deduction looks smaller.',
+      type: 'table',
+      caption: 'The withholding stack on a vest',
+      headers: ['Layer', 'Rate'],
+      rows: [
+        ['Federal supplemental', '22% (37% above $1M YTD)'],
+        ['State supplemental', 'CA 10.23% · NY 11.7% · TX/FL/WA 0%'],
+        ['Medicare', '1.45%, every dollar'],
+        ['Additional Medicare', '+0.9% above $200k YTD'],
+        ['Social Security', '6.2% up to ~$176,100 (drops once maxed)'],
       ],
     },
     {
