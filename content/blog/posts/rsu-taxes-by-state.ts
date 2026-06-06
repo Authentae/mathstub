@@ -26,6 +26,17 @@ export const byState: BlogPost = {
       text:
         'Federal RSU withholding is the same everywhere: 22% (or 37% above $1M YTD supplemental wages) under Treas. Reg. §31.3402(g)-1. State withholding is wildly different. The four biggest tech-worker states span the full range from 0% (TX, WA) to 14%+ (CA with the surcharge) — and the choice of state can swing the all-in tax bill on a $50,000 vest by $5,000+. This post walks each state\'s mechanics with worked numbers, plus the multi-state allocation rule that catches workers who moved during the vesting period.',
     },
+    {
+      type: 'table',
+      caption: 'RSU state tax in the four biggest tech states',
+      headers: ['State', 'Top marginal', 'Supplemental withholding', 'Capital-gains note'],
+      rows: [
+        ['California', '13.3% (14.4% at the very top)', '10.23%', 'Taxed as ordinary income'],
+        ['New York', '10.9% (+ up to 3.876% NYC)', '11.7%', 'Taxed as ordinary income'],
+        ['Washington', '0% on wages', '0%', '7% excise on gains over ~$270k'],
+        ['Texas', '0%', '0%', 'None'],
+      ],
+    },
     { type: 'h2', text: 'California — the high-rate aggressive enforcer' },
     {
       type: 'ul',
@@ -84,18 +95,15 @@ export const byState: BlogPost = {
         'Federal piece (same everywhere): marginal 32% × $50k = $16,000 owed. Withheld 22% × $50k = $11,000. Federal gap = $5,000.',
     },
     {
-      type: 'p',
-      text:
-        'State piece by location:',
-    },
-    {
-      type: 'ul',
-      items: [
-        '**California (San Francisco resident):** marginal 9.3% × $50k = $4,650 owed. Withheld 10.23% × $50k = $5,115. State refund: $465. Combined gap: $4,535 owed.',
-        '**California top bracket ($1M+ income):** marginal 13.3% × $50k = $6,650. Withheld 10.23% × $50k = $5,115. State gap: $1,535. Combined gap: $6,535 owed.',
-        '**New York (Manhattan resident):** marginal NY 9.65% × $50k = $4,825. NYC 3.876% × $50k = $1,938. Combined state+local owed: $6,763. Withheld NY 11.7% × $50k = $5,850 (NY supplemental); NYC withholding similar at ~3.876% = $1,938. Net state/NYC: roughly break-even.',
-        '**Washington (Seattle resident):** state piece: $0 federal-only. Combined gap: $5,000 ($5k federal shortfall).',
-        '**Texas (Austin resident):** state piece: $0. Combined gap: $5,000.',
+      type: 'table',
+      caption: 'The state gap by location (on top of the $5,000 federal gap)',
+      headers: ['Where you live', 'State gap', 'Combined gap'],
+      rows: [
+        ['California (SF)', '−$465 (slight over-withhold)', '$4,535'],
+        ['California ($1M+ bracket)', '+$1,535', '$6,535'],
+        ['New York (Manhattan)', '~break-even', '~$5,000'],
+        ['Washington (Seattle)', '$0', '$5,000'],
+        ['Texas (Austin)', '$0', '$5,000'],
       ],
     },
     {
@@ -105,13 +113,15 @@ export const byState: BlogPost = {
     },
     { type: 'h2', text: 'Other states briefly' },
     {
-      type: 'ul',
-      items: [
-        '**Massachusetts:** 5% flat (9% with the 4% surtax above $1M under the Fair Share Amendment). Short-term capital gains at 8.5%.',
-        '**Oregon:** 9.9% top marginal. Aggressive about tax on remote workers based in OR for Bay Area companies.',
-        '**Illinois:** 4.95% flat.',
-        '**Colorado:** 4.4% flat.',
-        '**Florida / Nevada / South Dakota / Tennessee / Wyoming:** all 0% state, similar to TX/WA.',
+      type: 'table',
+      caption: 'A few more states',
+      headers: ['State', 'Top rate on RSU income'],
+      rows: [
+        ['Massachusetts', '5% flat (9% above $1M)'],
+        ['Oregon', '9.9% (aggressive on remote workers)'],
+        ['Illinois', '4.95% flat'],
+        ['Colorado', '4.4% flat'],
+        ['FL / NV / SD / TN / WY', '0%'],
       ],
     },
     {
