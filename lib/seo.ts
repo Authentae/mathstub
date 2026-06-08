@@ -153,6 +153,41 @@ export function faqSchema(faqs: FaqItem[]) {
   };
 }
 
+/**
+ * Top-level brand entity schema for the homepage. Helps Google build the
+ * "Mathstub" entity in its knowledge graph — foundational for a new brand
+ * and a prerequisite for brand-name rankings and richer SERP treatment.
+ * No SearchAction is included because the site has no on-site search yet
+ * (faking it points the sitelinks search box at a dead URL).
+ */
+export function organizationSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: SITE_NAME,
+    url: siteUrl(),
+    logo: `${siteUrl()}/og/default.png`,
+    description:
+      'Free, IRS-cited tax calculators and plain-English guides for US tech workers with equity compensation (RSUs, ISOs, NSOs, ESPP).',
+  };
+}
+
+export function websiteSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE_NAME,
+    url: siteUrl(),
+    description:
+      'Free equity-comp tax calculators and plain-English guides for US tech workers.',
+    publisher: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      url: siteUrl(),
+    },
+  };
+}
+
 export function breadcrumbSchema(items: Array<{ name: string; path: string }>) {
   return {
     '@context': 'https://schema.org',
