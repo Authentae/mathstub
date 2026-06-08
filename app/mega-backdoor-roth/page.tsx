@@ -54,7 +54,7 @@ export default function Page() {
             <CalcIntro
               kicker="mathstub / mega-backdoor"
               question="How much Roth space does your 401(k) plan actually leave you?"
-              ircCite="The §415(c) overall annual contribution limit ($70,000 in 2025) is what bounds the Mega-Backdoor. Subtract elective deferral + employer match + profit-sharing and the rest is yours as after-tax → Roth — if your plan supports the conversion."
+              ircCite="The §415(c) overall annual contribution limit ($72,000 in 2026) is what bounds the Mega-Backdoor. Subtract elective deferral + employer match + profit-sharing and the rest is yours as after-tax → Roth — if your plan supports the conversion."
               irc="IRC § 415(c), § 402(g)"
             />
             <MegaBackdoorCalculator />
