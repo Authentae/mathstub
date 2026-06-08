@@ -256,6 +256,14 @@ export const blogRelations: Record<string, BlogRelations> = {
     ],
     calcs: ['ca-540nr', 'state-stock-comp', 'rsu-tax-shortfall', 'quarterly-estimated-tax'],
   },
+  '2026-equity-comp-tax-numbers': {
+    posts: [
+      'year-end-equity-comp-checklist',
+      'how-much-tax-will-i-pay-on-rsu',
+      'mega-backdoor-roth-eligibility',
+    ],
+    calcs: ['rsu-tax-shortfall', 'form-6251', 'roth-sequencer'],
+  },
 };
 
 /** Reverse index: for a given calculator slug, which blog posts discuss it. */
