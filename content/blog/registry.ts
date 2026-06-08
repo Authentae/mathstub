@@ -157,6 +157,7 @@ import { priyaAnnualReviewCaseStudy } from './posts/priya-annual-review-case-stu
 import { mayaRsuCostBasisCaseStudy } from './posts/maya-rsu-cost-basis-case-study';
 import { danielCaTxCaseStudy } from './posts/daniel-ca-tx-case-study';
 import { qsbsSection1202 } from './posts/qsbs-section-1202-startup-equity';
+import { taxNumbers2026 } from './posts/2026-equity-comp-tax-numbers';
 
 export const blogPosts: BlogPost[] = [
   whyRsuTooHigh,
@@ -189,6 +190,7 @@ export const blogPosts: BlogPost[] = [
   mayaRsuCostBasisCaseStudy,
   danielCaTxCaseStudy,
   qsbsSection1202,
+  taxNumbers2026,
 ];
 
 export function findPost(slug: string): BlogPost | undefined {
