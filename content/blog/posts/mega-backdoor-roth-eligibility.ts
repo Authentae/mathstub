@@ -6,24 +6,24 @@ export const megaBackdoorRothEligibility: BlogPost = {
   description:
     'Two conditions decide it: your 401(k) plan must allow after-tax contributions AND offer in-service distribution or in-plan Roth conversion. Walk the §415(c) math, identify the room your plan leaves, and learn how to check both flags inside 60 seconds.',
   datePublished: '2026-05-22',
-  dateModified: '2026-06-07',
+  dateModified: '2026-06-09',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier'],
   quickAnswer:
-    'Two things must be true: (1) your 401(k) plan allows after-tax (non-Roth, non-pre-tax) contributions, and (2) the plan supports either in-service distributions or in-plan Roth conversions. If both check out, your annual room equals $70,000 (the §415(c) overall limit) minus your elective deferral ($23,500 max), employer match, and any profit-sharing. Typical FAANG L5: ~$35,000/year of additional Roth space on top of the regular 401(k).',
+    'Two things must be true: (1) your 401(k) plan allows after-tax (non-Roth, non-pre-tax) contributions, and (2) the plan supports either in-service distributions or in-plan Roth conversions. If both check out, your annual room equals $72,000 for 2026 (the §415(c) overall limit) minus your elective deferral ($24,500 max), employer match, and any profit-sharing. Typical FAANG L5: ~$36,500/year of additional Roth space on top of the regular 401(k).',
   keyPoints: [
     'It works only if your 401(k) plan offers two specific features.',
-    'Feature 1: lets you add extra "after-tax" money beyond the normal $23,500 cap.',
+    'Feature 1: lets you add extra "after-tax" money beyond the normal $24,500 cap.',
     'Feature 2: lets you move that money into a Roth (in-plan or as a rollout).',
-    'In 2025 the overall cap is $70,000, minus what you and your employer already put in.',
-    'A typical senior engineer gets about $35,000/year of extra Roth room this way.',
+    'In 2026 the overall cap is $72,000, minus what you and your employer already put in.',
+    'A typical senior engineer gets about $36,500/year of extra Roth room this way.',
     'Convert the money fast — earnings that pile up first get taxed when you convert.',
   ],
   blocks: [
     {
       type: 'p',
-      text: 'The Mega-Backdoor Roth is the highest-leverage retirement move available to high-earning tech workers. Direct Roth IRA contributions phase out at $165,000 MAGI (single) / $246,000 (MFJ) for 2025, which closes the door for almost every FAANG L5+ employee. The Backdoor Roth IRA opens a $7,000/year crack. The Mega-Backdoor opens a $30,000–$46,000/year door — but only if your 401(k) plan supports it.',
+      text: 'The Mega-Backdoor Roth is the highest-leverage retirement move available to high-earning tech workers. Direct Roth IRA contributions phase out at $168,000 MAGI (single) / $252,000 (MFJ) for 2026, which closes the door for almost every FAANG L5+ employee. The Backdoor Roth IRA opens a $7,500/year crack. The Mega-Backdoor opens a $30,000–$46,000/year door — but only if your 401(k) plan supports it.',
     },
     { type: 'h2', text: 'The two-condition test' },
     {
@@ -53,35 +53,35 @@ export const megaBackdoorRothEligibility: BlogPost = {
     { type: 'h2', text: 'The §415(c) math' },
     {
       type: 'p',
-      text: 'The IRS sets an overall annual contribution cap on your 401(k) under IRC §415(c). For 2025, that cap is $70,000. Your Mega-Backdoor room equals that cap minus everything else that flows into your account.',
+      text: 'The IRS sets an overall annual contribution cap on your 401(k) under IRC §415(c). For 2026, that cap is $72,000. Your Mega-Backdoor room equals that cap minus everything else that flows into your account.',
     },
     {
       type: 'quote',
-      text: 'Mega-Backdoor room = $70,000 (§415 cap) − elective deferral − employer match − employer profit-sharing.',
+      text: 'Mega-Backdoor room = $72,000 (§415 cap) − elective deferral − employer match − employer profit-sharing.',
       cite: 'Working formula',
     },
     {
       type: 'p',
-      text: 'Worked example — typical FAANG L5 senior engineer in 2025:',
+      text: 'Worked example — typical FAANG L5 senior engineer in 2026:',
     },
     {
       type: 'flow',
-      caption: 'A typical FAANG L5’s room (2025)',
+      caption: 'A typical FAANG L5’s room (2026)',
       steps: [
-        { label: '§415 cap', value: '$70,000' },
-        { label: '− your deferral', value: '$23,500', tone: 'bad' },
+        { label: '§415 cap', value: '$72,000' },
+        { label: '− your deferral', value: '$24,500', tone: 'bad' },
         { label: '− employer match', value: '$11,000', tone: 'bad' },
-        { label: 'Mega-Backdoor room', value: '$35,500', tone: 'good' },
+        { label: 'Mega-Backdoor room', value: '$36,500', tone: 'good' },
       ],
     },
     {
       type: 'p',
       text:
-        'Elective deferral is the $23,500 §402(g) cap (pre-tax + Roth 401(k) combined); the employer match is a typical $11,000 (it varies, often $11k–$15k); most large tech plans have no profit-sharing. Whatever the §415 cap minus those leaves is your after-tax room.',
+        'Elective deferral is the $24,500 §402(g) cap (pre-tax + Roth 401(k) combined); the employer match is a typical $11,000 (it varies, often $11k–$15k); most large tech plans have no profit-sharing. Whatever the §415 cap minus those leaves is your after-tax room.',
     },
     {
       type: 'p',
-      text: 'That $35,500 — every year — converted to Roth, compounded at 7% real return over 25 years to age 60, becomes roughly $193,000 of tax-free retirement money. Do it every year for 25 years: $2.25 million tax-free. The Mathstub Mega-Backdoor Roth calculator runs the projection on your inputs.',
+      text: 'That $36,500 — every year — converted to Roth, compounded at 7% real return over 25 years to age 60, becomes roughly $198,000 of tax-free retirement money. Do it every year for 25 years: $2.3 million tax-free. The Mathstub Mega-Backdoor Roth calculator runs the projection on your inputs.',
     },
     { type: 'h2', text: 'The conversion mechanism, explained' },
     {
@@ -103,8 +103,8 @@ export const megaBackdoorRothEligibility: BlogPost = {
     {
       type: 'ul',
       items: [
-        '**The 415 limit changes yearly.** $66,000 (2023), $69,000 (2024), $70,000 (2025). Check the current year before assuming.',
-        '**Catch-up contributions sit OUTSIDE the §415 cap.** If you are 50+, the $7,500 catch-up adds to the $70k ceiling, raising your effective total contribution capacity. The Mega-Backdoor room is unchanged.',
+        '**The 415 limit changes yearly.** $66,000 (2023), $69,000 (2024), $70,000 (2025), $72,000 (2026). Check the current year before assuming.',
+        '**Catch-up contributions sit OUTSIDE the §415 cap.** If you are 50+, the $8,000 catch-up (2026) adds to the $72k ceiling, raising your effective total contribution capacity. The Mega-Backdoor room is unchanged.',
         '**Non-discrimination testing (ACP test) can refund your after-tax contributions.** Smaller employers whose highly-paid employees disproportionately use after-tax contributions can fail the IRS ACP test and have to refund some of your contributions. Common at startups, rare at FAANG. Your plan administrator will warn you if this is a risk.',
         '**State tax treatment of the Roth conversion varies.** Most states follow federal treatment (no tax owed on the after-tax basis converted to Roth). California and a few others may treat the conversion differently — verify with your CPA if you are in a state with non-conforming Roth rules.',
       ],
@@ -124,7 +124,7 @@ export const megaBackdoorRothEligibility: BlogPost = {
     },
     {
       type: 'p',
-      text: 'Sources: IRC §415(c) (overall annual contribution limit, $70,000 for 2025); IRC §402(g)(1) (employee elective deferral limit, $23,500 for 2025); IRC §414(v) (catch-up contributions for ages 50+); IRC §408A (Roth IRA rules); IRS Notice 2014-54 (basis isolation rule for after-tax 401(k) conversion); IRS Notice 2024-80 (2025 contribution limits); IRS Publication 560 (Retirement Plans for Small Business); IRS Publication 590-A (Contributions to IRAs); Treas. Reg. §1.415-6; Vanguard, How America Saves 2024 (plan-level after-tax availability statistics).',
+      text: 'Sources: IRC §415(c) (overall annual contribution limit, $72,000 for 2026); IRC §402(g)(1) (employee elective deferral limit, $24,500 for 2026); IRC §414(v) (catch-up contributions for ages 50+); IRC §408A (Roth IRA rules); IRS Notice 2014-54 (basis isolation rule for after-tax 401(k) conversion); IRS Notice 2025-67 (2026 contribution limits); IRS Publication 560 (Retirement Plans for Small Business); IRS Publication 590-A (Contributions to IRAs); Treas. Reg. §1.415-6; Vanguard, How America Saves 2024 (plan-level after-tax availability statistics).',
     },
   ],
 };

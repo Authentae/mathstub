@@ -6,7 +6,7 @@ export const howMuchTaxOnRsu: BlogPost = {
   description:
     'Most US tech workers pay 30–40% of their RSU vest value in combined federal, state, and FICA tax. Walk the exact math by bracket, state, and income level — then plug your numbers into the calculator.',
   datePublished: '2026-05-18',
-  dateModified: '2026-06-07',
+  dateModified: '2026-06-09',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],
@@ -41,7 +41,7 @@ export const howMuchTaxOnRsu: BlogPost = {
         ['State income', '0% (TX/FL/WA) up to ~13.3% (CA)'],
         ['Medicare', '1.45% on every dollar'],
         ['Additional Medicare', '+0.9% above $200k YTD'],
-        ['Social Security', '6.2% up to the wage base (~$176,100 in 2026)'],
+        ['Social Security', '6.2% up to the wage base ($184,500 in 2026)'],
       ],
     },
     {
@@ -53,7 +53,7 @@ export const howMuchTaxOnRsu: BlogPost = {
     {
       type: 'p',
       text:
-        'You are single, earning $200,000 in regular W-2 wages, and you receive a $50,000 RSU vest in March. You have already paid Social Security on the first $176,100 of wages, so SS does not apply to the vest. Here is the actual tax owed on the vest:',
+        'You are single, earning $200,000 in regular W-2 wages, and you receive a $50,000 RSU vest in March. You have already paid Social Security on the first $184,500 of wages (the 2026 wage base), so SS does not apply to the vest. Here is the actual tax owed on the vest:',
     },
     {
       type: 'table',

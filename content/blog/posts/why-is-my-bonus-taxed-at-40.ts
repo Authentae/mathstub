@@ -6,7 +6,7 @@ export const whyIsMyBonusTaxedAt40: BlogPost = {
   description:
     'Your year-end bonus shows up with ~40% taken out and you assume something is wrong. It usually is not. Federal supplemental withholding is 22% by default (or 37% above $1M YTD) regardless of your bracket — and that stacks with state, Medicare, Social Security, and any add-on Medicare for high earners. Here is the actual math.',
   datePublished: '2026-05-19',
-  dateModified: '2026-06-07',
+  dateModified: '2026-06-09',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],
@@ -52,7 +52,7 @@ export const whyIsMyBonusTaxedAt40: BlogPost = {
         ['State', '0% (TX/FL/WA) to ~12% (CA 10.23%, NY 11.7%)'],
         ['Medicare', '1.45%, every dollar'],
         ['Additional Medicare', '+0.9% above $200k YTD'],
-        ['Social Security', '6.2% up to ~$176,100 (drops once maxed)'],
+        ['Social Security', '6.2% up to $184,500 in 2026 (drops once maxed)'],
       ],
     },
     {

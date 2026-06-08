@@ -6,7 +6,7 @@ export const rsuOverWithholding: BlogPost = {
   description:
     'Your employer withheld 30–35% on your RSU vest and you think they made a mistake. Walk the math: federal supplemental, state, Medicare, and Additional Medicare stack quickly. Most of the time it is correct.',
   datePublished: '2026-05-15',
-  dateModified: '2026-06-07',
+  dateModified: '2026-06-09',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],
@@ -52,7 +52,7 @@ export const rsuOverWithholding: BlogPost = {
         ['State supplemental', 'CA 10.23% · NY 11.7% · TX/FL/WA 0%'],
         ['Medicare', '1.45%, every dollar'],
         ['Additional Medicare', '+0.9% above $200k YTD'],
-        ['Social Security', '6.2% up to ~$176,100 (drops once maxed)'],
+        ['Social Security', '6.2% up to $184,500 in 2026 (drops once maxed)'],
       ],
     },
     {
