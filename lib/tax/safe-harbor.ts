@@ -14,9 +14,10 @@ const REGULAR_PRIOR_YEAR_FACTOR = 1.0;
 const CURRENT_YEAR_FACTOR = 0.9;
 
 // IRS underpayment-penalty rate is the federal short-term rate + 3 percentage points,
-// reset quarterly. For 2025–2026 it has hovered around 8% annualized.
-// Source: IRS Rev. Rul. 2024-25 (Q1 2025) and prior. We use 8% as a planning estimate.
-const APPROX_PENALTY_ANNUAL_RATE = 0.08;
+// reset quarterly. It was 8% through 2025 but stepped down in 2026: 7% for Q1
+// (Jan–Mar) and 6% for Q2 (Apr–Jun). We use 7% as the planning estimate.
+// Source: IRS quarterly interest-rate news releases for Q1/Q2 2026 (IRC §6621).
+const APPROX_PENALTY_ANNUAL_RATE = 0.07;
 
 const DUE_DATES_LABEL: Record<Quarter, string> = {
   1: 'April 15',

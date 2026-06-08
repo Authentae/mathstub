@@ -50,7 +50,7 @@ export const quarterlyEstimatedTaxContent = {
     },
     {
       q: 'How is the penalty calculated?',
-      a: 'The IRS underpayment-penalty rate is the federal short-term rate + 3 percentage points, reset quarterly (IRC §6621). For 2025–2026 it has hovered around 8% annualized. Form 2210 computes the penalty per-quarter based on how long each shortfall stayed unpaid. The number we show is a planning estimate using a flat 8%, NOT the exact Form 2210 result.',
+      a: 'The IRS underpayment-penalty rate is the federal short-term rate + 3 percentage points, reset quarterly (IRC §6621). It was 8% through 2025 but stepped down in 2026 — 7% for Q1 and 6% for Q2. Form 2210 computes the penalty per-quarter based on how long each shortfall stayed unpaid. The number we show is a planning estimate using a flat 7%, NOT the exact Form 2210 result.',
     },
     {
       q: 'Should I use 90% of this year or 100/110% of last year?',
