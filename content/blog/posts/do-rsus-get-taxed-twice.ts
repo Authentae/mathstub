@@ -6,7 +6,7 @@ export const rsusTaxedTwice: BlogPost = {
   description:
     'Short answer: no. RSUs are taxed once, in two pieces — income tax when they vest, and a smaller gain tax later if the price goes up. The “double tax” scare is almost always one fixable mistake on your broker’s form. Here it is in plain English.',
   datePublished: '2026-05-16',
-  dateModified: '2026-05-16',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],

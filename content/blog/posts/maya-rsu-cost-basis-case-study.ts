@@ -8,7 +8,7 @@ export const mayaRsuCostBasisCaseStudy: BlogPost = {
   description:
     'Engineer, $280k W-2 California. Sold 100 RSU shares in September, broker reported cost basis = $0 on the 1099-B. The correct Form 8949 column (g) adjustment took 60 seconds and saved her $1,215 on the sale — up to $2,574 in the worst case where her software also taxed it at the wrong rate. Step-by-step worked math with the IRC and broker-reporting citations.',
   datePublished: '2026-05-26',
-  dateModified: '2026-05-26',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],

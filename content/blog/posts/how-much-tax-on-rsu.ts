@@ -6,7 +6,7 @@ export const howMuchTaxOnRsu: BlogPost = {
   description:
     'Most US tech workers pay 30–40% of their RSU vest value in combined federal, state, and FICA tax. Walk the exact math by bracket, state, and income level — then plug your numbers into the calculator.',
   datePublished: '2026-05-18',
-  dateModified: '2026-05-18',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],

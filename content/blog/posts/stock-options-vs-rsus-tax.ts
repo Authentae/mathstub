@@ -6,7 +6,7 @@ export const stockOptionsVsRsusTax: BlogPost = {
   description:
     'RSUs are taxed at vest as ordinary W-2 income on the full FMV. Stock options are only taxed when you exercise — and the mechanics split into ISOs (AMT preference, no ordinary income) and NSOs (ordinary income + FICA on the bargain element). The right grant to choose depends on share-price trajectory, holding plans, and AMT exposure.',
   datePublished: '2026-05-19',
-  dateModified: '2026-05-19',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['harness-wealth', 'turbotax-premier'],

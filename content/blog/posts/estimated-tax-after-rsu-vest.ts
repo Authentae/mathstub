@@ -6,7 +6,7 @@ export const estimatedTax: BlogPost = {
   description:
     'How the IRS §6654 safe-harbor rule works, when an RSU shortfall triggers an underpayment penalty, and the two ways to fix it — with worked numbers and the exact mechanics of why W-4 line 4(c) beats a Q4 estimated payment for retroactive coverage.',
   datePublished: '2026-04-20',
-  dateModified: '2026-05-19',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],

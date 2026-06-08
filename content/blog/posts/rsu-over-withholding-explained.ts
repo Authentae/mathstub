@@ -6,7 +6,7 @@ export const rsuOverWithholding: BlogPost = {
   description:
     'Your employer withheld 30–35% on your RSU vest and you think they made a mistake. Walk the math: federal supplemental, state, Medicare, and Additional Medicare stack quickly. Most of the time it is correct.',
   datePublished: '2026-05-15',
-  dateModified: '2026-05-15',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],

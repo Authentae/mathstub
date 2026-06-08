@@ -6,7 +6,7 @@ export const whenToSellRsus: BlogPost = {
   description:
     'Sell at vest or hold for long-term capital gains? Walk the actual numbers — concentration risk, the 1-year LTCG clock, the cash-flow math, and the cases where holding genuinely beats selling.',
   datePublished: '2026-05-17',
-  dateModified: '2026-05-17',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'harness-wealth'],

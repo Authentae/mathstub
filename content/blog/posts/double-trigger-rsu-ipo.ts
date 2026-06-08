@@ -6,7 +6,7 @@ export const doubleTriggerRsuIpo: BlogPost = {
   description:
     'Pre-IPO RSUs at companies like Stripe, Databricks, SpaceX, and Canva vest on TWO triggers: time-based vesting + a liquidity event. Until IPO, no tax. When the company finally goes public, every share that "vested" over the past 4-7 years hits ordinary income in a single year — often producing seven-figure tax bills with no cash to pay them.',
   datePublished: '2026-05-19',
-  dateModified: '2026-05-19',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['harness-wealth', 'turbotax-premier'],

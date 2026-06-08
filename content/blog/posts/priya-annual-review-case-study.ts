@@ -7,7 +7,7 @@ export const priyaAnnualReviewCaseStudy: BlogPost = {
   description:
     'Senior engineer, $310k MFJ NY, equity comp. She ran a year-end tax review on October 15. The 5 things she found before December 31, the IRC citations, and the exact dollar figures — including the $1,400 §6654 penalty she avoided and the $77,000 of Mega-Backdoor Roth capacity she did not know existed.',
   datePublished: '2026-05-26',
-  dateModified: '2026-05-26',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'harness-wealth'],
