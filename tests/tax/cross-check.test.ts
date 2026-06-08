@@ -94,8 +94,10 @@ describe('Cross-check — ESPP qualifying disposition (§423(c))', () => {
 });
 
 describe('Cross-check — ISO exercise-and-hold AMT (Form 6251)', () => {
-  // Rule (IRC §56(b)(3); Form 6251 line 2i + rate schedule):
-  //   AMTI = regular taxable income + ISO bargain element.
+  // Rule (IRC §56(b)(3); Form 6251 line 2a + 2i + rate schedule):
+  //   The standard deduction is NOT allowed for AMT — Form 6251 line 2a adds it
+  //   back. So AMTI = regular taxable income + standard deduction + ISO bargain
+  //   element  (equivalently: gross income − pre-tax 401(k) + bargain element).
   //   Exemption (single 2025) = $88,100, phased out 25¢/$1 above $626,350.
   //   AMT base = max(0, AMTI − exemption).
   //   TMT = 26% × min(base, $239,100) + 28% × max(0, base − $239,100).
@@ -111,11 +113,12 @@ describe('Cross-check — ISO exercise-and-hold AMT (Form 6251)', () => {
   //     (103,350 − 48,475) × 0.22        = 12,072.50
   //     (161,500 − 103,350) × 0.24       = 13,956.00
   //                          regular tax = 31,607.00
-  //   AMTI = 161,500 + 180,000 = 341,500. Below phaseout → exemption $88,100.
-  //   AMT base = 341,500 − 88,100 = 253,400. Above $239,100 breakpoint.
-  //   TMT = 239,100 × 0.26 + (253,400 − 239,100) × 0.28
-  //       = 62,166 + 4,004 = 66,170.
-  //   AMT owed = 66,170 − 31,607 = 34,563.
+  //   AMTI = 200,000 − 23,500 + 180,000 = 356,500 (std deduction added back).
+  //     Below phaseout → exemption $88,100.
+  //   AMT base = 356,500 − 88,100 = 268,400. Above $239,100 breakpoint.
+  //   TMT = 239,100 × 0.26 + (268,400 − 239,100) × 0.28
+  //       = 62,166 + 8,204 = 70,370.
+  //   AMT owed = 70,370 − 31,607 = 38,763.
   const input: IsoAmtInput = {
     taxYear: 2025,
     filingStatus: 'single',
@@ -139,9 +142,9 @@ describe('Cross-check — ISO exercise-and-hold AMT (Form 6251)', () => {
     expect(r.regularFederalTaxUsd).toBeCloseTo(31_607, 2);
   });
 
-  it('locks AMTI at $341,500 (regular taxable + bargain)', () => {
+  it('locks AMTI at $356,500 (gross − 401k + bargain; std deduction added back)', () => {
     const r = calculateIsoAmt(input);
-    expect(r.amtiUsd).toBeCloseTo(341_500, 2);
+    expect(r.amtiUsd).toBeCloseTo(356_500, 2);
   });
 
   it('locks AMT exemption at $88,100 (no phaseout)', () => {
@@ -149,19 +152,19 @@ describe('Cross-check — ISO exercise-and-hold AMT (Form 6251)', () => {
     expect(r.amtExemptionUsd).toBeCloseTo(88_100, 2);
   });
 
-  it('locks TMT at $66,170', () => {
+  it('locks TMT at $70,370', () => {
     const r = calculateIsoAmt(input);
-    expect(r.tentativeMinimumTaxUsd).toBeCloseTo(66_170, 2);
+    expect(r.tentativeMinimumTaxUsd).toBeCloseTo(70_370, 2);
   });
 
-  it('locks AMT owed at $34,563', () => {
+  it('locks AMT owed at $38,763', () => {
     const r = calculateIsoAmt(input);
-    expect(r.amtOwedUsd).toBeCloseTo(34_563, 2);
+    expect(r.amtOwedUsd).toBeCloseTo(38_763, 2);
   });
 
   it('AMT credit carryforward equals AMT paid', () => {
     const r = calculateIsoAmt(input);
-    expect(r.amtCreditCarryforwardUsd).toBeCloseTo(34_563, 2);
+    expect(r.amtCreditCarryforwardUsd).toBeCloseTo(38_763, 2);
   });
 });
 

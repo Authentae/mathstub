@@ -92,8 +92,8 @@ export interface Form6251Result {
   regularTaxUsd: number;
   /** Form 6251 line 1: regular taxable income before exemptions. */
   amtiBeforeAdjustmentsUsd: number;
-  /** Form 6251 line 2a: SALT add-back. */
-  saltAddBackUsd: number;
+  /** Form 6251 line 2a add-back: standard deduction (if not itemizing) or SALT (if itemizing). */
+  line2aAddBackUsd: number;
   /** Form 6251 line 2i: ISO bargain element. */
   isoAdjustmentUsd: number;
   /** Form 6251 line 2j: other adjustments. */
@@ -155,9 +155,14 @@ export function calculateForm6251(input: Form6251Input): Form6251Result {
   // Form 6251 line 1 starts from line 15 of the 1040 — regular taxable income.
   const amtiBeforeAdjustmentsUsd = regularTaxableIncomeUsd;
 
-  // Line 2a — SALT add-back. Only adds back if itemizing (no SALT deducted on standard).
-  const saltAddBackUsd =
-    input.deductionType === 'itemized' ? input.saltDeductionUsd ?? 0 : 0;
+  // Line 2a add-back. Neither the standard deduction nor SALT is allowed for AMT,
+  // so line 1 (regular taxable income) has them removed and line 2a adds the
+  // relevant one back: the standard deduction for non-itemizers, or the SALT
+  // deduction for itemizers (per IRS Form 6251 instructions, line 2a).
+  const line2aAddBackUsd =
+    input.deductionType === 'standard'
+      ? deductionAppliedUsd
+      : input.saltDeductionUsd ?? 0;
 
   // Line 2i — ISO bargain element (held past calendar year-end).
   const isoAdjustmentUsd = input.isoBargainElementUsd;
@@ -168,7 +173,7 @@ export function calculateForm6251(input: Form6251Input): Form6251Result {
 
   // Line 4 — AMTI.
   const amtiUsd =
-    amtiBeforeAdjustmentsUsd + saltAddBackUsd + isoAdjustmentUsd + otherAdjustmentsUsd;
+    amtiBeforeAdjustmentsUsd + line2aAddBackUsd + isoAdjustmentUsd + otherAdjustmentsUsd;
 
   // Line 5 — AMT exemption (post-phaseout).
   const amtExemptionUsd = amtExemption(amtiUsd, input.filingStatus, input.taxYear);
@@ -191,7 +196,7 @@ export function calculateForm6251(input: Form6251Input): Form6251Result {
   // estimate; the actual Form 8801 calculation is more nuanced (it depends
   // on the deferral/exclusion classification line by line and the regular
   // tax in future years).
-  const totalAdjustments = saltAddBackUsd + isoAdjustmentUsd + otherAdjustmentsUsd;
+  const totalAdjustments = line2aAddBackUsd + isoAdjustmentUsd + otherAdjustmentsUsd;
   const deferralRatio = totalAdjustments > 0 ? isoAdjustmentUsd / totalAdjustments : 0;
   const recoverableCreditEstimateUsd = Math.round(amtOwedUsd * deferralRatio);
 
@@ -201,7 +206,7 @@ export function calculateForm6251(input: Form6251Input): Form6251Result {
     regularTaxableIncomeUsd: Math.round(regularTaxableIncomeUsd),
     regularTaxUsd: Math.round(regularTaxUsd),
     amtiBeforeAdjustmentsUsd: Math.round(amtiBeforeAdjustmentsUsd),
-    saltAddBackUsd: Math.round(saltAddBackUsd),
+    line2aAddBackUsd: Math.round(line2aAddBackUsd),
     isoAdjustmentUsd: Math.round(isoAdjustmentUsd),
     otherAdjustmentsUsd: Math.round(otherAdjustmentsUsd),
     amtiUsd: Math.round(amtiUsd),

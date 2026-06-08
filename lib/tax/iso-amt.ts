@@ -70,18 +70,25 @@ export function calculateIsoAmt(input: IsoAmtInput): IsoAmtResult {
   // Regular taxable income BEFORE the ISO event.
   const grossOrdinaryBefore =
     input.ytdRegularWagesUsd + input.otherTaxableIncomeUsd;
+  const stdDeductionUsd = standardDeduction(input.taxYear, input.filingStatus);
   const regularTaxableIncomeBaseUsd = Math.max(
     0,
-    grossOrdinaryBefore - input.preTaxDeductionsUsd - standardDeduction(input.taxYear, input.filingStatus),
+    grossOrdinaryBefore - input.preTaxDeductionsUsd - stdDeductionUsd,
   );
+
+  // AMTI base excludes the standard deduction: it is NOT allowed for AMT, so
+  // Form 6251 line 2a adds it back (regular taxable income removes it; AMTI must
+  // not). Pre-tax 401(k)/HSA contributions remain excluded for both regular and
+  // AMT. Omitting this add-back understates AMT for standard-deduction filers.
+  const amtiBaseUsd = Math.max(0, grossOrdinaryBefore - input.preTaxDeductionsUsd);
 
   let regularTaxableIncomeAfterUsd = regularTaxableIncomeBaseUsd;
   let additionalOrdinaryIncomeUsd = 0;
-  let amtiUsd = regularTaxableIncomeBaseUsd;
+  let amtiUsd = amtiBaseUsd;
 
   if (input.scenario === 'exercise-and-hold') {
     // Bargain element is an AMT preference; doesn't touch regular taxable income.
-    amtiUsd = regularTaxableIncomeBaseUsd + totalBargainElementUsd;
+    amtiUsd = amtiBaseUsd + totalBargainElementUsd;
   } else {
     // Disqualifying same-year sale: bargain becomes ordinary income, capped at
     // (sale − strike) × shares if sold below FMV.
@@ -90,7 +97,7 @@ export function calculateIsoAmt(input: IsoAmtInput): IsoAmtResult {
     const ordinaryPerShare = Math.min(bargainElementPerShareUsd, realizedPerShare);
     additionalOrdinaryIncomeUsd = ordinaryPerShare * sharesExercised;
     regularTaxableIncomeAfterUsd = regularTaxableIncomeBaseUsd + additionalOrdinaryIncomeUsd;
-    amtiUsd = regularTaxableIncomeAfterUsd; // no AMT preference: it reverses out
+    amtiUsd = amtiBaseUsd + additionalOrdinaryIncomeUsd; // bargain reverses out; std deduction still added back
     if (salePrice < input.strikePricePerShareUsd) {
       notes.push(
         'Sale price below strike — no ordinary income recognized; you have a capital loss instead.',

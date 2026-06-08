@@ -218,7 +218,7 @@ function ResultPanel({ r }: { r: Form6251Result }) {
           Form 6251 line-by-line
         </p>
         <Row label="Line 1 — Taxable income (regular)" value={r.amtiBeforeAdjustmentsUsd} />
-        <Row label="Line 2a — SALT add-back" value={r.saltAddBackUsd} />
+        <Row label="Line 2a — add-back (std. deduction or SALT)" value={r.line2aAddBackUsd} />
         <Row label="Line 2i — ISO bargain element" value={r.isoAdjustmentUsd} />
         <Row label="Line 2 other adjustments" value={r.otherAdjustmentsUsd} />
         <Row label="Line 4 — AMTI" value={r.amtiUsd} bold />
