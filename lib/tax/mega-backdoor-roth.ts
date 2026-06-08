@@ -34,8 +34,7 @@ export const MEGA_BACKDOOR_RULES = {
 
 /**
  * §415(c) overall annual contribution limit per IRS.
- * 2026 limit not yet announced (typically late Oct of prior year);
- * we default to the 2025 limit + a conservative 1.5% COLA placeholder.
+ * 2024–2026 are published actuals (2026 per IRS Notice 2025-67).
  */
 export function section415Limit(taxYear: TaxYear): number {
   switch (taxYear) {

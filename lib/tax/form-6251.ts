@@ -162,7 +162,8 @@ export function calculateForm6251(input: Form6251Input): Form6251Result {
   // Line 2i — ISO bargain element (held past calendar year-end).
   const isoAdjustmentUsd = input.isoBargainElementUsd;
 
-  // Line 2b–2h aggregate placeholder.
+  // Lines 2b–2h (other AMT preference/adjustment items) — passed through from a
+  // single user-supplied aggregate rather than itemized line by line.
   const otherAdjustmentsUsd = input.otherAmtAdjustmentsUsd ?? 0;
 
   // Line 4 — AMTI.
