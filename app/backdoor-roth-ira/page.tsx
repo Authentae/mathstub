@@ -63,7 +63,7 @@ export default function Page() {
         fullWidthDiagram={
           <MathDiagram
             slug="backdoor-roth-ira"
-            alt="Backdoor Roth IRA formula chain: non-deductible Trad IRA $7,000 → convert → pro-rata = pre-tax balance ÷ (pre-tax + after-tax) → tax owed on taxable %"
+            alt="Backdoor Roth IRA formula chain: non-deductible Trad IRA contribution ($7,500 in 2026) → convert → pro-rata = pre-tax balance ÷ (pre-tax + after-tax) → tax owed on taxable %"
           />
         }
         howItWorks={

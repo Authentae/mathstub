@@ -147,7 +147,7 @@ export function RothSequencerCalculator() {
           2. 401(k) plan setup
         </legend>
         <div className="grid gap-4 sm:grid-cols-2">
-          <Field label="Annual elective deferral" hint="2026 limit: $23,500 ($31,000 if 50+).">
+          <Field label="Annual elective deferral" hint="2026 limit: $24,500 ($32,500 if 50+).">
             <input type="number" inputMode="numeric" min={0} value={form.employeeElectiveDeferral}
               onChange={(e) => setForm({ employeeElectiveDeferral: e.target.value })}
               className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" />
