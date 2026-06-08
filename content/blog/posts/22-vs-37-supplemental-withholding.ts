@@ -6,7 +6,7 @@ export const supplementalRule: BlogPost = {
   description:
     'The IRS supplemental-wage rule taxes your RSU and bonus payments at 22% — until you cross $1M in YTD supplemental wages, when it jumps to 37%. Here is exactly how the threshold works, including the multi-employer edge case and what to do when 37% is still not enough.',
   datePublished: '2026-04-18',
-  dateModified: '2026-06-07',
+  dateModified: '2026-06-09',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'harness-wealth'],
@@ -81,7 +81,7 @@ export const supplementalRule: BlogPost = {
     {
       type: 'p',
       text:
-        'Once your total taxable income passes the top federal bracket threshold ($626,350 single, $751,600 MFJ in 2025; projected ~$640k single in 2026), every additional dollar of ordinary income is taxed at:',
+        'Once your total taxable income passes the top federal bracket threshold ($626,350 single, $751,600 MFJ in 2025; $640,600 single, $768,700 MFJ in 2026), every additional dollar of ordinary income is taxed at:',
     },
     {
       type: 'table',

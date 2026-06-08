@@ -16,7 +16,7 @@ export const rothSequencerContent = {
     },
     {
       name: 'Enter your 401(k) plan setup',
-      text: 'Annual elective deferral (often $23,500 in 2026), employer match $, plan flags: allows after-tax contributions? allows in-service distribution OR in-plan Roth conversion? accepts rollovers IN (the receiver side of basis isolation)?',
+      text: 'Annual elective deferral (often $24,500 in 2026), employer match $, plan flags: allows after-tax contributions? allows in-service distribution OR in-plan Roth conversion? accepts rollovers IN (the receiver side of basis isolation)?',
     },
     {
       name: 'Read the sequenced steps',
@@ -24,21 +24,21 @@ export const rothSequencerContent = {
     },
     {
       name: 'Add the steps to your year-end plan',
-      text: 'Total annual Roth capacity headline at the top. Most $200k+ tech workers will see between $35,500 and $42,500 of new Roth space per year between the two paths.',
+      text: 'Total annual Roth capacity headline at the top. Most $200k+ tech workers will see between $36,500 and $44,000 of new Roth space per year between the two paths.',
     },
   ],
   faqs: [
     {
       q: 'Should I do Mega-Backdoor or Backdoor IRA first?',
-      a: "Mega-Backdoor first — it's a much bigger number per year (typically $35,500 in 2026 vs $7,000 for the IRA Backdoor) and the §415(c) limit is calendar-year — unused room can't be carried forward. Do Mega-Backdoor by Dec 31 to capture the year, then do Backdoor IRA anytime (you have until April 15 of the following year for prior-year contributions).",
+      a: "Mega-Backdoor first — it's a much bigger number per year (typically $36,500 in 2026 vs $7,500 for the IRA Backdoor) and the §415(c) limit is calendar-year — unused room can't be carried forward. Do Mega-Backdoor by Dec 31 to capture the year, then do Backdoor IRA anytime (you have until April 15 of the following year for prior-year contributions).",
     },
     {
       q: "What's the pro-rata rule and why does it 'break' the Backdoor?",
-      a: "IRC §408(d)(2) — when you do a Roth conversion of any Traditional IRA money, the IRS treats ALL your Traditional IRA balances as a single pool. Suppose you have $50,000 pre-tax in a SEP-IRA + $7,000 nondeductible from this year's Backdoor contribution. Pro-rata says 50/57 = 87.7% of any conversion is taxable. Doing a Backdoor here costs you ($7,000 × 87.7%) × your marginal rate ≈ $2,000 in conversion tax. That's the pro-rata 'break.'",
+      a: "IRC §408(d)(2) — when you do a Roth conversion of any Traditional IRA money, the IRS treats ALL your Traditional IRA balances as a single pool. Suppose you have $50,000 pre-tax in a SEP-IRA + $7,500 nondeductible from this year's Backdoor contribution. Pro-rata says 50/57.5 = 87.0% of any conversion is taxable. Doing a Backdoor here costs you ($7,500 × 87.0%) × your marginal rate ≈ $2,000 in conversion tax. That's the pro-rata 'break.'",
     },
     {
       q: 'What is basis isolation?',
-      a: "Rolling your pre-tax Traditional IRA balance INTO your 401(k) before doing the Backdoor conversion. The §408(d) pro-rata pool is computed across IRAs only — 401(k) balances are NOT included. So once the pre-tax money is inside the 401(k), the Backdoor conversion pool is just your $7,000 of nondeductible basis, pro-rata is clean, and the conversion is $0 taxable. Requires that your 401(k) plan accepts rollovers IN — not all plans do.",
+      a: "Rolling your pre-tax Traditional IRA balance INTO your 401(k) before doing the Backdoor conversion. The §408(d) pro-rata pool is computed across IRAs only — 401(k) balances are NOT included. So once the pre-tax money is inside the 401(k), the Backdoor conversion pool is just your $7,500 of nondeductible basis, pro-rata is clean, and the conversion is $0 taxable. Requires that your 401(k) plan accepts rollovers IN — not all plans do.",
     },
     {
       q: 'My plan does not accept rollovers in — am I stuck?',
@@ -46,7 +46,7 @@ export const rothSequencerContent = {
     },
     {
       q: "What if my MAGI is below the Roth IRA phaseout?",
-      a: "You do not need the Backdoor at all — just contribute directly to your Roth IRA. The calculator detects this and shows the 'Direct Roth IRA' step instead. 2026 phaseouts: single $150k–$165k, MFJ $236k–$246k. Below the lower bound = full direct contribution; in the band = partial; above = backdoor required.",
+      a: "You do not need the Backdoor at all — just contribute directly to your Roth IRA. The calculator detects this and shows the 'Direct Roth IRA' step instead. 2026 phaseouts: single $153k–$168k, MFJ $242k–$252k. Below the lower bound = full direct contribution; in the band = partial; above = backdoor required.",
     },
     {
       q: "How is this different from running the 2 standalone calcs?",
@@ -54,15 +54,15 @@ export const rothSequencerContent = {
     },
     {
       q: "Mega-Backdoor + Backdoor IRA = how much Roth per year for a typical tech worker?",
-      a: "For a $300k–$700k MFJ tech worker with: $23,500 elective deferral + $11,000 employer match + plan supports after-tax + plan supports in-service distribution: Mega-Backdoor ≈ $35,500 + Backdoor IRA ≈ $7,000 = $42,500/yr of new Roth space. Over a 30-year career at 7%: ~$4.3M of tax-free retirement savings on top of your regular 401(k).",
+      a: "For a $300k–$700k MFJ tech worker with: $24,500 elective deferral + $11,000 employer match + plan supports after-tax + plan supports in-service distribution: Mega-Backdoor ≈ $36,500 + Backdoor IRA ≈ $7,500 = $44,000/yr of new Roth space. Over a 30-year career at 7%: ~$4.4M of tax-free retirement savings on top of your regular 401(k).",
     },
     {
       q: 'Does Mega-Backdoor count against my Roth IRA limit?',
-      a: "No — they are separate buckets. The Roth IRA $7,000 limit (IRC §408A) and the §415(c) $70,000 cap (which controls Mega-Backdoor room) are distinct. You can fill both in the same year. The §402(g) $23,500 elective deferral limit is yet a third bucket, also separate.",
+      a: "No — they are separate buckets. The Roth IRA $7,500 limit (IRC §408A) and the §415(c) $72,000 cap (which controls Mega-Backdoor room) are distinct. You can fill both in the same year. The §402(g) $24,500 elective deferral limit is yet a third bucket, also separate.",
     },
     {
       q: 'What happens if my employer match is large?',
-      a: "Big match shrinks the Mega-Backdoor room dollar-for-dollar. Example: employer match $30,000 + elective deferral $23,500 = $53,500 used; §415(c) cap $70,000 leaves $16,500 of after-tax room. The math is fully mechanical — the calculator computes this for you.",
+      a: "Big match shrinks the Mega-Backdoor room dollar-for-dollar. Example: employer match $30,000 + elective deferral $24,500 = $54,500 used; §415(c) cap $72,000 leaves $17,500 of after-tax room. The math is fully mechanical — the calculator computes this for you.",
     },
     {
       q: "What's NOT covered here?",

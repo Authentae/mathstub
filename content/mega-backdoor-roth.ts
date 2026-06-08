@@ -6,17 +6,17 @@ export const megaBackdoorRothContent = {
     'Free calculator to estimate your Mega-Backdoor Roth room. Plug in your 401(k) elective deferral + employer match — see exactly how much after-tax space your plan leaves under the $70k §415 cap. 2025/2026 IRS limits.',
   h1: 'Mega-Backdoor Roth Calculator',
   lede:
-    'Most high earners are blocked from direct Roth IRA contributions. The Mega-Backdoor Roth — funded via after-tax 401(k) contributions that get converted to Roth — lets you save up to ~$46,500 more in Roth space each year, on top of the standard $23,500 elective deferral. Estimate yours below.',
+    'Most high earners are blocked from direct Roth IRA contributions. The Mega-Backdoor Roth — funded via after-tax 401(k) contributions that get converted to Roth — lets you save up to ~$47,500 more in Roth space each year, on top of the standard $24,500 elective deferral. Estimate yours below.',
   lastUpdated: '2026-05-22',
   taxYearDefault: 2026,
   howToSteps: [
     {
       name: 'Pick your tax year',
-      text: 'Limits update each year. The §415 overall cap was $70,000 in 2025 — the calculator handles 2024–2026.',
+      text: 'Limits update each year. The §415 overall cap is $72,000 in 2026 ($70,000 in 2025) — the calculator handles 2024–2026.',
     },
     {
       name: 'Enter your elective deferral',
-      text: 'Your year-to-date pre-tax + Roth 401(k) deferral combined. Cap is $23,500 in 2025 ($31,000 with the 50+ catch-up; $34,750 if you are 60–63 via SECURE 2.0 super catch-up).',
+      text: 'Your year-to-date pre-tax + Roth 401(k) deferral combined. Cap is $24,500 in 2026 ($32,500 with the $8,000 catch-up at 50+; $35,750 if you are 60–63 via the $11,250 SECURE 2.0 super catch-up).',
     },
     {
       name: 'Add your employer match',
@@ -34,11 +34,11 @@ export const megaBackdoorRothContent = {
   faqs: [
     {
       q: 'What is a Mega-Backdoor Roth, in one sentence?',
-      a: 'You make after-tax (non-Roth) contributions to your 401(k), then convert them to a Roth IRA or Roth 401(k) — turning ~$30–50k/yr of additional space into tax-free retirement growth. The math is governed by IRC §415(c) (the $70k overall cap) and IRS Notice 2014-54 (the basis-isolation rule for the conversion).',
+      a: 'You make after-tax (non-Roth) contributions to your 401(k), then convert them to a Roth IRA or Roth 401(k) — turning ~$30–50k/yr of additional space into tax-free retirement growth. The math is governed by IRC §415(c) (the $72k overall cap for 2026) and IRS Notice 2014-54 (the basis-isolation rule for the conversion).',
     },
     {
       q: 'How is this different from a Backdoor Roth IRA?',
-      a: 'The Backdoor Roth IRA is the $7,000/yr ($8k if 50+) Traditional-IRA-to-Roth-IRA workaround for high earners. The Mega-Backdoor uses your employer 401(k) and unlocks an order of magnitude more space ($30–46k/yr typically). They are independent — you can do both in the same year.',
+      a: 'The Backdoor Roth IRA is the $7,500/yr ($8,600 if 50+) Traditional-IRA-to-Roth-IRA workaround for high earners (2026 limits). The Mega-Backdoor uses your employer 401(k) and unlocks an order of magnitude more space ($30–47k/yr typically). They are independent — you can do both in the same year.',
     },
     {
       q: 'How do I know if my plan allows after-tax contributions?',
@@ -54,11 +54,11 @@ export const megaBackdoorRothContent = {
     },
     {
       q: 'What if my employer match counts against the §415 limit?',
-      a: 'It always does. The $70k §415(c) limit includes: your elective deferral (pre-tax + Roth 401(k) combined, capped at $23,500), your employer match, employer non-elective / profit-sharing contributions, and your after-tax contributions. The calculator subtracts everything except the after-tax to give you the available room.',
+      a: 'It always does. The $72k §415(c) limit (2026) includes: your elective deferral (pre-tax + Roth 401(k) combined, capped at $24,500), your employer match, employer non-elective / profit-sharing contributions, and your after-tax contributions. The calculator subtracts everything except the after-tax to give you the available room.',
     },
     {
       q: 'I am 50+ — does the catch-up change my Mega-Backdoor room?',
-      a: 'The catch-up contribution ($7,500 in 2025, or $11,250 super-catch-up if 60–63 under SECURE 2.0) is itself "elective deferral" that counts against your personal $23,500 limit BUT the §415 overall limit ($70k) is also raised by the catch-up amount. Net result: 50+ filers have roughly the same Mega-Backdoor room as under-50, with slightly different elective-deferral capacity.',
+      a: 'The catch-up contribution ($8,000 in 2026, or $11,250 super-catch-up if 60–63 under SECURE 2.0) is itself "elective deferral" that counts against your personal $24,500 limit BUT the §415 overall limit ($72k) is also raised by the catch-up amount. Net result: 50+ filers have roughly the same Mega-Backdoor room as under-50, with slightly different elective-deferral capacity.',
     },
     {
       q: 'What about the pro-rata rule?',

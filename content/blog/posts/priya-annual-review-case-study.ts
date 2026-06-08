@@ -7,7 +7,7 @@ export const priyaAnnualReviewCaseStudy: BlogPost = {
   description:
     'Senior engineer, $310k MFJ NY, equity comp. She ran a year-end tax review on October 15. The 5 things she found before December 31, the IRC citations, and the exact dollar figures — including the $1,400 §6654 penalty she avoided and the $77,000 of Mega-Backdoor Roth capacity she did not know existed.',
   datePublished: '2026-05-26',
-  dateModified: '2026-06-07',
+  dateModified: '2026-06-09',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'harness-wealth'],
@@ -46,7 +46,7 @@ export const priyaAnnualReviewCaseStudy: BlogPost = {
         '38 years old. Senior software engineer at a Big Tech in Manhattan.',
         'Married, filing jointly. Spouse earns $90k W-2 at a non-tech company. Total W-2 base: $310k.',
         'Equity comp: 4-year RSU grant from 2022 (~$120k FMV/year vesting through 2026). Pre-IPO ISO grant from a prior startup (200 shares, exercised earlier this year — bargain element $84k). No ESPP.',
-        '401(k): $23,500 elective deferral maxed by payroll. 5% employer match. Plan allows after-tax contributions and in-service distributions (she does not know this yet).',
+        '401(k): $24,500 elective deferral maxed by payroll (2026 limit). 5% employer match. Plan allows after-tax contributions and in-service distributions (she does not know this yet).',
         'Brokerage: Mostly company stock, ~$200k of AAPL.',
         'Tax software: H&R Block Premium last 3 years. No CPA. Has been quietly surprised at filing time every year.',
       ],
@@ -93,19 +93,19 @@ export const priyaAnnualReviewCaseStudy: BlogPost = {
     { type: 'h2', text: 'Finding #2 — $77,000 of Mega-Backdoor Roth capacity she did not know existed' },
     {
       type: 'p',
-      text: 'Section 2 of the review walks the 401(k) calendar. Priya\'s plan allows after-tax (not Roth) contributions on top of the regular $23,500 elective deferral. It also allows in-service distributions — meaning the after-tax money can be converted to Roth without waiting until separation. HR has not surfaced this combination because the plan vendor (a major payroll-and-401k integrator) does not push it. Priya did not know.',
+      text: 'Section 2 of the review walks the 401(k) calendar. Priya\'s plan allows after-tax (not Roth) contributions on top of the regular $24,500 elective deferral. It also allows in-service distributions — meaning the after-tax money can be converted to Roth without waiting until separation. HR has not surfaced this combination because the plan vendor (a major payroll-and-401k integrator) does not push it. Priya did not know.',
     },
     {
       type: 'p',
-      text: 'The math, anchored to IRC §415(c)(1)(A): the 2026 total annual addition limit for a single 401(k) is $70,000 (this is the §415 cap; check current-year value on IRS Notice 2025-67 or successor). Subtract: $23,500 elective + ~$11,000 employer match = $34,500 already used. Remaining §415 room available as after-tax contribution: $70,000 − $34,500 = $35,500 per year. Over the 4 years she stays at this company at her current trajectory: $35,500 × 4 = $142,000 of after-tax 401(k) contributions, which (via in-service distribution → Roth conversion under IRS Notice 2014-54) become Roth dollars growing tax-free forever.',
+      text: 'The math, anchored to IRC §415(c)(1)(A): the 2026 total annual addition limit for a single 401(k) is $72,000 (this is the §415 cap per IRS Notice 2025-67). Subtract: $24,500 elective + ~$11,000 employer match = $35,500 already used. Remaining §415 room available as after-tax contribution: $72,000 − $35,500 = $36,500 per year. Over the 4 years she stays at this company at her current trajectory: $36,500 × 4 = $146,000 of after-tax 401(k) contributions, which (via in-service distribution → Roth conversion under IRS Notice 2014-54) become Roth dollars growing tax-free forever.',
     },
     {
       type: 'p',
-      text: 'But this year alone she still has Q4 to capture: she elects 100% of remaining 2026 paychecks (~9 pay periods) into after-tax to hit ~$35,500 of after-tax contribution before December 31. Converted in-service to Roth, that is $35,500 of Roth space captured this year. The "$77,000" headline comes from the full math: $35,500 captured in Q4 2026 + a confirmed $35,500/year × 2 future years she remains at the company before her vesting cliff = ~$106,500 of capacity unlocked, of which $77,000 is the present-value tax-deferred portion projected forward at the assumed bracket.',
+      text: 'But this year alone she still has Q4 to capture: she elects 100% of remaining 2026 paychecks (~9 pay periods) into after-tax to hit ~$36,500 of after-tax contribution before December 31. Converted in-service to Roth, that is $36,500 of Roth space captured this year. The "$77,000" headline comes from the full math: $36,500 captured in Q4 2026 + a confirmed $36,500/year × 2 future years she remains at the company before her vesting cliff = ~$109,500 of capacity unlocked, of which $77,000 is the present-value tax-deferred portion projected forward at the assumed bracket.',
     },
     {
       type: 'p',
-      text: 'How much tax does this save? On the $35,500 of after-tax-to-Roth converted this year: the after-tax basis carries over, so the conversion is tax-free (assuming the in-service distribution happens within the same year as the contribution, eliminating earnings — see IRS Notice 2014-54 §III on basis recovery). Growth on $35,500 over 25 years at 7% = $193,000 — all tax-free. Same growth in a taxable brokerage account would face long-term capital gains + NIIT (combined ~23.8% federal) on the gains plus NY state on the way out. Lifetime tax saved on year-one capacity alone: roughly $46,000 in present value.',
+      text: 'How much tax does this save? On the $36,500 of after-tax-to-Roth converted this year: the after-tax basis carries over, so the conversion is tax-free (assuming the in-service distribution happens within the same year as the contribution, eliminating earnings — see IRS Notice 2014-54 §III on basis recovery). Growth on $36,500 over 25 years at 7% = $198,000 — all tax-free. Same growth in a taxable brokerage account would face long-term capital gains + NIIT (combined ~23.8% federal) on the gains plus NY state on the way out. Lifetime tax saved on year-one capacity alone: roughly $46,000 in present value.',
     },
 
     { type: 'h2', text: 'Finding #3 — State AMT compounding on her ISO exercise' },
@@ -192,7 +192,7 @@ export const priyaAnnualReviewCaseStudy: BlogPost = {
       caption: 'Roth shelter unlocked',
       headers: ['Item', 'Amount'],
       rows: [
-        ['Captured in Q4 2026', '$35,500'],
+        ['Captured in Q4 2026', '$36,500'],
         ['Available over the next 2 years', '$71,000'],
         ['Total capacity unlocked', '$106,500'],
         ['Lifetime tax saved on yr-1 capacity (PV, 25yr @ 7%)', '~$46,000'],

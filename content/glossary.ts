@@ -244,7 +244,7 @@ export const glossary: GlossaryEntry[] = [
     term: 'FICA (Federal Insurance Contributions Act)',
     slug: 'fica',
     definition:
-      'Payroll taxes funding Social Security (6.2% up to the wage base of $176,100 in 2026) and Medicare (1.45% on all wages, plus an additional 0.9% above $200,000 YTD). Applies to RSU vest FMV and NSO exercise spreads, but NOT to ISO exercises or LTCG.',
+      'Payroll taxes funding Social Security (6.2% up to the wage base of $184,500 in 2026) and Medicare (1.45% on all wages, plus an additional 0.9% above $200,000 YTD). Applies to RSU vest FMV and NSO exercise spreads, but NOT to ISO exercises or LTCG.',
     source: 'IRC §3101; IRC §3121',
     see: ['social-security-wage-base', 'additional-medicare'],
   },
@@ -252,7 +252,7 @@ export const glossary: GlossaryEntry[] = [
     term: 'Social Security wage base',
     slug: 'social-security-wage-base',
     definition:
-      'Annual cap on wages subject to the 6.2% Social Security portion of FICA. $176,100 (projected) for 2026. Once you cross the base via earlier paychecks, the SS portion drops off — making same-year RSU vests after the base smaller-bite.',
+      'Annual cap on wages subject to the 6.2% Social Security portion of FICA. $184,500 for 2026 (SSA, announced Oct 2025). Once you cross the base via earlier paychecks, the SS portion drops off — making same-year RSU vests after the base smaller-bite.',
     source: 'IRC §3121(a)(1); SSA annual COLA',
     see: ['fica'],
   },

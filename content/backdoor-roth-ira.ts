@@ -12,7 +12,7 @@ export const backdoorRothIraContent = {
   howToSteps: [
     {
       name: 'Enter your MAGI and filing status',
-      text: 'Modified Adjusted Gross Income drives the phaseout. Roth IRA direct contributions phase out from $150,000–$165,000 (single) or $236,000–$246,000 (MFJ) in 2025. Above the top number, only Backdoor is available.',
+      text: 'Modified Adjusted Gross Income drives the phaseout. Roth IRA direct contributions phase out from $153,000–$168,000 (single) or $242,000–$252,000 (MFJ) in 2026. Above the top number, only Backdoor is available.',
     },
     {
       name: 'Enter your pre-tax Traditional IRA balance',
@@ -30,7 +30,7 @@ export const backdoorRothIraContent = {
   faqs: [
     {
       q: 'What is the Backdoor Roth IRA, in one sentence?',
-      a: 'Non-deductible Traditional IRA contribution ($7,000/yr in 2025; $8,000 if 50+) immediately converted to a Roth IRA, giving high earners a path into Roth space that is otherwise closed by the income phaseout. Cited: IRC §408A and §219; the strategy is implicit in the Tax Code post-2010 when the conversion income limit was repealed.',
+      a: 'Non-deductible Traditional IRA contribution ($7,500/yr in 2026; $8,600 if 50+) immediately converted to a Roth IRA, giving high earners a path into Roth space that is otherwise closed by the income phaseout. Cited: IRC §408A and §219; the strategy is implicit in the Tax Code post-2010 when the conversion income limit was repealed.',
     },
     {
       q: 'What is the pro-rata rule?',
