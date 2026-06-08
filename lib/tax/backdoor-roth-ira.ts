@@ -49,12 +49,12 @@ export function rothPhaseout(taxYear: TaxYear, filingStatus: FilingStatus): Phas
           ? { full: 0, none: 10_000 }
           : { full: 150_000, none: 165_000 };
     case 2026:
-      // 2026 not yet announced; placeholder ~+3%
+      // IRS Notice 2025-67 (2026).
       return filingStatus === 'mfj'
-        ? { full: 243_000, none: 253_000 }
+        ? { full: 242_000, none: 252_000 }
         : filingStatus === 'mfs'
           ? { full: 0, none: 10_000 }
-          : { full: 154_000, none: 169_000 };
+          : { full: 153_000, none: 168_000 };
     default:
       return { full: 150_000, none: 165_000 };
   }
@@ -71,12 +71,15 @@ export function iraContributionLimit(taxYear: TaxYear, age: number): number {
       base = 7_000;
       break;
     case 2026:
-      base = 7_500; // placeholder
+      base = 7_500; // IRS Notice 2025-67.
       break;
     default:
       base = 7_000;
   }
-  const catchUp = age >= 50 ? 1_000 : 0;
+  // IRA catch-up (50+): $1,000 through 2025; indexed to $1,100 for 2026
+  // (SECURE 2.0 §108, IRS Notice 2025-67).
+  const catchUpAmount = taxYear === 2026 ? 1_100 : 1_000;
+  const catchUp = age >= 50 ? catchUpAmount : 0;
   return base + catchUp;
 }
 

@@ -44,7 +44,7 @@ export function section415Limit(taxYear: TaxYear): number {
     case 2025:
       return 70_000;
     case 2026:
-      return 71_000; // placeholder — verify against IRS Notice when published
+      return 72_000; // IRS Notice 2025-67.
     default:
       return 70_000;
   }
@@ -62,7 +62,7 @@ export function electiveDeferralLimit(taxYear: TaxYear, age: number): number {
       base = 23_500;
       break;
     case 2026:
-      base = 24_000; // placeholder
+      base = 24_500; // IRS Notice 2025-67.
       break;
     default:
       base = 23_500;
@@ -72,10 +72,12 @@ export function electiveDeferralLimit(taxYear: TaxYear, age: number): number {
   if (age >= 50) {
     catchUp = taxYear === 2024 ? 7_500 : taxYear === 2025 ? 7_500 : 8_000;
   }
-  // SECURE 2.0 super catch-up for ages 60–63 (effective 2025)
+  // SECURE 2.0 super catch-up for ages 60–63 (effective 2025). Published
+  // explicitly at $11,250 for both 2025 and 2026 (IRS Notice 2024-80 /
+  // 2025-67) — not a clean 150% of the indexed 50+ catch-up, so use the
+  // stated figure rather than recomputing.
   if (age >= 60 && age <= 63 && taxYear >= 2025) {
-    // Greater of $10,000 or 150% of standard catch-up
-    catchUp = Math.max(10_000, Math.floor(catchUp * 1.5));
+    catchUp = 11_250;
   }
   return base + catchUp;
 }

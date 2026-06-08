@@ -91,44 +91,45 @@ const BRACKETS_2025: BracketTable = {
   ],
 };
 
-// Projected 2026 brackets — ~2.8% CPI inflation adjustment from 2025 thresholds.
-// These will be replaced with actual IRS Rev. Proc. values when published in late 2025.
+// IRS Rev. Proc. 2025-32 (tax year 2026), reflecting One Big Beautiful Bill Act
+// amendments. Verified against the IRS newsroom release + Tax Foundation 2026
+// tables (checked 2026-06). `from` = income at or above this threshold.
 const BRACKETS_2026: BracketTable = {
   single: [
     { from: 0, rate: 0.1 },
-    { from: 12_259, rate: 0.12 },
-    { from: 49_832, rate: 0.22 },
-    { from: 106_244, rate: 0.24 },
-    { from: 202_824, rate: 0.32 },
-    { from: 257_540, rate: 0.35 },
-    { from: 643_888, rate: 0.37 },
+    { from: 12_400, rate: 0.12 },
+    { from: 50_400, rate: 0.22 },
+    { from: 105_700, rate: 0.24 },
+    { from: 201_775, rate: 0.32 },
+    { from: 256_225, rate: 0.35 },
+    { from: 640_600, rate: 0.37 },
   ],
   mfj: [
     { from: 0, rate: 0.1 },
-    { from: 24_518, rate: 0.12 },
-    { from: 99_665, rate: 0.22 },
-    { from: 212_488, rate: 0.24 },
-    { from: 405_649, rate: 0.32 },
-    { from: 515_079, rate: 0.35 },
-    { from: 772_645, rate: 0.37 },
+    { from: 24_800, rate: 0.12 },
+    { from: 100_800, rate: 0.22 },
+    { from: 211_400, rate: 0.24 },
+    { from: 403_550, rate: 0.32 },
+    { from: 512_450, rate: 0.35 },
+    { from: 768_700, rate: 0.37 },
   ],
   mfs: [
     { from: 0, rate: 0.1 },
-    { from: 12_259, rate: 0.12 },
-    { from: 49_832, rate: 0.22 },
-    { from: 106_244, rate: 0.24 },
-    { from: 202_824, rate: 0.32 },
-    { from: 257_540, rate: 0.35 },
-    { from: 386_322, rate: 0.37 },
+    { from: 12_400, rate: 0.12 },
+    { from: 50_400, rate: 0.22 },
+    { from: 105_700, rate: 0.24 },
+    { from: 201_775, rate: 0.32 },
+    { from: 256_225, rate: 0.35 },
+    { from: 384_350, rate: 0.37 },
   ],
   hoh: [
     { from: 0, rate: 0.1 },
-    { from: 17_476, rate: 0.12 },
-    { from: 66_666, rate: 0.22 },
-    { from: 106_244, rate: 0.24 },
-    { from: 202_824, rate: 0.32 },
-    { from: 257_514, rate: 0.35 },
-    { from: 643_888, rate: 0.37 },
+    { from: 17_700, rate: 0.12 },
+    { from: 67_450, rate: 0.22 },
+    { from: 105_700, rate: 0.24 },
+    { from: 201_775, rate: 0.32 },
+    { from: 256_200, rate: 0.35 },
+    { from: 640_600, rate: 0.37 },
   ],
 };
 
@@ -146,11 +147,12 @@ const STANDARD_DEDUCTION_2025: Record<FilingStatus, number> = {
   hoh: 22_500,
 };
 
+// IRS Rev. Proc. 2025-32 (tax year 2026), incl. OBBBA increase.
 const STANDARD_DEDUCTION_2026: Record<FilingStatus, number> = {
-  single: 15_420,
-  mfj: 30_840,
-  mfs: 15_420,
-  hoh: 23_130,
+  single: 16_100,
+  mfj: 32_200,
+  mfs: 16_100,
+  hoh: 24_150,
 };
 
 const SUPPLEMENTAL_HIGH_RATE_THRESHOLD = 1_000_000;
