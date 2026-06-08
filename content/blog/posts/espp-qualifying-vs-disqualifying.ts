@@ -6,7 +6,7 @@ export const esppQualifyingVsDisqualifying: BlogPost = {
   description:
     'A §423 ESPP gives you a tax break only if you hold the shares long enough for a "qualifying disposition" — at least 2 years from offering date AND 1 year from purchase. Selling earlier triggers a "disqualifying disposition" where the entire discount becomes ordinary W-2 income. The math is not always one-sided — here is the worked comparison.',
   datePublished: '2026-05-19',
-  dateModified: '2026-05-19',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'harness-wealth'],

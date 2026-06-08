@@ -6,7 +6,7 @@ export const extraW4: BlogPost = {
   description:
     'Step-by-step guide to using Form W-4 line 4(c) to withhold extra federal tax from each paycheck and avoid an April surprise. Plus the mechanic that makes W-4 the right tool 90% of the time: IRC §6654(g)(1) treats withholding as paid evenly across the year.',
   datePublished: '2026-04-22',
-  dateModified: '2026-05-19',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'empower'],

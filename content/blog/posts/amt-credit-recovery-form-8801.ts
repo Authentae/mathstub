@@ -6,7 +6,7 @@ export const amtCreditRecoveryForm8801: BlogPost = {
   description:
     'Every dollar of AMT you paid on an ISO exercise becomes a credit you can recover in future years — but only when your regular tax exceeds your tentative minimum tax in that year. Form 8801 is how you track and claim it. Most ISO exercisers never recover their credit because they never file the form.',
   datePublished: '2026-05-19',
-  dateModified: '2026-05-19',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['harness-wealth', 'turbotax-premier'],

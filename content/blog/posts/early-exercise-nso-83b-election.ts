@@ -6,7 +6,7 @@ export const earlyExerciseNso83b: BlogPost = {
   description:
     'Early-exercising unvested NSO grants and filing a §83(b) election within 30 days converts all future appreciation from ordinary income (37%+ federal) to long-term capital gain (15-20%). For a pre-IPO startup employee with a $0.10 strike and a $10 expected exit, that can be a six-figure tax saving. But the trade-offs — cash out of pocket now, forfeiture risk, fiduciary 30-day clock — are unforgiving.',
   datePublished: '2026-05-19',
-  dateModified: '2026-05-19',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['harness-wealth', 'turbotax-premier'],

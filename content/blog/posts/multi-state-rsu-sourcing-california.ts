@@ -6,7 +6,7 @@ export const multiStateRsuSourcingCalifornia: BlogPost = {
   description:
     'Moving in or out of California before an RSU vest does not always escape California tax. The Franchise Tax Board sources RSU income to California based on the percentage of the vesting period you worked there — even if you live elsewhere on vest day. Here is the math, with worked examples for the most common move scenarios.',
   datePublished: '2026-05-19',
-  dateModified: '2026-05-19',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['harness-wealth', 'turbotax-premier'],

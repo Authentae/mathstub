@@ -6,7 +6,7 @@ export const rsuTaxOffsetPaycheck: BlogPost = {
   description:
     'The "RSU tax offset" line on your paystub is not a real charge. It is an accounting placeholder your payroll software uses to reconcile the RSU vest income that already had taxes withheld via share-withholding (sell-to-cover). Net effect on take-home: zero.',
   datePublished: '2026-05-19',
-  dateModified: '2026-05-19',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],

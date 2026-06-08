@@ -6,7 +6,7 @@ export const yearEndChecklist: BlogPost = {
   description:
     'A 10-item December checklist to avoid surprises on next April\'s return when your compensation includes RSUs, ESPP, or stock options. Each item links back to the calculator and the deeper article that explains the mechanic.',
   datePublished: '2026-04-30',
-  dateModified: '2026-05-19',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'harness-wealth', 'carta'],

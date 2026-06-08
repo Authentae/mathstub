@@ -6,7 +6,7 @@ export const howToAvoidRsuTax: BlogPost = {
   description:
     'You cannot legally avoid tax on RSU vests — the FMV is taxed as ordinary income under IRC §83(a) the moment shares deliver. But 5 strategies can legally reduce, defer, or offset the tax bill: state arbitrage, 401(k) and HSA stacking, qualified charitable gifts, tax-loss harvesting, and post-vest holding for LTCG.',
   datePublished: '2026-05-19',
-  dateModified: '2026-05-19',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['harness-wealth', 'turbotax-premier'],

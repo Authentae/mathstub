@@ -6,7 +6,7 @@ export const qsbsSection1202: BlogPost = {
   description:
     'Section 1202 (QSBS) can wipe out federal tax on millions in startup stock gains — and the rules just got better in July 2025. Here is who qualifies, the new tiered holding period, and the traps in plain English.',
   datePublished: '2026-06-01',
-  dateModified: '2026-06-01',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['harness-wealth', 'turbotax-premier'],

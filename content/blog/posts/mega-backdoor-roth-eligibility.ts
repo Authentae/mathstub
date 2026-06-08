@@ -6,7 +6,7 @@ export const megaBackdoorRothEligibility: BlogPost = {
   description:
     'Two conditions decide it: your 401(k) plan must allow after-tax contributions AND offer in-service distribution or in-plan Roth conversion. Walk the §415(c) math, identify the room your plan leaves, and learn how to check both flags inside 60 seconds.',
   datePublished: '2026-05-22',
-  dateModified: '2026-05-22',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier'],

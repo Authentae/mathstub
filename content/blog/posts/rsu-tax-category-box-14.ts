@@ -6,7 +6,7 @@ export const rsuTaxCategoryBox14: BlogPost = {
   description:
     'Box 14 on your W-2 is an informational line your employer uses to itemize specific compensation components. The RSU code there (RSU, RSU VEST, SECT 132, EQUITY COMP, STKCMP) is not extra income — it is just a callout of how much of your Box 1 wages came from RSU vests. No action required on your federal return.',
   datePublished: '2026-05-19',
-  dateModified: '2026-05-19',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],

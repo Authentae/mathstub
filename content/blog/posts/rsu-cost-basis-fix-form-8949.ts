@@ -6,7 +6,7 @@ export const rsuCostBasisFixForm8949: BlogPost = {
   description:
     'Your broker reports cost basis = $0 on RSU sales. If you let that stand, the IRS taxes the same dollars twice — once as W-2 wages at vest, again as capital gain at sale. Fix it with Form 8949 column (g). Step-by-step walkthrough with screenshots for TurboTax + FreeTaxUSA.',
   datePublished: '2026-05-22',
-  dateModified: '2026-05-22',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier'],

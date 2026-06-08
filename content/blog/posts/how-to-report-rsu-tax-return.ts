@@ -6,7 +6,7 @@ export const howToReportRsuTaxReturn: BlogPost = {
   description:
     'Step-by-step guide to reporting RSU vests and sales on your federal return. RSU vest income flows through W-2 Box 1 (already done by your employer). Sold shares get reported on Form 8949 and rolled up to Schedule D — with one critical cost-basis adjustment most brokers leave to you to fix.',
   datePublished: '2026-05-19',
-  dateModified: '2026-05-19',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],

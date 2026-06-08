@@ -6,7 +6,7 @@ export const isoDisqualifyingDisposition: BlogPost = {
   description:
     'Selling ISO shares before the §422 qualifying period (2 years from grant, 1 year from exercise) usually feels like a tax mistake — it converts what would have been LTCG into ordinary income. But in two specific scenarios, a disqualifying disposition is actually the right move: the stock has crashed, or you exercised at a high FMV and the price has been flat. Here is the math.',
   datePublished: '2026-05-19',
-  dateModified: '2026-05-19',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['harness-wealth', 'turbotax-premier'],

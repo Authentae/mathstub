@@ -6,7 +6,7 @@ export const whyRsuTooHigh: BlogPost = {
   description:
     'Your employer withholds 22% federal on RSU vests under the supplemental-wage rule, but your real marginal rate may be 32–37%. Here is the math, the source of the rule, and how to avoid an April surprise.',
   datePublished: '2026-04-15',
-  dateModified: '2026-05-19',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],

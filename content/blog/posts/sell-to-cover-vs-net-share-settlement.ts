@@ -6,7 +6,7 @@ export const sellToCoverVsNss: BlogPost = {
   description:
     'Two ways your employer can withhold taxes on an RSU vest: sell-to-cover (broker sells some of your shares on the open market) or net share settlement / share withholding (employer effectively buys back shares before they hit your account). For you the employee, the net cash and tax outcome is identical. The difference matters for the company and for thinly-traded private-company stock.',
   datePublished: '2026-05-19',
-  dateModified: '2026-05-19',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'harness-wealth'],

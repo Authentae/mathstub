@@ -6,7 +6,7 @@ export const caTxRsuWorkSourceAllocation: BlogPost = {
   description:
     'Moving from California to Texas while you still have a multi-year RSU vesting cliff? CA does not stop taxing the vesting period after you move. The work-source allocation rule (FTB Pub 1004) splits each vest by months-worked-in-each-state. Worked example: $34,000 in surprise CA tax across 3 post-move years.',
   datePublished: '2026-05-22',
-  dateModified: '2026-05-22',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier'],

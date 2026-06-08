@@ -6,7 +6,7 @@ export const byState: BlogPost = {
   description:
     'How state income tax stacks on top of federal RSU withholding in the four biggest tech-worker states — plus the multi-state allocation rule that catches movers, and worked examples for a typical $50k vest in each state.',
   datePublished: '2026-04-25',
-  dateModified: '2026-05-19',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'harness-wealth'],

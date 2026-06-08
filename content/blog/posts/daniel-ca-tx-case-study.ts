@@ -7,7 +7,7 @@ export const danielCaTxCaseStudy: BlogPost = {
   description:
     'Senior engineer moved from San Francisco to Austin in August 2024 with 1,600 unvested RSUs on a 2022 grant. Assumed Texas residency meant zero state tax on future vests. Caught the work-source allocation trap in October — $34,000 of CA tax owed across 2024-2026, plus avoided $1,400 of §19136 underpayment penalty by setting up CA Form 540-ES quarterly payments. Vest-by-vest math + the FTB Pub 1004 citations.',
   datePublished: '2026-05-26',
-  dateModified: '2026-05-26',
+  dateModified: '2026-06-07',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['harness-wealth', 'turbotax-premier'],
