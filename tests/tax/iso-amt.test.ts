@@ -30,11 +30,14 @@ describe('calculateIsoAmt — exercise-and-hold', () => {
     expect(r.cashRequiredToExerciseUsd).toBe(20_000);
   });
 
-  it('AMTI = regular taxable income + bargain element', () => {
+  it('AMTI adds the standard deduction back, then the ISO bargain element', () => {
     const r = calculateIsoAmt(baseInput);
-    // Regular taxable income base: 200k - 23.5k - 15k (single std ded 2025) = 161,500
+    // Regular taxable income base: 200k - 23.5k (401k) - 15k (single std ded 2025) = 161,500
     expect(r.regularTaxableIncomeBaseUsd).toBeCloseTo(161_500, 2);
-    expect(r.amtiUsd).toBeCloseTo(161_500 + 180_000, 2);
+    // AMTI does NOT allow the standard deduction (Form 6251 line 2a), so it is
+    // added back: 200k - 23.5k (401k still excluded) = 176,500, then + the
+    // $180,000 ISO bargain element = $356,500. Pre-tax 401(k) stays excluded.
+    expect(r.amtiUsd).toBeCloseTo(176_500 + 180_000, 2);
   });
 
   it('AMT > 0 for typical pre-IPO exercise', () => {

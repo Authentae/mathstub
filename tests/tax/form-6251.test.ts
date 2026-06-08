@@ -21,9 +21,11 @@ describe('calculateForm6251 — basic mechanic', () => {
   });
 
   it('AMT triggers on a $150k ISO bargain element for a $250k W-2 single filer', () => {
-    // A $50k bargain element does NOT trigger AMT for this scenario — TMT
-    // ($50,443) ends up just below regular tax ($51,486). A $150k bargain
-    // element pushes TMT comfortably above regular tax.
+    // Hand-verified (2026 single): AMTI = $250k + $150k = $400,000 (the $16,100
+    // standard deduction is added back on line 2a, so AMTI = gross + ISO);
+    // exemption $90,100 (below the $500k phaseout start); AMT taxable $309,900;
+    // TMT = 244,500×26% + (309,900−244,500)×28% = $81,882; regular tax $51,304;
+    // AMT owed = $30,578.
     const r = calculateForm6251({
       taxYear: 2026,
       filingStatus: 'single',
@@ -33,23 +35,28 @@ describe('calculateForm6251 — basic mechanic', () => {
       deductionType: 'standard',
     });
     expect(r.isoAdjustmentUsd).toBe(150_000);
-    expect(r.amtiUsd).toBeGreaterThan(r.amtiBeforeAdjustmentsUsd);
+    expect(r.line2aAddBackUsd).toBe(16_100); // standard deduction added back
+    expect(r.amtiUsd).toBe(400_000);
     expect(r.amtApplies).toBe(true);
-    expect(r.amtOwedUsd).toBeGreaterThan(0);
-    // Recoverable credit estimate should equal full AMT owed since ISO is the only adjustment
-    expect(r.recoverableCreditEstimateUsd).toBe(r.amtOwedUsd);
+    expect(r.amtOwedUsd).toBe(30_578);
+    // ISO bargain is a deferral item (recoverable); the standard-deduction
+    // add-back is an exclusion item (NOT recoverable per §53). So the
+    // recoverable estimate is the ISO-attributable portion — less than full AMT.
+    expect(r.recoverableCreditEstimateUsd).toBeGreaterThan(0);
+    expect(r.recoverableCreditEstimateUsd).toBeLessThan(r.amtOwedUsd);
   });
 
-  it("$50k ISO bargain element + $250k single is BELOW AMT threshold (regular tax slightly exceeds TMT)", () => {
-    // Documents the boundary: $50k bargain element for a $250k single
-    // filer is on the edge but does NOT trigger AMT — useful for users
-    // who want to gauge how much room they have before AMT bites.
+  it("$30k ISO bargain element + $250k single is BELOW AMT threshold (regular tax exceeds TMT)", () => {
+    // Documents the boundary. With the standard deduction correctly added back
+    // to AMTI, the threshold is lower than it would be otherwise: a $30k bargain
+    // for a $250k single filer does NOT trigger AMT (AMTI $280,000 → TMT
+    // $49,374 < regular tax $51,304), but a ~$40k+ bargain would.
     const r = calculateForm6251({
       taxYear: 2026,
       filingStatus: 'single',
       w2WagesUsd: 250_000,
       selfEmploymentNetUsd: 0,
-      isoBargainElementUsd: 50_000,
+      isoBargainElementUsd: 30_000,
       deductionType: 'standard',
     });
     expect(r.amtApplies).toBe(false);
@@ -59,8 +66,8 @@ describe('calculateForm6251 — basic mechanic', () => {
   });
 });
 
-describe('calculateForm6251 — SALT add-back', () => {
-  it('itemized + SALT triggers larger AMTI than standard deduction', () => {
+describe('calculateForm6251 — line 2a add-back', () => {
+  it('adds back SALT for itemizers and the full standard deduction for non-itemizers', () => {
     const withSalt = calculateForm6251({
       taxYear: 2026,
       filingStatus: 'mfj',
@@ -79,14 +86,19 @@ describe('calculateForm6251 — SALT add-back', () => {
       isoBargainElementUsd: 0,
       deductionType: 'standard',
     });
-    // Itemized lets you deduct $35k vs standard's ~$30k → lower regular taxable income
+    // Itemized lets you deduct $35k vs standard's $32,200 → lower regular taxable income.
     expect(withSalt.regularTaxableIncomeUsd).toBeLessThan(withStd.regularTaxableIncomeUsd);
-    // But itemized adds back $10k SALT for AMT → AMTI is higher relative to its regular base
-    expect(withSalt.saltAddBackUsd).toBe(10_000);
-    expect(withStd.saltAddBackUsd).toBe(0);
+    // Line 2a: itemizers add back only the disallowed SALT ($10k); non-itemizers
+    // add back the entire standard deduction (mfj 2026 = $32,200).
+    expect(withSalt.line2aAddBackUsd).toBe(10_000);
+    expect(withStd.line2aAddBackUsd).toBe(32_200);
+    // Net AMTI: standard is HIGHER here because the full standard deduction is
+    // disallowed for AMT, whereas the itemized filer keeps $25k of non-SALT
+    // deductions (mortgage, charity) that ARE allowed for AMT.
+    expect(withStd.amtiUsd).toBeGreaterThan(withSalt.amtiUsd);
   });
 
-  it('standard deduction yields zero SALT add-back even if saltDeductionUsd is passed', () => {
+  it('standard deduction is added back on line 2a; a passed saltDeductionUsd is ignored', () => {
     const r = calculateForm6251({
       taxYear: 2026,
       filingStatus: 'single',
@@ -96,7 +108,10 @@ describe('calculateForm6251 — SALT add-back', () => {
       deductionType: 'standard',
       saltDeductionUsd: 10_000, // ignored when not itemizing
     });
-    expect(r.saltAddBackUsd).toBe(0);
+    // The standard deduction ($16,100 single 2026) is the line 2a add-back — NOT
+    // the passed SALT figure, and NOT zero (the standard deduction is disallowed
+    // for AMT and must be added back per Form 6251 line 2a).
+    expect(r.line2aAddBackUsd).toBe(16_100);
   });
 });
 
