@@ -50,7 +50,7 @@ const BRACKETS_2024: BracketTable = {
   ],
 };
 
-// IRS Rev. Proc. 2024-40 (tax year 2025) and projected 2026 (CPI-adjusted estimates).
+// IRS Rev. Proc. 2024-40 (tax year 2025). 2026 actuals are in BRACKETS_2026 below.
 // Each bracket applies to income at or above `from` and below the `from` of the next bracket.
 const BRACKETS_2025: BracketTable = {
   single: [
