@@ -12,8 +12,8 @@ describe('section415Limit', () => {
   it('returns correct limit for 2025', () => {
     expect(section415Limit(2025)).toBe(70_000);
   });
-  it('returns placeholder for 2026', () => {
-    expect(section415Limit(2026)).toBe(71_000);
+  it('returns correct limit for 2026', () => {
+    expect(section415Limit(2026)).toBe(72_000);
   });
 });
 

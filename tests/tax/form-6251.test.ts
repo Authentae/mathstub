@@ -105,14 +105,14 @@ describe('calculateForm6251 — exemption phaseout', () => {
     const r = calculateForm6251({
       taxYear: 2026,
       filingStatus: 'single',
-      w2WagesUsd: 700_000, // AMTI > $643,888 single phaseout start
+      w2WagesUsd: 600_000, // AMTI in the OBBBA partial-phaseout band ($500k–$680k single)
       selfEmploymentNetUsd: 0,
       isoBargainElementUsd: 0,
       deductionType: 'standard',
     });
-    // Base exemption single 2026 = $90,567. AMTI > phaseout start
-    // → exemption reduced. 2026 single AMTI of ~685k → reduction ≈ (685k − 644k) × 25% = ~10.3k
-    expect(r.amtExemptionUsd).toBeLessThan(90_567);
+    // Base exemption single 2026 = $90,100. OBBBA: phaseout starts $500k at 50¢/$1.
+    // AMTI ~$600k → reduction ≈ ($600k − $500k) × 50% = ~$50k → exemption ~$40k (partial).
+    expect(r.amtExemptionUsd).toBeLessThan(90_100);
     expect(r.amtExemptionUsd).toBeGreaterThan(0);
   });
 

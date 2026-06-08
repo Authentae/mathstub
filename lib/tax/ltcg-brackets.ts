@@ -58,27 +58,28 @@ const LTCG_2025: LtcgTable = {
   ],
 };
 
-// Projected 2026 LTCG thresholds (~2.8% CPI bump). Replace with IRS Rev. Proc. when published.
+// IRS Rev. Proc. 2025-32 (tax year 2026) LTCG / qualified dividend brackets.
+// Verified against Tax Foundation 2026 tables (checked 2026-06).
 const LTCG_2026: LtcgTable = {
   single: [
     { from: 0, rate: 0 },
-    { from: 49_704, rate: 0.15 },
-    { from: 548_335, rate: 0.2 },
+    { from: 49_450, rate: 0.15 },
+    { from: 545_500, rate: 0.2 },
   ],
   mfj: [
     { from: 0, rate: 0 },
-    { from: 99_408, rate: 0.15 },
-    { from: 616_851, rate: 0.2 },
+    { from: 98_900, rate: 0.15 },
+    { from: 613_700, rate: 0.2 },
   ],
   mfs: [
     { from: 0, rate: 0 },
-    { from: 49_704, rate: 0.15 },
-    { from: 308_400, rate: 0.2 },
+    { from: 49_450, rate: 0.15 },
+    { from: 306_850, rate: 0.2 },
   ],
   hoh: [
     { from: 0, rate: 0 },
-    { from: 66_563, rate: 0.15 },
-    { from: 582_568, rate: 0.2 },
+    { from: 66_200, rate: 0.15 },
+    { from: 579_600, rate: 0.2 },
   ],
 };
 

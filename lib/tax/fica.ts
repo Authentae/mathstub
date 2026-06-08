@@ -4,7 +4,7 @@ import { TaxCalcError } from './types';
 const SS_WAGE_BASE: Record<TaxYear, number> = {
   2024: 168_600, // SSA Fact Sheet 2024.
   2025: 176_100, // SSA announcement Oct 2024.
-  2026: 183_600, // Projected; SSA announces in October.
+  2026: 184_500, // SSA announcement Oct 2025.
 };
 
 const SS_RATE = 0.062;

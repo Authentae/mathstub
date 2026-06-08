@@ -37,7 +37,7 @@ import { organizationSchema, websiteSchema } from '@/lib/seo';
  * "Tests N passed" total. (Calculator + guide counts below ARE derived from
  * code, so they never go stale.)
  */
-const TEST_COUNT = 586;
+const TEST_COUNT = 590;
 
 export default function HomePage() {
   const tools = liveTools();

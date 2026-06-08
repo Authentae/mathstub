@@ -6,8 +6,8 @@ describe('ssWageBase', () => {
   it('returns 2025 SS wage base', () => {
     expect(ssWageBase(2025)).toBe(176_100);
   });
-  it('returns 2026 projected SS wage base', () => {
-    expect(ssWageBase(2026)).toBe(183_600);
+  it('returns 2026 SS wage base', () => {
+    expect(ssWageBase(2026)).toBe(184_500);
   });
 });
 

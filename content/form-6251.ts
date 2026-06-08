@@ -38,7 +38,7 @@ export const form6251Content = {
     },
     {
       q: 'When do I owe AMT?',
-      a: "When your Tentative Minimum Tax (TMT) > your regular federal income tax. TMT = 26% on AMTI below the rate breakpoint ($245,795 single 2026, $122,898 MFS), plus 28% on the excess, minus the AMT exemption ($90,567 single 2026 before phaseout). Typical triggers: ISO exercise-and-hold during the calendar year, a large state-tax SALT deduction itemized on Schedule A, or both combined.",
+      a: "When your Tentative Minimum Tax (TMT) > your regular federal income tax. TMT = 26% on AMTI below the rate breakpoint ($244,500 single 2026, $122,250 MFS), plus 28% on the excess, minus the AMT exemption ($90,100 single 2026 before phaseout). Note: the One Big Beautiful Bill Act lowered the 2026 exemption phaseout start to $500,000 single / $1,000,000 MFJ and doubled the phaseout rate to 50¢ per $1, so the exemption disappears faster than in prior years. Typical triggers: ISO exercise-and-hold during the calendar year, a large state-tax SALT deduction itemized on Schedule A, or both combined.",
     },
     {
       q: 'How does the ISO bargain element trigger AMT?',

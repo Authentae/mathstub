@@ -16,7 +16,7 @@ describe('standardDeduction', () => {
     expect(standardDeduction(2025, 'mfj')).toBe(30_000);
   });
   it('returns 2026 hoh value', () => {
-    expect(standardDeduction(2026, 'hoh')).toBe(23_130);
+    expect(standardDeduction(2026, 'hoh')).toBe(24_150);
   });
 });
 
@@ -40,8 +40,8 @@ describe('federalMarginalRate', () => {
     expect(federalMarginalRate(400_000, 'mfj', 2025)).toBeCloseTo(0.32);
   });
   it('uses 2026 brackets when requested', () => {
-    expect(federalMarginalRate(11_950, 'single', 2026)).toBeCloseTo(0.1); // below 2026 12% threshold (12,259)
-    expect(federalMarginalRate(12_300, 'single', 2026)).toBeCloseTo(0.12);
+    expect(federalMarginalRate(11_950, 'single', 2026)).toBeCloseTo(0.1); // below 2026 12% threshold (12,400)
+    expect(federalMarginalRate(12_500, 'single', 2026)).toBeCloseTo(0.12);
   });
   it('throws on negative income', () => {
     expect(() => federalMarginalRate(-1, 'single', 2025)).toThrow(TaxCalcError);

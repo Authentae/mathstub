@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { amtExemption, tentativeMinimumTax, AMT_RATES } from '@tax/amt-brackets';
+import { amtExemption, tentativeMinimumTax, AMT_RATES, amtPhaseoutRate } from '@tax/amt-brackets';
 import { TaxCalcError } from '@tax/types';
 
 describe('amtExemption', () => {
@@ -51,9 +51,26 @@ describe('tentativeMinimumTax', () => {
 });
 
 describe('AMT_RATES', () => {
-  it('exposes 26%/28%/25% phaseout', () => {
+  it('exposes 26%/28% rates', () => {
     expect(AMT_RATES.low).toBe(0.26);
     expect(AMT_RATES.high).toBe(0.28);
-    expect(AMT_RATES.phaseoutRate).toBe(0.25);
+  });
+});
+
+describe('2026 OBBBA AMT changes', () => {
+  it('phaseout rate is 25¢ through 2025, 50¢ from 2026', () => {
+    expect(amtPhaseoutRate(2025)).toBe(0.25);
+    expect(amtPhaseoutRate(2026)).toBe(0.5);
+  });
+  it('full exemption below the lowered $500k single phaseout start (2026: $90,100)', () => {
+    expect(amtExemption(400_000, 'single', 2026)).toBe(90_100);
+  });
+  it('phases out at 50¢ per $1 above the OBBBA threshold', () => {
+    // single 2026: starts at 500,000. At AMTI 600,000, reduction = 100,000 × 0.5 = 50,000.
+    expect(amtExemption(600_000, 'single', 2026)).toBeCloseTo(90_100 - 50_000, 2);
+  });
+  it('mfj exemption fully phased out far sooner than the pre-OBBBA projection', () => {
+    // mfj 2026: start 1,000,000; gone at 1,000,000 + 140,200/0.5 = 1,280,400.
+    expect(amtExemption(1_300_000, 'mfj', 2026)).toBe(0);
   });
 });
