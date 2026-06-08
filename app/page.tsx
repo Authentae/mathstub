@@ -8,6 +8,8 @@ import {
 import { blogPosts } from '@/content/blog/registry';
 import { findCategoryForSlug } from '@/content/blog/categories';
 import { HeroAnimation } from '@/components/HeroAnimation';
+import { JsonLd } from '@/components/JsonLd';
+import { organizationSchema, websiteSchema } from '@/lib/seo';
 
 /**
  * Homepage — Variant B (Outcome-Led) port from Claude Design P3.
@@ -76,6 +78,8 @@ export default function HomePage() {
           'radial-gradient(1000px 680px at 90% -12%, rgba(37,99,235,0.26), transparent 60%), radial-gradient(780px 560px at 3% 18%, rgba(29,78,216,0.16), transparent 60%)',
       }}
     >
+      <JsonLd data={organizationSchema()} />
+      <JsonLd data={websiteSchema()} />
       <main className="mx-auto max-w-6xl px-6 py-12 sm:px-10 sm:py-16">
         {/*
           HERO — stacked layout. Earlier side-by-side grid forced the
