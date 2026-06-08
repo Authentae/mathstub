@@ -6,7 +6,7 @@ export const estimatedTax: BlogPost = {
   description:
     'How the IRS §6654 safe-harbor rule works, when an RSU shortfall triggers an underpayment penalty, and the two ways to fix it — with worked numbers and the exact mechanics of why W-4 line 4(c) beats a Q4 estimated payment for retroactive coverage.',
   datePublished: '2026-04-20',
-  dateModified: '2026-06-07',
+  dateModified: '2026-06-09',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'taxact-premier'],
@@ -158,7 +158,7 @@ export const estimatedTax: BlogPost = {
     {
       type: 'p',
       text:
-        'IRC §6621 sets the underpayment rate as the federal short-term rate + 3 percentage points, adjusted quarterly. As of 2026 Q1 the rate is roughly 8% annualized. The penalty is computed on Form 2210 by calculating the shortfall per quarter and applying the rate from the due date until either the payment date or the April 15 filing deadline.',
+        'IRC §6621 sets the underpayment rate as the federal short-term rate + 3 percentage points, adjusted quarterly. For 2026 it is 7% annualized in Q1 and 6% in Q2 (down from 8% in 2025). The penalty is computed on Form 2210 by calculating the shortfall per quarter and applying the rate from the due date until either the payment date or the April 15 filing deadline.',
     },
     {
       type: 'p',

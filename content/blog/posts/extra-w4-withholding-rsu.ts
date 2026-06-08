@@ -6,7 +6,7 @@ export const extraW4: BlogPost = {
   description:
     'Step-by-step guide to using Form W-4 line 4(c) to withhold extra federal tax from each paycheck and avoid an April surprise. Plus the mechanic that makes W-4 the right tool 90% of the time: IRC §6654(g)(1) treats withholding as paid evenly across the year.',
   datePublished: '2026-04-22',
-  dateModified: '2026-06-07',
+  dateModified: '2026-06-09',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'empower'],
@@ -126,7 +126,7 @@ export const extraW4: BlogPost = {
     {
       type: 'p',
       text:
-        'For a 9-month underpayment of $7,500 at the current 8% APR penalty rate (IRC §6621), Path B costs an additional $450 in penalties that Path A avoids entirely. For larger shortfalls, the difference compounds.',
+        'For a 9-month underpayment of $7,500 at the 2026 ~7% APR penalty rate (IRC §6621), Path B costs an additional ~$394 in penalties that Path A avoids entirely. For larger shortfalls, the difference compounds.',
     },
     { type: 'h2', text: 'When W-4 alone is not enough' },
     {
