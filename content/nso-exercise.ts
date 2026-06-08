@@ -38,7 +38,7 @@ export const nsoExerciseContent = {
     },
     {
       q: 'Do FICA taxes apply to NSO exercises?',
-      a: 'Yes. Unlike ISOs (which are exempt from FICA at exercise per IRC §3121(a)(22)), NSOs are subject to Social Security (up to the wage base, $176,100 for 2025) and Medicare (1.45% + 0.9% Additional Medicare above $200k). The calculator includes FICA in the withheld and expected totals.',
+      a: 'Yes. Unlike ISOs (which are exempt from FICA at exercise per IRC §3121(a)(22)), NSOs are subject to Social Security (up to the wage base, $184,500 for 2026) and Medicare (1.45% + 0.9% Additional Medicare above $200k). The calculator includes FICA in the withheld and expected totals.',
     },
     {
       q: 'How does this compare to ISOs?',
