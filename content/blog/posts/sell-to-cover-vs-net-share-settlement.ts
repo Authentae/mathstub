@@ -2,11 +2,11 @@ import type { BlogPost } from '../registry';
 
 export const sellToCoverVsNss: BlogPost = {
   slug: 'sell-to-cover-vs-net-share-settlement-rsu',
-  title: 'RSU sell-to-cover vs net share settlement: what is the difference?',
+  title: 'RSU sell-to-cover vs withhold-to-cover (net share settlement)',
   description:
     'Two ways your employer can withhold taxes on an RSU vest: sell-to-cover (broker sells some of your shares on the open market) or net share settlement / share withholding (employer effectively buys back shares before they hit your account). For you the employee, the net cash and tax outcome is identical. The difference matters for the company and for thinly-traded private-company stock.',
   datePublished: '2026-05-19',
-  dateModified: '2026-06-07',
+  dateModified: '2026-06-09',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'harness-wealth'],
@@ -15,7 +15,7 @@ export const sellToCoverVsNss: BlogPost = {
   keyPoints: [
     'Both methods do the same job: turn some of your vested shares into cash to pay the tax.',
     'Sell-to-cover: the broker sells a few of your shares on the open market to cover it.',
-    'Net share settlement (NSS): your company just keeps some shares and pays the tax with its own cash.',
+    'Net share settlement (NSS, a.k.a. withhold-to-cover): your company just keeps some shares and pays the tax with its own cash.',
     'For you, the result is identical — same shares left over, same tax paid.',
     'You usually cannot choose; your employer picks the method for you.',
     'Public companies tend to use sell-to-cover; private or pre-IPO companies use NSS.',
@@ -24,7 +24,7 @@ export const sellToCoverVsNss: BlogPost = {
     {
       type: 'p',
       text:
-        'When your RSUs vest, the IRS taxes the full FMV as ordinary wage income — and someone has to remit cash to the federal government, state, FICA, and Medicare. Because RSUs are paid in shares (not cash), your employer has to convert some of those shares to cash to cover the tax. Two mechanisms exist: sell-to-cover and net share settlement (also called share withholding). For you the employee, the outcome is functionally identical. For the company, the choice affects share count, treasury management, and SEC reporting.',
+        'When your RSUs vest, the IRS taxes the full FMV as ordinary wage income — and someone has to remit cash to the federal government, state, FICA, and Medicare. Because RSUs are paid in shares (not cash), your employer has to convert some of those shares to cash to cover the tax. Two mechanisms exist: sell-to-cover and net share settlement (also called share withholding or "withhold-to-cover"). For you the employee, the outcome is functionally identical. For the company, the choice affects share count, treasury management, and SEC reporting.',
     },
     { type: 'h2', text: 'Mechanism 1 — sell-to-cover' },
     {
