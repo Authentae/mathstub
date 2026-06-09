@@ -36,6 +36,7 @@ export const blogCategories: BlogCategory[] = [
       'rsu-over-withholding-explained',
       'when-to-sell-rsus-after-vesting',
       'how-to-avoid-rsu-tax',
+      'rsu-vested-but-not-released',
     ],
   },
   {

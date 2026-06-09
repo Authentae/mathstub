@@ -264,6 +264,14 @@ export const blogRelations: Record<string, BlogRelations> = {
     ],
     calcs: ['rsu-tax-shortfall', 'form-6251', 'roth-sequencer'],
   },
+  'rsu-vested-but-not-released': {
+    posts: [
+      'do-rsus-get-taxed-twice',
+      'when-to-sell-rsus-after-vesting',
+      'how-much-tax-will-i-pay-on-rsu',
+    ],
+    calcs: ['rsu-tax-shortfall', 'double-trigger-rsu'],
+  },
 };
 
 /** Reverse index: for a given calculator slug, which blog posts discuss it. */
