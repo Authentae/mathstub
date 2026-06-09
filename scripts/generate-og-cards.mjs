@@ -99,14 +99,14 @@ const cards = [
   {
     slug: 'mega-backdoor-roth',
     eyebrow: 'mega-backdoor · roth',
-    title: 'The 401(k) trick that\nadds $35k/yr in Roth.',
+    title: 'The 401(k) trick that\nadds $36k/yr in Roth.',
     subtitle: 'Estimate your after-tax room under the §415 cap.',
     sampleHeader: 'AFTER-TAX ROOM',
     sampleRows: [
-      { label: '§415 cap', value: '$70,000' },
-      { label: '− Elective', value: '−$23,500' },
+      { label: '§415 cap', value: '$72,000' },
+      { label: '− Elective', value: '−$24,500' },
       { label: '− Match', value: '−$11,000' },
-      { label: 'Mega-Backdoor', value: '$35,500', highlight: true },
+      { label: 'Mega-Backdoor', value: '$36,500', highlight: true },
     ],
   },
   {
@@ -114,12 +114,12 @@ const cards = [
     eyebrow: 'backdoor · roth ira',
     title: 'High earner? Skip the\nRoth IRA phaseout.',
     subtitle: 'The Backdoor Roth + pro-rata math, in 30 seconds.',
-    sampleHeader: 'BACKDOOR · 2025',
+    sampleHeader: 'BACKDOOR · 2026',
     sampleRows: [
-      { label: 'IRA cap', value: '$7,000' },
+      { label: 'IRA cap', value: '$7,500' },
       { label: 'Direct Roth', value: '$0' },
       { label: 'Pro-rata tax', value: '$0', color: 'brand' },
-      { label: 'Roth space', value: '$7,000', highlight: true },
+      { label: 'Roth space', value: '$7,500', highlight: true },
     ],
   },
   {
