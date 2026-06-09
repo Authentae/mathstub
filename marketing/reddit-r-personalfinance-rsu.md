@@ -29,7 +29,7 @@ That 22% number is set by the IRS. It's not your employer being cheap. It's not 
 
 **The problem**
 
-22% is almost never your real marginal rate. If you make $200k base + a vest that pushes you to $250k taxable, your federal marginal rate is **32%** in 2025. Some of you are at 35% or 37%.
+22% is almost never your real marginal rate. If you make $200k base + a vest that pushes you to $250k taxable, your federal marginal rate is **32%** in 2026. Some of you are at 35% or 37%.
 
 The IRS doesn't care that 22% was withheld. At filing, they apply your real marginal rate to the income. The shortfall lands in your lap on April 15.
 
@@ -73,7 +73,7 @@ That $6k shows up at filing. With penalties for underpayment of estimated tax, i
 
 IRC §6654 imposes an **underpayment penalty** if you owe more than $1,000 at filing AND haven't met the safe harbor: paid in either 90% of this year's tax, OR 100% of last year's (110% if your prior-year AGI was over $150k).
 
-A 5-figure RSU vest blows past the $1k threshold by itself. So if you don't proactively top up withholding or send an estimated payment, you're not just owing the gap — you're owing the gap plus a penalty (currently ~8% annualized per IRC §6621).
+A 5-figure RSU vest blows past the $1k threshold by itself. So if you don't proactively top up withholding or send an estimated payment, you're not just owing the gap — you're owing the gap plus a penalty (~7% annualized in early 2026, 6% from Q2, per IRC §6621).
 
 **The fixes (pick one or combine)**
 
@@ -85,7 +85,7 @@ A 5-figure RSU vest blows past the $1k threshold by itself. So if you don't proa
 
 **Things people get wrong**
 
-- *"I'll just owe a lot in April, no big deal."* That's the §6654 penalty trap. The IRS rate is short-term + 3 percentage points (~8% in 2025). On a $10k underpayment that's ~$800 extra.
+- *"I'll just owe a lot in April, no big deal."* That's the §6654 penalty trap. The IRS rate is short-term + 3 percentage points (~7% in early 2026, 6% from Q2). On a $10k underpayment that's ~$700 extra.
 - *"My broker withholds at my marginal rate."* No they don't. They run payroll at 22% / 37% supplemental per IRS rule. Your actual marginal rate isn't visible to payroll.
 - *"I'll fix it when I file."* Filing is when you discover it. The fix has to happen during the year you got vested.
 - *"This only matters for huge vests."* Wrong. The $1k §6654 floor is low. A $20k vest in a 32% bracket already trips it.
@@ -98,7 +98,7 @@ You need three things:
 2. Your filing status + state
 3. Your pre-tax deductions (401(k), HSA)
 
-Run those through the federal bracket math (2025 brackets are in IRS Rev. Proc. 2024-40), subtract the supplemental withholding your broker already took. The difference is your shortfall.
+Run those through the federal bracket math (2026 brackets are in IRS Rev. Proc. 2025-32), subtract the supplemental withholding your broker already took. The difference is your shortfall.
 
 I built a free calculator that does this and adds the FICA + state pieces because doing it by hand is annoying: **mathstub.com/rsu-tax-shortfall**. Same math as above, no signup. The site has ads (that's how it stays free) but the calculators don't. It also outputs the per-paycheck W-4 line 4(c) number to add.
 

@@ -68,7 +68,7 @@ A few numbers to check:
 - State supplemental withholding rate (California is 10.23% but CA marginal can be 12.3%+ at your income)
 - Whether SS wage base is already maxed (it is for most $200k+ earners, no SS on the vest)
 
-If you don't fix it now, expect a bill at filing plus ~8% underpayment penalty (IRC §6621).
+If you don't fix it now, expect a bill at filing plus a ~7% underpayment penalty (IRC §6621; early-2026 rate, 6% from Q2).
 ```
 
 ### TEMPLATE 3 — "Should I exercise my ISOs?" thread

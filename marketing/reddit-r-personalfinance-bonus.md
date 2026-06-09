@@ -31,11 +31,11 @@ That 22% number is set by the IRS. It's not your employer being cheap. It's not 
 
 Your real federal marginal rate is whatever bracket your total annual income lands in. For 2026 single filers:
 
-- 22% bracket: $48,475 – $103,350
-- 24% bracket: $103,350 – $197,300
-- 32% bracket: $197,300 – $250,525
-- 35% bracket: $250,525 – $626,350
-- 37% bracket: above $626,350
+- 22% bracket: $50,400 – $105,700
+- 24% bracket: $105,700 – $201,775
+- 32% bracket: $201,775 – $256,225
+- 35% bracket: $256,225 – $640,600
+- 37% bracket: above $640,600
 
 If your total income for the year is $130k and your bonus pushes you to $150k, your marginal rate is 24%, not 22%. The 2 percentage points come out of your pocket at filing.
 
@@ -62,8 +62,8 @@ Total withheld at bonus              = $6,930
 What you actually owe on the bonus at year-end:
 
 ```
-Projected taxable income: $150k − $15k 401k − $15k std ded = $120,000
-Federal marginal rate at $120k (single, 2026): 24%
+Projected taxable income: $150k − $15k 401k − $16,100 std ded = $118,900
+Federal marginal rate at $118,900 (single, 2026): 24%
 
 Federal at marginal: 20,000 × 0.24    = $4,800
 State at ~5%:                         = $1,000
@@ -78,13 +78,13 @@ Small? Sure. But add a $400 surprise on top of normal April reconciliation, and 
 
 **Where it gets ugly**
 
-For tech workers, finance, sales — anyone with a base over $200k and a meaningful annual bonus — the gap is much bigger. A $50k bonus on a $250k base in a high-tax state can produce a $5–8k shortfall. Add the IRC §6654 underpayment penalty (currently ~8% annualized) for not paying enough during the year and you have a real problem.
+For tech workers, finance, sales — anyone with a base over $200k and a meaningful annual bonus — the gap is much bigger. A $50k bonus on a $250k base in a high-tax state can produce a $5–8k shortfall. Add the IRC §6654 underpayment penalty (~7% annualized in early 2026, 6% from Q2) for not paying enough during the year and you have a real problem.
 
 **The §6654 underpayment penalty trap**
 
 The IRS imposes an underpayment penalty if you owe more than $1,000 at filing AND haven't met the safe harbor: paid in either 90% of this year's tax, OR 100% of last year's (110% if your prior-year AGI was over $150k).
 
-A bonus shortfall of even $1,500 trips this if you haven't otherwise overpaid through regular paycheck withholding. The IRS rate is short-term + 3 percentage points (~8% in 2026). On a $5k underpayment that's ~$400 extra you didn't budget for.
+A bonus shortfall of even $1,500 trips this if you haven't otherwise overpaid through regular paycheck withholding. The IRS rate is short-term + 3 percentage points (~7% in Q1 2026, 6% in Q2). On a $5k underpayment that's ~$350 extra you didn't budget for.
 
 **The fixes (pick one or combine)**
 
@@ -109,7 +109,7 @@ You need:
 2. Filing status + state
 3. Pre-tax deductions (401(k), HSA)
 
-Run those through the federal bracket math (2026 brackets are in IRS Rev. Proc. 2024-40), subtract the 22% your employer already withheld, add state. The difference is your shortfall.
+Run those through the federal bracket math (2026 brackets are in IRS Rev. Proc. 2025-32), subtract the 22% your employer already withheld, add state. The difference is your shortfall.
 
 I built a free calculator that does this and adds the FICA + state pieces: **mathstub.com/bonus-tax-shortfall**. No signup, runs in your browser. Site has ads (that's how it stays free) but the calculators don't.
 
