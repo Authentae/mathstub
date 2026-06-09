@@ -135,6 +135,11 @@ export const supplementalRule: BlogPost = {
       text:
         'The IRS does not require either employer to track the other\'s supplemental wages. The reconciliation happens entirely at your 1040 — and any underpayment triggers the IRC §6654 penalty unless you covered the gap via Form W-4 line 4(c) extra withholding or a quarterly estimated tax payment before December 31.',
     },
+    {
+      type: 'embed',
+      calc: 'rsu-shortfall',
+      caption: 'Put in your own vest and bracket — see the exact 22%-vs-real-rate gap',
+    },
     { type: 'h2', text: 'How to fix the under-withholding' },
     {
       type: 'ol',
