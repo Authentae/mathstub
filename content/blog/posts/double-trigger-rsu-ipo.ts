@@ -6,7 +6,7 @@ export const doubleTriggerRsuIpo: BlogPost = {
   description:
     'Pre-IPO RSUs at companies like Stripe, Databricks, SpaceX, and Canva vest on TWO triggers: time-based vesting + a liquidity event. Until IPO, no tax. When the company finally goes public, every share that "vested" over the past 4-7 years hits ordinary income in a single year — often producing seven-figure tax bills with no cash to pay them.',
   datePublished: '2026-05-19',
-  dateModified: '2026-06-07',
+  dateModified: '2026-06-10',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['harness-wealth', 'turbotax-premier'],
@@ -55,12 +55,43 @@ export const doubleTriggerRsuIpo: BlogPost = {
     {
       type: 'p',
       text:
-        'Under IRC §83(a), shares are taxed when the "substantial risk of forfeiture" lapses. The IRS has consistently held that for double-trigger RSUs, that moment is when BOTH triggers have fired — not when only the time trigger fires. Until liquidity, you forfeit everything if you leave.',
+        'Under IRC §83(a), shares are taxed when the "substantial risk of forfeiture" lapses. The IRS has consistently held that for double-trigger RSUs, that moment is when BOTH triggers have fired — not when only the time trigger fires. Until that liquidity event the shares stay at risk, so there is no tax — and whether you keep the time-vested portion at all if you leave depends on your plan (covered below).',
     },
     {
       type: 'callout',
       text:
         'When the second trigger fires, every previously time-vested share becomes ordinary income in that single tax year. Years of "vesting" compress into one tax event. This is the IPO tax bomb.',
+    },
+    { type: 'h2', text: 'What happens to double-trigger RSUs if you leave before the IPO?' },
+    {
+      type: 'p',
+      text:
+        'This is the question that keeps pre-IPO employees up at night, and the honest answer is: it depends on your plan document — there are two common structures, so you cannot assume.',
+    },
+    {
+      type: 'table',
+      caption: 'Leaving before the liquidity event',
+      headers: ['Portion of your grant', 'What typically happens when you leave'],
+      rows: [
+        ['Not-yet-time-vested units', 'Forfeited — same as any RSU. No service, no vesting.'],
+        ['Time-vested but not released (modern plans)', 'Often RETAINED and still settle if a liquidity event happens within a fixed window — commonly 7 years from grant.'],
+        ['Time-vested but not released (stricter plans)', 'Forfeited on departure if no liquidity event has occurred yet.'],
+      ],
+    },
+    {
+      type: 'p',
+      text:
+        'Many large pre-IPO companies adopted the employee-friendly structure after ~2013: your time-vested double-trigger RSUs survive your departure and will still convert to shares if the company IPOs or is acquired before the award expires. Older or stricter plans cancel even time-vested units the day you leave if liquidity has not happened. The difference is worth potentially six figures, and it is buried in the plan document — not the offer letter.',
+    },
+    {
+      type: 'callout',
+      text:
+        'Before you resign, pull your RSU plan document or grant agreement and search for "settlement," "liquidity event," and "termination." The decisive question: do my time-vested RSUs still settle at a future IPO or acquisition after I have left, and is there an expiration date on that right?',
+    },
+    {
+      type: 'p',
+      text:
+        'Tax timing follows settlement, not your departure date. Even if your time-vested shares are retained, leaving is not a taxable event — the ordinary-income hit still lands only when (and if) the second trigger fires and the shares are released. If the award expires unsettled, you were never taxed and never received anything. So departing pre-IPO does not create a surprise tax bill; the risk is purely whether you keep the upside at all.',
     },
     { type: 'h2', text: 'Worked example — 5 years at a pre-IPO company' },
     {
