@@ -12,11 +12,11 @@
 <text x="1050" y="40" font-size="14" font-weight="600" fill="#94a3b8" text-anchor="end" letter-spacing="1.4">09 OF 09</text>
 <line x1="50" y1="54" x2="1050" y2="54" stroke="#1f2937" stroke-width="1"></line>
 <text x="50" y="84" font-size="32" font-weight="700" fill="#f1f5f9">Mega-Backdoor Roth → §415 cap minus what&#39;s used</text>
-<text x="50" y="106" font-size="16" font-weight="400" fill="#94a3b8">After-tax 401(k) → in-plan Roth conversion → tax-free growth, on top of the $23.5k elective deferral.</text>
+<text x="50" y="106" font-size="16" font-weight="400" fill="#94a3b8">After-tax 401(k) → in-plan Roth conversion → tax-free growth, on top of the $24.5k elective deferral.</text>
 
 <rect x="50" y="120" width="176" height="168" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.4" filter="url(#boxShadow)"></rect>
 <text x="66" y="146" font-size="13" font-weight="700" fill="#cbd5e1" letter-spacing="1.6">§415 CAP</text>
-<text x="66" y="186" font-size="18" font-weight="600" fill="#f1f5f9">$70,000</text>
+<text x="66" y="186" font-size="18" font-weight="600" fill="#f1f5f9">$72,000</text>
 <text x="66" y="208" font-size="18" font-weight="600" fill="#f1f5f9">total limit</text>
 <text x="66" y="252" font-size="14" font-weight="400" fill="#94a3b8">2025 IRS limit</text>
 <text x="66" y="272" font-size="14" font-style="italic" font-weight="500" fill="#94a3b8">IRC §415(c)</text>
@@ -26,7 +26,7 @@
 <rect x="256" y="120" width="176" height="168" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.4" filter="url(#boxShadow)"></rect>
 <rect x="256" y="132" width="3" height="20" rx="1.5" fill="#2563eb"></rect>
 <text x="272" y="146" font-size="13" font-weight="700" fill="#cbd5e1" letter-spacing="1.6">STEP 1 · ELECTIVE</text>
-<text x="272" y="186" font-size="18" font-weight="600" fill="#f1f5f9">− $23,500</text>
+<text x="272" y="186" font-size="18" font-weight="600" fill="#f1f5f9">− $24,500</text>
 <text x="272" y="208" font-size="18" font-weight="600" fill="#f1f5f9">pre-tax + Roth</text>
 <text x="272" y="252" font-size="14" font-weight="400" fill="#94a3b8">Your contribution</text>
 <text x="272" y="272" font-size="14" font-style="italic" font-weight="500" fill="#94a3b8">IRC §402(g)</text>
@@ -45,7 +45,7 @@
 
 <rect x="668" y="120" width="176" height="168" rx="10" fill="#0f2a1a" stroke="#16a34a" stroke-width="1.6" filter="url(#boxShadow)"></rect>
 <text x="684" y="146" font-size="13" font-weight="700" fill="#4ade80" letter-spacing="1.6">STEP 3 · ROOM</text>
-<text x="684" y="186" font-size="18" font-weight="600" fill="#bbf7d0">= $35,500</text>
+<text x="684" y="186" font-size="18" font-weight="600" fill="#bbf7d0">= $36,500</text>
 <text x="684" y="208" font-size="18" font-weight="600" fill="#bbf7d0">after-tax space</text>
 <text x="684" y="252" font-size="14" font-weight="400" fill="#94a3b8">Mega-Backdoor source</text>
 <text x="684" y="272" font-size="14" font-style="italic" font-weight="500" fill="#94a3b8">Notice 2014-54</text>

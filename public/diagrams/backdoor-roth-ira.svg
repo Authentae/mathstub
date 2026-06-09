@@ -16,7 +16,7 @@
 
 <rect x="50" y="120" width="176" height="168" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.4" filter="url(#boxShadow)"></rect>
 <text x="66" y="146" font-size="13" font-weight="700" fill="#cbd5e1" letter-spacing="1.6">INPUT · CONTRIB</text>
-<text x="66" y="186" font-size="18" font-weight="600" fill="#f1f5f9">$7,000</text>
+<text x="66" y="186" font-size="18" font-weight="600" fill="#f1f5f9">$7,500</text>
 <text x="66" y="208" font-size="18" font-weight="600" fill="#f1f5f9">non-deductible</text>
 <text x="66" y="252" font-size="14" font-weight="400" fill="#94a3b8">After-tax basis</text>
 <text x="66" y="272" font-size="14" font-style="italic" font-weight="500" fill="#94a3b8">IRC §219</text>
