@@ -15,6 +15,8 @@ import { AmazonBookCTA } from '@/components/AmazonBookCTA';
 import { ReportIssue } from '@/components/ReportIssue';
 import { RelatedPosts } from '@/components/RelatedPosts';
 import { CalcCta } from '@/components/CalcCta';
+import { GumroadUpsell } from '@/components/GumroadUpsell';
+import { productForBlogCategory } from '@/lib/gumroad';
 import { KeyPoints } from '@/components/KeyPoints';
 import { BlogHero } from '@/components/BlogHero';
 import { TableOfContents, slugifyHeading } from '@/components/TableOfContents';
@@ -109,6 +111,11 @@ export default async function PostPage({ params }: Props) {
         {blogRelations[post.slug]?.calcs && (
           <CalcCta slugs={blogRelations[post.slug]!.calcs} />
         )}
+
+        {/* Direct-purchase CTA for the topic's most relevant paid toolkit —
+            most search traffic lands on guides, so give them a one-hop path to
+            a product instead of only routing through the calculators. */}
+        <GumroadUpsell preferredProduct={productForBlogCategory(findCategoryForSlug(post.slug)?.id)} />
 
         {blogRelations[post.slug]?.posts && (
           <RelatedPosts slugs={blogRelations[post.slug]!.posts} />

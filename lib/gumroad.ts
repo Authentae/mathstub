@@ -97,6 +97,25 @@ export const products: Record<GumroadProductId, GumroadProduct> = {
   },
 };
 
+/**
+ * The most relevant paid product for a blog post, keyed by its topic category.
+ * Used to surface a direct-purchase CTA on guides (which is where most search
+ * traffic lands) instead of forcing a blog → calc → upsell two-hop funnel.
+ */
+const CATEGORY_PRODUCT: Record<string, GumroadProductId> = {
+  'multi-state-ipo': 'multi-state-equity-planner',
+  'stock-options': 'equity-tracker',
+  espp: 'equity-tracker',
+  'rsu-basics': 'equity-tracker',
+  'filing-strategy': 'year-end-checklist',
+  'bonus-supplemental': 'year-end-checklist',
+  'paystub-w2': 'year-end-checklist',
+};
+
+export function productForBlogCategory(categoryId: string | undefined): GumroadProductId {
+  return (categoryId && CATEGORY_PRODUCT[categoryId]) || 'year-end-checklist';
+}
+
 export function bestProductForShortfall(
   shortfallUsd: number,
   preferredProductId?: GumroadProductId,
