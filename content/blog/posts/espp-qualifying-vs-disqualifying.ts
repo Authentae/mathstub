@@ -6,7 +6,7 @@ export const esppQualifyingVsDisqualifying: BlogPost = {
   description:
     'A §423 ESPP gives you a tax break only if you hold the shares long enough for a "qualifying disposition" — at least 2 years from offering date AND 1 year from purchase. Selling earlier triggers a "disqualifying disposition" where the entire discount becomes ordinary W-2 income. The math is not always one-sided — here is the worked comparison.',
   datePublished: '2026-05-19',
-  dateModified: '2026-06-07',
+  dateModified: '2026-06-10',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'harness-wealth'],
@@ -18,6 +18,7 @@ export const esppQualifyingVsDisqualifying: BlogPost = {
     'Holding usually wins on taxes when the stock has gone up a lot past the discount.',
     'Holding also wins if the stock crashed: you skip being taxed on a discount you no longer have.',
     "But holding one stock 1-2 years is risky — that risk often outweighs the tax savings.",
+    'On an early (disqualifying) sale the discount lands in your W-2 Box 1 — watch the 1099-B cost-basis trap so you are not taxed on it twice.',
   ],
   blocks: [
     {
@@ -138,6 +139,22 @@ export const esppQualifyingVsDisqualifying: BlogPost = {
       type: 'p',
       text:
         'Rule of thumb from fee-only fiduciaries: hold up to 10% of your net worth in company stock total (across RSUs + ESPP + ISOs). Beyond that, the concentration risk outweighs almost any tax saving. ESPP-qualifying-disposition tax savings rarely justify holding $50,000+ in a single stock for 2 years unless your total company-stock exposure is already small.',
+    },
+    { type: 'h2', text: 'Where the disqualifying income shows up: your W-2 and 1099-B' },
+    {
+      type: 'p',
+      text:
+        'A disqualifying disposition creates ordinary income equal to the discount realized at purchase — (FMV on the purchase date − the price you actually paid) × shares. Your employer reports this in two places: it is added to your wages in Box 1 of your W-2 (so it is already taxed as ordinary income through payroll), and it is usually flagged separately in Box 14 with a code like "ESPP" or "DD." You do NOT report that discount again as income — it is already inside Box 1.',
+    },
+    {
+      type: 'callout',
+      text:
+        'The trap: your brokerage 1099-B almost always reports your cost basis as only the discounted price you PAID — it leaves out the discount that is already taxed in your W-2. File with that basis as-is and you pay tax on the discount twice.',
+    },
+    {
+      type: 'p',
+      text:
+        'The fix is on Form 8949: adjust your cost basis UP to the fair market value on the purchase date (the price you paid PLUS the ordinary income already in your W-2). Report the sale with code B in column (f) and the basis correction in column (g), or enter the corrected basis directly. Your employer\'s Form 3922 gives the exact figures — offering-date FMV, purchase-date FMV, and price paid — so you can compute both the ordinary-income amount and the corrected basis. This is the ESPP version of the same $0-cost-basis double-tax that catches RSU sellers.',
     },
     { type: 'h2', text: 'The takeaway' },
     {
