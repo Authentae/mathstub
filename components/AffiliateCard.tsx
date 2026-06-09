@@ -3,7 +3,10 @@ import { affiliates, type AffiliateOfferId } from '@/lib/affiliates';
 export function AffiliateCard({ offerId }: { offerId: AffiliateOfferId }) {
   const offer = affiliates[offerId];
   const href = offer.href();
-  const isPlaceholder = href === '#';
+  // No configured affiliate ID → href is the '#' placeholder. Render nothing
+  // rather than a dead grey CTA: a non-working "sponsored" button is bad UX and
+  // looks like a broken ad unit. The card returns automatically once the ID is set.
+  if (href === '#') return null;
 
   return (
     <article className="my-4 rounded-lg border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
@@ -36,12 +39,7 @@ export function AffiliateCard({ offerId }: { offerId: AffiliateOfferId }) {
         href={href}
         target="_blank"
         rel="sponsored noopener noreferrer"
-        aria-disabled={isPlaceholder}
-        className={`inline-block rounded-md px-4 py-2 text-sm font-semibold text-white ${
-          isPlaceholder
-            ? 'cursor-not-allowed bg-slate-400'
-            : 'bg-brand-600 hover:bg-brand-700'
-        }`}
+        className="inline-block rounded-md bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700"
       >
         {offer.cta}
       </a>

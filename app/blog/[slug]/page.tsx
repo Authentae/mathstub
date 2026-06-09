@@ -10,6 +10,7 @@ import { JsonLd } from '@/components/JsonLd';
 import { Disclaimer } from '@/components/Disclaimer';
 import { LastUpdatedBadge } from '@/components/LastUpdatedBadge';
 import { AffiliateCard } from '@/components/AffiliateCard';
+import { isOfferLive } from '@/lib/affiliates';
 import { AmazonBookCTA } from '@/components/AmazonBookCTA';
 import { ReportIssue } from '@/components/ReportIssue';
 import { RelatedPosts } from '@/components/RelatedPosts';
@@ -113,18 +114,26 @@ export default async function PostPage({ params }: Props) {
           <RelatedPosts slugs={blogRelations[post.slug]!.posts} />
         )}
 
-        {post.affiliateOfferIds && post.affiliateOfferIds.length > 0 && (
-          <section className="mt-10 border-t border-slate-800 pt-8">
-            <h2 className="mb-3 text-xl font-bold text-slate-100">
-              Recommended next step
-            </h2>
-            <div className="grid gap-3 md:grid-cols-2">
-              {post.affiliateOfferIds.map((id) => (
-                <AffiliateCard key={id} offerId={id as AffiliateOfferId} />
-              ))}
-            </div>
-          </section>
-        )}
+        {(() => {
+          // Only show the section when at least one offer has a working link
+          // (configured affiliate ID) — otherwise we'd render an empty header.
+          const liveIds = (post.affiliateOfferIds ?? []).filter((id) =>
+            isOfferLive(id as AffiliateOfferId),
+          );
+          if (liveIds.length === 0) return null;
+          return (
+            <section className="mt-10 border-t border-slate-800 pt-8">
+              <h2 className="mb-3 text-xl font-bold text-slate-100">
+                Recommended next step
+              </h2>
+              <div className="grid gap-3 md:grid-cols-2">
+                {liveIds.map((id) => (
+                  <AffiliateCard key={id} offerId={id as AffiliateOfferId} />
+                ))}
+              </div>
+            </section>
+          );
+        })()}
 
         <AmazonBookCTA />
 
