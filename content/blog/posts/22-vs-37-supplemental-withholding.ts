@@ -2,9 +2,9 @@ import type { BlogPost } from '../registry';
 
 export const supplementalRule: BlogPost = {
   slug: '22-vs-37-supplemental-withholding',
-  title: '22% vs 37% supplemental wage withholding, explained',
+  title: 'IRS Publication 15: supplemental wages, 22% & 37%',
   description:
-    'The IRS supplemental-wage rule taxes your RSU and bonus payments at 22% — until you cross $1M in YTD supplemental wages, when it jumps to 37%. Here is exactly how the threshold works, including the multi-employer edge case and what to do when 37% is still not enough.',
+    'IRS Publication 15 sets supplemental-wage withholding at a flat 22% on the first $1,000,000 of bonuses and RSU vests each year, then 37% above that. The exact 2026 rule, the per-employer $1M threshold, the aggregate-method alternative, and what to do when 22% under-withholds your real bracket.',
   datePublished: '2026-04-18',
   dateModified: '2026-06-09',
   authorName: 'Mathstub Editorial',
