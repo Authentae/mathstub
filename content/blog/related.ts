@@ -272,6 +272,14 @@ export const blogRelations: Record<string, BlogRelations> = {
     ],
     calcs: ['rsu-tax-shortfall', 'double-trigger-rsu'],
   },
+  'rsu-wash-sale-rule': {
+    posts: [
+      'when-to-sell-rsus-after-vesting',
+      'rsu-cost-basis-fix-form-8949',
+      'how-to-report-rsu-tax-return',
+    ],
+    calcs: ['rsu-tax-shortfall', 'rsu-cost-basis'],
+  },
 };
 
 /** Reverse index: for a given calculator slug, which blog posts discuss it. */

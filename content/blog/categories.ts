@@ -102,6 +102,7 @@ export const blogCategories: BlogCategory[] = [
       'priya-annual-review-case-study',
       'maya-rsu-cost-basis-case-study',
       '2026-equity-comp-tax-numbers',
+      'rsu-wash-sale-rule',
     ],
   },
   {

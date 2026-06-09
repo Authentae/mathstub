@@ -159,6 +159,7 @@ import { danielCaTxCaseStudy } from './posts/daniel-ca-tx-case-study';
 import { qsbsSection1202 } from './posts/qsbs-section-1202-startup-equity';
 import { taxNumbers2026 } from './posts/2026-equity-comp-tax-numbers';
 import { rsuVestedNotReleased } from './posts/rsu-vested-but-not-released';
+import { rsuWashSaleRule } from './posts/rsu-wash-sale-rule';
 
 export const blogPosts: BlogPost[] = [
   whyRsuTooHigh,
@@ -193,6 +194,7 @@ export const blogPosts: BlogPost[] = [
   qsbsSection1202,
   taxNumbers2026,
   rsuVestedNotReleased,
+  rsuWashSaleRule,
 ];
 
 export function findPost(slug: string): BlogPost | undefined {
