@@ -102,10 +102,20 @@ export const affiliates: Record<AffiliateOfferId, AffiliateOffer> = {
   },
 };
 
+/**
+ * True only when the offer has a real, configured destination (its affiliate
+ * ID env var is set, so href() is not the '#' placeholder). Until a program is
+ * approved and its ID is set, we must NOT render the card — a dead grey CTA in
+ * prime conversion space hurts UX and reads as a broken ad unit.
+ */
+export function isOfferLive(offerId: AffiliateOfferId): boolean {
+  return affiliates[offerId].href() !== '#';
+}
+
 /** Returns the offers that should display given the calculator result. */
 export function offersForShortfall(shortfallUsd: number): AffiliateOffer[] {
   return Object.values(affiliates).filter((o) => {
     const min = o.showWhen?.minShortfallUsd ?? 0;
-    return shortfallUsd >= min;
+    return shortfallUsd >= min && o.href() !== '#';
   });
 }
