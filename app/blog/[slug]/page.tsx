@@ -102,7 +102,7 @@ export default async function PostPage({ params }: Props) {
 
         <Disclaimer />
 
-        <div className="mt-10 space-y-6 text-[18px] leading-[1.8] text-slate-300">
+        <div className="mt-10 space-y-7 text-[18px] leading-[1.85] text-slate-300">
           {post.blocks.map((block, i) => (
             <Block key={i} block={block} isLede={i === 0 && block.type === 'p'} />
           ))}
@@ -168,7 +168,7 @@ export default async function PostPage({ params }: Props) {
  * (". " / "? " / "! "), never mid-number or mid-abbreviation, by accumulating
  * whole sentences until adding the next would exceed the budget.
  */
-function splitIntoChunks(text: string, maxWords = 45): string[] {
+function splitIntoChunks(text: string, maxWords = 32): string[] {
   const words = text.split(/\s+/).filter(Boolean);
   if (words.length <= maxWords) return [text];
 
@@ -210,6 +210,24 @@ function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }
           <p className="text-[21px] leading-[1.75] text-slate-200">
             {renderInline(block.text)}
           </p>
+        );
+      }
+      // The "Sources:" citation paragraph is a dense reference wall at the
+      // bottom of every post. Collapse it into a toggle: the full text stays in
+      // the HTML (so SEO/AI crawlers still see every citation) but the reader
+      // gets a clean closing instead of a block of legal-looking text.
+      if (block.text.trimStart().startsWith('Sources:')) {
+        const body = block.text.replace(/^\s*Sources:\s*/, '');
+        return (
+          <details className="group mt-2 rounded-lg border border-slate-800 bg-slate-900/40 px-4 py-3">
+            <summary className="flex cursor-pointer list-none items-center gap-2 text-sm font-semibold text-slate-400 hover:text-slate-200">
+              <span aria-hidden="true" className="transition-transform group-open:rotate-90">▸</span>
+              Sources &amp; citations
+            </summary>
+            <p className="mt-3 text-[15px] leading-relaxed text-slate-500">
+              {renderInline(body)}
+            </p>
+          </details>
         );
       }
       // Auto-split long body paragraphs so no "wall of text" survives.
