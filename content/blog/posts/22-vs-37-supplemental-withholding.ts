@@ -144,30 +144,34 @@ export const supplementalRule: BlogPost = {
     {
       type: 'ol',
       items: [
-        '**Top up Form W-4 line 4(c) at your current employer.** Calculate the expected shortfall (use the RSU Tax Shortfall calculator for an estimate, or just compute your marginal rate gap × supplemental wages) and divide by remaining pay periods. Enter the per-paycheck dollar amount. Treated as paid evenly across the year per IRC §6654(g)(1) — retroactively cures earlier under-withholding.',
-        '**Quarterly estimated tax payment via IRS Direct Pay.** Pay the calculated shortfall as a "Form 1040 estimated tax" payment at irs.gov/payments. Only counts from the payment date — use if you missed the W-4 window.',
-        '**Combination approach.** For a >$100k shortfall, split between W-4 top-up (treated as paid evenly) and a Q4 estimated payment (covers the headline amount immediately). This balances the two methods.',
+        '**Top up W-4 line 4(c)** — extra withholding per paycheck. The IRS treats it as paid evenly all year (§6654(g)(1)), so it retroactively cures the gap. The cleanest fix.',
+        '**Quarterly estimate** at irs.gov/payments — counts only from the day you pay, so use it if you missed the W-4 window.',
+        '**Both**, for a big shortfall (>$100k): W-4 top-up + a Q4 estimate.',
       ],
     },
     { type: 'h2', text: 'Aggregate method as an alternative' },
     {
-      type: 'p',
-      text:
-        'Treas. Reg. §31.3402(g)-1(a)(2) lets employers use the "aggregate method" instead of the 22% flat — adding the supplemental wages to your regular paycheck wages and withholding at your effective rate from the IRS withholding tables. For high earners this often produces 28-32% federal withholding on the supplemental amount, much closer to actual marginal rate.',
+      type: 'table',
+      caption: 'Two ways your employer can withhold on a bonus/vest',
+      headers: ['Method', 'What it withholds', 'Who uses it'],
+      rows: [
+        ['Flat rate (default)', '22% (37% over $1M YTD)', 'Most companies — simpler'],
+        ['Aggregate', 'Your effective rate (~28–32% for high earners)', 'A minority'],
+      ],
     },
     {
-      type: 'p',
+      type: 'callout',
       text:
-        'Most companies default to the flat-rate method because it is operationally simpler. A minority use aggregate. Both are legal. You usually cannot pick — check your offer letter or equity plan document to find out which method applies, so you know whether to expect a shortfall.',
+        'You usually cannot pick the method — check your offer letter or equity plan document so you know whether to expect a shortfall. (Both are legal: Treas. Reg. §31.3402(g)-1(a)(2).)',
     },
     { type: 'h2', text: 'When to talk to a CPA' },
     {
       type: 'ul',
       items: [
-        '**Multi-employer mid-year switch with $500k+ supplemental wages.** The 22%-reset-per-employer trap.',
-        '**Double-trigger vests around an IPO.** Cumulative ordinary income concentrated in one year, often crossing the $1M threshold mid-vest.',
-        '**Crossing the $1M YTD supplemental threshold for the first time.** Cash-flow planning matters when withholding suddenly jumps from 22% to 37%.',
-        '**Multi-state residency during the same year supplemental wages were paid.** State sourcing layers compound the federal-side shortfall.',
+        '**Switched jobs mid-year with $500k+ in bonuses/vests** — the 22% counter resets per employer.',
+        '**Double-trigger vests at an IPO** — years of income compress into one, often crossing $1M.',
+        '**First time crossing $1M YTD** — withholding jumps 22% → 37%; plan the cash flow.',
+        '**Moved states mid-year** — state sourcing stacks on the federal gap.',
       ],
     },
     {
