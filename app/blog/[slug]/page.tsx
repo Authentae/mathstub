@@ -102,11 +102,15 @@ export default async function PostPage({ params }: Props) {
 
         <Disclaimer />
 
-        <div className="mt-10 space-y-7 text-[18px] leading-[1.85] text-slate-300">
-          {post.blocks.map((block, i) => (
-            <Block key={i} block={block} isLede={i === 0 && block.type === 'p'} />
-          ))}
-        </div>
+        {post.presentation ? (
+          <BlogPresentation blocks={post.blocks} />
+        ) : (
+          <div className="mt-10 space-y-7 text-[18px] leading-[1.85] text-slate-300">
+            {post.blocks.map((block, i) => (
+              <Block key={i} block={block} isLede={i === 0 && block.type === 'p'} />
+            ))}
+          </div>
+        )}
 
         {blogRelations[post.slug]?.calcs && (
           <CalcCta slugs={blogRelations[post.slug]!.calcs} />
@@ -197,6 +201,61 @@ function splitIntoChunks(text: string, maxWords = 32): string[] {
   }
   if (current.trim()) chunks.push(current.trim());
   return chunks;
+}
+
+/**
+ * Presentation layout: group the flat block list into sections (each h2 plus the
+ * blocks beneath it) and render each as a spacious, numbered slide-style card.
+ * Same content and the same Block renderer inside — just chunked into digestible
+ * cards so a long post reads like a deck instead of one wall of scroll.
+ */
+function BlogPresentation({ blocks }: { blocks: BlogBlock[] }) {
+  const intro: BlogBlock[] = [];
+  const sections: { heading: string; body: BlogBlock[] }[] = [];
+  for (const b of blocks) {
+    if (b.type === 'h2') {
+      sections.push({ heading: b.text, body: [] });
+    } else if (sections.length === 0) {
+      intro.push(b);
+    } else {
+      sections[sections.length - 1]!.body.push(b);
+    }
+  }
+  return (
+    <div className="mt-10 space-y-6">
+      {intro.length > 0 && (
+        <div className="space-y-6 text-[19px] leading-[1.85] text-slate-300">
+          {intro.map((b, i) => (
+            <Block key={i} block={b} isLede={i === 0 && b.type === 'p'} />
+          ))}
+        </div>
+      )}
+      {sections.map((sec, si) => (
+        <section
+          key={si}
+          id={slugifyHeading(sec.heading)}
+          className="scroll-mt-24 rounded-2xl border border-slate-800 bg-gradient-to-b from-slate-900/70 to-slate-900/30 p-6 shadow-sm sm:p-8"
+        >
+          <div className="flex items-center gap-3">
+            <span
+              aria-hidden="true"
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-500/15 text-sm font-bold text-brand-300"
+            >
+              {si + 1}
+            </span>
+            <h2 className="text-[26px] font-bold leading-tight tracking-[-0.02em] text-balance text-white">
+              {sec.heading}
+            </h2>
+          </div>
+          <div className="mt-5 space-y-6 text-[19px] leading-[1.85] text-slate-300">
+            {sec.body.map((b, i) => (
+              <Block key={i} block={b} />
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  );
 }
 
 function Block({ block, isLede = false }: { block: BlogBlock; isLede?: boolean }) {
