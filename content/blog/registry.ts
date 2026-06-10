@@ -117,6 +117,12 @@ export interface BlogPost {
    */
   landing?: boolean;
   /**
+   * Opt-in "presentation" layout: each section (an h2 and the blocks under it)
+   * renders as a distinct, spacious slide-style card. Turns a long scroll into
+   * a deck of digestible cards without removing any content. Defaults off.
+   */
+  presentation?: boolean;
+  /**
    * Optional "skim layer" — 3-6 plain-English bullets rendered under the
    * QuickAnswer. Lets a non-reader get the whole post in ~15s while the full
    * body below stays for depth + SEO. Keep each bullet to one scannable line.
