@@ -35,7 +35,7 @@
 |---|---|---|---|---|---|
 | 1 | **Future Tools** | futuretools.io (scroll to "Submit a Tool") | Yes | **Dofollow** ⭐ | 15 min |
 | 2 | **The Next AI** | thenextai.com/submit-ai-tool | Yes | **Dofollow** ⭐ | 15 min |
-| 3 | **Product Hunt** | producthunt.com/posts/new | Yes | Nofollow | 1 hr |
+| 3 | ~~**Product Hunt**~~ | ✅ **ALREADY LIVE:** producthunt.com/products/mathstub (launched May 2026) | — | Nofollow | done |
 | 4 | **AlternativeTo** | alternativeto.net → "Add application" | Yes | Nofollow | 20 min |
 | 5 | **SaaSHub** | saashub.com/submit | Yes | Nofollow | 15 min |
 | 6 | **There's An AI For That** | theresanaiforthat.com (Submit) | Yes | Nofollow | 10 min |
