@@ -49,7 +49,7 @@ keeps paying off long after you submit. **Turnkey paste-in copy for every one is
 `marketing/directory-submission-pack.md`.** Priority order:
 1. **Future Tools** (futuretools.io) — free, **dofollow**, high authority. Best single pick.
 2. **The Next AI** (thenextai.com) — free, **dofollow**.
-3. **Product Hunt** (producthunt.com) — list the calcs + Chrome extension as one product.
+3. ~~Product Hunt~~ — ✅ **already live** at producthunt.com/products/mathstub (launched May 2026).
 4. **AlternativeTo** (alternativeto.net) — list as a free alternative to TurboTax/SmartAsset.
 5. **SaaSHub** (saashub.com), **There's An AI For That** (theresanaiforthat.com), **Futurepedia** (futurepedia.io).
 
@@ -119,7 +119,7 @@ Cheap on-page changes that lift AI-citation odds for a young niche site (researc
 
 ## If you only do 3 things this week
 1. **Tier 0 #1 — Google Search Console** (7 min, the master key).
-2. **Tier 1B — submit to Future Tools + The Next AI + Product Hunt** (paste from the pack, ~45 min).
+2. **Tier 1B — submit to Future Tools + The Next AI** (the 2 free dofollow dirs; Product Hunt is already live). ~30 min.
 3. **Tier 1C — one Reddit/Blind helpful-answer sitting** (the only thing that brings traffic *today*).
 
 Everything else compounds on top of those.
