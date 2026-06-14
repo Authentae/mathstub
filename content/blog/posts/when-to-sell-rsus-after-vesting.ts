@@ -2,17 +2,19 @@ import type { BlogPost } from '../registry';
 
 export const whenToSellRsus: BlogPost = {
   slug: 'when-to-sell-rsus-after-vesting',
-  title: 'When should I sell RSUs after vesting? The tax math behind same-day sale vs hold',
+  title: 'When can you sell RSUs after vesting? How soon you can sell, and whether you should',
   description:
-    'Sell at vest or hold for long-term capital gains? Walk the actual numbers — concentration risk, the 1-year LTCG clock, the cash-flow math, and the cases where holding genuinely beats selling.',
+    'How many days after your RSUs vest can you sell them? Usually the same day — there is no IRS waiting period, only blackout windows and lockups. Then the real question: should you sell at vest or hold for long-term capital gains? The full timing + tax math.',
   datePublished: '2026-05-17',
-  dateModified: '2026-06-07',
+  dateModified: '2026-06-13',
   authorName: 'Mathstub Editorial',
   reviewerName: 'Reviewed against IRS primary sources',
   affiliateOfferIds: ['turbotax-premier', 'harness-wealth'],
   quickAnswer:
     'For most tech workers, sell at vest. The FMV is already taxed as W-2 income whether you sell or hold, so holding is equivalent to taking a cash bonus and buying $X of your employer\'s stock with it. Holding past 1 year saves ~5-7% in LTCG tax versus ordinary rates, but exposes you to 30-50% single-stock volatility. Default: same-day sale + reinvest in a diversified portfolio.',
   keyPoints: [
+    'You can usually sell RSUs the same day they vest — there is no IRS waiting period.',
+    'The only real delays: a company blackout window, insider status, or a pre-IPO lockup.',
     'For most people, the smart move is to sell RSUs the day they vest.',
     'You pay the same income tax whether you sell now or keep the shares.',
     'Holding the shares is like taking cash and buying your own company stock with it.',
@@ -25,6 +27,31 @@ export const whenToSellRsus: BlogPost = {
       type: 'p',
       text:
         'Your RSUs vested. The shares are in your brokerage account. Now you have a decision: sell today (same-day sale, sometimes called "sell-to-cover plus immediate sale"), or hold and hope the stock keeps going up. The "obvious" answer most people land on — "hold for long-term capital gains, that\'s cheaper tax!" — is usually wrong once you walk the actual math. Here is the framework.',
+    },
+    { type: 'h2', text: 'How many days after vesting can you sell? (Usually: the same day)' },
+    {
+      type: 'p',
+      text:
+        'First, the question people actually type — "after my RSUs vest, how many days before I can sell them?" For most public-company employees (Amazon, Microsoft, Google, Meta, and the like), the answer is: you can sell as soon as the shares land in your brokerage account, which is the vest date itself or within 1-2 business days while the shares settle. There is no IRS-imposed holding period before you are allowed to sell — tax law lets you sell the very same day. (A same-day sale also means roughly $0 capital gain, because your sale price equals the cost basis set at vest.)',
+    },
+    {
+      type: 'p',
+      text:
+        'So the only things that can actually delay your sale are company or securities-law restrictions, not the IRS:',
+    },
+    {
+      type: 'ul',
+      items: [
+        '**Blackout windows.** Most public companies (Amazon included) prohibit employees from trading during the quarterly earnings blackout period. If your vest lands inside a blackout, you sell once the trading window reopens.',
+        '**Insider status / material non-public information.** If you are a Section 16 officer or hold MNPI, your sales are restricted; a pre-scheduled 10b5-1 plan is the usual workaround.',
+        '**Pre-IPO or IPO lockup.** Private-company RSUs, or shares within a post-IPO lockup, cannot be sold until the lockup expires — a different situation covered in our double-trigger RSU guide.',
+        '**Settlement time.** Shares may take 1-2 business days to appear and settle in your brokerage (e.g., Amazon delivers RSUs through Morgan Stanley) before you can place a sell order.',
+      ],
+    },
+    {
+      type: 'callout',
+      text:
+        'Bottom line on timing: at a normal public company, outside a blackout window and without insider information, you can typically sell vested RSUs immediately — same day. There is no tax reason to wait. The real decision is not "when am I allowed to sell" but "should I sell now or hold," which is the rest of this guide.',
     },
     { type: 'h2', text: 'The "free money" mental trap' },
     {
