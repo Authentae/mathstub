@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { env } from './env';
 
 const FALLBACK_SITE_URL = 'http://localhost:3000';
-const PLACEHOLDER_PROD_URL = 'https://example.com';
+const PLACEHOLDER_PROD_URL = 'https://www.mathstub.com';
 export const SITE_NAME = 'Mathstub';
 
 let warnedMissingProd = false;
@@ -14,7 +14,7 @@ export function siteUrl(): string {
     if (!warnedMissingProd && typeof window === 'undefined') {
       // eslint-disable-next-line no-console
       console.warn(
-        '[seo] NEXT_PUBLIC_SITE_URL is not set; using https://example.com placeholder. Set it in your deploy env before launch.',
+        '[seo] NEXT_PUBLIC_SITE_URL is not set; falling back to https://www.mathstub.com. Set it explicitly in your deploy env.',
       );
       warnedMissingProd = true;
     }
@@ -211,7 +211,7 @@ export function articleSchema(opts: {
   reviewerName?: string;
   imagePath?: string;
 }) {
-  const image = opts.imagePath ? `${siteUrl()}${opts.imagePath}` : `${siteUrl()}/og-default.png`;
+  const image = opts.imagePath ? `${siteUrl()}${opts.imagePath}` : `${siteUrl()}/og/default.png`;
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
