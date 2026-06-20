@@ -6,8 +6,8 @@ const RELATED: Record<string, string[]> = {
   'rsu-cost-basis': ['rsu-tax-shortfall', 'espp-qualifying-disposition', 'state-stock-comp'],
   'bonus-tax-shortfall': ['rsu-tax-shortfall', 'quarterly-estimated-tax', 'nso-exercise'],
   'nso-exercise': ['iso-amt', 'rsu-tax-shortfall', 'quarterly-estimated-tax'],
-  'iso-amt': ['amt-credit-recovery', 'nso-exercise', 'espp-qualifying-disposition'],
-  'amt-credit-recovery': ['iso-amt', 'nso-exercise', 'quarterly-estimated-tax'],
+  'iso-amt': ['form-6251', 'amt-credit-recovery', 'nso-exercise', 'espp-qualifying-disposition'],
+  'amt-credit-recovery': ['iso-amt', 'form-6251', 'nso-exercise', 'quarterly-estimated-tax'],
   'espp-qualifying-disposition': ['iso-amt', 'nso-exercise', 'rsu-tax-shortfall'],
   'quarterly-estimated-tax': ['rsu-tax-shortfall', 'bonus-tax-shortfall', 'nso-exercise'],
   'state-stock-comp': ['rsu-tax-shortfall', 'iso-amt', 'espp-qualifying-disposition'],
@@ -18,7 +18,7 @@ const RELATED: Record<string, string[]> = {
   'form-6251': ['iso-amt', 'amt-credit-recovery', 'nso-exercise'],
   'ca-540nr': ['state-stock-comp', 'rsu-tax-shortfall', 'quarterly-estimated-tax'],
   'double-trigger-rsu': ['rsu-tax-shortfall', 'rsu-cost-basis', 'qsbs', 'quarterly-estimated-tax'],
-  'qsbs': ['iso-amt', 'nso-exercise', 'double-trigger-rsu'],
+  'qsbs': ['iso-amt', 'nso-exercise', 'double-trigger-rsu', 'form-6251'],
 };
 
 export function RelatedCalcs({ currentSlug }: { currentSlug: string }) {

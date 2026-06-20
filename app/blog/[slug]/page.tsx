@@ -67,6 +67,7 @@ export default async function PostPage({ params }: Props) {
           dateModified: post.dateModified,
           authorName: post.authorName,
           reviewerName: post.reviewerName,
+          imagePath: findCategoryForSlug(post.slug)?.card,
         })}
       />
       <JsonLd
