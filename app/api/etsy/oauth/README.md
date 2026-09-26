@@ -1,26 +1,21 @@
-# Etsy OAuth setup
+# Etsy shop connection setup
 
-This route pair provides the authorization-code/PKCE start and callback flow for the shop owner.
+The `/api/etsy/oauth/start` and `/api/etsy/oauth/callback` routes implement the authorization-code/PKCE handshake. The callback verifies shop access but does **not** persist OAuth tokens. This is not yet a durable Etsy integration.
 
-## Vercel environment variables
+## Configure a preview safely
 
-Set these as encrypted/sensitive values in the Vercel project:
+1. Add these as encrypted/sensitive Vercel Preview environment variables for the `feat/etsy-oauth-callback` branch:
+   - `ETSY_KEYSTRING`: your Etsy app keystring.
+   - `ETSY_SHARED_SECRET`: your Etsy app shared secret.
+   - `ETSY_REDIRECT_URI`: the exact callback URL registered in Etsy. For the preview alias below, use `https://mathstub-git-feat-etsy-oauth-callback-authentaes-projects.vercel.app/api/etsy/oauth/callback`.
+2. In Etsy Developer Apps, add that exact HTTPS callback URL to the app. Do not enable Developer Mode for your live shop.
+3. Redeploy the preview after setting environment variables. Open `https://mathstub-git-feat-etsy-oauth-callback-authentaes-projects.vercel.app/api/etsy/oauth/start` and approve the requested scopes: `listings_r listings_w shops_r`.
+4. The callback returns a shop verification result. It does not keep the access/refresh tokens, so authorization must not be treated as durable and listing automation is not ready until secure token storage and refresh are implemented.
 
-- `ETSY_KEYSTRING`: Etsy app keystring.
-- `ETSY_SHARED_SECRET`: Etsy app shared secret.
-- `ETSY_REDIRECT_URI`: exact HTTPS callback URL, `https://www.mathstub.com/api/etsy/oauth/callback` (must be registered in Etsy app settings).
-- `ETSY_API_KEY`: optional. If the station currently stores the combined value `keystring:shared_secret`, use it here. Otherwise omit this and the callback constructs the header from the two variables above.
+The callback URI must exactly match between Etsy app settings, `ETSY_REDIRECT_URI`, and the request. Never put secrets in `NEXT_PUBLIC_*`, source files, chat, or browser-visible settings.
 
-Never expose these values in a `NEXT_PUBLIC_*` variable or client-side code.
+## Route behavior
 
-## Authorization
-
-1. Deploy this branch to a protected Vercel preview and set the variables for Preview.
-2. In Etsy app settings, register the exact callback URL above.
-3. Open `/api/etsy/oauth/start` on that preview URL while in the same browser session. Etsy prompts the shop owner to approve `listings_r listings_w shops_r`.
-4. Etsy returns to `/api/etsy/oauth/callback`; it checks the one-use state and PKCE verifier and exchanges the code.
-5. The callback verifies read access to the shop and returns the shop ID/name, but **does not persist OAuth tokens**. The OAuth response contains an access token and refresh token; they must be saved in a secure server-side secret store before later API calls can use the authorization.
-
-## Important remaining work
-
-Token persistence and refresh are deliberately not implemented in this first slice. Do not claim a durable/fully automated Etsy connection until token storage, refresh, revocation, and access verification have been implemented and tested. Do not expose callback response values in analytics or logs.
+- Start: generates one-use state and PKCE verifier/challenge, stores the transaction in a short-lived HttpOnly cookie, and redirects to Etsy.
+- Callback: verifies state, exchanges the authorization code, extracts the shop ID from the token, and performs a read-only shop lookup. It never creates, edits, or publishes a listing.
+- Current limitation: token persistence, refresh, revocation, and durable verification are not implemented.
