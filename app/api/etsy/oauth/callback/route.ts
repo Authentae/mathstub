@@ -84,21 +84,8 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const privateBlob = JSON.stringify({
-      access_token: accessToken,
-      refresh_token: refreshToken,
-      expires_in: Number(tokenBody.expires_in) || 3600,
-      obtained_at: Date.now(),
-      shop_id: shopId,
-      scopes: ['listings_r', 'listings_w', 'shops_r'],
-    });
-    await put(TOKEN_BLOB_PATH, privateBlob, {
-      access: 'private',
-      addRandomSuffix: false,
-      allowOverwrite: true,
-      contentType: 'application/json',
-      cacheControlMaxAge: 0,
-    });
+    const privateBlob = JSON.stringify({ access_token: accessToken, refresh_token: refreshToken, expires_in: Number(tokenBody.expires_in) || 3600, obtained_at: Date.now(), shop_id: shopId, scopes: ['listings_r', 'listings_w', 'shops_r'] });
+    await put(TOKEN_BLOB_PATH, privateBlob, { access: 'private', addRandomSuffix: false, allowOverwrite: true, contentType: 'application/json', cacheControlMaxAge: 0 });
   } catch (e) {
     console.error('Etsy token persistence failed:', e instanceof Error ? e.message : 'unknown error');
     const response = NextResponse.json({ error: 'Shop access was verified, but secure token storage failed. Do not consider the connection complete.' }, { status: 503 });
