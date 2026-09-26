@@ -1,18 +1,20 @@
-# Etsy shop connection setup
+# Etsy OAuth setup for Mathstub
 
-This branch implements the Etsy OAuth authorization-code/PKCE handshake, validates OAuth state, checks shop access, and saves access and refresh tokens to a private Vercel Blob. It does not create, edit, or publish listings.
+The feature branch adds Etsy OAuth authorization-code/PKCE, state checking, a shop read verification, private Vercel Blob token storage, token refresh, and authenticated shop/listing API routes. No live listing is published by these routes.
 
-## Configure the preview
+## Configure the preview once
 
-The preview domain below was returned by Vercel for this branch:
+Use this preview host: `https://mathstub-id16ro63h-authentaes-projects.vercel.app`
 
-`https://mathstub-git-feat-etsy-oauth-callback-authentaes-projects.vercel.app`
+1. In Etsy Developer Apps, register exactly: `https://mathstub-id16ro63h-authentaes-projects.vercel.app/api/etsy/oauth/callback`.
+2. In Vercel, scope the following to Preview and branch `feat/etsy-oauth-callback`:
+   - `ETSY_KEYSTRING`: app keystring.
+   - `ETSY_SHARED_SECRET`: app shared secret.
+   - `ETSY_REDIRECT_URI`: the exact callback URL above.
+   - `ETSY_STATUS_SECRET`: generate a long random secret; use it only for server-to-server requests to protected API routes.
+3. Add `@vercel/blob` to dependencies (this branch imports it) and link a private Blob store to the Mathstub project; Vercel must provide `BLOB_READ_WRITE_TOKEN` at runtime.
+4. Redeploy the preview after configuration.
+5. Commander opens `https://mathstub-id16ro63h-authentaes-projects.vercel.app/api/etsy/oauth/start` and approves `listings_r listings_w shops_r`.
+6. Successful callback confirms shop access and writes access/refresh tokens to private Blob storage. The protected `/api/etsy/oauth/status` endpoint checks connection state; send the bearer token only from a trusted server, never browser JS or chat. `/api/etsy/shop` offers authenticated listing reads and draft creation for supported physical listings. Digital download file upload is deliberately not implemented yet and is refused rather than creating incomplete listings.
 
-1. In Etsy Developer Apps, add this exact callback URL: `https://mathstub-git-feat-etsy-oauth-callback-authentaes-projects.vercel.app/api/etsy/oauth/callback`.
-2. In Vercel Preview environment variables scoped to branch `feat/etsy-oauth-callback`, set `ETSY_KEYSTRING`, `ETSY_SHARED_SECRET`, and `ETSY_REDIRECT_URI` (the exact callback URL above). Use encrypted/sensitive values; never use `NEXT_PUBLIC_*` variables.
-3. Link the private Blob store `etsy-oauth-tokens` to the `mathstub` project in Preview and verify `BLOB_READ_WRITE_TOKEN` is available.
-4. Redeploy the branch preview so it picks up the updated settings.
-5. Open `https://mathstub-git-feat-etsy-oauth-callback-authentaes-projects.vercel.app/api/etsy/oauth/start` and approve the requested scopes: `listings_r listings_w shops_r`.
-6. A successful callback returns `{ "authorized": true, ... }` and stores tokens at `private/etsy/shop-oauth.json` in private Blob storage.
-
-Do not enable Etsy Developer Mode on your live shop. The callback performs a read-only shop check and stores tokens; it does not publish or change listings. Refresh-token automation and listing workflows still require implementation and testing before unattended use.
+Do not enable Etsy Developer Mode on your live shop. Never expose secrets through `NEXT_PUBLIC_*`, source code, query strings, client-side code, or chat. Do not promote this branch to production until full testing is done.
