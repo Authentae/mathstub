@@ -8,7 +8,7 @@ function equalSecret(a: string, b: string) { const left = Buffer.from(a); const 
 
 export async function GET(request: NextRequest) {
   const expected = process.env.ETSY_STATUS_SECRET;
-  const supplied = request.headers.get('authorization')?.replace(/^Bearer\\s+/i, '') || '';
+  const supplied = request.headers.get('authorization')?.replace(/^Bearer\s+/i, '') || '';
   if (!expected || !supplied || !equalSecret(expected, supplied)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401, headers: { 'Cache-Control': 'no-store' } });
   try {
     const blob = await get(TOKEN_BLOB_PATH, { access: 'private', useCache: false });
