@@ -9,7 +9,7 @@ type TokenRecord = { access_token: string; refresh_token: string; expires_in: nu
 function safeEqual(a: string, b: string) { const left = Buffer.from(a); const right = Buffer.from(b); return left.length === right.length && timingSafeEqual(left, right); }
 export async function GET(request: NextRequest) {
   const expected = process.env.ETSY_STATUS_SECRET;
-  const supplied = request.headers.get('authorization')?.replace(/^Bearer\s+/i, '') || '';
+  const supplied = request.headers.get('authorization')?.replace(/^Bearer\\s+/i, '') || '';
   if (!expected || !supplied || !safeEqual(expected, supplied)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401, headers: { 'Cache-Control': 'no-store' } });
   try {
     const blob = await get(TOKEN_BLOB_PATH, { access: 'private', useCache: false });
