@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
   catch { return fail('Etsy token exchange could not reach Etsy.', 502); }
   const tokenBody = await tokenResponse.json().catch(() => ({}));
   if (!tokenResponse.ok) { console.error('Etsy token exchange failed:', tokenResponse.status); return fail('Etsy token exchange failed. Check server configuration and app approval.', 502); }
-  const accessToken = typeof tokenBody.access_token === 'string' ? tokenBody.access_token : ''; const shopIdMatch = accessToken.match(/^([0-9]+)\\./); const refreshToken = typeof tokenBody.refresh_token === 'string' ? tokenBody.refresh_token : '';
+  const accessToken = typeof tokenBody.access_token === 'string' ? tokenBody.access_token : ''; const shopIdMatch = accessToken.match(/^([0-9]+)\./); const refreshToken = typeof tokenBody.refresh_token === 'string' ? tokenBody.refresh_token : '';
   if (!accessToken || !shopIdMatch || !refreshToken) return fail('Etsy returned an unexpected token response.', 502);
   const shopId = shopIdMatch[1];
   let shopResponse: Response;
