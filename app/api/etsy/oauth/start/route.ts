@@ -10,7 +10,10 @@ export async function GET() {
   const keystring = process.env.ETSY_KEYSTRING;
   const sharedSecret = process.env.ETSY_SHARED_SECRET;
   const redirectUri = process.env.ETSY_REDIRECT_URI;
-  if (!keystring || !sharedSecret || !redirectUri) return NextResponse.json({ error: 'Etsy OAuth is not configured.' }, { status: 503, headers: { 'Cache-Control': 'no-store' } });
+  if (!keystring || !sharedSecret || !redirectUri) {
+    const missing = [!keystring && 'ETSY_KEYSTRING', !sharedSecret && 'ETSY_SHARED_SECRET', !redirectUri && 'ETSY_REDIRECT_URI'].filter(Boolean);
+    return NextResponse.json({ error: 'Etsy OAuth is not configured.', missing }, { status: 503, headers: { 'Cache-Control': 'no-store' } });
+  }
   const verifier = base64url(randomBytes(32));
   const challenge = base64url(createHash('sha256').update(verifier).digest());
   const state = base64url(randomBytes(32));
