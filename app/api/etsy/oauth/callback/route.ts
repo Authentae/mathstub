@@ -42,9 +42,13 @@ export async function GET(request: NextRequest) {
   catch { return fail('Etsy shop access could not be verified.', 502); }
   if (!shopResponse.ok) { console.error('Etsy shop verification failed:', shopResponse.status); return fail('OAuth completed, but Etsy shop access could not be verified.', 502); }
   const shopBody = await shopResponse.json().catch(() => null);
-  const shops = shopBody && typeof shopBody === 'object' && Array.isArray(shopBody.results) ? shopBody.results : [];
-  const shop = shops.find((candidate: unknown) => candidate && typeof candidate === 'object' && 'shop_id' in candidate && (typeof candidate.shop_id === 'number' || (typeof candidate.shop_id === 'string' && /^[0-9]+$/.test(candidate.shop_id))));
-  if (!shop) return fail('OAuth completed, but Etsy returned no valid authorized shop.', 502);
+  // Etsy's getShopByOwnerUserId operation returns one Shop object, not a paginated { results: [...] } collection.
+  const shop = shopBody && typeof shopBody === 'object' && !Array.isArray(shopBody) && 'shop_id' in shopBody
+    ? shopBody
+    : shopBody && typeof shopBody === 'object' && Array.isArray(shopBody.results)
+      ? shopBody.results.find((candidate: unknown) => candidate && typeof candidate === 'object' && 'shop_id' in candidate)
+      : null;
+  if (!shop || !('shop_id' in shop) || !(typeof shop.shop_id === 'number' || (typeof shop.shop_id === 'string' && /^[0-9]+$/.test(shop.shop_id)))) return fail('OAuth completed, but Etsy returned no valid authorized shop.', 502);
   const shopId = String(shop.shop_id);
   try {
     await put(TOKEN_BLOB_PATH, JSON.stringify({ access_token: accessToken, refresh_token: refreshToken, expires_in: Number(tokenBody.expires_in) || 3600, obtained_at: Date.now(), shop_id: shopId, scopes: transaction.scopes }), { access: 'private', addRandomSuffix: false, allowOverwrite: true, contentType: 'application/json', cacheControlMaxAge: 0 });
