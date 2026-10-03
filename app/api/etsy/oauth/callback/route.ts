@@ -6,7 +6,7 @@ export const runtime = 'nodejs';
 const COOKIE = 'etsy_oauth_transaction';
 const TOKEN_URL = 'https://api.etsy.com/v3/public/oauth/token';
 const TOKEN_BLOB_PATH = 'private/etsy/shop-oauth.json';
-const REQUIRED_SCOPES = ['listings_r', 'listings_w', 'shops_r'] as const;
+const REQUIRED_SCOPES = ['listings_r', 'listings_w', 'shops_r', 'transactions_r'] as const;
 type Transaction = { state: string; verifier: string; scopes: string[] };
 function mac(payload: string, secret: string) { return createHmac('sha256', secret).update(payload).digest('base64url'); }
 function safeEqual(a: string, b: string) { const left = Buffer.from(a); const right = Buffer.from(b); return left.length === right.length && timingSafeEqual(left, right); }
