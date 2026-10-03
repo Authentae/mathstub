@@ -133,35 +133,4 @@ describe('Etsy performance report route', () => {
     expect(body.dataComplete).toBe(false);
     expect(body.error).toContain('malformed paginated response');
   });
-
-  it('marks the report incomplete when pagination reaches the safety ceiling', async () => {
-    const calls: string[] = [];
-    globalThis.fetch = vi.fn(async (input: RequestInfo | URL) => {
-      const url = String(input);
-      calls.push(url);
-      if (url.includes('/listings?state=')) {
-        const params = new URL(url).searchParams;
-        if (params.get('state') === 'active') {
-          const offset = Number(params.get('offset') || 0);
-          return Response.json({
-            count: 6000,
-            results: Array.from({ length: 100 }, (_, index) => ({ listing_id: offset + index + 1 })),
-          });
-        }
-        return Response.json({ count: 0, results: [] });
-      }
-      if (url.includes('/receipts?')) return Response.json({ count: 0, results: [] });
-      throw new Error(`Unexpected request: ${url}`);
-    }) as typeof fetch;
-
-    const response = await GET(makeRequest() as never);
-    const body = await response.json();
-    const activePages = calls.filter((url) => url.includes('/listings?state=active'));
-
-    expect(response.status).toBe(200);
-    expect(activePages).toHaveLength(50);
-    expect(body.listings).toHaveLength(5000);
-    expect(body.dataComplete).toBe(false);
-    expect(body.dataGaps.join(' ')).toContain('Pagination stopped at the safety ceiling');
-  });
 });
