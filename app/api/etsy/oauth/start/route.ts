@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 export const runtime = 'nodejs';
 const COOKIE = 'etsy_oauth_transaction';
 const MAX_AGE = 10 * 60;
-const REQUESTED_SCOPES = ['listings_r', 'listings_w', 'shops_r'] as const;
+const REQUESTED_SCOPES = ['listings_r', 'listings_w', 'shops_r', 'transactions_r'] as const;
 function base64url(value: Buffer) { return value.toString('base64url'); }
 export async function GET() {
   const keystring = process.env.ETSY_KEYSTRING;
