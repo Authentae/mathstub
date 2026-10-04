@@ -68,12 +68,12 @@ describe('Etsy listing publication route', () => {
     expect(response.status).toBe(201);
     expect(body).toMatchObject({ listing_id: 456, state: 'active', uploadedImages: ['preview.png'] });
     expect(calls.map((call) => call.method)).toEqual(['POST', 'POST', 'PATCH', 'GET']);
-    const createBody = calls[0].body as URLSearchParams;
+    const createBody = calls[0]!.body as URLSearchParams;
     expect(createBody.get('type')).toBe('physical');
     expect(createBody.get('state')).toBeNull();
-    expect(calls[1].body).toBeInstanceOf(FormData);
-    expect(calls[1].url).toContain('/images');
-    expect(calls[2].body).toBeInstanceOf(URLSearchParams);
+    expect(calls[1]!.body).toBeInstanceOf(FormData);
+    expect(calls[1]!.url).toContain('/images');
+    expect(calls[2]!.body).toBeInstanceOf(URLSearchParams);
     expect(JSON.parse(store.get('private/etsy/publish-history.json') || '[]')).toHaveLength(1);
     expect(JSON.parse(store.get('private/etsy/publish-lock.json') || '{}')).toMatchObject({ state: 'completed', listingId: 456 });
   });
@@ -142,10 +142,10 @@ describe('Etsy listing publication route', () => {
     const response = await POST(routeRequest(digitalInput) as never);
     expect(response.status).toBe(201);
     expect(calls.map((call) => call.method)).toEqual(['POST', 'POST', 'POST', 'PATCH', 'GET']);
-    const fileForm = calls[1].body as FormData;
+    const fileForm = calls[1]!.body as FormData;
     expect(fileForm.get('file')).toBeInstanceOf(Blob);
     expect(fileForm.get('name')).toBe('printable.pdf');
-    expect(calls[1].url).toContain('/files');
+    expect(calls[1]!.url).toContain('/files');
   });
 
   it('preserves unresolved state when activation succeeds but read-back fails', async () => {

@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { del, get, put } from '@vercel/blob';
 import { NextRequest, NextResponse } from 'next/server';
 import { enforcePublishLimits, isLockFresh, ListingHistoryItem, ListingLock } from '@/lib/etsy/automation';
@@ -180,7 +181,6 @@ function parseBody(body: unknown): ListingDraftInput | null {
 }
 
 function requestFingerprint(input: ListingDraftInput) {
-  const { createHash } = require('node:crypto') as typeof import('node:crypto');
   return createHash('sha256').update(JSON.stringify(input)).digest('hex');
 }
 
@@ -267,7 +267,12 @@ export async function POST(request: NextRequest) {
   if (!process.env.ETSY_KEYSTRING) return NextResponse.json({ error: 'ETSY_KEYSTRING is not configured' }, { status: 503 });
   const input = parseBody(await readBody(request));
   if (!input) return NextResponse.json({ error: 'Invalid listing payload' }, { status: 400 });
-  const token = await readToken();
+  let token: EtsyToken | null;
+  try {
+    token = await readToken();
+  } catch (error) {
+    return NextResponse.json({ error: error instanceof Error ? error.message : 'Stored Etsy OAuth token is invalid' }, { status: 503 });
+  }
   if (!token) return NextResponse.json({ error: 'Shop OAuth connection not found' }, { status: 503 });
   try { requireScope(token, 'listings_w'); } catch (error) { return forbidden((error as Error).message); }
   if (!input.readiness_confirmed || !input.readiness_evidence || input.readiness_evidence.trim().length < 20) {

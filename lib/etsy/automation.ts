@@ -54,3 +54,19 @@ export function isLockFresh(lock: ListingLock | null | undefined, nowMs: number)
   if (!Number.isFinite(started) || started > nowMs) return false;
   return nowMs - started < PUBLISH_LOCK_TTL_MS;
 }
+
+
+export function buildPerformanceReport<T>(listings: T[], history: ListingHistoryItem[], startMs: number, endMs: number) {
+  const publications = history.filter((item) => {
+    const timestamp = Date.parse(item.createdAt);
+    return Number.isFinite(timestamp) && timestamp >= startMs && timestamp <= endMs;
+  });
+  return {
+    start: new Date(startMs).toISOString(),
+    end: new Date(endMs).toISOString(),
+    listingCount: listings.length,
+    publicationCount: publications.length,
+    publications,
+    listings,
+  };
+}
