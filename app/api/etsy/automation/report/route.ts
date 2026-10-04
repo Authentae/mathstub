@@ -35,7 +35,7 @@ function unauthorized() {
 }
 
 function addMoney(totals: MoneyTotals, money?: { amount?: number; divisor?: number; currency_code?: string }) {
-  if (!money || typeof money.amount !== "number" || !Number.isFinite(money.amount) || typeof money.divisor !== "number" || !Number.isFinite(money.divisor) || !money.divisor || !money.currency_code) return;
+  if (!money || typeof money.amount !== 'number' || !Number.isFinite(money.amount) || typeof money.divisor !== 'number' || !Number.isFinite(money.divisor) || !money.divisor || !money.currency_code) return;
   totals[money.currency_code] = (totals[money.currency_code] || 0) + money.amount / money.divisor;
 }
 
@@ -94,28 +94,42 @@ export async function GET(request: NextRequest) {
   const listingMetrics = new Map<number, { paidOrderCount: number; transactionCount: number; unitsSold: number; grossByCurrency: MoneyTotals }>();
   const shopRevenueByCurrency: MoneyTotals = {};
   const shopRefundsByCurrency: MoneyTotals = {};
+  let shopPaidOrderCount = 0;
   const receipts = receiptPages.rows;
   for (const receipt of receipts) {
-    if (receipt.status === 'Canceled' || receipt.status === 'Cancelled' || receipt.status === 'Fully Refunded') continue;
+    if (receipt.status === 'Canceled' || receipt.status === 'Cancelled') continue;
+    if (receipt.status === 'Fully Refunded') {
+      for (const transaction of receipt.transactions || []) addMoney(shopRefundsByCurrency, transaction.price);
+      continue;
+    }
+    shopPaidOrderCount++;
     for (const transaction of receipt.transactions || []) {
+      const amount = transaction.price && typeof transaction.price.amount === 'number' && Number.isFinite(transaction.price.amount) && typeof transaction.price.divisor === 'number' && Number.isFinite(transaction.price.divisor) && transaction.price.divisor
+        ? (transaction.price.amount / transaction.price.divisor) * (transaction.quantity || 1)
+        : 0;
+      const currency = transaction.price?.currency_code;
       const listingId = transaction.listing_id;
-      if (!listingId) continue;
-      const metrics = listingMetrics.get(listingId) || { paidOrderCount: 0, transactionCount: 0, unitsSold: 0, grossByCurrency: {} };
-      metrics.transactionCount++;
-      metrics.unitsSold += transaction.quantity || 1;
-      addMoney(metrics.grossByCurrency, transaction.price);
-      addMoney(shopRevenueByCurrency, transaction.price);
-      listingMetrics.set(listingId, metrics);
+      if (currency) shopRevenueByCurrency[currency] = (shopRevenueByCurrency[currency] || 0) + amount;
+      if (listingId) {
+        const metrics = listingMetrics.get(listingId) || { paidOrderCount: 0, transactionCount: 0, unitsSold: 0, grossByCurrency: {} };
+        metrics.paidOrderCount++;
+        metrics.transactionCount++;
+        metrics.unitsSold += transaction.quantity || 1;
+        addMoney(metrics.grossByCurrency, transaction.price);
+        listingMetrics.set(listingId, metrics);
+      }
     }
   }
   const history = await loadJson<ListingHistoryItem[]>(HISTORY_PATH, []);
+  const adsState = await fetchAdsState();
   const listings = listingRows.map((listing) => {
     const metrics = listingMetrics.get(listing.listing_id);
+    const historyItem = history.find((item) => item.listingId === listing.listing_id);
     const currencies = Object.keys(metrics?.grossByCurrency || {});
     const singleCurrency = currencies[0];
     return {
       listing_id: listing.listing_id,
-      title: listing.title || `Listing ${listing.listing_id}`,
+      title: listing.title || historyItem?.title || `Listing ${listing.listing_id}`,
       state: listing.state,
       num_favorers: listing.num_favorers || 0,
       quantity: listing.quantity,
@@ -128,12 +142,41 @@ export async function GET(request: NextRequest) {
       revenueCurrency: currencies.length === 1 ? currencies[0] : currencies.length > 1 ? 'mixed' : null,
     };
   });
+
+  for (const currency of Object.keys(shopRefundsByCurrency)) {
+    const refunded = shopRefundsByCurrency[currency] || 0;
+    const gross = shopRevenueByCurrency[currency] || 0;
+    shopRefundsByCurrency[currency] = Math.min(refunded, gross);
+  }
+
   const now = Date.now();
   const report = buildPerformanceReport(listings, history, now - 30 * 86400000, now);
-  return NextResponse.json({ ...report, dataComplete: failedListings === 0 && !listingPages.incomplete && !receiptPages.incomplete, dataGaps, shopPaidOrderCount: 0, shopRevenueByCurrency, shopRefundsByCurrency, ads: await loadJson(ADS_PATH, {}), notes: [
-    'Etsy API listing favorites and order totals are cumulative listing totals; daily/weekly/monthly performance deltas require stored snapshots.',
-    'Gross revenue is calculated from paid receipt transactions and does not include fees, taxes, shipping, or payout adjustments.',
-    'Etsy Ads reporting and budget mutation are not implemented by this route.',
-    'Listing history only includes changes recorded by this application.',
-  ] });
+  const dataComplete = failedListings === 0 && !receiptPages.error && !listingPages.some((page) => page.incomplete) && !receiptPages.incomplete;
+  if (!dataComplete && !dataGaps.length) dataGaps.push('One or more Etsy result sets are incomplete');
+  if (receiptPages.error) {
+    return NextResponse.json({ error: `Etsy order performance data could not be retrieved: ${receiptPages.error}`, dataComplete: false }, { status: receiptPages.error.includes('(403)') ? 403 : 502 });
+  }
+  const failedListingPage = listingPages.find((page) => page.error);
+  if (failedListingPage?.error) {
+    return NextResponse.json({ error: failedListingPage.error, dataComplete: false }, { status: 502 });
+  }
+  const incompletePage = [...listingPages, receiptPages].find((page) => page.incomplete && page.error);
+  if (incompletePage?.error) {
+    return NextResponse.json({ error: incompletePage.error, dataComplete: false }, { status: 502 });
+  }
+  return NextResponse.json({
+    ...report,
+    dataComplete,
+    dataGaps: [
+      ...dataGaps,
+      'Etsy API listing favorites and order totals are cumulative listing totals; daily/weekly/monthly performance deltas require stored snapshots.',
+      'Gross revenue is calculated from paid receipt transactions and does not include fees, taxes, shipping, or payout adjustments.',
+      'Etsy Ads reporting and budget mutation are not implemented by this route.',
+      'Listing history only includes changes recorded by this application.',
+    ],
+    shopPaidOrderCount,
+    shopRevenueByCurrency,
+    shopRefundsByCurrency,
+    ads: adsState,
+  });
 }
