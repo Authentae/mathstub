@@ -229,6 +229,50 @@ function acceptedReadiness(input: ListingDraftInput) {
   return input.readiness_confirmed === true && typeof input.readiness_evidence === 'string' && input.readiness_evidence.trim().length >= 20;
 }
 
+async function reconcilePublication(token: EtsyToken) {
+  const lock = await latestLock();
+  if (!lock) return NextResponse.json({ reconciled: false, unresolved: false, message: 'No publication lock exists.' });
+  if (!Number.isInteger(lock.listingId) || !lock.listingId) {
+    return NextResponse.json({ error: 'The unresolved lock has no Etsy listing ID; it cannot be safely reconciled automatically.', unresolved: true }, { status: 409 });
+  }
+
+  let result: EtsyRequestResult;
+  try {
+    result = await fetchListing(`https://openapi.etsy.com/v3/application/shops/${encodeURIComponent(token.shop_id)}/listings/${lock.listingId}`, token);
+  } catch {
+    return NextResponse.json({ error: 'Could not read the Etsy listing; the publication lock remains unchanged.', unresolved: true }, { status: 502 });
+  }
+  const listing = await parseEtsyResponse(result.response);
+  if (!result.response.ok) {
+    return NextResponse.json({ error: responseError(listing, `Etsy listing read failed (${result.response.status}); the publication lock remains unchanged.`), unresolved: true }, { status: 502 });
+  }
+  if (Number(listing.listing_id) !== lock.listingId) {
+    return NextResponse.json({ error: 'Etsy did not confirm the expected listing ID; the publication lock remains unchanged.', unresolved: true }, { status: 502 });
+  }
+
+  if (listing.state !== 'active') {
+    return NextResponse.json({
+      reconciled: false,
+      unresolved: true,
+      listing_id: lock.listingId,
+      remoteState: typeof listing.state === 'string' ? listing.state : 'unknown',
+      message: 'The Etsy listing is not active. The lock remains in place to prevent a duplicate; complete or inspect the listing manually, then reconcile again.',
+    }, { status: 409 });
+  }
+
+  const history = await readHistory();
+  const alreadyRecorded = history.some((item) => item.listingId === lock.listingId);
+  if (!alreadyRecorded) {
+    const startedAt = Date.parse(lock.startedAt);
+    await put(HISTORY_PATH, JSON.stringify([
+      ...history,
+      recordForListing(listing as unknown as EtsyListing, Number.isFinite(startedAt) ? startedAt : Date.now(), 'reconciled publication'),
+    ]), { access: 'private', contentType: 'application/json' });
+  }
+  await updateLock({ ...lock, state: 'completed', title: typeof listing.title === 'string' ? listing.title : lock.title });
+  return NextResponse.json({ reconciled: true, unresolved: false, listing_id: lock.listingId, state: 'active', historyRecorded: !alreadyRecorded });
+}
+
 export async function GET(request: NextRequest) {
   if (!getSecret(request)) return authError();
   const token = await readToken();
@@ -265,7 +309,18 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   if (!getSecret(request)) return authError();
   if (!process.env.ETSY_KEYSTRING) return NextResponse.json({ error: 'ETSY_KEYSTRING is not configured' }, { status: 503 });
-  const input = parseBody(await readBody(request));
+  const body = await readBody(request);
+  if (body && typeof body === 'object' && (body as { action?: unknown }).action === 'reconcile') {
+    let reconciliationToken: EtsyToken | null;
+    try { reconciliationToken = await readToken(); }
+    catch (error) { return NextResponse.json({ error: error instanceof Error ? error.message : 'Stored Etsy OAuth token is invalid' }, { status: 503 }); }
+    if (!reconciliationToken) return NextResponse.json({ error: 'Shop OAuth connection not found' }, { status: 503 });
+    try { requireScope(reconciliationToken, 'listings_r'); }
+    catch (error) { return forbidden((error as Error).message); }
+    try { return await reconcilePublication(reconciliationToken); }
+    catch (error) { return NextResponse.json({ error: error instanceof Error ? error.message : 'Could not reconcile Etsy publication', unresolved: true }, { status: 503 }); }
+  }
+  const input = parseBody(body);
   if (!input) return NextResponse.json({ error: 'Invalid listing payload' }, { status: 400 });
   let token: EtsyToken | null;
   try {

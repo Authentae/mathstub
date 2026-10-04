@@ -165,6 +165,39 @@ describe('Etsy listing publication route', () => {
     expect(JSON.parse(store.get('private/etsy/publish-lock.json') || '{}')).toMatchObject({ state: 'activation_pending', listingId: 800 });
   });
 
+  it('reconciles an active Etsy listing after a lost activation read-back and records it once', async () => {
+    store.set('private/etsy/publish-lock.json', JSON.stringify({ idempotencyKey: 'old', draftHash: 'old-hash', startedAt: new Date(Date.now() - 60_000).toISOString(), state: 'activation_pending', listingId: 801, title: 'Old title' }));
+    globalThis.fetch = vi.fn(async (input: RequestInfo | URL) => {
+      expect(String(input)).toContain('/shops/123456/listings/801');
+      return Response.json({ listing_id: 801, state: 'active', title: 'Reconciled title' });
+    }) as typeof fetch;
+
+    const response = await POST(routeRequest({ action: 'reconcile' }) as never);
+    const body = await response.json();
+    expect(response.status).toBe(200);
+    expect(body).toMatchObject({ reconciled: true, listing_id: 801, state: 'active', historyRecorded: true });
+    expect(JSON.parse(store.get('private/etsy/publish-history.json') || '[]')).toHaveLength(1);
+    expect(JSON.parse(store.get('private/etsy/publish-history.json') || '[]')[0]).toMatchObject({ listingId: 801, title: 'Reconciled title' });
+    expect(JSON.parse(store.get('private/etsy/publish-lock.json') || '{}')).toMatchObject({ state: 'completed', listingId: 801, title: 'Reconciled title' });
+
+    const replay = await POST(routeRequest({ action: 'reconcile' }) as never);
+    expect(replay.status).toBe(200);
+    expect((await replay.json()).historyRecorded).toBe(false);
+    expect(JSON.parse(store.get('private/etsy/publish-history.json') || '[]')).toHaveLength(1);
+  });
+
+  it('keeps the unresolved lock when Etsy says the listing is still a draft', async () => {
+    store.set('private/etsy/publish-lock.json', JSON.stringify({ idempotencyKey: 'old', draftHash: 'old-hash', startedAt: new Date().toISOString(), state: 'uploads_partial', listingId: 802 }));
+    globalThis.fetch = vi.fn(async () => Response.json({ listing_id: 802, state: 'draft', title: 'Incomplete listing' })) as typeof fetch;
+
+    const response = await POST(routeRequest({ action: 'reconcile' }) as never);
+    const body = await response.json();
+    expect(response.status).toBe(409);
+    expect(body).toMatchObject({ reconciled: false, unresolved: true, listing_id: 802, remoteState: 'draft' });
+    expect(JSON.parse(store.get('private/etsy/publish-lock.json') || '{}')).toMatchObject({ state: 'uploads_partial', listingId: 802 });
+    expect(JSON.parse(store.get('private/etsy/publish-history.json') || '[]')).toHaveLength(0);
+  });
+
   it('requires listings_r scope for the published listing read route', async () => {
     store.set('private/etsy/shop-oauth.json', JSON.stringify({ access_token: 'token', refresh_token: 'refresh', expires_in: 3600, obtained_at: Date.now(), shop_id: '123456', scopes: [] }));
     globalThis.fetch = vi.fn() as typeof fetch;
