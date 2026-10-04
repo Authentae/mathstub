@@ -31,6 +31,7 @@ export interface PublishLimitResult {
   reason?: string;
 }
 
+/** Enforce the per-UTC-day and rolling seven-day successful-publish caps. */
 export function enforcePublishLimits(history: ListingHistoryItem[], nowMs: number): PublishLimitResult {
   const valid = history
     .map((item) => ({ ...item, timestamp: Date.parse(item.createdAt) }))
@@ -53,4 +54,17 @@ export function isLockFresh(lock: ListingLock | null | undefined, nowMs: number)
   const started = Date.parse(lock.startedAt);
   if (!Number.isFinite(started) || started > nowMs) return false;
   return nowMs - started < PUBLISH_LOCK_TTL_MS;
+}
+
+export function buildPerformanceReport<T>(rows: T[], history: ListingHistoryItem[], startMs: number, endMs: number) {
+  const publishedInPeriod = history.filter((item) => {
+    const createdAt = Date.parse(item.createdAt);
+    return Number.isFinite(createdAt) && createdAt >= startMs && createdAt <= endMs;
+  });
+  return {
+    period: { start: new Date(startMs).toISOString(), end: new Date(endMs).toISOString() },
+    listingCount: rows.length,
+    listings: rows,
+    publishedInPeriod,
+  };
 }
