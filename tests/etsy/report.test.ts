@@ -49,7 +49,33 @@ describe('Etsy performance report route', () => {
     expect(body.shopRevenueByCurrency).toEqual({ USD: 34, EUR: 5 });
     expect(body.listings.find((item: { listing_id: number }) => item.listing_id === 101)).toMatchObject({ listing_id: 101, listingFavorites: 7, paidOrderCount: 2, transactionCount: 2, unitsSold: 3, grossRevenue: 34, revenueCurrency: 'USD' });
     expect(body.dataComplete).toBe(true);
-    expect(body.dataGaps.join(' ')).toContain('cumulative listing totals');
+    expect(body.dataGaps.join(' ')).toContain('no earlier snapshot exists');
+    expect(body.favoritesBaselineAt).toBeNull();
+    expect(body.listings[0].listingFavoritesChange).toBeNull();
+    const snapshots = JSON.parse(store.get('private/etsy/performance-snapshots.json') || '[]');
+    expect(snapshots).toHaveLength(1);
+    expect(snapshots[0].listings).toContainEqual({ listingId: 101, favorites: 7 });
+  });
+
+  it('compares current listing favorites to an earlier stored snapshot for the selected period', async () => {
+    const baselineAt = new Date(Date.now() - 8 * 24 * 60 * 60 * 1000).toISOString();
+    store.set('private/etsy/performance-snapshots.json', JSON.stringify([{ capturedAt: baselineAt, listings: [{ listingId: 101, favorites: 4 }] }]));
+    globalThis.fetch = vi.fn(async (input: RequestInfo | URL) => {
+      const url = String(input);
+      if (url.includes('/listings?state=')) {
+        const state = new URL(url).searchParams.get('state');
+        return Response.json({ count: state === 'active' ? 1 : 0, results: state === 'active' ? [{ listing_id: 101, title: 'Print', num_favorers: 9 }] : [] });
+      }
+      if (url.includes('/receipts?')) return Response.json({ count: 0, results: [] });
+      throw new Error(`Unexpected request: ${url}`);
+    }) as typeof fetch;
+
+    const response = await GET(makeRequest() as never);
+    const body = await response.json();
+    expect(response.status).toBe(200);
+    expect(body.favoritesBaselineAt).toBe(baselineAt);
+    expect(body.listings[0].listingFavoritesChange).toBe(5);
+    expect(body.dataGaps.join(' ')).not.toContain('no earlier snapshot exists');
   });
 
   it('reads every listing state and all result pages for listings and receipts', async () => {
