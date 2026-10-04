@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { enforcePublishLimits, isLockFresh, ListingHistoryItem, ListingLock, MAX_LISTINGS_PER_ROLLING_WEEK, MAX_LISTINGS_PER_UTC_DAY, PUBLISH_LOCK_TTL_MS } from '../../lib/etsy/automation';
+import { enforcePublishLimits, isLockFresh, ListingHistoryItem, ListingLock, MAX_LISTINGS_PER_ROLLING_WEEK, PUBLISH_LOCK_TTL_MS } from '../../lib/etsy/automation';
 
 function item(createdAt: string, listingId = 1): ListingHistoryItem {
   return { listingId, title: `Listing ${listingId}`, state: 'active', createdAt, publishPath: 'test' };
@@ -11,9 +11,10 @@ describe('Etsy automation publication limits', () => {
     expect(enforcePublishLimits([], now)).toEqual({ allowed: true });
   });
 
-  it('blocks a second successful listing on the same UTC day', () => {
+  it('allows multiple listings on the same UTC day while under the rolling weekly cap', () => {
     const now = Date.parse('2025-01-15T12:00:00.000Z');
-    expect(enforcePublishLimits([item('2025-01-15T01:00:00.000Z')], now)).toMatchObject({ allowed: false, reason: expect.stringContaining('UTC day') });
+    const history = [item('2025-01-15T01:00:00.000Z', 1), item('2025-01-15T10:00:00.000Z', 2)];
+    expect(enforcePublishLimits(history, now)).toEqual({ allowed: true });
   });
 
   it('blocks a fourth listing in the rolling seven-day window even on a new day', () => {

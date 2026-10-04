@@ -29,7 +29,7 @@ After changing variables, redeploy the preview or production environment that sh
 
 ## Listing safeguards
 
-The listing route requires `listings_w`, readiness confirmation and evidence, a stable `Idempotency-Key`, and private Blob storage for its quota lock and publication history. It creates an Etsy draft, uploads required assets, activates only after successful uploads, then reads the listing back before recording a successful publication. It enforces a maximum of one successful listing per UTC day and three per rolling seven-day window. Readiness confirmation is caller-supplied information, not an independent AI quality verdict.
+The listing route requires `listings_w`, readiness confirmation and evidence, a stable `Idempotency-Key`, and private Blob storage for its quota lock and publication history. It creates an Etsy draft, uploads required assets, activates only after successful uploads, then reads the listing back before recording a successful publication. It enforces a maximum of three successful listings in any rolling seven-day window, with no separate daily cap. Readiness confirmation is caller-supplied information, not an independent AI quality verdict.
 
 Etsy's Ads controls and reporting are not implemented here. The `$5` daily cap is a proposed ceiling only, not a configured or verified Etsy budget. No ad spend occurs through these routes.
 

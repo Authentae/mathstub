@@ -46,11 +46,11 @@ describe('Etsy listing-demand research route', () => {
     const response = await GET(req('keywords=planner,planner,study%20planner,calendar,printable,template,extra&limit=3') as never);
     const body = await response.json();
     expect(response.status).toBe(200);
-    expect(calls).toHaveLength(4);
-    expect(body.results).toHaveLength(4);
+    expect(calls).toHaveLength(5);
+    expect(body.results).toHaveLength(5);
     expect(body.results[0]).toMatchObject({ keyword: 'planner', catalogMatches: 3, sampledListings: 3, medianObservedPrice: 2, sampleIsSmall: true });
     expect(body.caveat).toContain('does not provide marketplace search volume');
-    expect(body.results[0].warning).toContain('not search volume');
+    expect(body.results[0].warning).toContain('Small catalog sample');
   });
 
   it('marks incomplete when Etsy search exceeds its pagination safety ceiling', async () => {
