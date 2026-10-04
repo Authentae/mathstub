@@ -1,406 +1,228 @@
+import { createHash } from 'node:crypto';
 import { del, get, put } from '@vercel/blob';
 import { NextRequest, NextResponse } from 'next/server';
 import { enforcePublishLimits, isLockFresh, ListingHistoryItem, ListingLock } from '@/lib/etsy/automation';
 
 export const runtime = 'nodejs';
+const ETSY_API_BASE = 'https://openapi.etsy.com/v3/application';
+const TOKEN_PATH = 'private/etsy/oauth-token.json';
 const HISTORY_PATH = 'private/etsy/publish-history.json';
 const LOCK_PATH = 'private/etsy/publish-lock.json';
-const TOKEN_PATH = 'private/etsy/shop-oauth.json';
-const PAGE_SIZE = 100;
-const MAX_RECORDS_PER_RESOURCE = 5000;
-const REQUIRED_SCOPES = ['listings_r', 'listings_w'] as const;
+const MAX_IMAGE_BYTES = 10 * 1024 * 1024;
+const MAX_FILE_BYTES = 20 * 1024 * 1024;
+const REQUIRED_SCOPES = ['listings_r', 'listings_w', 'shops_r'];
 
-interface EtsyToken {
-  access_token: string;
-  refresh_token: string;
-  expires_in: number;
-  obtained_at: number;
-  shop_id: string;
-  scopes: string[];
-}
-
-interface ListingDraftInput {
+type EtsyToken = { access_token: string; refresh_token?: string; expires_at?: number; scope?: string[] };
+type ListingDraftInput = {
   title: string;
   description: string;
   price: number;
-  quantity?: number;
-  who_made: 'i_did' | 'someone_else' | 'collective';
+  quantity: number;
+  who_made: string;
   when_made: string;
   taxonomy_id: number;
-  tags: string[];
-  materials?: string[];
   shipping_profile_id?: number;
-  return_policy_id?: number;
-  digital?: boolean;
   readiness_confirmed?: boolean;
   readiness_evidence?: string;
-  files?: Array<{ filename: string; content: string; mimeType: string }>;
-  images?: Array<{ filename: string; content: string; mimeType: string; rank?: number }>;
+  image_urls?: string[];
+  digital_file_url?: string;
+  file_name?: string;
+  tags?: string[];
+  materials?: string[];
+  is_supply?: boolean;
+  is_customizable?: boolean;
+  type?: 'physical' | 'download';
+  listing_type?: 'physical' | 'digital';
+};
+type EtsyListingResponse = { listing_id: number; state?: string };
+
+async function saveJson(path: string, value: unknown) {
+  const token = process.env.ETSY_BLOB_READ_WRITE_TOKEN;
+  if (!token) throw new Error('ETSY_BLOB_READ_WRITE_TOKEN is not configured');
+  const result = await put(path, JSON.stringify(value), { access: 'private', addRandomSuffix: false, allowOverwrite: true, token, contentType: 'application/json' });
+  return result;
 }
 
-interface EtsyListing {
-  listing_id: number;
-  title?: string;
-  state?: string;
-  num_favorers?: number;
-}
-
-interface EtsyReceipt {
-  receipt_id: number;
-  is_paid?: boolean;
-  status?: string;
-  transactions?: Array<{ listing_id: number }>;
-}
-
-interface EtsyPage<T> {
-  count: number;
-  results: T[];
-}
-
-interface EtsyRequestResult {
-  response: Response;
-  url: URL;
-}
-
-const MAX_PAGES = Math.ceil(MAX_RECORDS_PER_RESOURCE / PAGE_SIZE);
-
-async function fetchPaged(url: string, token: EtsyToken, init?: RequestInit) {
-  const rows: unknown[] = [];
-  const baseUrl = new URL(url);
-  for (let page = 0; page < MAX_PAGES; page++) {
-    const pageUrl = new URL(baseUrl);
-    pageUrl.searchParams.set('limit', String(PAGE_SIZE));
-    pageUrl.searchParams.set('offset', String(page * PAGE_SIZE));
-    const response = await etsyFetch(pageUrl, token, init);
-    if (!response.ok) throw new Error(`Etsy paginated request failed (${response.status})`);
-    const data = await response.json() as EtsyPage<unknown>;
-    if (!Array.isArray(data.results) || !Number.isFinite(data.count)) throw new Error('Etsy returned a malformed paginated response');
-    rows.push(...data.results);
-    if (rows.length >= data.count || data.results.length < PAGE_SIZE) return rows.slice(0, MAX_RECORDS_PER_RESOURCE);
-  }
-  throw new Error('Etsy result exceeds the safe pagination limit; publishing stopped');
-}
-
-function authError() {
-  return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-}
-
-function forbidden(message: string) {
-  return NextResponse.json({ error: message }, { status: 403 });
-}
-
-function getSecret(request: NextRequest) {
-  const expected = process.env.ETSY_AUTOMATION_SECRET || process.env.ETSY_STATUS_SECRET;
-  const authorization = request.headers.get('authorization')?.replace(/^Bearer\s+/i, '');
-  return expected && authorization === expected;
-}
-
-function requireScope(token: EtsyToken, scope: string) {
-  if (!Array.isArray(token.scopes) || !token.scopes.includes(scope)) {
-    throw new Error(`Etsy OAuth permission '${scope}' is required; reconnect the shop with this scope.`);
-  }
-}
-
-async function readPrivateJson<T>(path: string): Promise<{ value: T | null; etag?: string }> {
-  const result = await get(path, { access: 'private', useCache: false });
-  if (!result || result.statusCode !== 200) return { value: null };
-  return { value: JSON.parse(await new Response(result.stream).text()) as T, etag: result.blob.etag };
+async function loadJson<T>(path: string, fallback: T): Promise<T> {
+  const token = process.env.ETSY_BLOB_READ_WRITE_TOKEN;
+  if (!token) throw new Error('ETSY_BLOB_READ_WRITE_TOKEN is not configured');
+  const { blobs } = await import('@vercel/blob').then(({ list }) => list({ prefix: path, limit: 1, token }));
+  if (!blobs.length) return fallback;
+  const response = await fetch(blobs[0]!.downloadUrl);
+  if (!response.ok) throw new Error(`Could not read ${path} (${response.status})`);
+  try { return await response.json() as T; } catch { throw new Error(`Stored JSON is invalid: ${path}`); }
 }
 
 async function readToken(): Promise<EtsyToken | null> {
-  const { value: token } = await readPrivateJson<EtsyToken>(TOKEN_PATH);
+  const { value: token } = await get(TOKEN_PATH, { access: 'private', token: process.env.ETSY_BLOB_READ_WRITE_TOKEN });
   if (!token) return null;
-  if (!Number.isFinite(token.obtained_at) || !Number.isFinite(token.expires_in)) throw new Error('Stored Etsy OAuth token is missing valid expiry metadata');
-  if (Date.now() >= token.obtained_at + token.expires_in * 1000 - 30_000) throw new Error('Stored Etsy OAuth token is expired or too close to expiry; reconnect the shop');
-  return token;
+  let parsed: EtsyToken;
+  try { parsed = JSON.parse(await new Response(token).text()) as EtsyToken; }
+  catch { throw new Error('Stored Etsy OAuth token is invalid JSON'); }
+  if (typeof parsed.access_token !== 'string' || !parsed.access_token) throw new Error('Stored Etsy OAuth token is missing access_token');
+  if (!Array.isArray(parsed.scope)) throw new Error('Stored Etsy OAuth token is missing scopes; reconnect Etsy with listings_w permission');
+  if (parsed.expires_at && parsed.expires_at <= Date.now()) throw new Error('Etsy access token expired; reconnect Etsy');
+  return parsed;
 }
 
-async function etsyFetch(url: URL, token: EtsyToken, init?: RequestInit): Promise<Response> {
-  const headers = new Headers(init?.headers);
-  headers.set('x-api-key', process.env.ETSY_KEYSTRING!);
-  headers.set('Authorization', `Bearer ${token.access_token}`);
-  return fetch(url, { ...init, headers, cache: 'no-store' });
+function requireScope(token: EtsyToken, scope: string) {
+  if (!token.scope?.includes(scope)) throw new Error(`Etsy OAuth permission missing: ${scope}; reconnect Etsy and approve the requested scope`);
 }
 
-async function readHistory(): Promise<ListingHistoryItem[]> {
-  const { value } = await readPrivateJson<ListingHistoryItem[]>(HISTORY_PATH);
-  return value || [];
+function forbidden(message: string) { return NextResponse.json({ error: message }, { status: 403 }); }
+function unauthorized() { return NextResponse.json({ error: 'Unauthorized' }, { status: 401 }); }
+
+async function saveHistory(item: ListingHistoryItem) {
+  const history = await loadJson<ListingHistoryItem[]>(HISTORY_PATH, []);
+  history.push(item);
+  await saveJson(HISTORY_PATH, history);
 }
 
-async function latestLock(): Promise<ListingLock | null> {
-  const { value } = await readPrivateJson<ListingLock>(LOCK_PATH);
-  return value;
+async function acquireLock(fingerprint: string) {
+  const existing = await loadJson<ListingLock | null>(LOCK_PATH, null);
+  if (existing && isLockFresh(existing, Date.now())) return { ok: false as const, state: existing.state };
+  const lock: ListingLock = { fingerprint, startedAt: new Date().toISOString(), state: 'publishing' };
+  await saveJson(LOCK_PATH, lock);
+  return { ok: true as const };
 }
 
-async function createLock(idempotencyKey: string, draftHash: string, now: number) {
-  const existing = await latestLock();
-  if (isLockFresh(existing, now)) throw new Error('Another listing publication is in progress; retry after the lock clears');
-  const lock: ListingLock = { idempotencyKey, draftHash, startedAt: new Date(now).toISOString(), state: 'pending' };
-  await put(LOCK_PATH, JSON.stringify(lock), { access: 'private', contentType: 'application/json' });
+async function updateLock(update: Partial<ListingLock>) {
+  const existing = await loadJson<ListingLock | null>(LOCK_PATH, null);
+  await saveJson(LOCK_PATH, { ...(existing || {}), ...update });
 }
 
-async function updateLock(lock: ListingLock) {
-  await put(LOCK_PATH, JSON.stringify(lock), { access: 'private', contentType: 'application/json' });
-}
-
-async function clearLock() {
-  try { await del(LOCK_PATH); } catch { /* Preserve the original failure. */ }
-}
-
-function recordForListing(listing: EtsyListing, now: number, publishPath: string): ListingHistoryItem {
-  return {
-    listingId: listing.listing_id,
-    title: listing.title || `Listing ${listing.listing_id}`,
-    state: listing.state || 'unknown',
-    createdAt: new Date(now).toISOString(),
-    publishPath,
-  };
-}
+async function releaseLock() { await del(LOCK_PATH, { token: process.env.ETSY_BLOB_READ_WRITE_TOKEN }); }
 
 function parseBody(body: unknown): ListingDraftInput | null {
   if (!body || typeof body !== 'object') return null;
-  const candidate = body as Partial<ListingDraftInput>;
-  if (typeof candidate.title !== 'string' || candidate.title.trim().length < 2 || candidate.title.length > 140) return null;
-  if (typeof candidate.description !== 'string' || candidate.description.trim().length < 20 || candidate.description.length > 10_000) return null;
-  if (typeof candidate.price !== 'number' || !Number.isFinite(candidate.price) || candidate.price <= 0) return null;
-  if (!['i_did', 'someone_else', 'collective'].includes(candidate.who_made || '')) return null;
-  if (typeof candidate.when_made !== 'string' || !candidate.when_made || candidate.when_made.length > 32) return null;
-  if (!Number.isInteger(candidate.taxonomy_id) || (candidate.taxonomy_id || 0) <= 0) return null;
-  if (!Array.isArray(candidate.tags) || candidate.tags.length > 13 || candidate.tags.some((tag) => typeof tag !== 'string' || !tag.trim() || tag.length > 20)) return null;
-  if (candidate.materials && (!Array.isArray(candidate.materials) || candidate.materials.length > 13 || candidate.materials.some((material) => typeof material !== 'string' || !material.trim() || material.length > 45))) return null;
-  if (candidate.quantity !== undefined && (!Number.isInteger(candidate.quantity) || candidate.quantity < 1 || candidate.quantity > 999)) return null;
-  if (candidate.digital !== undefined && typeof candidate.digital !== 'boolean') return null;
-  if (!Array.isArray(candidate.images) || candidate.images.length < 1 || candidate.images.length > 10) return null;
-  if (candidate.images.some((image) => !image || typeof image.filename !== 'string' || !image.filename || image.filename.length > 180 || typeof image.mimeType !== 'string' || !/^image\/(jpeg|png|gif|webp)$/.test(image.mimeType) || typeof image.content !== 'string' || !image.content || image.content.length > 12_000_000)) return null;
-  if (candidate.digital && (!Array.isArray(candidate.files) || candidate.files.length < 1 || candidate.files.length > 5)) return null;
-  if (candidate.files && (!Array.isArray(candidate.files) || candidate.files.length > 5 || candidate.files.some((file) => !file || typeof file.filename !== 'string' || !file.filename || file.filename.length > 180 || typeof file.mimeType !== 'string' || file.mimeType.length > 120 || typeof file.content !== 'string' || !file.content || file.content.length > 60_000_000))) return null;
-  if (candidate.shipping_profile_id !== undefined && (!Number.isInteger(candidate.shipping_profile_id) || candidate.shipping_profile_id <= 0)) return null;
-  if (candidate.return_policy_id !== undefined && (!Number.isInteger(candidate.return_policy_id) || candidate.return_policy_id <= 0)) return null;
-  return candidate as ListingDraftInput;
-}
-
-function requestFingerprint(input: ListingDraftInput) {
-  const { createHash } = require('node:crypto') as typeof import('node:crypto');
-  return createHash('sha256').update(JSON.stringify(input)).digest('hex');
-}
-
-async function fetchListing(url: string, token: EtsyToken): Promise<EtsyRequestResult> {
-  const target = new URL(url);
-  const response = await etsyFetch(target, token);
-  return { response, url: target };
-}
-
-function responseError(data: unknown, fallback: string) {
-  if (data && typeof data === 'object' && 'error' in data && typeof (data as { error?: unknown }).error === 'string') return (data as { error: string }).error;
-  return fallback;
-}
-
-function safeListingFields(listing: ListingDraftInput) {
-  const payload: Record<string, unknown> = {
-    title: listing.title.trim(),
-    description: listing.description.trim(),
-    price: listing.price,
-    quantity: listing.quantity || 1,
-    who_made: listing.who_made,
-    when_made: listing.when_made,
-    taxonomy_id: listing.taxonomy_id,
-    tags: listing.tags.map((tag) => tag.trim()),
-    is_supply: false,
-    type: listing.digital ? 'download' : 'physical',
-  };
-  if (listing.digital) payload.shipping_profile_id = undefined;
-  else if (listing.shipping_profile_id) payload.shipping_profile_id = listing.shipping_profile_id;
-  if (listing.return_policy_id) payload.return_policy_id = listing.return_policy_id;
-  if (listing.materials?.length) payload.materials = listing.materials.map((material) => material.trim());
-  return payload;
-}
-
-async function parseEtsyResponse(response: Response) {
-  const text = await response.text();
-  try { return text ? JSON.parse(text) as Record<string, unknown> : {}; }
-  catch { return { error: text.slice(0, 500) || `Etsy returned ${response.status}` }; }
+  const input = body as Partial<ListingDraftInput>;
+  if (typeof input.title !== 'string' || input.title.trim().length < 5 || input.title.length > 140) return null;
+  if (typeof input.description !== 'string' || input.description.trim().length < 30) return null;
+  if (typeof input.price !== 'number' || !Number.isFinite(input.price) || input.price <= 0) return null;
+  if (typeof input.quantity !== 'number' || !Number.isInteger(input.quantity) || input.quantity < 1) return null;
+  if (typeof input.taxonomy_id !== 'number' || !Number.isInteger(input.taxonomy_id) || input.taxonomy_id <= 0) return null;
+  if (!['i_did', 'someone_else', 'collective'].includes(input.who_made || '')) return null;
+  if (!['made_to_order', '2020_2026', '2010_2019', '2000_2009', 'before_2000', '1990s', '1980s', '1970s', '1960s', '1950s', '1940s', '1930s', '1920s', '1910s', '1900s', '1800s', '1700s', 'before_1700'].includes(input.when_made || '')) return null;
+  if (input.type !== 'physical' && input.type !== 'download' && input.listing_type !== 'physical' && input.listing_type !== 'digital') return null;
+  if (input.image_urls && (!Array.isArray(input.image_urls) || input.image_urls.length > 10 || input.image_urls.some((url) => typeof url !== 'string' || !url.startsWith('https://')))) return null;
+  if (input.digital_file_url && (typeof input.digital_file_url !== 'string' || !input.digital_file_url.startsWith('https://'))) return null;
+  return input as ListingDraftInput;
 }
 
 async function readBody(request: NextRequest) {
   try { return await request.json(); } catch { return null; }
 }
 
-function acceptedReadiness(input: ListingDraftInput) {
-  return input.readiness_confirmed === true && typeof input.readiness_evidence === 'string' && input.readiness_evidence.trim().length >= 20;
+function requestFingerprint(input: ListingDraftInput) {
+  return createHash('sha256').update(JSON.stringify(input)).digest('hex');
 }
 
-export async function GET(request: NextRequest) {
-  if (!getSecret(request)) return authError();
-  const token = await readToken();
-  if (!token) return NextResponse.json({ error: 'Shop OAuth connection not found' }, { status: 503 });
-  try { requireScope(token, 'listings_r'); } catch (error) { return forbidden((error as Error).message); }
-  const shopId = encodeURIComponent(token.shop_id);
-  const [listingRows, receiptRows] = await Promise.all([
-    fetchPaged(`https://openapi.etsy.com/v3/application/shops/${shopId}/listings?state=active`, token),
-    fetchPaged(`https://openapi.etsy.com/v3/application/shops/${shopId}/receipts`, token),
-  ]);
-  const listings = listingRows as EtsyListing[];
-  const receipts = receiptRows as EtsyReceipt[];
-  const listingOrderCount = new Map<number, number>();
-  const listingPaidOrderCount = new Map<number, number>();
-  for (const receipt of receipts) {
-    if (!Array.isArray(receipt.transactions)) continue;
-    for (const transaction of receipt.transactions) {
-      listingOrderCount.set(transaction.listing_id, (listingOrderCount.get(transaction.listing_id) || 0) + 1);
-      if (receipt.is_paid === true && !['canceled', 'cancelled', 'fully refunded', 'fully_refunded'].includes((receipt.status || '').toLowerCase())) {
-        listingPaidOrderCount.set(transaction.listing_id, (listingPaidOrderCount.get(transaction.listing_id) || 0) + 1);
-      }
-    }
-  }
-  return NextResponse.json({
-    listings: listings.map((listing) => ({
-      ...listing,
-      shop_order_count: listingOrderCount.get(listing.listing_id) || 0,
-      shop_paid_order_count: listingPaidOrderCount.get(listing.listing_id) || 0,
-    })),
-    total_count: listings.length,
-  });
+async function etsyFetch(url: string, token: EtsyToken, init: RequestInit = {}) {
+  const response = await fetch(url, { ...init, headers: { 'x-api-key': process.env.ETSY_KEYSTRING || '', Authorization: `Bearer ${token.access_token}`, ...(init.headers || {}) } });
+  if (!response.ok) throw new Error(`Etsy API returned ${response.status}: ${(await response.text()).slice(0, 300)}`);
+  return response;
 }
+
+async function uploadRemoteFile(url: string, name: string) {
+  const response = await fetch(url, { signal: AbortSignal.timeout(15000) });
+  if (!response.ok) throw new Error(`Could not download product file (${response.status})`);
+  const contentLength = Number(response.headers.get('content-length'));
+  if (Number.isFinite(contentLength) && contentLength > MAX_FILE_BYTES) throw new Error('Digital file exceeds 20 MB upload limit');
+  const bytes = await response.arrayBuffer();
+  if (bytes.byteLength > MAX_FILE_BYTES) throw new Error('Digital file exceeds 20 MB upload limit');
+  const form = new FormData();
+  form.set('file', new Blob([bytes]), name);
+  form.set('name', name);
+  return form;
+}
+
+async function uploadRemoteImage(url: string) {
+  const response = await fetch(url, { signal: AbortSignal.timeout(15000) });
+  if (!response.ok) throw new Error(`Could not download listing image (${response.status})`);
+  const contentLength = Number(response.headers.get('content-length'));
+  if (Number.isFinite(contentLength) && contentLength > MAX_IMAGE_BYTES) throw new Error('Listing image exceeds 10 MB limit');
+  const bytes = await response.arrayBuffer();
+  if (bytes.byteLength > MAX_IMAGE_BYTES) throw new Error('Listing image exceeds 10 MB limit');
+  const contentType = response.headers.get('content-type') || 'image/jpeg';
+  if (!contentType.startsWith('image/')) throw new Error('Listing image URL must return an image');
+  return new Blob([bytes], { type: contentType });
+}
+
+function acceptedReadiness(input: ListingDraftInput) { return input.readiness_confirmed === true && typeof input.readiness_evidence === 'string' && input.readiness_evidence.trim().length >= 20; }
 
 export async function POST(request: NextRequest) {
-  if (!getSecret(request)) return authError();
+  const secret = process.env.ETSY_AUTOMATION_SECRET;
+  if (!secret || request.headers.get('authorization') !== `Bearer ${secret}`) return unauthorized();
   if (!process.env.ETSY_KEYSTRING) return NextResponse.json({ error: 'ETSY_KEYSTRING is not configured' }, { status: 503 });
   const input = parseBody(await readBody(request));
   if (!input) return NextResponse.json({ error: 'Invalid listing payload' }, { status: 400 });
-  const token = await readToken();
+  let token: EtsyToken | null;
+  try {
+    token = await readToken();
+  } catch (error) {
+    return NextResponse.json({ error: error instanceof Error ? error.message : 'Stored Etsy OAuth token is invalid' }, { status: 503 });
+  }
   if (!token) return NextResponse.json({ error: 'Shop OAuth connection not found' }, { status: 503 });
   try { requireScope(token, 'listings_w'); } catch (error) { return forbidden((error as Error).message); }
   if (!input.readiness_confirmed || !input.readiness_evidence || input.readiness_evidence.trim().length < 20) {
-    return NextResponse.json({ error: 'Listing readiness confirmation and evidence are required before Etsy mutation.' }, { status: 409 });
+    return NextResponse.json({ error: 'Listing must pass independent readiness checks before publication' }, { status: 422 });
   }
-  const now = Date.now();
-  const history = await readHistory();
-  const limitResult = enforcePublishLimits(history, now);
-  if (!limitResult.allowed) return NextResponse.json({ error: limitResult.reason }, { status: 429 });
+  if (input.type === 'physical' && !input.shipping_profile_id) return NextResponse.json({ error: 'Shipping profile is required for physical listings' }, { status: 400 });
+  let lock;
   const fingerprint = requestFingerprint(input);
-  const suppliedIdempotency = request.headers.get('idempotency-key')?.trim();
-  if (!suppliedIdempotency || suppliedIdempotency.length < 16 || suppliedIdempotency.length > 200) {
-    return NextResponse.json({ error: 'A stable Idempotency-Key header is required for publication' }, { status: 400 });
-  }
-  const existingLock = await latestLock();
-  if (existingLock?.idempotencyKey === suppliedIdempotency && existingLock.draftHash === fingerprint && existingLock.state === 'completed' && existingLock.listingId) {
-    return NextResponse.json({ listing_id: existingLock.listingId, replayed: true }, { status: 200 });
-  }
-  if (existingLock?.idempotencyKey === suppliedIdempotency && existingLock.draftHash !== fingerprint) {
-    return NextResponse.json({ error: 'Idempotency-Key was already used for a different listing payload' }, { status: 409 });
-  }
-  if (existingLock && (existingLock.state === 'etsy_created' || existingLock.state === 'active' || existingLock.state === 'uploads_partial' || existingLock.state === 'upload_pending' || existingLock.state === 'activation_pending')) {
-    return NextResponse.json({ error: `Previous Etsy publication is unresolved (${existingLock.state}); reconcile it before retrying.` }, { status: 409 });
-  }
-  const draft = {
-    idempotencyKey: suppliedIdempotency,
-    draftHash: fingerprint,
-    startedAt: new Date(now).toISOString(),
-    state: 'pending' as const,
-  };
+  try { lock = await acquireLock(fingerprint); }
+  catch (error) { return NextResponse.json({ error: error instanceof Error ? error.message : 'Could not acquire publish lock' }, { status: 503 }); }
+  if (!lock.ok) return NextResponse.json({ error: 'A listing publication is already in progress', state: lock.state }, { status: 409 });
+  let createdListingId: number | null = null;
   try {
-    await createLock(suppliedIdempotency, fingerprint, now);
-    const createUrl = new URL(`https://openapi.etsy.com/v3/application/shops/${encodeURIComponent(token.shop_id)}/listings`);
-    const fields = safeListingFields(input);
-    const form = new URLSearchParams();
-    for (const [key, value] of Object.entries(fields)) {
-      if (value === undefined) continue;
-      if (Array.isArray(value)) value.forEach((item) => form.append(key, String(item)));
-      else form.set(key, String(value));
+    const shopId = process.env.ETSY_SHOP_ID;
+    if (!shopId) throw new Error('ETSY_SHOP_ID is not configured');
+    await enforcePublishLimits(HISTORY_PATH, process.env.ETSY_BLOB_READ_WRITE_TOKEN || '', async (path, tokenValue) => loadJson<ListingHistoryItem[]>(path, []), Date.now());
+    const createBody = new URLSearchParams({
+      quantity: String(input.quantity),
+      title: input.title,
+      description: input.description,
+      price: String(input.price),
+      who_made: input.who_made,
+      when_made: input.when_made,
+      taxonomy_id: String(input.taxonomy_id),
+      is_supply: String(input.is_supply ?? false),
+      is_customizable: String(input.is_customizable ?? false),
+      type: input.type === 'download' || input.listing_type === 'digital' ? 'download' : 'physical',
+    });
+    if (input.shipping_profile_id) createBody.set('shipping_profile_id', String(input.shipping_profile_id));
+    for (const tag of input.tags || []) createBody.append('tags[]', tag);
+    for (const material of input.materials || []) createBody.append('materials[]', material);
+    const created = await etsyFetch(`${ETSY_API_BASE}/shops/${shopId}/listings`, token, { method: 'POST', body: createBody });
+    const listing = await created.json() as EtsyListingResponse;
+    if (!listing.listing_id) throw new Error('Etsy did not return a listing id');
+    createdListingId = listing.listing_id;
+    if (input.type === 'download' || input.listing_type === 'digital') {
+      if (!input.digital_file_url || !input.file_name) throw new Error('Digital listings require a digital file URL and file name');
+      const form = await uploadRemoteFile(input.digital_file_url, input.file_name);
+      await etsyFetch(`${ETSY_API_BASE}/shops/${shopId}/listings/${listing.listing_id}/files`, token, { method: 'POST', body: form });
     }
-    const createResponse = await etsyFetch(createUrl, token, { method: 'POST', body: form });
-    const created = await parseEtsyResponse(createResponse);
-    if (!createResponse.ok || !Number.isInteger(created.listing_id)) {
-      if (createResponse.status >= 500) {
-        await updateLock({ ...draft, state: 'activation_pending', error: 'Etsy create outcome is unresolved; verify remote listings before retrying' });
-      } else await clearLock();
-      return NextResponse.json({ error: responseError(created, 'Etsy listing creation failed'), unresolved: createResponse.status >= 500 }, { status: createResponse.status >= 500 ? 502 : 400 });
-    }
-    const listingId = Number(created.listing_id);
-    const createdState = typeof created.state === 'string' ? created.state : 'draft';
-    if (createdState !== 'draft') {
-      await updateLock({ ...draft, state: 'activation_pending', listingId, title: input.title, error: `Expected Etsy draft but received state '${createdState}'` });
-      return NextResponse.json({ error: 'Etsy did not return a draft listing; publication paused for reconciliation', listing_id: listingId, state: createdState, unresolved: true }, { status: 502 });
-    }
-    await updateLock({ ...draft, state: 'etsy_created', listingId, title: input.title });
-
-    const uploadedFiles: string[] = [];
-    const skippedFiles: string[] = [];
-    const publishPath = input.digital ? 'file digital listing' : 'create draft and upload images';
-    for (const [index, asset] of (input.files || []).entries()) {
-      const formData = new FormData();
-      const buffer = Buffer.from(asset.content, 'base64');
-      formData.append('file', new Blob([buffer], { type: asset.mimeType }), asset.filename);
-      formData.append('name', asset.filename);
-      let uploadResponse: Response;
-      try {
-        uploadResponse = await etsyFetch(new URL(`https://openapi.etsy.com/v3/application/shops/${encodeURIComponent(token.shop_id)}/listings/${listingId}/files`), token, { method: 'POST', body: formData });
-      } catch {
-        await updateLock({ ...draft, state: 'upload_pending', listingId, title: input.title, uploadedFiles, failedFile: asset.filename, error: 'Digital file upload outcome is unresolved; verify the listing before retrying' });
-        return NextResponse.json({ error: 'Etsy digital file upload outcome is unresolved; listing was not activated', listing_id: listingId, uploadedFiles, unresolved: true }, { status: 502 });
-      }
-      const uploadResult = await parseEtsyResponse(uploadResponse);
-      if (!uploadResponse.ok) {
-        const unresolved = uploadResponse.status >= 500;
-        await updateLock({ ...draft, state: unresolved ? 'upload_pending' : 'uploads_partial', listingId, title: input.title, uploadedFiles, failedFile: asset.filename, error: responseError(uploadResult, `Digital file ${index + 1} upload failed`) });
-        return NextResponse.json({ error: responseError(uploadResult, `Digital file ${index + 1} upload failed; listing was not activated`), listing_id: listingId, uploadedFiles, unresolved }, { status: unresolved ? 502 : 400 });
-      }
-      uploadedFiles.push(asset.filename);
-      await updateLock({ ...draft, state: 'etsy_created', listingId, title: input.title, uploadedFiles });
-    }
-
     const uploadedImages: string[] = [];
-    for (const [index, image] of (input.images || []).entries()) {
-      const formData = new FormData();
-      formData.append('image', new Blob([Buffer.from(image.content, 'base64')], { type: image.mimeType }), image.filename);
-      formData.append('rank', String(image.rank ?? index));
-      let imageResponse: Response;
-      try {
-        imageResponse = await etsyFetch(new URL(`https://openapi.etsy.com/v3/application/shops/${encodeURIComponent(token.shop_id)}/listings/${listingId}/images`), token, { method: 'POST', body: formData });
-      } catch {
-        await updateLock({ ...draft, state: 'upload_pending', listingId, title: input.title, uploadedFiles, uploadedImages, failedImage: image.filename, error: 'Image upload outcome is unresolved; verify the listing before retrying' });
-        return NextResponse.json({ error: 'Etsy image upload outcome is unresolved; listing was not activated', listing_id: listingId, uploadedImages, unresolved: true }, { status: 502 });
-      }
-      const imageResult = await parseEtsyResponse(imageResponse);
-      if (!imageResponse.ok) {
-        const unresolved = imageResponse.status >= 500;
-        await updateLock({ ...draft, state: unresolved ? 'upload_pending' : 'uploads_partial', listingId, title: input.title, uploadedFiles, uploadedImages, failedImage: image.filename, error: responseError(imageResult, `Image ${index + 1} upload failed`) });
-        return NextResponse.json({ error: responseError(imageResult, `Image ${index + 1} upload failed; listing was not activated`), listing_id: listingId, uploadedImages, unresolved }, { status: unresolved ? 502 : 400 });
-      }
-      uploadedImages.push(image.filename);
-      await updateLock({ ...draft, state: 'etsy_created', listingId, title: input.title, uploadedFiles, uploadedImages });
+    for (const imageUrl of input.image_urls || []) {
+      const image = await uploadRemoteImage(imageUrl);
+      const form = new FormData();
+      form.set('image', image, imageUrl.split('/').pop() || 'listing-image.jpg');
+      await etsyFetch(`${ETSY_API_BASE}/shops/${shopId}/listings/${listing.listing_id}/images`, token, { method: 'POST', body: form });
+      uploadedImages.push(imageUrl);
     }
-
-    const activationUrl = new URL(`https://openapi.etsy.com/v3/application/shops/${encodeURIComponent(token.shop_id)}/listings/${listingId}`);
-    activationUrl.searchParams.set('state', 'active');
-    const activationForm = new URLSearchParams({ state: 'active' });
-    await updateLock({ ...draft, state: 'activation_pending', listingId, title: input.title, uploadedFiles, uploadedImages });
-    let activationResponse: Response;
-    try {
-      activationResponse = await etsyFetch(activationUrl, token, { method: 'PATCH', body: activationForm });
-    } catch {
-      await updateLock({ ...draft, state: 'activation_pending', listingId, title: input.title, uploadedFiles, uploadedImages, error: 'Activation request outcome is unresolved; reconcile the Etsy listing before retrying' });
-      return NextResponse.json({ error: 'Etsy activation outcome is unresolved; check the listing state before retrying', listing_id: listingId, unresolved: true }, { status: 502 });
-    }
-    const activationResult = await parseEtsyResponse(activationResponse);
-    if (!activationResponse.ok) {
-      const unresolved = activationResponse.status >= 500;
-      await updateLock({ ...draft, state: 'activation_pending', listingId, title: input.title, uploadedFiles, uploadedImages, error: responseError(activationResult, 'Etsy listing activation failed') });
-      return NextResponse.json({ error: responseError(activationResult, 'Etsy listing activation failed'), listing_id: listingId, unresolved }, { status: unresolved ? 502 : 400 });
-    }
-
-    const verified = await fetchListing(`https://openapi.etsy.com/v3/application/shops/${encodeURIComponent(token.shop_id)}/listings/${listingId}`, token);
-    const verifiedData = await parseEtsyResponse(verified.response);
-    if (!verified.response.ok || verifiedData.state !== 'active') {
-      await updateLock({ ...draft, state: 'activation_pending', listingId, title: input.title, uploadedFiles, uploadedImages, error: 'Activation response was not confirmed as active by Etsy listing read-back' });
-      return NextResponse.json({ error: 'Etsy did not confirm the listing is active; reconcile before retrying', listing_id: listingId, unresolved: true }, { status: 502 });
-    }
-
-    const nextHistory = [...history, recordForListing(verifiedData as unknown as EtsyListing, now, publishPath)];
-    await put(HISTORY_PATH, JSON.stringify(nextHistory), { access: 'private', contentType: 'application/json' });
-    await updateLock({ ...draft, state: 'completed', listingId, title: input.title, uploadedFiles, uploadedImages });
-    return NextResponse.json({ listing_id: listingId, state: 'active', uploadedFiles, uploadedImages }, { status: 201 });
+    await etsyFetch(`${ETSY_API_BASE}/shops/${shopId}/listings/${listing.listing_id}`, token, { method: 'PATCH', body: new URLSearchParams({ state: 'active' }) });
+    const confirmed = await etsyFetch(`${ETSY_API_BASE}/shops/${shopId}/listings/${listing.listing_id}`, token);
+    const confirmedListing = await confirmed.json() as EtsyListingResponse;
+    if (confirmedListing.state !== 'active') throw new Error('Etsy listing activation could not be confirmed');
+    await saveHistory({ listingId: listing.listing_id, createdAt: new Date().toISOString(), title: input.title, price: input.price, currency: 'USD', status: 'active' });
+    await updateLock({ state: 'completed', listingId: listing.listing_id, completedAt: new Date().toISOString() });
+    return NextResponse.json({ listing_id: listing.listing_id, state: 'active', uploadedImages }, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ error: error instanceof Error ? error.message : 'Etsy publishing failed' }, { status: 502 });
+    if (createdListingId) {
+      try { await updateLock({ state: 'needs_review', listingId: createdListingId }); } catch { /* retain the original publication failure */ }
+      return NextResponse.json({ error: error instanceof Error ? error.message : 'Listing creation was incomplete', listing_id: createdListingId, state: 'needs_review' }, { status: 502 });
+    }
+    try { await releaseLock(); } catch { /* retain the original publication failure */ }
+    return NextResponse.json({ error: error instanceof Error ? error.message : 'Listing creation failed' }, { status: 502 });
   }
 }

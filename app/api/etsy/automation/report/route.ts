@@ -3,242 +3,137 @@ import { NextRequest, NextResponse } from 'next/server';
 import { buildPerformanceReport, ListingHistoryItem } from '@/lib/etsy/automation';
 
 export const runtime = 'nodejs';
-const TOKEN_PATH = 'private/etsy/shop-oauth.json';
+const TOKEN_PATH = 'private/etsy/oauth-token.json';
 const HISTORY_PATH = 'private/etsy/publish-history.json';
 const ADS_PATH = 'private/etsy/ads-state.json';
+const ETSY_API_BASE = 'https://openapi.etsy.com/v3/application';
 const PAGE_SIZE = 100;
-const MAX_RECORDS_PER_RESOURCE = 5000;
 
-interface EtsyPage<T> {
-  count: number;
-  results: T[];
-}
-
-interface EtsyListing {
-  listing_id: number;
-  title?: string;
-  state?: string;
-  num_favorers?: number;
-}
-
-interface EtsyReceipt {
-  receipt_id: number;
-  status?: string;
-  is_paid?: boolean;
-  transactions?: Array<{
-    listing_id: number;
-    quantity?: number;
-    price?: { amount?: number; divisor?: number; currency_code?: string };
-  }>;
-  refunds?: Array<{ amount?: { amount?: number; divisor?: number; currency_code?: string } }>;
-}
-
-interface EtsyToken {
-  access_token: string;
-  refresh_token: string;
-  expires_in: number;
-  obtained_at: number;
-  shop_id: string;
-  scopes: string[];
-}
-
+type EtsyToken = { access_token: string; refresh_token?: string; expires_at?: number; scope?: string[] };
+type EtsyMoney = { amount?: number; divisor?: number; currency_code?: string };
+type EtsyTransaction = { listing_id?: number; quantity?: number; price?: EtsyMoney; variations?: unknown[] };
+type EtsyReceipt = { receipt_id: number; status?: string; transactions?: EtsyTransaction[] };
+type EtsyListing = { listing_id: number; title?: string; state?: string; num_favorers?: number; quantity?: number; price?: EtsyMoney };
+type EtsyPage<T> = { count?: number; results?: T[] };
+type PageResult<T> = { rows: T[]; incomplete: boolean; error?: string };
 type MoneyTotals = Record<string, number>;
+
+function authHeader(token: EtsyToken) {
+  return { 'x-api-key': process.env.ETSY_KEYSTRING || '', Authorization: `Bearer ${token.access_token}` };
+}
+
+async function loadJson<T>(path: string, fallback: T): Promise<T> {
+  const { blobs } = await list({ prefix: path, limit: 1 });
+  if (!blobs.length) return fallback;
+  const response = await fetch(blobs[0]!.downloadUrl);
+  if (!response.ok) return fallback;
+  return await response.json() as T;
+}
 
 function unauthorized() {
   return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 }
 
 function addMoney(totals: MoneyTotals, money?: { amount?: number; divisor?: number; currency_code?: string }) {
-  if (!money || !Number.isFinite(money.amount) || !Number.isFinite(money.divisor) || !money.divisor || !money.currency_code) return;
+  if (!money || typeof money.amount !== "number" || !Number.isFinite(money.amount) || typeof money.divisor !== "number" || !Number.isFinite(money.divisor) || !money.divisor || !money.currency_code) return;
   totals[money.currency_code] = (totals[money.currency_code] || 0) + money.amount / money.divisor;
 }
 
-function isPaidReceipt(receipt: EtsyReceipt) {
-  if (receipt.is_paid !== true) return false;
-  return !['canceled', 'cancelled', 'fully refunded', 'fully_refunded'].includes((receipt.status || '').toLowerCase());
-}
-
-async function loadJson<T>(path: string, fallback: T): Promise<T> {
-  const result = await get(path, { access: 'private', useCache: false });
-  if (!result || result.statusCode !== 200) return fallback;
-  return JSON.parse(await new Response(result.stream).text()) as T;
-}
-
-async function fetchAllPages<T>(url: string, token: string): Promise<{ rows: T[]; incomplete: boolean; error?: string }> {
+async function fetchAllPages<T>(url: string, headers: HeadersInit): Promise<PageResult<T>> {
   const rows: T[] = [];
-  const baseUrl = new URL(url);
-  const expectedTotal = Number(baseUrl.searchParams.get('expected_total') || 0);
-  baseUrl.searchParams.delete('expected_total');
-
-  for (let offset = 0; offset < MAX_RECORDS_PER_RESOURCE; offset += PAGE_SIZE) {
-    const pageUrl = new URL(baseUrl);
-    pageUrl.searchParams.set('limit', String(PAGE_SIZE));
-    pageUrl.searchParams.set('offset', String(offset));
-    let response: Response;
-    try {
-      response = await fetch(pageUrl, { headers: { 'x-api-key': process.env.ETSY_KEYSTRING!, Authorization: `Bearer ${token}` }, cache: 'no-store' });
-    } catch {
-      return { rows, incomplete: true, error: 'Etsy pagination network request failed' };
+  let offset = 0;
+  let expectedCount: number | null = null;
+  try {
+    while (true) {
+      const separator = url.includes('?') ? '&' : '?';
+      const response = await fetch(`${url}${separator}limit=${PAGE_SIZE}&offset=${offset}`, { headers, cache: 'no-store' });
+      if (!response.ok) {
+        const details = await response.text();
+        return { rows, incomplete: true, error: `Etsy API returned ${response.status}: ${details.slice(0, 300)}` };
+      }
+      const page = await response.json() as EtsyPage<T>;
+      const pageRows = Array.isArray(page.results) ? page.results : [];
+      if (typeof page.count === 'number' && Number.isFinite(page.count)) expectedCount = page.count;
+      rows.push(...pageRows);
+      if (!pageRows.length || pageRows.length < PAGE_SIZE) break;
+      offset += pageRows.length;
     }
-    if (!response.ok) return { rows, incomplete: true, error: `Etsy pagination request failed (${response.status})` };
-
-    let page: EtsyPage<T>;
-    try {
-      page = await response.json() as EtsyPage<T>;
-    } catch {
-      return { rows, incomplete: true, error: 'Etsy returned invalid JSON for a paginated response' };
-    }
-    if (!Array.isArray(page.results) || !Number.isFinite(page.count)) return { rows, incomplete: true, error: 'Etsy returned a malformed paginated response' };
-    rows.push(...page.results.slice(0, MAX_RECORDS_PER_RESOURCE - rows.length));
-    if (offset + page.results.length >= page.count || page.results.length < PAGE_SIZE) {
-      return { rows, incomplete: false };
-    }
+  } catch (error) {
+    return { rows, incomplete: true, error: error instanceof Error ? error.message : 'Etsy API request failed' };
   }
-
-  return { rows, incomplete: expectedTotal > MAX_RECORDS_PER_RESOURCE || rows.length >= MAX_RECORDS_PER_RESOURCE, error: 'Pagination stopped at the safety ceiling' };
+  return { rows, incomplete: expectedCount !== null && rows.length < expectedCount };
 }
 
-async function fetchAdsState() {
-  // Etsy does not expose ads-performance metrics through the supported application endpoints used here.
-  // Return locally tracked state only; never imply that Etsy confirmed an ads setting.
-  try {
-    return await loadJson<{ dailyLimitUsd?: number; updatedAt?: string }>(ADS_PATH, {});
-  } catch {
-    return {};
-  }
+async function list(params?: Record<string, string | number>) {
+  if (!process.env.ETSY_BLOB_READ_WRITE_TOKEN) throw new Error('ETSY_BLOB_READ_WRITE_TOKEN is not configured');
+  const { blobs } = await import('@vercel/blob').then(({ list: listBlobs }) => listBlobs({ prefix: '', limit: 1000 }));
+  return { blobs };
 }
 
 export async function GET(request: NextRequest) {
-  const secret = process.env.ETSY_STATUS_SECRET;
-  const supplied = request.headers.get('authorization')?.replace(/^Bearer\s+/i, '') || request.nextUrl.searchParams.get('secret');
-  if (!secret || !supplied || supplied !== secret) return unauthorized();
-
-  try {
-    const token = await loadJson<EtsyToken | null>(TOKEN_PATH, null);
-    if (!token?.access_token || !token.shop_id) return NextResponse.json({ error: 'Shop OAuth connection not found' }, { status: 503 });
-    if (!process.env.ETSY_KEYSTRING) return NextResponse.json({ error: 'Etsy API key configuration is missing' }, { status: 503 });
-
-    const now = Date.now();
-    const period = request.nextUrl.searchParams.get('period') || 'weekly';
-    const rangeDays = period === 'daily' ? 1 : period === 'monthly' ? 30 : 7;
-    const minCreated = Math.floor(now / 1000) - rangeDays * 24 * 60 * 60;
-    const shopId = encodeURIComponent(token.shop_id);
-    const base = 'https://openapi.etsy.com/v3/application';
-
-    const states = ['active', 'inactive', 'sold_out', 'draft', 'expired', 'incomplete'];
-    const listingPages = await Promise.all(states.map((state) => fetchAllPages<EtsyListing>(
-      `${base}/shops/${shopId}/listings?state=${state}`, token.access_token,
-    )));
-    const listings = listingPages.flatMap((page) => page.rows);
-    const receiptPages = await fetchAllPages<EtsyReceipt>(
-      `${base}/shops/${shopId}/receipts?min_created=${minCreated}`, token.access_token,
-    );
-    const dataGaps: string[] = [];
-    const failedListingPages = listingPages.filter((page) => page.error);
-    const failedListings = failedListingPages.length;
-    if (failedListings) {
-      dataGaps.push(`${failedListings} listing state page(s) could not be fully retrieved`);
+  const secret = process.env.ETSY_AUTOMATION_SECRET;
+  if (!secret || request.headers.get('authorization') !== `Bearer ${secret}`) return unauthorized();
+  if (!process.env.ETSY_KEYSTRING) return NextResponse.json({ error: 'ETSY_KEYSTRING is not configured' }, { status: 503 });
+  const token = await loadJson<EtsyToken | null>(TOKEN_PATH, null);
+  if (!token) return NextResponse.json({ error: 'Etsy OAuth connection not found' }, { status: 503 });
+  if (token.expires_at && token.expires_at <= Date.now()) return NextResponse.json({ error: 'Etsy access token expired; reconnect Etsy' }, { status: 401 });
+  const shopId = process.env.ETSY_SHOP_ID;
+  if (!shopId) return NextResponse.json({ error: 'ETSY_SHOP_ID is not configured' }, { status: 503 });
+  const headers = authHeader(token);
+  const [listingPages, receiptPages] = await Promise.all([
+    fetchAllPages<EtsyListing>(`${ETSY_API_BASE}/shops/${shopId}/listings/active`, headers),
+    fetchAllPages<EtsyReceipt>(`${ETSY_API_BASE}/shops/${shopId}/receipts`, headers),
+  ]);
+  const listingRows = listingPages.rows;
+  const dataGaps: string[] = [];
+  if (listingPages.error) dataGaps.push(listingPages.error);
+  if (receiptPages.error) dataGaps.push(receiptPages.error);
+  if (listingPages.incomplete) dataGaps.push('Active listing pagination was incomplete');
+  if (receiptPages.incomplete) dataGaps.push('Receipt pagination was incomplete');
+  const failedListings = 0;
+  const listingMetrics = new Map<number, { paidOrderCount: number; transactionCount: number; unitsSold: number; grossByCurrency: MoneyTotals }>();
+  const shopRevenueByCurrency: MoneyTotals = {};
+  const shopRefundsByCurrency: MoneyTotals = {};
+  const receipts = receiptPages.rows;
+  for (const receipt of receipts) {
+    if (receipt.status === 'Canceled' || receipt.status === 'Cancelled' || receipt.status === 'Fully Refunded') continue;
+    for (const transaction of receipt.transactions || []) {
+      const listingId = transaction.listing_id;
+      if (!listingId) continue;
+      const metrics = listingMetrics.get(listingId) || { paidOrderCount: 0, transactionCount: 0, unitsSold: 0, grossByCurrency: {} };
+      metrics.transactionCount++;
+      metrics.unitsSold += transaction.quantity || 1;
+      addMoney(metrics.grossByCurrency, transaction.price);
+      addMoney(shopRevenueByCurrency, transaction.price);
+      listingMetrics.set(listingId, metrics);
     }
-    if (receiptPages.error) {
-      dataGaps.push('Order performance data could not be fully retrieved');
-    }
-    const dataComplete = failedListings === 0 && !receiptPages.error && !listingPages.some((page) => page.incomplete) && !receiptPages.incomplete;
-    if (!dataComplete && !dataGaps.length) dataGaps.push('One or more Etsy result sets are incomplete');
-    const receipts = receiptPages.rows;
-    const history = await loadJson<ListingHistoryItem[]>(HISTORY_PATH, []);
-    const adsState = await fetchAdsState();
-
-    const listingMetrics = new Map<number, {
-      paidOrderCount: number;
-      transactionCount: number;
-      unitsSold: number;
-      grossByCurrency: MoneyTotals;
-      refundsByCurrency: MoneyTotals;
-    }>();
-    const shopRevenueByCurrency: MoneyTotals = {};
-    const shopRefundsByCurrency: MoneyTotals = {};
-    let shopPaidOrderCount = 0;
-    let excludedReceiptCount = 0;
-
-    for (const receipt of receipts) {
-      if (!isPaidReceipt(receipt)) {
-        excludedReceiptCount++;
-        continue;
-      }
-      shopPaidOrderCount++;
-      for (const transaction of receipt.transactions || []) {
-        const amount = transaction.price && Number.isFinite(transaction.price.amount) && Number.isFinite(transaction.price.divisor) && transaction.price.divisor
-          ? (transaction.price.amount / transaction.price.divisor) * (transaction.quantity || 1)
-          : 0;
-        const currency = transaction.price?.currency_code;
-        if (currency && amount) shopRevenueByCurrency[currency] = (shopRevenueByCurrency[currency] || 0) + amount;
-        const metrics = listingMetrics.get(transaction.listing_id) || { paidOrderCount: 0, transactionCount: 0, unitsSold: 0, grossByCurrency: {}, refundsByCurrency: {} };
-        metrics.paidOrderCount++;
-        metrics.transactionCount++;
-        metrics.unitsSold += transaction.quantity || 1;
-        if (currency && amount) metrics.grossByCurrency[currency] = (metrics.grossByCurrency[currency] || 0) + amount;
-        listingMetrics.set(transaction.listing_id, metrics);
-      }
-      for (const refund of receipt.refunds || []) {
-        addMoney(shopRefundsByCurrency, refund.amount);
-      }
-    }
-
-    const filteredHistory = history.filter((item) => item.createdAt && new Date(item.createdAt).getTime() >= now - rangeDays * 24 * 60 * 60 * 1000);
-    const reportListings = listings.map((listing) => {
-      const metrics = listingMetrics.get(listing.listing_id);
-      const historyItem = history.find((item) => item.listingId === listing.listing_id);
-      const currencies = Object.keys(metrics?.grossByCurrency || {});
-      return {
-        listing_id: listing.listing_id,
-        title: listing.title || historyItem?.title || `Listing ${listing.listing_id}`,
-        state: listing.state || 'unknown',
-        listingFavorites: Number.isFinite(listing.num_favorers) ? listing.num_favorers : null,
-        paidOrderCount: metrics?.paidOrderCount || 0,
-        transactionCount: metrics?.transactionCount || 0,
-        unitsSold: metrics?.unitsSold || 0,
-        grossRevenue: currencies.length === 1 ? metrics!.grossByCurrency[currencies[0]] : null,
-        revenueByCurrency: metrics?.grossByCurrency || {},
-        revenueCurrency: currencies.length === 1 ? currencies[0] : currencies.length > 1 ? 'mixed' : null,
-      };
-    });
-
-    for (const currency of Object.keys(shopRefundsByCurrency)) {
-      const refunded = shopRefundsByCurrency[currency];
-      const gross = shopRevenueByCurrency[currency] || 0;
-      shopRefundsByCurrency[currency] = Math.min(refunded, gross);
-    }
-    const shopNetRevenueByCurrency = Object.fromEntries(Object.entries(shopRevenueByCurrency).map(([currency, gross]) => [currency, gross - (shopRefundsByCurrency[currency] || 0)]));
-    const report = buildPerformanceReport(reportListings, filteredHistory, minCreated * 1000, now);
-
-    return NextResponse.json({
-      report,
-      period,
-      rangeDays,
-      generatedAt: new Date(now).toISOString(),
-      dataComplete,
-      dataGaps: [
-        ...dataGaps,
-        'Etsy API listing favorites and order totals are cumulative; daily/weekly/monthly performance deltas require stored snapshots.',
-        'Gross revenue is calculated from paid receipt transactions and does not include fees, taxes, shipping, or payout adjustments.',
-        'Etsy Ads reporting and budget mutation are not implemented by this route.',
-        'Listing history only includes changes recorded by this application.',
-      ],
-      shopListingCount: reportListings.length,
-      shopPaidOrderCount,
-      excludedReceiptCount,
-      shopRevenueByCurrency,
-      shopRefundsByCurrency,
-      shopNetRevenueByCurrency,
-      ads: {
-        dailyLimitUsd: adsState.dailyLimitUsd ?? null,
-        lastUpdated: adsState.updatedAt ?? null,
-        confirmedByEtsy: false,
-      },
-      listings: reportListings,
-    });
-  } catch (error) {
-    const message = error instanceof Error ? error.message : 'Unknown report failure';
-    return NextResponse.json({ error: message }, { status: 500 });
   }
+  const history = await loadJson<ListingHistoryItem[]>(HISTORY_PATH, []);
+  const listings = listingRows.map((listing) => {
+    const metrics = listingMetrics.get(listing.listing_id);
+    const currencies = Object.keys(metrics?.grossByCurrency || {});
+    const singleCurrency = currencies[0];
+    return {
+      listing_id: listing.listing_id,
+      title: listing.title || `Listing ${listing.listing_id}`,
+      state: listing.state,
+      num_favorers: listing.num_favorers || 0,
+      quantity: listing.quantity,
+      price: listing.price,
+      paidOrderCount: metrics?.paidOrderCount || 0,
+      transactionCount: metrics?.transactionCount || 0,
+      unitsSold: metrics?.unitsSold || 0,
+      grossRevenue: singleCurrency && currencies.length === 1 ? metrics?.grossByCurrency[singleCurrency] ?? null : null,
+      revenueByCurrency: metrics?.grossByCurrency || {},
+      revenueCurrency: currencies.length === 1 ? currencies[0] : currencies.length > 1 ? 'mixed' : null,
+    };
+  });
+  const now = Date.now();
+  const report = buildPerformanceReport(listings, history, now - 30 * 86400000, now);
+  return NextResponse.json({ ...report, dataComplete: failedListings === 0 && !listingPages.incomplete && !receiptPages.incomplete, dataGaps, shopPaidOrderCount: 0, shopRevenueByCurrency, shopRefundsByCurrency, ads: await loadJson(ADS_PATH, {}), notes: [
+    'Etsy API listing favorites and order totals are cumulative listing totals; daily/weekly/monthly performance deltas require stored snapshots.',
+    'Gross revenue is calculated from paid receipt transactions and does not include fees, taxes, shipping, or payout adjustments.',
+    'Etsy Ads reporting and budget mutation are not implemented by this route.',
+    'Listing history only includes changes recorded by this application.',
+  ] });
 }
